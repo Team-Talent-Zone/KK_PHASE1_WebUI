@@ -1,0 +1,301 @@
+
+<section class="section-container-gray-bg">
+<div class="container" *ngIf="listofTestimonals.length > 0">
+    <!-- Section: Testimonials v.4 -->
+    <section class="text-center">
+        <!-- Section heading -->
+        <br>
+        <h2 class="h1-responsive font-weight-bold">Freelancer Reviews</h2>
+        <div class="divider-1 wow fadeInUp text-center"><span></span></div>
+        <!-- <div class="row">
+        <!--Grid column>
+        <div class="col-md-4" *ngFor="let item of listofTestimonals; index as i">
+            <div class="testimonial" *ngIf="i <= 2">
+                <!--Avatar>
+                <div class="avatar mx-auto">
+                    <img src={{item.avtarurl}} class="rounded-circle img-fluid">
+                </div>
+                <!--Content>
+                <!-- <h4 class="font-weight-bold mt-4">{{item.fullname}}</h4>
+                <h6 class="blue-text font-weight-bold my-3 text-center">{{item.label}}</h6> >
+                <p class="font-weight-normal"><i
+                        class="fa fa-quote-left pr-2"></i>
+                        <!-- {{item.feedbackcomment}} >
+                        <app-read-more
+                        [content]="item.feedbackcomment"
+                        [limit]="200"
+                        [completeWords]="true">
+                        </app-read-more>         
+                    
+                <p><b>{{item.fullname}}</b> <br> {{item.label}} ,{{item.feedbackby}} </p>
+                <!-- <h6 class="blue-text font-weight-bold my-3 text-center">{{item.feedbackby}}</h6> -->
+                <!--Review>
+                <div class="grey-text">
+                    <i class="fa fa-star" *ngFor="let i of item.starrate"> </i>
+                </div>
+            </div>
+          </div>
+        <!--Grid column-->
+       
+        <!--Grid column>
+      </div>
+      <div class="clearfix"></div>    
+      <br>
+     <button class="btn btn-primary btn-sm">View More...</button> -->
+     <div class="clearfix"></div>    
+     <br>
+
+
+
+
+        <!-- Grid row -->
+        <div class="row">
+            <!--Carousel Wrapper-->
+            <div id="multi-item-example" class="carousel testimonial-carousel slide carousel-multi-item mb-5"
+                data-ride="carousel">
+                <!--Controls-->
+                <!-- <div class="controls-top" *ngIf="listofTestimonals.length > 3">
+                    <a class="btn-floating light-blue darken-4" href="#multi-item-example" data-slide="prev"><i
+                            class="fa fa-chevron-left"></i></a>
+                    <a class="btn-floating light-blue darken-4" href="#multi-item-example" data-slide="next"><i
+                            class="fa fa-chevron-right"></i></a>
+                </div> -->
+                <!--Controls-->
+
+                <!--Indicators-->
+                <ol class="carousel-indicators" *ngIf="listofTestimonals.length > 3">
+                    <li data-target="#multi-item-example" data-slide-to="0" class="active light-blue darken-4"></li>
+                    <li data-target="#multi-item-example" data-slide-to="1" class="light-blue darken-4"></li>
+                </ol>
+                <!--Indicators-->
+
+                <!--Slides-->
+                <div class="carousel-inner" role="listbox">
+                    <!--First slide-->
+                    <div class="carousel-item active">
+                        <div class="row">
+                            <!--Grid column-->
+                            <div class="col-md-4" *ngFor="let item of listofTestimonals; index as i">
+                                <div class="testimonial" *ngIf="i <= 2">
+                                    <!--Avatar-->
+                                    <div class="avatar mx-auto">
+                                        <img src={{item.avtarurl}} class="rounded-circle img-fluid">
+                                    </div>
+                                    <!--Content-->
+                                    <!-- <h4 class="font-weight-bold mt-4">{{item.fullname}}</h4>
+                                    <h6 class="blue-text font-weight-bold my-3 text-center">{{item.label}}</h6>
+                                     -->
+                                    <p class="font-weight-normal"><i
+                                            class="fa fa-quote-left pr-2"></i>
+                                            <!-- {{item.feedbackcomment}} -->
+                                            <app-read-more
+                                            [content]="item.feedbackcomment"
+                                            [limit]="150"
+                                            [completeWords]="true">
+                                            </app-read-more>         
+                                        
+                                    </p>
+                                    <!-- <h6 class="blue-text font-weight-bold my-3 text-center">{{item.feedbackby}}</h6>
+                                    -->
+                                    <p>
+                                        <b>{{item.fullname}}</b>
+                                        <br>
+                                        {{item.label}},{{item.feedbackby}}
+                                    </p>
+                                    <!--Review-->
+                                    <div class="grey-text">
+                                        <i class="fa fa-star" *ngFor="let i of item.starrate"> </i>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Grid column-->
+
+
+                            <!--Grid column-->
+                        </div>
+                    </div>
+                    <!--First slide-->
+
+                    <!--Second slide-->
+                    <div class="carousel-item">
+                        <div class="row">
+                            <div class="col-md-4" *ngFor="let item of listofTestimonals; index as i">
+                                <div class="testimonial" *ngIf="i > 2">
+                                    <!--Avatar-->
+                                    <div class="avatar mx-auto">
+                                        <img src={{item.avtarurl}} class="rounded-circle img-fluid">
+                                    </div>
+                                    <!--Content-->
+                                    <!-- <h4 class="font-weight-bold mt-4">{{item.fullname}}</h4>
+                                    <h6 class="blue-text font-weight-bold my-3">{{item.label}}</h6> -->
+
+                                    <p class="font-weight-normal"><i class="fa fa-quote-left pr-2"></i>  
+                                    <app-read-more
+                                     [content]="item.feedbackcomment"
+                                     [limit]="150"
+                                     [completeWords]="true">
+                                     </app-read-more> 
+                                    </p>
+                                    <!-- <h6 class="blue-text font-weight-bold my-3 text-center">{{item.feedbackby}}</h6>
+                                     -->
+                                     <p>
+                                        <b>{{item.fullname}}</b>
+                                        <br>
+                                        {{item.label}},{{item.feedbackby}}
+                                    </p>
+                                    <!--Review-->
+                                    <div class="grey-text">
+                                        <i class="fa fa-star" *ngFor="let i of item.starrate"> </i>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Grid column-->
+                        </div>
+                    </div>
+                    <!--Second slide-->
+
+
+                       <!--Second slide-->
+                       <div class="carousel-item">
+                        <div class="row">
+                            <div class="col-md-4" *ngFor="let item of listofTestimonals; index as i">
+                                <div class="testimonial" *ngIf="i > 2">
+                                    <!--Avatar-->
+                                    <div class="avatar mx-auto">
+                                        <img src={{item.avtarurl}} class="rounded-circle img-fluid">
+                                    </div>
+                                    <!--Content-->
+                                    <!-- <h4 class="font-weight-bold mt-4">{{item.fullname}}</h4>
+                                    <h6 class="blue-text font-weight-bold my-3">{{item.label}}</h6> -->
+
+                                    <p class="font-weight-normal"><i
+                                            class="fa fa-quote-left pr-2"></i>
+                                            <!-- {{item.feedbackcomment}} -->
+                                            <app-read-more
+                                            [content]="item.feedbackcomment"
+                                            [limit]="150"
+                                            [completeWords]="true">
+                                            </app-read-more> 
+                                           </p>
+                                           <p>
+                                            <b>{{item.fullname}}</b>
+                                            <br>
+                                            {{item.label}},{{item.feedbackby}}
+                                        </p>
+                                    <!-- <h6 class="blue-text font-weight-bold my-3">{{item.feedbackby}}</h6> -->
+                                    <!--Review-->
+                                    <div class="grey-text">
+                                        <i class="fa fa-star" *ngFor="let i of item.starrate"> </i>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Grid column-->
+                        </div>
+                    </div>
+                    <!--Second slide-->
+
+
+
+                       <!--Second slide-->
+                       <div class="carousel-item">
+                        <div class="row">
+                            <div class="col-md-4" *ngFor="let item of listofTestimonals; index as i">
+                                <div class="testimonial" *ngIf="i > 2">
+                                    <!--Avatar-->
+                                    <div class="avatar mx-auto">
+                                        <img src={{item.avtarurl}} class="rounded-circle img-fluid">
+                                    </div>
+                                    <!--Content-->
+                                    <!-- <h4 class="font-weight-bold mt-4">{{item.fullname}}</h4>
+                                    <h6 class="blue-text font-weight-bold my-3">{{item.label}}</h6> -->
+
+                                    <p class="font-weight-normal"><i
+                                            class="fa fa-quote-left pr-2"></i>
+                                            <!-- {{item.feedbackcomment}} -->
+                                     <app-read-more
+                                     [content]="item.feedbackcomment"
+                                     [limit]="150"
+                                     [completeWords]="true">
+                                     </app-read-more> 
+                                    </p>
+                                    <p>
+                                        <b>{{item.fullname}}</b>
+                                        <br>
+                                        {{item.label}},{{item.feedbackby}}
+                                    </p>
+                                    <!-- <h6 class="blue-text font-weight-bold my-3">{{item.feedbackby}}</h6> -->
+                                    <!--Review-->
+                                    <div class="grey-text">
+                                        <i class="fa fa-star" *ngFor="let i of item.starrate"> </i>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Grid column-->
+                        </div>
+                    </div>
+                    <!--Second slide-->
+
+
+
+
+                       <!--Second slide-->
+                    <div class="carousel-item">
+                        <div class="row">
+                            <div class="col-md-4" *ngFor="let item of listofTestimonals; index as i">
+                                <div class="testimonial" *ngIf="i > 2">
+                                    <!--Avatar-->
+                                    <div class="avatar mx-auto">
+                                        <img src={{item.avtarurl}} class="rounded-circle img-fluid">
+                                    </div>
+                                    <!--Content-->
+                                    <!-- <h4 class="font-weight-bold mt-4">{{item.fullname}}</h4>
+                                    <h6 class="blue-text font-weight-bold my-3">{{item.label}}</h6> -->
+
+                                    <p class="font-weight-normal"><i
+                                            class="fa fa-quote-left pr-2"></i>
+                                            <!-- {{item.feedbackcomment}} -->
+                                            <app-read-more
+                                            [content]="item.feedbackcomment"
+                                            [limit]="150"
+                                            [completeWords]="true">
+                                            </app-read-more> 
+                                        
+                                        </p>
+                                    <!-- <h6 class="blue-text font-weight-bold my-3"> -->
+                                        <p>
+                                            <b>{{item.fullname}}</b>
+                                            <br>
+                                            {{item.label}},{{item.feedbackby}}
+                                        </p>
+                                    <!-- </h6> -->
+                                    <!--Review-->
+                                    <div class="grey-text">
+                                        <i class="fa fa-star" *ngFor="let i of item.starrate"> </i>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Grid column-->
+                        </div>
+                    </div>
+                    <!--Second slide-->
+
+                </div>
+                <!--Slides-->
+
+            </div>
+            <!--Carousel Wrapper-->
+
+        </div> 
+        <!-- Grid row -->
+
+    </section>
+    <!-- Section: Testimonials v.4 -->
+</div>
+
+</section>
+
+        
+
+        
+
+        

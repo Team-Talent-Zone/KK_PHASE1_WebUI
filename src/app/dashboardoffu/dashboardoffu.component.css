@@ -1,0 +1,18 @@
+.stepConectorPiece {
+    height:3px;
+    background:lightgrey;
+    flex:1;
+    margin-top:12px;
+  }
+  .rounded-circle{
+    background-color: #FF4949;
+    border-radius: 25px;
+    border: 1px solid gainsboro;
+    padding: 18px;
+    margin-top: -15px;
+    color: black;
+    font-weight: bold;
+  }
+  .bg-custom{
+    background-color: #0a382b;
+  }

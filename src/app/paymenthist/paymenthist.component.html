@@ -1,0 +1,103 @@
+<div class="container">
+    <h4>Payment Details</h4>
+    <hr>
+    <span>
+    <div class="row" style="background-color: deepskyblue;padding: 9px;border-radius: 6px;">
+     <div class="col-md-3">
+        <input type="text" class="form-control" placeholder="Search Results">
+    </div>
+    <div class="col-md-9">
+        <button class="btn btn-primary btn-sm pull-right">View All</button>
+    </div>
+    </div>
+    </span>
+    <br> 
+    <div  *ngIf="paymentdetails != null">
+        
+        <table class="table table-bordered table-hover table-sm table-striped">
+            <thead>
+                <tr>
+                    <th>Transcation Id</th>
+                    <th>Name</th>
+                    <th>Transcation Date</th>
+                    <th>Payment Mode</th>
+                    <th>Status</th>
+                    <th>Amount</th>
+                    <th>Remarks</th>    
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{paymentdetails.txnid}}</td>
+                    <td>{{paymentdetails.name}}</td>
+                    <td>{{paymentdetails.createdon}}</td>
+                    <td>{{paymentdetails.paymentsCBATrans.mode}}</td>
+                    <td>{{paymentdetails.paymentsCBATrans.status}}</td>
+                    <td>{{paymentdetails.amount}}</td>
+                    <td>{{paymentdetails.productinfo}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div  *ngIf="fupaymenthistorydetails.length > 0 ">
+        <!-- <h2>Payment History</h2>
+        <br>
+        <input type="text" class="form-control col-md-3" placeholder="Search Results"> -->
+        <table class="table table-bordered table-hover table-sm table-striped">
+            <thead>
+                <tr>
+                    <th>Transcation Id</th>
+                    <th>Name</th>
+                    <th>Transcation Date</th>
+                    <th>Payment Mode</th>
+                    <th>Status</th>
+                    <th>Amount</th>
+                    <th>Remarks</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let fupayments of fupaymenthistorydetails">
+                    <td>{{fupayments.txnid}}</td>
+                    <td>{{fupayments.name}}</td>
+                    <td>{{fupayments.createdon}}</td>
+                    <td>{{fupayments.mode}}</td>
+                    <td>{{fupayments.status}}</td>
+                    <td>{{fupayments.amount}}</td>
+                    <td>{{fupayments.productinfo}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="cbapaymenthistorydetails.length >0  && paymentdetails == null">
+        <!-- <h2>Payment History</h2><br>
+       <div class="clearfix"></div> <br>
+        <input type="text" class="form-control col-md-3" placeholder="Search Results">
+        <div class="clearfix"></div> <br> -->
+        <table class="table table-bordered table-hover table-sm table-striped" >
+            <thead>
+                <tr>
+                    <th>Transcation Id</th>
+                    <th>Name</th>
+                    <th>Transcation Date</th>
+                    <th>Payment Mode</th>
+                    <th>Status</th>
+                    <th>Amount</th>
+                    <th>Remarks</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let cbupayments of cbapaymenthistorydetails">
+                    <td>{{cbupayments.txnid}}</td>
+                    <td>{{cbupayments.name}}</td>
+                    <td>{{cbupayments.createdon}}</td>
+                    <td>{{cbupayments.mode}}</td>
+                    <td>{{cbupayments.status}}</td>
+                    <td>{{cbupayments.amount}}</td>
+                    <td>{{cbupayments.productinfo}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,126 @@
+<!-- <div class="container"> -->
+    <form [formGroup]="createoreditFormGroup" class="form-control" (ngSubmit)="preparetosavewidgetdetails()">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="avatar-upload">
+                    <div class="avatar-edit">
+                        <input type='file' accept=".png,.jpg,.jpeg" class="form-control" #fileInputLogo
+                            (change)="uploadFile($event , 'logoId')" />
+                    </div>
+                    <div class="avatar-square-preview" *ngIf="companylogoId != null">
+                        <div id="imagePreview" [style.backgroundImage]="'url('+ companylogoId +')'">
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-info btn-md" (click)="fileInputLogo.click()">
+                    <span *ngIf="companylogoId != null ; else elseNoLogoID">Re-Upload
+                        Logo</span>
+                    <ng-template #elseNoLogoID>
+                        Upload Logo
+                    </ng-template>
+                </button>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="avatar-upload">
+                    <div class="avatar-edit">
+                        <input type='file' class="form-control" accept=".png,.jpg,.jpeg" #fileInputCmImgURLId
+                            (change)="uploadFile($event , 'companyimgurlId')" />
+                    </div>
+                    <div class="avatar-square-preview" *ngIf="companyimgurlId != null">
+                        <div id="imagePreview" [style.backgroundImage]="'url('+ companyimgurlId +')'">
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-info btn-md" (click)="fileInputCmImgURLId.click()">
+                    <span *ngIf="companyimgurlId != null ; else elseCompanyImgURLID">Re-Upload
+                        Company Image URL</span>
+                    <ng-template #elseCompanyImgURLID>
+                        Upload Company Image URL
+                    </ng-template>
+                </button>
+            </div>
+
+            <div class="col">
+                <div class="avatar-upload">
+                    <div class="avatar-edit">
+                        <input type='file' class="form-control" accept=".png,.jpg,.jpeg" #fileInputCmBgId
+                            (change)="uploadFile($event , 'companybgurlId')" />
+                    </div>
+                    <div class="avatar-square-preview" *ngIf="companybgurlId != null">
+                        <div id="imagePreview" [style.backgroundImage]="'url('+ companybgurlId +')'">
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-info btn-md" (click)="fileInputCmBgId.click()">
+                    <span *ngIf="companybgurlId != null ; else elseCompanyBGImgURLID">Re-Upload
+                        Company Background Image URL</span>
+                    <ng-template #elseCompanyBGImgURLID>
+                        Upload Company Background Image URL
+                    </ng-template>
+                </button>
+            </div>
+
+        </div>
+            
+
+           <br><br>
+        
+        <div class="row">
+            <div class="col">
+                <div class="form-row">
+                    <div class="col-md-3 form-group">
+                                <span>
+                                    <i class=" fa fa-briefcase  form-control-icon"></i>
+                                </span>
+                                <input type="text" placeholder="Company Name*" class="form-control"
+                                    formControlName="companyname"
+                                    [ngClass]="{ 'is-invalid': issubmit && f.companyname.errors }">
+                                <div *ngIf="issubmit && f.companyname.errors" class="invalid-feedback">
+                                    <div *ngIf="f.companyname.errors.required">Company Name is required
+                                    </div>
+                                </div>
+                    </div>
+
+                    <div class="form-group col-md-3">
+                        <span>
+                            <i class=" fa fa-address-book  form-control-icon"></i>
+                        </span>
+                        <textarea rows="1" cols="1" placeholder="Company Address*" class="form-control"
+                            formControlName="footercompanyaddress"
+                            [ngClass]="{ 'is-invalid': issubmit && f.footercompanyaddress.errors }"></textarea>
+                        <div *ngIf="issubmit && f.footercompanyaddress.errors" class="invalid-feedback">
+                            <div *ngIf="f.footercompanyaddress.errors.required">Company Address is required
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <span>
+                            <i class=" fa fa-address-book  form-control-icon"></i>
+                        </span>
+                        <textarea rows="1" cols="1" placeholder="Company Content" class="form-control"
+                            formControlName="footercontent"></textarea>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <textarea rows="1" cols="1" placeholder="Company FaceBook URL" class="form-control"
+                            formControlName="footerfburl"></textarea>
+                    </div>
+
+                    <div class="form-group col-md-3">
+                        <textarea rows="1" cols="1" placeholder="Company Instagram URL" class="form-control"
+                            formControlName="footerinstaurl"></textarea>
+                    </div>
+                    <div class="col-md-9">
+                        <button type="button" class="btn btn-secondary pull-right" [routerLink]="['/myservices']">Back To My Service</button>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <button type="submit" class="btn btn-primary pull-right" style="margin-right: 10px;">Save Widget</button>
+                        &nbsp;&nbsp;
+                        
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        
+    </form>
+<!-- </div> -->

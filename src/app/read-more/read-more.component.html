@@ -1,0 +1,5 @@
+{{ content }}
+<div class="clearfix"></div>
+<button  class="btn btn-sm btn-primary" *ngIf="!isContentToggled" (click)="toggleContent()" i18n>Read More</button>
+<button class="btn btn-sm btn-primary" *ngIf="isContentToggled" (click)="toggleContent()" i18n>Read Less</button>
+ <div class="clearfix"></div>

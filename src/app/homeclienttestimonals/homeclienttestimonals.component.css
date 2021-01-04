@@ -1,0 +1,46 @@
+.rounded-circle {
+    border-radius: 50%!important;
+    width: 22%!important;
+    height: 81px!important;
+}
+.mt-30{
+    padding-top: 30px !important;
+}
+.tsm-bg{
+    background-color: #d2d3d440
+}
+
+.rounded-circle {
+    border-radius: 50%!important;
+    width: 16%!important;
+    height: 54px!important;
+}
+.testimonial {
+    width: 327px;
+    margin-right: 91px;
+    margin-left: 20px;
+    margin-top: 13px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    /* padding: 16px; */
+    box-shadow: none;
+    box-shadow: 0px 1px 8px 0px #92a4b7;
+    /* margin-right: -16px; */
+  }
+
+.grey-text{
+    color:#FF4949;
+  }
+
+  .carousel-indicators {
+    bottom: -30px;
+  }
+  
+.carousel-indicators li {
+    background-color: #ef4746 !important;
+}
+
+.carousel-indicators .active {
+    background-color: #2c321f !important;
+}

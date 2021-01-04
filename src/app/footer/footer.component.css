@@ -1,0 +1,38 @@
+/* .section-6-container{
+    text-align: left;
+} */
+
+/* #contact{
+    background-image: url();
+} */
+
+h1, h2 {
+    font-size: 28px;
+    color: #f3f3f3;
+}
+
+.bg-light{
+padding-top: 35px;
+padding-bottom: 35px;  
+background-image: url(src/assets/img/backgrounds/footer-background.jpg);
+box-shadow: -1px -1px 11px 4px #101113;
+}
+
+
+.bg-light-copy{
+    background-color: #13352c;
+    padding-top: 14px;
+    color: white;
+    padding-bottom: 1px;
+}
+a{
+color: #FF4949;
+}
+
+.address{
+    color: white;
+}
+.email {
+    color: white;
+}
+

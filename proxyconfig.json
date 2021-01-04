@@ -1,0 +1,7 @@
+{
+    "/RestAPI": {
+        "target": "http://ec2-3-82-192-92.compute-1.amazonaws.com:8080",
+        "secure": true,
+        "changeOrigin": true 
+    }
+}

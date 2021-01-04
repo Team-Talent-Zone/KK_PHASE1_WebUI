@@ -1,0 +1,219 @@
+<div class="modal-header">
+  <h4 class="modal-title">
+    View Account Details of {{usrdetailsObj.firstname}}
+  </h4>
+  <button type="button" class="close" (click)="modalRef.hide()">&times;</button>
+</div>
+<div class="modal-body">
+  <h5> Basic Details </h5>
+  <table style="width:100%">
+    <tr>
+      <th> ID </th>
+      <td>{{usrdetailsObj.userId}}</td>
+    </tr>
+    <tr>
+      <th>Profile Picture</th>
+      <td> <a href="{{usrdetailsObj.avtarurl}}" target="_blank" class="fa fa-image"></a></td>
+    </tr>
+    <tr>
+      <th>Email Address </th>
+      <td> {{usrdetailsObj.username}}</td>
+    </tr>
+    <tr>
+      <th>First Name </th>
+      <td>{{usrdetailsObj.firstname}} </td>
+    </tr>
+    <tr>
+      <th>Last Name </th>
+      <td>{{usrdetailsObj.lastname}}</td>
+    </tr>
+    <tr>
+      <th>Prefered Language</th>
+      <td>{{usrdetailsObj.preferlang}}</td>
+    </tr>
+    <tr>
+      <th>Created On </th>
+      <td> {{usrdetailsObj.createdon}}</td>
+    </tr>
+    <tr>
+      <th>Created By </th>
+      <td> {{usrdetailsObj.createdby}}</td>
+    </tr>
+    <tr>
+      <th>Full Address </th>
+      <td>
+        <a href={{mapurl}} target="_blank">
+          {{usrdetailsObj.userbizdetails.fulladdress}}
+        </a>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<p
+  *ngIf="usrdetailsObj.userroles.rolecode == 'CORE_SERVICE_SUPPORT_TEAM'||usrdetailsObj.userroles.rolecode == 'CORE_SERVICE_SUPPORT_MANAGER' ">
+
+  {{usrdetailsObj.firstname}}'s manager is {{edituserobj2?.firstname}} {{edituserobj2?.lastname}}
+</p>
+
+<div class="modal-body" *ngIf="usrdetailsObj.userroles.rolecode == 'CLIENT_BUSINESS_ADMINISTRATOR'">
+  <h5> Business Details</h5>
+  <table style="width:100%">
+
+    <tr>
+      <th>Biz Name </th>
+      <td> {{usrdetailsObj.userbizdetails.bizname}}</td>
+    </tr>
+    <tr>
+      <th>Biz Type </th>
+      <td> {{usrdetailsObj.userbizdetails.biztype}}</td>
+    </tr>
+    <tr>
+      <th>Biz Website </th>
+      <td> {{usrdetailsObj.userbizdetails.bizwebsite}}</td>
+    </tr>
+    <tr>
+      <th>Purpose of signup </th>
+      <td> {{usrdetailsObj.userbizdetails.purposeofsignup}}</td>
+    </tr>
+    <tr>
+      <th>AbtBiz </th>
+      <td> {{usrdetailsObj.userbizdetails.abtbiz}}</td>
+    </tr>
+    <tr>
+      <th>Designation </th>
+      <td> {{usrdetailsObj.userbizdetails.designation}}</td>
+    </tr>
+
+  </table>
+</div>
+
+<div class="modal-body" *ngIf="usrdetailsObj.userroles.rolecode == 'FREELANCER_USER'">
+  <h5> Freelancer Details </h5>
+  <table style="width:100%">
+
+  
+      <tr *ngFor="let referencelookupmap of signupComponent.referencedetailsmap">
+        <th *ngIf="referencelookupmap.mapId == usrdetailsObj.freeLanceDetails.category">Category</th>
+        <td *ngIf="referencelookupmap.mapId == usrdetailsObj.freeLanceDetails.category">{{referencelookupmap.label}}</td>
+      </tr>
+  
+
+    <tr *ngFor="let referencelookupmap of signupComponent.referencedetailsmapsubcat">
+      
+        <th *ngIf="referencelookupmap.code == usrdetailsObj.freeLanceDetails.subCategory">Sub Category</th>
+        <td *ngIf="referencelookupmap.code == usrdetailsObj.freeLanceDetails.subCategory">{{referencelookupmap.label}}</td>
+    
+    </tr>
+    <tr>
+      <th>Experience In Field</th>
+      <td> {{usrdetailsObj.freeLanceDetails.experienceInField}}</td>
+    </tr>
+    <tr>
+      <th>ABT</th>
+      <td> {{usrdetailsObj.freeLanceDetails.abt}}</td>
+    </tr>
+    <tr>
+      <th>Hourly Rate</th>
+      <td> {{usrdetailsObj.freeLanceDetails.hourlyRate}} &#8377;</td>
+    </tr>
+    <tr>
+      <th>Percentage Deduct</th>
+      <td> {{usrdetailsObj.freeLanceDetails.percentageDeduct}} &#37;</td>
+    </tr>
+    <tr>
+      <th>Is Profile Completed</th>
+      <td>
+        <div *ngIf="usrdetailsObj.freeLanceDetails.isprofilecompleted">
+          <i class="fa fa-check" title="Bg verification is completed" style="color: rgb(37, 165, 37)"></i>
+        </div>
+
+        <div *ngIf="!usrdetailsObj.freeLanceDetails.isprofilecompleted">
+          <i class="fa fa-spinner" title="Bg verification is in-progress" style="color:rgb(16, 0, 238)"></i>
+        </div>
+      </td>
+    </tr>
+
+    <tr>
+      <th>Is BG Done</th>
+      <td>
+        <div *ngIf="usrdetailsObj.freeLanceDetails.isbgdone">
+          <i class="fa fa-check" title="Bg verification is completed" style="color: rgb(37, 165, 37)"></i>
+        </div>
+        <div *ngIf="!usrdetailsObj.freeLanceDetails.isbgdone">
+          <i class="fa fa-spinner" title="Bg verification is in-progress" style="color:rgb(16, 0, 238)"></i>
+        </div>
+      </td>
+    </tr>
+
+    <tr>
+      <th>Is BG Started</th>
+      <td>
+        <div *ngIf="usrdetailsObj.freeLanceDetails.isbgstarted">
+          <i class="fa fa-check" title="Bg verification is completed" style="color: rgb(37, 165, 37)"></i>
+        </div>
+        <div *ngIf="!usrdetailsObj.freeLanceDetails.isbgstarted">
+          <i class="fa fa-spinner" title="Bg verification is in-progress" style="color:rgb(16, 0, 238)"></i>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <th> Valid National ID </th>
+      <td><a href="{{usrdetailsObj.freeLanceDetails.uploadValidPhotoidImgUrl}}" target="_blank"
+          class="fa fa-image"></a>
+      </td>
+    </tr>
+
+  </table>
+</div>
+
+
+<div class="modal-body" *ngIf="usrdetailsObj.userroles.rolecode == 'FREELANCER_USER'">
+  <h5>Background Verification History Details </h5>
+  <table style="width:100%">
+
+    <tr>
+      <th>Decision by</th>
+      <th>Decision On</th>
+      <th>Bg Status </th>
+      <th>Bg Comments </th>
+      <th>ManageId </th>
+      <th>CSST ID </th>
+    </tr>
+    <tr *ngFor="let value of usrdetailsObj.freelancehistoryentity ">
+      <td> {{value.decisionby}}</td>
+      <td> {{value.decisionon}}</td>
+      <td> {{value.bgstatus}}</td>
+      <td> {{value.bgcomment}}</td>
+      <td> <a href="javascript: return false;"
+          (click)='managerusercomponent.openViewAccountDetailsModalByUserId(value.managerid)'>
+          {{value.managerid}}</a></td>
+      <td><a href="javascript: return false;"
+          (click)='managerusercomponent.openViewAccountDetailsModalByUserId(value.csstid)'>
+          {{value.csstid}}</a></td>
+
+    </tr>
+
+  </table>
+</div>
+
+
+
+
+<div class="modal-body" *ngIf="usrdetailsObj.userroles.rolecode == 'FREELANCER_USER'">
+
+  <h5>BackGround Verification Document History Details</h5>
+  <div>
+    <table style="width:100%">
+      <tr>
+        <th>Document Name</th>
+        <th>Upload Date</th>
+      </tr>
+      <tr *ngFor="let value of usrdetailsObj.freelancedocumententity ">
+
+        <td><a href="{{value.docurl}}">{{value.docname}}</a> </td>
+        <td>{{value.uploaddate}}</td>
+      </tr>
+    </table>
+  </div>
+</div>

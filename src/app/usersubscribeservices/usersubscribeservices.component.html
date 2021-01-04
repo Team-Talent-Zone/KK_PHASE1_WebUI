@@ -1,0 +1,97 @@
+<!-- 
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+      <li class="breadcrumb-item active" aria-current="page">My Services</li>
+    </ol>
+</nav> -->
+
+<div  style="margin-top:8px !important" *ngIf="listOfSubscribedServicesByUser.length > 0">
+    <!-- <div class="card-header" role="tab" id="headingOne"> -->
+        <div class="row">
+        <div class="col-sm-12">
+        <h5>
+            {{ 'DASHOARD_CBA_MAIN_BODY.SUBSCRIBEDSERVICES' | translate }}
+        </h5>
+        <hr>
+        </div>
+    <!-- </div> -->
+    <!-- <div class="card-body">
+        <div class="card-deck"> -->
+            <div class="col-sm-4 mb-3 mb-md-0" style="margin-bottom:8px !important"
+                *ngFor="let svc of listOfSubscribedServicesByUser">
+                <div class="card text-center h-100">
+                    <div class="card-header header-bg">
+                        <h6>{{svc.name}}</h6>
+                    </div>
+                    <img class="card-img" src={{svc.imgurl}}>
+                    <div class="card-body d-flex flex-column">
+                        <div class="card-title">
+                            <span class="display-4">
+                                <i class="fa fa-inr"> {{svc.amount}} </i></span>
+                            <span class="mb-4">/{{svc.validPeriodLabel}}
+                            </span>
+                        </div>
+                        <div class="card-text">
+                            <ul class="list-unstyled">
+                                <li class="mb-1" *ngFor="let features of svc.fullcontent">
+                                    {{features}}
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="card-text">
+                            <div *ngIf="svc.category ==='FS_S'">
+                                <b class="text-danger">Freelancer Service Is Activated</b>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div *ngIf="svc.category !=='FS_S'">
+                                    <a class="btn btn-warning" [routerLink]="['/createoreditwidget',svc.ourserviceId]">
+                                        <i class="fa fa-window-restore">Custom Widget</i></a>
+                                </div>
+                            </div>
+                            <div class="col-sm-3"></div>
+                            <div class="col-sm-4" *ngIf="istimelap">
+                                <div *ngIf="svc.status === 'PAYMENT_PAID' && svc.category !=='FS_S'">
+                                    <a class="btn btn-success" title="Click to Pubish the Site for {{svc.name}}"
+                                        (click)="publishNow(svc.serviceId)">
+                                        <i class="fa fa-play" title="Click to Pubish the Site for {{svc.name}}"
+                                            style="font-size:12px;color:rgb(76, 0, 255)"> </i>
+                                    </a>
+                                </div>
+                                <div *ngIf="svc.status == 'PUBLISHED' && svc.category !=='FS_S'">
+                                    <a class="btn btn-success" href={{svc.publishedlinkurl}} target="_blank"
+                                        title={{svc.publishedlinkurl}}>
+                                        Go To Site</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="card-text">
+                            <small class="text-muted">Started on <b> {{svc.servicestarton}} </b> </small>
+                        </div>
+                        <div class="card-text">
+                            <small class="text-muted">Expire on <b> {{svc.serviceendon}} </b> [i.e
+                                <b>{{svc.validdays}} days remaining </b> ] </small>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3"></div>
+                            <div class="col-sm-6">
+                                <button class="btn  btn-secondary btn-sm" [routerLink]="['/payment',svc.txnid]">
+                                    Payment Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+       </div>
+     <!-- </div> -->
+</div>
+
+
+<div style="margin-top:8px !important" *ngIf="
+listOfSubscribedServicesByUser.length === 0 && istimelap">
+    No Services Subscribed . <a [routerLink]="['/dashboard']">Show Avaiable Services</a>
+</div>
