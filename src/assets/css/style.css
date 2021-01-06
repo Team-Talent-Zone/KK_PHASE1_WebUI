@@ -261,4 +261,16 @@ element.style {
 	}
 }
 
+.bg-search{
+	background-color: deepskyblue;
+	padding: 9px;
+	border-radius: 6px;
+	}
+	
+	.mt-btn-v{
+		margin-top: -34px;
+	}
+
+
+
 

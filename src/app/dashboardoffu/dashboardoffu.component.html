@@ -8,10 +8,10 @@
             <i class="fa fa-address-card-o  rounded-circle"></i>
             <a  routerLink='/vieworeditprofile/{{userService.currentUserValue.userId}}'
                 *ngIf="!userService.currentUserValue.freeLanceDetails.isprofilecompleted; else elseFU">
-                <p style="color: black;"><small><b>Fill out In-Complete Profile</b></small></p>
+                <p style="color: black;"><small><b>Fill out Profile</b></small></p>
             </a>
             <ng-template #elseFU>
-                <p align="justify"><small><b>Profile Updated</b></small></p>
+                <p align="justify"><small><b>Fulll Profile Updated</b></small></p>
             </ng-template>
            
         </div>
@@ -52,7 +52,7 @@
         <div class="col-6 col-sm-2 placeholder text-center">
             <!-- <img src="{{stage3Img}}" class="mx-auto img-fluid rounded-circle" alt="Generic placeholder thumbnail"> -->
             <i class="fa fa-street-view rounded-circle"></i>
-            <p ><small><b>BG Verification Initiated</b></small></p>
+            <p ><small><b>Background  Verification Initiated</b></small></p>
             
         </div>
         <div class="stepConectorPiece"
@@ -62,7 +62,7 @@
             <!-- <img src="{{stage4Img}}" class="mx-auto img-fluid rounded-circle"
                 alt="Background Verification is In Progress"> -->
             <i class="fa fa-hourglass-start rounded-circle"></i>    
-            <p ><small><b>BG Verification In Progress</b></small></p>
+            <p ><small><b>Background  Verification In Progress</b></small></p>
            
         </div>
         <div class="stepConectorPiece"
@@ -71,7 +71,7 @@
         <div class="col-6 col-sm-2 placeholder text-center">
             <!-- <img src="{{stage5Img}}" class="mx-auto img-fluid rounded-circle" alt="Final Result"> -->
             <i class="fa fa fa-hand-paper-o rounded-circle"></i>
-            <p style="text-align: center;"><small><b>BG Verification Final Result</b></small></p>
+            <p style="text-align: center;"><small><b>Background  Verification Final Result</b></small></p>
            
         </div>
     </div>

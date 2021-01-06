@@ -2,28 +2,29 @@
 <div class="container" *ngIf="!iscreatejobdiv">
     <div class=" row">
         <div class="col-md-11">
-            <h5 class=" section-title h2" *ngIf="userFUObjList.length > 1 && !issearchbydate;">
+            <span class=" section-title" *ngIf="userFUObjList.length > 1 && !issearchbydate;">
                 <p>Below are the {{name}}'s all over the locations.
                 </p>
-            </h5>
-            <h5 class=" section-title h2" *ngIf="userFUObjList.length == 1 && issearchbydate &&
+            </span>
+            <span class=" section-title " *ngIf="userFUObjList.length == 1 && issearchbydate &&
             this.searchform.get('fulladdress').value.length > 0;">
-                Available {{name}} at <b> : </b>
-                {{this.searchform.get('fulladdress').value}}
-            </h5>
-            <h5 class="section-title h2" *ngIf="userFUObjList.length > 1 && issearchbydate && 
+                <p>Available {{name}} at <b> : </b>
+                {{this.searchform.get('fulladdress').value}}</p>
+           </span>
+            <span class="section-title " *ngIf="userFUObjList.length > 1 && issearchbydate && 
                 this.searchform.get('fulladdress').value.length > 0;">
-                Available {{name}}'s at
-                <b> : </b>{{this.searchform.get('fulladdress').value}}
-            </h5>
+               <p> Available {{name}}'s at
+                <b> : </b>{{this.searchform.get('fulladdress').value}}</p>
+                <br>
+            </span>
         </div>
 
     </div>
-    <div class="row">
+    <!-- <div class="row">
         <div class="col-md-9">
             <i>To Create a Job for {{name}} 'Select Job Start Date & Job Location'</i>
         </div>
-    </div>
+    </div> -->
     <div class="row">
         <form [formGroup]="searchform" (ngSubmit)="searchByFilterFreelancer()">
             <div class="form-row">
@@ -60,44 +61,42 @@
                     <a (click)="openCreateJobInterface()" class="btn btn-warning"><i class="fa fa-plus"></i>
                         Create a Job Now</a>
                 </div>
-
+               <i> <b> Note: </b> To Create a Job for {{name}} 'Select Job Start Date & Job Location'</i>
             </div>
         </form>
     </div>
 </div>
 <div class="row" *ngIf="userFUObjList.length > 0 && iscreatejobdiv">
-    <div class="col-md-8 mx-auto">
+    <div class="col-md-12 mx-auto">
+        <h3 class="mb-0">Create a Job for {{name}}</h3>
+        <hr>
         <!-- form card register -->
         <form [formGroup]="createjobform" (ngSubmit)="preparetosavefreelanceonservice()">
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="mb-0">Create a Job for {{name}}</h3>
-                </div>
+            <!-- <div class="card"> -->
+                <!-- <div class="card-header"> -->
+                   
+                <!-- </div> -->
                 <div class="card-body">
                     <div class="form-group">
                         <div class="form-row">
+                            <!-- <div class="form-group col-md-3"> -->
+                                
+                            <!-- </div> -->
                             <div class="form-group col-md-3">
-                                <p>Job Location </p>
-                            </div>
-                            <div class="form-group col-md-8">
+                                <label>Job Location </label>
                                 <span>
                                     <i class="fa fa-address-book form-control-icon"></i>
                                 </span>
-                                <textarea formControlName="joblocation" class="form-control" readonly id="input4"
+                                <textarea formControlName="joblocation" rows="1" class="form-control" readonly id="input4"
                                     placeholder="Job Location"> </textarea>
                             </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="form-row">
+
                             <div class="form-group col-md-3">
-                                <p>Total Hours Of Work
+                                <label>Total Hours Of Work
                                     <i class="fa fa-question-circle"
                                         title="Enter hours of work will calcuate the job end date automatically"
                                         style="font-size:10px;color:rgb(76, 0, 255)"></i>
-                                </p>
-                            </div>
-                            <div class="form-group col-md-8">
+                                </label>
                                 <span>
                                     <i class="fa fa-clock-o form-control-icon"></i>
                                 </span>
@@ -119,34 +118,27 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="form-row">
+
+                           
                             <div class="form-group col-md-3">
-                                <p>Job Start Date
+                                <label>Job Start Date
                                     <i class="fa fa-question-circle" title="We setup the time at 10:00 AM"
                                         style="font-size:10px;color:rgb(76, 0, 255)"></i>
-                                </p>
-                            </div>
-                            <div class="form-group col-md-8">
+                                </label>
                                 <span>
                                     <i class="fa fa-calendar   form-control-icon"></i>
                                 </span>
                                 <input formControlName="jobstartedon" class="form-control" readonly>
                             </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="form-row">
+
+
+                            
                             <div class="form-group col-md-3">
-                                <p>Job End Date
+                                <label>Job End Date
                                     <i class="fa fa-question-circle"
                                         title="The end date auto generated based on the hours of work "
                                         style="font-size:10px;color:rgb(76, 0, 255)"></i>
-                                </p>
-                            </div>
-                            <div class="form-group col-md-8">
+                                </label>
                                 <span>
                                     <i class="fa fa-calendar   form-control-icon"></i>
                                 </span>
@@ -155,14 +147,20 @@
                                     Our auto estimated end date & time : {{enddatevalue}}
                                 </p>
                             </div>
+
+
+
+
                         </div>
                     </div>
+                    
+                    
+                    
                     <div class="form-group">
                         <div class="form-row">
+                            
                             <div class="form-group col-md-3">
-                                Enter price your estimating
-                            </div>
-                            <div class="form-group col-md-8">
+                                <label> Enter price your estimating</label>
                                 <span>
                                     <i class="fa fa-clock-o form-control-icon"></i>
                                 </span>
@@ -184,18 +182,14 @@
                                         style="font-size:10px;color:rgb(76, 0, 255)"></i>
                                 </p>
                             </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="form-row">
-                            <div class="form-group col-md-3">
-                                Job Description
-                            </div>
-                            <div class="form-group col-md-8">
+
+                            
+                            <div class="form-group col-md-9">
+                                <label> Job Description</label>
                                 <span>
                                     <i class="fa fa-at form-control-icon"></i>
                                 </span>
-                                <textarea class="form-control" formControlName="jobdescription" id="input5"
+                                <textarea class="form-control" formControlName="jobdescription" rows="1" id="input5"
                                     placeholder="Enter Job Description"
                                     [ngClass]="{ 'is-invalid': issubmit && f.jobdescription.errors }"></textarea>
                                 <div *ngIf="issubmit && f.jobdescription.errors" class="invalid-feedback">
@@ -204,21 +198,24 @@
                                     </div>
                                 </div>
                             </div>
+
+
                         </div>
                     </div>
-                </div>
-                <div class="card-footer">
+                    
+                <!-- </div> -->
+                <!-- <div class="card-footer"> -->
                     <div class="row">
                         <div class="col-md-3">
                             <button type="button" (click)="backToSearch();"
-                                class="btn btn-warning btn-lg float-right">Back
+                                class="btn btn-warning  float-left">Back
                                 To Search</button>
                         </div>
                         <div class="col-md-9">
-                            <button type="submit" class="btn btn-success btn-lg float-right">Submit</button>
+                            <button type="submit" class="btn btn-success float-right">Submit</button>
                         </div>
                     </div>
-                </div>
+                <!-- </div> -->
             </div>
         </form>
         <!-- /form card register -->
@@ -241,7 +238,7 @@
     <div class="tab-pane fade show active" *ngIf="userFUObjList.length > 0 && timelaps && !iscreatejobdiv"
         id="cardview">
         <!-- Freelance Search Section -->
-        <section id="team" class="pb-5">
+        <section id="team" class="">
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12 col-sm-6 col-md-4" *ngFor="let fuuser of userFUObjList">
@@ -269,7 +266,9 @@
                             </div>
                         </div>
                     </div>
+                   
                 </div>
+                <br><br>
             </div>
         </section>
     </div>
