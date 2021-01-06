@@ -1,5 +1,7 @@
 {
     "HOMENAV": {
+      "COMPANYNAMEPART1":"KAAM",
+      "COMPANYNAMEPART2":"KAREGA",
       "ABOUTUS": "About Us",
       "ONBOARD": "OnBoard",
       "SERVICE": "Service",
@@ -11,7 +13,9 @@
       "LOGIN": "Login Now",
       "BETTERSERVICECAPTION":"BETTER SERVICE IN BETTER WAY",
       "BETTERSERVICESUBCAPTION":"The global services to fulfil you're business needs.",
-      "BETTERSERVICESUBCAPTION1":"We are here to grow you're business."
+      "BETTERSERVICESUBCAPTION1":"We are here to grow you're business.",
+      "SIGNUP_MODALWINDOW_CLIENT_DESC":"We provide you with complete Automated Software Solutions on the Cloud",
+      "SIGNUP_MODALWINDOW_SKILLEDWORKER_DESC":"One Stop for all your Skilled Worker Opportunities"
     },
     "HOMEWHATWEDO": {
       "ABOUTUS": "ABOUT US",

@@ -1,11 +1,11 @@
-<nav class="navbar fixed-top navbar-expand-md navbar-dark bg-primary" (scroll)="onWindowScroll($event);" id="navbar">
+<nav class="navbar fixed-top navbar-expand-md navbar-dark" (scroll)="onWindowScroll($event);" id="navbar">
     <div class="flex-row d-flex">
         <button type="button" class="navbar-toggler mr-2 " data-toggle="offcanvas"
             title="Toggle responsive left sidebar">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand"  title="Kaam Karega Dashboard">
-            <img src="assets/img/logo.PNG" width="50" height="50" class="rounded-circle d-inline-block align-top"
+        <a class="navbar-brand" title="Kaam Karega Dashboard">
+            <img src="assets/img/9.png" width="50" height="50" class="rounded-circle d-inline-block align-top"
                 alt="Kaam Karega Dashboard">
         </a>
         <span class="logo-title">Kaam<span class="logo-u">Karega</span></span>
@@ -47,7 +47,7 @@
 
 <div class="container-fluid" id="main">
     <div class="row row-offcanvas row-offcanvas-left">
-        <nav class="col-sm-1 mt-4" style="border-right: 1px solid #00000038;height:revert;margin-top:5rem!important;">
+        <nav class="col-sm-2 mt-4" style="border-right: 1px solid #00000038;margin-top:5rem!important;">
             <div class="pull-left" id="fixed-sidebar">
                 <!-- <a href="index.html"><img id="home-logo" src="../media/logo-prueba.jpg" alt="Logo de Animanoir"></a>  -->
                 <ul style="width: 119px;padding-left: 1px;padding-right: 8px;">
@@ -76,7 +76,7 @@
                         <a [routerLink]="['/myservices']" class="list-group-item list-group-item-action bg-light">
                             <i class="fa fa-cogs" style="color:#FF4949"></i>
                             <b>
-                                My Services
+                                Services
                             </b>
                         </a>
                     </li>
@@ -133,23 +133,25 @@
         </nav>
 
         <div class="col main pt-5 mt-4">
-            <div class="bread-cumb">
-                <div class="col-md-12 no-padd">
-                    <span><i>Hi,{{ 'DASHOARD_HEADER.WELCOMEBACK' | translate }} </i> <b>{{fullname}}</b></span>
-                    <span class="float-right">
-                        <small><i><span id='ct'></span></i></small>
-                        &nbsp;&nbsp;
-                        <i class="fa fa-envelope-o"></i>
-                        &nbsp;
-                        <i class="fa fa-bell-o"></i>
-                        &nbsp;
-                        <a routerLink='/vieworeditprofile/{{userService.currentUserValue.userId}}'>
-                            <img *ngIf="userService.currentUserValue.avtarurl != null" class="avatar"
-                                src="{{userService.currentUserValue.avtarurl}}">
-                            <img *ngIf="userService.currentUserValue.avtarurl === null" src="{{defaultTxtImg}}"
-                                class="avatar">
-                        </a>
-                    </span>
+            <div class="container">
+                <div class="bread-cumb">
+                    <div class="col-md-12 no-padd">
+                        <span><i>Hi,{{ 'DASHOARD_HEADER.WELCOMEBACK' | translate }} </i> <b>{{fullname}}</b></span>
+                        <span class="float-right">
+                            <small><i><span id='ct'></span></i></small>
+                            &nbsp;&nbsp;
+                            <i class="fa fa-envelope-o"></i>
+                            &nbsp;
+                            <i class="fa fa-bell-o"></i>
+                            &nbsp;
+                            <a routerLink='/vieworeditprofile/{{userService.currentUserValue.userId}}'>
+                                <img *ngIf="userService.currentUserValue.avtarurl != null" class="avatar"
+                                    src="{{userService.currentUserValue.avtarurl}}">
+                                <img *ngIf="userService.currentUserValue.avtarurl === null" src="{{defaultTxtImg}}"
+                                    class="avatar">
+                            </a>
+                        </span>
+                    </div>
                 </div>
             </div>
 

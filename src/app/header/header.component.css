@@ -96,7 +96,7 @@ font-size: 23px;
 .logo-u{
     color: #FF4949;
     font-weight: 500;
-    font-size: 40px;
+    /*font-size: 40px;*/
 }
 .dropdown:hover>.dropdown-menu {
     display: block;

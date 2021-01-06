@@ -162,10 +162,10 @@ export class DashboardoffuComponent implements OnInit {
 
       setTimeout(() => {
         this.builtEarningCard();
-        if (this.upcomingJobList.length < 3 && this.newJobList.length > 0) {
+       /* if (this.upcomingJobList.length < 3 && this.newJobList.length > 0) {
           let msg = 'Hi ' + this.userService.currentUserValue.fullname + ', ' + ConfigMsg.toast_notification_fu_acceptjobmsg.toString();
           this.showToastNotificationForFU(msg, this.types[3], 'Job');
-        }
+        }*/
         this.spinnerService.hide();
       }, 1000);
     },

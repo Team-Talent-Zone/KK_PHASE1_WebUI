@@ -1,11 +1,11 @@
 <!-- Top menu -->
 <nav class="navbar navbar-dark fixed-top navbar-expand-md" (scroll)="onWindowScroll($event);" id="navbar">
     <div class="container-fluid">
-        <a class="navbar-brand scroll-link" style="border: 0;" href="#top-content">
+        <a class="navbar-brand scroll-link" style="border: 0;" >
             <img src="assets/img/9.png"
-                width="50" height="50" class="rounded-circle d-inline-block align-top" alt="COMPANY LOGO">
+                width="50" height="50" class="rounded-circle d-inline-block align-top" alt="Kaam Karega">
         </a> 
-        <span class="logo-title">Kaam<span class="logo-u">Karega</span></span>
+        <span class="logo-title">{{ 'HOMENAV.COMPANYNAMEPART1' | translate }}<span class="logo-u">{{ 'HOMENAV.COMPANYNAMEPART2' | translate }}</span></span>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="true" aria-label="Toggle navigation" id="navBtn">
             <span class="navbar-toggler-icon"></span>
@@ -59,7 +59,7 @@
             <br><br><br>
             <img  alt="COMPANY LOGO" class="rounded-circle d-inline-block align-top" height="50" src="https://jt0gdq.ch.files.1drv.com/y4m2ulz1Iu5ebu8_FQV5q55VwwYyPi8JRKb-Myi8N1Od-mjw62TzTFFTn-JnS6ajGRRWG5mSWXYPKIieJlAIWzoi-N0ySsej1cQYkKqcl4R7tpAufqdI-Ggebh0g96CE851RaGizvOespIUDMZhMMxJJgE50WWMbCja-Fng_L9EnI75dSUMPop2XsX23r_5YROExRVeuDrCfqORWXlsZDoouw" width="50">
             <br>
-             <p>We provide you with complete Automated Software Solutions on the Cloud
+             <p>
              </p>
              <br>
              <button  (click)="openSignupModal('cba')" type="button" class="btn btn-outline-primary" style="color:white;border-color: white;">Signup As Client</button>
@@ -87,7 +87,7 @@
                     <a class="nav-link scroll-link" (click)="Removeclass()" href="/home#section-6"><i class="fas fa-sign-in-alt"></i>&nbsp;{{ 'HOMENAV.LOGIN' | translate }}</a>
                 </li>
                 <li class="nav-item dropdown">
-                  <a><i class="fa fa-globe" style="color: white;"></i>
+                  <a><i class="fa fa-globe" style="color:#FF4949;"></i>
                     <select #langSelect (change)="translateToLanguage(langSelect.value);Removeclass();">
                         <option *ngFor="let lang of translate.getLangs()" [value]="lang"
                             [selected]="lang === translate.currentLang">{{ lang }}</option>

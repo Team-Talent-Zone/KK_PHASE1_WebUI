@@ -1,5 +1,7 @@
 {
   "HOMENAV": {
+    "COMPANYNAMEPART1":"కామ్",
+    "COMPANYNAMEPART2":"కరేగా", 
     "ABOUTUS": "మా గురించి",
     "ONBOARD": "ఆన్బోర్డ్",
     "SERVICE": "సేవలు",
@@ -10,7 +12,9 @@
     "FREELANCER": "ఫ్రీలాన్సర్గా",
     "LOGIN": "ప్రవేశించండి",
     "BETTERSERVICECAPTION":"మంచి మార్గంలో మంచి సేవ",
-    "BETTERSERVICESUBCAPTION":"మీరు వ్యాపార అవసరాలను తీర్చడానికి ప్రపంచ సేవలు. మీరు వ్యాపారం పెంచుకోవడానికి మేము ఇక్కడ ఉన్నాము."
+    "BETTERSERVICESUBCAPTION":"మీరు వ్యాపార అవసరాలను తీర్చడానికి ప్రపంచ సేవలు. మీరు వ్యాపారం పెంచుకోవడానికి మేము ఇక్కడ ఉన్నాము.",
+    "SIGNUP_MODALWINDOW_CLIENT_DESC":"మేఘంలో పూర్తి స్వయంచాలక సాఫ్ట్‌వేర్ పరిష్కారాలను మేము మీకు అందిస్తున్నాము",
+    "SIGNUP_MODALWINDOW_SKILLEDWORKER_DESC":"మీ అన్ని నైపుణ్యం కలిగిన కార్మికుల అవకాశాల కోసం ఒక స్టాప్"
   },
   "HOMEWHATWEDO": {
     "ABOUTUS": "మా గురించి",

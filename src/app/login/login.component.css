@@ -152,7 +152,8 @@
 }
 
 .section-4-container{
-  background-image:url(src/assets/img/backgrounds/login-background.jpg);
+ /* background-image:url(src/assets/img/backgrounds/login-background.jpg);
   background-repeat: no-repeat;
-  background-attachment: scroll;
+  background-attachment: scroll;*/
+  background-color: #0a382b;
 }

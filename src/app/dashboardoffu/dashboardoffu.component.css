@@ -1,18 +1,29 @@
 .stepConectorPiece {
-    height:3px;
-    background:lightgrey;
-    flex:1;
-    margin-top:12px;
-  }
-  .rounded-circle{
-    background-color: coral;
-    border-radius: 25px;
-    border: 1px solid gainsboro;
-    padding: 18px;
-    margin-top: -15px;
-    color: black;
-    font-weight: bold;
-  }
-  .bg-custom{
-    background-color: #0a382b;
-  }
+  height: 3px;
+  background: lightgrey;
+  flex: 1;
+  margin-top: 12px;
+}
+.rounded-circle {
+  background-color: coral;
+  border-radius: 25px;
+  border: 1px solid gainsboro;
+  padding: 18px;
+  margin-top: -15px;
+  color: black;
+  font-weight: bold;
+}
+.bg-custom {
+  background-color: olivedrab;
+}
+.bg-customupcoming {
+  background-color: cadetblue;
+}
+.nav-link {
+  /* font-weight: bold; */
+  text-align: center;
+}
+.fatab {
+  font-size: 33px;
+  color: #FF4949;
+}
