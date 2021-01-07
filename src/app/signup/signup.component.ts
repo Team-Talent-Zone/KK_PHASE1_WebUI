@@ -23,6 +23,7 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { UserNotification } from 'src/app/appmodels/UserNotification';
 import { UserServiceDetails } from '../appmodels/UserServiceDetails';
 import { UsersrvdetailsService } from '../AppRestCall/userservice/usersrvdetails.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -55,7 +56,11 @@ export class SignupComponent implements OnInit {
   langcode: string;
   usersrvobj: UserServiceDetails;
   ourserviceids: any;
-
+  termsofservice: string;
+  privacypolicy: string;
+  shortkeytermsofservices: string;
+  shortkeyprivacypolicy: string;
+  name: string;
 
   constructor(
     private spinnerService: Ng4LoadingSpinnerService,
@@ -69,7 +74,9 @@ export class SignupComponent implements OnInit {
     private sendemailService: SendemailService,
     private reflookuptemplateAdapter: ReferenceLookUpTemplateAdapter,
     private usersrvDetails: UsersrvdetailsService,
+    private route: ActivatedRoute,
   ) {
+
   }
 
   ngOnInit() {
@@ -77,6 +84,7 @@ export class SignupComponent implements OnInit {
     if (this.key === config.shortkey_role_fu.toString()) {
       this.getAllCategories(this.langcode);
     }
+    this.getTermsofServicesAndPrivacyPolicyURLByLang(this.langcode);
   }
 
   formValidations() {
@@ -341,6 +349,42 @@ export class SignupComponent implements OnInit {
             this.alertService.error(error);
           }
         );
+      },
+      error => {
+        this.spinnerService.hide();
+        this.alertService.error(error);
+      });
+  }
+
+  getTermsofServicesAndPrivacyPolicyURLByLang(langcode: string) {
+    this.termsofservice = null;
+    this.privacypolicy = null;
+    this.shortkeytermsofservices = null;
+    this.shortkeyprivacypolicy = null;
+
+    if (langcode === config.lang_code_hi.toString()) {
+      this.shortkeytermsofservices = config.shortkey_termsofservice_hindi;
+      this.shortkeyprivacypolicy = config.shortkey_privacypolicy_hindi;
+    }
+    if (langcode === config.lang_code_te.toString()) {
+      this.shortkeytermsofservices = config.shortkey_termsofservice_telugu;
+      this.shortkeyprivacypolicy = config.shortkey_privacypolicy_telugu;
+    }
+    if (langcode === config.default_prefer_lang.toString()) {
+      this.shortkeytermsofservices = config.shortkey_termsofservice_english;
+      this.shortkeyprivacypolicy = config.shortkey_privacypolicy_english
+    }
+    this.referService.getLookupTemplateEntityByShortkey(this.shortkeytermsofservices).subscribe(
+      (returnURL: any) => {
+        this.termsofservice = returnURL.url
+      },
+      error => {
+        this.spinnerService.hide();
+        this.alertService.error(error);
+      });
+    this.referService.getLookupTemplateEntityByShortkey(this.shortkeyprivacypolicy).subscribe(
+      (returnURL: any) => {
+        this.privacypolicy = returnURL.url
       },
       error => {
         this.spinnerService.hide();

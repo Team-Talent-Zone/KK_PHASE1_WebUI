@@ -20,19 +20,16 @@ import { ReferenceService } from '../AppRestCall/reference/reference.service';
 })
 export class HomepriceComponent implements OnInit {
   modalRef: BsModalRef;
-
-  name: string;
-  langcode: string;
   listofAllIndividualServices: any = [];
   listofAllPackageServices: any = [];
   config: ModalOptions = {
     class: 'modal-md', backdrop: 'static',
     keyboard: false
   };
-  listOfAllApprovedNewServices: any;
-  public contentMore=false;
-  public priceMore=false;
-  public priceMore1=false;
+  listOfAllApprovedNewServices: any = [];
+  public contentMore = false;
+  public priceMore = false;
+  public priceMore1 = false;
   constructor(
     private newsvcservice: NewsvcService,
     private route: ActivatedRoute,
@@ -44,44 +41,33 @@ export class HomepriceComponent implements OnInit {
     private alertService: AlertsService,
     private referService: ReferenceService,
   ) {
-    route.params.subscribe(params => {
-      this.name = params.name;
-    });
   }
 
-  viewMore(){
-    this.contentMore=true;
-    }
-
-viewLess(){
-  this.contentMore=false;
-}
-
-pricemore(){
-  this.priceMore=true;
+  viewMore() {
+    this.contentMore = true;
   }
 
-priceless(){
-this.priceMore=false;
-}
-
-pricemore1(){
-  this.priceMore1=true;
+  viewLess() {
+    this.contentMore = false;
   }
 
-priceless1(){
-this.priceMore1=false;
-}
+  pricemore() {
+    this.priceMore = true;
+  }
+
+  priceless() {
+    this.priceMore = false;
+  }
+
+  pricemore1() {
+    this.priceMore1 = true;
+  }
+
+  priceless1() {
+    this.priceMore1 = false;
+  }
 
   ngOnInit() {
-
-    this.langcode = null;
-    if (this.name === config.lang_hindi_word.toString()) {
-      this.langcode = config.lang_code_hi;
-    }
-    if (this.name === config.lang_telugu_word.toString()) {
-      this.langcode = config.lang_code_te;
-    }
     setTimeout(() => {
       this.getAllNewServiceDetails();
     }, 2000);
@@ -93,25 +79,25 @@ this.priceMore1=false;
       (allNewServiceObjs: any) => {
         if (allNewServiceObjs != null) {
           allNewServiceObjs.forEach(element => {
-            if (this.langcode === config.lang_code_hi || this.langcode === config.lang_code_te) {
-              this.referService.translatetext(element.name, this.langcode).subscribe(
+            if (localStorage.getItem('langCode') === config.lang_code_hi || localStorage.getItem('langCode') === config.lang_code_te) {
+              this.referService.translatetext(element.name, localStorage.getItem('langCode')).subscribe(
                 (txt: string) => {
                   element.name = txt;
                 }
               );
-              this.referService.translatetext(element.description, this.langcode).subscribe(
+              this.referService.translatetext(element.description, localStorage.getItem('langCode')).subscribe(
                 (txt: string) => {
                   element.description = txt;
                 }
               );
-              this.referService.translatetext(element.validPeriodLabel, this.langcode).subscribe(
+              this.referService.translatetext(element.validPeriodLabel, localStorage.getItem('langCode')).subscribe(
                 (txt: string) => {
                   element.validPeriodLabel = txt;
                 }
               );
               var array = element.fullcontent.split(',');
               // tslint:disable-next-line: no-shadowed-variable
-              this.referService.translatetext(array, this.langcode).subscribe(
+              this.referService.translatetext(array, localStorage.getItem('langCode')).subscribe(
                 (txt: string) => {
                   element.fullcontent = txt;
                   var arry = element.fullcontent.split(',');
@@ -155,6 +141,7 @@ this.priceMore1=false;
     const initialState = {
       key: config.shortkey_role_cba,
       ourserviceids: ourserviceidList,
+      langcode: localStorage.getItem('langCode')
     };
     this.modalRef = this.modalService.show(SignupComponent, Object.assign(
       {},

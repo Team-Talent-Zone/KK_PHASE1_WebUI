@@ -19,7 +19,6 @@ export class ReadMoreComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.content);
     this.nonEditedContent = this.content;
     this.content = this.formatContent(this.content);
   }

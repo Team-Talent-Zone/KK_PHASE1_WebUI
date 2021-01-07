@@ -1,75 +1,71 @@
-
 <!-- Section 6 Footer -->
 <div id="section-5">
-<div class="section-6-container">
-	<section class="contact  bg-light" id="contact">
-		<div class="container">
-			<div class="row">
-				<!-- <div class="col-md-12">
-					<h4>{{ 'TOUCH.GETINTOUCH' | translate }}</h4>
-					<hr>
-				</div> -->
-				<div class="col-md-4">
-					<div class="address">
+	<div class="section-6-container">
+		<section class="contact  bg-light" id="contact">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-4">
+						<div class="address">
+							<h2>
+								<span class="logo-title">{{ 'HOMENAV.COMPANYNAMEPART1' | translate }}<span
+										class="logo-u">{{
+										'HOMENAV.COMPANYNAMEPART2' | translate }}</span></span>
+							</h2>
+							<!-- <hr> -->
+							<ul class="list-unstyled">
+								<li> {{ 'FOOTER.ADDRESS_LINE1' | translate }}</li>
+								<li>{{ 'FOOTER.ADDRESS_LINE2' | translate }}</li>
+							</ul>
+							<p>{{ 'FOOTER.DONTSENDANYTHING' | translate }}</p>
 
-						<!-- <h5>{{ 'TOUCH.ADDRESS' | translate }}</h5> -->
-						<h2>WorksForU</h2>
+						</div>
+
+					</div>
+
+					<div class="col-md-4">
+
+						<h2>{{ 'FOOTER.CONTACT' | translate }}</h2>
 						<!-- <hr> -->
-						<ul class="list-unstyled">
-							<li> T-Mobile Customer Relations</li>
-							<li> PO Box 37380</li>
-							<li> Albuquerque, NM 87176-7380</li>
-						</ul>
-						<p>{{ 'TOUCH.DONTSENDANYTHING' | translate }}</p>
+						<div class="email">
+							<!-- <h5>{{ 'TOUCH.EMAIL' | translate }} <small>info@email.com</small></h5> -->
+							<ul class="list-unstyled">
+								<li><i class="fa fa-envelope"></i> info@email.com</li>
+								<li><i class="fa fa-phone"></i> +91- 8800XXXXXX34</li>
+							</ul>
+						</div>
 
+						<div class="social">
+							<ul class="list-inline list-unstyled">
+								<li class="list-inline-item">
+									<a href="#"><i class="fa fa-facebook-square fa-2x"></i></a>
+								</li>
+								<li class="list-inline-item">
+									<a href="#"><i class="fa fa-google-plus-square fa-2x"></i></a>
+								</li>
+								<li class="list-inline-item">
+									<a href="#"><i class="fa fa-youtube-play fa-2x"></i></a>
+								</li>
+							</ul>
+						</div>
 					</div>
-					
-				</div>
 
-				<div class="col-md-4">
-
-					<h2>Contact Us</h2>
-					<!-- <hr> -->
-					<div class="email">
-						<!-- <h5>{{ 'TOUCH.EMAIL' | translate }} <small>info@email.com</small></h5> -->
-						<ul class="list-unstyled">
-							<li><i class="fa fa-envelope"></i> info@email.com</li>
-							<li><i class="fa fa-phone"></i> +91- 8800XXXXXX34</li>
-						</ul>
-					</div>
-				
-					<div class="social">
-						<ul class="list-inline list-unstyled">
-							<li class="list-inline-item">
-								<a href="#"><i class="fa fa-facebook-square fa-2x"></i></a>
-							</li>
-							<li class="list-inline-item">
-								<a href="#"><i class="fa fa-google-plus-square fa-2x"></i></a>
-							</li>
-							<li class="list-inline-item">
-								<a href="#"><i class="fa fa-youtube-play fa-2x"></i></a>
-							</li>
-						</ul>
-					</div>
-				</div>
-
-				<div class="col-md-4">
-					<div class="address">
-						<!-- <h2>Useful Links</h2> -->
-						<!-- <hr> -->
-						<!-- <ul style="list-style: circle;">
+					<div class="col-md-4">
+						<div class="address">
+							<!-- <h2>Useful Links</h2> -->
+							<!-- <hr> -->
+							<!-- <ul style="list-style: circle;">
 							<li><a>About Us</a></li>
 							<li><a>On Board</a></li>
 							<li><a>Services</a></li>
 							<li><a>Pricing</a></li>
 						</ul> -->
-						<!-- <p>{{ 'TOUCH.DONTSENDANYTHING' | translate }}</p> -->
-						<img src="assets/img/backgrounds/pay13.png">
+							<!-- <p>{{ 'TOUCH.DONTSENDANYTHING' | translate }}</p> -->
+							<img src="assets/img/backgrounds/pay13.png">
 
+						</div>
 					</div>
-				</div>
 
-				<!-- <div class="col-md-6">
+					<!-- <div class="col-md-6">
 					<div class="card">
 						<div class="card-body">
 							<form>
@@ -110,28 +106,29 @@
 						</div>
 					</div>
 				</div> -->
+				</div>
+
+
 			</div>
-
-
-		</div>
-	</section>
-</div>
+		</section>
+	</div>
 
 </div>
 
 <!-- Section 6 Footer -->
 <div class="section-6-container">
 	<section class="contact bg-light-copy" id="contact">
-	<div class="row">
-	<div class="col-md-4 text-center">
-		<span>Terms of Use</span>
-	</div>	
-	<div class="col-md-4 text-center">
-		<span>Privacy Policy</span>
-	</div>	
-	<div class="col-md-4 text-center">
-		<span>Copy Rights @2020  <a>WorksForU</a>  All Rights Reserved.</span>
-	</div>	
-	</div>
+		<div class="row">
+			<div class="col-md-4 text-center">
+				<span>
+					<a href={{signupComponent.termsofservice}} target="_blank">{{ 'HOMESIGNUP.SIGNUP_TERMOFSERVICE' | translate }} </a></span>
+			</div>
+			<div class="col-md-4 text-center">
+				<span><a href={{signupComponent.privacypolicy}} target="_blank">{{ 'HOMESIGNUP.SIGNUP_PRIVACYPOLICY' | translate }}</a></span>
+			</div>
+			<div class="col-md-4 text-center">
+				<span>Copy Rights @2020 <a>kaam karega</a> All Rights Reserved.</span>
+			</div>
+		</div>
 	</section>
 </div>

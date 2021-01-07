@@ -32,7 +32,7 @@ const routes: Routes = [
     component: HomeComponent
   },
   {
-    path: 'region/:name',
+    path: 'region',
     component: HomeComponent,
     children: [
       {

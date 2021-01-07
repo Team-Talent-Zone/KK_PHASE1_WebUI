@@ -1,50 +1,52 @@
 <!-- Our Services-->
 <div id="section-3">
   <br><br>
-<div class="section-7-container section-container" *ngIf="listOfAllApprovedNewServices.length > 0" >
-  <div class="container">
-    <div class="row">
-      <div class="col section-7 section-description wow fadeIn">
-        <h2 align="center">{{ 'SERVICE.OURSERVICE' | translate }}</h2>
-        <div align="center" class="divider-1 wow fadeInUp"><span></span></div>
+  <div class="section-7-container section-container" *ngIf="listOfAllApprovedNewServices.length > 0">
+    <div class="container">
+      <div class="row">
+        <div class="col section-7 section-description wow fadeIn">
+          <h2 align="center">{{ 'SERVICE.LABEL_OURSERVICE' | translate }}</h2>
+          <div align="center" class="divider-1 wow fadeInUp"><span></span></div>
+        </div>
       </div>
-    </div>
-    <div class="row text-center">
-      <div class="col-md-12 section-7-box wow fadeInLeft "
-        *ngFor="let svc of listOfAllApprovedNewServices;index as i">
-        <!-- <div class="row"> -->
+      <div class="row text-center">
+        <div class="col-md-12 section-7-box wow fadeInLeft "
+          *ngFor="let svc of listOfAllApprovedNewServices;index as i">
+          <!-- <div class="row"> -->
           <!-- <div class="col-md-3">  
             <img src={{svc.imgurl}} class="section-7-box-icon">
           </div>  -->
           <div class="col-md-12 text-center" *ngIf="i<3">
             <img src={{svc.imgurl}} align="center" class="section-7-box-icon text-center">
             <h3 align="center">{{svc.name}}</h3>
-            <p style="text-align: justify;">{{svc.description}}</p>  
+            <p style="text-align: justify;">{{svc.description}}</p>
           </div>
-        <!-- </div> -->
-        <button class="btn btn-primary  btn-sm" *ngIf="i==3 && !contentMore" (click)="viewMore()" id="btnViewmore">View More ...</button>
-      </div>
-     <div *ngIf="contentMore">
-      <div class="col-md-12 section-7-box wow fadeInLeft "
-      *ngFor="let svc of listOfAllApprovedNewServices;index as i">
-      <!-- <div class="row"> -->
-        <!-- <div class="col-md-3">  
+          <!-- </div> -->
+          <button class="btn btn-primary  btn-sm" *ngIf="i==3 && !contentMore" (click)="viewMore()" id="btnViewmore">{{
+            'SERVICE.BUTTON_VIEWMORE' | translate }}</button>
+        </div>
+        <div *ngIf="contentMore">
+          <div class="col-md-12 section-7-box wow fadeInLeft "
+            *ngFor="let svc of listOfAllApprovedNewServices;index as i">
+            <!-- <div class="row"> -->
+            <!-- <div class="col-md-3">  
           <img src={{svc.imgurl}} class="section-7-box-icon">
         </div>  -->
-        <div class="col-md-12 text-center" *ngIf="i>3"> 
-          <img src={{svc.imgurl}} align="center" class="section-7-box-icon text-center">
-          <h3 align="center">{{svc.name}}</h3>
-          <p style="text-align: justify;">{{svc.description}}</p>  
+            <div class="col-md-12 text-center" *ngIf="i>3">
+              <img src={{svc.imgurl}} align="center" class="section-7-box-icon text-center">
+              <h3 align="center">{{svc.name}}</h3>
+              <p style="text-align: justify;">{{svc.description}}</p>
+            </div>
+            <!-- </div> -->
+            <button class="btn btn-primary  btn-sm" *ngIf="i>3" (click)="viewLess()">{{ 'SERVICE.BUTTON_VIEWLESS' |
+              translate }}</button>
+          </div>
         </div>
-      <!-- </div> -->
-      <button class="btn btn-primary  btn-sm" *ngIf="i>3" (click)="viewLess()">View less</button>
-    </div>
-   </div>
 
-      <!-- <div class="clearfix"></div>
+        <!-- <div class="clearfix"></div>
      
       <div class="clearfix"></div> -->
-<!-- <div class="container">
+        <!-- <div class="container">
   <div id="demo" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner">
           <div class="carousel-item active">
@@ -69,19 +71,19 @@
       <a class="carousel-control-prev" href="#demo" data-slide="prev"> <i class='fa fa-arrow-left'></i> </a> <a class="carousel-control-next" href="#demo" data-slide="next"> <i class='fa fa-arrow-right'></i> </a>
   </div>
 </div> -->
-      
 
+
+      </div>
     </div>
   </div>
-</div>
 </div>
 <!-- End Our Services-->
 
 <div id="section-4">
   <br><br>
-<!-- Pricing -->
-<div class="section-5-container price-bg" *ngIf="listofAllIndividualServices.length > 0">
-  <!-- <div class="container"> -->
+  <!-- Pricing -->
+  <div class="section-5-container price-bg" *ngIf="listofAllIndividualServices.length > 0">
+    <!-- <div class="container"> -->
     <div class="container p-0">
       <h1 align="center">{{ 'PRICE.TITLE' | translate }}</h1>
       <div class="divider-1 wow fadeInUp text-center"><span></span></div>
@@ -93,20 +95,18 @@
           <div class="row justify-content-center mb-4">
             <div class="col-auto">
               <nav class="nav btn-group">
-                <a href="#monthly" class="btn btn-outline-primary active"
-                  data-toggle="tab">{{ 'PRICE.INDIVIDUAL' | translate }}</a>
-                <a href="#annual" class="btn btn-outline-primary  "
-                  data-toggle="tab">{{ 'PRICE.PACKAGE' | translate }}</a>
+                <a href="#monthly" class="btn btn-outline-primary active" data-toggle="tab">{{ 'PRICE.INDIVIDUAL' |
+                  translate }}</a>
+                <a href="#annual" class="btn btn-outline-primary  " data-toggle="tab">{{ 'PRICE.PACKAGE' | translate
+                  }}</a>
               </nav>
             </div>
           </div>
           <div class="tab-content">
             <div class="tab-pane fade show active" id="monthly">
-
               <div class="card-body Card-Body-1" *ngIf="listofAllIndividualServices != null" role="tabpanel"
                 aria-labelledby="headingOne" data-parent="#accordion">
                 <div class="card-deck">
-
                   <div class="col-md-4 mb-3 mb-md-0" style="margin-bottom:8px !important"
                     *ngFor="let svc of listofAllIndividualServices;index as i">
                     <div class="card text-center h-100" *ngIf="i<=2">
@@ -123,20 +123,21 @@
                         </div>
                         <div class="card-text">
                           <!-- <ul class="list-unstyled"> -->
-                            <p class="mb-1" *ngFor="let features of svc.fullcontent">
-                              {{features}}
-                            </p>
+                          <p class="mb-1" *ngFor="let features of svc.fullcontent">
+                            {{features}}
+                          </p>
                           <!-- </ul> -->
                         </div>
                       </div>
                       <div class="card-footer">
                         <button type="button" class="btn btn-sm btn-primary"
-                          (click)="openSignupModal(svc.ourserviceId , svc.packwithotherourserviceid , svc.amount , svc.validPeriodLabel, svc.validPeriodCode, svc.serviceendon, svc.servicestarton)">Signup As Client</button>
+                          (click)="openSignupModal(svc.ourserviceId , svc.packwithotherourserviceid , svc.amount , svc.validPeriodLabel, svc.validPeriodCode, svc.serviceendon, svc.servicestarton)">
+                          {{ 'PRICE.SIGNUP' | translate }}</button>
                       </div>
                     </div>
                   </div>
                 </div>
-                  <div class="card-deck" *ngIf="priceMore">
+                <div class="card-deck" *ngIf="priceMore">
                   <div class="col-md-4 mb-3 mb-md-0" style="margin-bottom:8px !important"
                     *ngFor="let svc of listofAllIndividualServices;index as i">
                     <div class="card text-center h-100" *ngIf="i>2">
@@ -153,34 +154,32 @@
                         </div>
                         <div class="card-text">
                           <!-- <ul class="list-unstyled"> -->
-                            <p class="mb-1" *ngFor="let features of svc.fullcontent">
-                              {{features}}
-                            </p>
+                          <p class="mb-1" *ngFor="let features of svc.fullcontent">
+                            {{features}}
+                          </p>
                           <!-- </ul> -->
                         </div>
                       </div>
                       <div class="card-footer">
                         <button type="button" class="btn btn-sm btn-primary"
-                          (click)="openSignupModal(svc.ourserviceId , svc.packwithotherourserviceid , svc.amount , svc.validPeriodLabel, svc.validPeriodCode, svc.serviceendon, svc.servicestarton)">Signup As Client</button>
+                          (click)="openSignupModal(svc.ourserviceId , svc.packwithotherourserviceid , svc.amount , svc.validPeriodLabel, svc.validPeriodCode, svc.serviceendon, svc.servicestarton)">
+                          {{ 'PRICE.SIGNUP' | translate }}</button>
                       </div>
                     </div>
                   </div>
-                  </div>
-
-
-                <div  *ngFor="let svc of listofAllIndividualServices;index as i">
-                <button class="btn btn-primary btn-sm text-center" *ngIf="i==2 && !priceMore" (click)="pricemore()">View More...</button>
                 </div>
-                <div  *ngFor="let svc of listofAllIndividualServices;index as i">
-                  <button class="btn btn-primary btn-sm text-center" *ngIf="i>2 && priceMore" (click)="priceless()">View Less</button>
-                  </div>
-
-
-
+                <div *ngFor="let svc of listofAllIndividualServices;index as i">
+                  <button class="btn btn-primary btn-sm text-center" *ngIf="i==2 && !priceMore" (click)="pricemore()">
+                    {{ 'PRICE.BUTTON_VIEWMORE' | translate }}</button>
+                </div>
+                <div *ngFor="let svc of listofAllIndividualServices;index as i">
+                  <button class="btn btn-primary btn-sm text-center" *ngIf="i>2 && priceMore" (click)="priceless()"> {{
+                    'PRICE.BUTTON_VIEWLESS' | translate }}</button>
+                </div>
               </div>
             </div>
             <div class="tab-pane fade show" id="annual">
-              <div class="card-body" *ngIf="listofAllPackageServices != null" role="tabpanel"
+              <div class="card-body Card-Body-1" *ngIf="listofAllPackageServices != null" role="tabpanel"
                 aria-labelledby="headingOne" data-parent="#accordion">
 
                 <div class="card-deck">
@@ -200,15 +199,16 @@
                         </div>
                         <div class="card-text">
                           <!-- <ul class="list-unstyled"> -->
-                            <p class="mb-1" *ngFor="let features of svc.fullcontent">
-                              {{features}}
-                            </p>
+                          <p class="mb-1" *ngFor="let features of svc.fullcontent">
+                            {{features}}
+                          </p>
                           <!-- </ul> -->
                         </div>
                       </div>
                       <div class="card-footer">
                         <button type="button" class="btn btn-primary btn-sm"
-                          (click)="openSignupModal(svc.ourserviceId , svc.packwithotherourserviceid ,svc.amount , svc.validPeriodLabel,  svc.validPeriodCode,svc.serviceendon, svc.servicestarton)">Signup As Client</button>
+                          (click)="openSignupModal(svc.ourserviceId , svc.packwithotherourserviceid ,svc.amount , svc.validPeriodLabel,  svc.validPeriodCode,svc.serviceendon, svc.servicestarton)">{{
+                          'PRICE.SIGNUP' | translate }}</button>
                       </div>
                     </div>
                   </div>
@@ -231,26 +231,29 @@
                         </div>
                         <div class="card-text">
                           <!-- <ul class="list-unstyled"> -->
-                            <p class="mb-1" *ngFor="let features of svc.fullcontent">
-                              {{features}}
-                            </p>
+                          <p class="mb-1" *ngFor="let features of svc.fullcontent">
+                            {{features}}
+                          </p>
                           <!-- </ul> -->
                         </div>
                       </div>
                       <div class="card-footer">
                         <button type="button" class="btn btn-primary btn-sm"
-                          (click)="openSignupModal(svc.ourserviceId , svc.packwithotherourserviceid ,svc.amount , svc.validPeriodLabel,  svc.validPeriodCode,svc.serviceendon, svc.servicestarton)">Signup As Client</button>
+                          (click)="openSignupModal(svc.ourserviceId , svc.packwithotherourserviceid ,svc.amount , svc.validPeriodLabel,  svc.validPeriodCode,svc.serviceendon, svc.servicestarton)">{{
+                          'PRICE.SIGNUP' | translate }}</button>
                       </div>
                     </div>
                   </div>
                 </div>
 
-                <div  *ngFor="let svc of listofAllPackageServices;index as i">
-                  <button class="btn btn-primary btn-sm text-center" *ngIf="i==2 && !priceMore1" (click)="pricemore1()">View More...</button>
-                  </div>
-                <div  *ngFor="let svc of listofAllPackageServices;index as i">
-                  <button class="btn btn-primary btn-sm text-center" *ngIf="i>2 && priceMore1" (click)="priceless1()">View Less</button>
-                  </div>
+                <div *ngFor="let svc of listofAllPackageServices;index as i">
+                  <button class="btn btn-primary btn-sm text-center" *ngIf="i==2 && !priceMore1"
+                    (click)="pricemore1()">{{ 'PRICE.BUTTON_VIEWMORE' | translate }}</button>
+                </div>
+                <div *ngFor="let svc of listofAllPackageServices;index as i">
+                  <button class="btn btn-primary btn-sm text-center" *ngIf="i>2 && priceMore1" (click)="priceless1()">{{
+                    'PRICE.BUTTON_VIEWLESS' | translate }}</button>
+                </div>
 
               </div>
             </div>
@@ -294,138 +297,138 @@
           </div> -->
           <div class="clearfix"></div>
         </div>
-       
+
       </div>
 
     </div>
-  <!-- </div> -->
-</div>
+    <!-- </div> -->
+  </div>
 </div>
 
 <section class="faq-bg">
 
-<div class="container">
-<div class="row">
+  <div class="container">
+    <div class="row">
 
 
-  <div class="col-sm-2">&nbsp;&nbsp;&nbsp;</div>
+      <div class="col-sm-2">&nbsp;&nbsp;&nbsp;</div>
 
-  <div class="col-sm-8" >
- 
-    <div class="text-center text-white my-4">
-      <h2>{{ 'QUESTIONS.FREQUENTLYASKEDQUESTIONS' | translate }}</h2>
-      <div class="divider-1 wow fadeInUp text-center"><span></span></div>
+      <div class="col-sm-8">
+
+        <div class="text-center text-white my-4">
+          <h2>{{ 'QUESTIONS.FREQUENTLYASKEDQUESTIONS' | translate }}</h2>
+          <div class="divider-1 wow fadeInUp text-center"><span></span></div>
+        </div>
+
+        <!--Accordion wrapper-->
+        <div class="accordion md-accordion" id="accordionEx" role="tablist" aria-multiselectable="true"
+          style="text-align: justify;">
+
+          <!-- Accordion card -->
+          <div class="card">
+
+            <!-- Card header -->
+            <div class="card-header" role="tab" id="headingOne1">
+              <a data-toggle="collapse" data-parent="#accordionEx" href="#collapseOne1" aria-expanded="true"
+                aria-controls="collapseOne1">
+                <h5 class="mb-0">{{ 'QUESTIONS.DOINEEDCREDITCARDTOSIGNUP' | translate }}
+                  <!-- <i class="fa fa-angle-down rotate-icon"></i> -->
+                </h5>
+                <i class="fa fa-angle-down rotate-icon pull-right"></i>
+              </a>
+            </div>
+
+            <!-- Card body -->
+            <div id="collapseOne1" class="collapse show" role="tabpanel" aria-labelledby="headingOne1"
+              data-parent="#accordionEx">
+              <div class="card-body">
+                {{ 'QUESTIONS.DOINEEDCREDITCARDTOSIGNUP1' | translate }}
+              </div>
+            </div>
+
+          </div>
+          <!-- Accordion card -->
+
+          <!-- Accordion card -->
+          <div class="card">
+
+            <!-- Card header -->
+            <div class="card-header" role="tab" id="headingTwo2">
+              <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx" href="#collapseTwo2"
+                aria-expanded="false" aria-controls="collapseTwo2">
+                <h5 class="mb-0">{{ 'QUESTIONS.DOYOUOFFERAFREETRAIL' | translate }}
+                  <!-- <i class="fa fa-angle-down rotate-icon"></i> -->
+                </h5>
+                <i class="fa fa-angle-down rotate-icon pull-right"></i>
+              </a>
+            </div>
+
+            <!-- Card body -->
+            <div id="collapseTwo2" class="collapse" role="tabpanel" aria-labelledby="headingTwo2"
+              data-parent="#accordionEx">
+              <div class="card-body">{{ 'QUESTIONS.DOYOUOFFERAFREETRAIL1' | translate }}
+              </div>
+            </div>
+
+          </div>
+          <!-- Accordion card -->
+
+          <!-- Accordion card -->
+          <div class="card">
+
+            <!-- Card header -->
+            <div class="card-header" role="tab" id="headingThree3">
+              <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx" href="#collapseThree3"
+                aria-expanded="false" aria-controls="collapseThree3">
+                <h5 class="mb-0">{{ 'QUESTIONS.WHATIFIDECIDETOCANCELMYPLAN' | translate }}
+                  <!-- <i class="fa fa-angle-down rotate-icon"></i> -->
+                </h5>
+                <i class="fa fa-angle-down rotate-icon pull-right"></i>
+              </a>
+            </div>
+
+            <!-- Card body -->
+            <div id="collapseThree3" class="collapse" role="tabpanel" aria-labelledby="headingThree3"
+              data-parent="#accordionEx">
+              <div class="card-body">
+                {{ 'QUESTIONS.WHATIFIDECIDETOCANCELMYPLAN1' | translate }}
+              </div>
+            </div>
+
+          </div>
+          <!-- Accordion card -->
+
+
+          <!-- Accordion card -->
+          <div class="card">
+
+            <!-- Card header -->
+            <div class="card-header" role="tab" id="headingThree4">
+              <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx" href="#collapseThree4"
+                aria-expanded="false" aria-controls="collapseThree4">
+                <h5 class="mb-0">{{ 'QUESTIONS.WHATIFIDECIDETOCANCELMYPLAN' | translate }}
+                  <!-- <i class="fa fa-angle-down rotate-icon"></i> -->
+                </h5>
+                <i class="fa fa-angle-down rotate-icon pull-right"></i>
+              </a>
+            </div>
+
+            <!-- Card body -->
+            <div id="collapseThree4" class="collapse" role="tabpanel" aria-labelledby="headingThree4"
+              data-parent="#accordionEx">
+              <div class="card-body">
+                {{ 'QUESTIONS.WHATIFIDECIDETOCANCELMYPLAN1' | translate }}
+              </div>
+            </div>
+
+          </div>
+          <!-- Accordion card -->
+
+        </div>
+        <!-- Accordion wrapper -->
+
+      </div>
     </div>
 
-  <!--Accordion wrapper-->
-<div class="accordion md-accordion" id="accordionEx" role="tablist" aria-multiselectable="true" style="text-align: justify;">
-
-<!-- Accordion card -->
-<div class="card">
-
-  <!-- Card header -->
-  <div class="card-header" role="tab" id="headingOne1">
-    <a data-toggle="collapse" data-parent="#accordionEx" href="#collapseOne1" aria-expanded="true"
-      aria-controls="collapseOne1">
-      <h5 class="mb-0">{{ 'QUESTIONS.DOINEEDCREDITCARDTOSIGNUP' | translate }}
-         <!-- <i class="fa fa-angle-down rotate-icon"></i> -->
-      </h5>
-      <i class="fa fa-angle-down rotate-icon pull-right"></i> 
-    </a>
   </div>
-
-  <!-- Card body -->
-  <div id="collapseOne1" class="collapse show" role="tabpanel" aria-labelledby="headingOne1"
-    data-parent="#accordionEx">
-    <div class="card-body">
-      {{ 'QUESTIONS.DOINEEDCREDITCARDTOSIGNUP1' | translate }}
-    </div>
-  </div>
-
-</div>
-<!-- Accordion card -->
-
-<!-- Accordion card -->
-<div class="card">
-
-  <!-- Card header -->
-  <div class="card-header" role="tab" id="headingTwo2">
-    <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx" href="#collapseTwo2"
-      aria-expanded="false" aria-controls="collapseTwo2">
-      <h5 class="mb-0">{{ 'QUESTIONS.DOYOUOFFERAFREETRAIL' | translate }} 
-          <!-- <i class="fa fa-angle-down rotate-icon"></i> -->
-      </h5>
-      <i class="fa fa-angle-down rotate-icon pull-right"></i> 
-    </a>
-  </div>
-
-  <!-- Card body -->
-  <div id="collapseTwo2" class="collapse" role="tabpanel" aria-labelledby="headingTwo2"
-    data-parent="#accordionEx">
-    <div class="card-body">{{ 'QUESTIONS.DOYOUOFFERAFREETRAIL1' | translate }}
-    </div>
-  </div>
-
-</div>
-<!-- Accordion card -->
-
-<!-- Accordion card -->
-<div class="card">
-
-  <!-- Card header -->
-  <div class="card-header" role="tab" id="headingThree3">
-    <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx" href="#collapseThree3"
-      aria-expanded="false" aria-controls="collapseThree3">
-      <h5 class="mb-0">{{ 'QUESTIONS.WHATIFIDECIDETOCANCELMYPLAN' | translate }}
-        <!-- <i class="fa fa-angle-down rotate-icon"></i> -->
-      </h5>
-      <i class="fa fa-angle-down rotate-icon pull-right"></i> 
-    </a>
-  </div>
-
-  <!-- Card body -->
-  <div id="collapseThree3" class="collapse" role="tabpanel" aria-labelledby="headingThree3"
-    data-parent="#accordionEx">
-    <div class="card-body">
-      {{ 'QUESTIONS.WHATIFIDECIDETOCANCELMYPLAN1' | translate }}
-    </div>
-  </div>
-
-</div>
-<!-- Accordion card -->
-
-
-<!-- Accordion card -->
-<div class="card">
-
-  <!-- Card header -->
-  <div class="card-header" role="tab" id="headingThree4">
-    <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx" href="#collapseThree4"
-      aria-expanded="false" aria-controls="collapseThree4">
-      <h5 class="mb-0">{{ 'QUESTIONS.WHATIFIDECIDETOCANCELMYPLAN' | translate }}
-        <!-- <i class="fa fa-angle-down rotate-icon"></i> -->
-      </h5>
-      <i class="fa fa-angle-down rotate-icon pull-right"></i> 
-    </a>
-  </div>
-
-  <!-- Card body -->
-  <div id="collapseThree4" class="collapse" role="tabpanel" aria-labelledby="headingThree4"
-    data-parent="#accordionEx">
-    <div class="card-body">
-      {{ 'QUESTIONS.WHATIFIDECIDETOCANCELMYPLAN1' | translate }}
-    </div>
-  </div>
-
-</div>
-<!-- Accordion card -->
-
-</div>
-<!-- Accordion wrapper -->
-
-</div>
-</div>
-
-</div>
 </section>
-

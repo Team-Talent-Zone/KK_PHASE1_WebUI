@@ -24,47 +24,35 @@ export class HometestimonialsComponent implements OnInit {
     private route: ActivatedRoute,
     private referService: ReferenceService,
   ) {
-    route.params.subscribe(params => {
-      this.name = params.name;
-    });
   }
 
   ngOnInit() {
-    if (this.name === config.lang_hindi_word.toString()) {
-      this.getFUFeebackDetails(config.lang_code_hi);
-
-    } else
-      if (this.name === config.lang_telugu_word.toString()) {
-        this.getFUFeebackDetails(config.lang_code_te);
-
-      } else {
-        this.getFUFeebackDetails(config.default_prefer_lang);
-      }
+    this.getFUFeebackDetails();
   }
-  getFUFeebackDetails(langcode: string) {
+  getFUFeebackDetails() {
     this.spinnerService.show();
     this.listofTestimonals = [];
     this.freelanceserviceService.getFUFeebackDetails().subscribe((list: any) => {
       if (list != null) {
         list.forEach((element: any) => {
           element.starrate = Array(element.starrate);
-          if (langcode === config.lang_code_te || langcode === config.lang_code_hi) {
-            this.referService.translatetext(element.feedbackcomment, langcode).subscribe(
+          if (localStorage.getItem('langCode') === config.lang_code_te || localStorage.getItem('langCode') === config.lang_code_hi) {
+            this.referService.translatetext(element.feedbackcomment, localStorage.getItem('langCode')).subscribe(
               (txt: string) => {
                 element.feedbackcomment = txt;
               }
             );
-            this.referService.translatetext(element.fullname, langcode).subscribe(
+            this.referService.translatetext(element.fullname, localStorage.getItem('langCode')).subscribe(
               (txt: string) => {
                 element.fullname = txt;
               }
             );
-            this.referService.translatetext(element.feedbackby, langcode).subscribe(
+            this.referService.translatetext(element.feedbackby, localStorage.getItem('langCode')).subscribe(
               (txt: string) => {
                 element.feedbackby = txt;
               }
             );
-            this.referService.translatetext(element.label, langcode).subscribe(
+            this.referService.translatetext(element.label, localStorage.getItem('langCode')).subscribe(
               (txt: string) => {
                 element.label = txt;
               }

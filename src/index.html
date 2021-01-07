@@ -3,13 +3,14 @@
 
 <head>
   <meta charset="utf-8">
-  <title>APPMAINUIv1</title>
+  <title>Kaam Karega</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 
   <!-- CSS -->
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet"
+    id="bootstrap-css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,600">
   <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.6/css/all.css"> -->
@@ -38,7 +39,6 @@
   <script src="./assets/js/waypoints.min.js"></script>
   <script src="./assets/js/scripts.js"></script> -->
   <style>
-    
     #myBtn {
       display: none;
       position: fixed;
@@ -54,42 +54,42 @@
       padding: 15px;
       border-radius: 4px;
     }
-    
+
     #myBtn:hover {
       background-color: #0a382b;
     }
-    </style>
+  </style>
   <script>
     window.onscroll = () => {
-    scrollFunction();
-  const nav = document.getElementById('navbar');
-  if(this.scrollY <= 10) {
-     nav.className = 'navbar-dark navbar navbar-dark fixed-top navbar-expand-md';
-     } else {
-    // nav.className='navbar-dark';
-    //  nav.className = 'scroll';
-    // document.getElementById("navbar").style.background = "lightblue !important";
-    
-    nav.className = 'scroll navbar  fixed-top navbar-expand-md';
-    // mybutton.style.display = "block";
-    };
-    console.log('alert',this.scrollY);
+      scrollFunction();
+      const nav = document.getElementById('navbar');
+      if (this.scrollY <= 10) {
+        nav.className = 'navbar-dark navbar navbar-dark fixed-top navbar-expand-md';
+      } else {
+        // nav.className='navbar-dark';
+        //  nav.className = 'scroll';
+        // document.getElementById("navbar").style.background = "lightblue !important";
+
+        nav.className = 'scroll navbar  fixed-top navbar-expand-md';
+        // mybutton.style.display = "block";
+      };
     }
   </script>
-  <script type="text/javascript"> 
-    function display_c(){
-    var refresh=1000; // Refresh rate in milli seconds
-    mytime=setTimeout('display_ct()',refresh)
+  <script type="text/javascript">
+    function display_c() {
+      var refresh = 1000; // Refresh rate in milli seconds
+      mytime = setTimeout('display_ct()', refresh)
     }
-    
+
     function display_ct() {
-    var x = new Date()
-    document.getElementById('ct').innerHTML = x;
-    display_c();
-     }
-    </script>
+      var x = new Date()
+      document.getElementById('ct').innerHTML = x;
+      display_c();
+    }
+  </script>
 
 </head>
+
 <body onload="display_ct();">
   <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fa fa-chevron-circle-up"></i></button>
   <app-root></app-root>
@@ -99,10 +99,10 @@
 <script>
   //Get the button
   var mybutton = document.getElementById("myBtn");
-  
+
   // When the user scrolls down 20px from the top of the document, show the button
   // window.onscroll = function() {scrollFunction()};
-  
+
   function scrollFunction() {
     if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
       mybutton.style.display = "block";
@@ -110,11 +110,12 @@
       mybutton.style.display = "none";
     }
   }
-  
+
   // When the user clicks on the button, scroll to the top of the document
   function topFunction() {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
   }
-  </script>
+</script>
+
 </html>

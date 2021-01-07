@@ -12,15 +12,15 @@ export class BasicAuthHtppInterceptorService implements HttpInterceptor {
     private userService: UserService
   ) { }
 
-   intercept(req: HttpRequest<any>, next: HttpHandler) {
-        req = req.clone({
-         setHeaders: {
-          Authorization: 'Basic cmVzdHNlcnZpY2ViYXNpY2F1dGh1c2VyOlRMIzIwMTdAUkVTVCo4MzI0NjMkIw=='
-         }
-       });
-        return next.handle(req); 
-  }
-/*
+  /*intercept(req: HttpRequest<any>, next: HttpHandler) {
+       req = req.clone({
+        setHeaders: {
+         Authorization: 'Basic cmVzdHNlcnZpY2ViYXNpY2F1dGh1c2VyOlRMIzIwMTdAUkVTVCo4MzI0NjMkIw=='
+        }
+      });
+       return next.handle(req); 
+ }*/
+
   intercept(req: HttpRequest<any>, next: HttpHandler) {
     if (localStorage.getItem('currentUser') != null) {
       console.log('============1============');
@@ -48,5 +48,5 @@ export class BasicAuthHtppInterceptorService implements HttpInterceptor {
         });
         return next.handle(xhr);
       }
-  }*/
+  }
 }

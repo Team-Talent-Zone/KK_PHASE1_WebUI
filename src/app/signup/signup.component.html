@@ -21,10 +21,10 @@
       <input class="form-control" formControlName="username" placeholder="{{'HOMESIGNUP.EMAILADDRESS' | translate}}"
         type="email" ngModel email="true" [ngClass]="{ 'is-invalid': issubmit && f.username.errors }">
       <div *ngIf="issubmit && f.username.errors" class="invalid-feedback">
-        <div *ngIf="f.username.errors.required || f.username.errors.email">Email must be a valid email address
+        <div *ngIf="f.username.errors.required || f.username.errors.email">{{'HOMESIGNUP.SIGNUP_VALIDATION_USERNAME' |
+          translate}}
         </div>
-        <div *ngIf="f.username.errors.maxlength">Username cant exceed 40
-          char</div>
+        <div *ngIf="f.username.errors.maxlength">{{'HOMESIGNUP.SIGNUP_VALIDATION_40_MAX_USERNAME' | translate}}</div>
       </div>
     </div>
     <div class="form-group">
@@ -34,9 +34,9 @@
       <input class="form-control" placeholder="{{'HOMESIGNUP.PASSWORD' | translate}}" type="password"
         formControlName="password" [ngClass]="{ 'is-invalid': issubmit && f.password.errors }" />
       <div *ngIf="issubmit && f.password.errors" class="invalid-feedback">
-        <div *ngIf="f.password.errors.required">Password is required
+        <div *ngIf="f.password.errors.required">{{'HOMESIGNUP.SIGNUP_VALIDATION_PASSWORD_REQ' | translate}}
         </div>
-        <div *ngIf="f.password.errors.minlength">Password must be at least 8 characters</div>
+        <div *ngIf="f.password.errors.minlength">{{'HOMESIGNUP.SIGNUP_VALIDATION_8_MAX_PWD' | translate}}</div>
       </div>
     </div>
     <div class="form-group">
@@ -46,10 +46,10 @@
       <input class="form-control" formControlName="firstname" placeholder="{{'HOMESIGNUP.FIRSTNAME' | translate}}"
         [ngClass]="{ 'is-invalid': issubmit && f.firstname.errors }">
       <div *ngIf="issubmit && f.firstname.errors" class="invalid-feedback">
-        <div *ngIf="f.firstname.errors.required">First Name is required
+        <div *ngIf="f.firstname.errors.required">
+          {{'HOMESIGNUP.SIGNUP_VALIDATION_FNAME' | translate}}
         </div>
-        <div *ngIf="f.firstname.errors.maxlength">First Name cant exceed 40
-          char</div>
+        <div *ngIf="f.firstname.errors.maxlength">{{'HOMESIGNUP.SIGNUP_VALIDATION_4_MAX_FNAME' | translate}}</div>
       </div>
     </div>
     <div class="form-group">
@@ -59,14 +59,14 @@
       <input class="form-control" formControlName="lastname" placeholder="{{'HOMESIGNUP.LASTNAME' | translate}}"
         [ngClass]="{ 'is-invalid': issubmit && f.lastname.errors }">
       <div *ngIf="issubmit && f.lastname.errors" class="invalid-feedback">
-        <div *ngIf="f.lastname.errors.required">Last Name is required
+        <div *ngIf="f.lastname.errors.required">{{'HOMESIGNUP.SIGNUP_VALIDATION_LASTNAME_REQ' | translate}}
         </div>
-        <div *ngIf="f.lastname.errors.maxlength">Last Name cant exceed 40
-          char</div>
+        <div *ngIf="f.lastname.errors.maxlength">
+          {{'HOMESIGNUP.SIGNUP_VALIDATION_40_MAX_LASTNAME' | translate}}</div>
       </div>
     </div>
-     
-    <div class="form-group" *ngIf="key==='fu'"> 
+
+    <div class="form-group" *ngIf="key==='fu'">
       <span>
         <i class="fa fa fa-language	form-control-icon"></i>
       </span>
@@ -78,11 +78,11 @@
         <option value="te">తెలుగు</option>
       </select>
       <div *ngIf="issubmit && f.preferlang.errors" class="invalid-feedback">
-        <div *ngIf="f.preferlang.errors.required">Prefer Language is required
+        <div *ngIf="f.preferlang.errors.required">
+          {{'HOMESIGNUP.SIGNUP_VALIDATION_PREFERLANG_REQ' | translate}}
         </div>
       </div>
     </div>
-     
     <div *ngIf="key==='fu'">
       <div class="form-group">
         <span>
@@ -95,7 +95,7 @@
             {{referencelookupmap.label}}</option>
         </select>
         <div *ngIf="issubmit && f.category.errors" class="invalid-feedback">
-          <div *ngIf="f.category.errors.required">Industry is required
+          <div *ngIf="f.category.errors.required"> {{'HOMESIGNUP.SIGNUP_VALIDATION_INDUSTRY_REQ' | translate}}
           </div>
         </div>
       </div>
@@ -112,22 +112,28 @@
               value="{{referencelookupmapcat.code}}"> {{referencelookupmapcat.label}}</option>
           </select>
           <div *ngIf="issubmit && f.subcategory.errors" class="invalid-feedback">
-            <div *ngIf="f.subcategory.errors.required">Skill is required
+            <div *ngIf="f.subcategory.errors.required">
+              {{'HOMESIGNUP.SIGNUP_VALIDATION_SKILL_REQ' | translate}}
             </div>
           </div>
         </div>
       </div>
       <div *ngIf="issubcatdisplay && isSelectedCategoryVal.length > 0">
         <div class="form-group">
-          <h3 class="form-control">No Skills for the Category</h3>
+          <h3 class="form-control"> {{'HOMESIGNUP.SIGNUP_VALIDATION_NOSKILL' | translate}}</h3>
         </div>
       </div>
     </div>
-    <p> <input type="checkbox"> I agree to the <a>Terms of Service</a></p>
+    <p> <input type="checkbox"> {{'HOMESIGNUP.SIGNUP_TERM_AGREE_LABEL' | translate}}
+      <a href={{termsofservice}} target="_blank">{{'HOMESIGNUP.SIGNUP_TERMOFSERVICE' |
+        translate}} </a> & <a href={{privacypolicy}} target="_blank">{{'HOMESIGNUP.SIGNUP_PRIVACYPOLICY' |
+        translate}}</a>
+    </p>
   </div>
   <!-- Modal footer -->
   <div class="modal-footer">
-    <button class="btn  btn-primary" type="submit">Submit</button>
-    <button type="button" class="btn btn-danger" (click)="modalRef.hide()">Close</button>
+    <button class="btn  btn-primary" type="submit">{{'HOMESIGNUP.SIGNUP_SUBMIT_BUTTON' | translate}}</button>
+    <button type="button" class="btn btn-danger" (click)="modalRef.hide()">{{'HOMESIGNUP.SIGNUP_CLOSE_BUTTON' |
+      translate}}</button>
   </div>
 </form>

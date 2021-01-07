@@ -1,4 +1,7 @@
+import { SignupComponent } from './../signup/signup.component';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { config } from '../appconstants/config';
 
 @Component({
   selector: 'app-footer',
@@ -7,9 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private signupComponent: SignupComponent,
+    private route: ActivatedRoute,
+  ) {
+  }
 
   ngOnInit() {
+    this.signupComponent.getTermsofServicesAndPrivacyPolicyURLByLang(localStorage.getItem('langCode'));
   }
 
 }

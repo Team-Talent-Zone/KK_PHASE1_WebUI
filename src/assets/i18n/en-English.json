@@ -10,12 +10,14 @@
       "SIGNUP": "Sign Up",
       "CLIENT": "Client",
       "FREELANCER": "Freelancer",
-      "LOGIN": "Login Now",
+      "LOGIN": "Login",
       "BETTERSERVICECAPTION":"BETTER SERVICE IN BETTER WAY",
       "BETTERSERVICESUBCAPTION":"The global services to fulfil you're business needs.",
       "BETTERSERVICESUBCAPTION1":"We are here to grow you're business.",
       "SIGNUP_MODALWINDOW_CLIENT_DESC":"We provide you with complete Automated Software Solutions on the Cloud",
-      "SIGNUP_MODALWINDOW_SKILLEDWORKER_DESC":"One Stop for all your Skilled Worker Opportunities"
+      "SIGNUP_MODALWINDOW_SKILLEDWORKER_DESC":"One Stop for all your Skilled Worker Opportunities",
+      "SIGNUP_MODALWINDOW_CLIENT_BUTTON_LABEL":"Signup As Client",
+      "SIGNUP_MODALWINDOW_SKILLEDWORKER_BUTTON_LABEL":"Signup As Skilled Worker"
     },
     "HOMEWHATWEDO": {
       "ABOUTUS": "ABOUT US",
@@ -29,8 +31,8 @@
       "WHOITHELPS_DETAILS": "We help Organizations, Users & Projects save Time, Effort and Hassle by providing you with verified candidates. Open Opportunities to showcase talents and professional expertise.Up to date follow-up’s and updates via emails & social networking platforms."
     },
     "HOMESIGNUP": {
-      "SIGNUP": "Sign Up",
-      "SIGNUPFU": "Sign Up as Freelancer",
+      "SIGNUP": "Create a Client account",
+      "SIGNUPFU": "Create a Skilled Worker account",
       "EMAILADDRESS": "Email Address",
       "PASSWORD": "Password",
       "FIRSTNAME": "First Name",
@@ -45,27 +47,33 @@
       "SENDPASSWORD":"Reset Password",
       "BACKTOLOGIN":"Back to Login?",
       "PASSWORDISREQUIRED":"Password is required.",
-      "PASSWORDMUSTBE8CHAR":"Password must be at least 8 characters."
-      
-      
+      "PASSWORDMUSTBE8CHAR":"Password must be at least 8 characters.",
+      "SIGNUP_TERM_AGREE_LABEL":"I agree to the",
+      "SIGNUP_TERMOFSERVICE":"terms of service",
+      "SIGNUP_PRIVACYPOLICY":"privacy policy",
+      "SIGNUP_VALIDATION_USERNAME":"Email must be a valid email address",
+      "SIGNUP_VALIDATION_40_MAX_USERNAME":"Email cannot exceed 40 characters",
+      "SIGNUP_VALIDATION_PASSWORD_REQ":"Password is required",
+      "SIGNUP_VALIDATION_8_MAX_PWD":"Password must be at least 8 characters",
+      "SIGNUP_VALIDATION_FNAME":"First Name is required",
+      "SIGNUP_VALIDATION_4_MAX_FNAME":"First Name cant exceed 40 characters",
+      "SIGNUP_VALIDATION_LASTNAME_REQ":"Last Name is required",
+      "SIGNUP_VALIDATION_40_MAX_LASTNAME": "Last Name cant exceed 40 characters",
+      "SIGNUP_VALIDATION_PREFERLANG_REQ":"Prefer Language is required",
+      "SIGNUP_VALIDATION_NOSKILL":"No Skills for the Category",
+      "SIGNUP_VALIDATION_SKILL_REQ":"Skill is required",
+      "SIGNUP_VALIDATION_INDUSTRY_REQ":"Industry is required",
+      "SIGNUP_SUBMIT_BUTTON":"Submit",
+      "SIGNUP_CLOSE_BUTTON":"Cancel"
     },
-    "CLIENTONBOARD": {
+    "ONBOARD": {
       "OURCUSTOMERS":"Our Customers",
       "CLIENTONBOARD":"Client On Board",
       "CLIENT": "At COMPANY NAME our first step is spent creating the best software infrastructure for your project. That is outlining the goals and assembling the best technology team possible to help you accomplish those goals. The solid planning will be the foundation upon which our entire customer onboarding program will depend. For the success of our customer, we also train the client to use our product. This would give customers a sense of confidence in collaborating with us. We guide our customers as frictionless as possible to their success. Our Subject matter experts (SME’s) get involved with the clients from the very early stages of onboarding, which will help in establishing a strong relationship, and pave our way in creating the content & selecting the right framework which would be very fruitful for the client. The team goes under a lot of research in developing the best software.",
       "CLIENT1": "COMPANY NAME also connects your business to a nationwide community of freelancers who thrive nothing more than to help your business succeed. Discover top rated and reviewed experts for every skill imaginable - this discovery could change your business forever. Explore different payment features, giving you the freedom to test ideas cost effectively. Once you're happy with the results, we carefully verify every freelancer before allowing them onto our platform. This guarantees you'll be working with an expert in their field of work. Above all, every freelancer is highly-rated and reviewed by expert community. Outsource your tasks risk-free with us and collaborate with freelancers around.",
       "CLIENT2": " If there's ever an issue, we'll help you fix it.",
       "FREELANCER":"Skilled Worker",
-      "FREELANCER1":"COMPANY NAME is an exponentially large platform to help onboard a wide variety of skilled and efficient workers who are ready to provide their services to help projects / business thrive. We pick the best talent in the market and also get each and every user verified with top-most scrutiny. Basic fundamentals and the etiquettes of work help groom the user to deliver to high standards. We connect you to a large variety of opportunity providers and help you get wide exposure to nationwide customers. You would be benefited with the variety of payment facilities helping you get paid for your efforts immediately. You would also be earning rewards for all your skilled tasks and this would help in improving your overall rating as well. As you climb up the ladder with us, you would be among the top-rated performers and would be highly rewarded and appreciated for your performance."
-    },
-    "SERVICE": {
-      "OURSERVICE": "Our Services",
-      "APARTMENT" : "Apartment",
-      "APARTMENT1" : "COMPANY NAME is the best service provider for your living spaces be it an Apartment, individual house,  Villa. The unique app for managing your infrastructure, visitors, security, Bill Payments, Facility Booking, Networking,  recommendations, deals and offers from the Neighborhood and much more. Get a software for all your Infrastructure needs, manage flat details, owner specifications, renter details, emergency contacts, payment details etc. Effectively manage all visitors by updating their details in advance, with full permissions under your control.  Get connected with local community for all  requirements, maintanance works, shopping and groceries. Do not miss out on important communications , notices and broadcast messages ensure residents do not miss significant updates about their community. Get connected with your neighbors in the easiest way possible ensuring seamless connect. Book verified services by trusted agents, vendor details and classifieds are updated regularly. Using our services you can be rest assured.",
-      "FREELANCERJOBS": "FreeLancer Jobs",
-      "FREELANCERJOBS1" : "We are here to help you get the best possible opportunities to showcase your skills & talents, CompanyName being the largest medium to onboard skilled & efficient workers, this will help you choose the the best among the top opportunities comming your way. You can render services at your convinient time, your preferred location & your instrested workplace. Every penny you earn would give you the satisfaction and pleasure of collaborating with us. Your profile would be rewarded and rated as per your performance and this could help you put your best foot forward and be counted among the top performers nationwide.",
-      "CLIENTCUSTOMERSERVICE":"Client / Customer Service",
-      "CLIENTCUSTOMERSERVICE1":"We at the Company Name are here for answering all your software requirements for creating your own infrastrcuture space. You could easily manage your Financial institutions, Education Institutions, Residential spaces and many more using our high end software. Get all your manual tasks automated, maintain all the necassary information easily on your fingertips, send out automated emails / replies to one or many by following simple process. We go under a lot of research and repeated communication with the customers to understand their needs and cater to their every special need independently. The software would simplify all the tedious tasks and help you get better results in quite a short span of time with very less manual workload and intervention.",
+      "FREELANCER1":"COMPANY NAME is an exponentially large platform to help onboard a wide variety of skilled and efficient workers who are ready to provide their services to help projects / business thrive. We pick the best talent in the market and also get each and every user verified with top-most scrutiny. Basic fundamentals and the etiquettes of work help groom the user to deliver to high standards. We connect you to a large variety of opportunity providers and help you get wide exposure to nationwide customers. You would be benefited with the variety of payment facilities helping you get paid for your efforts immediately. You would also be earning rewards for all your skilled tasks and this would help in improving your overall rating as well. As you climb up the ladder with us, you would be among the top-rated performers and would be highly rewarded and appreciated for your performance.",
       "GRABTHESERVICE":"Grab The Service",
       "GRABTHESERVICE1": "Pick the service best for your needs & budget. We have customised packages, helping you choose only the services your require and saving you from unecessary spending and junk.",
       "PAYFORSERVICE" : "Pay For Service",
@@ -80,6 +88,16 @@
       "PAYFOROPPORTUNITY1":"You would receive a notification from us, on sucessful verification of your profile. You can now proceed with our secured payment process to get connected with the nationwide Job opportunities.",
       "JOBASSIGNMENT":"Job Assignment",
       "JOBASSIGNMENT1":"Waiting is paining. To avoid, we have designed an automated system which always connect with you by sending job notification based on your skills. Grab IT, Accept IT, Finish IT."
+      },
+    "SKILLEDWORKERREVIEW": { 
+      "SWORKER_REVIEW_HEADERLABEL":"Skilled Worker Reviews",
+      "SWORKER_BUTTON_READMORE":"Read More",
+      "SWORKER_BUTTON_READLESS":"Read Less"
+    },
+    "SERVICE": { 
+      "LABEL_OURSERVICE": "Our Services",
+      "BUTTON_VIEWLESS": "View Less",
+      "BUTTON_VIEWMORE": "View More..."
     },
     "PRICE": {
       "TITLE" : "Plans & Pricing",
@@ -87,16 +105,11 @@
       "DESC2" : "Whether you're a business or an individual, no credit card required for signup.",
       "INDIVIDUAL":"Individual",
       "PACKAGE":"Package",
-      "APARTMENTSERVICE":"Apartment Service",
-      "INCLUDES":"Includes:",
-      "UNLIMITEDPAYMENTS":"Unlimited Payments",
-      "UNLIMITEDCLASSIFIED":"Unlimited Classified",
-      "UMLIMITEDFREELANCER":"Unlimited Freelancer",
-      "FREECUSTOMERSUPPORT":"Free Customer Support",
-      "SIGNUP":"Sign up",
-      "CURRENTLYNOPACKAGESERVICES":"Currently No Package Services"
+      "SIGNUP":"Signup As Client",
+      "CURRENTLYNOPACKAGESERVICES":"Currently No Package Services",
+      "BUTTON_VIEWLESS": "View Less",
+      "BUTTON_VIEWMORE": "View More..."
     },
-
     "QUESTIONS": {
       "FREQUENTLYASKEDQUESTIONS":"Frequently Asked Questions",
       "DOINEEDCREDITCARDTOSIGNUP":"Do I need a credit card to sign up?",
@@ -108,22 +121,11 @@
       "CANICANCELATANYTIME":"Can I cancel at anytime?",
       "CANICANCELATANYTIME1":"Yes, we put the control in your hands always, but would request you to speak to us before parting from us. However, we would not be able to process your refund."
     },
-    "TOUCH": {
-      "GETINTOUCH":"Get in touch",
-      "ADDRESS":"Address:",
+    "FOOTER": {
       "DONTSENDANYTHING":"Please don't send anything to this address.",
-      "EMAIL":"Email:",
-      "PHONE":"Phone:",
-      "CHOOSE":"Choose ...",
-      "NEWBUYER":"New Buyer",
-      "AUCTION":"Auction",
-      "COMPLAINT":"Complaint",
-      "FEEDBACK":"Feedback",
-      "SUBMIT":"Submit",
-      "MOBILENO":"Mobile No.",
-      "YOURMESSAGE":"Your Message",
-      "FULLNAME":"Full Name",
-      "EMAIL1":"Email"
+      "CONTACT":"Contact Us",
+      "ADDRESS_LINE1":"IT Services Private Ltd",
+      "ADDRESS_LINE2":"Hyderabad , Telangana."
     },
     "DASHOARD_HEADER": {
       "LOGOUT":"Logout",

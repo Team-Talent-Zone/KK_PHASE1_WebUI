@@ -42,9 +42,9 @@ export const config = {
   default_prefer_lang: 'en',
   lang_code_hi: 'hi',
   lang_code_te: 'te',
-  lang_english_word: 'English',
-  lang_hindi_word: 'हिंदी',
-  lang_telugu_word: 'తెలుగు',
+  lang_english_word: 'en-English',
+  lang_hindi_word: 'hi-हिंदी',
+  lang_telugu_word: 'te-తెలుగు',
   profiletype_avatar: 'avatar',
   profiletype_nationalid: 'nationalid',
   imgtype_png: 'image/png',
@@ -52,8 +52,7 @@ export const config = {
   imgtype_jpg: 'image/jpg',
   imgtype_pdf: 'application/pdf',
   imgtype_zip: 'application/x-zip-compressed',
-  GOOGLE_MAPS_API_KEY:'AIzaSyB49ZEsrA7g3ecyimsgRJ0Zypx21xiOgVY',
-  // GOOGLE_MAPS_API_KEY: 'AIzaSyCaKbVhcX_22R_pRKDYuNA7vox-PtGaDkI',
+  GOOGLE_MAPS_API_KEY: 'AIzaSyBDDFawIBF3roB7RB1lI7g1D6qbn2e6oB4',
   newservice_code_senttocssm: 'SENT_TO_CSSM',
   newservice_code_senttocsst: 'SENT_TO_CSST',
   newservice_code_approved: 'APPROVED',
@@ -70,6 +69,12 @@ export const config = {
   widget_logo: 'logoId',
   widget_companyimgurl: 'companyimgurlId',
   widget_companybgurlId: 'companybgurlId',
+  shortkey_termsofservice_english: 'terms_eng',
+  shortkey_termsofservice_telugu: 'terms_tel',
+  shortkey_termsofservice_hindi: 'terms_hin',
+  shortkey_privacypolicy_english: 'pp_english',
+  shortkey_privacypolicy_telugu: 'pp_telugu',
+  shortkey_privacypolicy_hindi: 'pp_hindi'
 };
 
 
