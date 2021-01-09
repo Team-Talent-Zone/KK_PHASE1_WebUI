@@ -15,8 +15,8 @@ import { Observable } from 'rxjs';
 export class HometestimonialsComponent implements OnInit {
 
   listofTestimonals: any;
-  name: string;
-
+  startindex: number = 0;
+  endindex: number = 3;
   constructor(
     public freelanceserviceService: FreelanceserviceService,
     private alertService: AlertsService,
@@ -69,6 +69,23 @@ export class HometestimonialsComponent implements OnInit {
         this.alertService.error(error);
       });
   }
-
+  onTogglePrev() {
+    console.log('this is onTogglePrev', this.listofTestimonals.length);
+    if (this.startindex == 0) {
+      this.onToggleNext();
+    } else {
+      this.endindex = this.startindex;
+      this.startindex = this.endindex - 3;
+    }
+  }
+  onToggleNext() {
+    if (this.listofTestimonals.length == this.endindex) {
+      console.log('this is onToggleNext', this.listofTestimonals.length);
+      this.onTogglePrev();
+    } else {
+      this.startindex = this.endindex;
+      this.endindex = this.endindex + 2
+    }
+  }
 
 }

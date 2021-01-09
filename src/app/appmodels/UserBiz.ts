@@ -16,6 +16,7 @@ export class UserBiz {
     public shortaddress: string;
     public lng: number;
     public lat: number;
+    public acceptsignupterms: boolean;
     constructor(
     ) { }
 }

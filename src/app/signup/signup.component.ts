@@ -94,7 +94,8 @@ export class SignupComponent implements OnInit {
         username: ['', [Validators.required, Validators.email, Validators.maxLength(40)]],
         firstname: ['', [Validators.required, Validators.maxLength(40)]],
         lastname: ['', [Validators.required, Validators.maxLength(40)]],
-        preferlang: config.default_prefer_lang
+        preferlang: config.default_prefer_lang,
+        acceptsignupterms: [false, [Validators.requiredTrue]]
       });
     } else {
       this.signupForm = this.formBuilder.group({
@@ -105,6 +106,7 @@ export class SignupComponent implements OnInit {
         preferlang: ['', [Validators.required]],
         category: ['', [Validators.required]],
         subcategory: ['', [Validators.required]],
+        acceptsignupterms: [false, [Validators.requiredTrue]]
       });
     }
   }

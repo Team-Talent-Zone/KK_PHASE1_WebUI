@@ -16,8 +16,6 @@ export class HeaderComponent implements OnInit {
 
   modalRef: BsModalRef;
   shortkey: string;
-  langSelected = config.lang_english_word;
-  name: string;
   config: ModalOptions = {
     class: 'modal-md', backdrop: 'static',
     keyboard: false
@@ -58,8 +56,7 @@ export class HeaderComponent implements OnInit {
   }
 
   translateToLanguage(langSelect: string) {
-    this.langSelected = langSelect;
-    this.translate.use(this.langSelected);
+    this.translate.use(langSelect);
     if (langSelect === config.lang_hindi_word.toString()) {
       localStorage.setItem('langCode', config.lang_code_hi);
       localStorage.setItem('langLabel', langSelect);

@@ -24,6 +24,7 @@ export class ReadMoreComponent implements OnInit {
   }
 
   toggleContent() {
+
     this.isContentToggled = !this.isContentToggled;
     this.content = this.isContentToggled ? this.nonEditedContent : this.formatContent(this.content);
   }

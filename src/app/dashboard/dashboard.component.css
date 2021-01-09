@@ -1,14 +1,9 @@
-
 /*
-   * Off Canvas sidebar at medium breakpoint
-   * --------------------------------------------------
-   */
-.bg-primary {
-    background-color: rgb(52 58 64) !important;
-} 
-   
+ * Off Canvas at medium breakpoint
+ * --------------------------------------------------
+ */
 
-@media screen and (max-width: 992px) {
+@media screen and (max-width: 48em) {
   .row-offcanvas {
     position: relative;
     -webkit-transition: all 0.25s ease-out;
@@ -34,9 +29,10 @@
 }
 
 /*
-   * Off Canvas wider at sm breakpoint
-   * --------------------------------------------------
-   */
+* Off Canvas wider at sm breakpoint
+* --------------------------------------------------
+*/
+
 @media screen and (max-width: 34em) {
   .row-offcanvas-left .sidebar-offcanvas {
     left: -45%;
@@ -56,13 +52,13 @@
   overflow: hidden;
 }
 
-.card-body .rotate {
+.card-block .rotate {
   z-index: 8;
   float: right;
   height: 100%;
 }
 
-.card-body .rotate i {
+.card-block .rotate i {
   color: rgba(20, 20, 20, 0.15);
   position: absolute;
   left: 0;
@@ -77,16 +73,48 @@
   transform: rotate(-44deg);
 }
 
-.profile-img-card {
-  width: 46px;
-  height: 46px;
-  margin: 0 auto 10px;
-  display: block;
-  -moz-border-radius: 50%;
-  -webkit-border-radius: 50%;
-  border-radius: 50%;
+.bg-primary {
+  background-color: rgb(52 58 64) !important;
+}
+.navbar {
+  padding: 0px;
+  border-bottom: 1px solid gray;
+}
+.nav-item {
+  margin-top: 4px;
+}
+.logo-title {
+  font-size: 36px;
+  color: white;
+  font-weight: 500;
+  /* margin-left: -12px; */
 }
 
+.logo-u {
+  color: #ff4949;
+  font-weight: 500;
+  font-size: 40px;
+}
+#fixed-sidebar {
+  max-width: 20%;
+  color: white;
+  position: relative;
+  /* max-width: 20%; */
+  color: white;
+  height: 592px;
+}
+.bread-cumb {
+  padding: 11px;
+  /*margin: -15px;*/
+  margin-bottom: 10px;
+  -webkit-box-shadow: 0px 1px 1px #de1dde;
+  -moz-box-shadow: 0px 1px 1px #de1dde;
+  box-shadow: 3px -2px 5px 2px #867886;
+}
+.no-padd {
+  padding-right: 0px;
+  padding-left: 0px;
+}
 .avatar {
   vertical-align: middle;
   width: 26px;
@@ -94,66 +122,11 @@
   border-radius: 50%;
 }
 
-.combobox {
-  margin: auto;
-  margin-left: 224px;
-}
 
-.combobox-input {
-  width: 330px;
-  border: none;
-  font-size: 18px;
-}
-
-.combobox-input:focus {
-  outline-style: none;
-}
-
-.combobox-options {
-  position: absolute;
-  text-align: center;
-  background-color: white;
-  width: 350px;
-  max-height: 200px;
-  overflow-y: auto;
-  box-shadow: 2px 2px 2px 2px #ccc;
-  z-index: 1;
-}
-
-.selected {
-  color: cornsilk;
-  background-color: rgb(165, 112, 112);
-}
-
-list-item {
-  display: block;
-  font-size: 18px;
-  padding: 10px;
-}
-
-list-item:hover {
-  background-color: grey;
-  color: white;
-}
-
-.error-text {
-  color: rgb(165, 112, 112);
-}
-
-.error {
-  border: 1px solid red;
-}
-.navbar{
-  padding: 0px;
-  border-bottom: 1px solid gray;
-}
-.nav-item{
-margin-top: 4px;
-}
-
+/*----------------------------------=This is custome css=------------------------*/
 .list-group-item {
   padding: 6px 6px;
-  border: 1px solid rgba(0,0,0,.125);
+  border: 1px solid rgba(0, 0, 0, 0.125);
 }
 
 .list-group-item-action {
@@ -164,64 +137,26 @@ margin-top: 4px;
 }
 
 .list-group-flush:first-child .list-group-item:first-child {
-    border-top: 0;
+  border-top: 0;
 }
 
-.bg-light .fa{
+.bg-light .fa {
   /* background-color: #343a40!important; */
   font-size: 50px;
 }
 
-a.bg-light:focus, a.bg-light:hover, button.bg-light:focus, button.bg-light:hover {
-  background-color: #dae0e5!important;
+a.bg-light:focus,
+a.bg-light:hover,
+button.bg-light:focus,
+button.bg-light:hover {
+  background-color: #dae0e5 !important;
 }
 
 /* a.bg-light:focus, a.bg-light:hover, button.bg-light:focus, button.bg-light:active {
   background-color: red!important;
 } */
- .list-group-item-action{
-    color: black;
-    /* text-align: left; */
-     margin-bottom: 1px;
-}
-
-#fixed-sidebar {
-  max-width: 20%;
-  color: white;
-  position: relative;
-  /* max-width: 20%; */
-  color: white;
-  height: 592px;
-}
-
-
-.logo-title{
-  font-size: 36px;
-  color: white;
-  font-weight: 500;
-  /* margin-left: -12px; */
-}
-
-.logo-u{
-  color: #FF4949;
-  font-weight: 500;
-  font-size: 40px;
-}
-
-.navbar-brand {
-  padding-top: 5px;
-  padding-left: 11px;
-}
-
-.bread-cumb{
-padding: 11px;
-/*margin: -15px;*/
-margin-bottom: 10px;
--webkit-box-shadow: 0px 1px 1px #de1dde;
--moz-box-shadow: 0px 1px 1px #de1dde;
-box-shadow: 3px -2px 5px 2px #867886;
-}
-.no-padd{
-  padding-right: 0px; 
-  padding-left: 0px;
+.list-group-item-action {
+  color: black;
+  /* text-align: left; */
+  margin-bottom: 1px;
 }

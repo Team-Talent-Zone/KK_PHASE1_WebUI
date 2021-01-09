@@ -26,6 +26,7 @@
 
   <!-- Javascript -->
   <script src="./assets/js/jquery-3.2.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.2.0/js/tether.min.js"></script>
   <!-- <script src="./assets/js/jquery-migrate-3.0.0.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
     integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
@@ -116,6 +117,13 @@
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
   }
+</script>
+<script>
+  $(document).ready(function () {
+    $("[data-toggle=offcanvas]").click(function () {
+      $(".row-offcanvas").toggleClass("active");
+    });
+  });
 </script>
 
 </html>

@@ -62,6 +62,7 @@
       "SIGNUP_VALIDATION_PREFERLANG_REQ":"Prefer Language is required",
       "SIGNUP_VALIDATION_NOSKILL":"No Skills for the Category",
       "SIGNUP_VALIDATION_SKILL_REQ":"Skill is required",
+      "SIGNUP_VALIDATION_TERMS_POLICYCHECKBOX_REQ":"You must accept our terms of service and privacy policy before proceed.",
       "SIGNUP_VALIDATION_INDUSTRY_REQ":"Industry is required",
       "SIGNUP_SUBMIT_BUTTON":"Submit",
       "SIGNUP_CLOSE_BUTTON":"Cancel"
@@ -91,8 +92,7 @@
       },
     "SKILLEDWORKERREVIEW": { 
       "SWORKER_REVIEW_HEADERLABEL":"Skilled Worker Reviews",
-      "SWORKER_BUTTON_READMORE":"Read More",
-      "SWORKER_BUTTON_READLESS":"Read Less"
+      "SWORKER_BUTTON_READFULL":"Read Full"
     },
     "SERVICE": { 
       "LABEL_OURSERVICE": "Our Services",

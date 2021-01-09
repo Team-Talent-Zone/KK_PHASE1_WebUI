@@ -61,10 +61,10 @@
     "SIGNUP_VALIDATION_PREFERLANG_REQ":"ఇష్టపడే భాష అవసరం",
     "SIGNUP_VALIDATION_NOSKILL":"వర్గానికి నైపుణ్యాలు లేవు",
     "SIGNUP_VALIDATION_SKILL_REQ":"నైపుణ్యం అవసరం",
+    "SIGNUP_VALIDATION_TERMS_POLICYCHECKBOX_REQ":"కొనసాగడానికి ముందు మీరు మా సేవా నిబంధనలు మరియు గోప్యతా విధానాన్ని అంగీకరించాలి.",
     "SIGNUP_VALIDATION_INDUSTRY_REQ":"పరిశ్రమ అవసరం",
     "SIGNUP_SUBMIT_BUTTON":"సబ్మిట్",
     "SIGNUP_CLOSE_BUTTON":"కాన్సుల్"
-
   },
   "ONBOARD": {
     "OURCUSTOMERS":"మా కస్టమర్లు",
@@ -91,8 +91,7 @@
   },
   "SKILLEDWORKERREVIEW":{
     "SWORKER_REVIEW_HEADERLABEL":"నైపుణ్యం కలిగిన కార్మికుల సమీక్షలు",
-    "SWORKER_BUTTON_READMORE":"ఇంకా చదవండి",
-    "SWORKER_BUTTON_READLESS":"తక్కువ చదవండి"
+    "SWORKER_BUTTON_READFULL":"పూర్తి చదవండి"
   },
   "SERVICE": {
     "LABEL_OURSERVICE": "మా సేవలు",

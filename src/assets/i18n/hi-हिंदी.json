@@ -61,6 +61,7 @@
     "SIGNUP_VALIDATION_PREFERLANG_REQ":"वरीयता भाषा की आवश्यकता है",
     "SIGNUP_VALIDATION_NOSKILL":"श्रेणी के लिए कोई कौशल नहीं",
     "SIGNUP_VALIDATION_SKILL_REQ":"कौशलता की आवश्यकता है",
+    "SIGNUP_VALIDATION_TERMS_POLICYCHECKBOX_REQ":"आगे बढ़ने से पहले आपको हमारी सेवा की शर्तें और गोपनीयता नीति स्वीकार करनी चाहिए।",
     "SIGNUP_VALIDATION_INDUSTRY_REQ":"उद्योग की आवश्यकता है",
     "SIGNUP_SUBMIT_BUTTON":"प्रस्तुत",
     "SIGNUP_CLOSE_BUTTON":"रद्द करना"
@@ -90,8 +91,7 @@
   },
   "SKILLEDWORKERREVIEW":{
     "SWORKER_REVIEW_HEADERLABEL":"कुशल श्रमिक समीक्षा",
-    "SWORKER_BUTTON_READMORE":"अधिक पढ़ें",
-    "SWORKER_BUTTON_READLESS":"कम पढ़ें"
+    "SWORKER_BUTTON_READFULL":"पूरा पढ़ें"
   },
   "SERVICE": {
     "LABEL_OURSERVICE": "हमारी सेवाएं",
