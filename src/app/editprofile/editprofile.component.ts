@@ -16,6 +16,7 @@ import {
   Validators
 } from '@angular/forms';
 import { ApiService, Maps } from '../adapters/api.service';
+import { ReferenceService } from '../AppRestCall/reference/reference.service';
 @Component({
   selector: 'app-editprofile',
   templateUrl: './editprofile.component.html',
@@ -59,7 +60,7 @@ export class EditprofileComponent implements OnInit {
   allUserCBAList: any;
   ispwdsubmit = false;
   isbankenabled = false;
-  
+
   constructor(
     public fb: FormBuilder,
     private cd: ChangeDetectorRef,
@@ -72,6 +73,7 @@ export class EditprofileComponent implements OnInit {
     private userAdapter: UserAdapter,
     public signupComponent: SignupComponent,
     apiService: ApiService,
+    private referService: ReferenceService,
     private ngZone: NgZone
   ) {
     route.params.subscribe(params => {
@@ -165,10 +167,11 @@ export class EditprofileComponent implements OnInit {
         abtbiz: ['', [Validators.required]],
         purposeofsignup: ['', [Validators.required]],
         designation: ['', [Validators.required, Validators.maxLength(40)]],
-        accepteditprofileterms: [false, [Validators.requiredTrue]]
+        accepteditprofileterms: [false, [Validators.requiredTrue]],
+        phoneno:['', [Validators.required, Validators.pattern("[0-9 ]{10}")]]
       });
     } else
-      if (this.roleCode === config.user_rolecode_fu.toString() ) {
+      if (this.roleCode === config.user_rolecode_fu.toString()) {
         this.editprofileForm = this.formBuilder.group({
           username: ['', [Validators.required]],
           firstname: ['', [Validators.required, Validators.maxLength(40)]],
@@ -183,8 +186,10 @@ export class EditprofileComponent implements OnInit {
           avtarurl: ['', [Validators.required]],
           hourlyRate: ['', [Validators.required, Validators.maxLength(5), Validators.pattern('^[0-9]*$')]],
           accountno: ['', [Validators.required, Validators.maxLength(15), Validators.pattern('^[0-9]*$')]],
-          ifsc: ['', [Validators.required, Validators.maxLength(8)]],
-          accepteditprofileterms: [false, [Validators.requiredTrue]]
+          verfiyaccountno: ['', [Validators.required]],
+          ifsc: ['', [Validators.required, Validators.minLength(11), Validators.maxLength(11)]],
+          accepteditprofileterms: [false, [Validators.requiredTrue]],
+          phoneno:['', [Validators.required, Validators.pattern("[0-9 ]{10}")]]
         });
       } else {
         this.editprofileForm = this.formBuilder.group({
@@ -193,6 +198,7 @@ export class EditprofileComponent implements OnInit {
           lastname: ['', [Validators.required, Validators.maxLength(40)]],
           preferlang: ['', [Validators.required]],
           fulladdress: ['', [Validators.required]],
+          phoneno:['', [Validators.required, Validators.pattern("[0-9 ]{10}")]]
         });
       }
   }
@@ -215,6 +221,7 @@ export class EditprofileComponent implements OnInit {
           this.editprofileForm.patchValue({ firstname: this.edituserobj.firstname });
           this.editprofileForm.patchValue({ lastname: this.edituserobj.lastname });
           this.editprofileForm.patchValue({ preferlang: this.edituserobj.preferlang });
+          this.editprofileForm.patchValue({ phoneno: this.edituserobj.phoneno });
           this.editprofileForm.patchValue({ fulladdress: this.edituserobj.userbizdetails.fulladdress });
           if (this.roleCode === config.user_rolecode_cba.toString()) {
             this.editprofileForm.patchValue({ bizname: this.edituserobj.userbizdetails.bizname });
@@ -268,6 +275,7 @@ export class EditprofileComponent implements OnInit {
     this.edituserobj.firstname = this.editprofileForm.get('firstname').value;
     this.edituserobj.lastname = this.editprofileForm.get('lastname').value;
     this.edituserobj.preferlang = this.editprofileForm.get('preferlang').value;
+    this.edituserobj.phoneno = this.editprofileForm.get('phoneno').value;
     this.edituserobj.userbizdetails.fulladdress = this.searchElementRef.nativeElement.value;
     if (this.shortAddress != null) {
       this.edituserobj.userbizdetails.route = this.route;
@@ -304,6 +312,20 @@ export class EditprofileComponent implements OnInit {
         this.edituserobj.freeLanceDetails.bgcurrentstatus = config.bg_code_completedprofile;
         this.edituserobj.freelancehistoryentity[0].bgstatus = config.bg_code_completedprofile;
       }
+      if (this.editprofileForm.get('verfiyaccountno').value.toString() !== this.editprofileForm.get('accountno').value.toString()) {
+        this.referService.translatetext("Account Number and Verfication Account Number is mismatch", this.userService.currentUserValue.preferlang).subscribe(
+          (trantxt: any) => {
+            this.alertService.info(trantxt);
+            this.spinnerService.hide();
+          },
+          error => {
+            this.spinnerService.hide();
+            this.alertService.error(error);
+          }
+        );
+        return;
+
+      }
     }
     if (this.typeavt === config.profiletype_avatar.toString() &&
       this.typenationalid !== config.profiletype_nationalid.toString()) {
@@ -317,7 +339,6 @@ export class EditprofileComponent implements OnInit {
           this.msgflag = true;
         }
     if (this.typenationalid !== config.profiletype_nationalid.toString() && this.typeavt !== config.profiletype_avatar.toString()) {
-      console.log('===Update Edit====', this.msgflag);
       this.saveorupdateedituser(this.edituserobj);
       if (this.msgflag) {
         this.alertService.success(this.edituserobj.firstname + ' your account details is updated');
@@ -374,6 +395,7 @@ export class EditprofileComponent implements OnInit {
           this.userService.currentUserValue.avtarurl = this.usrObj.avtarurl;
           this.userService.currentUserValue.fullname = this.usrObj.fullname;
           this.userService.currentUserValue.preferlang = this.usrObj.preferlang;
+          this.userService.currentUserValue.phoneno = this.usrObj.phoneno;
           this.userService.currentUserValue.userbizdetails.fulladdress = this.usrObj.userbizdetails.fulladdress;
           this.userService.currentUserValue.userbizdetails.lat = this.usrObj.userbizdetails.lat;
           this.userService.currentUserValue.userbizdetails.lng = this.usrObj.userbizdetails.lng;

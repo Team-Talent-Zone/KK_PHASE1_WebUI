@@ -51,6 +51,9 @@ export class PaymentComponent implements OnInit {
     } else {
       this.productinfo = this.productinfoParam;
     }
+    if (this.userService.currentUserValue.phoneno != null) {
+      this.payuform.phone = this.userService.currentUserValue.phoneno
+    }
   }
 
   confirmPayment() {

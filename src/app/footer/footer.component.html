@@ -4,7 +4,7 @@
 		<section class="contact  bg-light" id="contact">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-4">
+					<div class="col-md-3">
 						<div class="address">
 							<h2>
 								<span class="logo-title">{{ 'HOMENAV.COMPANYNAMEPART1' | translate }}<span
@@ -17,13 +17,9 @@
 								<li>{{ 'FOOTER.ADDRESS_LINE2' | translate }}</li>
 							</ul>
 							<p>{{ 'FOOTER.DONTSENDANYTHING' | translate }}</p>
-
 						</div>
-
 					</div>
-
-					<div class="col-md-4">
-
+					<div class="col-md-3">
 						<h2>{{ 'FOOTER.CONTACT' | translate }}</h2>
 						<!-- <hr> -->
 						<div class="email">
@@ -33,86 +29,42 @@
 								<li><i class="fa fa-phone"></i> +91- 8800XXXXXX34</li>
 							</ul>
 						</div>
-
 						<div class="social">
 							<ul class="list-inline list-unstyled">
 								<li class="list-inline-item">
 									<a href="#"><i class="fa fa-facebook-square fa-2x"></i></a>
 								</li>
 								<li class="list-inline-item">
-									<a href="#"><i class="fa fa-google-plus-square fa-2x"></i></a>
+									<a href="#"><i class="fa fa-twitter fa-2x"></i></a>
 								</li>
 								<li class="list-inline-item">
 									<a href="#"><i class="fa fa-youtube-play fa-2x"></i></a>
 								</li>
+								<li class="list-inline-item">
+									<a href="#"><i class="fa fa-instagram fa-2x"></i></a>
+								</li>
 							</ul>
 						</div>
 					</div>
-
-					<div class="col-md-4">
+					<div class="col-md-3">
 						<div class="address">
-							<!-- <h2>Useful Links</h2> -->
+							<h2>{{ 'FOOTER.USEFULLINKS' | translate }}</h2>
 							<!-- <hr> -->
-							<!-- <ul style="list-style: circle;">
-							<li><a>About Us</a></li>
-							<li><a>On Board</a></li>
-							<li><a>Services</a></li>
-							<li><a>Pricing</a></li>
-						</ul> -->
-							<!-- <p>{{ 'TOUCH.DONTSENDANYTHING' | translate }}</p> -->
-							<img src="assets/img/backgrounds/pay13.png">
-
+							<ul style="list-style: circle;">
+								<li><a href="/home#section-1">{{ 'HOMENAV.ABOUTUS' | translate }}</a></li>
+								<li><a href="/home#section-2">{{ 'HOMENAV.ONBOARD' | translate }}</a></li>
+								<li><a href="/home#section-3">{{ 'HOMENAV.SERVICE' | translate }}</a></li>
+								<li><a href="/home#section-4">{{ 'HOMENAV.PRICING' | translate }}</a></li>
+							</ul>
 						</div>
 					</div>
-
-					<!-- <div class="col-md-6">
-					<div class="card">
-						<div class="card-body">
-							<form>
-								<div class="form-row">
-									<div class="form-group col-md-6">
-										<input id="Full Name" name="Full Name" placeholder="{{ 'TOUCH.FULLNAME' | translate }}"
-											class="form-control" type="text">
-									</div>
-									<div class="form-group col-md-6">
-										<input type="email" class="form-control" id="inputEmail4" placeholder="{{ 'TOUCH.EMAIL1' | translate }}">
-									</div>
-								</div>
-								<div class="form-row">
-									<div class="form-group col-md-6">
-										<input id="Mobile No." name="Mobile No." placeholder="{{ 'TOUCH.MOBILENO' | translate }}"
-											class="form-control" required="required" type="text">
-									</div>
-									<div class="form-group col-md-6">
-
-										<select id="inputState" class="form-control">
-											<option selected>{{ 'TOUCH.CHOOSE' | translate }}</option>
-											<option>{{ 'TOUCH.NEWBUYER' | translate }} </option>
-											<option>{{ 'TOUCH.AUCTION' | translate }} </option>
-											<option>{{ 'TOUCH.COMPLAINT' | translate }} </option>
-											<option>{{ 'TOUCH.FEEDBACK' | translate }} </option>
-										</select>
-									</div>
-									<div class="form-group col-md-12">
-										<textarea id="comment" name="comment" cols="40" rows="5"
-											placeholder="{{ 'TOUCH.YOURMESSAGE' | translate }}" class="form-control"></textarea>
-									</div>
-								</div>
-
-								<div class="form-row">
-									<button type="button" class="btn btn-danger">{{ 'TOUCH.SUBMIT' | translate }}</button>
-								</div>
-							</form>
-						</div>
+					<div class="col-md-3">
+						<img src="assets/img/backgrounds/pay13.png">
 					</div>
-				</div> -->
 				</div>
-
-
 			</div>
 		</section>
 	</div>
-
 </div>
 
 <!-- Section 6 Footer -->
@@ -121,13 +73,15 @@
 		<div class="row">
 			<div class="col-md-4 text-center">
 				<span>
-					<a href={{signupComponent.termsofservice}} target="_blank">{{ 'HOMESIGNUP.SIGNUP_TERMOFSERVICE' | translate }} </a></span>
+					<a href={{signupComponent.termsofservice}} target="_blank">{{ 'HOMESIGNUP.SIGNUP_TERMOFSERVICE' |
+						translate }} </a></span>
 			</div>
 			<div class="col-md-4 text-center">
-				<span><a href={{signupComponent.privacypolicy}} target="_blank">{{ 'HOMESIGNUP.SIGNUP_PRIVACYPOLICY' | translate }}</a></span>
+				<span><a href={{signupComponent.privacypolicy}} target="_blank">{{ 'HOMESIGNUP.SIGNUP_PRIVACYPOLICY' |
+						translate }}</a></span>
 			</div>
 			<div class="col-md-4 text-center">
-				<span>Copy Rights @2020 <a>kaam karega</a> All Rights Reserved.</span>
+				<span><small>Copy Rights @2020 Kaam Karega All Rights Reserved.</small></span>
 			</div>
 		</div>
 	</section>
