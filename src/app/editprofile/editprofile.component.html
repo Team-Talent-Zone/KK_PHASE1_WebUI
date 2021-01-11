@@ -3,15 +3,15 @@
         <div class="col-md-5 col-xl-4">
             <div class="card">
                 <div class="card-header">
-                    <h5 class="card-title mb-0">Profile Settings</h5>
+                    <h5 class="card-title mb-0">{{ 'DASHBOARD_FU_PROFILE.PROFILESETTINGS' | translate }}</h5>
                 </div>
                 <div class="list-group list-group-flush" role="tablist">
                     <a class="list-group-item list-group-item-action active" data-toggle="list" href="#account"
                         role="tab">
-                        Account Details
+                        {{ 'DASHBOARD_FU_PROFILE.PROFILE_ACCT_DETAILS' | translate }}
                     </a>
                     <a class="list-group-item list-group-item-action" data-toggle="list" href="#password" role="tab">
-                        Change Password
+                       {{ 'DASHBOARD_FU_PROFILE.PROFILE_CHANGEPWD' | translate }}
                     </a>
                 </div>
             </div>
@@ -25,7 +25,9 @@
                             <div class="card-header">
                                 <div class="card-actions float-right">
                                 </div>
-                                <h4 class="card-title mb-0">Basic Information</h4>
+                                <h4 class="card-title mb-0">
+                                    {{ 'DASHBOARD_FU_PROFILE.PROFILE_BASICINFOR' | translate }}
+                                </h4>
                             </div>
                             <div class="card-body">
                                 <div class="row">
@@ -41,29 +43,33 @@
                                             <span>
                                                 <i class="fa fa-user-circle form-control-icon"></i>
                                             </span>
-                                            <input type="text" placeholder="First Name*" class="form-control"
+                                            <input type="text" placeholder=" {{ 'DASHBOARD_FU_PROFILE.PROFILE_FIRSTNAME' | translate }}" class="form-control"
                                                 id="inputFirstName"
                                                 [ngClass]="{ 'is-invalid': issubmit && f.firstname.errors }"
                                                 formControlName="firstname">
                                             <div *ngIf="issubmit && f.firstname.errors" class="invalid-feedback">
-                                                <div *ngIf="f.firstname.errors.required">First Name is required
+                                                <div *ngIf="f.firstname.errors.required">
+                                                    {{ 'DASHBOARD_FU_PROFILE.PROFILE_FIRSTNAME_REQ' | translate }}
                                                 </div>
-                                                <div *ngIf="f.firstname.errors.maxlength">First Name cant exceed 40
-                                                    char</div>
+                                                <div *ngIf="f.firstname.errors.maxlength">
+                                                    {{ 'DASHBOARD_FU_PROFILE.PROFILE_FIRSTNAME_EXCEED' | translate }}
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <span>
                                                 <i class="fa fa-user-circle form-control-icon"></i>
                                             </span>
-                                            <input type="text" placeholder="Last Name*" class="form-control"
+                                            <input type="text" placeholder="{{ 'DASHBOARD_FU_PROFILE.PROFILE_LASTNAME' | translate }}" class="form-control"
                                                 id="inputLastName" formControlName="lastname"
                                                 [ngClass]="{ 'is-invalid': issubmit && f.lastname.errors }">
                                             <div *ngIf="issubmit && f.lastname.errors" class="invalid-feedback">
-                                                <div *ngIf="f.lastname.errors.required">Last Name is required
+                                                <div *ngIf="f.lastname.errors.required">
+                                                    {{ 'DASHBOARD_FU_PROFILE.PROFILE_LASTNAME_REQ' | translate }}
                                                 </div>
-                                                <div *ngIf="f.lastname.errors.maxlength">Last Name cant exceed 40
-                                                    char</div>
+                                                <div *ngIf="f.lastname.errors.maxlength">
+                                                    {{ 'DASHBOARD_FU_PROFILE.PROFILE_LASTNAME_EXCEED' | translate }}    
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="form-group"
@@ -82,12 +88,12 @@
                                             <span>
                                                 <i class="fa fa-address-book form-control-icon"></i>
                                             </span>
-                                            <input placeholder="Enter your address" autocorrect="off" autocomplete="off"
+                                            <input placeholder="{{ 'DASHBOARD_FU_PROFILE.PROFILE_ADDRESS' | translate }}" autocorrect="off" autocomplete="off"
                                                 autocapitalize="off" spellcheck="off" type="text" class="form-control"
                                                 formControlName="fulladdress" #search
                                                 [ngClass]="{ 'is-invalid': issubmit && f.fulladdress.errors }">
                                             <div *ngIf="issubmit && f.fulladdress.errors" class="invalid-feedback">
-                                                <div *ngIf="f.fulladdress.errors.required">Address is required
+                                                <div *ngIf="f.fulladdress.errors.required">{{ 'DASHBOARD_FU_PROFILE.PROFILE_ADDRESS_REQ' | translate }}
                                                 </div>
                                             </div>
                                         </div>
@@ -99,8 +105,8 @@
                                                     <div
                                                         *ngIf="avatarURL == null && 
                                                         this.userService.currentUserValue.userroles.rolecode ==='FREELANCER_USER'">
-                                                        <span style="font-size:13px;color:rgb(255, 30, 0)">Pic is
-                                                            required
+                                                        <span style="font-size:13px;color:rgb(255, 30, 0)">
+                                                            {{ 'DASHBOARD_FU_PROFILE.PROFILE_PIC_REQ' | translate }}
                                                         </span>
                                                     </div>
                                                     <div class="avatar-edit">
@@ -120,11 +126,9 @@
                                                     </div>
                                                 </div>
                                                 <button type="button" class="btn btn-danger btn-sm btn-block"
-                                                    (click)="fileInput.click()">Upload Profile Pic</button>
+                                                    (click)="fileInput.click()"> {{ 'DASHBOARD_FU_PROFILE.PROFILE_PIC' | translate }}</button>
                                             </div>
-                                            <small class="text-muted">For best results, use an image at least 128px by 128px in
-                                                .png,.jpg,.jpeg
-                                                format</small>
+                                            <small class="text-muted">{{ 'DASHBOARD_FU_PROFILE.PROFILE_PIC_FORMAT' | translate }}</small>
                                         </div>
                                     </div>
                                 </div>
@@ -230,7 +234,7 @@
                             <div class="card-header">
                                 <div class="card-actions float-right">
                                 </div>
-                                <h4 class="card-title mb-0">Skill Information</h4>
+                                <h4 class="card-title mb-0">{{ 'DASHBOARD_FU_PROFILE.PROFILE_SKILL' | translate }}</h4>
                             </div>
                             <div class="card-body">
                                 <div class="row">
@@ -264,7 +268,7 @@
                                             <span>
                                                 <i class="fa fa-bullhorn form-control-icon"></i>
                                             </span>
-                                            <textarea class="form-control" placeholder="About You"
+                                            <textarea class="form-control" placeholder="{{ 'DASHBOARD_FU_PROFILE.PROFILE_ABTU' | translate }}"
                                                 formControlName="abt"></textarea>
                                         </div>
                                         <div class="form-row">
@@ -272,19 +276,19 @@
                                                 <span>
                                                     <i class="fa fa-graduation-cap form-control-icon"></i>
                                                 </span>
-                                                <input type="text" placeholder="Total Experience*" class="form-control"
+                                                <input type="text" placeholder="{{ 'DASHBOARD_FU_PROFILE.PROFILE_TOTALEXP' | translate }}" class="form-control"
                                                     formControlName="experienceInField"
                                                     [ngClass]="{ 'is-invalid': issubmit && f.experienceInField.errors }">
                                                 <div *ngIf="issubmit && f.experienceInField.errors"
                                                     class="invalid-feedback">
-                                                    <div *ngIf="f.experienceInField.errors.required">Experience is
-                                                        required
+                                                    <div *ngIf="f.experienceInField.errors.required">
+                                                        {{ 'DASHBOARD_FU_PROFILE.PROFILE_EXP_REQ' | translate }}
                                                     </div>
-                                                    <div *ngIf="f.experienceInField.errors.maxlength">Experience cant
-                                                        exceed
-                                                        2
-                                                        digits</div>
-                                                    <div *ngIf="f.experienceInField.errors.pattern">Must be digit only
+                                                    <div *ngIf="f.experienceInField.errors.maxlength">
+                                                        {{ 'DASHBOARD_FU_PROFILE.PROFILE_EXP_EXCEED' | translate }}
+                                                    </div>
+                                                    <div *ngIf="f.experienceInField.errors.pattern">
+                                                        {{ 'DASHBOARD_FU_PROFILE.PROFILE_DIGIT' | translate }}
                                                     </div>
                                                 </div>
                                             </div>
@@ -292,15 +296,17 @@
                                                 <span>
                                                     <i class="fa fa-inr form-control-icon"></i>
                                                 </span>
-                                                <input type="text" placeholder="Hourly Rate*" class="form-control"
+                                                <input type="text" placeholder="{{ 'DASHBOARD_FU_PROFILE.PROFILE_HOURLYRATE' | translate }}" class="form-control"
                                                     formControlName="hourlyRate"
                                                     [ngClass]="{ 'is-invalid': issubmit && f.hourlyRate.errors }">
                                                 <div *ngIf="issubmit && f.hourlyRate.errors" class="invalid-feedback">
-                                                    <div *ngIf="f.hourlyRate.errors.required">Hourly Rate is required
+                                                    <div *ngIf="f.hourlyRate.errors.required">
+                                                        {{ 'DASHBOARD_FU_PROFILE.PROFILE_HOURLYRATE_REQ' | translate }}
                                                     </div>
-                                                    <div *ngIf="f.hourlyRate.errors.maxlength">Hourly Rate cant exceed 5
-                                                        digits</div>
-                                                    <div *ngIf="f.hourlyRate.errors.pattern">Must be digit only</div>
+                                                    <div *ngIf="f.hourlyRate.errors.maxlength">
+                                                        {{ 'DASHBOARD_FU_PROFILE.PROFILE_HOURLYRATE_EXCEED' | translate }}
+                                                    </div>
+                                                    <div *ngIf="f.hourlyRate.errors.pattern"> {{ 'DASHBOARD_FU_PROFILE.PROFILE_DIGIT' | translate }}</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -324,15 +330,14 @@
                                             </div>
                                             <button type="button" class="btn btn-info btn-md"
                                                 (click)="fileInput.click()">
-                                                <span *ngIf="nationalIDURL != null ; else elseNoNationalID">Re-Upload
-                                                    Photo Id</span>
+                                                <span *ngIf="nationalIDURL != null ; else elseNoNationalID">
+                                                    {{ 'DASHBOARD_FU_PROFILE.PROFILE_REUPLOAD' | translate }}</span>
                                                 <ng-template #elseNoNationalID>
-                                                    Upload Photo Id
+                                                    {{ 'DASHBOARD_FU_PROFILE.PROFILE_UPLOAD' | translate }}
                                                 </ng-template>
                                             </button>
                                         </div>
-                                        <small>For best results, use an image at least 128px by 128px in .png,.jpg,.jpeg
-                                            format</small>
+                                        <small>{{ 'DASHBOARD_FU_PROFILE.PROFILE_PIC_FORMAT' | translate }}</small>
                                     </div>
                                 </div>
                             </div>
@@ -342,7 +347,7 @@
                             <div class="card-header">
                                 <div class="card-actions float-right">
                                 </div>
-                                <h4 class="card-title mb-0">Bank Details</h4>
+                                <h4 class="card-title mb-0">{{ 'DASHBOARD_FU_PROFILE.PROFILE_BANKDETAILS' | translate }}</h4>
                             </div>
                             <div class="card-body">
                                 <div class="row">
@@ -351,18 +356,16 @@
                                             <span>
                                                 <i class="fa fa-university  form-control-icon"></i>
                                             </span>
-                                            <input type="text" placeholder="Bank Account Number*" class="form-control"
+                                            <input type="text" placeholder="{{ 'DASHBOARD_FU_PROFILE.PROFILE_BANKACCT' | translate }}" class="form-control"
                                                 formControlName="accountno"
                                                 [ngClass]="{ 'is-invalid': issubmit && f.accountno.errors }">
                                             <div *ngIf="issubmit && f.accountno.errors" class="invalid-feedback">
-                                                <div *ngIf="f.accountno.errors.required">Account Number is
-                                                    required
+                                                <div *ngIf="f.accountno.errors.required">{{ 'DASHBOARD_FU_PROFILE.PROFILE_BANKACCT_REQ' | translate }}
                                                 </div>
-                                                <div *ngIf="f.accountno.errors.maxlength">Account Number cant
-                                                    exceed
-                                                    13
-                                                    digits</div>
-                                                <div *ngIf="f.accountno.errors.pattern">Must be digit only
+                                                <div *ngIf="f.accountno.errors.maxlength">
+                                                    {{ 'DASHBOARD_FU_PROFILE.PROFILE_BANKACCT_EXCEED' | translate }}
+                                                </div>
+                                                <div *ngIf="f.accountno.errors.pattern">{{ 'DASHBOARD_FU_PROFILE.PROFILE_DIGIT' | translate }}
                                                 </div>
                                             </div>
                                         </div>
@@ -370,24 +373,39 @@
                                             <span>
                                                 <i class="fa fa-barcode  form-control-icon"></i>
                                             </span>
-                                            <input type="text" placeholder="IFSC CODE*" class="form-control"
+                                            <input type="text" placeholder="{{ 'DASHBOARD_FU_PROFILE.PROFILE_IFSCCODE' | translate }}" class="form-control"
                                                 formControlName="ifsc"
                                                 [ngClass]="{ 'is-invalid': issubmit && f.ifsc.errors }">
                                             <div *ngIf="issubmit && f.ifsc.errors" class="invalid-feedback">
-                                                <div *ngIf="f.ifsc.errors.required">IFSC Code is required
+                                                <div *ngIf="f.ifsc.errors.required">{{ 'DASHBOARD_FU_PROFILE.PROFILE_IFSCCODE_REQ' | translate }}
                                                 </div>
-                                                <div *ngIf="f.ifsc.errors.maxlength">IFSC Code cant exceed 8
-                                                    digits</div>
-                                                <div *ngIf="f.ifsc.errors.pattern">Must be digit only</div>
+                                                <div *ngIf="f.ifsc.errors.maxlength">{{ 'DASHBOARD_FU_PROFILE.PROFILE_IFSCCODE_EXCEED' | translate }}</div>
+                                                <div *ngIf="f.ifsc.errors.pattern">{{ 'DASHBOARD_FU_PROFILE.PROFILE_DIGIT' | translate }}</div>
                                             </div>
                                         </div>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input" formControlName="accepteditprofileterms"
+                                              [ngClass]="{ 'is-invalid': issubmit && f.accepteditprofileterms.errors }">
+                                            <label class="form-check-label" for="exampleCheck1">{{'HOMESIGNUP.SIGNUP_TERM_AGREE_LABEL' |
+                                              translate}}
+                                              <a href={{signupComponent.termsofservice}} target="_blank">{{'HOMESIGNUP.SIGNUP_TERMOFSERVICE' |
+                                                translate}} </a> & <a href={{signupComponent.privacypolicy}} target="_blank">{{'HOMESIGNUP.SIGNUP_PRIVACYPOLICY' |
+                                                translate}}</a></label>
+                                            <div *ngIf="issubmit && f.accepteditprofileterms.errors" class="invalid-feedback">
+                                              <div *ngIf="f.accepteditprofileterms.errors.required">
+                                                {{'HOMESIGNUP.SIGNUP_VALIDATION_TERMS_POLICYCHECKBOX_REQ' | translate}}
+                                              </div>
+                                            </div>
+                                          </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                         <div class="modal-footer pull-left">
-                            <button type="submit" class="btn btn-primary">Save Changes</button>
+                            <button type="submit" class="btn btn-primary">
+                                
+                                {{ 'DASHBOARD_FU_PROFILE.PROFILE_SAVECHANGES_BUTTON' | translate }}</button>
                         </div>
                     </form>
                 </div>
@@ -397,35 +415,33 @@
                             <div class="card-header">
                                 <div class="card-actions float-right">
                                 </div>
-                                <h5 class="card-title mb-0">Enter New Password</h5>
+                                <h5 class="card-title mb-0">{{ 'DASHBOARD_FU_PROFILE.PROFILE_PWD' | translate }}</h5>
                             </div>
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="inputPasswordNew">New password</label>
+                                    <label for="inputPasswordNew">{{ 'DASHBOARD_FU_PROFILE.PROFILE_NEWPWD' | translate }}</label>
                                     <input type="password" formControlName="newpassword" class="form-control"
                                         [ngClass]="{ 'is-invalid': ispwdsubmit && p.newpassword.errors }">
                                     <div *ngIf="ispwdsubmit && p.newpassword.errors" class="invalid-feedback">
-                                        <div *ngIf="p.newpassword.errors.required">New Password is required
+                                        <div *ngIf="p.newpassword.errors.required">{{ 'DASHBOARD_FU_PROFILE.PROFILE_NEWPWD_REQ' | translate }}
                                         </div>
-                                        <div *ngIf="p.newpassword.errors.minlength">New Password must be at least 8
-                                            characters</div>
+                                        <div *ngIf="p.newpassword.errors.minlength">{{ 'DASHBOARD_FU_PROFILE.PROFILE_NEWPWD_EXCEED' | translate }}</div>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="inputPasswordNew2">Verify password</label>
+                                    <label for="inputPasswordNew2">{{ 'DASHBOARD_FU_PROFILE.PROFILE_VERFIYPWD' | translate }}</label>
                                     <input type="password" formControlName="verifypassword" class="form-control"
                                         [ngClass]="{ 'is-invalid': ispwdsubmit && p.verifypassword.errors }">
                                     <div *ngIf="ispwdsubmit && p.verifypassword.errors" class="invalid-feedback">
-                                        <div *ngIf="p.verifypassword.errors.required">Verify Password is required
+                                        <div *ngIf="p.verifypassword.errors.required">{{ 'DASHBOARD_FU_PROFILE.PROFILE_VERFIYPWD_REQ' | translate }}
                                         </div>
-                                        <div *ngIf="p.verifypassword.errors.minlength">Verify Password must be at least
-                                            8
-                                            characters</div>
+                                        <div *ngIf="p.verifypassword.errors.minlength">{{ 'DASHBOARD_FU_PROFILE.PROFILE_VERIFYPWD_EXCEED' | translate }}</div>
                                     </div>
                                 </div>
+                                
                             </div>
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-primary">Save Password Changes</button>
+                                <button type="submit" class="btn btn-primary">{{ 'DASHBOARD_FU_PROFILE.PROFILE_SAVEPASSWEDCHANGE' | translate }}</button>
                             </div>
                         </div>
                     </form>

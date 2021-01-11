@@ -1,29 +1,22 @@
 <div class="container">
-    <h4>Payment Details</h4>
+    <h4> {{ 'PAYMENTHIST.PAYMENTHIST_HEADER' | translate }}</h4>
     <hr>
     <div class="col-md-12 bg-search">
-
-        <input type="text" class="form-control col-md-3" placeholder="Search Results">
-
-        <div class="pull-right mt-btn-v">
-            <button class="btn btn-primary btn-sm pull-right">View All</button>
-        </div>
-
+        <input type="text" id="myInput" onkeyup="myFunction()"
+            placeholder="{{ 'PAYMENTHIST.PAYMENTHIST_SEARCH' | translate }}">
     </div>
 
     <br>
     <div *ngIf="paymentdetails != null">
-
-        <table class="table table-bordered table-hover table-sm table-striped">
+        <table id="myTable" class="table table-bordered table-hover table-sm table-striped">
             <thead>
                 <tr>
-                    <th>Transcation Id</th>
-                    <th>Name</th>
-                    <th>Transcation Date</th>
-                    <th>Payment Mode</th>
-                    <th>Status</th>
-                    <th>Amount</th>
-                    <th>Remarks</th>
+                    <th> {{ 'PAYMENTHIST.PAYMENTHIST_TRAN_NUMBER' | translate }} </th>
+                    <th>{{ 'PAYMENTHIST.PAYMENTHIST_FIRSTNAME' | translate }}</th>
+                    <th>{{ 'PAYMENTHIST.PAYMENTHIST_TRAN_DATE' | translate }}</th>
+                    <th>{{ 'PAYMENTHIST.PAYMENTHIST_STATUS' | translate }}</th>
+                    <th>{{ 'PAYMENTHIST.PAYMENTHIST_AMOUNT' | translate }}</th>
+                    <th>{{ 'PAYMENTHIST.PAYMENTHIST_NOTES' | translate }}</th>
                 </tr>
             </thead>
             <tbody>
@@ -31,7 +24,6 @@
                     <td>{{paymentdetails.txnid}}</td>
                     <td>{{paymentdetails.name}}</td>
                     <td>{{paymentdetails.createdon}}</td>
-                    <td>{{paymentdetails.paymentsCBATrans.mode}}</td>
                     <td>{{paymentdetails.paymentsCBATrans.status}}</td>
                     <td>{{paymentdetails.amount}}</td>
                     <td>{{paymentdetails.productinfo}}</td>
@@ -41,27 +33,22 @@
     </div>
 
     <div *ngIf="fupaymenthistorydetails.length > 0 ">
-        <!-- <h2>Payment History</h2>
-        <br>
-        <input type="text" class="form-control col-md-3" placeholder="Search Results"> -->
-        <table class="table table-bordered table-hover table-sm table-striped">
+        <table id="myTable" class="table table-bordered table-hover table-sm table-striped">
             <thead>
                 <tr>
-                    <th>Transcation Id</th>
-                    <th>Name</th>
-                    <th>Transcation Date</th>
-                    <th>Payment Mode</th>
-                    <th>Status</th>
-                    <th>Amount</th>
-                    <th>Remarks</th>
+                    <th> {{ 'PAYMENTHIST.PAYMENTHIST_TRAN_NUMBER' | translate }}</th>
+                    <th>{{ 'PAYMENTHIST.PAYMENTHIST_FIRSTNAME' | translate }}</th>
+                    <th>{{ 'PAYMENTHIST.PAYMENTHIST_TRAN_DATE' | translate }}</th>
+                    <th>{{ 'PAYMENTHIST.PAYMENTHIST_STATUS' | translate }}</th>
+                    <th>{{ 'PAYMENTHIST.PAYMENTHIST_AMOUNT' | translate }}</th>
+                    <th>{{ 'PAYMENTHIST.PAYMENTHIST_NOTES' | translate }}</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr *ngFor="let fupayments of fupaymenthistorydetails">
+            <tbody *ngFor="let fupayments of fupaymenthistorydetails">
+                <tr>
                     <td>{{fupayments.txnid}}</td>
                     <td>{{fupayments.name}}</td>
                     <td>{{fupayments.createdon}}</td>
-                    <td>{{fupayments.mode}}</td>
                     <td>{{fupayments.status}}</td>
                     <td>{{fupayments.amount}}</td>
                     <td>{{fupayments.productinfo}}</td>
@@ -69,30 +56,23 @@
             </tbody>
         </table>
     </div>
-
     <div *ngIf="cbapaymenthistorydetails.length >0  && paymentdetails == null">
-        <!-- <h2>Payment History</h2><br>
-       <div class="clearfix"></div> <br>
-        <input type="text" class="form-control col-md-3" placeholder="Search Results">
-        <div class="clearfix"></div> <br> -->
-        <table class="table table-bordered table-hover table-sm table-striped">
+        <table id="myTable" class="table table-bordered table-hover table-sm table-striped">
             <thead>
                 <tr>
-                    <th>Transcation Id</th>
-                    <th>Name</th>
-                    <th>Transcation Date</th>
-                    <th>Payment Mode</th>
-                    <th>Status</th>
-                    <th>Amount</th>
-                    <th>Remarks</th>
+                    <th> {{ 'PAYMENTHIST.PAYMENTHIST_TRAN_NUMBER' | translate }}</th>
+                    <th>{{ 'PAYMENTHIST.PAYMENTHIST_FIRSTNAME' | translate }}</th>
+                    <th>{{ 'PAYMENTHIST.PAYMENTHIST_TRAN_DATE' | translate }}</th>
+                    <th>{{ 'PAYMENTHIST.PAYMENTHIST_STATUS' | translate }}</th>
+                    <th>{{ 'PAYMENTHIST.PAYMENTHIST_AMOUNT' | translate }}</th>
+                    <th>{{ 'PAYMENTHIST.PAYMENTHIST_NOTES' | translate }}</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr *ngFor="let cbupayments of cbapaymenthistorydetails">
+            <tbody *ngFor="let cbupayments of cbapaymenthistorydetails">
+                <tr>
                     <td>{{cbupayments.txnid}}</td>
                     <td>{{cbupayments.name}}</td>
                     <td>{{cbupayments.createdon}}</td>
-                    <td>{{cbupayments.mode}}</td>
                     <td>{{cbupayments.status}}</td>
                     <td>{{cbupayments.amount}}</td>
                     <td>{{cbupayments.productinfo}}</td>
@@ -101,3 +81,6 @@
         </table>
     </div>
 </div>
+<script>
+
+</script>

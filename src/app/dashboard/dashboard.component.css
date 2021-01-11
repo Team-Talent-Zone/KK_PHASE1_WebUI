@@ -76,13 +76,7 @@
 .bg-primary {
   background-color: rgb(52 58 64) !important;
 }
-.navbar {
-  padding: 0px;
-  border-bottom: 1px solid gray;
-}
-.nav-item {
-  margin-top: 4px;
-}
+
 .logo-title {
   font-size: 36px;
   color: white;
@@ -95,68 +89,18 @@
   font-weight: 500;
   font-size: 40px;
 }
-#fixed-sidebar {
-  max-width: 20%;
-  color: white;
-  position: relative;
-  /* max-width: 20%; */
-  color: white;
-  height: 592px;
-}
-.bread-cumb {
-  padding: 11px;
-  /*margin: -15px;*/
-  margin-bottom: 10px;
-  -webkit-box-shadow: 0px 1px 1px #de1dde;
-  -moz-box-shadow: 0px 1px 1px #de1dde;
-  box-shadow: 3px -2px 5px 2px #867886;
-}
-.no-padd {
-  padding-right: 0px;
-  padding-left: 0px;
-}
+
 .avatar {
   vertical-align: middle;
   width: 26px;
   height: 26px;
   border-radius: 50%;
 }
-
-
-/*----------------------------------=This is custome css=------------------------*/
-.list-group-item {
-  padding: 6px 6px;
-  border: 1px solid rgba(0, 0, 0, 0.125);
-}
-
-.list-group-item-action {
-  color: #4a9aeb;
-  /* text-align: left; */
-  /* font-weight: bold; */
-  text-align: center;
-}
-
-.list-group-flush:first-child .list-group-item:first-child {
-  border-top: 0;
-}
-
-.bg-light .fa {
-  /* background-color: #343a40!important; */
-  font-size: 50px;
-}
-
-a.bg-light:focus,
-a.bg-light:hover,
-button.bg-light:focus,
-button.bg-light:hover {
-  background-color: #dae0e5 !important;
-}
-
-/* a.bg-light:focus, a.bg-light:hover, button.bg-light:focus, button.bg-light:active {
-  background-color: red!important;
-} */
-.list-group-item-action {
-  color: black;
-  /* text-align: left; */
-  margin-bottom: 1px;
-}
+.bread-cumb{
+  padding: 11px;
+  margin-bottom: 10px;
+  -webkit-box-shadow: 0px 1px 1px #de1dde;
+  -moz-box-shadow: 0px 1px 1px #de1dde;
+  box-shadow: 3px -2px 5px 2px #867886;
+  }
+ 

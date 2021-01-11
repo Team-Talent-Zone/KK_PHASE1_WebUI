@@ -67,9 +67,10 @@
 
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
-    background-color:#ff4949;
+  background-color: #ff4949;
 }
 .carousel-control-next,
 .carousel-control-prev {
   position: absolute;
+  top: initial!important;
 }

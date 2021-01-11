@@ -17,6 +17,10 @@ export class FooterComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (localStorage.getItem('langCode') === null) {
+      localStorage.setItem('langCode', config.default_prefer_lang);
+      localStorage.setItem('langLabel', config.lang_english_word);
+    }
     this.signupComponent.getTermsofServicesAndPrivacyPolicyURLByLang(localStorage.getItem('langCode'));
   }
 

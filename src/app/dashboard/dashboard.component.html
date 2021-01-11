@@ -1,38 +1,34 @@
-<nav class="navbar navbar-fixed-top navbar-expand-md navbar-dark" (scroll)="onWindowScroll($event);" id="navbar">
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
-        data-target="#collapsingNavbar">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+<nav class="navbar navbar-fixed-top navbar-toggleable-sm navbar-expand-md navbar-dark mb-3"
+    (scroll)="onWindowScroll($event);">
     <div class="flex-row d-flex">
-        <a class="navbar-brand mb-1" title="Kaam Karega Dashboard">
-            <img src="assets/img/9.png" width="50" height="50" class="rounded-circle d-inline-block align-top"
+        <a class="navbar-brand mb-1">
+            <img src="assets/img/logo.png" width="50" height="50" class="rounded-circle d-inline-block align-top"
                 alt="Kaam Karega Dashboard"></a>
-        <span class="logo-title">Kaam<span class="logo-u">Karega</span></span>
-        <button type="button" class="hidden-md-up navbar-toggler" data-toggle="offcanvas"
+        <span class="logo-title">{{ 'HOMENAV.COMPANYNAMEPART1' | translate }}<span class="logo-u">{{
+                'HOMENAV.COMPANYNAMEPART2' | translate }}</span></span>
+        <button type="button" class="navbar-toggler hidden-sm-up" data-toggle="offcanvas"
             title="Toggle responsive left sidebar">
             <span class="navbar-toggler-icon"></span>
         </button>
     </div>
-    <div class="navbar-collapse collapse" id="collapsingNavbar">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="#" (click)="logout()">
-                    <i class="fa fa-sign-out"></i>{{ 'DASHOARD_HEADER.LOGOUT' | translate }}
-                </a>
-            </li>
-        </ul>
-    </div>
 </nav>
 <div class="container-fluid" id="main">
     <div class="row row-offcanvas row-offcanvas-left">
-        <div class="col-md-3 col-lg-2 sidebar-offcanvas"
-            style="border-right: 1px solid #00000038;margin-top:5rem!important;" id="sidebar" role="navigation">
-            <ul class="nav flex-column pl-1" style="width: 119px;padding-left: 1px;padding-right: 8px;">
-                <li>
+        <div class="col-md-3 col-lg-2 sidebar-offcanvas" id="sidebar" role="navigation">
+            <ul class="nav flex-column pl-1">
+                <li class="nav-item" *ngIf="this.userService.currentUserValue.userroles.rolecode !='FREELANCER_USER'">
                     <a [routerLink]="['/dashboard']" class="list-group-item list-group-item-action bg-light">
                         <i class="fa fa-tachometer" style="color:#FF4949"></i>
                         <b>
                             Dashboard
+                        </b>
+                    </a>
+                </li>
+                <li *ngIf="this.userService.currentUserValue.userroles.rolecode ==='FREELANCER_USER'">
+                    <a [routerLink]="['/dashboard']" class="list-group-item list-group-item-action bg-light">
+                        <i class="fa fa-tachometer" style="color:#FF4949"></i>
+                        <b>
+                            {{ 'DASHOARD_FU_MENU.SUMMARY' | translate }}
                         </b>
                     </a>
                 </li>
@@ -78,7 +74,7 @@
                     <a [routerLink]="['/paymenthistory']" class="list-group-item list-group-item-action bg-light">
                         <i class="fa fa-sitemap" style="color:#FF4949"></i>
                         <b>
-                            Payment History
+                            {{ 'DASHOARD_FU_MENU.PAYMENTHISTORY' | translate }}
                         </b>
                     </a>
                 </li>
@@ -87,7 +83,7 @@
                     <a [routerLink]="['/fureviews']" class="list-group-item list-group-item-action bg-light">
                         <i class="fa fa-commenting-o" style="color:#FF4949"></i>
                         <b>
-                            Reviews
+                            {{ 'DASHOARD_FU_MENU.REVIEWS' | translate }}
                         </b>
                     </a>
                 </li>
@@ -105,18 +101,28 @@
                             Create New Service
                         </b>
                     </a></li>
+                <li>
+                    <a  class="list-group-item list-group-item-action bg-light nav-link btn btn-sm"
+                        (click)="logout()">
+                        <i class="fa fa-sign-out" style="color:#FF4949"></i>{{ 'DASHOARD_HEADER.LOGOUT' | translate }}
+                    </a>
+                </li>
             </ul>
         </div>
         <!--/col-->
-
-        <div class="col main pt-5 mt-4">
+        <div class="col-md-9 col-lg-10 main">
             <div class="container">
                 <div class="bread-cumb">
-                    <div class="col-md-12 no-padd">
-                        <span><i>Hi,{{ 'DASHOARD_HEADER.WELCOMEBACK' | translate }} </i> <b>{{fullname}}</b></span>
-                        <span class="float-right">
-                            <small><i><span id='ct'></span></i></small>
-                            &nbsp;&nbsp;
+                    <div class="row">
+                        <div class="col-xl-4 col-lg-6">
+                            <span><i>{{ 'DASHOARD_HEADER.WELCOMEBACK' | translate }} </i> <b>{{fullname}}</b></span>
+                        </div>
+                        <div class="col-xl-5 col-lg-6">
+                            <span class="float-right">
+                                <small><i><span id='ct'></span></i></small>
+                            </span>
+                        </div>
+                        <div class="col-xl-3 col-lg-6">
                             <i class="fa fa-envelope-o"></i>
                             &nbsp;
                             <i class="fa fa-bell-o"></i>
@@ -127,7 +133,7 @@
                                 <img *ngIf="userService.currentUserValue.avtarurl === null" src="{{defaultTxtImg}}"
                                     class="avatar">
                             </a>
-                        </span>
+                        </div>
                     </div>
                 </div>
                 <!-- <hr> -->
@@ -150,6 +156,6 @@
         </div>
         <!--/main col-->
     </div>
-
 </div>
+
 <!--/.container-->

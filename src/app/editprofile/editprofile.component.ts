@@ -59,6 +59,7 @@ export class EditprofileComponent implements OnInit {
   allUserCBAList: any;
   ispwdsubmit = false;
   isbankenabled = false;
+  
   constructor(
     public fb: FormBuilder,
     private cd: ChangeDetectorRef,
@@ -88,8 +89,10 @@ export class EditprofileComponent implements OnInit {
     this.pwdFormValidation();
     if (this.roleCode === config.user_rolecode_fu.toString()) {
       this.signupComponent.getAllCategories(this.userService.currentUserValue.preferlang);
+      this.signupComponent.getTermsofServicesAndPrivacyPolicyURLByLang(this.userService.currentUserValue.preferlang);
     }
     if (this.userService.currentUserValue.userroles.rolecode === config.user_rolecode_cba.toString()) {
+      this.signupComponent.getTermsofServicesAndPrivacyPolicyURLByLang(this.userService.currentUserValue.preferlang);
       this.userService.getUsersByRole(config.user_rolecode_cba.toString()).subscribe((usrobjlist: any) => {
         this.allUserCBAList = usrobjlist;
       },
@@ -162,6 +165,7 @@ export class EditprofileComponent implements OnInit {
         abtbiz: ['', [Validators.required]],
         purposeofsignup: ['', [Validators.required]],
         designation: ['', [Validators.required, Validators.maxLength(40)]],
+        accepteditprofileterms: [false, [Validators.requiredTrue]]
       });
     } else
       if (this.roleCode === config.user_rolecode_fu.toString() ) {
@@ -180,6 +184,7 @@ export class EditprofileComponent implements OnInit {
           hourlyRate: ['', [Validators.required, Validators.maxLength(5), Validators.pattern('^[0-9]*$')]],
           accountno: ['', [Validators.required, Validators.maxLength(15), Validators.pattern('^[0-9]*$')]],
           ifsc: ['', [Validators.required, Validators.maxLength(8)]],
+          accepteditprofileterms: [false, [Validators.requiredTrue]]
         });
       } else {
         this.editprofileForm = this.formBuilder.group({
@@ -443,7 +448,7 @@ export class EditprofileComponent implements OnInit {
       return;
     }
     if (this.pwdForm.get('newpassword').value !== this.pwdForm.get('verifypassword').value) {
-      this.alertService.error('Verify Password is not matching');
+      this.alertService.info('Verify Password is not matching');
       this.spinnerService.hide();
     } else {
       this.spinnerService.show();

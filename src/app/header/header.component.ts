@@ -40,7 +40,7 @@ export class HeaderComponent implements OnInit {
     translate.setDefaultLang('en-English');
     const browserLang = translate.getBrowserLang();
     translate.use(browserLang.match(/en-English|te-తెలుగు|hi-हिंदी/) ? browserLang : 'en-English');
-  }
+     }
 
   onWindowScroll(e) {
     let element = document.querySelector('.navbar');

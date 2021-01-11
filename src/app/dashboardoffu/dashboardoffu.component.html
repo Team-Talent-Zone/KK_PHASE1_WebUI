@@ -1,5 +1,5 @@
 <div class="container">
-    <h4>Dashboard</h4>
+    <h4> {{ 'DASHOARD_FU_MENU.SUMMARY' | translate }}</h4>
     <hr>
     <br>
     <div class="row placeholders justify-content-between">
@@ -8,12 +8,12 @@
             <i class="fa fa-address-card-o  rounded-circle"></i>
             <a routerLink='/vieworeditprofile/{{userService.currentUserValue.userId}}'
                 *ngIf="!userService.currentUserValue.freeLanceDetails.isprofilecompleted; else elseFU">
-                <p style="color: black;"><small><b>Fill out Profile</b></small></p>
+                <p style="color: black;"><small><b>{{ 'DASHBOARD_FU_BODY.FILLOUTPROFILE' | translate }}</b></small></p>
             </a>
             <ng-template #elseFU>
                 <p align="center"><small>
                         <b>
-                            Profile Updated
+                            {{ 'DASHBOARD_FU_BODY.PROFILEEUPDATE' | translate }}
                         </b>
                     </small></p>
             </ng-template>
@@ -30,7 +30,7 @@
                 <a href=" javascript: return false;" (click)="openPaymentComponent()">
                     <small>
                         <b>
-                            Payment
+                            {{ 'DASHBOARD_FU_BODY.PAYMENT' | translate }}
                             {{referenceobj[0].label}}
                         </b>
                     </small>
@@ -39,13 +39,13 @@
             <p align="center" *ngIf=" istimelap &&  !userService.currentUserValue.freeLanceDetails.isprofilecompleted">
                 <small>
                     <b>
-                        Payment
+                        {{ 'DASHBOARD_FU_BODY.PAYMENT' | translate }}
                         {{referenceobj[0].label}}
                     </b>
                 </small>
             </p>
             <p align="center" *ngIf="userService.currentUserValue.freeLanceDetails.isregfeedone">
-                <small><b> Payment Completed</b></small>
+                <small><b> {{ 'DASHBOARD_FU_BODY.PAYMENTCOMPLETED' | translate }}</b></small>
             </p>
 
         </div>
@@ -56,7 +56,7 @@
         <div class="col-6 col-sm-2 placeholder text-center">
             <!-- <img src="{{stage3Img}}" class="mx-auto img-fluid rounded-circle" alt="Generic placeholder thumbnail"> -->
             <i class="fa fa-street-view rounded-circle"></i>
-            <p align="center"><small><b>Background Verification Initiated</b></small></p>
+            <p align="center"><small><b>{{ 'DASHBOARD_FU_BODY.BGVERIFICATIONINITIATED' | translate }}</b></small></p>
 
         </div>
         <div class="stepConectorPiece"
@@ -66,7 +66,7 @@
             <!-- <img src="{{stage4Img}}" class="mx-auto img-fluid rounded-circle"
                 alt="Background Verification is In Progress"> -->
             <i class="fa fa-hourglass-start rounded-circle"></i>
-            <p align="center"><small><b>Background Verification In Progress</b></small></p>
+            <p align="center"><small><b>{{ 'DASHBOARD_FU_BODY.BGVERFIFICATIONINPROGRESS' | translate }}</b></small></p>
 
         </div>
         <div class="stepConectorPiece"
@@ -75,7 +75,8 @@
         <div class="col-6 col-sm-2 placeholder text-center">
             <!-- <img src="{{stage5Img}}" class="mx-auto img-fluid rounded-circle" alt="Final Result"> -->
             <i class="fa fa fa-hand-paper-o rounded-circle"></i>
-            <p align="center"><small><b>Background Verification Final Result</b></small></p>
+            <p align="center"><small><b>{{ 'DASHBOARD_FU_BODY.BGVERFIFICATIONFINALRESULTS' | translate }}</b></small>
+            </p>
 
         </div>
     </div>
@@ -90,101 +91,115 @@
                 <div class="" [ngClass]="i==0 ? 'bg-customupcoming card' : 'bg-custom card' "
                     style="padding-left: 27px;padding-top: 27px;color: white;">
 
-                    <h4 style="color: white;">
-                        {{ card.name }}
-
-                        <i class="fa fa-question-circle" *ngIf="i==0"
-                            title="Upcoming job amount will calculate before 3 days of Job start date"
-                            style="font-size:10px;color:rgb(76, 0, 255)"></i>
-                        &nbsp;&nbsp;&nbsp;
-                        <b> <i class="fa fa-inr" *ngIf="card.value > 0" style="color:green;"></i>
-                            <i *ngIf="card.value == 0" class="fa fa-inr" style="color:orange;"></i>
-                            {{ card.value | number}} </b>
-                    </h4>
-                    <p style="color: black;"><small>Last updated {{indiaTime}} mins ago</small></p>
+                    <span style="color: white;">
+                        <p class="pull-center"><b>{{ card.name }}</b>
+                        </p>
+                        <span class="pull-center">
+                            <h3 style="color: white;"><i class="fa fa-inr" *ngIf="card.value > 0"
+                                    style="color:lightgreen;"></i>
+                                <i *ngIf="card.value == 0" class="fa fa-inr " style="color:orange;"></i>
+                                <b>{{ card.value | number}}</b>
+                                <i class="fa fa-info-circle " *ngIf="i==0"
+                                    title="{{ 'DASHBOARD_FU_BODY.UPCOMINGTOOLTIP' | translate }}"
+                                    style="font-size:10px;color:brown"></i>
+                            </h3>
+                        </span>
+                    </span>
+                    <p style="color: black;"><small>{{ 'DASHBOARD_FU_BODY.LASTUPDATED' | translate }} {{indiaTime}} {{
+                            'DASHBOARD_FU_BODY.MINSAGO' | translate }}</small></p>
                 </div>
             </div>
             <br>
         </div>
         <br>
         <div>
-
-
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item">
                     <a class="nav-link active" id="collapseFUNewJobs-tab" data-toggle="tab" href="#collapseFUNewJobs"
                         role="tab" aria-controls="collapseFUNewJobs" aria-selected="true">
-                        <i class="fa fa-cogs fatab"></i>
+                        <i class="fa fa-map-marker fatab"></i>
                         <br><b>
-                            UpComing Jobs
+                            {{ 'DASHBOARD_FU_BODY.UPCOMINGJOBS' | translate }}
                         </b></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="collapseFUUpcomingJobs-tab" data-toggle="tab" href="#collapseFUUpcomingJobs"
                         role="tab" aria-controls="collapseFUUpcomingJobs" aria-selected="false">
-                        <i class="fa fa-cogs fatab"></i><br><b>New Jobs</b></a>
+                        <i class="fa fa-podcast fatab"></i><br><b> {{ 'DASHBOARD_FU_BODY.NEWJOBS' | translate }}</b></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="collapseCompletedJobs-tab" data-toggle="tab" href="#collapseCompletedJobs"
                         role="tab" aria-controls="collapseCompletedJobs" aria-selected="false">
-                        <i class="fa fa-cogs fatab"></i>
-                        <br><b>My Completed
-                            Jobs</b></a>
+                        <i class="fa fa-road fatab"></i>
+                        <br><b>{{ 'DASHBOARD_FU_BODY.COMPLETEDJOBS' | translate }}</b></a>
                 </li>
             </ul>
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="collapseFUNewJobs" role="tabpanel"
                     aria-labelledby="collapseFUNewJobs-tab">
-                    <br> <br>
+                    <br>
                     <div class="row">
-
-                        <div class="col-sm-4 mb-3 mb-md-0" style="margin-bottom:8px !important"
+                        <div class="col-lg-4 mb-3 mb-md-0" style="margin-bottom:8px !important"
                             *ngFor="let element of upcomingJobList">
-                            <div class="card h-100">
-                                <!-- <div class="card-header"> -->
-                                <!-- <span class="display-4"> -->
-
-                                <!-- </span> -->
-                                <!-- </div> -->
-                                <div class="card-body d-flex flex-column">
-                                    <b> Job#{{element.jobId}}</b>
-
+                            <div class="card card-flip h-100 ">
+                                <div class="card-header text-white bg-secondary">
+                                    <p> <b>{{ 'DASHBOARD_FU_BODY.JOB' | translate }}#{{element.jobId}} </b>
+                                        <button class="pull-right" (click)="cancel(element.jobId)"
+                                            style="font-size:14px">{{ 'DASHBOARD_FU_BODY.CANCELJOBBUTTON' | translate }}
+                                            <i class="fa fa-remove"></i></button>
+                                    </p>
                                     <span class="display-4">
                                         <i class="fa fa-inr">{{element.tofreelanceamount | number}}</i></span>
                                     <p>
-                                        <small>
-                                            <span class=""> Start : {{element.jobstartedon}}
-                                            </span>
-                                            <span class="pull-right">
-                                                End : {{element.jobendedon}}
-                                            </span>
+                                        <small class="pull-left">
+                                            <b>{{ 'DASHBOARD_FU_BODY.STARTON' | translate }} </b>
+                                            {{element.jobstartedon}}
+                                        </small>
+                                        <small class="pull-left">
+                                            <b>{{ 'DASHBOARD_FU_BODY.ENDON' | translate }} </b> {{element.jobendedon}}
                                         </small>
                                     </p>
-                                    <div class="card-text" *ngIf="element.freelanceuserId > 0">
-                                        Job Accepted Date : {{element.jobaccepteddate}}
-                                    </div>
-                                    <div class="card-text">
-                                        <span> Job Details: </span> &nbsp;
-                                        <i class="fa fa-briefcase"> </i> &nbsp; {{element.bizname}}
-                                    </div>
+                                    <p *ngIf="element.freelanceuserId > 0">
+                                        <small class="pull-left">
+                                            <b>{{ 'DASHBOARD_FU_BODY.ACCEPTEDON' | translate }}
+                                            </b>{{element.jobaccepteddate}}
+                                        </small>
+                                    </p>
+                                </div>
+                                <div class="card-body">
+                                    <i class="fa fa-briefcase fa-3x float-right"></i>
+                                    <h2> <b>{{ 'DASHBOARD_FU_BODY.JOBDETAILS' | translate }} </b> </h2>
+                                    <p>
+                                        <small class="pull-left">
+                                            <b>{{ 'DASHBOARD_FU_BODY.CLIENTNAME' | translate }} </b> {{element.bizname}}
+                                        </small>
+                                    </p>
+                                    <p>
+                                        <small class="pull-left">
+                                            <b> {{ 'DASHBOARD_FU_BODY.JOBLOCATION' | translate }} </b>
+                                            {{element.joblocation}}
+                                        </small>
+                                    </p>
+                                    <p>
+                                        <small class="pull-left">
+                                            <b>{{ 'DASHBOARD_FU_BODY.PHONENO' | translate }} </b> {{element.cbaphoneno}}
+                                        </small>
+                                    </p>
+                                    <p>
+                                        <small class="pull-left">
+                                            <b>{{ 'DASHBOARD_FU_BODY.JOBDESCPTION' | translate }} </b>
+                                            {{element.jobdescription}}
+                                        </small>
+                                    </p>
                                 </div>
                                 <div class="card-footer">
                                     <div class="row">
                                         <small class="text-muted ">
                                             <p class="text-danger">
-                                                *Cancel the job within 15 mins of job is accepted. After 15 mins
-                                                Cancellation is <b><u>Not Possible</u></b>
+                                                {{ 'DASHBOARD_FU_BODY.CANCELNOTE1' | translate }} <b><u>
+                                                        {{ 'DASHBOARD_FU_BODY.CANCELNOTE2' | translate }} </u></b>
                                             </p>
                                         </small>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-3">
-
-                                        </div>
-                                        <div class="col-md-5">
-                                            <button type="button" class="btn btn-danger btn-sm"
-                                                (click)="cancel(element.jobId)">Cancel Within 15 Mins</button>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -198,40 +213,50 @@
 
                         <div class="col-sm-4 mb-3 mb-md-0" style="margin-bottom:8px !important"
                             *ngFor="let element of newJobList">
-                            <div class="card  h-100">
-                                <!-- <div class="card-header"> -->
-                                <!-- <span class="display-4"> -->
-
-                                <!-- </span> -->
-                                <!-- </div> -->
-                                <div class="card-body d-flex flex-column">
-                                    <b>Job#{{element.jobId}}</b>
-
-                                    <span class="display-4"><i class="fa fa-inr">{{element.tofreelanceamount |
-                                            number}}</i>
-                                    </span>
-
-                                    <!-- <div class="card-title"> -->
-                                    <small>
-                                        <span class=""> Start :{{element.jobstartedon}}</span>
-                                        <!-- </div> -->
-                                        <span class="pull-right">
-                                            End : {{element.jobendedon}}<br>
-                                        </span>
-                                    </small>
-                                    <div class="card-text">
-                                        <span> Job Details: </span>
-                                        <i class="fa fa-briefcase">{{element.bizname}}</i>
-                                    </div>
+                            <div class="card card-flip h-100 ">
+                                <div class="card-header text-white bg-secondary">
+                                    <p> <b>{{ 'DASHBOARD_FU_BODY.JOB' | translate }}#{{element.jobId}} </b>
+                                        <button class="bg-success pull-right" (click)="accept(element.jobId)"
+                                            style="font-size:14px">{{ 'DASHBOARD_FU_BODY.ACCEPTJOBBUTTON' | translate }}
+                                            <i class="fa fa-play"></i></button>
+                                    </p>
+                                    <span class="display-4">
+                                        <i class="fa fa-inr">{{element.tofreelanceamount | number}}</i></span>
+                                    <p>
+                                        <small class="pull-left">
+                                            <b>{{ 'DASHBOARD_FU_BODY.STARTON' | translate }} </b>
+                                            {{element.jobstartedon}}
+                                        </small>
+                                        <small class="pull-left">
+                                            <b>{{ 'DASHBOARD_FU_BODY.ENDON' | translate }} </b> {{element.jobendedon}}
+                                        </small>
+                                    </p>
                                 </div>
-                                <div class="card-footer" *ngIf="upcomingJobList.length < 3">
-                                    <div class="row">
-                                        <div class="col-md-3"></div>
-                                        <div class="col-md-6">
-                                            <button type="button" class="btn btn-primary btn-sm"
-                                                (click)="accept(element.jobId)">Accept</button>
-                                        </div>
-                                    </div>
+                                <div class="card-body">
+                                    <i class="fa fa-briefcase fa-3x float-right"></i>
+                                    <h2> <b>{{ 'DASHBOARD_FU_BODY.JOBDETAILS' | translate }} </b> </h2>
+                                    <p>
+                                        <small class="pull-left">
+                                            <b>{{ 'DASHBOARD_FU_BODY.CLIENTNAME' | translate }} </b> {{element.bizname}}
+                                        </small>
+                                    </p>
+                                    <p>
+                                        <small class="pull-left">
+                                            <b> {{ 'DASHBOARD_FU_BODY.JOBLOCATION' | translate }} </b>
+                                            {{element.joblocation}}
+                                        </small>
+                                    </p>
+                                    <p>
+                                        <small class="pull-left">
+                                            <b>{{ 'DASHBOARD_FU_BODY.PHONENO' | translate }} </b> {{element.cbaphoneno}}
+                                        </small>
+                                    </p>
+                                    <p>
+                                        <small class="pull-left">
+                                            <b>{{ 'DASHBOARD_FU_BODY.JOBDESCPTION' | translate }} </b>
+                                            {{element.jobdescription}}
+                                        </small>
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -243,259 +268,97 @@
                     <div class="row">
                         <div class="col-sm-4 mb-3 mb-md-0" style="margin-bottom:8px !important"
                             *ngFor="let element of completedJobList">
-                            <div class="card  h-100">
-                                <!-- <div class="card-header"> -->
-                                <!-- <span class="display-4"> -->
-
-                                <!-- </span> -->
-                                <!-- </div> -->
-                                <div class="card-body d-flex flex-column">
-                                    <b> Job#{{element.jobId}}</b>
-                                    <!-- <div class="card-title"> -->
+                            <div class="card card-flip h-100 ">
+                                <div class="card-header text-white bg-secondary">
+                                    <p> <b>{{ 'DASHBOARD_FU_BODY.JOB' | translate }}#{{element.jobId}} </b>
+                                        <i class="fa fa-minus-circle fa-2x pull-right" style="color:red" title="*{{element.bizname}}
+                                         {{ 'DASHBOARD_FU_BODY.ALTER2' | translate }}
+                                         *{{element.bizname}}
+                                         {{ 'DASHBOARD_FU_BODY.ALTER3' | translate }}"
+                                            *ngIf="!element.isjobamtpaidtocompany">
+                                        </i>
+                                        <i class="fa fa-bullhorn fa-2x pull-right" style="color:black"
+                                            title="{{'DASHBOARD_FU_BODY.ALTER1' | translate }}"
+                                            *ngIf="element.isjobamtpaidtocompany && !element.isjobamtpaidtofu">
+                                        </i>
+                                    </p>
                                     <span class="display-4">
                                         <i class="fa fa-inr">{{element.tofreelanceamount | number}}</i></span>
-                                    <!-- </div> -->
-                                    <!-- <div class="card-title"> -->
-                                    <small> <span class=""> Start :{{element.jobstartedon}}</span>
-                                        <!-- </div> -->
-                                        <div class="pull-right">
-                                            End : {{element.jobendedon}}<br>
-                                        </div>
-                                    </small>
-                                    <div class="card-text">
-                                        <span> Job Details: </span> &nbsp;
-                                        <i class="fa fa-briefcase"></i>&nbsp;{{element.bizname}}
-                                    </div>
+                                    <p>
+                                        <small class="pull-left">
+                                            <b>{{ 'DASHBOARD_FU_BODY.STARTON' | translate }} </b>
+                                            {{element.jobstartedon}}
+                                        </small>
+                                        <small class="pull-left">
+                                            <b>{{ 'DASHBOARD_FU_BODY.ENDON' | translate }} </b> {{element.jobendedon}}
+                                        </small>
+                                    </p>
                                 </div>
-                                <div class="card-footer">
-                                    <div class="row" *ngIf="element.isjobamtpaidtocompany && element.isjobamtpaidtofu">
-                                        <div class="col-md-3"></div>
-                                        <div class="col-md-6">
-                                            <button type="button" class="btn btn-secondary btn-sm"
-                                                [routerLink]="['/payment',element.futxnid]">Payment Details</button>
-                                        </div>
-                                    </div>
-                                    <div class="row" *ngIf="!element.isjobamtpaidtocompany">
-                                        <small class="text-muted ">
-                                            <p class="text-danger">*{{element.bizname}} is pending with the payment.
-                                                Please ensure payment is completed before you leave from the
-                                                Job location. <br> It is your <b><u>RESPONSIBILITY</u></b> .
-                                                <br>
-                                                *Company <b><u>will not take any responsiblity </u></b> for this job
-                                                payment to you until {{element.bizname}} paid fully.
-                                            </p>
+                                <div class="card-body">
+                                    <i class="fa fa-briefcase fa-3x float-right"></i>
+                                    <h2> <b>{{ 'DASHBOARD_FU_BODY.JOBDETAILS' | translate }} </b> </h2>
+                                    <p>
+                                        <small class="pull-left">
+                                            <b>{{ 'DASHBOARD_FU_BODY.CLIENTNAME' | translate }} </b> {{element.bizname}}
                                         </small>
-                                    </div>
-                                    <div class="row" *ngIf="element.isjobamtpaidtocompany && !element.isjobamtpaidtofu">
-                                        <small class="text-muted ">
-                                            <p class="text-info">
-                                                Payment in progress.We will notify once the payment credits into
-                                                your
-                                                account.
-                                            </p>
+                                    </p>
+                                    <p>
+                                        <small class="pull-left">
+                                            <b> {{ 'DASHBOARD_FU_BODY.JOBLOCATION' | translate }} </b>
+                                            {{element.joblocation}}
                                         </small>
-                                    </div>
+                                    </p>
+                                    <p>
+                                        <small class="pull-left">
+                                            <b>{{ 'DASHBOARD_FU_BODY.PHONENO' | translate }} </b> {{element.cbaphoneno}}
+                                        </small>
+                                    </p>
+                                    <p>
+                                        <small class="pull-left">
+                                            <b>{{ 'DASHBOARD_FU_BODY.JOBDESCPTION' | translate }} </b>
+                                            {{element.jobdescription}}
+                                        </small>
+                                    </p>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
-
-
-
-            <!-- <div class="card">
-                <div class="card-header" role="tab" id="headingOne">
-                    <h5 class="mb-0">
-                        <a data-toggle="collapse" href="#collapseFUNewJobs" aria-expanded="true"
-                            aria-controls="collapseOne">
-                            My OnGoing / UpComing Jobs
-                        </a>
-                    </h5>
-                </div>
-                <div id="collapseFUNewJobs" class="collapse show" role="tabpanel" aria-labelledby="headingOne"
-                    data-parent="#accordion">
-                    <div class="card-body">
-                        <div class="card-deck">
-                            <div class="col-sm-4 mb-3 mb-md-0" style="margin-bottom:8px !important"
-                                *ngFor="let element of upcomingJobList">
-                                <div class="card text-center h-100">
-                                    <div class="card-header">
-                                        <span class="display-4">
-                                            Job#{{element.jobId}}</span>
-                                    </div>
-                                    <div class="card-body d-flex flex-column">
-                                        <div class="card-title">
-                                            <span class="display-4"><i
-                                                    class="fa fa-inr">{{element.tofreelanceamount | number}}</i></span><br>
-                                            <span class="mb-4"> Start Date : {{element.jobstartedon}}
-                                            </span>
-                                        </div>
-                                        <div class="card-text">
-                                            End Date : {{element.jobendedon}}
-                                        </div>
-                                        <div class="card-text" *ngIf="element.freelanceuserId > 0" >
-                                            Job Accepted Date : {{element.jobaccepteddate}}
-                                        </div>
-                                        <div class="card-text">
-                                            <span> Job Details: </span>
-                                            <i class="fa fa-briefcase">{{element.bizname}}</i>
-                                        </div>
-                                    </div>
-                                    <div class="card-footer">
-                                        <div class="row">
-                                            <small class="text-muted ">
-                                                <p class="text-danger">
-                                                    *Cancel the job within 15 mins of job is accepted. After 15 mins
-                                                    Cancellation is <b><u>Not Possible</u></b>
-                                                </p>
-                                            </small>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-3">
-
-                                            </div>
-                                            <div class="col-md-5">
-                                                <button type="button" class="btn btn-danger btn-sm"
-                                                    (click)="cancel(element.jobId)">Cancel Within 15 Mins</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-
-            <!-- <div class="card">
-                <div class="card-header" role="tab" id="headingOne">
-                    <h5 class="mb-0">
-                        <a data-toggle="collapse" href="#collapseFUUpcomingJobs" aria-expanded="true"
-                            aria-controls="collapseOne">
-                            New Jobs
-                        </a>
-                    </h5>
-                </div>
-                <div id="collapseFUUpcomingJobs" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
-                    <div class="card-body">
-                        <div class="card-deck">
-                            <div class="col-sm-4 mb-3 mb-md-0" style="margin-bottom:8px !important"
-                                *ngFor="let element of newJobList">
-                                <div class="card text-center h-100">
-                                    <div class="card-header">
-                                        <span class="display-4">
-                                            Job#{{element.jobId}}</span>
-                                    </div>
-                                    <div class="card-body d-flex flex-column">
-                                        <div class="card-title">
-                                            <span class="display-4"><i
-                                                    class="fa fa-inr">{{element.tofreelanceamount | number}}</i></span><br>
-                                        </div>
-                                        <div class="card-title">
-                                            <span class="mb-4"> Start Date :{{element.jobstartedon}}</span>
-                                        </div>
-                                        <div class="card-text">
-                                            End Date : {{element.jobendedon}}<br>
-                                        </div>
-                                        <div class="card-text">
-                                            <span> Job Details: </span>
-                                            <i class="fa fa-briefcase">{{element.bizname}}</i>
-                                        </div>
-                                    </div>
-                                    <div class="card-footer" *ngIf="upcomingJobList.length < 3">
-                                        <div class="row">
-                                            <div class="col-md-3"></div>
-                                            <div class="col-md-6">
-                                                <button type="button" class="btn btn-primary btn-sm"
-                                                    (click)="accept(element.jobId)">Accept</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-
-            <!-- <div class=" card">
-                <div class="card-header" role="tab" id="headingOne">
-                    <h5 class="mb-0">
-                        <a data-toggle="collapse" href="#collapseCompletedJobs" aria-expanded="true"
-                            aria-controls="collapseOne">
-                            My Completed Jobs
-                        </a>
-                    </h5>
-                </div>
-                <div id="collapseCompletedJobs" class="collapse show" role="tabpanel" aria-labelledby="headingOne"
-                    data-parent="#accordion">
-                    <div class="card-body">
-                        <div class="card-deck">
-                            <div class="col-sm-4 mb-3 mb-md-0" style="margin-bottom:8px !important"
-                                *ngFor="let element of completedJobList">
-                                <div class="card text-center h-100">
-                                    <div class="card-header">
-                                        <span class="display-4">
-                                            Job#{{element.jobId}}</span>
-                                    </div>
-                                    <div class="card-body d-flex flex-column">
-                                        <div class="card-title">
-                                            <span class="display-4">
-                                                <i class="fa fa-inr">{{element.tofreelanceamount | number}}</i></span>
-                                        </div>
-                                        <div class="card-title">
-                                            <span class="mb-4"> Start Date :{{element.jobstartedon}}</span>
-                                        </div>
-                                        <div class="card-text">
-                                            End Date : {{element.jobendedon}}<br>
-                                        </div>
-                                        <div class="card-text">
-                                            <span> Job Details: </span>
-                                            <i class="fa fa-briefcase">{{element.bizname}}</i>
-                                        </div>
-                                    </div>
-                                    <div class="card-footer">
-                                        <div class="row"
-                                            *ngIf="element.isjobamtpaidtocompany && element.isjobamtpaidtofu">
-                                            <div class="col-md-3"></div>
-                                            <div class="col-md-6">
-                                                <button type="button" class="btn btn-secondary btn-sm"
-                                                    [routerLink]="['/payment',element.futxnid]">Payment Details</button>
-                                            </div>
-                                        </div>
-                                        <div class="row" *ngIf="!element.isjobamtpaidtocompany">
-                                            <small class="text-muted ">
-                                                <p class="text-danger">*{{element.bizname}} is pending with the payment.
-                                                    Please ensure payment is completed before you leave from the
-                                                    Job location. <br> It is your <b><u>RESPONSIBILITY</u></b> .
-                                                    <br>
-                                                    *Company <b><u>will not take any responsiblity </u></b> for this job
-                                                    payment to you until {{element.bizname}} paid fully.
-                                                </p>
-                                            </small>
-                                        </div>
-                                        <div class="row"
-                                            *ngIf="element.isjobamtpaidtocompany && !element.isjobamtpaidtofu">
-                                            <small class="text-muted ">
-                                                <p class="text-info">
-                                                    Payment in progress.We will notify once the payment credits into
-                                                    your
-                                                    account.
-                                                </p>
-                                            </small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
         </div>
     </div>
-
+    <hr>
+    <dl class="row">
+        <dt class="col-sm-3">
+            <h4>{{ 'DASHBOARD_FU_BODY.IMPINST_HEADER' | translate }}</h4>
+        </dt>
+        <dd class="col-sm-9"> </dd>
+        <dt class="col-sm-3 text-truncate">
+            <button class="pull-right" style="font-size:14px">{{ 'DASHBOARD_FU_BODY.CANCELJOBBUTTON' | translate }}
+                <i class="fa fa-remove"></i></button>
+        </dt>
+        <dd class="col-sm-9">
+            {{ 'DASHBOARD_FU_BODY.IMPINST_CANCELBUTTON' | translate }}
+        </dd>
+        <dt class="col-sm-3">
+            <button class="bg-success pull-right" style="font-size:14px">{{ 'DASHBOARD_FU_BODY.ACCEPTJOBBUTTON' |
+                translate }}
+                <i class="fa fa-play"></i></button>
+        </dt>
+        <dd class="col-sm-9">
+            {{ 'DASHBOARD_FU_BODY.IMPINST_NEWJOBS_ACCEPTBUTTON' | translate }}
+        </dd>
+        <dt class="col-sm-3">
+            <i class="fa fa-minus-circle fa-2x pull-right" style="color:red"></i>
+        </dt>
+        <dd class="col-sm-9">
+            {{ 'DASHBOARD_FU_BODY.IMPINST_ICON1' | translate }}
+        </dd>
+        <dt class="col-sm-3">
+            <i class="fa fa-bullhorn fa-2x pull-right" style="color:black"></i>
+        </dt>
+        <dd class="col-sm-9">
+            {{ 'DASHBOARD_FU_BODY.IMPINST_ICON2' | translate }}
+        </dd>
+    </dl>
 </div>
-<div class="clearfix"></div>
-<br>

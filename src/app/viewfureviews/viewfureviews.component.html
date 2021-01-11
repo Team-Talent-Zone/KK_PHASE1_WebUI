@@ -1,5 +1,5 @@
 <div class="container">
-	<h4>Reviews</h4>
+	<h4>{{'FU_REVIEW.REVIEWS' | translate }}</h4>
 	<hr>
 	<div class="card" *ngFor="let item of fureviews; index as i" style="margin-top:10px;">
 		<div class="card-body">
@@ -7,9 +7,10 @@
 				<div class="col-md-12">
 					<p>
 						<a class="pull-right"><b>{{item.feedbackby}} </b></a>
-						<a class="pull-left"><i>- On {{item.feedbackon}}</i></a>
 						<i class="fa fa-star" *ngFor="let i of item.starrate"> </i>
-						&nbsp;&nbsp;
+					</p>
+					<p class="pull-right">
+						<small><i>{{item.feedbackon}}</i></small>
 					</p>
 					<div class="clearfix"></div>
 					<p>{{item.feedbackcomment}}</p>

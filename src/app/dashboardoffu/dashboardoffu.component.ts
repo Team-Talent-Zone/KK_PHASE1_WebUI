@@ -47,7 +47,8 @@ export class DashboardoffuComponent implements OnInit {
   infoCards = [];
   cancelminsdiff: number;
   private types: Array<ToastType> = ['success', 'danger', 'warning', 'info', 'primary', 'secondary', 'dark', 'light'];
-
+  upcomingpaytext: string;
+  totalearnings: string;
 
   constructor(
     public userService: UserService,
@@ -129,16 +130,36 @@ export class DashboardoffuComponent implements OnInit {
     this.newJobList = [];
     this.upcomingJobList = [];
     this.completedJobList = [];
-    this.spinnerService.show();
+
     this.listofalljobs = [];
     // tslint:disable-next-line: max-line-length
     this.freelanceSvc.getUserAllJobDetails(this.userService.currentUserValue.freeLanceDetails.subCategory).subscribe((resp: FreelanceOnSvc) => {
       this.listofalljobs = resp;
       for (const element of this.listofalljobs) {
+        this.spinnerService.show();
         if (this.userService.currentUserValue.preferlang !== config.default_prefer_lang) {
+          this.spinnerService.show();
           this.referService.translatetext(element.bizname, this.userService.currentUserValue.preferlang).subscribe(
             (trantxt: any) => {
-              element.bizname = trantxt.translateresp;
+              element.bizname = trantxt;
+            },
+            error => {
+              this.spinnerService.hide();
+              this.alertService.error(error);
+            }
+          );
+          this.referService.translatetext(element.joblocation, this.userService.currentUserValue.preferlang).subscribe(
+            (trantxt: any) => {
+              element.joblocation = trantxt;
+            },
+            error => {
+              this.spinnerService.hide();
+              this.alertService.error(error);
+            }
+          );
+          this.referService.translatetext(element.jobdescription, this.userService.currentUserValue.preferlang).subscribe(
+            (trantxt: any) => {
+              element.jobdescription = trantxt;
             },
             error => {
               this.spinnerService.hide();
@@ -159,13 +180,8 @@ export class DashboardoffuComponent implements OnInit {
           this.completedJobList.push(element);
         }
       }
-
       setTimeout(() => {
         this.builtEarningCard();
-       /* if (this.upcomingJobList.length < 3 && this.newJobList.length > 0) {
-          let msg = 'Hi ' + this.userService.currentUserValue.fullname + ', ' + ConfigMsg.toast_notification_fu_acceptjobmsg.toString();
-          this.showToastNotificationForFU(msg, this.types[3], 'Job');
-        }*/
         this.spinnerService.hide();
       }, 1000);
     },
@@ -205,10 +221,32 @@ export class DashboardoffuComponent implements OnInit {
     }
 
     if (this.earnFlag && this.upcomingflag) {
-      this.infoCards = [
-        { name: 'Upcoming Pay', value: this.totalupcomingEarnings },
-        { name: 'Total Earnings', value: this.totalEarnings },
-      ];
+      this.spinnerService.show();
+      this.referService.translatetext("Upcoming Payment", this.userService.currentUserValue.preferlang).subscribe(
+        (trantxt: any) => {
+          this.upcomingpaytext = trantxt;
+        },
+        error => {
+          this.spinnerService.hide();
+          this.alertService.error(error);
+        }
+      );
+      this.referService.translatetext("Total Earnings", this.userService.currentUserValue.preferlang).subscribe(
+        (trantxt: any) => {
+          this.totalearnings = trantxt;
+        },
+        error => {
+          this.spinnerService.hide();
+          this.alertService.error(error);
+        }
+      );
+      this.spinnerService.hide();
+      setTimeout(() => {
+        this.infoCards = [
+          { name: this.upcomingpaytext, value: this.totalupcomingEarnings },
+          { name: this.totalearnings, value: this.totalEarnings },
+        ];
+      }, 3000);
     }
   }
 
@@ -247,7 +285,7 @@ export class DashboardoffuComponent implements OnInit {
     this.freelanceSvc.getUserAllJobDetails(this.userService.currentUserValue.freeLanceDetails.subCategory).subscribe((resp: FreelanceOnSvc) => {
       this.listofalljobs = resp;
       for (const element of this.listofalljobs) {
-        if (element.freelanceuserId == this.userService.currentUserValue.userId
+        if (element.freelanceuserId == this.userService.currentUserValue.userId && element.jobId == jobId
           && !element.isjobcompleted) {
           if (!element.diffinmins) {
             this.freelanceSvc.getAllFreelanceOnServiceDetailsByJobId(jobId).subscribe(
@@ -257,9 +295,9 @@ export class DashboardoffuComponent implements OnInit {
                 freelancedetailsbyId.isjobcancel = false;
                 // tslint:disable-next-line: max-line-length
                 this.freelanceSvc.saveOrUpdateFreeLanceOnService(freelancedetailsbyId).subscribe((updatedobjfreelanceservice: FreelanceOnSvc) => {
-                    this.spinnerService.show();
-                    this.getUserAllJobDetailsByUserId();
-                    this.spinnerService.hide();
+                  this.spinnerService.show();
+                  this.getUserAllJobDetailsByUserId();
+                  this.spinnerService.hide();
                 },
                   error => {
                     this.spinnerService.hide();
@@ -272,9 +310,17 @@ export class DashboardoffuComponent implements OnInit {
               });
           } else {
             // tslint:disable-next-line: max-line-length
-            this.alertService.info('Cancellation only possible before 15 mins after accepting job .Any concerns, please call our core service support team');
-            this.spinnerService.hide();
-          }
+            this.referService.translatetext("Cancellation only possible before 15 mins after accepting job .Any concerns, please call our core service support team", this.userService.currentUserValue.preferlang).subscribe(
+              (trantxt: any) => {
+                this.alertService.info(trantxt);
+                this.spinnerService.hide();
+              },
+              error => {
+                this.spinnerService.hide();
+                this.alertService.error(error);
+              }
+            );
+             }
 
         }
       }

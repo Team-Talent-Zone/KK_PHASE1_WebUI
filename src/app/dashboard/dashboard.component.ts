@@ -52,10 +52,10 @@ export class DashboardComponent implements OnInit {
     route.params.subscribe(params => {
       this.txtid = params.txtid;
     });
-    translate.addLangs([config.lang_english_word.toString(), config.lang_telugu_word.toString(), config.lang_hindi_word.toString()]);
-    translate.setDefaultLang(config.lang_english_word.toString());
-    const browserLang = translate.getBrowserLang();
-    translate.use(browserLang.match(/English|తెలుగు|हिंदी/) ? browserLang : config.lang_english_word.toString());
+    /* translate.addLangs([config.lang_english_word.toString(), config.lang_telugu_word.toString(), config.lang_hindi_word.toString()]);
+     translate.setDefaultLang(config.lang_english_word.toString());
+     const browserLang = translate.getBrowserLang();
+     translate.use(browserLang.match(/English|తెలుగు|हिंदी/) ? browserLang : config.lang_english_word.toString());*/
   }
 
   ngOnInit() {
@@ -69,14 +69,16 @@ export class DashboardComponent implements OnInit {
     if (this.userService.currentUserValue.userroles.rolecode !== config.user_rolecode_fu.toString()) {
       this.getAllAvailableFUSkills();
     }
+  }
 
+  getFullNameByPreferLang() {
+    this.fullname = null;
     if (this.userService.currentUserValue.userroles.rolecode === config.user_rolecode_fu.toString()) {
-      this.fullname = null;
       if (this.userService.currentUserValue.preferlang !== config.default_prefer_lang) {
         // tslint:disable-next-line: max-line-length
         this.referService.translatetext(this.userService.currentUserValue.fullname, this.userService.currentUserValue.preferlang).subscribe(
           (trantxt: any) => {
-            this.fullname = trantxt.translateresp;
+            this.fullname = trantxt;
           },
           error => {
             this.spinnerService.hide();
@@ -90,7 +92,6 @@ export class DashboardComponent implements OnInit {
       this.fullname = this.userService.currentUserValue.fullname;
     }
   }
-
   getNameInitials(fullname: string) {
     let initials = fullname.match(/\b\w/g) || [];
     let initialsfinal = ((initials.shift() || '') + (initials.pop() || '')).toUpperCase();
@@ -133,11 +134,12 @@ export class DashboardComponent implements OnInit {
         this.alertService.error(error);
         this.spinnerService.hide();
       });
+    this.getFullNameByPreferLang();
   }
 
   logout() {
     this.userService.logout();
-    this.router.navigate(['/app']);
+    this.router.navigate(['/home']);
   }
 
   search(inputItemCode: string, inputItem: string) {
