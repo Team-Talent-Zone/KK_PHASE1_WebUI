@@ -28,6 +28,7 @@ export class PaymentComponent implements OnInit {
   productinfo = '';
   serviceids = '';
   usrobj: any;
+  isphvalid : boolean = false;
 
   constructor(
     private userAdapter: UserAdapter,
@@ -95,6 +96,7 @@ export class PaymentComponent implements OnInit {
               this.usrobj.phoneno = data.phone;
               this.userService.saveorupdate(this.usrobj).subscribe(() => {
                 this.spinnerService.hide();
+                this.isphvalid = true;
               }, error => {
                 this.spinnerService.hide();
                 this.alertService.error(error);

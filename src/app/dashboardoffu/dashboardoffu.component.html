@@ -8,7 +8,10 @@
             <i class="fa fa-address-card-o  rounded-circle"></i>
             <a routerLink='/vieworeditprofile/{{userService.currentUserValue.userId}}'
                 *ngIf="!userService.currentUserValue.freeLanceDetails.isprofilecompleted; else elseFU">
-                <p style="color: black;"><small><b>{{ 'DASHBOARD_FU_BODY.FILLOUTPROFILE' | translate }}</b></small></p>
+                <p style="color: #ff4949"><small><b>
+                    <u>
+                    {{ 'DASHBOARD_FU_BODY.FILLOUTPROFILE' | translate }}
+                </u></b></small></p>
             </a>
             <ng-template #elseFU>
                 <p align="center"><small>
@@ -328,7 +331,8 @@
         </div>
     </div>
     <hr>
-    <dl class="row">
+    <dl class="row" *ngIf="this.userService.currentUserValue.freeLanceDetails.isregfeedone && 
+    this.userService.currentUserValue.freeLanceDetails.bgcurrentstatus == 'BG_APPROVED'">
         <dt class="col-sm-3">
             <h4>{{ 'DASHBOARD_FU_BODY.IMPINST_HEADER' | translate }}</h4>
         </dt>
