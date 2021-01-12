@@ -332,7 +332,7 @@ export class EditprofileComponent implements OnInit {
         this.editprofileForm.get('verfiyaccountno').value.toString() !== null) {
         this.paymentService.verifyAccountPayout(this.editprofileForm.get('accountno').value.toString(), this.editprofileForm.get('ifsc').value.toString()).subscribe(
           (beneficiaryName: string) => {
-            if (beneficiaryName.length > 0) {
+            if (beneficiaryName.length == 0) {
               this.referService.translatetext("Incorrect Bank Account Number or IFSC Code . Please check again", this.userService.currentUserValue.preferlang).subscribe(
                 (trantxt: any) => {
                   this.alertService.info(trantxt);
