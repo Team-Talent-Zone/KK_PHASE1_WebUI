@@ -114,8 +114,6 @@ export class DashboardoffuComponent implements OnInit {
     }
   }
 
-
-
   openPaymentComponent() {
     this.modalRef = this.modalService.show(PaymentComponent, {
       initialState: {
@@ -258,24 +256,39 @@ export class DashboardoffuComponent implements OnInit {
           freelancedetailsbyId.freelanceuserId = this.userService.currentUserValue.userId;
           freelancedetailsbyId.isjobaccepted = true;
           this.freelanceSvc.saveOrUpdateFreeLanceOnService(freelancedetailsbyId).subscribe((updatedobjfreelanceservice: FreelanceOnSvc) => {
-            this.getUserAllJobDetailsByUserId();
-            this.spinnerService.hide();
+            this.referService.translatetext('Thank you for accepting the JobId#' + jobId + '.Go to upcoming job tab to view', this.userService.currentUserValue.preferlang).subscribe(
+              (trantxt: any) => {
+                this.getUserAllJobDetailsByUserId();
+                this.spinnerService.hide();
+                this.alertService.info(trantxt);
+              },
+              error => {
+                this.spinnerService.hide();
+                this.alertService.error(error);
+              }
+            );
           },
             error => {
               this.spinnerService.hide();
               this.alertService.error(error);
             });
         } else {
-          this.spinnerService.hide();
-          // tslint:disable-next-line: max-line-length
-          this.alertService.info('Sorry ' + this.userService.currentUserValue.firstname + '! This JobId#' + jobId + ' has been accepted by other freelancer');
+          this.referService.translatetext('Sorry' + this.userService.currentUserValue.firstname + 'This JobId#' + jobId + 'has been accepted by another skilled worker', this.userService.currentUserValue.preferlang).subscribe(
+            (trantxt: any) => {
+              this.spinnerService.hide();
+              this.alertService.info(trantxt);
+            },
+            error => {
+              this.spinnerService.hide();
+              this.alertService.error(error);
+            }
+          );
         }
       },
       error => {
         this.spinnerService.hide();
         this.alertService.error(error);
       });
-
   }
 
   cancel(jobId: number) {
@@ -295,9 +308,17 @@ export class DashboardoffuComponent implements OnInit {
                 freelancedetailsbyId.isjobcancel = false;
                 // tslint:disable-next-line: max-line-length
                 this.freelanceSvc.saveOrUpdateFreeLanceOnService(freelancedetailsbyId).subscribe((updatedobjfreelanceservice: FreelanceOnSvc) => {
-                  this.spinnerService.show();
-                  this.getUserAllJobDetailsByUserId();
-                  this.spinnerService.hide();
+                  this.referService.translatetext('Hey' + this.userService.currentUserValue.firstname + 'The JobId#' + jobId + 'is cancelled succesfully.', this.userService.currentUserValue.preferlang).subscribe(
+                    (trantxt: any) => {
+                      this.getUserAllJobDetailsByUserId();
+                      this.spinnerService.hide();
+                      this.alertService.info(trantxt);
+                    },
+                    error => {
+                      this.spinnerService.hide();
+                      this.alertService.error(error);
+                    }
+                  );
                 },
                   error => {
                     this.spinnerService.hide();
@@ -320,7 +341,7 @@ export class DashboardoffuComponent implements OnInit {
                 this.alertService.error(error);
               }
             );
-             }
+          }
 
         }
       }
@@ -330,9 +351,6 @@ export class DashboardoffuComponent implements OnInit {
         this.alertService.error(error);
       });
   }
-
-
-
   autoToastNotificationsForFU() {
     if (this.userService.currentUserValue.userroles.rolecode === config.user_rolecode_fu.toString()) {
       if (!this.userService.currentUserValue.freeLanceDetails.isprofilecompleted) {
@@ -346,8 +364,6 @@ export class DashboardoffuComponent implements OnInit {
           this.showToastNotificationForFU(msg, this.types[2], 'Payment');
         }
     }
-
-
   }
   showToastNotificationForFU(txtmsg: string, typeName: any, toastheader: string) {
     this.toaster.open({

@@ -49,6 +49,7 @@
       "PASSWORDISREQUIRED":"Password is required.",
       "PASSWORDMUSTBE8CHAR":"Password must be at least 8 characters.",
       "SIGNUP_TERM_AGREE_LABEL":"I agree to the",
+      "SIGNUP_TERM_AGREE_TERMS_LABEL":"I agree to the terms of ",
       "SIGNUP_TERMOFSERVICE":"terms of service",
       "SIGNUP_PRIVACYPOLICY":"privacy policy",
       "SIGNUP_VALIDATION_USERNAME":"Email must be a valid email address",
@@ -171,7 +172,12 @@
       "IMPINST_CANCELBUTTON":"This button indicates you can cancel the respective job .(Apply terms of service conditions).For more information or in case any queries please email to support@kaamkarega.in.",
       "IMPINST_NEWJOBS_ACCEPTBUTTON":"This button indicates your accepting the job to provide the service to the client.",
       "IMPINST_ICON1":"This ICON indicates that the payment is pending with the client. Please ensure payment is completed before you leave from the Job location.*Kaam Karega will not take any RESPONSIBILITY for this job payment to you until it paid by client.",
-      "IMPINST_ICON2":"This ICON indicates that payment is paid by the client.*Kaam Karega is in progress the pay the job invoice payment to you in 24 hours.*Kaam Karega will notify you once the payment credits into your bank account.For more information please email to support@kaamkarega.in"
+      "IMPINST_ICON2":"This ICON indicates that payment is paid by the client.*Kaam Karega is in progress the pay the job invoice payment to you in 24 hours.*Kaam Karega will notify you once the payment credits into your bank account.For more information please email to support@kaamkarega.in",
+      "NO_NEWJOB_MSG":"We are working hard to get a job for you. Currently you do not have new jobs. Please keep checking..",
+      "NO_UPCOMING_MSG":"Please check if you find new jobs in New Jobs Tab.",
+      "NO_COMPLETEDJOBS_MSG":"You have not completed your first job yet . Complete your first job ."
+
+
     },
     "DASHBOARD_FU_PROFILE":{
      "PROFILESETTINGS": "Profile Settings",
@@ -234,10 +240,17 @@
       "PAYMENTHIST_STATUS":"Status",
       "PAYMENTHIST_AMOUNT":"Amount",
       "PAYMENTHIST_NOTES":"Note",
-      "PAYMENTHIST_SEARCH":"Search for transcation number.."
+      "PAYMENTHIST_SEARCH":"Search by amount.."
     },
     "FU_REVIEW":{
       "REVIEWS":"Reviews"
+    },
+    "ALERT_POPUP":{
+      "SUCCESS":"Well Done !",
+      "ERROR":"Oh Snap !",
+      "INFO":"Something is missing.."
     }
+    
+    
   }
   

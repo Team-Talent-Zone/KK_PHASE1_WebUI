@@ -1,3 +1,4 @@
+import { PaymentService } from './../AppRestCall/payment/payment.service';
 import { SignupComponent } from './../signup/signup.component';
 import { UserService } from '../AppRestCall/user/user.service';
 import { ActivatedRoute } from '@angular/router';
@@ -74,7 +75,8 @@ export class EditprofileComponent implements OnInit {
     public signupComponent: SignupComponent,
     apiService: ApiService,
     private referService: ReferenceService,
-    private ngZone: NgZone
+    private ngZone: NgZone,
+    private paymentService: PaymentService
   ) {
     route.params.subscribe(params => {
       this.id = params.id;
@@ -168,7 +170,7 @@ export class EditprofileComponent implements OnInit {
         purposeofsignup: ['', [Validators.required]],
         designation: ['', [Validators.required, Validators.maxLength(40)]],
         accepteditprofileterms: [false, [Validators.requiredTrue]],
-        phoneno:['', [Validators.required, Validators.pattern("[0-9 ]{10}")]]
+        phoneno: ['', [Validators.required, Validators.pattern("[0-9 ]{10}")]]
       });
     } else
       if (this.roleCode === config.user_rolecode_fu.toString()) {
@@ -189,7 +191,7 @@ export class EditprofileComponent implements OnInit {
           verfiyaccountno: ['', [Validators.required]],
           ifsc: ['', [Validators.required, Validators.minLength(11), Validators.maxLength(11)]],
           accepteditprofileterms: [false, [Validators.requiredTrue]],
-          phoneno:['', [Validators.required, Validators.pattern("[0-9 ]{10}")]]
+          phoneno: ['', [Validators.required, Validators.pattern("[0-9 ]{10}")]]
         });
       } else {
         this.editprofileForm = this.formBuilder.group({
@@ -198,7 +200,7 @@ export class EditprofileComponent implements OnInit {
           lastname: ['', [Validators.required, Validators.maxLength(40)]],
           preferlang: ['', [Validators.required]],
           fulladdress: ['', [Validators.required]],
-          phoneno:['', [Validators.required, Validators.pattern("[0-9 ]{10}")]]
+          phoneno: ['', [Validators.required, Validators.pattern("[0-9 ]{10}")]]
         });
       }
   }
@@ -324,9 +326,50 @@ export class EditprofileComponent implements OnInit {
           }
         );
         return;
-
       }
+
+      if (this.editprofileForm.get('accountno').value.toString() !== null && this.editprofileForm.get('ifsc').value.toString() != null &&
+        this.editprofileForm.get('verfiyaccountno').value.toString() !== null) {
+        this.paymentService.verifyAccountPayout(this.editprofileForm.get('accountno').value.toString(), this.editprofileForm.get('ifsc').value.toString()).subscribe(
+          (beneficiaryName: string) => {
+            if (beneficiaryName.length > 0) {
+              this.referService.translatetext("Incorrect Bank Account Number or IFSC Code . Please check again", this.userService.currentUserValue.preferlang).subscribe(
+                (trantxt: any) => {
+                  this.alertService.info(trantxt);
+                  this.spinnerService.hide();
+                },
+                error => {
+                  this.spinnerService.hide();
+                  this.alertService.error(error);
+                }
+              );
+              return;
+            } else {
+              this.paymentService.createBenificiaryPayout(this.userService.currentUserValue.userId, this.editprofileForm.get('accountno').value.toString(), this.editprofileForm.get('ifsc').value.toString()).subscribe(
+                (beneficiaryId: string) => {
+                  if (beneficiaryId !== null) {
+                    this.buildedituserobjtosave(this.edituserobj);
+                  }
+                },
+                error => {
+                  this.spinnerService.hide();
+                  this.alertService.error(error);
+                })
+            }
+          },
+          error => {
+            this.spinnerService.hide();
+            this.alertService.error(error);
+          }
+        );
+      }
+    } else {
+      this.buildedituserobjtosave(this.edituserobj);
     }
+
+  }
+  private buildedituserobjtosave(edituserobj: any) {
+    this.edituserobj = edituserobj;
     if (this.typeavt === config.profiletype_avatar.toString() &&
       this.typenationalid !== config.profiletype_nationalid.toString()) {
       this.msgflag = true;
@@ -341,9 +384,17 @@ export class EditprofileComponent implements OnInit {
     if (this.typenationalid !== config.profiletype_nationalid.toString() && this.typeavt !== config.profiletype_avatar.toString()) {
       this.saveorupdateedituser(this.edituserobj);
       if (this.msgflag) {
-        this.alertService.success(this.edituserobj.firstname + ' your account details is updated');
-        this.msgflag = false;
-        this.spinnerService.hide();
+        this.referService.translatetext(this.edituserobj.firstname + ' your account details is updated', this.userService.currentUserValue.preferlang).subscribe(
+          (trantxt: any) => {
+            this.alertService.success(trantxt);
+            this.msgflag = false;
+            this.spinnerService.hide();
+          },
+          error => {
+            this.spinnerService.hide();
+            this.alertService.error(error);
+          }
+        );
       }
     } else
       if (this.typeavt === config.profiletype_avatar.toString()) {
@@ -352,10 +403,19 @@ export class EditprofileComponent implements OnInit {
             this.edituserobj.avtarurl = returnURL;
             this.saveorupdateedituser(this.edituserobj);
             if (this.msgflag) {
-              this.alertService.success(this.edituserobj.firstname + ' your account details is updated with profile pic');
-              this.msgflag = false;
-              this.typeavt = null;
-              this.spinnerService.hide();
+              this.referService.translatetext(this.edituserobj.firstname + ' your account details is updated with profile pic', this.userService.currentUserValue.preferlang).subscribe(
+                (trantxt: any) => {
+                  this.alertService.success(trantxt);
+                  this.msgflag = false;
+                  this.typeavt = null;
+                  this.spinnerService.hide();
+                },
+                error => {
+                  this.spinnerService.hide();
+                  this.alertService.error(error);
+                }
+              );
+
             }
           }
         );
@@ -370,23 +430,39 @@ export class EditprofileComponent implements OnInit {
           this.edituserobj.freeLanceDetails.uploadValidPhotoidImgUrl = returnURL;
           this.saveorupdateedituser(this.edituserobj);
           if (this.msgflag) {
-            this.alertService.success(this.edituserobj.firstname + ' your account details is updated with photo id');
-            this.msgflag = false;
-            this.typenationalid = null;
-            this.spinnerService.hide();
+            this.referService.translatetext(this.edituserobj.firstname + ' your account details is updated with photo id', this.userService.currentUserValue.preferlang).subscribe(
+              (trantxt: any) => {
+                this.alertService.success(trantxt);
+                this.msgflag = false;
+                this.typenationalid = null;
+                this.spinnerService.hide();
+              },
+              error => {
+                this.spinnerService.hide();
+                this.alertService.error(error);
+              }
+            );
+
           }
           if (this.msgflagboth) {
-            this.alertService.success(this.edituserobj.firstname + ' your account details is updated');
-            this.msgflagboth = false;
-            this.typenationalid = null;
-            this.typeavt = null;
-            this.spinnerService.hide();
+            this.referService.translatetext(this.edituserobj.firstname + ' your account details is updated', this.userService.currentUserValue.preferlang).subscribe(
+              (trantxt: any) => {
+                this.alertService.success(trantxt);
+                this.msgflagboth = false;
+                this.typenationalid = null;
+                this.typeavt = null;
+                this.spinnerService.hide();
+              },
+              error => {
+                this.spinnerService.hide();
+                this.alertService.error(error);
+              }
+            );
           }
         }
       );
     }
   }
-
   private saveorupdateedituser(edituserobj: User) {
     this.userService.saveorupdate(edituserobj).subscribe(
       (userObj: any) => {
@@ -409,6 +485,7 @@ export class EditprofileComponent implements OnInit {
         this.spinnerService.hide();
         this.alertService.error(error);
       });
+
   }
 
   uploadFile(event, type) {
@@ -438,7 +515,15 @@ export class EditprofileComponent implements OnInit {
         this.cd.markForCheck();
       }
     } else {
-      this.alertService.error('Invalid file format. it should be .png,.jpg,.jpeg');
+      this.referService.translatetext('Invalid file format. it should be .png,.jpg,.jpeg', this.userService.currentUserValue.preferlang).subscribe(
+        (trantxt: any) => {
+          this.alertService.info(trantxt);
+        },
+        error => {
+          this.spinnerService.hide();
+          this.alertService.error(error);
+        }
+      );
     }
   }
 
@@ -470,8 +555,16 @@ export class EditprofileComponent implements OnInit {
       return;
     }
     if (this.pwdForm.get('newpassword').value !== this.pwdForm.get('verifypassword').value) {
-      this.alertService.info('Verify Password is not matching');
-      this.spinnerService.hide();
+      this.referService.translatetext('Verify Password is not matching', this.userService.currentUserValue.preferlang).subscribe(
+        (trantxt: any) => {
+          this.alertService.info(trantxt);
+          this.spinnerService.hide();
+        },
+        error => {
+          this.spinnerService.hide();
+          this.alertService.error(error);
+        }
+      );
     } else {
       this.spinnerService.show();
       this.usrObj = this.userAdapter.adapt(this.userService.currentUserValue);
@@ -479,8 +572,16 @@ export class EditprofileComponent implements OnInit {
       this.usrObj.isrecoverypwd = true;
       this.userService.saveorupdate(this.usrObj).subscribe(
         (userObj: any) => {
-          this.alertService.success(this.edituserobj.fullname + ' your password is updated');
-          this.spinnerService.hide();
+          this.referService.translatetext(this.edituserobj.fullname + ' your password is updated', this.userService.currentUserValue.preferlang).subscribe(
+            (trantxt: any) => {
+              this.alertService.success(trantxt);
+              this.spinnerService.hide();
+            },
+            error => {
+              this.spinnerService.hide();
+              this.alertService.error(error);
+            }
+          );
         },
         error => {
           this.spinnerService.hide();

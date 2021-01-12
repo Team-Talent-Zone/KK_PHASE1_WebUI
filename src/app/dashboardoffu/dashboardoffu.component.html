@@ -141,7 +141,7 @@
                 <div class="tab-pane fade show active" id="collapseFUNewJobs" role="tabpanel"
                     aria-labelledby="collapseFUNewJobs-tab">
                     <br>
-                    <div class="row">
+                    <div class="row" *ngIf="upcomingJobList.length > 0">
                         <div class="col-lg-4 mb-3 mb-md-0" style="margin-bottom:8px !important"
                             *ngFor="let element of upcomingJobList">
                             <div class="card card-flip h-100 ">
@@ -208,12 +208,14 @@
                             </div>
                         </div>
                     </div>
+                    <div  class="row" *ngIf="upcomingJobList.length == 0">
+                        <p class="pull-center"><small><b>{{ 'DASHBOARD_FU_BODY.NO_UPCOMING_MSG' | translate }} </b> </small></p>
+                    </div>
                 </div>
                 <div class="tab-pane fade" id="collapseFUUpcomingJobs" role="tabpanel"
                     aria-labelledby="collapseFUUpcomingJobs-tab">
                     <br> <br>
-                    <div class="row">
-
+                    <div class="row" *ngIf="newJobList.length > 0" >
                         <div class="col-sm-4 mb-3 mb-md-0" style="margin-bottom:8px !important"
                             *ngFor="let element of newJobList">
                             <div class="card card-flip h-100 ">
@@ -264,11 +266,14 @@
                             </div>
                         </div>
                     </div>
+                    <div  class="row" *ngIf="newJobList.length == 0">
+                        <p class="pull-center"><small><b>{{ 'DASHBOARD_FU_BODY.NO_NEWJOB_MSG' | translate }} </b> </small></p>
+                    </div>
                 </div>
                 <div class="tab-pane fade" id="collapseCompletedJobs" role="tabpanel"
                     aria-labelledby="collapseCompletedJobs-tab">
                     <br> <br>
-                    <div class="row">
+                    <div class="row"  *ngIf="completedJobList.length > 0">
                         <div class="col-sm-4 mb-3 mb-md-0" style="margin-bottom:8px !important"
                             *ngFor="let element of completedJobList">
                             <div class="card card-flip h-100 ">
@@ -325,6 +330,9 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div  class="row" *ngIf="completedJobList.length == 0">
+                        <p class="pull-center"><small><b>{{ 'DASHBOARD_FU_BODY.NO_COMPLETEDJOBS_MSG' | translate }} </b> </small></p>
                     </div>
                 </div>
             </div>

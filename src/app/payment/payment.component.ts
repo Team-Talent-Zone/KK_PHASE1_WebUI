@@ -77,6 +77,7 @@ export class PaymentComponent implements OnInit {
             jobids: this.jobids,
             userId: this.userService.currentUserValue.userId
           });
+          console.log('this.paymentFormDetails', this.paymentFormDetails);
           this.paymentsvc.savePayments(this.paymentFormDetails.value).subscribe(
             (data: Payment) => {
               this.disablePaymentButton = false;

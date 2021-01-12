@@ -4,13 +4,16 @@
             'alert-info': message.type === 'info'  }">
             <h4 class="modal-title">
                 <div *ngIf="message.type === 'success'">
-                    Well Done !
+                    {{'ALERT_POPUP.SUCCESS' |
+                    translate}}
                 </div>
                 <div *ngIf="message.type === 'error'">
-                    Oh Snap !
+                    {{'ALERT_POPUP.ERROR' |
+                    translate}}
                 </div>
-                <div *ngIf="message.type === 'info'" >
-                    Something is missing..
+                <div *ngIf="message.type === 'info'">
+                    {{'ALERT_POPUP.INFO' |
+                    translate}}
                 </div>
             </h4>
             <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">

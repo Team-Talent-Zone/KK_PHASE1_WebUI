@@ -14,7 +14,7 @@ export class Freelance {
     public percentageDeduct: number;
     public isregfeedone: boolean;
     public bgcurrentstatus: string;
-    public accountno: number;
+    public accountno: string;
     public ifsc: string;
     constructor(
     ) {
