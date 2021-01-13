@@ -9,8 +9,8 @@ import { PayoutVerifyAccount } from 'src/app/appmodels/PayoutVerifyAccount';
 })
 export class PaymentService {
 
-  payment : PayoutVerifyAccount
-  
+  payment: PayoutVerifyAccount
+
   constructor(
     private http: HttpClient,
   ) { }
@@ -38,11 +38,12 @@ export class PaymentService {
     return this.http.post(`${environment.apiUrl}/verifyAccountPayout/`, this.payment);
   }
 
-  createBenificiaryPayout(userId: number , accountNumber: string, ifscCode: string) {
+  createBenificiaryPayout(userId: number, accountNumber: string, ifscCode: string, accountname: string) {
     this.payment = new PayoutVerifyAccount();
     this.payment.userid = userId;
-     this.payment.accountnumber = accountNumber;
+    this.payment.accountnumber = accountNumber;
     this.payment.ifsccode = ifscCode;
+    this.payment.accountname = accountname;
     return this.http.post(`${environment.apiUrl}/createBenificiaryPayout/`, this.payment);
   }
 }

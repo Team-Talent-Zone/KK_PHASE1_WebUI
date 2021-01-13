@@ -208,6 +208,7 @@
     "PROFILE_PHOTOID_REQ":"फोटो आईडी आवश्यक है",
     "PROFILE_REUPLOAD":"फोटो आईडी पुनः अपलोड करें",
     "PROFILE_UPLOAD":"फोटो आईडी अपलोड करें",
+    "PROFILE_SKILLED_INFO":"अपने कार्य अनुभव के आधार पर प्रति घंटा की दर दर्ज करें।",
     "PROFILE_BANKDETAILS":"बैंक विवरण",
     "PROFILE_BANKDETAILS_INFO":"हम इस बैंक खाते में राशि जमा करेंगे। इसलिए सुनिश्चित करें कि बैंक खाता संख्या और IFSC कोड दर्ज करना मान्य है",
      "PROFILE_BANKACCT":"बैंक खाता संख्या*",

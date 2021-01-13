@@ -29,9 +29,10 @@
                                     {{ 'DASHBOARD_FU_PROFILE.PROFILE_BASICINFOR' | translate }}
                                 </h4>
                                 <small *ngIf="this.userService.currentUserValue.userroles.rolecode =='FREELANCER_USER'">
-                                    <i class="fa fa-info-circle form-control-icon"> {{
-                                        'DASHBOARD_FU_PROFILE.PROFILE_ACCT_DETAILS_INFO' | translate }}
+                                    <i class="fa fa-info-circle form-control-icon">
                                     </i>
+                                    {{
+                                    'DASHBOARD_FU_PROFILE.PROFILE_ACCT_DETAILS_INFO' | translate }}
                                 </small>
                             </div>
                             <div class="card-body">
@@ -263,7 +264,10 @@
                                 <div class="card-actions float-right">
                                 </div>
                                 <h4 class="card-title mb-0">{{ 'DASHBOARD_FU_PROFILE.PROFILE_SKILL' | translate }}</h4>
-
+                                <small>
+                                    <i class="fa fa-info-circle form-control-icon"></i>
+                                    {{ 'DASHBOARD_FU_PROFILE.PROFILE_SKILLED_INFO' | translate }}
+                                </small> 
                             </div>
                             <div class="card-body">
                                 <div class="row">
@@ -384,10 +388,9 @@
                                 <h4 class="card-title mb-0">{{ 'DASHBOARD_FU_PROFILE.PROFILE_BANKDETAILS' | translate }}
                                 </h4>
                                 <small>
-                                    <i class="fa fa-info-circle form-control-icon">
-                                        {{ 'DASHBOARD_FU_PROFILE.PROFILE_BANKDETAILS_INFO' | translate }}
-                                    </i>
-                                </small>
+                                    <i class="fa fa-info-circle form-control-icon"></i>
+                                    {{ 'DASHBOARD_FU_PROFILE.PROFILE_BANKDETAILS_INFO' | translate }}
+                                </small> 
                             </div>
                             <div class="card-body">
                                 <div class="row">

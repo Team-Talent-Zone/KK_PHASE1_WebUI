@@ -348,16 +348,17 @@ export class EditprofileComponent implements OnInit {
               );
               return;
             } else {
-              this.paymentService.createBenificiaryPayout(this.userService.currentUserValue.userId, this.editprofileForm.get('accountno').value.toString(), this.editprofileForm.get('ifsc').value.toString()).subscribe(
-                (beneficiaryId: string) => {
-                  if (beneficiaryId !== null) {
-                    this.buildedituserobjtosave(this.edituserobj);
-                  }
-                },
-                error => {
-                  this.spinnerService.hide();
-                  this.alertService.error(error);
-                })
+              this.paymentService.createBenificiaryPayout(this.userService.currentUserValue.userId, this.editprofileForm.get('accountno').value.toString(), this.editprofileForm.get('ifsc').value.toString(),
+                this.editprofileForm.get('accountname').value.toString()).subscribe(
+                  (beneficiaryId: string) => {
+                    if (beneficiaryId !== null) {
+                      this.buildedituserobjtosave(this.edituserobj);
+                    }
+                  },
+                  error => {
+                    this.spinnerService.hide();
+                    this.alertService.error(error);
+                  })
             }
           },
           error => {

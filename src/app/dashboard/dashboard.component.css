@@ -77,6 +77,10 @@
   background-color: rgb(52 58 64) !important;
 }
 
+.navbar{
+  padding: 0px;
+  border-bottom: 1px solid gray;
+}
 .logo-title {
   font-size: 36px;
   color: white;
