@@ -8,6 +8,19 @@
         <button type="button" class="navbar-toggler hidden-sm-up" data-toggle="offcanvas">
             <span class="navbar-toggler-icon"></span>
         </button>
+        <div class="combobox" *ngIf="this.userService.currentUserValue.userroles.rolecode !== 'FREELANCER_USER'">
+            <input type="text" [(ngModel)]="inputItem" (ngModelChange)="getFilteredList()"
+                class="combobox-input form-control" (keyup)="onKeyPress($event)" (blur)="toggleListDisplay(0)"
+                (focus)="toggleListDisplay(1)" placeholder="Search skilled worker by skill" [ngClass]="{'error': showError}">
+            <a type="submit" class="nav-link" (click)="search( inputItemCode , inputItem)"
+                class="btn btn-text pull-right" style="margin-top: -38px;"><i class="fa fa-search"></i></a>
+            <span *ngIf="showError" class="error-text"><i>Invalid Selection.</i></span>
+            <div class="combobox-options" *ngIf="!listHidden">
+                <list-item *ngFor="let item of filteredList;let i = index" (click)="selectItem(i)"
+                    [ngClass]="{'selected': i===selectedIndex}">{{item.label}}
+                </list-item>
+            </div>
+        </div>
     </div>
 </nav>
 <div class="container-fluid" id="main">
@@ -47,7 +60,7 @@
                     <a [routerLink]="['/myservices']" class="list-group-item list-group-item-action bg-light">
                         <i class="fa fa-cogs" style="color:#FF4949"></i>
                         <b>
-                            Services
+                            My Services
                         </b>
                     </a>
                 </li>

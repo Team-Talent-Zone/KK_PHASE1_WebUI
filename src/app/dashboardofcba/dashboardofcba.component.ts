@@ -99,7 +99,7 @@ export class DashboardofcbaComponent implements OnInit {
             var array = element.fullcontent.split(',');
             element.fullcontent = array;
             this.listOfAllApprovedNewServices.push(element);
-            this.mapByDomain(element);
+            //this.mapByDomain(element);
           });
         }
         this.spinnerService.hide();
@@ -130,13 +130,13 @@ export class DashboardofcbaComponent implements OnInit {
     var isInsideCart = this.userservicedetailsAddedList.filter(item => item.ourserviceId === packwithotherourserviceid);
     if (isInsideCart.length > 0) {
       // tslint:disable-next-line: max-line-length
-      this.alertService.error(isInsideCart[0].name + 'is a part of this package . We have found ' + isInsideCart[0].name + 'as individual service in the cart.Please remove the ' + isInsideCart[0].name + ' from the cart before adding this package');
+      this.alertService.info(isInsideCart[0].name + ' is a part of this package . We have found ' + isInsideCart[0].name + ' as individual service in the cart.Please remove the ' + isInsideCart[0].name + ' from the cart before adding this package');
       isServiceAlreadyExist = true;
     } else {
       var isAlreadySubService = this.userservicedetailsList.filter(item => item.ourserviceId === packwithotherourserviceid);
       if (isAlreadySubService.length > 0) {
         // tslint:disable-next-line: max-line-length
-        this.alertService.error(isAlreadySubService[0].name + 'is a part of this package . We have found ' + isAlreadySubService[0].name + 'as individual service already been subscribed.');
+        this.alertService.info(isAlreadySubService[0].name + ' is a part of this package . We have found ' + isAlreadySubService[0].name + ' as individual service already been subscribed.');
         isServiceAlreadyExist = true;
       }
     }

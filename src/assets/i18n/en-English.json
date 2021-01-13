@@ -175,7 +175,8 @@
       "IMPINST_ICON2":"This ICON indicates that payment is paid by the client for the job.*Kaam Karega is processing the payment within 24 hours.*Kaam Karega will notify you once the payment credited into your bank account.For more information, please email to support@kaamkarega.in",
       "NO_NEWJOB_MSG":"We are working hard to get a job for you. Currently you do not have new jobs. Please keep checking..",
       "NO_UPCOMING_MSG":"Please check if you find new jobs in New Jobs Tab.",
-      "NO_COMPLETEDJOBS_MSG":"You have not completed your first job yet . Complete your first job ."
+      "NO_COMPLETEDJOBS_MSG":"You have not completed your first job yet . Complete your first job .",
+      "TOTAL_HOURSOFWORK":"Total Hours of work :"
     },
     "DASHBOARD_FU_PROFILE":{
      "PROFILESETTINGS": "Profile Settings",
@@ -253,9 +254,11 @@
       "INFO":"Something is missing.."
     },
     "DASHOARD_CBA_MAIN_BODY":{
-      "SUBSCRIBEDSERVICES":"Purchased Services",
-      "SERVICEPROVIDER":"Service Provider",
-      "REALESTATEINDUSTRY": "Estate Industry"
+      "SUBSCRIBEDSERVICES":"My Services",
+      "SERVICEPROVIDER":"Our Services",
+      "REALESTATEINDUSTRY": "Estate Industry",
+      "BUTTON_READMORE":"Read More",
+      "BUTTON_READLESS":"Read Less"
     }
     
     

@@ -1,97 +1,74 @@
-<!-- 
-<nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-      <li class="breadcrumb-item active" aria-current="page">My Services</li>
-    </ol>
-</nav> -->
-
-<div  style="margin-top:8px !important" *ngIf="listOfSubscribedServicesByUser.length > 0">
-    <!-- <div class="card-header" role="tab" id="headingOne"> -->
-        <div class="row">
+<div style="margin-top:8px !important" *ngIf="listOfSubscribedServicesByUser.length > 0">
+    <div class="row">
         <div class="col-sm-12">
-        <h5>
-            {{ 'DASHOARD_CBA_MAIN_BODY.SUBSCRIBEDSERVICES' | translate }}
-        </h5>
-        <hr>
+            <h5>
+                {{ 'DASHOARD_CBA_MAIN_BODY.SUBSCRIBEDSERVICES' | translate }}
+            </h5>
+            <hr>
         </div>
-    <!-- </div> -->
-    <!-- <div class="card-body">
-        <div class="card-deck"> -->
-            <div class="col-sm-4 mb-3 mb-md-0" style="margin-bottom:8px !important"
-                *ngFor="let svc of listOfSubscribedServicesByUser">
-                <div class="card text-center h-100">
-                    <div class="card-header header-bg">
-                        <h6>{{svc.name}}</h6>
+        <div class="col-sm-4 mb-3 mb-md-0" style="margin-bottom:8px !important"
+            *ngFor="let svc of listOfSubscribedServicesByUser">
+            <div class="card h-100">
+                <div class="card-header header-bg">
+                    <img class="img-thumbnail pull-left" src={{svc.imgurl}} width="70" height="40">
+                    <a *ngIf="svc.txnid !== null" [routerLink]="['/payment',svc.txnid]">
+                        <i class="fa fa-sitemap pull-right" title="Go to payment details" style="color:#FF4949"> </i>
+                    </a>
+                    <div *ngIf="svc.category !=='FS_S'">
+                        <a [routerLink]="['/createoreditwidget',svc.ourserviceId]">
+                            <i class="fa fa-window-restore  pull-right" title="Go to edit widget"
+                                style="color:#FF4949"></i></a>
                     </div>
-                    <img class="card-img" src={{svc.imgurl}}>
-                    <div class="card-body d-flex flex-column">
-                        <div class="card-title">
-                            <span class="display-4">
-                                <i class="fa fa-inr"> {{svc.amount}} </i></span>
-                            <span class="mb-4">/{{svc.validPeriodLabel}}
-                            </span>
-                        </div>
-                        <div class="card-text">
-                            <ul class="list-unstyled">
-                                <li class="mb-1" *ngFor="let features of svc.fullcontent">
-                                    {{features}}
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="card-text">
-                            <div *ngIf="svc.category ==='FS_S'">
-                                <b class="text-danger">Freelancer Service Is Activated</b>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <div *ngIf="svc.category !=='FS_S'">
-                                    <a class="btn btn-warning" [routerLink]="['/createoreditwidget',svc.ourserviceId]">
-                                        <i class="fa fa-window-restore">Custom Widget</i></a>
-                                </div>
-                            </div>
-                            <div class="col-sm-3"></div>
-                            <div class="col-sm-4" *ngIf="istimelap">
-                                <div *ngIf="svc.status === 'PAYMENT_PAID' && svc.category !=='FS_S'">
-                                    <a class="btn btn-success" title="Click to Pubish the Site for {{svc.name}}"
-                                        (click)="publishNow(svc.serviceId)">
-                                        <i class="fa fa-play" title="Click to Pubish the Site for {{svc.name}}"
-                                            style="font-size:12px;color:rgb(76, 0, 255)"> </i>
-                                    </a>
-                                </div>
-                                <div *ngIf="svc.status == 'PUBLISHED' && svc.category !=='FS_S'">
-                                    <a class="btn btn-success" href={{svc.publishedlinkurl}} target="_blank"
-                                        title={{svc.publishedlinkurl}}>
-                                        Go To Site</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <div class="card-text">
-                            <small class="text-muted">Started on <b> {{svc.servicestarton}} </b> </small>
-                        </div>
-                        <div class="card-text">
-                            <small class="text-muted">Expire on <b> {{svc.serviceendon}} </b> [i.e
-                                <b>{{svc.validdays}} days remaining </b> ] </small>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3"></div>
-                            <div class="col-sm-6">
-                                <button class="btn  btn-secondary btn-sm" [routerLink]="['/payment',svc.txnid]">
-                                    Payment Details</button>
-                            </div>
-                        </div>
+                    <div *ngIf="istimelap" class="pull-right">
+                        <a (click)="publishNow(svc.serviceId)"
+                            *ngIf="svc.status === 'PAYMENT_PAID' && svc.category !=='FS_S'">
+                            <i class="fa fa-play"
+                                title="Click to Publish the fully hosted and a cloud base {{svc.name}} site"
+                                style="color:rgb(76, 0, 255)"> </i>
+                        </a>
+                        <a *ngIf="svc.status == 'PUBLISHED' && svc.category !=='FS_S'" href={{svc.publishedlinkurl}}
+                            target="_blank" title={{svc.publishedlinkurl}}>
+                            <i class="fa fa-tablet pull-right"
+                                title="Go to fully hosted and a cloud base {{svc.name}} site"></i></a>
                     </div>
                 </div>
+                <div class="card-body d-flex flex-column">
+                    <div class="card-title text-center">
+                        <h5><b>{{svc.name}}</b></h5>
+                        <hr>
+                        <span class="display-4 ">
+                            <i class="fa fa-inr"> {{svc.amount}} </i></span>
+                        <span class="mb-4">/{{svc.validPeriodLabel}}
+                        </span>
+                    </div>
+                    <div class="card-text text-center">
+                        <ul class="list-unstyled">
+                            <li class="mb-1" *ngFor="let features of svc.fullcontent">
+                                {{features}}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <p>
+                        <small class="text-left pull-left"><b> Start Date: </b> {{svc.servicestarton}} </small>
+                    </p>
+                    <p>
+                        <small class="pull-left"><b>Expire Date:</b> {{svc.serviceendon}} [{{svc.validdays}} days
+                            remains] </small>
+                    </p>
+                </div>
             </div>
-       </div>
-     <!-- </div> -->
-</div>
+        </div>
+        <!-- </div> -->
+    </div>
 
 
-<div style="margin-top:8px !important" *ngIf="
+    <div style="margin-top:8px !important" *ngIf="
 listOfSubscribedServicesByUser.length === 0 && istimelap">
-    No Services Subscribed . <a [routerLink]="['/dashboard']">Show Avaiable Services</a>
-</div>
+        <p>
+            <b>
+                No Services Subscribed . <a [routerLink]="['/dashboard']">Show Avaiable Services</a>
+            </b>
+        </p>
+    </div>

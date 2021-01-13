@@ -1,410 +1,311 @@
 <!-- <div class="container p-1"> -->
-    <h4>Manage Jobs</h4>
-    <hr>
-    <ul class="nav nav-tabs" id="myTab" role="tablist">
-        <li class="nav-item">
-          <a class="nav-link active" id="collapseFUUpcomingJobs-tab" data-toggle="tab" href="#collapseFUUpcomingJobs" role="tab" aria-controls="collapseFUUpcomingJobs" aria-selected="true"><b>On-Going / Upcoming Jobs</b></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" id="collapseFUNewJobs-tab" data-toggle="tab" href="#collapseFUNewJobs" role="tab" aria-controls="collapseFUNewJobs" aria-selected="false"><b>Newly Created Jobs</b></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" id="collapseFUCompletedJobs-tab" data-toggle="tab" href="#collapseFUCompletedJobs" role="tab" aria-controls="contact" aria-selected="false"><b>Complted Jobs</b></a>
-        </li>
-      </ul>
-      <div class="tab-content" id="myTabContent">
-        <div class="tab-pane fade show active" id="collapseFUUpcomingJobs" role="tabpanel" aria-labelledby="collapseFUUpcomingJobs-tab">
-            <br><br>
-            <div class="row">
-            <div class="col-sm-4 mb-3 mb-md-0" style="margin-bottom:8px !important"
-            *ngFor="let upcomingjob of upComingPostedJobs">
-            <div class="card">
-                <!-- <div class="card-header"> -->
-                    <!-- <span class="display-4"> -->
-                        
-                    <!-- </span> -->
-                <!-- </div> -->
-                <div class="card-body d-flex flex-column">
-                   <p> 
-                    <b class="pull-left">Job#{{upcomingjob.jobId}}</b>
-                    <span class="pull-right"> <b>{{upcomingjob.subcategorylabel}}</b> </span>
-                    </p>
-                    <span class="pull-right display-4"><i class="fa fa-inr">{{upcomingjob.amount}}</i></span>
-                    <p><span class="pull-left">
-                        <small><b>Start : </b> {{upcomingjob.jobstartedon}}</small>
-                    </span>
-                    <span class="pull-right">
-                       <small><b>End :</b> {{upcomingjob.jobendedon}}</small>
-                    </span>
-                    </p>
-                    <div class="card-text">
-                        <span> Freelancer Name </span>
-                        <i class="fa fa-user"></i> &nbsp; {{upcomingjob.fullname}}
+<h4>Manage Jobs</h4>
+<hr>
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item">
+        <a class="nav-link active" id="collapseFUUpcomingJobs-tab" data-toggle="tab" href="#collapseFUUpcomingJobs"
+            role="tab" aria-controls="collapseFUUpcomingJobs" aria-selected="true">
+            <i class="fa fa-map-marker fatab"></i>
+            <br><b>
+                {{ 'DASHBOARD_FU_BODY.UPCOMINGJOBS' | translate }}
+            </b></a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="collapseFUNewJobs-tab" data-toggle="tab" href="#collapseFUNewJobs" role="tab"
+            aria-controls="collapseFUNewJobs" aria-selected="false"> <i class="fa fa-podcast fatab"></i><br><b> {{
+                'DASHBOARD_FU_BODY.NEWJOBS' | translate }}</b></a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="collapseFUCompletedJobs-tab" data-toggle="tab" href="#collapseFUCompletedJobs"
+            role="tab" aria-controls="contact" aria-selected="false"><i class="fa fa-road fatab"></i>
+            <br><b>{{ 'DASHBOARD_FU_BODY.COMPLETEDJOBS' | translate }}</b></a>
+    </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="collapseFUUpcomingJobs" role="tabpanel"
+        aria-labelledby="collapseFUUpcomingJobs-tab">
+        <br><br>
+        <div class="row" *ngIf="upComingPostedJobs.length > 0">
+            <div class="col-lg-4 mb-3 mb-md-0" style="margin-bottom:8px !important"
+                *ngFor="let element of upComingPostedJobs">
+                <div class="card card-flip h-100 ">
+                    <div class="card-header text-white bg-secondary">
+                        <p> <b>{{ 'DASHBOARD_FU_BODY.JOB' | translate }}#{{element.jobId}} </b>
+                            <button class="bg-info pull-right" *ngIf="!element.isjobcompleted"
+                                (click)="jobDone(element.jobId)" style="font-size:14px">Job Done
+                                <i class="fa fa-check"></i></button>
+                            <button class="bg-success pull-right" *ngIf="element.isjobcompleted"
+                                (click)="openPaymentComponent(element.amount, element.jobId , element.subcategorylabel)"
+                                style="font-size:14px">Pay
+                                <i class="fa fa-inr"></i></button>
+                        </p>
+                        <span class="display-4">
+                            <i class="fa fa-inr">{{element.amount | number}}</i></span>
+                        <p>
+                            <small class="pull-left">
+                                <b>{{ 'DASHBOARD_FU_BODY.STARTON' | translate }} </b>
+                                {{element.jobstartedon}}
+                            </small>
+                            <small class="pull-left">
+                                <b>{{ 'DASHBOARD_FU_BODY.ENDON' | translate }} </b> {{element.jobendedon}}
+                            </small>
+                        </p>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-8">
+                                <h3> <b>Skilled Worker Details</b> </h3>
+                            </div>
+                            <div class="col-sm-4">
+                                <img src={{element.avtarurl}} width="100" height="60">
+                            </div>
+                        </div>
+                        <p>
+                            <small class="pull-left">
+                                <b>Full Name: </b> {{element.fullname}}
+                            </small>
+                        </p>
+                        <p>
+                            <small class="pull-left">
+                                <b>{{ 'DASHBOARD_FU_BODY.PHONENO' | translate }} </b> {{element.fuphoneno}}
+                            </small>
+                        </p>
+                   
+                    </div>
+                    <div class="card-body">
+                        <i class="fa fa-briefcase fa-3x float-right"></i>
+                        <h3> <b>{{ 'DASHBOARD_FU_BODY.JOBDETAILS' | translate }} </b> </h3>
+                        <p>
+                            <small class="pull-left">
+                                <b> {{ 'DASHBOARD_FU_BODY.JOBLOCATION' | translate }} </b>
+                                {{element.joblocation}}
+                            </small>
+                        </p>
+                        <p>
+                            <small class="pull-left">
+                                <b>{{ 'DASHBOARD_FU_BODY.TOTAL_HOURSOFWORK' | translate }} </b> {{element.totalhoursofjob}}
+                            </small>
+                        </p>
+                        <p>
+                            <small class="pull-left">
+                                <b>Skill As: </b> {{element.subcategorylabel}}
+                            </small>
+                        </p>
+                        <p>
+                            <small class="pull-left">
+                                <b>{{ 'DASHBOARD_FU_BODY.JOBDESCPTION' | translate }} </b>
+                                {{element.jobdescription}}
+                            </small>
+                        </p>
                     </div>
                 </div>
-                <!-- <div class="card-footer"> -->
-                    <button type="button" (click)="jobDone(upcomingjob.jobId)"
-                        class="btn  btn-success btn-sm" *ngIf="!upcomingjob.isjobcompleted"> Job
-                        Done</button>
-                    <button class="btn  btn-primary btn-sm"
-                        (click)="openPaymentComponent(upcomingjob.amount, upcomingjob.jobId , upcomingjob.subcategorylabel)"
-                        *ngIf="upcomingjob.isjobcompleted"> Pay
-                        Now</button>
-                <!-- </div> -->
             </div>
         </div>
+        <div class="row" *ngIf="upComingPostedJobs.length == 0">
+            <p class="pull-center"><small><b> There are no upcoming jobs. </b> </small></p>
         </div>
     </div>
-        <div class="tab-pane fade" id="collapseFUNewJobs" role="tabpanel" aria-labelledby="collapseFUNewJobs-tab">
-            <br><br>
-            <div class="row">
+    <div class="tab-pane fade" id="collapseFUNewJobs" role="tabpanel" aria-labelledby="collapseFUNewJobs-tab">
+        <br><br>
+        <div class="row">
             <div class="col-sm-4 mb-3 mb-md-0" style="margin-bottom:8px !important"
-            *ngFor="let newlyjob of newlyPostedJobs">
-            <div class="card  h-100">
-                <!-- <div class="card-header"> -->
-                    <!-- <span class="display-4"> -->
-                        
-                    <!-- </span> -->
-                <!-- </div> -->
-                <div class="card-body d-flex flex-column">
-
-                   <p> <b>Job#{{newlyjob.jobId}}</b>
-                    <!-- <div class="card-title"> -->
-                        <span class="pull-right">  {{newlyjob.subcategorylabel}} </span>
+                *ngFor="let newlyjob of newlyPostedJobs">
+                <div class="card card-flip h-100 ">
+                    <div class="card-header text-white bg-secondary">
+                        <p> <b>{{ 'DASHBOARD_FU_BODY.JOB' | translate }}#{{newlyjob.jobId}} </b>
+                            <button class="bg-warning pull-right"
+                                *ngIf="!newlyjob.isjobactive && newlyjob.isdeactive == null"
+                                (click)="cancelJob(newlyjob.jobId)">Cancel
+                                <i class="fa fa-times"></i></button>
+                            <button class="bg-info pull-right"
+                                *ngIf="!newlyjob.isjobactive && newlyjob.isdeactive == null"
+                                (click)="activateJob(newlyjob.jobId)">Activiate
+                                <i class="fa fa-check"></i>
+                            </button>
                         </p>
-                    <!-- </div> -->
-                    <div class="card-title">
-                        <span class="display-4"><i class="fa fa-inr">{{newlyjob.amount}}</i></span>
+                        <span class="display-4">
+                            <i class="fa fa-inr">{{newlyjob.amount | number}}</i></span>
+                        <p>
+                            <small class="pull-left">
+                                <b>{{ 'DASHBOARD_FU_BODY.STARTON' | translate }} </b>
+                                {{newlyjob.jobstartedon}}
+                            </small>
+                            <small class="pull-left">
+                                <b>{{ 'DASHBOARD_FU_BODY.ENDON' | translate }} </b> {{newlyjob.jobendedon}}
+                            </small>
+                        </p>
                     </div>
-                      
-                    <p>
-                    <span class="pull-left">
-                        <small><span class="mb-4"> <b>Start :</b> {{newlyjob.jobstartedon}} </span></small>
-                    </span>
-                    <span class="pull-right">
-                        <small><b>End :</b> {{newlyjob.jobendedon}}</small>
-                    </span>
-                    </p>
-
-                </div>
-                <div class="card-footer" *ngIf="newlyjob.isjobactive && newlyjob.isdeactive == null">
-                    <div class="row">
-                        <small class="text-muted ">
-                            <p class="text-primary">You will get a confirmation email once freelancer accept
-                                the job.</p>
-                        </small>
+                    <div class="card-body">
+                        <i class="fa fa-briefcase fa-3x float-right"></i>
+                        <h3> <b>{{ 'DASHBOARD_FU_BODY.JOBDETAILS' | translate }} </b> </h3>
+                        <p>
+                            <small class="pull-left">
+                                <b> {{ 'DASHBOARD_FU_BODY.JOBLOCATION' | translate }} </b>
+                                {{newlyjob.joblocation}}
+                            </small>
+                        </p>
+                        <p>
+                            <small class="pull-left">
+                                <b>{{ 'DASHBOARD_FU_BODY.TOTAL_HOURSOFWORK' | translate }} </b> {{newlyjob.totalhoursofjob}}
+                            </small>
+                        </p>
+                        <p>
+                            <small class="pull-left">
+                                <b>Skill As: </b> {{newlyjob.subcategorylabel}}
+                            </small>
+                        </p>
+                        <p>
+                            <small class="pull-left">
+                                <b>{{ 'DASHBOARD_FU_BODY.JOBDESCPTION' | translate }} </b>
+                                {{newlyjob.jobdescription}}
+                            </small>
+                        </p>
                     </div>
-                </div>
-                <div class="card-footer" *ngIf="!newlyjob.isjobactive && newlyjob.isdeactive == null">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <button type="button" (click)="cancelJob(newlyjob.jobId)"
-                                class="btn  btn-danger btn-sm">Cancel</button>
+                    <div class="card-footer" *ngIf="!newlyjob.isjobactive && newlyjob.isdeactive">
+                        <div class="row">
+                            <small class="text-muted ">
+                                <p class="text-warning text-center">
+                                    <i class="fa fa-info-circle "></i> You have not activiated this job on time and the
+                                    job
+                                    start date has crossed current date. Please create new job again
+                                </p>
+                            </small>
                         </div>
-                        <div class="col-sm-6">
-                            <button type="button" (click)="activateJob(newlyjob.jobId)"
-                                class="btn  btn-primary btn-sm">Activiate</button>
+                        <div class="row">
+                            <div class="col-sm-3"></div>
+                            <div class="col-sm-4">
+                                <a (click)="cancelJob(newlyjob.jobId)" class="btn  btn-danger btn-sm">Cancel</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="card-footer" *ngIf="!newlyjob.isjobactive && newlyjob.isdeactive">
-                    <div class="row">
-                        <small class="text-muted ">
-                            <p class="text-danger">You have not activiated this job on time and now the job
-                                start date has crossed current date.</p>
-                        </small>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-3"></div>
-                        <div class="col-sm-4">
-                            <a (click)="cancelJob(newlyjob.jobId)" class="btn  btn-danger btn-sm">Cancel</a>
+                    <div class="card-footer" *ngIf="newlyjob.isjobactive && !newlyjob.isjobaccepted">
+                        <div class="row">
+                            <small class="text-muted ">
+                                <p class="text-primary text-center"><i class="fa fa-info-circle"></i> Thank you for activating the
+                                    job . Our
+                                    pool of skilled workers
+                                    will be available to accept this job shortly.
+                                    <br> We will notify via bell notification
+                                    message.
+                                </p>
+                            </small>
                         </div>
                     </div>
-                </div>
-                <div class="card-footer" *ngIf="newlyjob.isjobactive && newlyjob.isdeactive != null">
-                    <div class="row">
-                        <small class="text-muted ">
-                            <p class="text-danger">No freelancer accepted this job . Kindly search & create
-                                new job again.</p>
-                        </small>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-3"></div>
-                        <div class="col-sm-4">
-                            <button type="button" (click)="cancelJob(newlyjob.jobId)"
-                                class="btn  btn-danger btn-sm">Cancel</button>
+                    <div class="card-footer" *ngIf="newlyjob.isjobactive && newlyjob.isdeactive != null">
+                        <div class="row">
+                            <small class="text-muted ">
+                                <p class="text-info text-center"><i class="fa fa-info-circle"></i>No skilled worker has accepted
+                                    this job. Please provide to cancel job & create new job again.</p>
+                            </small>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3"></div>
+                            <div class="col-sm-4">
+                                <button type="button" (click)="cancelJob(newlyjob.jobId)"
+                                    class="btn  btn-danger btn-sm">Cancel</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        </div>
-
-        </div>
-        <div class="tab-pane fade" id="collapseFUCompletedJobs" role="tabpanel" aria-labelledby="collapseFUCompletedJobs-tab">
-            <br><br>
-            <div class="row">
+    </div>
+    <div class="tab-pane fade" id="collapseFUCompletedJobs" role="tabpanel"
+        aria-labelledby="collapseFUCompletedJobs-tab">
+        <br><br>
+        <div class="row">
             <div class="col-sm-4 mb-3 mb-md-0" style="margin-bottom:8px !important"
-                        *ngFor="let completedjob of completedJobs">
-                        <div class="card  h-100">
-                            <!-- <div class="card-header"> -->
-                                <!-- <span class="display-4"> -->
-                                  
-                                <!-- </span> -->
-                            <!-- </div> -->
-                            <div class="card-body d-flex flex-column">
-                                <p>
-                                <b>Job#{{completedjob.jobId}}</b> 
-                                <!-- <div class="card-title"> -->
-                                    <span class="pull-right"> <b> {{completedjob.subcategorylabel}} </b></span>
-                                </p>
-                                <!-- </div> -->
-                                <div class="card-title">
-                                    <span class="display-4"><i class="fa fa-inr">{{completedjob.amount}}</i></span>
-                                </div>
-                                <p>
-                                <span class="card-title">
-                                    <small><span class="mb-4"> <b>Start :</b> {{completedjob.jobstartedon}} </span></small>
-                                </span>
-                                <span class="pull-right">
-                                  <small> <b>End :</b> {{completedjob.jobendedon}}</small>
-                                </span>
-                                </p>
-                                <div class="card-text">
-                                    <span> Freelancer Name </span>
-                                    <i class="fa fa-user"></i> &nbsp; {{completedjob.fullname}}
-                                </div>
+                *ngFor="let completedjob of completedJobs">
+                <div class="card card-flip h-100 ">
+                    <div class="card-header text-white bg-secondary">
+                        <p> <b>{{ 'DASHBOARD_FU_BODY.JOB' | translate }}#{{completedjob.jobId}} </b>
+                            <a class="btn btn-sm pull-right" *ngIf="completedjob.isjobamtpaidtocompany"
+                                [routerLink]="['/payment',completedjob.txnid]"><i title="Go to payment details"
+                                    class="fa fa-sitemap" style="color:#FF4949"></i></a>
+                            <a class="btn btn-sm pull-right" data-toggle="modal" data-target="#rateit"
+                                (click)="feedback(completedjob.jobId)"> <i class="fa fa-meh-o"
+                                    title="Please rate to {{completedjob.fullname}}"></i></a>
+                        </p>
+                        <span class="display-4">
+                            <i class="fa fa-inr">{{completedjob.amount | number}}</i></span>
+                        <p>
+                            <small class="pull-left">
+                                <b>{{ 'DASHBOARD_FU_BODY.STARTON' | translate }} </b>
+                                {{completedjob.jobstartedon}}
+                            </small>
+                            <small class="pull-left">
+                                <b>{{ 'DASHBOARD_FU_BODY.ENDON' | translate }} </b> {{completedjob.jobendedon}}
+                            </small>
+                        </p>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-8">
+                                <h3> <b>Skilled Worker Details</b> </h3>
                             </div>
-                            <div class="card-footer" *ngIf="completedjob.isjobamtpaidtocompany">
-                                <div class="row">
-                                    <div class="col-sm-6"><button [routerLink]="['/payment',completedjob.txnid]"
-                                            class="btn  btn-secondary btn-sm">Payment
-                                            Details</button></div>
-                                    <div class="col-sm-6 pull-right"><button class="btn  btn-warning btn-sm pull-right" data-toggle="modal"
-                                            data-target="#rateit" (click)="feedback(completedjob.jobId)">Rate
-                                            Work</button></div>
-                                </div>
+                            <div class="col-sm-4">
+                                <img src={{completedjob.avtarurl}} width="100" height="60">
                             </div>
                         </div>
+                        <p>
+                            <small class="pull-left">
+                                <b>Full Name: </b> {{completedjob.fullname}}
+                            </small>
+                        </p>
+                        <p>
+                            <small class="pull-left">
+                                <b>{{ 'DASHBOARD_FU_BODY.PHONENO' | translate }}: </b> {{completedjob.fuphoneno}}
+                            </small>
+                        </p>
                     </div>
-                    </div>
-        </div>
-      </div>
-
-
-    <!-- <div class=" card">
-        <div class="card-header" role="tab" id="headingOne">
-            <h5 class="mb-0">
-                <a data-toggle="collapse" href="#collapseFUUpcomingJobs" aria-expanded="true"
-                    aria-controls="collapseOne">
-                    On-Going / Upcoming Jobs
-                </a>
-            </h5>
-        </div>
-        <div id="collapseFUUpcomingJobs" class="collapse show" role="tabpanel" aria-labelledby="headingOne"
-            data-parent="#accordion">
-            <div class="card-body">
-                <div class="card-deck">
-                    <div class="col-sm-4 mb-3 mb-md-0" style="margin-bottom:8px !important"
-                        *ngFor="let upcomingjob of upComingPostedJobs">
-                        <div class="card">
-                            <div class="card-header">
-                                <span class="display-4">
-                                    Job#{{upcomingjob.jobId}}</span>
-                            </div>
-                            <div class="card-body d-flex flex-column">
-                                <div class="card-title">
-                                    <h4> <small> {{upcomingjob.subcategorylabel}} </small></h4>
-                                </div>
-                                <div class="card-title">
-                                    <span class="display-4"><i class="fa fa-inr">{{upcomingjob.amount}}</i></span>
-                                </div>
-                                <div class="card-text">
-                                    Start Date : {{upcomingjob.jobstartedon}}
-                                </div>
-                                <div class="card-text">
-                                    End Date : {{upcomingjob.jobendedon}}
-                                </div>
-                                <div class="card-text">
-                                    <span> Freelancer Name </span>
-                                    <i class="fa fa-user">{{upcomingjob.fullname}}</i>
-                                </div>
-                            </div>
-                            <div class="card-footer">
-                                <button type="button" (click)="jobDone(upcomingjob.jobId)"
-                                    class="btn  btn-success btn-sm" *ngIf="!upcomingjob.isjobcompleted"> Job
-                                    Done</button>
-                                <button class="btn  btn-primary btn-sm"
-                                    (click)="openPaymentComponent(upcomingjob.amount, upcomingjob.jobId , upcomingjob.subcategorylabel)"
-                                    *ngIf="upcomingjob.isjobcompleted"> Pay
-                                    Now</button>
-                            </div>
-                        </div>
+                    <div class="card-body">
+                        <i class="fa fa-briefcase fa-3x float-right"></i>
+                        <h3> <b>{{ 'DASHBOARD_FU_BODY.JOBDETAILS' | translate }} </b> </h3>
+                        <p>
+                            <small class="pull-left">
+                                <b> {{ 'DASHBOARD_FU_BODY.JOBLOCATION' | translate }} </b>
+                                {{completedjob.joblocation}}
+                            </small>
+                        </p>
+                        <p>
+                            <small class="pull-left">
+                                <b>{{ 'DASHBOARD_FU_BODY.TOTAL_HOURSOFWORK' | translate }} </b> {{completedjob.totalhoursofjob}}
+                            </small>
+                        </p>
+                        <p>
+                            <small class="pull-left">
+                                <b>Skill As: </b> {{completedjob.subcategorylabel}}
+                            </small>
+                        </p>
+                        <p>
+                            <small class="pull-left">
+                                <b>{{ 'DASHBOARD_FU_BODY.JOBDESCPTION' | translate }} </b>
+                                {{completedjob.jobdescription}}
+                            </small>
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
-    </div> -->
+    </div>
+</div>
 
-    <!-- <div class=" card">
-        <div class="card-header" role="tab" id="headingOne">
-            <h5 class="mb-0">
-                <a data-toggle="collapse" href="#collapseFUNewJobs" aria-expanded="true" aria-controls="collapseOne">
-                    Newly Created Jobs
-                </a>
-            </h5>
-        </div>
-        <div id="collapseFUNewJobs" class="collapse show" role="tabpanel" aria-labelledby="headingOne"
-            data-parent="#accordion">
-            <div class="card-body">
-                <div class="card-deck">
-                    <div class="col-sm-4 mb-3 mb-md-0" style="margin-bottom:8px !important"
-                        *ngFor="let newlyjob of newlyPostedJobs">
-                        <div class="card text-center h-100">
-                            <div class="card-header">
-                                <span class="display-4">
-                                    Job#{{newlyjob.jobId}}</span>
-                            </div>
-                            <div class="card-body d-flex flex-column">
-                                <div class="card-title">
-                                    <h4> <small> {{newlyjob.subcategorylabel}} </small></h4>
-                                </div>
-                                <div class="card-title">
-                                    <span class="display-4"><i class="fa fa-inr">{{newlyjob.amount}}</i></span>
-                                </div>
-                                <div class="card-title">
-                                    <span class="mb-4"> Start Date : {{newlyjob.jobstartedon}} </span>
-                                </div>
-                                <div class="card-text">
-                                    End Date : {{newlyjob.jobendedon}}
-                                </div>
-                            </div>
-                            <div class="card-footer" *ngIf="newlyjob.isjobactive && newlyjob.isdeactive == null">
-                                <div class="row">
-                                    <small class="text-muted ">
-                                        <p class="text-primary">You will get a confirmation email once freelancer accept
-                                            the job.</p>
-                                    </small>
-                                </div>
-                            </div>
-                            <div class="card-footer" *ngIf="!newlyjob.isjobactive && newlyjob.isdeactive == null">
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <button type="button" (click)="cancelJob(newlyjob.jobId)"
-                                            class="btn  btn-danger btn-sm">Cancel</button>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <button type="button" (click)="activateJob(newlyjob.jobId)"
-                                            class="btn  btn-primary btn-sm">Activiate</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-footer" *ngIf="!newlyjob.isjobactive && newlyjob.isdeactive">
-                                <div class="row">
-                                    <small class="text-muted ">
-                                        <p class="text-danger">You have not activiated this job on time and now the job
-                                            start date has crossed current date.</p>
-                                    </small>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-3"></div>
-                                    <div class="col-sm-4">
-                                        <a (click)="cancelJob(newlyjob.jobId)" class="btn  btn-danger btn-sm">Cancel</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-footer" *ngIf="newlyjob.isjobactive && newlyjob.isdeactive != null">
-                                <div class="row">
-                                    <small class="text-muted ">
-                                        <p class="text-danger">No freelancer accepted this job . Kindly search & create
-                                            new job again.</p>
-                                    </small>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-3"></div>
-                                    <div class="col-sm-4">
-                                        <button type="button" (click)="cancelJob(newlyjob.jobId)"
-                                            class="btn  btn-danger btn-sm">Cancel</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> -->
-    <!-- <div class=" card">
-        <div class="card-header" role="tab" id="headingOne">
-            <h5 class="mb-0">
-                <a data-toggle="collapse" href="#collapseFUCompletedJobs" aria-expanded="true"
-                    aria-controls="collapseOne">
-                    Completed Jobs
-                </a>
-            </h5>
-        </div>
-        <div id="collapseFUCompletedJobs" class="collapse show" role="tabpanel" aria-labelledby="headingOne"
-            data-parent="#accordion">
-            <div class="card-body">
-                <div class="card-deck">
-                    <div class="col-sm-4 mb-3 mb-md-0" style="margin-bottom:8px !important"
-                        *ngFor="let completedjob of completedJobs">
-                        <div class="card text-center h-100">
-                            <div class="card-header">
-                                <span class="display-4">
-                                    Job#{{completedjob.jobId}}</span>
-                            </div>
-                            <div class="card-body d-flex flex-column">
-                                <div class="card-title">
-                                    <h4> <small> {{completedjob.subcategorylabel}} </small></h4>
-                                </div>
-                                <div class="card-title">
-                                    <span class="display-4"><i class="fa fa-inr">{{completedjob.amount}}</i></span>
-                                </div>
-                                <div class="card-title">
-                                    <span class="mb-4"> Start Date :{{completedjob.jobstartedon}} </span>
-                                </div>
-                                <div class="card-text">
-                                    End Date : {{completedjob.jobendedon}}
-                                </div>
-                                <div class="card-text">
-                                    <span> Freelancer Name </span>
-                                    <i class="fa fa-user">{{completedjob.fullname}}</i>
-                                </div>
-                            </div>
-                            <div class="card-footer" *ngIf="completedjob.isjobamtpaidtocompany">
-                                <div class="row">
-                                    <div class="col-sm-6"><button [routerLink]="['/payment',completedjob.txnid]"
-                                            class="btn  btn-secondary btn-sm">Payment
-                                            Details</button></div>
-                                    <div class="col-sm-6"><button class="btn  btn-warning btn-sm" data-toggle="modal"
-                                            data-target="#rateit" (click)="feedback(completedjob.jobId)">Rate
-                                            Work</button></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> -->
-<!-- </div> -->
 <div class="modal fade" id="rateit" *ngIf="isratingdisplay">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Give your feedback !</h5>
+                <h5 class="modal-title">Provide your feedback !</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <form [formGroup]="feedbackform" (ngSubmit)="savefeedback()">
-                   <p>  <i class="fa fa-user"></i> &nbsp;&nbsp; <b>{{record.fullname}}</b> </p>
+                    <p> <i class="fa fa-user"></i> &nbsp;&nbsp; <b>{{record.fullname}}</b> </p>
                     <div class="form-group">
                         <span>
                             <i class="fa fa fa-star	form-control-icon"></i>
-                          </span> 
+                        </span>
                         <select #sel class="form-control" formControlName="starrate"
                             [ngClass]="{ 'is-invalid': issubmit && f.starrate.errors }">
                             <option value=''>--Select Rate --</option>
@@ -422,8 +323,9 @@
                     <div class="form-group">
                         <span>
                             <i class="fa fa-at form-control-icon"></i>
-                          </span>
-                        <textarea placeholder="Comment On JobId#{{record.jobId}}" class="form-control" formControlName="feedbackcomment"
+                        </span>
+                        <textarea placeholder="Comment On JobId#{{record.jobId}}" class="form-control"
+                            formControlName="feedbackcomment"
                             [ngClass]="{ 'is-invalid': issubmit && f.feedbackcomment.errors }">
                          </textarea>
                         <div *ngIf="issubmit && f.feedbackcomment.errors" class="invalid-feedback">
