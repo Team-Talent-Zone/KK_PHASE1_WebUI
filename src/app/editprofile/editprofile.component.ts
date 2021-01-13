@@ -242,7 +242,7 @@ export class EditprofileComponent implements OnInit {
             this.editprofileForm.patchValue({ hourlyRate: this.edituserobj.freeLanceDetails.hourlyRate });
             this.nationalIDURL = this.edituserobj.freeLanceDetails.uploadValidPhotoidImgUrl;
             this.editprofileForm.patchValue({ uploadValidPhotoidImgUrl: this.edituserobj.freeLanceDetails.uploadValidPhotoidImgUrl });
-            this.editprofileForm.patchValue({ accountno: this.edituserobj.freeLanceDetails.accountname });
+            this.editprofileForm.patchValue({ accountname: this.edituserobj.freeLanceDetails.accountname });
             this.editprofileForm.patchValue({ accountno: this.edituserobj.freeLanceDetails.accountno });
             this.editprofileForm.patchValue({ ifsc: this.edituserobj.freeLanceDetails.ifsc });
           }

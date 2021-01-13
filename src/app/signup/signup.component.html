@@ -127,11 +127,16 @@
     <div class="form-check">
       <input type="checkbox" class="form-check-input" formControlName="acceptsignupterms"
         [ngClass]="{ 'is-invalid': issubmit && f.acceptsignupterms.errors }">
-      <label class="form-check-label" for="exampleCheck1">{{'HOMESIGNUP.SIGNUP_TERM_AGREE_LABEL' |
-        translate}}
-        <a href={{termsofservice}} target="_blank">{{'HOMESIGNUP.SIGNUP_TERMOFSERVICE' |
-          translate}} </a> & <a href={{privacypolicy}} target="_blank">{{'HOMESIGNUP.SIGNUP_PRIVACYPOLICY' |
-          translate}}</a></label>
+      <label class="form-check-label" for="exampleCheck1">
+        <small>{{'HOMESIGNUP.SIGNUP_TERM_AGREE_LABEL' |
+          translate}}</small>
+        <a href={{termsofservice}} target="_blank"><small>{{'HOMESIGNUP.SIGNUP_TERMOFSERVICE' |
+            translate}}</small> </a> & <a href={{privacypolicy}} target="_blank">
+          <small>{{'HOMESIGNUP.SIGNUP_PRIVACYPOLICY' |
+            translate}}</small></a>
+        <small>{{'HOMESIGNUP.SIGNUP_TERM_AGREE_LABEL_END' |
+          translate}}</small>
+      </label>
       <div *ngIf="issubmit && f.acceptsignupterms.errors" class="invalid-feedback">
         <div *ngIf="f.acceptsignupterms.errors.required">
           {{'HOMESIGNUP.SIGNUP_VALIDATION_TERMS_POLICYCHECKBOX_REQ' | translate}}

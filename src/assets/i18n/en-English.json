@@ -48,10 +48,10 @@
       "BACKTOLOGIN":"Back to Login?",
       "PASSWORDISREQUIRED":"Password is required.",
       "PASSWORDMUSTBE8CHAR":"Password must be at least 8 characters.",
-      "SIGNUP_TERM_AGREE_LABEL":"I agree to the",
-      "SIGNUP_TERM_AGREE_TERMS_LABEL":"I agree to the terms of ",
-      "SIGNUP_TERMOFSERVICE":"terms of service",
-      "SIGNUP_PRIVACYPOLICY":"privacy policy",
+      "SIGNUP_TERM_AGREE_LABEL":"I agree to ",
+      "SIGNUP_TERMOFSERVICE":"Terms of Service",
+      "SIGNUP_PRIVACYPOLICY":"Privacy Policy",
+      "SIGNUP_TERM_AGREE_LABEL_END":" of Kaam Karega IT Services Private Ltd.",
       "SIGNUP_VALIDATION_USERNAME":"Email must be a valid email address",
       "SIGNUP_VALIDATION_40_MAX_USERNAME":"Email cannot exceed 40 characters",
       "SIGNUP_VALIDATION_PASSWORD_REQ":"Password is required",
@@ -176,8 +176,6 @@
       "NO_NEWJOB_MSG":"We are working hard to get a job for you. Currently you do not have new jobs. Please keep checking..",
       "NO_UPCOMING_MSG":"Please check if you find new jobs in New Jobs Tab.",
       "NO_COMPLETEDJOBS_MSG":"You have not completed your first job yet . Complete your first job ."
-
-
     },
     "DASHBOARD_FU_PROFILE":{
      "PROFILESETTINGS": "Profile Settings",
