@@ -220,7 +220,7 @@ export class DashboardoffuComponent implements OnInit {
 
     if (this.earnFlag && this.upcomingflag) {
       this.spinnerService.show();
-      this.referService.translatetext("Upcoming Payment", this.userService.currentUserValue.preferlang).subscribe(
+      this.referService.translatetext("Estimated Payment", this.userService.currentUserValue.preferlang).subscribe(
         (trantxt: any) => {
           this.upcomingpaytext = trantxt;
         },
