@@ -251,6 +251,11 @@
       "SUCCESS":"Well Done !",
       "ERROR":"Oh Snap !",
       "INFO":"Something is missing.."
+    },
+    "DASHOARD_CBA_MAIN_BODY":{
+      "SUBSCRIBEDSERVICES":"Purchased Services",
+      "SERVICEPROVIDER":"Service Provider",
+      "REALESTATEINDUSTRY": "Estate Industry"
     }
     
     
