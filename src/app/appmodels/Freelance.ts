@@ -15,6 +15,7 @@ export class Freelance {
     public isregfeedone: boolean;
     public bgcurrentstatus: string;
     public accountno: string;
+    public accountname: string;
     public ifsc: string;
     constructor(
     ) {

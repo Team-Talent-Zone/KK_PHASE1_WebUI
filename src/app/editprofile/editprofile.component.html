@@ -394,6 +394,23 @@
                                     <div class="col-md-8">
                                         <div class="form-group">
                                             <span>
+                                                <i class="fa fa-user-o form-control-icon"></i>
+                                            </span>
+                                            <input type="text"
+                                                placeholder="{{ 'DASHBOARD_FU_PROFILE.PROFILE_BANKACCTNAME' | translate }}"
+                                                class="form-control" formControlName="accountname"
+                                                [ngClass]="{ 'is-invalid': issubmit && f.accountname.errors }">
+                                            <div *ngIf="issubmit && f.accountname.errors" class="invalid-feedback">
+                                                <div *ngIf="f.accountname.errors.required">{{
+                                                    'DASHBOARD_FU_PROFILE.PROFILE_BANKACCTNAME_REQ' | translate }}
+                                                </div>
+                                                <div *ngIf="f.accountname.errors.maxlength">
+                                                    {{ 'DASHBOARD_FU_PROFILE.PROFILE_BANKACCTNAME_EXCEED' | translate }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <span>
                                                 <i class="fa fa-university  form-control-icon"></i>
                                             </span>
                                             <input type="text"

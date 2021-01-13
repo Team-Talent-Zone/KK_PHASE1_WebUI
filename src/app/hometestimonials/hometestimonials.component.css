@@ -72,5 +72,5 @@
 .carousel-control-next,
 .carousel-control-prev {
   position: absolute;
-  top: initial!important;
+  top: 105%!important;
 }

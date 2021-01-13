@@ -187,6 +187,7 @@ export class EditprofileComponent implements OnInit {
           uploadValidPhotoidImgUrl: ['', [Validators.required]],
           avtarurl: ['', [Validators.required]],
           hourlyRate: ['', [Validators.required, Validators.maxLength(5), Validators.pattern('^[0-9]*$')]],
+          accountname: ['', [Validators.required, Validators.maxLength(20)]],
           accountno: ['', [Validators.required, Validators.maxLength(15), Validators.pattern('^[0-9]*$')]],
           verfiyaccountno: ['', [Validators.required]],
           ifsc: ['', [Validators.required, Validators.minLength(11), Validators.maxLength(11)]],
@@ -241,6 +242,7 @@ export class EditprofileComponent implements OnInit {
             this.editprofileForm.patchValue({ hourlyRate: this.edituserobj.freeLanceDetails.hourlyRate });
             this.nationalIDURL = this.edituserobj.freeLanceDetails.uploadValidPhotoidImgUrl;
             this.editprofileForm.patchValue({ uploadValidPhotoidImgUrl: this.edituserobj.freeLanceDetails.uploadValidPhotoidImgUrl });
+            this.editprofileForm.patchValue({ accountno: this.edituserobj.freeLanceDetails.accountname });
             this.editprofileForm.patchValue({ accountno: this.edituserobj.freeLanceDetails.accountno });
             this.editprofileForm.patchValue({ ifsc: this.edituserobj.freeLanceDetails.ifsc });
           }
@@ -304,6 +306,7 @@ export class EditprofileComponent implements OnInit {
       this.edituserobj.freeLanceDetails.hourlyRate = this.editprofileForm.get('hourlyRate').value;
       this.edituserobj.freeLanceDetails.uploadValidPhotoidImgUrl = this.editprofileForm.get('uploadValidPhotoidImgUrl').value;
       this.edituserobj.freeLanceDetails.accountno = this.editprofileForm.get('accountno').value;
+      this.edituserobj.freeLanceDetails.accountname = this.editprofileForm.get('accountname').value;
       this.edituserobj.freeLanceDetails.ifsc = this.editprofileForm.get('ifsc').value;
       if (this.edituserobj.freeLanceDetails.experienceInField != null &&
         this.edituserobj.freeLanceDetails.hourlyRate != null &&
