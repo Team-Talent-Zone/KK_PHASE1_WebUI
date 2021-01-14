@@ -23,7 +23,8 @@ export class DashboardsearchbyfilterComponent implements OnInit {
   @ViewChild('search', null)
   public searchElementRef: ElementRef;
 
-  startDate = new Date();
+  minstartDate = new Date();
+  maxstartDate = new Date();
   startdate: Date;
   issearchbydate = false;
   markPoints: any;
@@ -95,7 +96,8 @@ export class DashboardsearchbyfilterComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.startDate.setTime(this.startDate.getTime() + (48 * 60 * 60 * 1000));
+    this.minstartDate.setTime(this.minstartDate.getTime() + (24 * 60 * 60 * 1000));
+    this.maxstartDate.setTime(this.maxstartDate.getTime() + (144 * 60 * 60 * 1000));
     this.isfreelancerservicesubscribed = false;
     this.searchResults(null);
     this.createFormValidation();

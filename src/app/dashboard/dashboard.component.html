@@ -1,4 +1,8 @@
 <nav class="navbar navbar-fixed-top navbar-toggleable-sm navbar-expand-md navbar-dark mb-3">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+        data-target="#collapsingNavbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
     <div class="flex-row d-flex">
         <a class="scroll-link" style="border: 0;">
             <img src="assets/img/logo-transparent.png" width="50" height="50"
@@ -8,16 +12,19 @@
         <button type="button" class="navbar-toggler hidden-sm-up" data-toggle="offcanvas">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="combobox" *ngIf="this.userService.currentUserValue.userroles.rolecode !== 'FREELANCER_USER'">
+    </div>
+    <div class="navbar-collapse collapse" id="collapsingNavbar"
+        *ngIf="this.userService.currentUserValue.userroles.rolecode !== 'FREELANCER_USER'">
+        <div class="combobox">
             <input type="text" [(ngModel)]="inputItem" (ngModelChange)="getFilteredList()"
                 class="combobox-input form-control" (keyup)="onKeyPress($event)" (blur)="toggleListDisplay(0)"
-                (focus)="toggleListDisplay(1)" placeholder="Search skilled worker by skill" [ngClass]="{'error': showError}">
+                (focus)="toggleListDisplay(1)" placeholder="Search By Skilled Worker Skill" [ngClass]="{'error': showError}">
             <a type="submit" class="nav-link" (click)="search( inputItemCode , inputItem)"
                 class="btn btn-text pull-right" style="margin-top: -38px;"><i class="fa fa-search"></i></a>
             <span *ngIf="showError" class="error-text"><i>Invalid Selection.</i></span>
             <div class="combobox-options" *ngIf="!listHidden">
                 <list-item *ngFor="let item of filteredList;let i = index" (click)="selectItem(i)"
-                    [ngClass]="{'selected': i===selectedIndex}">{{item.label}}
+                    [ngClass]="{'selected': i===selectedIndex}"><br>{{item.label}}
                 </list-item>
             </div>
         </div>

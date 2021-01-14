@@ -77,7 +77,7 @@
   background-color: rgb(52 58 64) !important;
 }
 
-.navbar{
+.navbar {
   padding: 0px;
   border-bottom: 1px solid gray;
 }
@@ -111,20 +111,14 @@
   border-radius: 15% !important;
 }
 .combobox {
-  margin: auto;
-  margin-left: 57px;
+  margin-left: auto;
 }
-
 .combobox-input {
-  width: 330px;
-  border: none;
-  font-size: 18px;
+  width: 350px;
 }
-
 .combobox-input:focus {
   outline-style: none;
 }
-
 .combobox-options {
   position: absolute;
   text-align: center;
@@ -132,11 +126,14 @@
   width: 350px;
   max-height: 200px;
   overflow-y: auto;
-  box-shadow: 2px 2px 2px 2px #ccc;
   z-index: 1;
+  cursor: pointer;
 }
-
 .selected {
   color: cornsilk;
   background-color: rgb(165, 112, 112);
+}
+
+input:placeholder-shown {
+  font-style: italic;
 }
