@@ -1,0 +1,14 @@
+body {
+    background-color: #eeeeee
+}
+
+.green {
+    color: rgb(15, 207, 143);
+    font-weight: 680
+}
+
+@media(max-width:567px) {
+    .mobile {
+        padding-top: 40px
+    }
+}
