@@ -109,11 +109,11 @@
                 <div class="card-deck">
                   <div class="col-md-4 mb-3 mb-md-0" style="margin-bottom:8px !important"
                     *ngFor="let svc of listofAllIndividualServices;index as i">
-                    <div class="card text-center h-100" *ngIf="i<=2">
+                    <div class="card text-center h-80" *ngIf="i<=2">
                       <div class="card-header header-bg mt-10">
                         <h6 style="color: white;">{{svc.name}}</h6>
                       </div>
-                      <img class="card-img" src={{svc.imgurl}}>
+                      <img class="card-img-top center" src={{svc.imgurl}}  style="width: 14rem; height: 11rem;">
                       <div class="card-body d-flex flex-column">
                         <div class="card-title">
                           <span class="display-4"><i class="fa fa-inr"></i>{{svc.amount}}</span>
@@ -144,7 +144,7 @@
                       <div class="card-header header-bg mt-10">
                         <h6 style="color: white;">{{svc.name}}</h6>
                       </div>
-                      <img class="card-img" src={{svc.imgurl}}>
+                      <img class="card-img-top center" src={{svc.imgurl}} style="width: 14rem; height: 11rem;" >
                       <div class="card-body d-flex flex-column">
                         <div class="card-title">
                           <span class="display-4"><i class="fa fa-inr"></i>{{svc.amount}}</span>
@@ -185,11 +185,11 @@
                 <div class="card-deck">
                   <div class="col-md-4 mb-3 mb-md-0" style="margin-bottom:8px !important"
                     *ngFor="let svc of listofAllPackageServices;index as i">
-                    <div class="card text-center h-100" *ngIf="i<=2">
+                    <div class="card text-center h-80" *ngIf="i<=2">
                       <div class="card-header header-bg">
                         <h6 style="color: white;">{{svc.name}}</h6>
                       </div>
-                      <img class="card-img" src={{svc.imgurl}}>
+                      <img class="card-img-top center" src={{svc.imgurl}}  style="width: 14rem; height: 11rem;">
                       <div class="card-body d-flex flex-column">
                         <div class="card-title">
                           <span class="display-4"><i class="fa fa-inr"></i>{{svc.amount}}</span>
@@ -217,11 +217,11 @@
                 <div class="card-deck" *ngIf="priceMore1">
                   <div class="col-md-4 mb-3 mb-md-0" style="margin-bottom:8px !important"
                     *ngFor="let svc of listofAllPackageServices;index as i">
-                    <div class="card text-center h-100" *ngIf="i>2">
+                    <div class="card text-center h-80" *ngIf="i>2">
                       <div class="card-header header-bg">
                         <h6 style="color: white;">{{svc.name}}</h6>
                       </div>
-                      <img class="card-img" src={{svc.imgurl}}>
+                      <img class="card-img-top center" src={{svc.imgurl}}  style="width: 14rem; height: 11rem;">
                       <div class="card-body d-flex flex-column">
                         <div class="card-title">
                           <span class="display-4"><i class="fa fa-inr"></i>{{svc.amount}}</span>
