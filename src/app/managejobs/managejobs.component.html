@@ -72,43 +72,40 @@
                         </p>
 
                     </div>
+                    
                     <div class="card-body">
                         <i class="fa fa-briefcase fa-3x float-right"></i>
-                        <h3> <b>{{ 'DASHBOARD_FU_BODY.JOBDETAILS' | translate }} </b> </h3>
-                        <p>
-                            <small class="pull-left">
-                                <b> {{ 'DASHBOARD_FU_BODY.JOBLOCATION' | translate }} </b>
+                        <h3> <b>{{'DASHBOARD_FU_BODY.JOBDETAILS' | translate }} </b> </h3>
+
+                        <div>
+                            <small class="pull-left" >
+                                <b> {{'DASHBOARD_FU_BODY.JOBLOCATION' | translate }} </b>
                                 {{element.joblocation}}
                             </small>
-                        </p>
-                        <p>
-                            <small class="pull-left">
-                                <b>{{ 'DASHBOARD_FU_BODY.TOTAL_HOURSOFWORK' | translate }} </b>
-                                {{element.totalhoursofjob}}
-                            </small>
-                        </p>
-                        <p>
-                            <small class="pull-left">
-                                <b>Skill As: </b> {{element.subcategorylabel}}
-                            </small>
-                        </p>
-                        <p>
-                            <small class="pull-left">
-                                <b>{{ 'DASHBOARD_FU_BODY.JOBDESCPTION' | translate }} </b>
-                                {{(element.jobdescription | slice:0:140)}}
-                            </small>
-                        </p>
-                        <div class="tooltips">
-                            <br>
-                            <i><small>
-                                    <p class="pull-right"> Full job description </p>
-                                </small></i>
-                            <span class="tooltiptext">
-                                <p>
-                                    <small>{{element.jobdescription}}</small>
-                                </p>
-                            </span>
                         </div>
+                        <div >
+                            <small class="pull-left" >
+                                <b> Skill As: </b> {{element.subcategorylabel}}
+                            </small>
+                        </div> 
+                     
+                        <div>
+                            <small class="pull-left">
+                                <b>{{ 'DASHBOARD_FU_BODY.TOTAL_HOURSOFWORK' | translate }} </b> {{element.totalhoursofjob}}
+                            </small>
+                        </div>          
+                       
+                        <div class="tooltips">                                
+                              <small class="pull-left"> 
+                                 <b> See full job description </b>                    
+                              </small>
+                                <span class="tooltiptext">
+                                    <p>
+                                        <small>{{element.jobdescription}}</small>
+                                    </p>
+                                </span>
+                            </div>                      
+                      
                     </div>
                 </div>
             </div>
@@ -167,23 +164,17 @@
                                 <b>Skill As: </b> {{newlyjob.subcategorylabel}}
                             </small>
                         </p>
-                        <p>
-                            <small class="pull-left">
-                                <b>{{ 'DASHBOARD_FU_BODY.JOBDESCPTION' | translate }} </b>
-                                {{(newlyjob.jobdescription | slice:0:140)}}
+                       
+                        <div class="tooltips">                                
+                            <small class="pull-left"> 
+                               <b> See full job description </b>                    
                             </small>
-                        </p>
-                        <div class="tooltips">
-                            <br>
-                            <i><small>
-                                    <p class="pull-right"> Full job description </p>
-                                </small></i>
-                            <span class="tooltiptext">
-                                <p>
-                                    <small>{{newlyjob.jobdescription}}</small>
-                                </p>
-                            </span>
-                        </div>
+                              <span class="tooltiptext">
+                                  <p>
+                                      <small>{{newlyjob.jobdescription}}</small>
+                                  </p>
+                              </span>
+                          </div> 
                     </div>
                     <div class="card-footer" *ngIf="!newlyjob.isjobactive && newlyjob.isdeactive">
                         <div class="row">
@@ -304,23 +295,18 @@
                                 <b>Skill As: </b> {{completedjob.subcategorylabel}}
                             </small>
                         </p>
-                        <p>
-                            <small class="pull-left">
-                                <b>{{ 'DASHBOARD_FU_BODY.JOBDESCPTION' | translate }} </b>
-                                {{(completedjob.jobdescription | slice:0:140)}}
+                       
+                        <div class="tooltips">                                
+                            <small class="pull-left"> 
+                               <b> See full job description </b>                    
                             </small>
-                        </p>
-                        <div class="tooltips">
-                            <br>
-                            <i><small>
-                                    <p class="pull-right"> Full job description </p>
-                                </small></i>
-                            <span class="tooltiptext">
-                                <p>
-                                    <small>{{completedjob.jobdescription}}</small>
-                                </p>
-                            </span>
-                        </div>
+                              <span class="tooltiptext">
+                                  <p>
+                                      <small>{{completedjob.jobdescription}}</small>
+                                  </p>
+                              </span>
+                          </div>
+                        
                     </div>
                 </div>
             </div>
