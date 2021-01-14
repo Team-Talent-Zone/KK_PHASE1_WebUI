@@ -18,7 +18,8 @@
         <div class="combobox">
             <input type="text" [(ngModel)]="inputItem" (ngModelChange)="getFilteredList()"
                 class="combobox-input form-control" (keyup)="onKeyPress($event)" (blur)="toggleListDisplay(0)"
-                (focus)="toggleListDisplay(1)" placeholder="Search By Skilled Worker Skill" [ngClass]="{'error': showError}">
+                (focus)="toggleListDisplay(1)" placeholder="Search By Skilled Worker Skill"
+                [ngClass]="{'error': showError}">
             <a type="submit" class="nav-link" (click)="search( inputItemCode , inputItem)"
                 class="btn btn-text pull-right" style="margin-top: -38px;"><i class="fa fa-search"></i></a>
             <span *ngIf="showError" class="error-text"><i>Invalid Selection.</i></span>
@@ -156,15 +157,18 @@
                 </div>
                 <!-- <hr> -->
                 <!--Alert-->
-                <div class="row" *ngIf="txtid != null && ispaysuccess">
-                    <div class="alert alert-success alert-dismissible fade show w-100" role="alert">
-                        <h4 class="display-4">We have recieved your payment details and here is the
-                            transcation Id {{txtid}}</h4>
-                        <!--Close Icon-->
-                        <button type="button" class="btn close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
+                <div class="alert alert-success alert-dismissible fade show w-100" role="alert"
+                    *ngIf="txtid != null && ispaysuccess">
+                    <h3 class="display-5">We have recieved your payment and here is the
+                        transcation Id
+                        <a [routerLink]="['/payment',txtid]">
+                            {{txtid}}
+                        </a>
+                    </h3>
+                    <!--Close Icon-->
+                    <button type="button" class="btn close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
                 </div>
                 <router-outlet></router-outlet>
             </div>

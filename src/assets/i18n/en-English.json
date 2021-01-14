@@ -251,7 +251,7 @@
     "ALERT_POPUP":{
       "SUCCESS":"Well Done !",
       "ERROR":"Oh Snap !",
-      "INFO":"Something is missing.."
+      "INFO":"Something went wrong.."
     },
     "DASHOARD_CBA_MAIN_BODY":{
       "SUBSCRIBEDSERVICES":"My Services",
