@@ -70,7 +70,7 @@
                                 <b>{{ 'DASHBOARD_FU_BODY.PHONENO' | translate }} </b> {{element.fuphoneno}}
                             </small>
                         </p>
-                   
+
                     </div>
                     <div class="card-body">
                         <i class="fa fa-briefcase fa-3x float-right"></i>
@@ -83,7 +83,8 @@
                         </p>
                         <p>
                             <small class="pull-left">
-                                <b>{{ 'DASHBOARD_FU_BODY.TOTAL_HOURSOFWORK' | translate }} </b> {{element.totalhoursofjob}}
+                                <b>{{ 'DASHBOARD_FU_BODY.TOTAL_HOURSOFWORK' | translate }} </b>
+                                {{element.totalhoursofjob}}
                             </small>
                         </p>
                         <p>
@@ -94,9 +95,20 @@
                         <p>
                             <small class="pull-left">
                                 <b>{{ 'DASHBOARD_FU_BODY.JOBDESCPTION' | translate }} </b>
-                                {{element.jobdescription}}
+                                {{(element.jobdescription | slice:0:140)}}
                             </small>
                         </p>
+                        <div class="tooltips">
+                            <br>
+                            <i><small>
+                                    <p class="pull-right"> Full job description </p>
+                                </small></i>
+                            <span class="tooltiptext">
+                                <p>
+                                    <small>{{element.jobdescription}}</small>
+                                </p>
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -146,7 +158,8 @@
                         </p>
                         <p>
                             <small class="pull-left">
-                                <b>{{ 'DASHBOARD_FU_BODY.TOTAL_HOURSOFWORK' | translate }} </b> {{newlyjob.totalhoursofjob}}
+                                <b>{{ 'DASHBOARD_FU_BODY.TOTAL_HOURSOFWORK' | translate }} </b>
+                                {{newlyjob.totalhoursofjob}}
                             </small>
                         </p>
                         <p>
@@ -157,9 +170,20 @@
                         <p>
                             <small class="pull-left">
                                 <b>{{ 'DASHBOARD_FU_BODY.JOBDESCPTION' | translate }} </b>
-                                {{newlyjob.jobdescription}}
+                                {{(newlyjob.jobdescription | slice:0:140)}}
                             </small>
                         </p>
+                        <div class="tooltips">
+                            <br>
+                            <i><small>
+                                    <p class="pull-right"> Full job description </p>
+                                </small></i>
+                            <span class="tooltiptext">
+                                <p>
+                                    <small>{{newlyjob.jobdescription}}</small>
+                                </p>
+                            </span>
+                        </div>
                     </div>
                     <div class="card-footer" *ngIf="!newlyjob.isjobactive && newlyjob.isdeactive">
                         <div class="row">
@@ -181,7 +205,8 @@
                     <div class="card-footer" *ngIf="newlyjob.isjobactive && !newlyjob.isjobaccepted">
                         <div class="row">
                             <small class="text-muted ">
-                                <p class="text-primary text-center"><i class="fa fa-info-circle"></i> Thank you for activating the
+                                <p class="text-primary text-center"><i class="fa fa-info-circle"></i> Thank you for
+                                    activating the
                                     job . Our
                                     pool of skilled workers
                                     will be available to accept this job shortly.
@@ -194,7 +219,8 @@
                     <div class="card-footer" *ngIf="newlyjob.isjobactive && newlyjob.isdeactive != null">
                         <div class="row">
                             <small class="text-muted ">
-                                <p class="text-info text-center"><i class="fa fa-info-circle"></i>No skilled worker has accepted
+                                <p class="text-info text-center"><i class="fa fa-info-circle"></i>No skilled worker has
+                                    accepted
                                     this job. Please provide to cancel job & create new job again.</p>
                             </small>
                         </div>
@@ -269,7 +295,8 @@
                         </p>
                         <p>
                             <small class="pull-left">
-                                <b>{{ 'DASHBOARD_FU_BODY.TOTAL_HOURSOFWORK' | translate }} </b> {{completedjob.totalhoursofjob}}
+                                <b>{{ 'DASHBOARD_FU_BODY.TOTAL_HOURSOFWORK' | translate }} </b>
+                                {{completedjob.totalhoursofjob}}
                             </small>
                         </p>
                         <p>
@@ -280,9 +307,20 @@
                         <p>
                             <small class="pull-left">
                                 <b>{{ 'DASHBOARD_FU_BODY.JOBDESCPTION' | translate }} </b>
-                                {{completedjob.jobdescription}}
+                                {{(completedjob.jobdescription | slice:0:140)}}
                             </small>
                         </p>
+                        <div class="tooltips">
+                            <br>
+                            <i><small>
+                                    <p class="pull-right"> Full job description </p>
+                                </small></i>
+                            <span class="tooltiptext">
+                                <p>
+                                    <small>{{completedjob.jobdescription}}</small>
+                                </p>
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
