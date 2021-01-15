@@ -65,7 +65,8 @@
     "SIGNUP_VALIDATION_TERMS_POLICYCHECKBOX_REQ":"కొనసాగడానికి ముందు మీరు మా సేవా నిబంధనలు మరియు గోప్యతా విధానాన్ని అంగీకరించాలి.",
     "SIGNUP_VALIDATION_INDUSTRY_REQ":"పరిశ్రమ అవసరం",
     "SIGNUP_SUBMIT_BUTTON":"సబ్మిట్",
-    "SIGNUP_CLOSE_BUTTON":"కాన్సుల్"
+    "SIGNUP_CLOSE_BUTTON":"కాన్సుల్",
+    "ACCOUNTLOGIN" : "ఖాతా లాగిన్"
   },
   "ONBOARD": {
     "OURCUSTOMERS":"మా కస్టమర్లు",

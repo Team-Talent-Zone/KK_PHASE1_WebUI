@@ -65,7 +65,8 @@
     "SIGNUP_VALIDATION_TERMS_POLICYCHECKBOX_REQ":"आगे बढ़ने से पहले आपको हमारी सेवा की शर्तें और गोपनीयता नीति स्वीकार करनी चाहिए।",
     "SIGNUP_VALIDATION_INDUSTRY_REQ":"उद्योग की आवश्यकता है",
     "SIGNUP_SUBMIT_BUTTON":"प्रस्तुत",
-    "SIGNUP_CLOSE_BUTTON":"रद्द करना"
+    "SIGNUP_CLOSE_BUTTON":"रद्द करना",
+    "ACCOUNTLOGIN" : "खाता प्रवेश"
   },
   "ONBOARD": {
     "OURCUSTOMERS":"हमारे ग्राहक",

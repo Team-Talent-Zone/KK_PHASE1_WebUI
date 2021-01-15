@@ -16,8 +16,8 @@
   line-height: 2.375rem;
   text-align: center;
   pointer-events: none;
-  color: black;
-  background-color: #e29a16;
+  /* color: black; */
+  /* background-color: #178264; */
 } 
 
 
@@ -156,4 +156,6 @@
   background-repeat: no-repeat;
   background-attachment: scroll;*/
   background-color: #0a382b;
+  height: 590px;
 }
+

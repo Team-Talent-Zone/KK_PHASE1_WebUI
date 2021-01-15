@@ -66,7 +66,8 @@
       "SIGNUP_VALIDATION_TERMS_POLICYCHECKBOX_REQ":"You must accept our terms of service and privacy policy before proceed.",
       "SIGNUP_VALIDATION_INDUSTRY_REQ":"Industry is required",
       "SIGNUP_SUBMIT_BUTTON":"Submit",
-      "SIGNUP_CLOSE_BUTTON":"Cancel"
+      "SIGNUP_CLOSE_BUTTON":"Cancel",
+      "ACCOUNTLOGIN" :"Account Login"
     },
     "ONBOARD": {
       "OURCUSTOMERS":"Our Customers",
