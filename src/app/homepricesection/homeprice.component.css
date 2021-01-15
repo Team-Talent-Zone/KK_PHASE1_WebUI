@@ -141,9 +141,6 @@ primary:not(:disabled):not(.disabled).active, .btn-outline-primary:not(:disabled
   border-color: #0a382b;
 }
 
-
-element.style {
-}
 .btn-group>.btn-group:not(:first-child)>.btn, .btn-group>.btn:not(:first-child) {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;

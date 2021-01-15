@@ -38,7 +38,7 @@
               <p style="text-align: justify;">{{svc.description}}</p>
             </div>
             <!-- </div> -->
-            <button class="btn btn-primary  btn-sm" *ngIf="i>3" (click)="viewLess()">{{ 'SERVICE.BUTTON_VIEWLESS' |
+            <button class="btn btn-primary  btn-sm" *ngIf="i==3" (click)="viewLess()">{{ 'SERVICE.BUTTON_VIEWLESS' |
               translate }}</button>
           </div>
         </div>
@@ -84,7 +84,7 @@
   <!-- Pricing -->
   <div class="section-5-container price-bg" *ngIf="listofAllIndividualServices.length > 0">
     <!-- <div class="container"> -->
-    <div class="container p-0">
+    <div class="container-fluid">
       <h1 align="center">{{ 'PRICE.TITLE' | translate }}</h1>
       <div class="divider-1 wow fadeInUp text-center"><span></span></div>
       <div class="row text-center">
@@ -102,14 +102,14 @@
               </nav>
             </div>
           </div>
-          <div class="tab-content">
+          <div class="tab-content" style="padding: 18px;">
             <div class="tab-pane fade show active" id="monthly">
               <div class="card-body Card-Body-1" *ngIf="listofAllIndividualServices != null" role="tabpanel"
                 aria-labelledby="headingOne" data-parent="#accordion">
                 <div class="card-deck">
-                  <div class="col-md-4 mb-3 mb-md-0" style="margin-bottom:8px !important"
+                  <div class="col-md-3" style="margin-bottom:8px !important"
                     *ngFor="let svc of listofAllIndividualServices;index as i">
-                    <div class="card text-center h-80" *ngIf="i<=2">
+                    <div class="card text-center h-80" *ngIf="i<=3">
                       <div class="card-header header-bg mt-10">
                         <h6 style="color: white;">{{svc.name}}</h6>
                       </div>
@@ -138,9 +138,9 @@
                   </div>
                 </div>
                 <div class="card-deck" *ngIf="priceMore">
-                  <div class="col-md-4 mb-3 mb-md-0" style="margin-bottom:8px !important"
+                  <div class="col-md-3" style="margin-bottom:8px !important"
                     *ngFor="let svc of listofAllIndividualServices;index as i">
-                    <div class="card text-center h-100" *ngIf="i>2">
+                    <div class="card text-center h-100" *ngIf="i>3">
                       <div class="card-header header-bg mt-10">
                         <h6 style="color: white;">{{svc.name}}</h6>
                       </div>
@@ -173,7 +173,7 @@
                     {{ 'PRICE.BUTTON_VIEWMORE' | translate }}</button>
                 </div>
                 <div *ngFor="let svc of listofAllIndividualServices;index as i">
-                  <button class="btn btn-primary btn-sm text-center" *ngIf="i>2 && priceMore" (click)="priceless()"> {{
+                  <button class="btn btn-primary btn-sm text-center" *ngIf="i==2 && priceMore" (click)="priceless()"> {{
                     'PRICE.BUTTON_VIEWLESS' | translate }}</button>
                 </div>
               </div>
@@ -183,9 +183,9 @@
                 aria-labelledby="headingOne" data-parent="#accordion">
 
                 <div class="card-deck">
-                  <div class="col-md-4 mb-3 mb-md-0" style="margin-bottom:8px !important"
+                  <div class="col-md-3 mb-3 mb-md-0" style="margin-bottom:8px !important"
                     *ngFor="let svc of listofAllPackageServices;index as i">
-                    <div class="card text-center h-80" *ngIf="i<=2">
+                    <div class="card text-center h-80" *ngIf="i<=3">
                       <div class="card-header header-bg">
                         <h6 style="color: white;">{{svc.name}}</h6>
                       </div>
@@ -251,7 +251,7 @@
                     (click)="pricemore1()">{{ 'PRICE.BUTTON_VIEWMORE' | translate }}</button>
                 </div>
                 <div *ngFor="let svc of listofAllPackageServices;index as i">
-                  <button class="btn btn-primary btn-sm text-center" *ngIf="i>2 && priceMore1" (click)="priceless1()">{{
+                  <button class="btn btn-primary btn-sm text-center" *ngIf="i==2 && priceMore1" (click)="priceless1()">{{
                     'PRICE.BUTTON_VIEWLESS' | translate }}</button>
                 </div>
 
