@@ -1,8 +1,12 @@
+import { ReferenceService } from './../AppRestCall/reference/reference.service';
 import { Component, TemplateRef, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AlertsService } from '../AppRestCall/alerts/alerts.service';
 import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import { Router } from '@angular/router';
+import { config } from '../appconstants/config';
+import { UserService } from '../AppRestCall/user/user.service';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -20,6 +24,7 @@ export class AlertComponent implements OnInit {
   config: ModalOptions = { class: 'modal-md' };
   errorCallCount: number = 0;
   errormsg: string;
+  loginfailedmsg: string;
 
   constructor(
     private alertService: AlertsService,
@@ -29,6 +34,7 @@ export class AlertComponent implements OnInit {
   }
 
   ngOnInit() {
+
     this.subscription = this.alertService.getMessage()
       .subscribe(message => {
         switch (message && message.type) {
@@ -93,8 +99,15 @@ export class AlertComponent implements OnInit {
           this.router.navigate(['404error']);
         } else { // tslint:disable-next-line: radix
           if (Number.parseInt(this.message.text.status) === 401) {
-            console.log('this.message.text.error', this.message.text.error);
-            this.errormsg = this.message.text.error;
+            if (localStorage.getItem('langCode') === config.lang_code_hi) {
+              this.loginfailedmsg = config.invalid_username_password_hi;
+            } else
+              if (localStorage.getItem('langCode') === config.lang_code_te) {
+                this.loginfailedmsg = config.invalid_username_password_te;
+              } else {
+                this.loginfailedmsg = config.invalid_username_password;
+              }
+            this.errormsg = this.loginfailedmsg;
           } else
             // tslint:disable-next-line: radix
             if (Number.parseInt(this.message.text.status) !== 404 && Number.parseInt(this.message.text.status) !== 504) {

@@ -74,7 +74,10 @@ export const config = {
   shortkey_termsofservice_hindi: 'terms_hin',
   shortkey_privacypolicy_english: 'pp_english',
   shortkey_privacypolicy_telugu: 'pp_telugu',
-  shortkey_privacypolicy_hindi: 'pp_hindi'
+  shortkey_privacypolicy_hindi: 'pp_hindi',
+  invalid_username_password: 'Invalid username or password',
+  invalid_username_password_te: 'చెల్లని ఇమెయిల్ చిరునామా లేదా పాస్‌వర్డ్',
+  invalid_username_password_hi: 'अंकित ईमेल या पासवर्ड गलत है'
 };
 
 

@@ -139,13 +139,15 @@ export class DashboardComponent implements OnInit {
 
   logout() {
     this.userService.logout();
+    localStorage.setItem('langCode', config.default_prefer_lang);
+    localStorage.setItem('langLabel', config.lang_english_word);
     this.router.navigate(['/home']);
   }
 
   search(inputItemCode: string, inputItem: string) {
     const obj = this.list.filter((item) => item.code.startsWith(inputItemCode));
     if (obj.length === 0) {
-      this.alertService.info('Keyword ' +inputItem + ' is a invalid skill to search.');
+      this.alertService.info('Keyword ' + inputItem + ' is a invalid skill to search.');
     } else {
       this.router.navigateByUrl('fusearch/', { skipLocationChange: true }).
         then(() => {
