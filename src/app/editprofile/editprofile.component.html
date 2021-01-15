@@ -125,8 +125,15 @@
                                                 <div *ngIf="f.phoneno.errors.required">
                                                     {{ 'DASHBOARD_FU_PROFILE.PROFILE_PHONE_REQ' | translate }}
                                                 </div>
+                                                <div *ngIf="f.phoneno.errors.maxlength">
+                                                    {{ 'DASHBOARD_FU_PROFILE.PROFILE_PHONE_REQ_MAXLENG' | translate }}
+                                                </div>
                                                 <div *ngIf="f.phoneno.errors.pattern">{{
-                                                    'DASHBOARD_FU_PROFILE.PROFILE_PHONE_INVALID' | translate }}</div>
+                                                    'DASHBOARD_FU_PROFILE.PROFILE_PHONE_INVALID' | translate }}
+                                                </div>
+                                                <div *ngIf="f.phoneno.errors.minlength">{{
+                                                    'DASHBOARD_FU_PROFILE.PROFILE_PHONE_REQ_MINLENG' | translate }}
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

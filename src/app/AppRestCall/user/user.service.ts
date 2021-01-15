@@ -54,7 +54,10 @@ export class UserService {
   }*/
 
   loginUserByUsername(username: string, password: string) {
-    return this.http.get(`${environment.apiUrl}/findByUsername/` + username + '/').pipe(map(user => {
+    const headers = new HttpHeaders({
+      Authorization: 'Basic ' + btoa(username + ':' + password)
+    });
+    return this.http.get(`${environment.apiUrl}/findByUsername/` + username + '/', { headers }).pipe(map(user => {
       this.usrObj = this.userAdapter.adapt(user);
       // store user details and jwt token in local storage to keep user logged in between page refreshes
       localStorage.setItem('currentUser', JSON.stringify(this.usrObj));

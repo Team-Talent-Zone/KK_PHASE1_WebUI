@@ -170,7 +170,7 @@ export class EditprofileComponent implements OnInit {
         purposeofsignup: ['', [Validators.required]],
         designation: ['', [Validators.required, Validators.maxLength(40)]],
         accepteditprofileterms: [false, [Validators.requiredTrue]],
-        phoneno: ['', [Validators.required, Validators.pattern("[0-9 ]{10}")]]
+        phoneno: ['', [Validators.required, Validators.minLength(10),Validators.maxLength(10) ,Validators.pattern("[0-9 ]{10}")]]
       });
     } else
       if (this.roleCode === config.user_rolecode_fu.toString()) {
@@ -192,7 +192,7 @@ export class EditprofileComponent implements OnInit {
           verfiyaccountno: ['', [Validators.required]],
           ifsc: ['', [Validators.required, Validators.minLength(11), Validators.maxLength(11)]],
           accepteditprofileterms: [false, [Validators.requiredTrue]],
-          phoneno: ['', [Validators.required, Validators.pattern("[0-9 ]{10}")]]
+          phoneno: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10),Validators.pattern("[0-9 ]{10}")]]
         });
       } else {
         this.editprofileForm = this.formBuilder.group({

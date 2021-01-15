@@ -196,6 +196,8 @@
      "PROFILE_ADDRESS_REQ":"Address is required",
      "PROFILE_PHONE":"Mobile Number",
      "PROFILE_PHONE_REQ":"Mobile Number is required",
+     "PROFILE_PHONE_REQ_MAXLENG":"Mobile Number can not exceed 10 digits",
+     "PROFILE_PHONE_REQ_MINLENG":"Mobile Number must be 10 digits",
      "PROFILE_PHONE_INVALID":"Invalid Mobile Number Format",
      "PROFILE_PIC_REQ":"Pic is required",
      "PROFILE_PIC":"Upload Profile Pic",

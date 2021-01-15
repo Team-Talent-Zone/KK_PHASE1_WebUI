@@ -24,23 +24,22 @@ export class BasicAuthHtppInterceptorService implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler) {
     if (localStorage.getItem('currentUser') != null) {
       console.log('============1============');
-      const authReq = req.clone({
+      req = req.clone({
         // tslint:disable-next-line: max-line-length
         headers: new HttpHeaders({
           Authorization: 'Basic ' +
             btoa(this.userService.currentUserValue.username + ':' + localStorage.getItem('currentPwd'))
         })
       });
-      return next.handle(authReq);
+     
     } else
       if (localStorage.getItem('currentUser') == null && req.url.indexOf('findByUsername') === -1) {
         console.log('============2============');
-        const defaultauth = req.clone({
+        req = req.clone({
           setHeaders: {
             Authorization: 'Basic VzRVQmFzaWNBdXRob3JpemF0aW9uOlc0VSMyMDIxQFJFU1QqIz9kWHB0cT9wOVYzV05MIVAkIw=='
           }
         });
-        return next.handle(defaultauth);
       } else {
         console.log('============3============');
         const xhr = req.clone({
@@ -48,5 +47,6 @@ export class BasicAuthHtppInterceptorService implements HttpInterceptor {
         });
         return next.handle(xhr);
       }
+      return next.handle(req);
   }
 }

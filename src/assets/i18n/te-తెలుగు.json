@@ -195,6 +195,8 @@
     "PROFILE_ADDRESS_REQ":"చిరునామా అవసరం",
     "PROFILE_PHONE":"మొబైల్ నంబర్",
     "PROFILE_PHONE_REQ":"మొబైల్ నంబర్ అవసరం",
+    "PROFILE_PHONE_REQ_MAXLENG":"మొబైల్ సంఖ్య 10 అంకెలు మించకూడదు",
+    "PROFILE_PHONE_REQ_MINLENG":"మొబైల్ సంఖ్య తప్పనిసరిగా 10 అంకెలు ఉండాలి",
     "PROFILE_PHONE_INVALID":"చెల్లని మొబైల్ నంబర్ ఆకృతి",
     "PROFILE_PIC_REQ":"పిక్ అవసరం",
     "PROFILE_PIC":"ప్రొఫైల్ పిక్ అప్‌లోడ్ చేయండి",
