@@ -29,10 +29,15 @@
                                     {{ 'DASHBOARD_FU_PROFILE.PROFILE_BASICINFOR' | translate }}
                                 </h4>
                                 <small *ngIf="this.userService.currentUserValue.userroles.rolecode =='FREELANCER_USER'">
-                                    <i class="fa fa-info-circle form-control-icon">
-                                    </i>
-                                    {{
-                                    'DASHBOARD_FU_PROFILE.PROFILE_ACCT_DETAILS_INFO' | translate }}
+                                    <p> <i class="fa fa-info-circle form-control-icon">
+                                        </i>
+                                        {{
+                                        'DASHBOARD_FU_PROFILE.PROFILE_BASIC_DETAILS_INFO_1' | translate }}
+                                        <i class="fa fa-info-circle form-control-icon">
+                                        </i>
+                                        {{
+                                        'DASHBOARD_FU_PROFILE.PROFILE_BASIC_DETAILS_INFO_2' | translate }}
+                                    </p>
                                 </small>
                             </div>
                             <div class="card-body">
@@ -152,8 +157,16 @@
 
                                                     </div>
                                                 </div>
+                                                <button type="button" class="btn btn-danger btn-sm btn-block" *ngIf="this.userService.currentUserValue.userroles.rolecode
+                                                    !=='FREELANCER_USER'" (click)=" fileInput.click()"> {{
+                                                    'DASHBOARD_FU_PROFILE.PROFILE_PIC'
+                                                    |
+                                                    translate }}</button>
                                                 <button type="button" class="btn btn-danger btn-sm btn-block"
-                                                    (click)="fileInput.click()"> {{ 'DASHBOARD_FU_PROFILE.PROFILE_PIC' |
+                                                    *ngIf="this.userService.currentUserValue.userroles.rolecode==='FREELANCER_USER' && 
+                                                    !this.userService.currentUserValue.freeLanceDetails.isprofilecompleted" (click)=" fileInput.click()"> {{
+                                                    'DASHBOARD_FU_PROFILE.PROFILE_PIC'
+                                                    |
                                                     translate }}</button>
                                             </div>
                                             <small class="text-muted">{{ 'DASHBOARD_FU_PROFILE.PROFILE_PIC_FORMAT' |
@@ -265,9 +278,14 @@
                                 </div>
                                 <h4 class="card-title mb-0">{{ 'DASHBOARD_FU_PROFILE.PROFILE_SKILL' | translate }}</h4>
                                 <small>
-                                    <i class="fa fa-info-circle form-control-icon"></i>
-                                    {{ 'DASHBOARD_FU_PROFILE.PROFILE_SKILLED_INFO' | translate }}
-                                </small> 
+                                    <p>
+                                        <i class="fa fa-info-circle form-control-icon"></i>
+                                        {{ 'DASHBOARD_FU_PROFILE.PROFILE_SKILLED_INFO' | translate }}
+                                        <i class="fa fa-info-circle form-control-icon"></i>
+                                        {{ 'DASHBOARD_FU_PROFILE.PROFILE_SKILLED_INFO_2' | translate }}
+                                    </p>
+
+                                </small>
                             </div>
                             <div class="card-body">
                                 <div class="row">
@@ -350,32 +368,42 @@
                                         </div>
                                     </div>
                                     <div class="col-md-4">
-                                        <div *ngIf="roleCode =='FREELANCER_USER'">
-                                            <div *ngIf="nationalIDURL == null">
-                                                <span style="font-size:13px;color:rgb(255, 30, 0)">Photo Id is required
-                                                </span>
-                                            </div>
-                                            <div class="avatar-upload">
-                                                <div class="avatar-edit">
-                                                    <input type='file' accept=".png,.jpg,.jpeg" #fileInput
-                                                        (change)="uploadFile($event , 'nationalid')" />
+                                        <div class="text-center">
+                                            <div *ngIf="roleCode =='FREELANCER_USER'">
+                                                <div *ngIf="nationalIDURL == null">
+                                                    <span style="font-size:13px;color:rgb(255, 30, 0)">Photo Id is
+                                                        required
+                                                    </span>
                                                 </div>
-                                                <div class="avatar-square-preview" *ngIf="nationalIDURL != null">
-                                                    <div id="imagePreview"
-                                                        [style.backgroundImage]="'url('+ nationalIDURL +')'">
+                                                <div class="avatar-upload">
+                                                    <div class="avatar-edit">
+                                                        <input type='file' accept=".png,.jpg,.jpeg" #fileInput
+                                                            (change)="uploadFile($event , 'nationalid')" />
+                                                    </div>
+                                                    <div class="avatar-square-preview" *ngIf="nationalIDURL != null">
+                                                        <div id="imagePreview"
+                                                            [style.backgroundImage]="'url('+ nationalIDURL +')'">
+                                                        </div>
                                                     </div>
                                                 </div>
+                                                <button type="button" class="btn btn-info btn-md"
+                                                    (click)="fileInput.click()" *ngIf="nationalIDURL != null && 
+                                                !this.userService.currentUserValue.freeLanceDetails.isprofilecompleted
+                                                 ">
+                                                    <span>
+                                                        {{ 'DASHBOARD_FU_PROFILE.PROFILE_REUPLOAD' | translate }}</span>
+                                                </button>
+                                                <button type="button" class="btn btn-info btn-md"
+                                                    (click)="fileInput.click()" *ngIf="nationalIDURL != null && 
+                                                !this.userService.currentUserValue.freeLanceDetails.isprofilecompleted
+                                                 ">
+                                                    <span>
+                                                        {{ 'DASHBOARD_FU_PROFILE.PROFILE_REUPLOAD' | translate }}</span>
+                                                </button>
                                             </div>
-                                            <button type="button" class="btn btn-info btn-md"
-                                                (click)="fileInput.click()">
-                                                <span *ngIf="nationalIDURL != null ; else elseNoNationalID">
-                                                    {{ 'DASHBOARD_FU_PROFILE.PROFILE_REUPLOAD' | translate }}</span>
-                                                <ng-template #elseNoNationalID>
-                                                    {{ 'DASHBOARD_FU_PROFILE.PROFILE_UPLOAD' | translate }}
-                                                </ng-template>
-                                            </button>
+                                            <small class="text-muted">{{ 'DASHBOARD_FU_PROFILE.PROFILE_PIC_FORMAT' |
+                                                translate }}</small>
                                         </div>
-                                        <small>{{ 'DASHBOARD_FU_PROFILE.PROFILE_PIC_FORMAT' | translate }}</small>
                                     </div>
                                 </div>
                             </div>
@@ -390,7 +418,7 @@
                                 <small>
                                     <i class="fa fa-info-circle form-control-icon"></i>
                                     {{ 'DASHBOARD_FU_PROFILE.PROFILE_BANKDETAILS_INFO' | translate }}
-                                </small> 
+                                </small>
                             </div>
                             <div class="card-body">
                                 <div class="row">

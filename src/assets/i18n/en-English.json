@@ -181,7 +181,8 @@
     "DASHBOARD_FU_PROFILE":{
      "PROFILESETTINGS": "Profile Settings",
      "PROFILE_ACCT_DETAILS":"Account Details",
-     "PROFILE_ACCT_DETAILS_INFO":"Change to prefered langauge option will only effect after relogin.",
+     "PROFILE_BASIC_DETAILS_INFO_1":"Change to prefered langauge option will only effect after relogin. ",
+     "PROFILE_BASIC_DETAILS_INFO_2":"Your photo must be visible with fully face detected. You can not undo once it is submit.",
      "PROFILE_CHANGEPWD":"Change Password",
      "PROFILE_BASICINFOR":"Basic Information",
      "PROFILE_FIRSTNAME":"First Name*",
@@ -211,6 +212,7 @@
      "PROFILE_REUPLOAD":"Re-Upload Photo Id",
      "PROFILE_UPLOAD":"Upload Photo Id",
      "PROFILE_SKILLED_INFO":"Enter hourly rate based on your work experience.",
+     "PROFILE_SKILLED_INFO_2":"Upload valid govt id either aaadhar or voter card. You can not undo once it is submit.",
      "PROFILE_BANKDETAILS":"Bank Details",
      "PROFILE_BANKDETAILS_INFO":"We will deposit the amount to this bank account . Make sure bank account number and IFSC code is valid.",
      "PROFILE_BANKACCT":"Bank Account Number*",
