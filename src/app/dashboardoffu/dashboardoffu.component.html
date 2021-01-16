@@ -188,22 +188,9 @@
                                             <b>{{ 'DASHBOARD_FU_BODY.PHONENO' | translate }} </b> {{element.cbaphoneno}}
                                         </small>
                                     </p>
-                                    <p>
-                                        <small class="pull-left">
-                                            <b>{{ 'DASHBOARD_FU_BODY.JOBDESCPTION' | translate }} </b>
-                                            {{(element.jobdescription | slice:0:140)}}
-                                        </small>
-                                    </p>
                                     <div class="tooltips">
-                                        <br>
-                                        <i><small>
-                                                <p class="pull-right"> Full job description </p>
-                                            </small></i>
-                                        <span class="tooltiptext">
-                                            <p>
-                                                <small>{{element.jobdescription}}</small>
-                                            </p>
-                                        </span>
+                                        <a style="cursor:pointer" (click)="openReadMorePopup(element.jobdescription)"><i>
+                                            {{ 'DASHBOARD_FU_BODY.JOBDESCPTION' | translate }}</i></a>
                                     </div>
                                 </div>
                                 <div class="card-footer">
@@ -267,22 +254,9 @@
                                             <b>{{ 'DASHBOARD_FU_BODY.PHONENO' | translate }} </b> {{element.cbaphoneno}}
                                         </small>
                                     </p>
-                                    <p>
-                                        <small class="pull-left">
-                                            <b>{{ 'DASHBOARD_FU_BODY.JOBDESCPTION' | translate }} </b>
-                                            {{(element.jobdescription | slice:0:140)}}
-                                        </small>
-                                    </p>
                                     <div class="tooltips">
-                                        <br>
-                                        <i><small>
-                                                <p class="pull-right"> Full job description </p>
-                                            </small></i>
-                                        <span class="tooltiptext">
-                                            <p>
-                                                <small>{{element.jobdescription}}</small>
-                                            </p>
-                                        </span>
+                                        <a style="cursor:pointer" (click)="openReadMorePopup(element.jobdescription)"><i>
+                                            {{ 'DASHBOARD_FU_BODY.JOBDESCPTION' | translate }}</i></a>
                                     </div>
                                 </div>
                             </div>
@@ -348,22 +322,10 @@
                                             <b>{{ 'DASHBOARD_FU_BODY.PHONENO' | translate }} </b> {{element.cbaphoneno}}
                                         </small>
                                     </p>
-                                    <p>
-                                        <small class="pull-left">
-                                            <b>{{ 'DASHBOARD_FU_BODY.JOBDESCPTION' | translate }} </b>
-                                            {{(element.jobdescription | slice:0:140)}}
-                                        </small>
-                                    </p>
+                                     
                                     <div class="tooltips">
-                                        <br>
-                                        <i><small>
-                                                <p class="pull-right"> Full job description </p>
-                                            </small></i>
-                                        <span class="tooltiptext">
-                                            <p>
-                                                <small>{{element.jobdescription}}</small>
-                                            </p>
-                                        </span>
+                                        <a style="cursor:pointer" (click)="openReadMorePopup(element.jobdescription)"><i>
+                                            {{ 'DASHBOARD_FU_BODY.JOBDESCPTION' | translate }}</i></a>
                                     </div>
                                 </div>
                             </div>

@@ -27,8 +27,9 @@
                             <!--Avatar-->
                             <div class="avatar mx-auto">
                                 <img src={{item.avtarurl}} class="rounded-circle img-fluid">
-                                <span class="pull-right"><i class="fa fa-star" style="color: #ff4949;" *ngFor="let i of item.starrate">
-                                </i></span>
+                                <span class="pull-right"><i class="fa fa-star" style="color: #ff4949;"
+                                        *ngFor="let i of item.starrate">
+                                    </i></span>
                             </div>
                             <p>
                                 <b>{{item.fullname}}</b>
@@ -39,22 +40,11 @@
                             <p>
                                 <b>{{item.feedbackby}}</b>
                             </p>
-                            {{(item.feedbackcomment | slice:0:140)}}
-                            <div class="tooltips">
-                                <i>{{'SKILLEDWORKERREVIEW.SWORKER_BUTTON_READFULL' | translate}}</i>
-                                <span class="tooltiptext">
-                                    <p>
-                                        <!--{{(item.feedbackcomment | slice:140:item.feedbackcomment.length)}}-->
-                                        {{item.feedbackcomment}}
-                                    </p>
-                                </span>
-                            </div>
-                            <!-- <app-read-more [content]="item.feedbackcomment" [limit]="150"
-                                                [completeWords]="true">
-                                            </app-read-more>-->
-
-                            <!-- <h6 class="blue-text font-weight-bold my-3 text-center">{{item.feedbackby}}</h6>
-                                     -->
+                            {{(item.feedbackcomment | slice:0:100)}}
+                            <a class="tooltips" style="cursor:pointer"
+                                (click)="openReadMorePopup(item.feedbackcomment)"><i>
+                                    [{{'SKILLEDWORKERREVIEW.SWORKER_BUTTON_READFULL'
+                                    | translate}}]</i></a>
                         </div>
                     </div>
                 </div>

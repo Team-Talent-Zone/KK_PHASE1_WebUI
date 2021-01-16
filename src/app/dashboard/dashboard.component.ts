@@ -139,9 +139,10 @@ export class DashboardComponent implements OnInit {
 
   logout() {
     this.userService.logout();
-    localStorage.setItem('langCode', config.default_prefer_lang);
-    localStorage.setItem('langLabel', config.lang_english_word);
-    this.router.navigateByUrl('/home');
+    this.router.navigateByUrl('home', { skipLocationChange: true }).
+      then(() => {
+        this.router.navigate(['region', { hash: config.lang_english_word }]);
+      });
   }
 
   search(inputItemCode: string, inputItem: string) {

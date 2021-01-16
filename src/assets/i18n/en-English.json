@@ -160,7 +160,7 @@
       "JOBDETAILS":"Job Details",
       "CLIENTNAME":"Client Name :",
       "JOBLOCATION":"Job Location :",
-      "JOBDESCPTION":"Job Description :",
+      "JOBDESCPTION":"[See full job description]",
       "PHONENO":"Phone Number",
       "CANCELNOTE1":"*Cancel the job within 15 mins of job is accepted. After 15 mins Cancellation is",
       "CANCELNOTE2":"Not Possible",

@@ -9,10 +9,10 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { timer } from 'rxjs';
 import { FreelanceStarReview } from '../appmodels/FreelanceStarReview';
-import { timestamp } from 'rxjs/operators';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Toaster, ToastType } from 'ngx-toast-notifications';
-import { ConfigMsg } from '../appconstants/configmsg';
+import {  ModalOptions } from 'ngx-bootstrap/modal';
+import { ReadMorePopupComponent } from '../read-more-popup/read-more-popup.component';
 
 @Component({
   selector: 'app-managejobs',
@@ -31,7 +31,10 @@ export class ManagejobsComponent implements OnInit {
   issubmit = false;
   isratingdisplay = false;
   private types: Array<ToastType> = ['success', 'danger', 'warning', 'info', 'primary', 'secondary', 'dark', 'light'];
-
+  config: ModalOptions = {
+    class: 'modal-md', backdrop: 'static',
+    keyboard: false
+  };
   constructor(
     private toaster: Toaster,
     public fb: FormBuilder,
@@ -241,5 +244,18 @@ export class ManagejobsComponent implements OnInit {
 
   get f() {
     return this.feedbackform.controls;
+  }
+
+  openReadMorePopup(fullcontent: string) {
+     const initialState = {
+      content: fullcontent
+    };
+    this.modalRef = this.modalService.show(ReadMorePopupComponent, Object.assign(
+      {},
+      this.config,
+      {
+        initialState
+      }
+    ));
   }
 }

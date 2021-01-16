@@ -68,6 +68,7 @@ import { Error404pageComponent } from './error404page/error404page.component';
 import { MatomoModule } from 'ngx-matomo';
 import { ReadMoreComponent } from './read-more/read-more.component';
 import { DataTableModule } from 'ng-angular8-datatable';
+import { ReadMorePopupComponent } from './read-more-popup/read-more-popup.component';
 
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
@@ -75,7 +76,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
 }
 
 @NgModule({
-  declarations: [
+  declarations: [	
     AppComponent,
     HomeComponent,
     FooterComponent,
@@ -116,8 +117,9 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     ViewfureviewsComponent,
     Error404pageComponent,
     CustomToastComponent,
-    ReadMoreComponent
-  ],
+    ReadMoreComponent,
+    ReadMorePopupComponent
+   ],
   imports: [
     ToastNotificationsModule,
     OwlDateTimeModule,
@@ -166,7 +168,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
       provide: HTTP_INTERCEPTORS,
       useClass: BasicAuthHtppInterceptorService,
       multi: true
-    }
+    },
   ],
   entryComponents: [
     ViewaccountdetailsComponent,
@@ -175,7 +177,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     ViewnewsevicedetailsComponent,
     UserservicecartComponent,
     PaymentComponent,
-    CustomToastComponent
+    CustomToastComponent,
+    ReadMorePopupComponent
   ],
   bootstrap: [AppComponent]
 })

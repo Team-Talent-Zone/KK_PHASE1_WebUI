@@ -45,25 +45,6 @@
   border-bottom: 1px dotted #ff4949;
 }
 
-.tooltips .tooltiptext {
-  visibility: hidden;
-  border-radius: 6px;
-  padding: 5px 0;
-  position: absolute;
-  z-index: 1;
-  background-color: lightskyblue;
-  width: 310px;
-  height: 110px;
-  overflow: auto;
-  top: -80px;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.tooltips:hover .tooltiptext {
-  visibility: visible;
-}
-
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
   background-color: #ff4949;

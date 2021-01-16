@@ -5,7 +5,9 @@ import { FreelanceserviceService } from './../AppRestCall/freelanceservice/freel
 import { Component, OnInit } from '@angular/core';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { config } from 'src/app/appconstants/config';
-import { Observable } from 'rxjs';
+import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
+import { BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
+import { ReadMorePopupComponent } from '../read-more-popup/read-more-popup.component';
 
 @Component({
   selector: 'app-hometestimonials',
@@ -17,12 +19,18 @@ export class HometestimonialsComponent implements OnInit {
   listofTestimonals: any;
   startindex: number = 0;
   endindex: number = 3;
+  modalRef: BsModalRef;
+  config: ModalOptions = {
+    class: 'modal-md', backdrop: 'static',
+    keyboard: false
+  };
   constructor(
     public freelanceserviceService: FreelanceserviceService,
     private alertService: AlertsService,
     private spinnerService: Ng4LoadingSpinnerService,
     private route: ActivatedRoute,
     private referService: ReferenceService,
+    private modalService: BsModalService,
   ) {
   }
 
@@ -80,12 +88,23 @@ export class HometestimonialsComponent implements OnInit {
   }
   onToggleNext() {
     if (this.listofTestimonals.length == this.endindex) {
-      console.log('this is onToggleNext', this.listofTestimonals.length);
       this.onTogglePrev();
     } else {
       this.startindex = this.endindex;
       this.endindex = this.endindex + 2
     }
   }
-
+  openReadMorePopup(fullcontent: string) {
+    console.log('fullcontent', fullcontent);
+    const initialState = {
+      content: fullcontent
+    };
+    this.modalRef = this.modalService.show(ReadMorePopupComponent, Object.assign(
+      {},
+      this.config,
+      {
+        initialState
+      }
+    ));
+  }
 }

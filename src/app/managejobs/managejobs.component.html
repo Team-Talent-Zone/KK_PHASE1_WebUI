@@ -72,40 +72,33 @@
                         </p>
 
                     </div>
-                    
+
                     <div class="card-body">
                         <i class="fa fa-briefcase fa-3x float-right"></i>
                         <h3> <b>{{'DASHBOARD_FU_BODY.JOBDETAILS' | translate }} </b> </h3>
 
                         <div>
-                            <small class="pull-left" >
+                            <small class="pull-left">
                                 <b> {{'DASHBOARD_FU_BODY.JOBLOCATION' | translate }} </b>
                                 {{element.joblocation}}
                             </small>
                         </div>
-                        <div >
-                            <small class="pull-left" >
-                                <b> Skill As: </b> {{element.subcategorylabel}}
-                            </small>
-                        </div> 
-                     
                         <div>
                             <small class="pull-left">
-                                <b>{{ 'DASHBOARD_FU_BODY.TOTAL_HOURSOFWORK' | translate }} </b> {{element.totalhoursofjob}}
+                                <b> Skill As: </b> {{element.subcategorylabel}}
                             </small>
-                        </div>          
-                       
-                        <div class="tooltips">                                
-                              <small class="pull-left"> 
-                                 <b> See full job description </b>                    
-                              </small>
-                                <span class="tooltiptext">
-                                    <p>
-                                        <small>{{element.jobdescription}}</small>
-                                    </p>
-                                </span>
-                            </div>                      
-                      
+                        </div>
+
+                        <div>
+                            <small class="pull-left">
+                                <b>{{ 'DASHBOARD_FU_BODY.TOTAL_HOURSOFWORK' | translate }} </b>
+                                {{element.totalhoursofjob}}
+                            </small>
+                        </div>
+                        <div class="tooltips">
+                            <a style="cursor:pointer" (click)="openReadMorePopup(element.jobdescription)"><i>
+                                {{ 'DASHBOARD_FU_BODY.JOBDESCPTION' | translate }}</i></a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -164,17 +157,10 @@
                                 <b>Skill As: </b> {{newlyjob.subcategorylabel}}
                             </small>
                         </p>
-                       
-                        <div class="tooltips">                                
-                            <small class="pull-left"> 
-                               <b> See full job description </b>                    
-                            </small>
-                              <span class="tooltiptext">
-                                  <p>
-                                      <small>{{newlyjob.jobdescription}}</small>
-                                  </p>
-                              </span>
-                          </div> 
+                        <div class="tooltips">
+                            <a style="cursor:pointer" (click)="openReadMorePopup(newlyjob.jobdescription)"><i>
+                                {{ 'DASHBOARD_FU_BODY.JOBDESCPTION' | translate }}</i></a>
+                        </div>
                     </div>
                     <div class="card-footer" *ngIf="!newlyjob.isjobactive && newlyjob.isdeactive">
                         <div class="row">
@@ -193,7 +179,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-footer" *ngIf="newlyjob.isjobactive && !newlyjob.isjobaccepted">
+                    <div class="card-footer" *ngIf="newlyjob.isjobactive && !newlyjob.isjobaccepted &&  newlyjob.isdeactive == null">
                         <div class="row">
                             <small class="text-muted ">
                                 <p class="text-primary text-center"><i class="fa fa-info-circle"></i> Thank you for
@@ -295,18 +281,10 @@
                                 <b>Skill As: </b> {{completedjob.subcategorylabel}}
                             </small>
                         </p>
-                       
-                        <div class="tooltips">                                
-                            <small class="pull-left"> 
-                               <b> See full job description </b>                    
-                            </small>
-                              <span class="tooltiptext">
-                                  <p>
-                                      <small>{{completedjob.jobdescription}}</small>
-                                  </p>
-                              </span>
-                          </div>
-                        
+                        <div class="tooltips">
+                            <a style="cursor:pointer" (click)="openReadMorePopup(completedjob.jobdescription)"><i>
+                                {{ 'DASHBOARD_FU_BODY.JOBDESCPTION' | translate }}</i></a>
+                        </div>
                     </div>
                 </div>
             </div>

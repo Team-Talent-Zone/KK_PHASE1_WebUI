@@ -10,11 +10,12 @@ import { AlertsService } from '../AppRestCall/alerts/alerts.service';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { FreelanceOnSvcService } from '../AppRestCall/freelanceOnSvc/freelance-on-svc.service';
 import { FreelanceOnSvc } from '../appmodels/FreelanceOnSvc';
-import { ToastConfig, Toaster, ToastType } from 'ngx-toast-notifications';
+import {  Toaster, ToastType } from 'ngx-toast-notifications';
 import { ConfigMsg } from '../appconstants/configmsg';
-import { timer, Observable } from 'rxjs';
+import { timer } from 'rxjs';
 import { Router } from '@angular/router';
-
+import {  ModalOptions } from 'ngx-bootstrap/modal';
+import { ReadMorePopupComponent } from '../read-more-popup/read-more-popup.component';
 @Component({
   selector: 'app-dashboardoffu',
   templateUrl: './dashboardoffu.component.html',
@@ -49,7 +50,10 @@ export class DashboardoffuComponent implements OnInit {
   private types: Array<ToastType> = ['success', 'danger', 'warning', 'info', 'primary', 'secondary', 'dark', 'light'];
   upcomingpaytext: string;
   totalearnings: string;
-
+  config: ModalOptions = {
+    class: 'modal-md', backdrop: 'static',
+    keyboard: false
+  };
   constructor(
     public userService: UserService,
     private referService: ReferenceService,
@@ -373,6 +377,19 @@ export class DashboardoffuComponent implements OnInit {
       component: CustomToastComponent
     });
   }
+
+  openReadMorePopup(fullcontent: string) {
+    const initialState = {
+     content: fullcontent
+   };
+   this.modalRef = this.modalService.show(ReadMorePopupComponent, Object.assign(
+     {},
+     this.config,
+     {
+       initialState
+     }
+   ));
+ }
 
 }
 
