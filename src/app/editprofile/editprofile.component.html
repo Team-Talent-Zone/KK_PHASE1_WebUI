@@ -29,15 +29,14 @@
                                     {{ 'DASHBOARD_FU_PROFILE.PROFILE_BASICINFOR' | translate }}
                                 </h4>
                                 <small *ngIf="this.userService.currentUserValue.userroles.rolecode =='FREELANCER_USER'">
-                                    <p> <i class="fa fa-info-circle form-control-icon">
-                                        </i>
+                                    <i class="fa fa-info-circle form-control-icon">
+                                    </i>
+                                    <span style="color:white">
                                         {{
                                         'DASHBOARD_FU_PROFILE.PROFILE_BASIC_DETAILS_INFO_1' | translate }}
-                                        <i class="fa fa-info-circle form-control-icon">
-                                        </i>
                                         {{
                                         'DASHBOARD_FU_PROFILE.PROFILE_BASIC_DETAILS_INFO_2' | translate }}
-                                    </p>
+                                    </span>
                                 </small>
                             </div>
                             <div class="card-body">
@@ -285,13 +284,11 @@
                                 </div>
                                 <h4 class="card-title mb-0">{{ 'DASHBOARD_FU_PROFILE.PROFILE_SKILL' | translate }}</h4>
                                 <small>
-                                    <p>
+                                    <span style="color:white">
                                         <i class="fa fa-info-circle form-control-icon"></i>
                                         {{ 'DASHBOARD_FU_PROFILE.PROFILE_SKILLED_INFO' | translate }}
-                                        <i class="fa fa-info-circle form-control-icon"></i>
                                         {{ 'DASHBOARD_FU_PROFILE.PROFILE_SKILLED_INFO_2' | translate }}
-                                    </p>
-
+                                    </span>
                                 </small>
                             </div>
                             <div class="card-body">
@@ -424,7 +421,9 @@
                                 </h4>
                                 <small>
                                     <i class="fa fa-info-circle form-control-icon"></i>
-                                    {{ 'DASHBOARD_FU_PROFILE.PROFILE_BANKDETAILS_INFO' | translate }}
+                                    <span style="color:white">
+                                        {{ 'DASHBOARD_FU_PROFILE.PROFILE_BANKDETAILS_INFO' | translate }}
+                                    </span>
                                 </small>
                             </div>
                             <div class="card-body">

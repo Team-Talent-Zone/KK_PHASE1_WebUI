@@ -141,7 +141,7 @@ export class DashboardComponent implements OnInit {
     this.userService.logout();
     localStorage.setItem('langCode', config.default_prefer_lang);
     localStorage.setItem('langLabel', config.lang_english_word);
-    this.router.navigate(['/home']);
+    this.router.navigateByUrl('/home');
   }
 
   search(inputItemCode: string, inputItem: string) {
