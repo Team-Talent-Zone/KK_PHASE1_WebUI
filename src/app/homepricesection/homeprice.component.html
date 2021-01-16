@@ -38,10 +38,14 @@
               <p style="text-align: justify;">{{svc.description}}</p>
             </div>
             <!-- </div> -->
+           
+          </div>
+          <div *ngFor="let svc of listOfAllApprovedNewServices;index as i">
             <button class="btn btn-primary  btn-sm" *ngIf="i==3" (click)="viewLess()">{{ 'SERVICE.BUTTON_VIEWLESS' |
               translate }}</button>
-          </div>
+                  </div>
         </div>
+         
 
         <!-- <div class="clearfix"></div>
      

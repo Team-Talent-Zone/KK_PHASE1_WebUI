@@ -15,16 +15,17 @@
 } */
 
 .testimonial {
-  width: 327px;
-  margin-right: 91px;
+  /* width: 327px; */
+  /* margin-right: 91px;
   margin-left: 20px;
   margin-top: 13px;
-  padding: 10px;
-  margin-bottom: 10px;
+  padding: 10px; */
+  margin-bottom: 15px; 
+  padding: 5px;
   border-radius: 4px;
   /* padding: 16px; */
   box-shadow: none;
-  box-shadow: 0px 1px 8px 0px olive;
+  box-shadow: 1px 1px 8px 0px olive;
   /* margin-right: -16px; */
 }
 

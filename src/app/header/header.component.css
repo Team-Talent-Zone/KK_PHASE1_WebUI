@@ -61,10 +61,10 @@ h5 {
 }
 
 .box-shadow {
-  border: 2px solid #ff4949;
+  border: 1.9px solid #ff4949;
   padding-left: 50px;
   padding-right: 50px;
-  height: 362px;
+  height: 340px;
   background-color: #0a382b;
   color: white;
 }
@@ -105,7 +105,7 @@ h5 {
   padding: 1px;
 }
 .box-bg:hover {
-  background-color: olive;
+  background-color: #136c53;
   color: white;
 }
 

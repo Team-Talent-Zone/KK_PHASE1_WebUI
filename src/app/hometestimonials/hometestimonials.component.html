@@ -22,9 +22,9 @@
             <div class="carousel-item active">
                 <div class="row">
                     <!--Grid column-->
-                    <div class="col-md-4" *ngFor="let item of listofTestimonals; index as i">
+                    <div class="col-md-4 col-sm-8"  *ngFor="let item of listofTestimonals; index as i">
                         <div class="testimonial" *ngIf="i >= startindex && i < endindex">
-                            <!--Avatar-->
+                            <!--Avatar-->                          
                             <div class="avatar mx-auto">
                                 <img src={{item.avtarurl}} class="rounded-circle img-fluid">
                                 <span class="pull-right"><i class="fa fa-star" style="color: #ff4949;"
@@ -53,6 +53,7 @@
         </div>
         <!--Slides-->
         <!-- Left and right controls -->
+        <div class="mt-md-4"></div>
         <div class="row">
             <a class="carousel-control-prev" href="#multi-item-example" (click)="onTogglePrev()" data-slide="prev">
                 <span class="carousel-control-prev-icon"></span>
@@ -61,6 +62,7 @@
                 <span class="carousel-control-next-icon"></span>
             </a>
         </div>
+       
     </div>
 
     <!--Carousel Wrapper-->
