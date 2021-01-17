@@ -98,7 +98,7 @@
                     </a>
                 </li>
                 <li
-                    *ngIf="this.userService.currentUserValue.userroles.rolecode =='FREELANCER_USER' && this.userService.currentUserValue.freeLanceDetails.isregfeedone">
+                    *ngIf="this.userService.currentUserValue.userroles.rolecode =='FREELANCER_USER' && userService.currentUserValue.freeLanceDetails.bgcurrentstatus == 'BG_APPROVED'">
                     <a [routerLink]="['/fureviews']" class="list-group-item list-group-item-action bg-light">
                         <i class="fa fa-commenting-o" style="color:#FF4949"></i>
                         <b>

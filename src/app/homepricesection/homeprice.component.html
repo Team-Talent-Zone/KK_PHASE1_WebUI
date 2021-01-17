@@ -38,14 +38,14 @@
               <p style="text-align: justify;">{{svc.description}}</p>
             </div>
             <!-- </div> -->
-           
+
           </div>
           <div *ngFor="let svc of listOfAllApprovedNewServices;index as i">
             <button class="btn btn-primary  btn-sm" *ngIf="i==3" (click)="viewLess()">{{ 'SERVICE.BUTTON_VIEWLESS' |
               translate }}</button>
-                  </div>
+          </div>
         </div>
-         
+
 
         <!-- <div class="clearfix"></div>
      
@@ -117,7 +117,7 @@
                       <div class="card-header header-bg mt-10">
                         <h6 style="color: white;">{{svc.name}}</h6>
                       </div>
-                      <img class="card-img-top center" src={{svc.imgurl}}  style="width: 14rem; height: 11rem;">
+                      <img class="card-img-top center" src={{svc.imgurl}} style="width: 14rem; height: 11rem;">
                       <div class="card-body d-flex flex-column">
                         <div class="card-title">
                           <span class="display-4"><i class="fa fa-inr"></i>{{svc.amount}}</span>
@@ -148,7 +148,7 @@
                       <div class="card-header header-bg mt-10">
                         <h6 style="color: white;">{{svc.name}}</h6>
                       </div>
-                      <img class="card-img-top center" src={{svc.imgurl}} style="width: 14rem; height: 11rem;" >
+                      <img class="card-img-top center" src={{svc.imgurl}} style="width: 14rem; height: 11rem;">
                       <div class="card-body d-flex flex-column">
                         <div class="card-title">
                           <span class="display-4"><i class="fa fa-inr"></i>{{svc.amount}}</span>
@@ -193,7 +193,7 @@
                       <div class="card-header header-bg">
                         <h6 style="color: white;">{{svc.name}}</h6>
                       </div>
-                      <img class="card-img-top center" src={{svc.imgurl}}  style="width: 14rem; height: 11rem;">
+                      <img class="card-img-top center" src={{svc.imgurl}} style="width: 14rem; height: 11rem;">
                       <div class="card-body d-flex flex-column">
                         <div class="card-title">
                           <span class="display-4"><i class="fa fa-inr"></i>{{svc.amount}}</span>
@@ -225,7 +225,7 @@
                       <div class="card-header header-bg">
                         <h6 style="color: white;">{{svc.name}}</h6>
                       </div>
-                      <img class="card-img-top center" src={{svc.imgurl}}  style="width: 14rem; height: 11rem;">
+                      <img class="card-img-top center" src={{svc.imgurl}} style="width: 14rem; height: 11rem;">
                       <div class="card-body d-flex flex-column">
                         <div class="card-title">
                           <span class="display-4"><i class="fa fa-inr"></i>{{svc.amount}}</span>
@@ -255,7 +255,8 @@
                     (click)="pricemore1()">{{ 'PRICE.BUTTON_VIEWMORE' | translate }}</button>
                 </div>
                 <div *ngFor="let svc of listofAllPackageServices;index as i">
-                  <button class="btn btn-primary btn-sm text-center" *ngIf="i==2 && priceMore1" (click)="priceless1()">{{
+                  <button class="btn btn-primary btn-sm text-center" *ngIf="i==2 && priceMore1"
+                    (click)="priceless1()">{{
                     'PRICE.BUTTON_VIEWLESS' | translate }}</button>
                 </div>
 

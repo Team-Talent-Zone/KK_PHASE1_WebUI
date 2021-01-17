@@ -3,31 +3,35 @@
     <hr>
     <br>
     <div class="row placeholders justify-content-between">
-        <div class="col-6 col-sm-1 placeholder text-center">
-            <!-- <img src="{{stage1Img}}" class="mx-auto img-fluid rounded-circle"> -->
-            <i class="fa fa-address-card-o  rounded-circle"></i>
-            <a routerLink='/vieworeditprofile/{{userService.currentUserValue.userId}}'
-                *ngIf="!userService.currentUserValue.freeLanceDetails.isprofilecompleted; else elseFU">
-                <p style="color: #ff4949"><small><b>
-                    <u>
-                    {{ 'DASHBOARD_FU_BODY.FILLOUTPROFILE' | translate }}
-                </u></b></small></p>
-            </a>
-            <ng-template #elseFU>
-                <p align="center"><small>
-                        <b>
-                            {{ 'DASHBOARD_FU_BODY.PROFILEEUPDATE' | translate }}
-                        </b>
-                    </small></p>
-            </ng-template>
+        <div class="row">
+            <div class="col-6 col-sm-1 placeholder text-center">
+                <!-- <img src="{{stage1Img}}" class="mx-auto img-fluid rounded-circle"> -->
+                <i class="fa fa-address-card-o  rounded-circle"
+                    [ngStyle]="{'background': userService.currentUserValue.freeLanceDetails.isprofilecompleted ? 'cornflowerblue':'white'}"></i>
+                <a routerLink='/vieworeditprofile/{{userService.currentUserValue.userId}}'
+                    *ngIf="!userService.currentUserValue.freeLanceDetails.isprofilecompleted; else elseFU">
+                    <p class='text-center'><small><b>
+                                <u>
+                                    {{ 'DASHBOARD_FU_BODY.FILLOUTPROFILE' | translate }}
+                                </u></b></small></p>
+                </a>
+                <ng-template #elseFU>
+                    <p class='text-center'><small>
+                            <b>
+                                {{ 'DASHBOARD_FU_BODY.PROFILEEUPDATE' | translate }}
+                            </b>
+                        </small></p>
+                </ng-template>
 
+            </div>
         </div>
         <div class="stepConectorPiece"
             [ngStyle]="{'background': userService.currentUserValue.freeLanceDetails.isprofilecompleted ? 'green':'lightgrey'}">
         </div>
         <div class="col-6 col-sm-1 placeholder text-center">
             <!-- <img src="{{stage2Img}}" class="mx-auto img-fluid rounded-circle" alt="Generic placeholder thumbnail"> -->
-            <i class="fa fa-credit-card-alt rounded-circle"></i>
+            <i class="fa fa-credit-card-alt rounded-circle"
+                [ngStyle]="{'background': userService.currentUserValue.freeLanceDetails.isregfeedone ? 'cornflowerblue':'white'}"></i>
             <p align="center" *ngIf="!userService.currentUserValue.freeLanceDetails.isregfeedone && istimelap && 
             userService.currentUserValue.freeLanceDetails.isprofilecompleted">
                 <a href=" javascript: return false;" (click)="openPaymentComponent()">
@@ -50,15 +54,14 @@
             <p align="center" *ngIf="userService.currentUserValue.freeLanceDetails.isregfeedone">
                 <small><b> {{ 'DASHBOARD_FU_BODY.PAYMENTCOMPLETED' | translate }}</b></small>
             </p>
-
         </div>
-
         <div class="stepConectorPiece"
             [ngStyle]="{'background': userService.currentUserValue.freeLanceDetails.isregfeedone ? 'green':'lightgrey'}">
         </div>
         <div class="col-6 col-sm-2 placeholder text-center">
             <!-- <img src="{{stage3Img}}" class="mx-auto img-fluid rounded-circle" alt="Generic placeholder thumbnail"> -->
-            <i class="fa fa-street-view rounded-circle"></i>
+            <i class="fa fa-street-view rounded-circle"
+                [ngStyle]="{'background': userService.currentUserValue.freeLanceDetails.isbgstarted ? 'cornflowerblue':'white'}"></i>
             <p align="center"><small><b>{{ 'DASHBOARD_FU_BODY.BGVERIFICATIONINITIATED' | translate }}</b></small></p>
 
         </div>
@@ -68,7 +71,10 @@
         <div class="col-6 col-sm-2 placeholder text-center">
             <!-- <img src="{{stage4Img}}" class="mx-auto img-fluid rounded-circle"
                 alt="Background Verification is In Progress"> -->
-            <i class="fa fa-hourglass-start rounded-circle"></i>
+            <i class="fa fa-hourglass-start rounded-circle"
+                [ngStyle]="{'background': userService.currentUserValue.freeLanceDetails.isbgdone ? 'cornflowerblue':'white'}">
+
+            </i>
             <p align="center"><small><b>{{ 'DASHBOARD_FU_BODY.BGVERFIFICATIONINPROGRESS' | translate }}</b></small></p>
 
         </div>
@@ -77,8 +83,20 @@
         </div>
         <div class="col-6 col-sm-2 placeholder text-center">
             <!-- <img src="{{stage5Img}}" class="mx-auto img-fluid rounded-circle" alt="Final Result"> -->
-            <i class="fa fa fa-hand-paper-o rounded-circle"></i>
-            <p align="center"><small><b>{{ 'DASHBOARD_FU_BODY.BGVERFIFICATIONFINALRESULTS' | translate }}</b></small>
+            <i class="fa fa fa-hand-paper-o rounded-circle"
+                *ngIf='!userService.currentUserValue.freeLanceDetails.isbgdone'></i>
+            <i class="fa fa fa-hand-paper-o rounded-circle" *ngIf="userService.currentUserValue.freeLanceDetails.isbgdone && 
+                userService.currentUserValue.freeLanceDetails.bgcurrentstatus == 'BG_APPROVED' || 
+                userService.currentUserValue.freeLanceDetails.bgcurrentstatus == 'BG_REJECTED'" [ngStyle]=" {'background': userService.currentUserValue.freeLanceDetails.bgcurrentstatus=='BG_APPROVED'
+                ? 'green' :'red'}"></i>
+            <p align="center"><small>
+                    <b *ngIf="!userService.currentUserValue.freeLanceDetails.isbgdone">{{
+                        'DASHBOARD_FU_BODY.BGVERFIFICATIONFINALRESULTS' | translate }}</b>
+                    <b *ngIf="this.userService.currentUserValue.freeLanceDetails.bgcurrentstatus == 'BG_APPROVED'">{{
+                        'DASHBOARD_FU_BODY.BGVERFIFICATIONRESULT_APPROVED' | translate }}</b>
+                    <b *ngIf="this.userService.currentUserValue.freeLanceDetails.bgcurrentstatus == 'BG_REJECTED'">{{
+                        'DASHBOARD_FU_BODY.BGVERFIFICATIONRESULT_REJECTED' | translate }}</b>
+                </small>
             </p>
 
         </div>
@@ -188,9 +206,16 @@
                                             <b>{{ 'DASHBOARD_FU_BODY.PHONENO' | translate }} </b> {{element.cbaphoneno}}
                                         </small>
                                     </p>
+                                    <p>
+                                        <small class="pull-left">
+                                            <b>{{ 'DASHBOARD_FU_BODY.TOTAL_HOURSOFWORK' | translate }}</b>
+                                            {{element.totalhoursofjob}}
+                                        </small>
+                                    </p>
                                     <div class="tooltips">
-                                        <a style="cursor:pointer" (click)="openReadMorePopup(element.jobdescription)"><i>
-                                            {{ 'DASHBOARD_FU_BODY.JOBDESCPTION' | translate }}</i></a>
+                                        <a style="cursor:pointer"
+                                            (click)="openReadMorePopup(element.jobdescription)"><i>
+                                                {{ 'DASHBOARD_FU_BODY.JOBDESCPTION' | translate }}</i></a>
                                     </div>
                                 </div>
                                 <div class="card-footer">
@@ -206,14 +231,15 @@
                             </div>
                         </div>
                     </div>
-                    <div  class="row" *ngIf="upcomingJobList.length == 0">
-                        <p class="pull-center"><small><b>{{ 'DASHBOARD_FU_BODY.NO_UPCOMING_MSG' | translate }} </b> </small></p>
+                    <div class="row" *ngIf="upcomingJobList.length == 0">
+                        <p class="pull-center"><small><b>{{ 'DASHBOARD_FU_BODY.NO_UPCOMING_MSG' | translate }} </b>
+                            </small></p>
                     </div>
                 </div>
                 <div class="tab-pane fade" id="collapseFUUpcomingJobs" role="tabpanel"
                     aria-labelledby="collapseFUUpcomingJobs-tab">
                     <br> <br>
-                    <div class="row" *ngIf="newJobList.length > 0" >
+                    <div class="row" *ngIf="newJobList.length > 0">
                         <div class="col-sm-4 mb-3 mb-md-0" style="margin-bottom:8px !important"
                             *ngFor="let element of newJobList">
                             <div class="card card-flip h-100 ">
@@ -254,22 +280,30 @@
                                             <b>{{ 'DASHBOARD_FU_BODY.PHONENO' | translate }} </b> {{element.cbaphoneno}}
                                         </small>
                                     </p>
+                                    <p>
+                                        <small class="pull-left">
+                                            <b>{{ 'DASHBOARD_FU_BODY.TOTAL_HOURSOFWORK' | translate }}</b>
+                                            {{element.totalhoursofjob}}
+                                        </small>
+                                    </p>
                                     <div class="tooltips">
-                                        <a style="cursor:pointer" (click)="openReadMorePopup(element.jobdescription)"><i>
-                                            {{ 'DASHBOARD_FU_BODY.JOBDESCPTION' | translate }}</i></a>
+                                        <a style="cursor:pointer"
+                                            (click)="openReadMorePopup(element.jobdescription)"><i>
+                                                {{ 'DASHBOARD_FU_BODY.JOBDESCPTION' | translate }}</i></a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div  class="row" *ngIf="newJobList.length == 0">
-                        <p class="pull-center"><small><b>{{ 'DASHBOARD_FU_BODY.NO_NEWJOB_MSG' | translate }} </b> </small></p>
+                    <div class="row" *ngIf="newJobList.length == 0">
+                        <p class="pull-center"><small><b>{{ 'DASHBOARD_FU_BODY.NO_NEWJOB_MSG' | translate }} </b>
+                            </small></p>
                     </div>
                 </div>
                 <div class="tab-pane fade" id="collapseCompletedJobs" role="tabpanel"
                     aria-labelledby="collapseCompletedJobs-tab">
                     <br> <br>
-                    <div class="row"  *ngIf="completedJobList.length > 0">
+                    <div class="row" *ngIf="completedJobList.length > 0">
                         <div class="col-sm-4 mb-3 mb-md-0" style="margin-bottom:8px !important"
                             *ngFor="let element of completedJobList">
                             <div class="card card-flip h-100 ">
@@ -314,7 +348,8 @@
                                     </p>
                                     <p>
                                         <small class="pull-left">
-                                            <b>{{ 'DASHBOARD_FU_BODY.TOTAL_HOURSOFWORK' | translate }}</b> {{element.totalhoursofjob}}
+                                            <b>{{ 'DASHBOARD_FU_BODY.TOTAL_HOURSOFWORK' | translate }}</b>
+                                            {{element.totalhoursofjob}}
                                         </small>
                                     </p>
                                     <p>
@@ -322,17 +357,19 @@
                                             <b>{{ 'DASHBOARD_FU_BODY.PHONENO' | translate }} </b> {{element.cbaphoneno}}
                                         </small>
                                     </p>
-                                     
+
                                     <div class="tooltips">
-                                        <a style="cursor:pointer" (click)="openReadMorePopup(element.jobdescription)"><i>
-                                            {{ 'DASHBOARD_FU_BODY.JOBDESCPTION' | translate }}</i></a>
+                                        <a style="cursor:pointer"
+                                            (click)="openReadMorePopup(element.jobdescription)"><i>
+                                                {{ 'DASHBOARD_FU_BODY.JOBDESCPTION' | translate }}</i></a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div  class="row" *ngIf="completedJobList.length == 0">
-                        <p class="pull-center"><small><b>{{ 'DASHBOARD_FU_BODY.NO_COMPLETEDJOBS_MSG' | translate }} </b> </small></p>
+                    <div class="row" *ngIf="completedJobList.length == 0">
+                        <p class="pull-center"><small><b>{{ 'DASHBOARD_FU_BODY.NO_COMPLETEDJOBS_MSG' | translate }} </b>
+                            </small></p>
                     </div>
                 </div>
             </div>

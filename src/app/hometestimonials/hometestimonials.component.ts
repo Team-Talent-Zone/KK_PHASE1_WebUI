@@ -95,7 +95,6 @@ export class HometestimonialsComponent implements OnInit {
     }
   }
   openReadMorePopup(fullcontent: string) {
-    console.log('fullcontent', fullcontent);
     const initialState = {
       content: fullcontent
     };

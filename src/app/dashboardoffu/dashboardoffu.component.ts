@@ -96,26 +96,6 @@ export class DashboardoffuComponent implements OnInit {
       }, 500);
     }
     this.usrObj = this.userService.currentUserValue;
-    if (this.usrObj.userroles.rolecode === config.user_rolecode_fu.toString()) {
-      if (this.usrObj.freeLanceDetails.isprofilecompleted) {
-        this.stage1Img = this.stageCompletedImg;
-      }
-      if (this.usrObj.freeLanceDetails.isprofilecompleted && this.usrObj.freeLanceDetails.isregfeedone) {
-        this.stage2Img = this.stageCompletedImg;
-      }
-      if (this.usrObj.freeLanceDetails.isbgstarted) {
-        this.stage3Img = this.stageCompletedImg;
-      }
-      if (this.usrObj.freeLanceDetails.isbgdone) {
-        this.stage4Img = this.stageCompletedImg;
-      }
-      if (this.usrObj.freeLanceDetails.bgcurrentstatus === config.bg_code_approved.toString()) {
-        this.stage5Img = this.stageBgStatusApprovedImg;
-      } else
-        if (this.usrObj.freeLanceDetails.bgcurrentstatus === config.bg_code_rejected.toString()) {
-          this.stage5Img = this.stageBgStatusRejectedImg;
-        }
-    }
   }
 
   openPaymentComponent() {

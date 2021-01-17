@@ -41,7 +41,7 @@
                                 <b>{{item.feedbackby}}</b>
                             </p>
                             {{(item.feedbackcomment | slice:0:100)}}
-                            <a class="tooltips" style="cursor:pointer"
+                            <a class="tooltips" style="cursor:pointer" *ngIf="item.feedbackcomment.length>100"
                                 (click)="openReadMorePopup(item.feedbackcomment)"><i>
                                     [{{'SKILLEDWORKERREVIEW.SWORKER_BUTTON_READFULL'
                                     | translate}}]</i></a>

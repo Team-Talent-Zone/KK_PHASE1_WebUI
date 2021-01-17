@@ -11,6 +11,7 @@ import { BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { AlertsService } from '../AppRestCall/alerts/alerts.service';
 import { ReferenceService } from '../AppRestCall/reference/reference.service';
+import { ReadMorePopupComponent } from '../read-more-popup/read-more-popup.component';
 
 
 @Component({
@@ -27,9 +28,10 @@ export class HomepriceComponent implements OnInit {
     keyboard: false
   };
   listOfAllApprovedNewServices: any = [];
-  public contentMore = false;
-  public priceMore = false;
-  public priceMore1 = false;
+  contentMore = false;
+  priceMore = false;
+  priceMore1 = false;
+  countoffullcontent : number ;
   constructor(
     private newsvcservice: NewsvcService,
     private route: ActivatedRoute,
@@ -144,6 +146,19 @@ export class HomepriceComponent implements OnInit {
       langcode: localStorage.getItem('langCode')
     };
     this.modalRef = this.modalService.show(SignupComponent, Object.assign(
+      {},
+      this.config,
+      {
+        initialState
+      }
+    ));
+  }
+
+  openReadMorePopup(fullcontent: string) {
+    const initialState = {
+      content: fullcontent
+    };
+    this.modalRef = this.modalService.show(ReadMorePopupComponent, Object.assign(
       {},
       this.config,
       {
