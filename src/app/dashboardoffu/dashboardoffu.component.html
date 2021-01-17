@@ -114,18 +114,19 @@
 
                     <span style="color: white;">
                         <p class="pull-center"><b>{{ card.name }}</b>
+                            &nbsp;
+                            <i class="fa fa-info-circle" *ngIf="i==0"
+                                title="{{ 'DASHBOARD_FU_BODY.UPCOMINGTOOLTIP' | translate }}" style="color:blue"></i>
                         </p>
                         <span class="pull-center">
                             <h3 style="color: white;"><i class="fa fa-inr" *ngIf="card.value > 0"
                                     style="color:lightgreen;"></i>
                                 <i *ngIf="card.value == 0" class="fa fa-inr " style="color:orange;"></i>
                                 <b>{{ card.value | number}}</b>
-                                <i class="fa fa-info-circle " *ngIf="i==0"
-                                    title="{{ 'DASHBOARD_FU_BODY.UPCOMINGTOOLTIP' | translate }}"
-                                    style="font-size:10px;color:brown"></i>
                             </h3>
                         </span>
                     </span>
+
                     <p style="color: black;"><small>{{ 'DASHBOARD_FU_BODY.LASTUPDATED' | translate }} {{indiaTime}} {{
                             'DASHBOARD_FU_BODY.MINSAGO' | translate }}</small></p>
                 </div>

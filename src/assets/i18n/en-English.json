@@ -253,7 +253,8 @@
       "PAYMENTHIST_SEARCH":"Search by amount.."
     },
     "FU_REVIEW":{
-      "REVIEWS":"Reviews"
+      "REVIEWS":"Reviews",
+      "NOREVIEWS":"There are no reviews. Engage to the client to provide the good rating reviews on your work."
     },
     "ALERT_POPUP":{
       "SUCCESS":"Well Done !",
