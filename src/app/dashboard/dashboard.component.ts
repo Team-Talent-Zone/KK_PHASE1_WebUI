@@ -21,7 +21,7 @@ export class DashboardComponent implements OnInit {
   name: string;
   list = [];
   filteredList: string[] = [];
-
+  templist: any;
   // two way binding for input text
   inputItem: any;
   selectedItem: any;
@@ -37,6 +37,8 @@ export class DashboardComponent implements OnInit {
   ispaysuccess = false;
 
   fullname: string;
+  indiaTime = new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' });
+  defaultTxtImg: string = '//placehold.it/200/dddddd/fff?text=' + this.getNameInitials();
 
   constructor(
     public userService: UserService,
@@ -52,10 +54,6 @@ export class DashboardComponent implements OnInit {
     route.params.subscribe(params => {
       this.txtid = params.txtid;
     });
-    /* translate.addLangs([config.lang_english_word.toString(), config.lang_telugu_word.toString(), config.lang_hindi_word.toString()]);
-     translate.setDefaultLang(config.lang_english_word.toString());
-     const browserLang = translate.getBrowserLang();
-     translate.use(browserLang.match(/English|తెలుగు|हिंदी/) ? browserLang : config.lang_english_word.toString());*/
   }
 
   ngOnInit() {
@@ -139,17 +137,20 @@ export class DashboardComponent implements OnInit {
   }
 
   search(inputItemCode: string, inputItem: string) {
-    console.log('inputItem' , inputItem);
-    const obj = this.list.filter((item) => item.code.startsWith(inputItemCode));
+    this.templist = [];
+    console.log('inputItem', this.list);
+    this.templist = this.list.filter((item) => item.label.toLowerCase().startsWith(this.inputItem.toLowerCase()));
+    console.log('label', this.templist);
+    console.log('label', this.templist[0].code);
     if (inputItem == null) {
       this.alertService.info('Search keyword cannot be empty');
     } else
-      if (obj.length === 0) {
+      if (this.templist[0].code === null) {
         this.alertService.info('Keyword ' + inputItem + ' is a invalid skill to search.');
       } else {
         this.router.navigateByUrl('fusearch/', { skipLocationChange: true }).
           then(() => {
-            this.router.navigate(['dashboard/' + inputItemCode + '/' + inputItem]);
+            this.router.navigate(['dashboard/' + this.templist[0].code + '/' + this.templist[0].label]);
           });
       }
   }
@@ -246,5 +247,15 @@ export class DashboardComponent implements OnInit {
       preferedLang = config.lang_english_word.toString();
     }
     this.translate.use(preferedLang);
+  }
+
+  getNameInitials() {
+    if (this.userService.currentUserValue != null) {
+      if (this.userService.currentUserValue.fullname !== null) {
+        let initials = this.userService.currentUserValue.fullname.match(/\b\w/g) || [];
+        let initialsfinal = ((initials.shift() || '') + (initials.pop() || '')).toUpperCase();
+        return initialsfinal;
+      }
+    }
   }
 }

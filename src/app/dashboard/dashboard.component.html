@@ -141,7 +141,26 @@
         <!--/col-->
         <div class="col-md-9 col-lg-10 main">
             <div class="container">
-
+                <div class="bread-cumb">
+                    <div class="row">
+                      <div class="col-xl-5 col-lg-6">
+                        <span><b>{{ 'DASHOARD_HEADER.WELCOMEBACK' | translate }} {{this.userService.currentUserValue.fullname}}</b></span>
+                      </div>
+                      <div class="col-xl-5 col-lg-6">
+                        <span class="float-right">
+                          <small><i>{{indiaTime}}</i></small>
+                        </span>
+                      </div>
+                      <div class="col-xl-2 col-lg-6 float-right">
+                        <i class="fa fa-bell-o"></i>
+                        <a routerLink='/vieworeditprofile/{{userService.currentUserValue.userId}}'>
+                          <img *ngIf="userService.currentUserValue.avtarurl != null" class="avatar"
+                            src="{{userService.currentUserValue.avtarurl}}">
+                          <img *ngIf="userService.currentUserValue.avtarurl === null" src="{{defaultTxtImg}}" class="avatar">
+                        </a>
+                      </div>
+                    </div>
+                  </div>
                 <!-- <hr> -->
                 <!--Alert-->
                 <div class="alert alert-success alert-dismissible fade show w-100" role="alert"

@@ -1,36 +1,16 @@
-<div class="bread-cumb">
-  <div class="row">
-    <div class="col-xl-5 col-lg-6">
-      <span><b>{{ 'DASHOARD_HEADER.WELCOMEBACK' | translate }} {{this.userService.currentUserValue.fullname}}</b></span>
-    </div>
-    <div class="col-xl-5 col-lg-6">
-      <span class="float-right">
-        <small><i>{{indiaTime}}</i></small>
-      </span>
-    </div>
-    <div class="col-xl-2 col-lg-6 float-right">
-      <i class="fa fa-bell-o"></i>
-      <a routerLink='/vieworeditprofile/{{userService.currentUserValue.userId}}'>
-        <img *ngIf="userService.currentUserValue.avtarurl != null" class="avatar"
-          src="{{userService.currentUserValue.avtarurl}}">
-        <img *ngIf="userService.currentUserValue.avtarurl === null" src="{{defaultTxtImg}}" class="avatar">
-      </a>
-      <i class="fa fa-shopping-cart" style="cursor:pointer" (click)="openUserServiceCart()"
-        *ngIf="userservicedetailsAddedList.length > 0 && this.userService.currentUserValue.userroles.rolecode != 'FREELANCER_USER' ">
-        <span *ngIf="userservicedetailsAddedList.length == 1 ; else morethenOne">
-          {{userservicedetailsAddedList.length}}
-        </span>
-        <ng-template #morethenOne>
-          <span>
-            {{userservicedetailsAddedList.length}}
-          </span>
-        </ng-template>
-      </i>
-    </div>
-  </div>
-</div>
 <h4>Our Services</h4>
 <hr>
+<i class="fa fa-shopping-cart pull-right" style="cursor:pointer" (click)="openUserServiceCart()"
+  *ngIf="userservicedetailsAddedList.length > 0 ">
+  <span *ngIf="userservicedetailsAddedList.length == 1 ; else morethenOne">
+    {{userservicedetailsAddedList.length}}
+  </span>
+  <ng-template #morethenOne>
+    <span>
+      {{userservicedetailsAddedList.length}}
+    </span>
+  </ng-template>
+</i>
 <ul class="nav nav-tabs" id="myTab" role="tablist">
   <li class="nav-item">
     <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"

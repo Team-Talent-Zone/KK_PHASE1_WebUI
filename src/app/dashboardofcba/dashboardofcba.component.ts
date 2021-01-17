@@ -41,8 +41,6 @@ export class DashboardofcbaComponent implements OnInit {
   userservicedetailsFormServicePack: FormGroup;
   listOfServicesForCheckOut: any = [];
   fullContent: any[];
-  indiaTime = new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' });
-  defaultTxtImg: string = '//placehold.it/200/dddddd/fff?text=' + this.getNameInitials();
 
   constructor(
     private referService: ReferenceService,
@@ -271,15 +269,7 @@ export class DashboardofcbaComponent implements OnInit {
     )
     );
   }
-  getNameInitials() {
-    if (this.userService.currentUserValue != null) {
-      if (this.userService.currentUserValue.fullname !== null) {
-        let initials = this.userService.currentUserValue.fullname.match(/\b\w/g) || [];
-        let initialsfinal = ((initials.shift() || '') + (initials.pop() || '')).toUpperCase();
-        return initialsfinal;
-      }
-    }
-  }
+
   openReadMorePopup(fullcontent: string) {
     const initialState = {
       content: fullcontent
