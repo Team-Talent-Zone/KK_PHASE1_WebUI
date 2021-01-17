@@ -161,9 +161,15 @@ export class DashboardComponent implements OnInit {
       data.map(item => this.refAdapter.adapt(item))),
     ).subscribe(
       data => {
-        data[0].referencelookupmapping[0].referencelookupmappingsubcategories.forEach(element => {
-          this.list.push(element);
-        });
+        data.forEach(elementcategory => {
+          if (elementcategory.code !== 'SE_P') {
+            elementcategory.referencelookupmapping.forEach(elementlookupmapping => {
+              elementlookupmapping.referencelookupmappingsubcategories.forEach(element => {
+                this.list.push(element);
+              });
+            })
+          }
+        })
       });
   }
 
