@@ -12,7 +12,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { UsersrvdetailsService } from '../AppRestCall/userservice/usersrvdetails.service';
 import { BsModalService, ModalOptions, BsModalRef } from 'ngx-bootstrap/modal';
 import { Router } from '@angular/router';
-import { UserServicedetailsAdapter } from '../adapters/userserviceadapter';
+import { ReadMorePopupComponent } from '../read-more-popup/read-more-popup.component';
 
 @Component({
   selector: 'app-dashboardofcba',
@@ -41,6 +41,8 @@ export class DashboardofcbaComponent implements OnInit {
   userservicedetailsFormServicePack: FormGroup;
   listOfServicesForCheckOut: any = [];
   fullContent: any[];
+  indiaTime = new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' });
+  defaultTxtImg: string = '//placehold.it/200/dddddd/fff?text=' + this.getNameInitials();
 
   constructor(
     private referService: ReferenceService,
@@ -140,9 +142,8 @@ export class DashboardofcbaComponent implements OnInit {
         isServiceAlreadyExist = true;
       }
     }
-
-
     if (!isServiceAlreadyExist) {
+
       if (packwithotherourserviceid != null) {
         // tslint:disable-next-line: max-line-length
         this.saveUserServiceDetailsForServicePkg(packwithotherourserviceid, ourserviceid, amount, validPeriodLabel, validPeriodCode, serviceendon, servicestarton);
@@ -270,5 +271,25 @@ export class DashboardofcbaComponent implements OnInit {
     )
     );
   }
-
+  getNameInitials() {
+    if (this.userService.currentUserValue != null) {
+      if (this.userService.currentUserValue.fullname !== null) {
+        let initials = this.userService.currentUserValue.fullname.match(/\b\w/g) || [];
+        let initialsfinal = ((initials.shift() || '') + (initials.pop() || '')).toUpperCase();
+        return initialsfinal;
+      }
+    }
+  }
+  openReadMorePopup(fullcontent: string) {
+    const initialState = {
+      content: fullcontent
+    };
+    this.modalRef = this.modalService.show(ReadMorePopupComponent, Object.assign(
+      {},
+      this.config,
+      {
+        initialState
+      }
+    ));
+  }
 }

@@ -384,7 +384,6 @@ export class DashboardsearchbyfilterComponent implements OnInit {
             this.spinnerService.hide();
             this.alertService.error(error);
           });
-        console.log('timelaps', this.timelaps);
       } else {
         this.spinnerService.show();
         let sdate = this.getDateFormat(startdate);

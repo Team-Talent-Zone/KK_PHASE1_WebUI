@@ -35,7 +35,7 @@ export class DashboardComponent implements OnInit {
   inputItemCode: string;
   txtid: string;
   ispaysuccess = false;
-  defaultTxtImg: string = '//placehold.it/200/dddddd/fff?text=' + this.getNameInitials(this.userService.currentUserValue.fullname);
+
   fullname: string;
 
   constructor(
@@ -92,12 +92,6 @@ export class DashboardComponent implements OnInit {
       this.fullname = this.userService.currentUserValue.fullname;
     }
   }
-  getNameInitials(fullname: string) {
-    let initials = fullname.match(/\b\w/g) || [];
-    let initialsfinal = ((initials.shift() || '') + (initials.pop() || '')).toUpperCase();
-    return initialsfinal;
-  }
-
   getPaymentDetailsByTxnId(txnid: string) {
     this.paymentsvc.getPaymentDetailsByTxnId(txnid).subscribe((paymentobj: any) => {
       if (paymentobj.paymentsCBATrans != null) {
@@ -139,22 +133,25 @@ export class DashboardComponent implements OnInit {
 
   logout() {
     this.userService.logout();
-    this.router.navigateByUrl('home', { skipLocationChange: true }).
-      then(() => {
-        this.router.navigate(['region', { hash: config.lang_english_word }]);
-      });
+    localStorage.setItem('langCode', config.default_prefer_lang);
+    localStorage.setItem('langLabel', config.lang_english_word);
+    this.router.navigateByUrl('/', { skipLocationChange: false });
   }
 
   search(inputItemCode: string, inputItem: string) {
+    console.log('inputItem' , inputItem);
     const obj = this.list.filter((item) => item.code.startsWith(inputItemCode));
-    if (obj.length === 0) {
-      this.alertService.info('Keyword ' + inputItem + ' is a invalid skill to search.');
-    } else {
-      this.router.navigateByUrl('fusearch/', { skipLocationChange: true }).
-        then(() => {
-          this.router.navigate(['dashboard/' + inputItemCode + '/' + inputItem]);
-        });
-    }
+    if (inputItem == null) {
+      this.alertService.info('Search keyword cannot be empty');
+    } else
+      if (obj.length === 0) {
+        this.alertService.info('Keyword ' + inputItem + ' is a invalid skill to search.');
+      } else {
+        this.router.navigateByUrl('fusearch/', { skipLocationChange: true }).
+          then(() => {
+            this.router.navigate(['dashboard/' + inputItemCode + '/' + inputItem]);
+          });
+      }
   }
 
   getAllAvailableFUSkills() {

@@ -75,9 +75,9 @@ export const config = {
   shortkey_privacypolicy_english: 'pp_english',
   shortkey_privacypolicy_telugu: 'pp_telugu',
   shortkey_privacypolicy_hindi: 'pp_hindi',
-  invalid_username_password: 'Invalid username or password',
-  invalid_username_password_te: 'చెల్లని ఇమెయిల్ చిరునామా లేదా పాస్‌వర్డ్',
-  invalid_username_password_hi: 'अंकित ईमेल या पासवर्ड गलत है'
+  invalid_username_password: 'That email address or password combination isnt in our records.',
+  invalid_username_password_te: 'ఆ ఇమెయిల్ చిరునామా లేదా పాస్‌వర్డ్ కలయిక మా రికార్డుల్లో లేదు.',
+  invalid_username_password_hi: 'वह ईमेल पता या पासवर्ड संयोजन हमारे रिकॉर्ड में नहीं है।'
 };
 
 

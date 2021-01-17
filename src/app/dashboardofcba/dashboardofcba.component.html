@@ -1,38 +1,37 @@
-<h4>Dashboard</h4>
-<hr>
-
-<button class="btn btn-info btn-sm pull-right" (click)="openUserServiceCart()"
-  *ngIf="userservicedetailsAddedList.length > 0 && this.userService.currentUserValue.userroles.rolecode != 'FREELANCER_USER' ">
-  <i class="fa fa-shopping-cart ">
-    <span *ngIf="userservicedetailsAddedList.length == 1 ; else morethenOne">
-      {{userservicedetailsAddedList.length}} Item
-    </span>
-    <ng-template #morethenOne>
-      <span>
-        {{userservicedetailsAddedList.length}} Items
+<div class="bread-cumb">
+  <div class="row">
+    <div class="col-xl-5 col-lg-6">
+      <span><b>{{ 'DASHOARD_HEADER.WELCOMEBACK' | translate }} {{this.userService.currentUserValue.fullname}}</b></span>
+    </div>
+    <div class="col-xl-5 col-lg-6">
+      <span class="float-right">
+        <small><i>{{indiaTime}}</i></small>
       </span>
-    </ng-template>
-  </i>
-</button>
-<div class='clearfix'></div><br>
-
+    </div>
+    <div class="col-xl-2 col-lg-6 float-right">
+      <i class="fa fa-bell-o"></i>
+      <a routerLink='/vieworeditprofile/{{userService.currentUserValue.userId}}'>
+        <img *ngIf="userService.currentUserValue.avtarurl != null" class="avatar"
+          src="{{userService.currentUserValue.avtarurl}}">
+        <img *ngIf="userService.currentUserValue.avtarurl === null" src="{{defaultTxtImg}}" class="avatar">
+      </a>
+      <i class="fa fa-shopping-cart" style="cursor:pointer" (click)="openUserServiceCart()"
+        *ngIf="userservicedetailsAddedList.length > 0 && this.userService.currentUserValue.userroles.rolecode != 'FREELANCER_USER' ">
+        <span *ngIf="userservicedetailsAddedList.length == 1 ; else morethenOne">
+          {{userservicedetailsAddedList.length}}
+        </span>
+        <ng-template #morethenOne>
+          <span>
+            {{userservicedetailsAddedList.length}}
+          </span>
+        </ng-template>
+      </i>
+    </div>
+  </div>
+</div>
+<h4>Our Services</h4>
+<hr>
 <ul class="nav nav-tabs" id="myTab" role="tablist">
-  <!-- <li class="nav-item">
-    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"> 
-      <i class="fa fa-cogs fatab"></i>
-      <br>
-      <b>{{ 'DASHOARD_CBA_MAIN_BODY.SERVICEPROVIDER' | translate }}</b>
-    
-    </a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">
-      <i class="fa fa-building-o fatab"></i>
-      <br>
-      <b>{{ 'DASHOARD_CBA_MAIN_BODY.REALESTATEINDUSTRY' | translate }}</b>
-    </a>
-  </li>
-  -->
   <li class="nav-item">
     <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
       aria-selected="true">
@@ -56,13 +55,18 @@
             <ng-template #addToCart>
               <a class="btn btn-info btn-sm pull-right"
                 (click)="prepareSaveUserServiceForServiceId(svc.ourserviceId , svc.packwithotherourserviceid , svc.amount , svc.validPeriodLabel , svc.validPeriodCode ,svc.serviceendon, svc.servicestarton)">
-                <i class="fa fa-plus" > Add To Cart </i></a>
+                <i class="fa fa-plus"> Add To Cart </i></a>
             </ng-template>
           </div>
 
           <div class="card-body d-flex flex-column">
             <div class="card-title">
-              <h5 class="text-center"><b>{{svc.name}}</b></h5>
+              <h5 class="text-center"><b>
+                  <a style="cursor:pointer;border-bottom: 1px dotted #ff4949;"
+                    (click)="openReadMorePopup(svc.description)">
+                    {{svc.name}}
+                  </a>
+                </b></h5>
               <hr>
               <span class="display-4"><i class="fa fa-inr">{{svc.amount}}</i></span>
               <span class="mb-4">/{{svc.validPeriodLabel}}
@@ -71,9 +75,6 @@
             <div class="card-text">
               <ul class="list-unstyled">
                 <li class="mb-1" *ngFor="let features of svc.fullcontent">
-                  <!-- <app-read-more [content]="features" [limit]="100" [completeWords]="true">
-                  </app-read-more>
-                  -->
                   {{features}}
                 </li>
               </ul>
@@ -84,41 +85,4 @@
       </div>
     </div>
   </div>
-  <!--<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-   <br><br>
-   <div class="row">
-    <div class="col-sm-4 mb-3 mb-md-0" style="margin-bottom:8px !important"
-          *ngFor="let svc of domainRealEstateIndustry">
-          <div class="card text-center h-100">
-            <div class="card-header header-bg">
-              <h6>{{svc.name}}</h6>
-            </div>
-            <img class="card-img" src={{svc.imgurl}}>
-            <div class="card-body d-flex flex-column">
-              <div class="card-title">
-                <span class="display-4"><i class="fa fa-inr">{{svc.amount}}</i></span>
-                <span class="mb-4">/{{svc.validPeriodLabel}}
-                </span>
-              </div>
-              <div class="card-text">
-                <ul class="list-unstyled">
-                  <li class="mb-1" *ngFor="let features of svc.fullcontent">
-                    {{features}}
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div class="card-footer">
-              <div *ngIf="userservicedetailsExistingIds.includes(svc.ourserviceId) ; else addToCart">
-              </div>
-              <ng-template #addToCart>
-                <button type="button" class="btn btn-primary"
-                  (click)="prepareSaveUserServiceForServiceId(svc.ourserviceId , svc.packwithotherourserviceid ,svc.amount , svc.validPeriodLabel, svc.validPeriodCode,svc.serviceendon, svc.servicestarton)">
-                  <i class="fa fa-plus"> Add To Cart </i></button>
-              </ng-template>
-            </div>
-          </div>
-        </div>
-        </div>
-  </div>-->
 </div>

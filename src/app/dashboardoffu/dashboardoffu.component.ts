@@ -10,11 +10,11 @@ import { AlertsService } from '../AppRestCall/alerts/alerts.service';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { FreelanceOnSvcService } from '../AppRestCall/freelanceOnSvc/freelance-on-svc.service';
 import { FreelanceOnSvc } from '../appmodels/FreelanceOnSvc';
-import {  Toaster, ToastType } from 'ngx-toast-notifications';
+import { Toaster, ToastType } from 'ngx-toast-notifications';
 import { ConfigMsg } from '../appconstants/configmsg';
 import { timer } from 'rxjs';
 import { Router } from '@angular/router';
-import {  ModalOptions } from 'ngx-bootstrap/modal';
+import { ModalOptions } from 'ngx-bootstrap/modal';
 import { ReadMorePopupComponent } from '../read-more-popup/read-more-popup.component';
 @Component({
   selector: 'app-dashboardoffu',
@@ -23,16 +23,9 @@ import { ReadMorePopupComponent } from '../read-more-popup/read-more-popup.compo
 })
 export class DashboardoffuComponent implements OnInit {
 
-  stage1Img: string = '//placehold.it/200/dddddd/fff?text=1';
-  stage2Img: string = '//placehold.it/200/dddddd/fff?text=2';
-  stage3Img: string = '//placehold.it/200/dddddd/fff?text=3';
-  stage4Img: string = '//placehold.it/200/dddddd/fff?text=4';
-  stage5Img: string = '//placehold.it/200/dddddd/fff?text=5';
-  stageCompletedImg: string = '//placehold.it/200/dddddd/fff?text=Completed';
-  stageBgStatusApprovedImg: string = '//placehold.it/200/dddddd/fff?text=Approved';
-  stageBgStatusRejectedImg: string = '//placehold.it/200/dddddd/fff?text=Rejected';
   usrObj: any;
   indiaTime = new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' });
+  defaultTxtImg: string = '//placehold.it/200/dddddd/fff?text=' + this.getNameInitials();
   referenceobj: any;
   istimelap = false;
   listofalljobs: any;
@@ -360,16 +353,24 @@ export class DashboardoffuComponent implements OnInit {
 
   openReadMorePopup(fullcontent: string) {
     const initialState = {
-     content: fullcontent
-   };
-   this.modalRef = this.modalService.show(ReadMorePopupComponent, Object.assign(
-     {},
-     this.config,
-     {
-       initialState
-     }
-   ));
- }
-
+      content: fullcontent
+    };
+    this.modalRef = this.modalService.show(ReadMorePopupComponent, Object.assign(
+      {},
+      this.config,
+      {
+        initialState
+      }
+    ));
+  }
+  getNameInitials() {
+    if (this.userService.currentUserValue != null) {
+      if (this.userService.currentUserValue.fullname !== null) {
+        let initials = this.userService.currentUserValue.fullname.match(/\b\w/g) || [];
+        let initialsfinal = ((initials.shift() || '') + (initials.pop() || '')).toUpperCase();
+        return initialsfinal;
+      }
+    }
+  }
 }
 

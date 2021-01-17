@@ -2,9 +2,11 @@
     <div class=" row">
         <div class="col-md-11">
             <span class="section-title" *ngIf="userFUObjList.length > 1 && !issearchbydate;">
-                <p>
-                    Below are the {{name}}'s all over the locations.
-                </p>
+                <h3>
+                    <p>
+                        Below are the {{name}}'s all over the locations.
+                    </p>
+                </h3>
             </span>
             <span class=" section-title " *ngIf="userFUObjList.length == 1 && issearchbydate &&
             this.searchform.get('fulladdress').value.length > 0;">

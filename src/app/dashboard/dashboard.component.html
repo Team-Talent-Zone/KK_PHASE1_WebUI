@@ -35,7 +35,17 @@
     <div class="row row-offcanvas row-offcanvas-left">
         <div class="col-md-3 col-lg-2 sidebar-offcanvas" id="sidebar" role="navigation">
             <ul class="nav flex-column pl-1">
-                <li class="nav-item" *ngIf="this.userService.currentUserValue.userroles.rolecode !='FREELANCER_USER'">
+                <li class="nav-item"
+                    *ngIf="this.userService.currentUserValue.userroles.rolecode ==='CLIENT_BUSINESS_ADMINISTRATOR'">
+                    <a [routerLink]="['/dashboard']" class="list-group-item list-group-item-action bg-light">
+                        <i class="fa fa-tachometer" style="color:#FF4949"></i>
+                        <b>
+                            Our Services
+                        </b>
+                    </a>
+                </li>
+                <li class="nav-item"
+                    *ngIf="this.userService.currentUserValue.userroles.rolecode =='CORE_SERVICE_SUPPORT_TEAM' || this.userService.currentUserValue.userroles.rolecode =='CORE_SERVICE_SUPPORT_MANAGER'">
                     <a [routerLink]="['/dashboard']" class="list-group-item list-group-item-action bg-light">
                         <i class="fa fa-tachometer" style="color:#FF4949"></i>
                         <b>
@@ -131,40 +141,30 @@
         <!--/col-->
         <div class="col-md-9 col-lg-10 main">
             <div class="container">
-                <div class="bread-cumb">
-                    <div class="row">
-                        <div class="col-xl-5 col-lg-6">
-                            <span><b>{{ 'DASHOARD_HEADER.WELCOMEBACK' | translate }} {{fullname}}</b></span>
-                        </div>
-                        <div class="col-xl-6 col-lg-6">
-                            <span class="float-right">
-                                <small><i><span id='ct'></span></i></small>
-                            </span>
-                        </div>
-                        <div class="col-xl-1 col-lg-6">
-                            <!--<i class="fa fa-envelope-o"></i>  &nbsp;-->
-                            <a class="pull-right"
-                                routerLink='/vieworeditprofile/{{userService.currentUserValue.userId}}'>
-                                <img *ngIf="userService.currentUserValue.avtarurl != null" class="avatar"
-                                    src="{{userService.currentUserValue.avtarurl}}">
-                                <img *ngIf="userService.currentUserValue.avtarurl === null" src="{{defaultTxtImg}}"
-                                    class="avatar">
-                            </a>
-                            &nbsp;&nbsp;
-                            <i class="fa fa-bell-o pull-right"></i>
-                        </div>
-                    </div>
-                </div>
+
                 <!-- <hr> -->
                 <!--Alert-->
                 <div class="alert alert-success alert-dismissible fade show w-100" role="alert"
                     *ngIf="txtid != null && ispaysuccess">
-                    <h3 class="display-5">We have recieved your payment and here is the
-                        transcation Id
+                    <h4 class="display-5"
+                        *ngIf="this.userService.currentUserValue.userroles.rolecode ==='FREELANCER_USER'">
+                        We have recieved your payment and here is the transcation Id
                         <a [routerLink]="['/payment',txtid]">
                             {{txtid}}
                         </a>
-                    </h3>
+                    </h4>
+                    <h4 class="display-5"
+                        *ngIf="this.userService.currentUserValue.userroles.rolecode ==='CLIENT_BUSINESS_ADMINISTRATOR'">
+                        We have recieved your payment and here is the transcation Id 
+                        <a [routerLink]="['/payment',txtid]">
+                            {{txtid}}
+                        </a>
+                        <a [routerLink]="['/myservices']">
+                            <b>
+                                <small> Go to my service</small>
+                            </b>
+                        </a>
+                    </h4>
                     <!--Close Icon-->
                     <button type="button" class="btn close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">×</span>

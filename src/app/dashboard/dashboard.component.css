@@ -94,20 +94,8 @@
   font-size: 40px;
 }
 
-.avatar {
-  vertical-align: middle;
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  margin-top: -8px;
-}
-.bread-cumb {
-  padding: 11px;
-  margin-bottom: 10px;
-  -webkit-box-shadow: 0px 1px 1px #de1dde;
-  -moz-box-shadow: 0px 1px 1px #de1dde;
-  box-shadow: 3px -2px 5px 2px #867886;
-}
+
+
 .rounded-circle {
   border-radius: 15% !important;
 }
