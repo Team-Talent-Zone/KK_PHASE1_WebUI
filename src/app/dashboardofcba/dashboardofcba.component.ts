@@ -270,9 +270,11 @@ export class DashboardofcbaComponent implements OnInit {
     );
   }
 
-  openReadMorePopup(fullcontent: string) {
+  openReadMorePopup(fullcontent: string, label: string, contentListFeatures: any) {
     const initialState = {
-      content: fullcontent
+      content: fullcontent,
+      headerlabel: label,
+      contentList: contentListFeatures,
     };
     this.modalRef = this.modalService.show(ReadMorePopupComponent, Object.assign(
       {},

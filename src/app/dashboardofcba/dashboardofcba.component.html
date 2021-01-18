@@ -38,15 +38,15 @@
                 <i class="fa fa-plus"> Add To Cart </i></a>
             </ng-template>
           </div>
-
           <div class="card-body d-flex flex-column">
             <div class="card-title">
-              <h5 class="text-center"><b>
-                  <a style="cursor:pointer;border-bottom: 1px dotted #ff4949;"
-                    (click)="openReadMorePopup(svc.description)">
+              <h6 class="text-center"><b>
+                  <a style="cursor:pointer;border-bottom: 0px dotted black;"
+                    (click)="openReadMorePopup(svc.description , svc.name)">
                     {{svc.name}}
                   </a>
-                </b></h5>
+                </b>
+              </h6>
               <hr>
               <span class="display-4"><i class="fa fa-inr">{{svc.amount}}</i></span>
               <span class="mb-4">/{{svc.validPeriodLabel}}
@@ -54,9 +54,17 @@
             </div>
             <div class="card-text">
               <ul class="list-unstyled">
-                <li class="mb-1" *ngFor="let features of svc.fullcontent">
-                  {{features}}
+                <li class="mb-1" *ngFor="let features of svc.fullcontent; index as i">
+                  <div *ngIf="i<=1">
+                    {{features}}
+                  </div>
                 </li>
+                <div *ngIf="svc.fullcontent.length>1">
+                  <a style=" cursor:pointer;border-bottom: 2px dotted black;"
+                    (click)="openReadMorePopup(null , null,svc.fullcontent )">
+                    <i>See all features</i>
+                  </a>
+                </div>
               </ul>
             </div>
           </div>
