@@ -1,4 +1,5 @@
 <div class="container" *ngIf="!iscreatejobdiv">
+    <hr>
     <div class=" row">
         <div class="col-md-11">
             <span class="section-title" *ngIf="userFUObjList.length > 1 && !issearchbydate;">
@@ -10,13 +11,15 @@
             </span>
             <span class=" section-title " *ngIf="userFUObjList.length == 1 && issearchbydate &&
             this.searchform.get('fulladdress').value.length > 0;">
-                <p>Available {{name}} at :
-                    {{this.searchform.get('fulladdress').value}} </p>
+                <h3>
+                    <p>Available {{name}} at : {{this.searchform.get('fulladdress').value}} </p>
+                </h3>
             </span>
             <span class="section-title " *ngIf="userFUObjList.length > 1 && issearchbydate && 
                 this.searchform.get('fulladdress').value.length > 0;">
-                <p> Available {{name}}'s at
-                    : {{this.searchform.get('fulladdress').value}} </p>
+                <h3>
+                    <p> Available {{name}}'s at : {{this.searchform.get('fulladdress').value}} </p>
+                </h3>
             </span>
         </div>
     </div>
@@ -65,145 +68,6 @@
         </form>
     </div>
 </div>
-<div class="row container" *ngIf="userFUObjList.length > 0 && iscreatejobdiv">
-    <div class="col-md-12 mx-auto">
-        <form [formGroup]="createjobform" (ngSubmit)="preparetosavefreelanceonservice()">
-            <div class="card-header bg-white">
-                <h3 color="#0a382b">Create a Job for {{name}}</h3>
-            </div>
-            <div class="card-body">
-                <div class="form-group">
-                    <div class="form-row">
-                        <div class="col-md-8">
-                            <label><b>Job Location</b> </label>
-                            <span>
-                                <i class="fa fa-address-book form-control-icon"></i>
-                            </span>
-                            <input type="text" formControlName="joblocation" rows="4" class="form-control" readonly
-                                id="input4">
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="form-row">
-                        <div class="col-md-3">
-                            <label><b>Total Hours Of Work</b>&nbsp;
-                                <i class="fa fa-info-circle"
-                                    title="Enter hours of work will calcuate the job end date automatically"
-                                    style="font-size:10px;color:rgb(76, 0, 255)"></i>
-                            </label>
-                            <span>
-                                <i class="fa fa-clock-o form-control-icon"></i>
-                            </span>
-                            <input type="url" formControlName="totalhoursofjob" class="form-control"
-                                (change)="addHoursToJobStartDateAndMinMaxAmount ($event)" id="input3"
-                                placeholder="Enter hours of work "
-                                [ngClass]="{ 'is-invalid': issubmit && f.totalhoursofjob.errors }" />
-                            <div *ngIf="issubmit && f.totalhoursofjob.errors" class="invalid-feedback">
-                                <div *ngIf="f.totalhoursofjob.errors.required">Total hours of job is
-                                    required
-                                </div>
-                                <div *ngIf="f.totalhoursofjob.errors.min">Can't be Zero.
-                                </div>
-                                <div *ngIf="f.totalhoursofjob.errors.maxlength">Total hours of job cant
-                                    exceed
-                                    2
-                                    digits</div>
-                                <div *ngIf="f.totalhoursofjob.errors.pattern">Must be digit only
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="form-row">
-                        <div class="col-md-3">
-                            <label><b>Job Start Date</b>&nbsp;
-                                <i class="fa fa-info-circle" title="We setup the time at 10:00 AM"
-                                    style="font-size:10px;color:rgb(76, 0, 255)"></i>
-                            </label>
-                            <span>
-                                <i class="fa fa-calendar   form-control-icon"></i>
-                            </span>
-                            <input formControlName="jobstartedon" class="form-control" readonly>
-                        </div>
-                        <div class="col-md-5">
-                            <label><b>Job End Date</b>&nbsp;
-                                <i class="fa fa-info-circle"
-                                    title="The end date auto generated based on the hours of work "
-                                    style="font-size:10px;color:rgb(76, 0, 255)"></i>
-                            </label>
-                            <span>
-                                <i class="fa fa-calendar   form-control-icon"></i>
-                            </span>
-                            <input readonly formControlName="jobendedon" class="form-control">
-                            <p *ngIf="enddatevalue != null">
-                                <i class="fa fa-info-circle"></i>
-                                <small>
-                                    Our auto estimated end date & time : {{enddatevalue}}
-                                </small>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="form-row">
-                        <div class="col-md-3">
-                            <label> <b> Enter price your estimating </b></label>&nbsp;
-                            <span>
-                                <i class="fa fa-clock-o form-control-icon"></i>
-                            </span>
-                            <input formControlName="amount" type="url" class="form-control" id="input3"
-                                placeholder="Enter price for the work "
-                                [ngClass]="{ 'is-invalid': issubmit && f.amount.errors }" />
-                            <div *ngIf="issubmit && f.amount.errors" class="invalid-feedback">
-                                <div *ngIf="f.amount.errors.required">Amount is
-                                    required
-                                </div>
-                                <div *ngIf="f.amount.errors.pattern">Must be digit only
-                                </div>
-                            </div>
-                            <p *ngIf=" avgHourlyRate != null">
-                                <small>Our auto estimated quote of amount between {{avgHourlyRate}} and
-                                    {{maxHourlyRateCal}}
-                                    <i class="fa fa-info-circle"
-                                        title="We calcuate estimated rates based on the hours of the work entered"
-                                        style="font-size:10px;color:rgb(76, 0, 255)"></i>
-                                </small>
-                            </p>
-                        </div>
-                        <div class="col-md-5">
-                            <label><b> Job Description </b></label>
-                            <span>
-                                <i class="fa fa-at form-control-icon"></i>
-                            </span>
-                            <textarea class="form-control" formControlName="jobdescription" rows="5" id="input5"
-                                placeholder="Enter Job Description"
-                                [ngClass]="{ 'is-invalid': issubmit && f.jobdescription.errors }"></textarea>
-                            <div *ngIf="issubmit && f.jobdescription.errors" class="invalid-feedback">
-                                <div *ngIf="f.jobdescription.errors.required">Job description is
-                                    required
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6"></div>
-                    <div class="col-md-1">
-                        <button type="button" (click)="backToSearch();" class="btn btn-warning  float-right">Back
-                            To Search</button>
-                    </div>
-                    <div class="col-md-1">
-                        <button type="submit" class="btn btn-success float-right">Submit</button>
-                    </div>
-                </div>
-            </div>
-        </form>
-        <!-- /form card register -->
-    </div>
-</div>
-<hr>
 <div class="row justify-content-center mt-1 mb-2">
     <div class="col-auto">
         <nav class="nav btn-group">
@@ -283,4 +147,144 @@
 </div>
 <div *ngIf="userFUObjList.length == 0 && !timelaps && this.searchform.get('fulladdress').value.length === 0">
     <h3> Currently all our {{name}}'s are busy at work. Try search by job date and job location address</h3>
+</div>
+
+<!-- Create a New Job  Interface-->
+<div class="row container" *ngIf="userFUObjList.length > 0 && iscreatejobdiv">
+    <div class="col-md-12 mx-auto">
+        <form [formGroup]="createjobform" (ngSubmit)="preparetosavefreelanceonservice()">
+            <div class="card-header bg-white">
+                <h3 color="#0a382b">Create a Job for {{name}}</h3>
+            </div>
+            <div class="card-body">
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="col-md-8">
+                            <label><b>Job Location</b> </label>
+                            <span>
+                                <i class="fa fa-address-book form-control-icon"></i>
+                            </span>
+                            <input type="text" formControlName="joblocation" rows="4" class="form-control" readonly
+                                id="input4">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="col-md-3">
+                            <label><b>Total Hours Of Work</b>&nbsp;
+                                <i class="fa fa-info-circle"
+                                    title="Enter hours of work will calcuate the job end date automatically"
+                                    style="color:rgb(76, 0, 255)"></i>
+                            </label>
+                            <span>
+                                <i class="fa fa-clock-o form-control-icon"></i>
+                            </span>
+                            <input type="url" formControlName="totalhoursofjob" class="form-control"
+                                (change)="addHoursToJobStartDateAndMinMaxAmount ($event)" id="input3"
+                                placeholder="Enter hours of work "
+                                [ngClass]="{ 'is-invalid': issubmit && f.totalhoursofjob.errors }" />
+                            <div *ngIf="issubmit && f.totalhoursofjob.errors" class="invalid-feedback">
+                                <div *ngIf="f.totalhoursofjob.errors.required">Total hours of job is
+                                    required
+                                </div>
+                                <div *ngIf="f.totalhoursofjob.errors.min">Can't be Zero.
+                                </div>
+                                <div *ngIf="f.totalhoursofjob.errors.maxlength">Total hours of job cant
+                                    exceed
+                                    2
+                                    digits</div>
+                                <div *ngIf="f.totalhoursofjob.errors.pattern">Must be digit only
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="col-md-3">
+                            <label><b>Job Start Date</b>&nbsp;
+                                <i class="fa fa-info-circle" title="We setup the time at 10:00 AM"
+                                    style="color:rgb(76, 0, 255)"></i>
+                            </label>
+                            <span>
+                                <i class="fa fa-calendar   form-control-icon"></i>
+                            </span>
+                            <input formControlName="jobstartedon" class="form-control" readonly>
+                        </div>
+                        <div class="col-md-5">
+                            <label><b>Job End Date</b>&nbsp;
+                                <i class="fa fa-info-circle"
+                                    title="The end date auto generated based on the hours of work "
+                                    style="color:rgb(76, 0, 255)"></i>
+                            </label>
+                            <span>
+                                <i class="fa fa-calendar   form-control-icon"></i>
+                            </span>
+                            <input readonly formControlName="jobendedon" class="form-control">
+                            <p *ngIf="enddatevalue != null">
+                                <i class="fa fa-info-circle"></i>
+                                <small>
+                                    Our auto estimated end date & time : {{enddatevalue}}
+                                </small>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="col-md-3">
+                            <label> <b> Enter price your estimating </b></label>&nbsp;
+                            <span>
+                                <i class="fa fa-clock-o form-control-icon"></i>
+                            </span>
+                            <input formControlName="amount" type="url" class="form-control" id="input3"
+                                placeholder="Enter price for the work "
+                                [ngClass]="{ 'is-invalid': issubmit && f.amount.errors }" />
+                            <div *ngIf="issubmit && f.amount.errors" class="invalid-feedback">
+                                <div *ngIf="f.amount.errors.required">Amount is
+                                    required
+                                </div>
+                                <div *ngIf="f.amount.errors.pattern">Must be digit only
+                                </div>
+                            </div>
+                            <p *ngIf=" avgHourlyRate != null">
+                                <small>Our auto estimated quote of amount between {{avgHourlyRate}} and
+                                    {{maxHourlyRateCal}}
+                                    <i class="fa fa-info-circle"
+                                        title="We calcuate estimated rates based on the hours of the work entered"
+                                        style="color:rgb(76, 0, 255)"></i>
+                                </small>
+                            </p>
+                        </div>
+                        <div class="col-md-5">
+                            <label><b> Job Description </b></label>
+                            <span>
+                                <i class="fa fa-at form-control-icon"></i>
+                            </span>
+                            <textarea class="form-control" formControlName="jobdescription" rows="5" id="input5"
+                                placeholder="Enter Job Description"
+                                [ngClass]="{ 'is-invalid': issubmit && f.jobdescription.errors }"></textarea>
+                            <div *ngIf="issubmit && f.jobdescription.errors" class="invalid-feedback">
+                                <div *ngIf="f.jobdescription.errors.required">Job description is
+                                    required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6"></div>
+                    <div class="col-md-1">
+                        <button type="button" (click)="backToSearch();" class="btn btn-warning  float-right">Back
+                            To Search</button>
+                    </div>
+                    <div class="col-md-1">
+                        <button type="submit" class="btn btn-success float-right">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <!-- /form card register -->
+    </div>
 </div>

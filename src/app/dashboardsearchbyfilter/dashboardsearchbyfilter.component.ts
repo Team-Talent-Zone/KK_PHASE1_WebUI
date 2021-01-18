@@ -33,7 +33,7 @@ export class DashboardsearchbyfilterComponent implements OnInit {
   diffMs: any;
   actDate: any;
   purchaseDate: any;
-  maxHours = 0; 
+  maxHours = 0;
   code: string;
   name: string;
   userFUObjList: any = [];
@@ -281,6 +281,7 @@ export class DashboardsearchbyfilterComponent implements OnInit {
     return this.createjobform.controls;
   }
   get s() {
+
     return this.searchform.controls;
   }
 
@@ -364,7 +365,6 @@ export class DashboardsearchbyfilterComponent implements OnInit {
     this.markPoints = [];
     this.markers = [];
     this.userFUObjList = [];
-
     if (this.userService.currentUserValue.userroles.rolecode !== config.user_rolecode_fu.toString()) {
       if (startdate === null) {
         this.spinnerService.show();
@@ -375,9 +375,15 @@ export class DashboardsearchbyfilterComponent implements OnInit {
                 userObjList.forEach(element => {
                   this.setuserObjList(element);
                 });
+                if (this.userFUObjList != null) {
+                  if (this.userFUObjList.length > 0) {
+                    this.timelaps = true;
+                  }
+                } else {
+                  this.timelaps = false;
+                }
                 this.spinnerService.hide();
               }, 1000);
-              this.timelaps = true;
             }
           },
           error => {
@@ -398,9 +404,9 @@ export class DashboardsearchbyfilterComponent implements OnInit {
                     }
                   }
                 });
+                this.timelaps = true;
                 this.issearchbydate = true;
                 this.spinnerService.hide();
-                this.timelaps = true;
               }, 1000);
             } else {
               this.issearchbydate = true;
@@ -431,7 +437,6 @@ export class DashboardsearchbyfilterComponent implements OnInit {
         avtarurl: element.avtarurl
       };
       this.markers.push(this.markPoints);
-
     }
   }
 }
