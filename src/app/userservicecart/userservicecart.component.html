@@ -24,13 +24,13 @@
                         <p class="text-danger">
                             <a class="btn btn-sm"
                                 (click)="removeItemFromCart(prod.serviceId ,prod.childservicepkgserviceid)">
-                                <i title="Remove {{prod.name}} From Cart" class="fa fa-trash"
-                                    style="color:red"></i>
+                                <i title="Remove {{prod.name}} From Cart" class="fa fa-trash" style="color:red"></i>
                             </a>
                         </p>
                     </div>
                 </div>
                 <p>{{ prod.description | slice:0:100 }}{{ prod.description.length > 100 ? '....' : '' }} </p>
+                <hr>
             </div>
             <div> <input type="button" (click)="openPaymentComponent(totalAmountToPay)" value="Proceed to payment"
                     class="btn btn-primary btn-block"> </div>
