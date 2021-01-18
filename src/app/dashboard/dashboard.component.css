@@ -139,3 +139,7 @@
 input:placeholder-shown {
   font-style: italic;
 }
+
+.background{
+  background-color: #f2f2f2;
+}

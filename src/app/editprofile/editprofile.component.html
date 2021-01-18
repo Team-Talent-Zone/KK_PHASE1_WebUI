@@ -53,7 +53,7 @@
                                             <span>
                                                 <i class="fa fa-user-circle form-control-icon"></i>
                                             </span>
-                                            <input type="text"
+                                            <input type="text" readonly=true
                                                 placeholder=" {{ 'DASHBOARD_FU_PROFILE.PROFILE_FIRSTNAME' | translate }}"
                                                 class="form-control" id="inputFirstName"
                                                 [ngClass]="{ 'is-invalid': issubmit && f.firstname.errors }"
@@ -71,7 +71,7 @@
                                             <span>
                                                 <i class="fa fa-user-circle form-control-icon"></i>
                                             </span>
-                                            <input type="text"
+                                            <input type="text" readonly=true
                                                 placeholder="{{ 'DASHBOARD_FU_PROFILE.PROFILE_LASTNAME' | translate }}"
                                                 class="form-control" id="inputLastName" formControlName="lastname"
                                                 [ngClass]="{ 'is-invalid': issubmit && f.lastname.errors }">
