@@ -105,9 +105,7 @@
                                 </h4>
                                 <p><img class="card-img-top img-fluid " src="{{fuuser.avtarurl}}" alt="card image">
                                 </p>
-                                <p class="card-text"><small>{{fuuser.shortaddress | slice:0:40}}</small></p>
-                                <p *ngIf="this.userService.currentUserValue.userroles.rolecode === 'CORE_SERVICE_SUPPORT_TEAM' || this.userService.currentUserValue.userroles.rolecode === 'CORE_SERVICE_SUPPORT_MANAGER'"
-                                    class="card-text"><small>{{fuuser.username}}</small></p>
+                                <p *ngIf="this.userService.currentUserValue.userroles.rolecode === 'CLIENT_BUSINESS_ADMINISTRATOR'" class="card-text"><small>{{fuuser.shortaddress | slice:0:40}}</small></p>
                             </div>
                         </div>
                     </div>
@@ -143,10 +141,10 @@
 </div>
 <!-- Freelancer Search Section Ended -->
 <div *ngIf="userFUObjList.length == 0 && timelaps && this.searchform.get('fulladdress').value.length > 0">
-    <h3> No {{name}} Found near the address {{this.searchform.get('fulladdress').value}}</h3>
+    <h4> No {{name}} Found near the address {{this.searchform.get('fulladdress').value}}</h4>
 </div>
 <div *ngIf="userFUObjList.length == 0 && !timelaps && this.searchform.get('fulladdress').value.length === 0">
-    <h3> Currently all our {{name}}'s are busy at work. Try search by job date and job location address</h3>
+    <h4> We working hard to get a skilled worker for you . Currently all our {{name}}'s is busy at work.</h4>
 </div>
 
 <!-- Create a New Job  Interface-->
