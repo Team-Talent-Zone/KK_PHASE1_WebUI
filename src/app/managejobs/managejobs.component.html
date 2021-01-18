@@ -97,7 +97,7 @@
                         </div>
                         <div class="tooltips">
                             <a style="cursor:pointer" (click)="openReadMorePopup(element.jobdescription)"><i>
-                                {{ 'DASHBOARD_FU_BODY.JOBDESCPTION' | translate }}</i></a>
+                                    {{ 'DASHBOARD_FU_BODY.JOBDESCPTION' | translate }}</i></a>
                         </div>
                     </div>
                 </div>
@@ -124,6 +124,10 @@
                                 (click)="activateJob(newlyjob.jobId)">Activiate
                                 <i class="fa fa-check"></i>
                             </button>
+                            <button class="bg-danger pull-right"
+                                *ngIf="newlyjob.isjobactive && newlyjob.isdeactive != null"
+                                (click)="cancelJob(newlyjob.jobId)">Cancel
+                                <i class="fa fa-times"></i></button>
                         </p>
                         <span class="display-4">
                             <i class="fa fa-inr">{{newlyjob.amount | number}}</i></span>
@@ -159,18 +163,18 @@
                         </p>
                         <div class="tooltips">
                             <a style="cursor:pointer" (click)="openReadMorePopup(newlyjob.jobdescription)"><i>
-                                {{ 'DASHBOARD_FU_BODY.JOBDESCPTION' | translate }}</i></a>
+                                    {{ 'DASHBOARD_FU_BODY.JOBDESCPTION' | translate }}</i></a>
                         </div>
                     </div>
                     <div class="card-footer" *ngIf="!newlyjob.isjobactive && newlyjob.isdeactive">
                         <div class="row">
-                            <small class="text-muted ">
-                                <p class="text-warning text-center">
-                                    <i class="fa fa-info-circle "></i> You have not activiated this job on time and the
+                            <p class="text-danger text-center">
+                                <i class="fa fa-info-circle "></i>
+                                <small class="text-muted ">You have not activiated this job on time and the
                                     job
                                     start date has crossed current date. Please create new job again
-                                </p>
-                            </small>
+                                </small>
+                            </p>
                         </div>
                         <div class="row">
                             <div class="col-sm-3"></div>
@@ -179,34 +183,30 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-footer" *ngIf="newlyjob.isjobactive && !newlyjob.isjobaccepted &&  newlyjob.isdeactive == null">
+                    <div class="card-footer"
+                        *ngIf="newlyjob.isjobactive && !newlyjob.isjobaccepted &&  newlyjob.isdeactive == null">
                         <div class="row">
-                            <small class="text-muted ">
-                                <p class="text-primary text-center"><i class="fa fa-info-circle"></i> Thank you for
+                            <p class="text-primary text-center"><i class="fa fa-info-circle"></i>
+                                <small class="text-muted ">
+                                    Thank you for
                                     activating the
                                     job . Our
                                     pool of skilled workers
                                     will be available to accept this job shortly.
                                     <br> We will notify via bell notification
                                     message.
-                                </p>
-                            </small>
+                                </small>
+                            </p>
                         </div>
                     </div>
                     <div class="card-footer" *ngIf="newlyjob.isjobactive && newlyjob.isdeactive != null">
                         <div class="row">
-                            <small class="text-muted ">
-                                <p class="text-info text-center"><i class="fa fa-info-circle"></i>No skilled worker has
+                            <p class="text-danger text-center"><i class="fa fa-info-circle"></i>
+                                <small class="text-muted ">No skilled worker has
                                     accepted
-                                    this job. Please provide to cancel job & create new job again.</p>
-                            </small>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3"></div>
-                            <div class="col-sm-4">
-                                <button type="button" (click)="cancelJob(newlyjob.jobId)"
-                                    class="btn  btn-danger btn-sm">Cancel</button>
-                            </div>
+                                    this job. Please provide to cancel job & create new job again.
+                                </small>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -283,7 +283,7 @@
                         </p>
                         <div class="tooltips">
                             <a style="cursor:pointer" (click)="openReadMorePopup(completedjob.jobdescription)"><i>
-                                {{ 'DASHBOARD_FU_BODY.JOBDESCPTION' | translate }}</i></a>
+                                    {{ 'DASHBOARD_FU_BODY.JOBDESCPTION' | translate }}</i></a>
                         </div>
                     </div>
                 </div>
