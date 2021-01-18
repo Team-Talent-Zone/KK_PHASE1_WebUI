@@ -138,14 +138,12 @@ export class DashboardComponent implements OnInit {
 
   search(inputItemCode: string, inputItem: string) {
     this.templist = [];
-    console.log('inputItem', this.list);
     this.templist = this.list.filter((item) => item.label.toLowerCase().startsWith(this.inputItem.toLowerCase()));
-    console.log('label', this.templist);
-    console.log('label', this.templist[0].code);
+    console.log('templist', this.templist);
     if (inputItem == null) {
       this.alertService.info('Search keyword cannot be empty');
     } else
-      if (this.templist[0].code === null) {
+      if (this.templist.length == 0) {
         this.alertService.info('Keyword ' + inputItem + ' is a invalid skill to search.');
       } else {
         this.router.navigateByUrl('fusearch/', { skipLocationChange: true }).
