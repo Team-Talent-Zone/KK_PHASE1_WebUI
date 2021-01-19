@@ -62,9 +62,9 @@ h5 {
 
 .box-shadow {
   border: 1.9px solid #ff4949;
-  padding-left: 50px;
-  padding-right: 50px;
-  height: 340px;
+  padding-left: 0px;
+  padding-right: 0px;
+  height: 300px;
   background-color: #0a382b;
   color: white;
 }
@@ -101,7 +101,7 @@ h5 {
 .dropdown-menu {
   position: absolute;
   width: 673px;
-  margin-left: -442px;
+  margin-left: -315px;
   padding: 1px;
 }
 .box-bg:hover {
