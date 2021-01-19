@@ -112,6 +112,7 @@
     }
   }
 
+
   // When the user clicks on the button, scroll to the top of the document
   function topFunction() {
     document.body.scrollTop = 0;
@@ -136,12 +137,11 @@
       }
     }
   }
+
+  function offcanvas() {
+    $(".row-offcanvas").toggleClass("active");
+  }
 </script>
-<script>
-  $(document).ready(function () {
-    $("[data-toggle=offcanvas]").click(function () {
-      $(".row-offcanvas").toggleClass("active");
-    });
-</script>
+
 
 </html>

@@ -1,3 +1,4 @@
+
 <nav class="navbar navbar-fixed-top navbar-toggleable-sm navbar-expand-md navbar-dark mb-3">
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
         data-target="#collapsingNavbar">
@@ -9,7 +10,7 @@
                 class="rounded-circle d-inline-block align-top" alt="Kaam Karega Dashboard"></a>&nbsp;
         <span class="logo-title">{{ 'HOMENAV.COMPANYNAMEPART1' | translate }}<span class="logo-u">{{
                 'HOMENAV.COMPANYNAMEPART2' | translate }}</span></span>
-        <button type="button" class="navbar-toggler hidden-sm-up" data-toggle="offcanvas">
+        <button type="button" onclick="offcanvas()" class="hidden-sm-up navbar-toggler" data-toggle="offcanvas">
             <span class="navbar-toggler-icon"></span>
         </button>
     </div>
@@ -143,24 +144,26 @@
             <div class="container">
                 <div class="bread-cumb">
                     <div class="row">
-                      <div class="col-xl-6 col-lg-6">
-                        <span><b>{{ 'DASHOARD_HEADER.WELCOMEBACK' | translate }} {{this.userService.currentUserValue.fullname}}</b></span>
-                      </div>
-                      <div class="col-xl-5 col-lg-6">
-                        <span class="float-right">
-                          <small><i>{{indiaTime}}</i></small>
-                        </span>
-                      </div>
-                      <div class="col-xl-1 col-lg-6 float-right">
-                        <i class="fa fa-bell-o"></i>
-                        <a routerLink='/vieworeditprofile/{{userService.currentUserValue.userId}}'>
-                          <img *ngIf="userService.currentUserValue.avtarurl != null" class="avatar"
-                            src="{{userService.currentUserValue.avtarurl}}">
-                          <img *ngIf="userService.currentUserValue.avtarurl === null" src="{{defaultTxtImg}}" class="avatar">
-                        </a>
-                      </div>
+                        <div class="col-xl-6 col-lg-6">
+                            <span><b>{{ 'DASHOARD_HEADER.WELCOMEBACK' | translate }}
+                                    {{this.userService.currentUserValue.fullname}}</b></span>
+                        </div>
+                        <div class="col-xl-5 col-lg-6">
+                            <span class="float-right">
+                                <small><i>{{indiaTime}}</i></small>
+                            </span>
+                        </div>
+                        <div class="col-xl-1 col-lg-6 float-right">
+                            <i class="fa fa-bell-o"></i>
+                            <a routerLink='/vieworeditprofile/{{userService.currentUserValue.userId}}'>
+                                <img *ngIf="userService.currentUserValue.avtarurl != null" class="avatar"
+                                    src="{{userService.currentUserValue.avtarurl}}">
+                                <img *ngIf="userService.currentUserValue.avtarurl === null" src="{{defaultTxtImg}}"
+                                    class="avatar">
+                            </a>
+                        </div>
                     </div>
-                  </div>
+                </div>
                 <!-- <hr> -->
                 <!--Alert-->
                 <div class="alert alert-success alert-dismissible fade show w-100" role="alert"
@@ -174,7 +177,7 @@
                     </h4>
                     <h4 class="display-5"
                         *ngIf="this.userService.currentUserValue.userroles.rolecode ==='CLIENT_BUSINESS_ADMINISTRATOR'">
-                        We have recieved your payment and here is the transcation Id 
+                        We have recieved your payment and here is the transcation Id
                         <a [routerLink]="['/payment',txtid]">
                             {{txtid}}
                         </a>
