@@ -5,7 +5,7 @@
  * General styles
  */
  .form-group .form-control {
-  padding-left: 2.375rem;
+  padding-left: 0.375rem;
 }
 .form-group .form-control-icon {
   position: absolute;
@@ -150,6 +150,13 @@
 .forgot-password:focus{
   color: rgb(12, 97, 33);
 }
+
+.input-group-prepend span{
+  width: 50px;
+  background-color: #FFC312;
+  color: black;
+  border:0 !important;
+  }
 
 .section-4-container{
  /* background-image:url(src/assets/img/backgrounds/login-background.jpg);

@@ -42,6 +42,7 @@
     "GIVEVALIDEMAIL":"अपना मान्य ईमेल आईडी दर्ज करें।",
     "SHOULDNOTBE40":"उपयोगकर्ता नाम कैंट 40 से अधिक है।",
     "SIGNIN": "साइन इन करें",
+    "LOGIN": "लॉग इन",
     "FORGOTYOURPASSWORD":"पासवर्ड भूल गए?" ,
     "SENDPASSWORD":"पासवर्ड रीसेट",
     "BACKTOLOGIN":"लॉगिन पर वापस जाएं?",
@@ -66,7 +67,7 @@
     "SIGNUP_VALIDATION_INDUSTRY_REQ":"उद्योग की आवश्यकता है",
     "SIGNUP_SUBMIT_BUTTON":"प्रस्तुत",
     "SIGNUP_CLOSE_BUTTON":"रद्द करना",
-    "ACCOUNTLOGIN" : "खाता प्रवेश"
+    "ACCOUNTLOGIN" : "साइन इन"
   },
   "ONBOARD": {
     "OURCUSTOMERS":"हमारे ग्राहक",

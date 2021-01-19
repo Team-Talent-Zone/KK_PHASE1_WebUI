@@ -42,6 +42,7 @@
     "GIVEVALIDEMAIL":"మీ చెల్లుబాటు అయ్యే ఇమెయిల్ ఐడిని నమోదు చేయండి.",
     "SHOULDNOTBE40":"వినియోగదారు పేరు 40 మించకూడదు.",
     "SIGNIN": "సైన్ ఇన్ చేయండి",
+    "LOGIN": "లాగిన్",
     "FORGOTYOURPASSWORD":"పాస్వర్డ్ మర్చిపోయారా?",
     "SENDPASSWORD":"పాస్వర్డ్ రీసెట్",
     "BACKTOLOGIN":"లాగిన్‌కు తిరిగి వెళ్లాలా?",
@@ -66,7 +67,7 @@
     "SIGNUP_VALIDATION_INDUSTRY_REQ":"పరిశ్రమ అవసరం",
     "SIGNUP_SUBMIT_BUTTON":"సబ్మిట్",
     "SIGNUP_CLOSE_BUTTON":"కాన్సుల్",
-    "ACCOUNTLOGIN" : "ఖాతా లాగిన్"
+    "ACCOUNTLOGIN" : "సైన్ ఇన్"
   },
   "ONBOARD": {
     "OURCUSTOMERS":"మా కస్టమర్లు",

@@ -43,6 +43,7 @@
       "GIVEVALIDEMAIL":"Enter your valid Email id.",
       "SHOULDNOTBE40":"Username cant exceed 40.",
       "SIGNIN": "Sign in",
+      "LOGIN": "Login",
       "FORGOTYOURPASSWORD":"Forgot the password?" ,
       "SENDPASSWORD":"Reset Password",
       "BACKTOLOGIN":"Back to Login?",
@@ -67,7 +68,7 @@
       "SIGNUP_VALIDATION_INDUSTRY_REQ":"Industry is required",
       "SIGNUP_SUBMIT_BUTTON":"Submit",
       "SIGNUP_CLOSE_BUTTON":"Cancel",
-      "ACCOUNTLOGIN" :"Account Login"
+      "ACCOUNTLOGIN" :"Sign In"
     },
     "ONBOARD": {
       "OURCUSTOMERS":"Our Customers",

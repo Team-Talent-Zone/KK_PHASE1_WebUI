@@ -6,39 +6,34 @@
         <div class="col-md-6 center" style="margin-top:68px;">
           <div *ngIf="!isfwd; else elseFwd">
             <div class="card card-container">
-              <!-- <img id="profile-img" class="profile-img-card" src="{{avatarURL}}"  /> -->
-              <img id="profile-img" class="profile-img-card" src="assets/img/backgrounds/user.png" />
-              <h4 style="text-align: center; font-family: Lucida Handwriting;"> <i>
-                {{ 'HOMESIGNUP.ACCOUNTLOGIN' | translate }}
-              </i> </h4>
-
+              <img id="profile-img" class="profile-img-card" src="assets/img/backgrounds/login.jpg" />
+              <h4 style="text-align: left;"> {{ 'HOMESIGNUP.ACCOUNTLOGIN' | translate }}</h4>
                <p id="profile-name" class="profile-name-card">   </p> 
-              
-
               <form [formGroup]="loginForm" (ngSubmit)="loginUserByUsername()">
                 <span id="reauth-email" class="reauth-email"></span>
                 <div class="form-group rounded">
-                  
-                    <!-- <i class="fa fa-at form-control-icon"></i> -->
-                    <i class="fa fa-user-circle form-control-icon" aria-hidden="true"></i>
-                  
+                  <div class="input-group form-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-user-circle form-control-icon"></i></span>
+                    </div> 
+                   
                   <input type="email" formControlName="username"
                     [ngClass]="{ 'is-invalid': issubmit && f.username.errors }" class="form-control"
                     placeholder="{{ 'HOMESIGNUP.EMAILADDRESS' | translate }}">
                   <div *ngIf="issubmit && f.username.errors" class="invalid-feedback">
                     <div *ngIf="f.username.errors.required || f.username.errors.email"> {{ 'HOMESIGNUP.GIVEVALIDEMAIL' |
                       translate }}
-                    </div>
+                    </div></div>
                     <div *ngIf="f.username.errors.maxlength">{{ 'HOMESIGNUP.SHOULDNOTBE40' | translate }}
                     </div>
                   </div>
                 </div>
                 
                 <div class="form-group">
-                  <span>
-                    <!-- <i class="fa fa-asterisk form-control-icon"></i> -->
-                    <i class="fa fa-lock form-control-icon" aria-hidden="true" ></i>
-                  </span>
+                  <div class="input-group form-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-lock form-control-icon"></i></span>
+                    </div>                
                   <input type="password" id="inputPassword" class="form-control"
                     placeholder="{{ 'HOMESIGNUP.PASSWORD' | translate }}" formControlName="password"
                     [ngClass]="{ 'is-invalid': issubmit && f.password.errors }">
@@ -47,8 +42,8 @@
                     </div>
                     <div *ngIf="f.password.errors.minlength">{{ 'HOMESIGNUP.PASSWORDMUSTBE8CHAR' | translate }}</div>
                   </div>
-                </div>
-                <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">{{ 'HOMESIGNUP.SIGNIN' |
+                </div></div>
+                <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">{{ 'HOMESIGNUP.LOGIN' |
                   translate }}</button>
               </form>
               <a (click)="disFwd(true)" class="btn btn-sm">
