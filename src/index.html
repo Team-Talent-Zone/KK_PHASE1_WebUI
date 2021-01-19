@@ -137,11 +137,22 @@
       }
     }
   }
-
   function offcanvas() {
     $(".row-offcanvas").toggleClass("active");
   }
 </script>
+<script>
 
+  $(document).ready(function () {
+    $('#carouselExampleCaptions').carousel({
+      interval: 3000
+    }).on('slide.bs.carousel', function () {
+      document.getElementById('video1').pause();
+      document.getElementById('video2').pause();
+      document.getElementById('video3').pause();
+      document.getElementById('video4').pause();
+    });
+  });
+</script>
 
 </html>

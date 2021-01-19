@@ -22,7 +22,7 @@
           <a class="nav-link scroll-link" (click)="Removeclass()" href="/home#section-2">{{ 'HOMENAV.ONBOARD' |
             translate }}</a>
         </li>
-        <li class="nav-item" style="padding: 0px 20px 0px 0px;" >
+        <li class="nav-item" style="padding: 0px 20px 0px 0px;">
           <a class="nav-link scroll-link" (click)="Removeclass()" href="/home#section-3">{{ 'HOMENAV.SERVICE' |
             translate }}</a>
         </li>
@@ -58,7 +58,7 @@
                     <br><br><br>
                     <img alt="Kaam Karega" class="rounded-circle d-inline-block align-top" height="50"
                       src="assets/img/logo.png" width="50">
-                      <div class="mt-md-4"> </div>
+                    <div class="mt-md-4"> </div>
                     <p>{{ 'HOMENAV.SIGNUP_MODALWINDOW_CLIENT_DESC' | translate }}
                     </p>
                     <br>
@@ -72,13 +72,13 @@
                     <br><br><br>
                     <img alt="Kaam Karega" class="rounded-circle d-inline-block align-top" height="50"
                       src="assets/img/logo.png" width="50">
-                      <div class="mt-md-4"> </div>
+                    <div class="mt-md-4"> </div>
                     <p>{{ 'HOMENAV.SIGNUP_MODALWINDOW_SKILLEDWORKER_DESC' | translate }}
                     </p>
                     <br>
                     <br>
                     <button (click)="openSignupModal('fu')" type="button" class="btn btn-danger"
-                     style="color:white;border-color: white;">{{
+                      style="color:white;border-color: white;">{{
                       'HOMENAV.SIGNUP_MODALWINDOW_SKILLEDWORKER_BUTTON_LABEL' | translate }}
                     </button>
                   </div>
@@ -111,15 +111,18 @@
       <img class="d-block w-100" src="assets/img/backgrounds/ban1.jpg" data-holder-rendered="true">
       <div class="carousel-caption1  d-md-block" id="myCarousel">
         <p class="d-block d-sm-none">
-          <iframe id="player" width="150" height="80" src="https://www.youtube.com/embed/edoylctHVF8" frameborder="0"
-            class="embed-responsive-item"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen></iframe>
+         <video id="video1" width="150" height="80" class="wrapper_video" loop controls muted>
+          <source
+            src="https://platform-email-templates.s3.amazonaws.com/Organizations+or+Individual+-+Banner+Video+DRAFT.mp4"
+            type="video/mp4">
+        </video>
         </p>
-        <p class="d-md-block d-lg-none d-sm-none"> <iframe width="550" height="350"
-            src="https://www.youtube.com/embed/edoylctHVF8" frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen></iframe>
+        <p class="d-md-block d-lg-none d-sm-none">
+          <video id="video2" width="550" height="350" class="wrapper_video" loop controls muted>
+            <source
+              src="https://platform-email-templates.s3.amazonaws.com/Organizations+or+Individual+-+Banner+Video+DRAFT.mp4"
+              type="video/mp4">
+          </video>
         </p>
       </div>
     </div>
@@ -127,15 +130,17 @@
       <img class="d-block w-100" style="opacity: 0.8;" src="assets/img/backgrounds/ban2.jpg"
         data-holder-rendered="true">
       <div class="carousel-caption1  d-md-block">
-        <p class="d-block d-sm-none"> <iframe width="150" height="80" src="https://www.youtube.com/embed/edoylctHVF8"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen></iframe>
+        <p class="d-block d-sm-none">
+          <video id="video3" width="150" height="80" class="wrapper_video" loop controls muted>
+            <source
+              src="https://platform-email-templates.s3.amazonaws.com/Skilled+Workers.mp4"
+              type="video/mp4">
+          </video>
         </p>
-        <p class="d-md-block d-lg-none d-sm-none"> <iframe width="550" height="350"
-            src="https://www.youtube.com/embed/edoylctHVF8" frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen></iframe>
+        <p class="d-md-block d-lg-none d-sm-none">
+          <video id="video4" width="550" height="350" class="wrapper_video" loop controls muted>
+            <source src="https://platform-email-templates.s3.amazonaws.com/Skilled+Workers.mp4" type="video/mp4">
+          </video>
         </p>
       </div>
     </div>
@@ -181,8 +186,8 @@
         <div class="row">
           <div class="col-md-6" style="padding: 0px;">
             <div class="box-shadow text-center box-bg">
-                <img alt="Kaam Karega" class="rounded-circle d-inline-block align-top" height="50" src="assets/img/logo.png"
-                width="50">                            
+              <img alt="Kaam Karega" class="rounded-circle d-inline-block align-top" height="50"
+                src="assets/img/logo.png" width="50">
               <p>{{ 'HOMENAV.SIGNUP_MODALWINDOW_CLIENT_DESC' | translate }}
               </p>
               <br><br>
@@ -195,8 +200,8 @@
             <div class="box-shadow text-center box-bg">
               <br><br><br>
               <h4>hii </h4>
-              <img alt="Kaam Karega" class="rounded-circle d-inline-block align-top" height="50" src="assets/img/logo.png"
-                width="50">
+              <img alt="Kaam Karega" class="rounded-circle d-inline-block align-top" height="50"
+                src="assets/img/logo.png" width="50">
               <br>
               <p>{{ 'HOMENAV.SIGNUP_MODALWINDOW_SKILLEDWORKER_DESC' | translate }}
               </p>
