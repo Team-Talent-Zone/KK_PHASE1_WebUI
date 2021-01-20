@@ -4,7 +4,7 @@
 /*
  * General styles
  */
- .form-group .form-control {
+.form-group .form-control {
   padding-left: 0.375rem;
 }
 .form-group .form-control-icon {
@@ -18,8 +18,7 @@
   pointer-events: none;
   /* color: black; */
   /* background-color: #178264; */
-} 
-
+}
 
 .card-container.card {
   max-width: 350px;
@@ -39,7 +38,7 @@
 * Card component
 */
 .card {
-  background-color: #F7F7F7;
+  background-color: #f7f7f7;
   /* just in case there no content*/
   padding: 20px 25px 30px;
   margin: 0 auto 25px;
@@ -96,9 +95,9 @@
   font-size: 16px;
 }
 
-.form-signin input[type=email],
-.form-signin input[type=password],
-.form-signin input[type=text],
+.form-signin input[type="email"],
+.form-signin input[type="password"],
+.form-signin input[type="text"],
 .form-signin button {
   width: 100%;
   display: block;
@@ -113,8 +112,9 @@
 .form-signin .form-control:focus {
   border-color: rgb(104, 145, 162);
   outline: 0;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgb(104, 145, 162);
-  box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgb(104, 145, 162);
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
+    0 0 8px rgb(104, 145, 162);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgb(104, 145, 162);
 }
 
 .btn.btn-signin {
@@ -147,22 +147,22 @@
 
 .forgot-password:hover,
 .forgot-password:active,
-.forgot-password:focus{
+.forgot-password:focus {
   color: rgb(12, 97, 33);
 }
 
-.input-group-prepend span{
+.input-group-prepend span {
   width: 50px;
-  background-color: #FFC312;
+  background-color: #ffc312;
   color: black;
-  border:0 !important;
-  }
-
-.section-4-container{
- /* background-image:url(src/assets/img/backgrounds/login-background.jpg);
-  background-repeat: no-repeat;
-  background-attachment: scroll;*/
-  background-color: #0a382b;
-  height: 590px;
+  border: 0 !important;
 }
 
+.section-4-container {
+  background-image: url(src/assets/img/backgrounds/login-background.jpg);
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-color: #0a382b;
+  background-position: left;
+  /*  height: 590px;*/
+}
