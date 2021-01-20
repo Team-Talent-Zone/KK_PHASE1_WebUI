@@ -88,7 +88,6 @@ export class HeaderComponent implements OnInit {
   }
 
   loadBannerVideoByLangSelected() {
-    console.log('this is test');
     this.shortkeyvideo1 = null;
     this.shortkeyvideo2 = null;
     this.ban1videoURL = null;
@@ -108,7 +107,6 @@ export class HeaderComponent implements OnInit {
       this.referService.getLookupTemplateEntityByShortkey(this.shortkeyvideo1).subscribe(
         (videourl: any) => {
           this.ban1videoURL = videourl.url;
-          console.log('this is inside', this.ban1videoURL);
           this.spinnerService.hide();
         },
         error => {
