@@ -49,3 +49,9 @@
   border-radius: 50%;
   margin-top: -6px;
 }
+
+@media (min-width: 768px) {
+  .d-md-block {
+    display: block !important;
+  }
+}

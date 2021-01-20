@@ -69,6 +69,7 @@ import { MatomoModule } from 'ngx-matomo';
 import { ReadMoreComponent } from './read-more/read-more.component';
 import { DataTableModule } from 'ng-angular8-datatable';
 import { ReadMorePopupComponent } from './read-more-popup/read-more-popup.component';
+import { DatePipe } from '@angular/common';
 
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
@@ -169,6 +170,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
       useClass: BasicAuthHtppInterceptorService,
       multi: true
     },
+    DatePipe
   ],
   entryComponents: [
     ViewaccountdetailsComponent,

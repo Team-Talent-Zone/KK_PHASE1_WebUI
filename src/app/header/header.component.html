@@ -38,6 +38,7 @@
           <a class="dropdown-toggle nav-link scroll-link" type="button" data-toggle="modal" data-target="#exampleModal"
             (click)="Removeclass()">
             {{ 'HOMENAV.SIGNUP' | translate }}
+
           </a>
         </li>
         <li class="nav-item" style="padding: 0px 20px 0px 0px;">
@@ -110,35 +111,30 @@
       <img class="d-block w-100" src="assets/img/backgrounds/ban1.jpg" data-holder-rendered="true">
       <div class="carousel-caption1  d-md-block" id="myCarousel">
         <p class="d-block d-sm-none">
-         <video id="video1" width="140" height="80" class="wrapper_video" loop controls muted>
-          <source
-            src="https://platform-email-templates.s3.amazonaws.com/Organizations+or+Individual+-+Banner+Video+DRAFT.mp4"
-            type="video/mp4">
-        </video>
+
+          <video id="video1" width="140" height="80" class="wrapper_video" loop controls muted>
+            <source src={{ban1videoURL}} type="video/mp4">
+          </video>
         </p>
         <p class="d-md-block d-lg-none d-sm-none">
           <video id="video2" width="530" height="300" class="wrapper_video" loop controls muted>
-            <source
-              src="https://platform-email-templates.s3.amazonaws.com/Organizations+or+Individual+-+Banner+Video+DRAFT.mp4"
-              type="video/mp4">
+            <source *ngIf="ban1videoURL != null" src={{ban1videoURL}} type="video/mp4">
           </video>
         </p>
       </div>
     </div>
     <div class="carousel-item">
-      <img class="d-block w-100" width="100%" height="500" style="opacity: 0.8;" src="assets/img/backgrounds/ban2.jpg"
+      <img class="d-block w-100" style="opacity: 0.8;" src="assets/img/backgrounds/ban2.jpg"
         data-holder-rendered="true">
       <div class="carousel-caption1  d-md-block">
         <p class="d-block d-sm-none">
           <video id="video3" width="140" height="80" class="wrapper_video" loop controls muted>
-            <source
-              src="https://platform-email-templates.s3.amazonaws.com/Skilled+Workers.mp4"
-              type="video/mp4">
+            <source src={{ban2videoURL}} type="video/mp4">
           </video>
         </p>
         <p class="d-md-block d-lg-none d-sm-none">
           <video id="video4" width="530" height="300" class="wrapper_video" loop controls muted>
-            <source src="https://platform-email-templates.s3.amazonaws.com/Skilled+Workers.mp4" type="video/mp4">
+            <source *ngIf="ban2videoURL != null" src={{ban2videoURL}} type="video/mp4">
           </video>
         </p>
       </div>
@@ -198,7 +194,7 @@
           <div class="col-md-6" style="padding: 0px;">
             <div class="box-shadow text-center box-bg">
               <br><br><br>
-               <img alt="Kaam Karega" class="rounded-circle d-inline-block align-top" height="50"
+              <img alt="Kaam Karega" class="rounded-circle d-inline-block align-top" height="50"
                 src="assets/img/logo.png" width="50">
               <br>
               <p>{{ 'HOMENAV.SIGNUP_MODALWINDOW_SKILLEDWORKER_DESC' | translate }}

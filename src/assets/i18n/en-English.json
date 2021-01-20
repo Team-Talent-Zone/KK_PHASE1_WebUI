@@ -95,7 +95,7 @@
       },
     "SKILLEDWORKERREVIEW": { 
       "SWORKER_REVIEW_HEADERLABEL":"Skilled Worker Reviews",
-      "SWORKER_BUTTON_READFULL":"Read Full"
+      "SWORKER_BUTTON_READFULL":"Read More"
     },
     "SERVICE": { 
       "LABEL_OURSERVICE": "Our Services",
@@ -138,7 +138,8 @@
     "DASHOARD_FU_MENU": {
       "SUMMARY":"Summary",
       "PAYMENTHISTORY":"Payment History",
-      "REVIEWS":"Reviews"
+      "REVIEWS":"Reviews",
+      "CURRENTSTAGE":"Current Onboard Stage"
     },
     "DASHBOARD_FU_BODY":{
       "PROFILEEUPDATE":"Profile Updated",
@@ -156,7 +157,7 @@
       "NEWJOBS":"New Job",
       "COMPLETEDJOBS":"Completed Job",
       "JOB":"Job",
-      "UPCOMINGTOOLTIP":"Upcoming Job amount will calculate before 3 days of Job start date",
+      "UPCOMINGTOOLTIP":"Estimated Payment amount is calculated before 3 days of job start date",
       "STARTON":"Start Date :",
       "ENDON":"End Date :",
       "ACCEPTEDON":"Accepted Date :",

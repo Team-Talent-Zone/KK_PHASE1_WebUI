@@ -16,6 +16,7 @@ import { timer } from 'rxjs';
 import { Router } from '@angular/router';
 import { ModalOptions } from 'ngx-bootstrap/modal';
 import { ReadMorePopupComponent } from '../read-more-popup/read-more-popup.component';
+import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-dashboardoffu',
   templateUrl: './dashboardoffu.component.html',
@@ -45,6 +46,7 @@ export class DashboardoffuComponent implements OnInit {
     class: 'modal-md', backdrop: 'static',
     keyboard: false
   };
+  indiaTime = this.datepipe.transform(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }), "dd/MM/yyyy hh:mm:ss");
   constructor(
     public userService: UserService,
     private referService: ReferenceService,
@@ -56,6 +58,7 @@ export class DashboardoffuComponent implements OnInit {
     private freelanceSvc: FreelanceOnSvcService,
     private toaster: Toaster,
     private router: Router,
+    public datepipe: DatePipe
   ) {
   }
 

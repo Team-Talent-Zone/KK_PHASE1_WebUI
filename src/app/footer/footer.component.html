@@ -46,7 +46,7 @@
 							</ul>
 						</div>
 					</div>
-					<div class="col-md-3">
+					<div class="col-md-3" *ngIf="this.userService.currentUserValue == null">
 						<div class="address">
 							<h2>{{ 'FOOTER.USEFULLINKS' | translate }}</h2>
 							<!-- <hr> -->

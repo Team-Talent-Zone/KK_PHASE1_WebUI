@@ -5,6 +5,10 @@ import { BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { TranslateService } from '@ngx-translate/core';
 import { config } from 'src/app/appconstants/config';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import { ReferenceService } from '../AppRestCall/reference/reference.service';
+import { AlertsService } from '../AppRestCall/alerts/alerts.service';
+import { AnimationStyleMetadata } from '@angular/animations';
 
 @Component({
   selector: 'app-header',
@@ -20,6 +24,10 @@ export class HeaderComponent implements OnInit {
     class: 'modal-md', backdrop: 'static',
     keyboard: false
   };
+  ban1videoURL: string;
+  ban2videoURL: string;
+  shortkeyvideo1: string;
+  shortkeyvideo2: string;
 
   Removeclass() {
     // var body = document.body;
@@ -35,12 +43,16 @@ export class HeaderComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private modalService: BsModalService,
-    public translate: TranslateService) {
+    public translate: TranslateService,
+    private spinnerService: Ng4LoadingSpinnerService,
+    private referService: ReferenceService,
+    private alertService: AlertsService
+  ) {
     translate.addLangs(['en-English', 'te-తెలుగు', 'hi-हिंदी']);
     translate.setDefaultLang('en-English');
     const browserLang = translate.getBrowserLang();
     translate.use(browserLang.match(/en-English|te-తెలుగు|hi-हिंदी/) ? browserLang : 'en-English');
-     }
+  }
 
   onWindowScroll(e) {
     let element = document.querySelector('.navbar');
@@ -53,6 +65,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.translate.use(localStorage.getItem('langLabel'));
+    this.loadBannerVideoByLangSelected();
   }
 
   translateToLanguage(langSelect: string) {
@@ -74,6 +87,48 @@ export class HeaderComponent implements OnInit {
       });
   }
 
+  loadBannerVideoByLangSelected() {
+    console.log('this is test');
+    this.shortkeyvideo1 = null;
+    this.shortkeyvideo2 = null;
+    this.ban1videoURL = null;
+    this.ban2videoURL = null;
+    if (localStorage.getItem('langCode') == config.lang_code_te) {
+      this.shortkeyvideo1 = config.banner_video1_te;
+      this.shortkeyvideo2 = config.banner_video2_te;
+    } else if (localStorage.getItem('langCode') == config.lang_code_hi) {
+      this.shortkeyvideo1 = config.banner_video1_hi;
+      this.shortkeyvideo2 = config.banner_video2_hi;
+    } else {
+      this.shortkeyvideo1 = config.banner_video1_en;
+      this.shortkeyvideo2 = config.banner_video2_en;
+    }
+    this.spinnerService.show();
+    setTimeout(() => {
+      this.referService.getLookupTemplateEntityByShortkey(this.shortkeyvideo1).subscribe(
+        (videourl: any) => {
+          this.ban1videoURL = videourl.url;
+          console.log('this is inside', this.ban1videoURL);
+          this.spinnerService.hide();
+        },
+        error => {
+          this.spinnerService.hide();
+          this.alertService.error(error);
+        });
+      this.referService.getLookupTemplateEntityByShortkey(this.shortkeyvideo2).subscribe(
+        (videourl: any) => {
+          this.ban2videoURL = videourl.url;
+          this.spinnerService.hide();
+        },
+        error => {
+          this.spinnerService.hide();
+          this.alertService.error(error);
+        });
+    }, 2000);
+
+    console.log('this is ban1videoURL', this.ban1videoURL);
+    console.log('this is ban2videoURL', this.ban2videoURL);
+  }
   openSignupModalButton() {
     document.getElementById('clickModal').click();
   }

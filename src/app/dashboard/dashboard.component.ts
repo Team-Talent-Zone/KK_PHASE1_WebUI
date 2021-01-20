@@ -10,7 +10,7 @@ import { PaymentService } from '../AppRestCall/payment/payment.service';
 import { ReferenceService } from '../AppRestCall/reference/reference.service';
 import { map } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
-
+import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -37,7 +37,7 @@ export class DashboardComponent implements OnInit {
   ispaysuccess = false;
 
   fullname: string;
-  indiaTime = new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' });
+  indiaTime = this.datepipe.transform(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }), "dd/MM/yyyy hh:mm:ss");
   defaultTxtImg: string = '//placehold.it/200/dddddd/fff?text=' + this.getNameInitials();
 
   constructor(
@@ -50,6 +50,7 @@ export class DashboardComponent implements OnInit {
     private paymentsvc: PaymentService,
     private referService: ReferenceService,
     public translate: TranslateService,
+    public datepipe: DatePipe
   ) {
     route.params.subscribe(params => {
       this.txtid = params.txtid;
@@ -139,7 +140,6 @@ export class DashboardComponent implements OnInit {
   search(inputItemCode: string, inputItem: string) {
     this.templist = [];
     this.templist = this.list.filter((item) => item.label.toLowerCase().startsWith(this.inputItem.toLowerCase()));
-    console.log('templist', this.templist);
     if (inputItem == null) {
       this.alertService.info('Search keyword cannot be empty');
     } else

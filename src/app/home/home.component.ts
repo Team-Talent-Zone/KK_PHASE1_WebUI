@@ -56,6 +56,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.userService.logout();
     this.checkConfirmation();
   }
 

@@ -94,7 +94,7 @@
   },
   "SKILLEDWORKERREVIEW":{
     "SWORKER_REVIEW_HEADERLABEL":"कुशल श्रमिक समीक्षा",
-    "SWORKER_BUTTON_READFULL":"पूरा पढ़ें"
+    "SWORKER_BUTTON_READFULL":"अधिक पढ़ें"
   },
   "SERVICE": {
     "LABEL_OURSERVICE": "हमारी सेवाएं",
@@ -137,7 +137,8 @@
   "DASHOARD_FU_MENU": {
     "SUMMARY":"सारांश",
     "PAYMENTHISTORY":"भुगतान इतिहास",
-    "REVIEWS":"समीक्षा"
+    "REVIEWS":"समीक्षा",
+    "CURRENTSTAGE":"करंट ऑनबोर्ड स्टेज"
   },
   "DASHBOARD_FU_BODY":{
     "PROFILEEUPDATE":"प्रोफ़ाइल अपडेट",
@@ -155,7 +156,7 @@
     "NEWJOBS":"नया मौका",
     "COMPLETEDJOBS":"पूरा किया हुआ काम",
     "JOB":"मौका",
-    "UPCOMINGTOOLTIP":"आगामी अवसर राशि की गणना नौकरी शुरू होने की तारीख से 3 दिन पहले की जाएगी",
+    "UPCOMINGTOOLTIP":"अनुमानित भुगतान राशि की गणना नौकरी शुरू होने के 3 दिनों से पहले की जाती है",
     "STARTON":"आरंभ करने की तिथि :",
     "ENDON":"अंतिम तिथि :",
     "ACCEPTEDON":"स्वीकृत तिथि :",

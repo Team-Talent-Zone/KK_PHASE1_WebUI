@@ -94,7 +94,7 @@
   },
   "SKILLEDWORKERREVIEW":{
     "SWORKER_REVIEW_HEADERLABEL":"నైపుణ్యం కలిగిన కార్మికుల సమీక్షలు",
-    "SWORKER_BUTTON_READFULL":"పూర్తి చదవండి"
+    "SWORKER_BUTTON_READFULL":"ఇంకా చదవండి"
   },
   "SERVICE": {
     "LABEL_OURSERVICE": "మా సేవలు",
@@ -137,7 +137,8 @@
   "DASHOARD_FU_MENU": {
     "SUMMARY":"సారాంశం",
     "PAYMENTHISTORY":"చెల్లింపు చరిత్ర",
-    "REVIEWS":"సమీక్షలు"
+    "REVIEWS":"సమీక్షలు",
+    "CURRENTSTAGE":"ప్రస్తుత ఆన్బోర్డ్ స్టేజ్"
   },
   "DASHBOARD_FU_BODY":{
     "PROFILEEUPDATE":"ప్రొఫైల్ నవీకరించబడింది",
@@ -155,7 +156,7 @@
     "NEWJOBS":"కొత్త అవకాశం",
     "COMPLETEDJOBS":"పని పూర్తయింది",
     "JOB":"అవకాశం",
-    "UPCOMINGTOOLTIP":"రాబోయే ప్రారంభ మొత్తం 3 రోజుల ఉద్యోగ ప్రారంభ తేదీకి ముందు లెక్కించబడుతుంది",
+    "UPCOMINGTOOLTIP":"ఉద్యోగ ప్రారంభ తేదీ 3 రోజుల ముందు అంచనా చెల్లింపు మొత్తం లెక్కించబడుతుంది",
     "STARTON":"ప్రారంబపు తేది :",
     "ENDON":"ఆఖరి తేది :",
     "ACCEPTEDON":"అంగీకరించిన తేదీ :",

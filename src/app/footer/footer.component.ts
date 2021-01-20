@@ -1,6 +1,6 @@
+import { UserService } from './../AppRestCall/user/user.service';
 import { SignupComponent } from './../signup/signup.component';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { config } from '../appconstants/config';
 
 @Component({
@@ -12,16 +12,19 @@ export class FooterComponent implements OnInit {
 
   constructor(
     private signupComponent: SignupComponent,
-    private route: ActivatedRoute,
+    private userService: UserService
   ) {
   }
 
   ngOnInit() {
-    if (localStorage.getItem('langCode') === null) {
-      localStorage.setItem('langCode', config.default_prefer_lang);
-      localStorage.setItem('langLabel', config.lang_english_word);
+    if (this.userService.currentUserValue != null) {
+      this.signupComponent.getTermsofServicesAndPrivacyPolicyURLByLang(this.userService.currentUserValue.preferlang);
+    } else {
+      if (localStorage.getItem('langCode') === null) {
+        localStorage.setItem('langCode', config.default_prefer_lang);
+        localStorage.setItem('langLabel', config.lang_english_word);
+      }
+      this.signupComponent.getTermsofServicesAndPrivacyPolicyURLByLang(localStorage.getItem('langCode'));
     }
-    this.signupComponent.getTermsofServicesAndPrivacyPolicyURLByLang(localStorage.getItem('langCode'));
   }
-
 }

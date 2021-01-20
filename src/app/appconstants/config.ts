@@ -77,7 +77,13 @@ export const config = {
   shortkey_privacypolicy_hindi: 'pp_hindi',
   invalid_username_password: 'That email address or password combination isnt in our records.',
   invalid_username_password_te: 'ఆ ఇమెయిల్ చిరునామా లేదా పాస్‌వర్డ్ కలయిక మా రికార్డుల్లో లేదు.',
-  invalid_username_password_hi: 'वह ईमेल पता या पासवर्ड संयोजन हमारे रिकॉर्ड में नहीं है।'
+  invalid_username_password_hi: 'वह ईमेल पता या पासवर्ड संयोजन हमारे रिकॉर्ड में नहीं है।',
+  banner_video1_en: 'video1en',
+  banner_video2_en: 'video2en',
+  banner_video1_te: 'video1te',
+  banner_video2_te: 'video2te',
+  banner_video1_hi: 'video1hi',
+  banner_video2_hi: 'video2hi',
 };
 
 

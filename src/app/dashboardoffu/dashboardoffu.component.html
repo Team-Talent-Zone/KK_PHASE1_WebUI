@@ -1,38 +1,79 @@
 <div class="container">
     <h4> {{ 'DASHOARD_FU_MENU.SUMMARY' | translate }}</h4>
-    <hr>
-    <br>
-    <div class="row placeholders justify-content-between">
-        <div class="row">
-            <div class="col-6 col-sm-1 placeholder text-center">
-                <!-- <img src="{{stage1Img}}" class="mx-auto img-fluid rounded-circle"> -->
-                <i class="fa fa-address-card-o  rounded-circle"
-                    [ngStyle]="{'background': userService.currentUserValue.freeLanceDetails.isprofilecompleted ? 'cornflowerblue':'white'}"></i>
-                <a routerLink='/vieworeditprofile/{{userService.currentUserValue.userId}}'
-                    *ngIf="!userService.currentUserValue.freeLanceDetails.isprofilecompleted; else elseFU">
+    <hr class="my-4">
+    <div class="row mb-3"></div>
+    <div class="row placeholders justify-content-between ">
+        <h5 class="col-12 col-sm-2 placeholder text-center d-lg-none">
+             {{ 'DASHOARD_FU_MENU.CURRENTSTAGE' | translate }}  
+        </h5>
+        <div class="row mb-5 d-lg-none"></div>
+        <div class="col-12 col-sm-2 placeholder text-center d-lg-none">
+            <p *ngIf="!userService.currentUserValue.freeLanceDetails.isprofilecompleted;">
+                <i class="fa fa-address-card-o  rounded-circle" [ngStyle]="{'background':'white'}"></i>
+                <a routerLink='/vieworeditprofile/{{userService.currentUserValue.userId}}'>
                     <p class='text-center'><small><b>
                                 <u>
                                     {{ 'DASHBOARD_FU_BODY.FILLOUTPROFILE' | translate }}
                                 </u></b></small></p>
                 </a>
-                <ng-template #elseFU>
-                    <p class='text-center'><small>
-                            <b>
-                                {{ 'DASHBOARD_FU_BODY.PROFILEEUPDATE' | translate }}
-                            </b>
-                        </small></p>
-                </ng-template>
+            </p>
+            <i class="fa fa-credit-card-alt rounded-circle"
+                *ngIf="!userService.currentUserValue.freeLanceDetails.isregfeedone"
+                [ngStyle]=" {'background': 'white'}"></i>
+            <p
+                *ngIf="!userService.currentUserValue.freeLanceDetails.isregfeedone && istimelap &&   userService.currentUserValue.freeLanceDetails.isprofilecompleted">
+                <a href=" javascript: return false;" (click)="openPaymentComponent()">
+                    <small>
+                        <b>
+                            {{ 'DASHBOARD_FU_BODY.PAYMENT' | translate }}
+                            {{referenceobj[0].label}}
+                        </b>
+                    </small>
+                </a>
+            </p>
+            <p
+                *ngIf="userService.currentUserValue.freeLanceDetails.isbgstarted && userService.currentUserValue.freeLanceDetails.bgcurrentstatus === null">
+                <i class="fa fa-street-view rounded-circle" [ngStyle]=" {'background': 'cornflowerblue' }"></i>
+                <span><small><b>{{ 'DASHBOARD_FU_BODY.BGVERIFICATIONINITIATED' | translate }}</b></small></span>
+            </p>
+            <i class="fa fa fa-hand-paper-o rounded-circle" *ngIf="userService.currentUserValue.freeLanceDetails.isbgdone && 
+                userService.currentUserValue.freeLanceDetails.bgcurrentstatus == 'BG_APPROVED' || 
+                userService.currentUserValue.freeLanceDetails.bgcurrentstatus == 'BG_REJECTED'" [ngStyle]=" {'background': userService.currentUserValue.freeLanceDetails.bgcurrentstatus=='BG_APPROVED'
+                ? 'green' :'red'}"></i>
+            <p><small>
+                    <b *ngIf="this.userService.currentUserValue.freeLanceDetails.bgcurrentstatus == 'BG_APPROVED'">{{
+                        'DASHBOARD_FU_BODY.BGVERFIFICATIONRESULT_APPROVED' | translate }}</b>
+                    <b *ngIf="this.userService.currentUserValue.freeLanceDetails.bgcurrentstatus == 'BG_REJECTED'">{{
+                        'DASHBOARD_FU_BODY.BGVERFIFICATIONRESULT_REJECTED' | translate }}</b>
+                </small>
+            </p>
 
-            </div>
         </div>
-        <div class="stepConectorPiece"
-            [ngStyle]="{'background': userService.currentUserValue.freeLanceDetails.isprofilecompleted ? 'green':'lightgrey'}">
+        <div class="col-6 col-sm-2 placeholder text-center d-none d-lg-block">
+            <i class="fa fa-address-card-o  rounded-circle"
+                [ngStyle]="{'background': userService.currentUserValue.freeLanceDetails.isprofilecompleted ? 'cornflowerblue':'white'}"></i>
+            <a routerLink='/vieworeditprofile/{{userService.currentUserValue.userId}}'
+                *ngIf="!userService.currentUserValue.freeLanceDetails.isprofilecompleted; else elseFU">
+                <p class='text-center'><small><b>
+                            <u>
+                                {{ 'DASHBOARD_FU_BODY.FILLOUTPROFILE' | translate }}
+                            </u></b></small></p>
+            </a>
+            <ng-template #elseFU>
+                <p class='text-center'><small>
+                        <b>
+                            {{ 'DASHBOARD_FU_BODY.PROFILEEUPDATE' | translate }}
+                        </b>
+                    </small></p>
+            </ng-template>
+
         </div>
-        <div class="col-6 col-sm-1 placeholder text-center">
-            <!-- <img src="{{stage2Img}}" class="mx-auto img-fluid rounded-circle" alt="Generic placeholder thumbnail"> -->
+        <i class="fa fa-arrow-right d-none d-lg-block" style="font-size:36px;"
+            [ngStyle]="{'color': userService.currentUserValue.freeLanceDetails.isprofilecompleted ? 'green':'lightgrey'}"></i>
+        <div class="col-6 col-sm-2 placeholder text-center d-none d-lg-block">
             <i class="fa fa-credit-card-alt rounded-circle"
                 [ngStyle]="{'background': userService.currentUserValue.freeLanceDetails.isregfeedone ? 'cornflowerblue':'white'}"></i>
-            <p align="center" *ngIf="!userService.currentUserValue.freeLanceDetails.isregfeedone && istimelap && 
+            <p *ngIf="!userService.currentUserValue.freeLanceDetails.isregfeedone && istimelap && 
             userService.currentUserValue.freeLanceDetails.isprofilecompleted">
                 <a href=" javascript: return false;" (click)="openPaymentComponent()">
                     <small>
@@ -43,7 +84,7 @@
                     </small>
                 </a>
             </p>
-            <p align="center" *ngIf=" istimelap &&  !userService.currentUserValue.freeLanceDetails.isprofilecompleted">
+            <p *ngIf=" istimelap &&  !userService.currentUserValue.freeLanceDetails.isprofilecompleted">
                 <small>
                     <b>
                         {{ 'DASHBOARD_FU_BODY.PAYMENT' | translate }}
@@ -51,37 +92,34 @@
                     </b>
                 </small>
             </p>
-            <p align="center" *ngIf="userService.currentUserValue.freeLanceDetails.isregfeedone">
+            <p *ngIf="userService.currentUserValue.freeLanceDetails.isregfeedone">
                 <small><b> {{ 'DASHBOARD_FU_BODY.PAYMENTCOMPLETED' | translate }}</b></small>
             </p>
         </div>
-        <div class="stepConectorPiece"
-            [ngStyle]="{'background': userService.currentUserValue.freeLanceDetails.isregfeedone ? 'green':'lightgrey'}">
-        </div>
-        <div class="col-6 col-sm-2 placeholder text-center">
+        <i class="fa fa-arrow-right d-none d-lg-block" style="font-size:36px;"
+            [ngStyle]="{'color': userService.currentUserValue.freeLanceDetails.isregfeedone ? 'green':'lightgrey'}"></i>
+        <div class="col-6 col-sm-2 placeholder text-center d-none d-lg-block">
             <!-- <img src="{{stage3Img}}" class="mx-auto img-fluid rounded-circle" alt="Generic placeholder thumbnail"> -->
             <i class="fa fa-street-view rounded-circle"
                 [ngStyle]="{'background': userService.currentUserValue.freeLanceDetails.isbgstarted ? 'cornflowerblue':'white'}"></i>
-            <p align="center"><small><b>{{ 'DASHBOARD_FU_BODY.BGVERIFICATIONINITIATED' | translate }}</b></small></p>
+            <p><small><b>{{ 'DASHBOARD_FU_BODY.BGVERIFICATIONINITIATED' | translate }}</b></small></p>
 
         </div>
-        <div class="stepConectorPiece"
-            [ngStyle]="{'background': userService.currentUserValue.freeLanceDetails.isbgstarted ? 'green':'lightgrey'}">
-        </div>
-        <div class="col-6 col-sm-2 placeholder text-center">
+        <i class="fa fa-arrow-right d-none d-lg-block" style="font-size:36px;"
+            [ngStyle]="{'color': userService.currentUserValue.freeLanceDetails.isbgstarted ? 'green':'lightgrey'}"></i>
+        <div class="col-6 col-sm-2 placeholder text-center d-none d-lg-block">
             <!-- <img src="{{stage4Img}}" class="mx-auto img-fluid rounded-circle"
                 alt="Background Verification is In Progress"> -->
             <i class="fa fa-hourglass-start rounded-circle"
                 [ngStyle]="{'background': userService.currentUserValue.freeLanceDetails.isbgdone ? 'cornflowerblue':'white'}">
 
             </i>
-            <p align="center"><small><b>{{ 'DASHBOARD_FU_BODY.BGVERFIFICATIONINPROGRESS' | translate }}</b></small></p>
+            <p><small><b>{{ 'DASHBOARD_FU_BODY.BGVERFIFICATIONINPROGRESS' | translate }}</b></small></p>
 
         </div>
-        <div class="stepConectorPiece"
-            [ngStyle]="{'background': userService.currentUserValue.freeLanceDetails.isbgdone ? 'green':'lightgrey'}">
-        </div>
-        <div class="col-6 col-sm-2 placeholder text-center">
+        <i class="fa fa-arrow-right d-none d-lg-block" style="font-size:36px;"
+            [ngStyle]="{'color': userService.currentUserValue.freeLanceDetails.isbgdone ? 'green':'lightgrey'}"></i>
+        <div class="col-6 col-sm-2 placeholder text-center d-none d-lg-block">
             <!-- <img src="{{stage5Img}}" class="mx-auto img-fluid rounded-circle" alt="Final Result"> -->
             <i class="fa fa fa-hand-paper-o rounded-circle"
                 *ngIf='!userService.currentUserValue.freeLanceDetails.isbgdone'></i>
@@ -89,7 +127,7 @@
                 userService.currentUserValue.freeLanceDetails.bgcurrentstatus == 'BG_APPROVED' || 
                 userService.currentUserValue.freeLanceDetails.bgcurrentstatus == 'BG_REJECTED'" [ngStyle]=" {'background': userService.currentUserValue.freeLanceDetails.bgcurrentstatus=='BG_APPROVED'
                 ? 'green' :'red'}"></i>
-            <p align="center"><small>
+            <p><small>
                     <b *ngIf="!userService.currentUserValue.freeLanceDetails.isbgdone">{{
                         'DASHBOARD_FU_BODY.BGVERFIFICATIONFINALRESULTS' | translate }}</b>
                     <b *ngIf="this.userService.currentUserValue.freeLanceDetails.bgcurrentstatus == 'BG_APPROVED'">{{
