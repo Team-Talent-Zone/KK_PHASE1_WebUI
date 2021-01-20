@@ -139,7 +139,8 @@
       "SUMMARY":"Summary",
       "PAYMENTHISTORY":"Payment History",
       "REVIEWS":"Reviews",
-      "CURRENTSTAGE":"Current Onboard Stage"
+      "CURRENTSTAGE":"Current Onboard Stage",
+      "EDIT_PROFILE" : "Profile"
     },
     "DASHBOARD_FU_BODY":{
       "PROFILEEUPDATE":"Profile Updated",

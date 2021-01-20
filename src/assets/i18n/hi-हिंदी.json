@@ -138,7 +138,8 @@
     "SUMMARY":"सारांश",
     "PAYMENTHISTORY":"भुगतान इतिहास",
     "REVIEWS":"समीक्षा",
-    "CURRENTSTAGE":"करंट ऑनबोर्ड स्टेज"
+    "CURRENTSTAGE":"करंट ऑनबोर्ड स्टेज",
+    "EDIT_PROFILE" : "प्रोफ़ाइल"
   },
   "DASHBOARD_FU_BODY":{
     "PROFILEEUPDATE":"प्रोफ़ाइल अपडेट",

@@ -46,7 +46,7 @@
 							</ul>
 						</div>
 					</div>
-					<div class="col-md-3" *ngIf="this.userService.currentUserValue == null">
+					<div class="col-md-2" *ngIf="this.userService.currentUserValue == null">
 						<div class="address">
 							<h2>{{ 'FOOTER.USEFULLINKS' | translate }}</h2>
 							<!-- <hr> -->
@@ -58,11 +58,51 @@
 							</ul>
 						</div>
 					</div>
-					<div class="col-md-3">
+					<div class="col-md-2"
+						*ngIf="this.userService.currentUserValue != null && this.userService.currentUserValue.userroles.rolecode =='FREELANCER_USER'">
+						<div class="address">
+							<h2>{{ 'FOOTER.USEFULLINKS' | translate }}</h2>
+							<!-- <hr> -->
+							<ul style="list-style: circle;">
+								<li><a [routerLink]="['/dashboard']" (click)="topFunction()">{{
+										'DASHOARD_FU_MENU.SUMMARY' | translate }}</a>
+								</li>
+								<li><a routerLink='/vieworeditprofile/{{userService.currentUserValue.userId}}'
+										(click)="topFunction()">
+										{{ 'DASHOARD_FU_MENU.EDIT_PROFILE' | translate }}</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-md-2"
+						*ngIf="this.userService.currentUserValue != null && this.userService.currentUserValue.userroles.rolecode =='CLIENT_BUSINESS_ADMINISTRATOR'">
+						<div class="address">
+							<h2>{{ 'FOOTER.USEFULLINKS' | translate }}</h2>
+							<!-- <hr> -->
+							<ul style="list-style: circle; ">
+								<li><a [routerLink]="['/dashboard']" (click)="topFunction()">Our Services</a>
+								</li>
+								<li><a routerLink='/vieworeditprofile/{{userService.currentUserValue.userId}}'
+										(click)="topFunction()">
+										{{ 'DASHOARD_FU_MENU.EDIT_PROFILE' | translate }}</a></li>
+								<li>
+									<a [routerLink]="['/myservices']" (click)="topFunction()">
+										My Services
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-md-2">
+						<img style="padding-top:0px;height: 150px;" src="assets/img/backgrounds/pay14-transparent.png">
+					</div>
+					<div class="col-md-2" *ngIf="this.userService.currentUserValue == null">
 						<img style="padding-top:0px" src="assets/img/backgrounds/pay13.png">
 					</div>
+					<div class="col-md-2" *ngIf="this.userService.currentUserValue != null">
+						<img style="padding-top:0px" src="assets/img/backgrounds/pay15.jpg">
+					</div>
 				</div>
-			</div> 
+			</div>
 		</section>
 	</div>
 </div>

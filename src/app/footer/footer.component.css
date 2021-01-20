@@ -6,45 +6,45 @@
     background-image: url();
 } */
 
-h1, h2 {
-    font-size: 28px;
-    color: #f3f3f3;
+h1,
+h2 {
+  font-size: 28px;
+  color: #f3f3f3;
 }
 
-.bg-light{
-padding-top: 35px;
-padding-bottom: 35px;  
-background-image: url(src/assets/img/backgrounds/footer-background.jpg);
-box-shadow: -1px -1px 11px 4px #101113;
+.bg-light {
+  padding-top: 35px;
+  padding-bottom: 35px;
+  background-image: url(src/assets/img/backgrounds/footer-background.jpg);
+  /*box-shadow: -1px -1px 11px 4px #101113;*/
 }
 
-
-.bg-light-copy{
-    background-color: #13352c;
-    padding-top: 14px;
-    color: white;
-    padding-bottom: 1px;
+.bg-light-copy {
+  background-color: #13352c;
+  padding-top: 14px;
+  color: white;
+  padding-bottom: 1px;
 }
-a{
-color: #FF4949;
+a {
+  color: #ff4949;
 }
 
-.address{
-    color: white;
+.address {
+  color: white;
 }
 .email {
-    color: white;
+  color: white;
 }
 
-.logo-title{
-    font-size: 36px;
-    color: white;
-    font-weight: 500;
-    /* margin-left: -12px; */
+.logo-title {
+  font-size: 36px;
+  color: white;
+  font-weight: 500;
+  /* margin-left: -12px; */
 }
 
-.logo-u{
-    color: #FF4949;
-    font-weight: 500;
-    /*font-size: 40px;*/
+.logo-u {
+  color: #ff4949;
+  font-weight: 500;
+  /*font-size: 40px;*/
 }

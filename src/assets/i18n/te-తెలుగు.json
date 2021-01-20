@@ -138,7 +138,8 @@
     "SUMMARY":"సారాంశం",
     "PAYMENTHISTORY":"చెల్లింపు చరిత్ర",
     "REVIEWS":"సమీక్షలు",
-    "CURRENTSTAGE":"ప్రస్తుత ఆన్బోర్డ్ స్టేజ్"
+    "CURRENTSTAGE":"ప్రస్తుత ఆన్బోర్డ్ స్టేజ్",
+    "EDIT_PROFILE" : "ప్రొఫైల్"
   },
   "DASHBOARD_FU_BODY":{
     "PROFILEEUPDATE":"ప్రొఫైల్ నవీకరించబడింది",
