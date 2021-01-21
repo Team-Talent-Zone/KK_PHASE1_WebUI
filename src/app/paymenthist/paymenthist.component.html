@@ -1,14 +1,21 @@
-<div class="container">
-    <h4> {{ 'PAYMENTHIST.PAYMENTHIST_HEADER' | translate }}</h4>
-    <hr>
-    <div class="col-md-12 bg-search">
+<div class="container-fluid">
+    <div class="row">
+        <h4> {{ 'PAYMENTHIST.PAYMENTHIST_HEADER' | translate }}</h4>
+    </div>
+    <div class="mt-md-4"></div>
+
+  
+    <div style="background-color: lightgray; padding: 5px">
         <input type="text" id="myInput" onkeyup="paymentHistoryTableSearch()"
             placeholder="{{ 'PAYMENTHIST.PAYMENTHIST_SEARCH' | translate }}">
     </div>
+    
 
-    <br>
-    <div *ngIf="paymentdetails != null">
-        <table id="myTable" class="table table-bordered table-hover table-sm table-striped">
+    <div class="mt-md-4"></div>
+
+    <div class="row ">  
+    <div class="col-md-12 col-sm-12 table-responsive " *ngIf="paymentdetails != null">
+        <table id="myTable" class="table  table-hover table-bordered table-striped">
             <thead>
                 <tr>
                     <th> {{ 'PAYMENTHIST.PAYMENTHIST_TRAN_NUMBER' | translate }} </th>
@@ -31,8 +38,10 @@
             </tbody>
         </table>
     </div>
+</div>   
 
-    <div *ngIf="fupaymenthistorydetails.length > 0 ">
+<div class="row table-responsive">  
+    <div class="col-md-12 col-sm-12" *ngIf="fupaymenthistorydetails.length > 0 ">
         <table id="myTable" class="table table-bordered table-hover table-sm table-striped">
             <thead>
                 <tr>
@@ -56,8 +65,11 @@
             </tbody>
         </table>
     </div>
-    <div *ngIf="cbapaymenthistorydetails.length >0  && paymentdetails == null">
-        <table id="myTable" class="table table-bordered table-hover table-sm table-striped">
+</div>
+
+<div class="row ">  
+    <div class=" col-md-12 col-sm-12 table-responsive" *ngIf="cbapaymenthistorydetails.length >0  && paymentdetails == null">
+        <table id="myTable" class="table table-hover table-bordered table-sm table-striped">
             <thead>
                 <tr>
                     <th> {{ 'PAYMENTHIST.PAYMENTHIST_TRAN_NUMBER' | translate }}</th>
@@ -79,6 +91,7 @@
                 </tr>
             </tbody>
         </table>
+    </div>
     </div>
 </div>
 <script>

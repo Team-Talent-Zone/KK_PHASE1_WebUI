@@ -29,7 +29,7 @@
         *ngFor="let svc of listOfAllApprovedNewServices">
         <div class="card text-center"> 
           <div class="card-header header-bg">
-            <img class="img-thumbnail pull-left" src={{svc.imgurl}} width="70" height="40">
+            <img class="img-rounded pull-left" src={{svc.imgurl}} width="90" height="65 ">
             <div *ngIf="userservicedetailsExistingIds.includes(svc.ourserviceId) ; else addToCart">
             </div>
             <ng-template #addToCart>

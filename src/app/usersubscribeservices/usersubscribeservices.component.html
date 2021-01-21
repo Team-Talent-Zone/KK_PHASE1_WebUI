@@ -10,16 +10,16 @@
             *ngFor="let svc of listOfSubscribedServicesByUser">
             <div class="card h-100">
                 <div class="card-header header-bg">
-                    <img class="img-thumbnail pull-left" src={{svc.imgurl}} width="70" height="40">
+                    <img src={{svc.imgurl}} class="img-rounded" width="90" height="70" style="padding-bottom: 5px;">
                     <a *ngIf="svc.txnid !== null" [routerLink]="['/payment',svc.txnid]">
                         <i class="fa fa-sitemap pull-right" title="Go to payment details" style="color:#FF4949"> </i>
                     </a>
-                    <div *ngIf="svc.category !=='FS_S'">
+                    <span *ngIf="svc.category !=='FS_S'" class="pull-right">
                         <a [routerLink]="['/createoreditwidget',svc.ourserviceId]">
-                            <i class="fa fa-window-restore  pull-right" title="Go to edit widget"
+                            <i class="fa fa-window-restore" title="Go to edit widget"
                                 style="color:azure"></i></a>
-                    </div>
-                    <div *ngIf="istimelap" class="pull-right">
+                        </span>
+                    <span *ngIf="istimelap" class="pull-right"  style="padding-right:10px">
                         <a (click)="publishNow(svc.serviceId)"
                             *ngIf="svc.status === 'PAYMENT_PAID' && svc.category !=='FS_S'">
                             <i class="fa fa-play"
@@ -30,7 +30,7 @@
                             target="_blank" title={{svc.publishedlinkurl}}>
                             <i class="fa fa-tablet pull-right"
                                 title="Go to fully hosted and a cloud base {{svc.name}} site"></i></a>
-                    </div>
+                    </span>
                 </div>
                 <div class="card-body d-flex flex-column">
                     <div class="card-title text-center">
