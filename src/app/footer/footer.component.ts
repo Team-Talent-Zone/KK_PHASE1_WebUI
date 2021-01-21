@@ -10,7 +10,7 @@ import { config } from '../appconstants/config';
 })
 export class FooterComponent implements OnInit {
 
-  constructor(
+   constructor(
     private signupComponent: SignupComponent,
     private userService: UserService
   ) {
@@ -19,7 +19,7 @@ export class FooterComponent implements OnInit {
   ngOnInit() {
     if (this.userService.currentUserValue != null) {
       this.signupComponent.getTermsofServicesAndPrivacyPolicyURLByLang(this.userService.currentUserValue.preferlang);
-    } else {
+     } else {
       if (localStorage.getItem('langCode') === null) {
         localStorage.setItem('langCode', config.default_prefer_lang);
         localStorage.setItem('langLabel', config.lang_english_word);

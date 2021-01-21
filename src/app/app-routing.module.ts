@@ -1,3 +1,4 @@
+import { FooterComponent } from './footer/footer.component';
 import { Error404pageComponent } from './error404page/error404page.component';
 import { ViewfureviewsComponent } from './viewfureviews/viewfureviews.component';
 import { CreateoreditwidgetComponent } from './createoreditwidget/createoreditwidget.component';
@@ -59,7 +60,7 @@ const routes: Routes = [
       {
         path: '',
         component: DashboardmapbyuseroleComponent
-      },
+      }
     ]
   },
   {

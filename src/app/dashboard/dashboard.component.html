@@ -6,7 +6,7 @@
     </button>
     <div class="flex-row d-flex">
         <a class="scroll-link" style="border: 0;">
-            <img src="assets/img/logo-transparent.png" width="50" height="50"
+            <img src="assets/img/logo-transparent.png" width="70" height="60"
                 class="rounded-circle d-inline-block align-top" alt="Kaam Karega Dashboard"></a>&nbsp;
         <span class="logo-title">{{ 'HOMENAV.COMPANYNAMEPART1' | translate }}<span class="logo-u">{{
                 'HOMENAV.COMPANYNAMEPART2' | translate }}</span></span>
@@ -26,7 +26,8 @@
             <span *ngIf="showError" class="error-text"><i>Invalid Selection.</i></span>
             <div class="combobox-options" *ngIf="!listHidden">
                 <list-item *ngFor="let item of filteredList;let i = index" (click)="selectItem(i)"
-                    [ngClass]="{'selected': i===selectedIndex}"><br>{{item.label}}
+                    [ngClass]="{'selected': i===selectedIndex}">
+                    <div class="row mb-1"></div>{{item.label}}
                 </list-item>
             </div>
         </div>
@@ -155,7 +156,7 @@
                         </div>
                         <div class="col-xl-2 col-lg-6 float-right">
                             <a style="cursor:pointer" (click)='enableNotificationFlag()'>
-                                <i class="fa fa-bell-o"
+                                <i class="fa fa-comments-o"
                                     *ngIf="notifcationbellList != null ">{{notifcationbellList.length}}</i>
                             </a> &nbsp;
                             <a routerLink='/vieworeditprofile/{{userService.currentUserValue.userId}}'>
@@ -213,11 +214,10 @@
             <!--/row-->
             <!--/row-->
         </div>
-
         <!--/main col-->
     </div>
 </div>
 <!-- Footer Section -->
 <div class="row mb-3"></div>
-<app-footer></app-footer>
-<!--/.container-->
+<app-footer class="fixed-bottom"></app-footer>
+<!--/.container-->  

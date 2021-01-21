@@ -53,7 +53,7 @@ export class ViewfureviewsComponent implements OnInit {
             this.referService.translatetext(element.label, this.userService.currentUserValue.preferlang).subscribe(
               (txt: string) => {
                 element.label = txt;
-              }
+              } 
             );
             this.fureviews.push(element);
           } else {

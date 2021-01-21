@@ -141,10 +141,10 @@
 </div>
 <!-- Freelancer Search Section Ended -->
 <div *ngIf="userFUObjList.length == 0 && timelaps && this.searchform.get('fulladdress').value.length > 0">
-    <h4> No {{name}} Found near the address {{this.searchform.get('fulladdress').value}}</h4>
+    <h4> No {{name}} Found near this address {{this.searchform.get('fulladdress').value}}</h4>
 </div>
 <div *ngIf="userFUObjList.length == 0 && !timelaps && this.searchform.get('fulladdress').value.length === 0">
-    <h4> We working hard to get a skilled worker for you . Currently all our {{name}}'s is busy at work.</h4>
+    <h4> We working hard to get a skilled worker for you . All our skilled {{name}}'s are too busy at work.</h4>
 </div>
 
 <!-- Create a New Job  Interface-->

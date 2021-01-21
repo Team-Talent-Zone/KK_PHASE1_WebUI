@@ -222,8 +222,8 @@
                 <div class="card card-flip h-100 ">
                     <div class="card-header text-white bg-secondary">
                         <p> <b>{{ 'DASHBOARD_FU_BODY.JOB' | translate }}#{{completedjob.jobId}} </b>
-                            <button class="bg-warning pull-right" *ngIf="completedjob.isjobamtpaidtocompany"
-                                [routerLink]="['/payment',completedjob.txnid]">Payment Info<i
+                            <button class="bg-warning" *ngIf="completedjob.isjobamtpaidtocompany"
+                                [routerLink]="['/payment',completedjob.txnid]">PayInfo<i
                                     title="Go to payment details" class="fa fa-sitemap"
                                     style="color:#FF4949"></i></button>
                             <button class="bg-info pull-right" data-toggle="modal" data-target="#rateit"

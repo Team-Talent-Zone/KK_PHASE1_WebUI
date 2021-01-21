@@ -1,99 +1,89 @@
+<h4> {{ 'PAYMENTHIST.PAYMENTHIST_HEADER' | translate }}</h4>
+<hr>
 <div class="container-fluid">
-    <div class="row">
-        <h4> {{ 'PAYMENTHIST.PAYMENTHIST_HEADER' | translate }}</h4>
-    </div>
     <div class="mt-md-4"></div>
-
-  
     <div style="background-color: lightgray; padding: 5px">
         <input type="text" id="myInput" onkeyup="paymentHistoryTableSearch()"
             placeholder="{{ 'PAYMENTHIST.PAYMENTHIST_SEARCH' | translate }}">
     </div>
-    
-
     <div class="mt-md-4"></div>
-
-    <div class="row ">  
-    <div class="col-md-12 col-sm-12 table-responsive " *ngIf="paymentdetails != null">
-        <table id="myTable" class="table  table-hover table-bordered table-striped">
-            <thead>
-                <tr>
-                    <th> {{ 'PAYMENTHIST.PAYMENTHIST_TRAN_NUMBER' | translate }} </th>
-                    <th>{{ 'PAYMENTHIST.PAYMENTHIST_FIRSTNAME' | translate }}</th>
-                    <th>{{ 'PAYMENTHIST.PAYMENTHIST_TRAN_DATE' | translate }}</th>
-                    <th>{{ 'PAYMENTHIST.PAYMENTHIST_STATUS' | translate }}</th>
-                    <th>{{ 'PAYMENTHIST.PAYMENTHIST_AMOUNT' | translate }}</th>
-                    <th>{{ 'PAYMENTHIST.PAYMENTHIST_NOTES' | translate }}</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>{{paymentdetails.txnid}}</td>
-                    <td>{{paymentdetails.name}}</td>
-                    <td>{{paymentdetails.createdon}}</td>
-                    <td>{{paymentdetails.paymentsCBATrans.status}}</td>
-                    <td>{{paymentdetails.amount}}</td>
-                    <td>{{paymentdetails.productinfo}}</td>
-                </tr>
-            </tbody>
-        </table>
+    <div class="row ">
+        <div class="col-md-12 col-sm-12 table-responsive " *ngIf="paymentdetails != null">
+            <table id="myTable" class="table  table-hover table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th> {{ 'PAYMENTHIST.PAYMENTHIST_TRAN_NUMBER' | translate }} </th>
+                        <th>{{ 'PAYMENTHIST.PAYMENTHIST_FIRSTNAME' | translate }}</th>
+                        <th>{{ 'PAYMENTHIST.PAYMENTHIST_TRAN_DATE' | translate }}</th>
+                        <th>{{ 'PAYMENTHIST.PAYMENTHIST_STATUS' | translate }}</th>
+                        <th>{{ 'PAYMENTHIST.PAYMENTHIST_AMOUNT' | translate }}</th>
+                        <th>{{ 'PAYMENTHIST.PAYMENTHIST_NOTES' | translate }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{paymentdetails.txnid}}</td>
+                        <td>{{paymentdetails.name}}</td>
+                        <td>{{paymentdetails.createdon}}</td>
+                        <td>{{paymentdetails.paymentsCBATrans.status}}</td>
+                        <td>{{paymentdetails.amount}}</td>
+                        <td>{{paymentdetails.productinfo}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>   
-
-<div class="row table-responsive">  
-    <div class="col-md-12 col-sm-12" *ngIf="fupaymenthistorydetails.length > 0 ">
-        <table id="myTable" class="table table-bordered table-hover table-sm table-striped">
-            <thead>
-                <tr>
-                    <th> {{ 'PAYMENTHIST.PAYMENTHIST_TRAN_NUMBER' | translate }}</th>
-                    <th>{{ 'PAYMENTHIST.PAYMENTHIST_FIRSTNAME' | translate }}</th>
-                    <th>{{ 'PAYMENTHIST.PAYMENTHIST_TRAN_DATE' | translate }}</th>
-                    <th>{{ 'PAYMENTHIST.PAYMENTHIST_STATUS' | translate }}</th>
-                    <th>{{ 'PAYMENTHIST.PAYMENTHIST_AMOUNT' | translate }}</th>
-                    <th>{{ 'PAYMENTHIST.PAYMENTHIST_NOTES' | translate }}</th>
-                </tr>
-            </thead>
-            <tbody *ngFor="let fupayments of fupaymenthistorydetails">
-                <tr>
-                    <td>{{fupayments.txnid}}</td>
-                    <td>{{fupayments.name}}</td>
-                    <td>{{fupayments.createdon}}</td>
-                    <td>{{fupayments.status}}</td>
-                    <td>{{fupayments.amount}}</td>
-                    <td>{{fupayments.productinfo}}</td>
-                </tr>
-            </tbody>
-        </table>
+    <div class="row table-responsive">
+        <div class="col-md-12 col-sm-12" *ngIf="fupaymenthistorydetails.length > 0 ">
+            <table id="myTable" class="table table-bordered table-hover table-sm table-striped">
+                <thead>
+                    <tr>
+                        <th> {{ 'PAYMENTHIST.PAYMENTHIST_TRAN_NUMBER' | translate }}</th>
+                        <th>{{ 'PAYMENTHIST.PAYMENTHIST_FIRSTNAME' | translate }}</th>
+                        <th>{{ 'PAYMENTHIST.PAYMENTHIST_TRAN_DATE' | translate }}</th>
+                        <th>{{ 'PAYMENTHIST.PAYMENTHIST_STATUS' | translate }}</th>
+                        <th>{{ 'PAYMENTHIST.PAYMENTHIST_AMOUNT' | translate }}</th>
+                        <th>{{ 'PAYMENTHIST.PAYMENTHIST_NOTES' | translate }}</th>
+                    </tr>
+                </thead>
+                <tbody *ngFor="let fupayments of fupaymenthistorydetails">
+                    <tr>
+                        <td>{{fupayments.txnid}}</td>
+                        <td>{{fupayments.name}}</td>
+                        <td>{{fupayments.createdon}}</td>
+                        <td>{{fupayments.status}}</td>
+                        <td>{{fupayments.amount}}</td>
+                        <td>{{fupayments.productinfo}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>
-
-<div class="row ">  
-    <div class=" col-md-12 col-sm-12 table-responsive" *ngIf="cbapaymenthistorydetails.length >0  && paymentdetails == null">
-        <table id="myTable" class="table table-hover table-bordered table-sm table-striped">
-            <thead>
-                <tr>
-                    <th> {{ 'PAYMENTHIST.PAYMENTHIST_TRAN_NUMBER' | translate }}</th>
-                    <th>{{ 'PAYMENTHIST.PAYMENTHIST_FIRSTNAME' | translate }}</th>
-                    <th>{{ 'PAYMENTHIST.PAYMENTHIST_TRAN_DATE' | translate }}</th>
-                    <th>{{ 'PAYMENTHIST.PAYMENTHIST_STATUS' | translate }}</th>
-                    <th>{{ 'PAYMENTHIST.PAYMENTHIST_AMOUNT' | translate }}</th>
-                    <th>{{ 'PAYMENTHIST.PAYMENTHIST_NOTES' | translate }}</th>
-                </tr>
-            </thead>
-            <tbody *ngFor="let cbupayments of cbapaymenthistorydetails">
-                <tr>
-                    <td>{{cbupayments.txnid}}</td>
-                    <td>{{cbupayments.name}}</td>
-                    <td>{{cbupayments.createdon}}</td>
-                    <td>{{cbupayments.status}}</td>
-                    <td>{{cbupayments.amount}}</td>
-                    <td>{{cbupayments.productinfo}}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+    <div class="row ">
+        <div class=" col-md-12 col-sm-12 table-responsive"
+            *ngIf="cbapaymenthistorydetails.length >0  && paymentdetails == null">
+            <table id="myTable" class="table table-hover table-bordered table-sm table-striped">
+                <thead>
+                    <tr>
+                        <th> {{ 'PAYMENTHIST.PAYMENTHIST_TRAN_NUMBER' | translate }}</th>
+                        <th>{{ 'PAYMENTHIST.PAYMENTHIST_FIRSTNAME' | translate }}</th>
+                        <th>{{ 'PAYMENTHIST.PAYMENTHIST_TRAN_DATE' | translate }}</th>
+                        <th>{{ 'PAYMENTHIST.PAYMENTHIST_STATUS' | translate }}</th>
+                        <th>{{ 'PAYMENTHIST.PAYMENTHIST_AMOUNT' | translate }}</th>
+                        <th>{{ 'PAYMENTHIST.PAYMENTHIST_NOTES' | translate }}</th>
+                    </tr>
+                </thead>
+                <tbody *ngFor="let cbupayments of cbapaymenthistorydetails">
+                    <tr>
+                        <td>{{cbupayments.txnid}}</td>
+                        <td>{{cbupayments.name}}</td>
+                        <td>{{cbupayments.createdon}}</td>
+                        <td>{{cbupayments.status}}</td>
+                        <td>{{cbupayments.amount}}</td>
+                        <td>{{cbupayments.productinfo}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
-<script>
-
-</script>
