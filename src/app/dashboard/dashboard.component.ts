@@ -89,14 +89,13 @@ export class DashboardComponent implements OnInit {
           else {
             this.notificationCount = 0;
           }
+          this.spinnerService.hide();
         },
         error => {
           this.spinnerService.hide();
           this.alertService.error(error);
         }
       );
-
-      this.spinnerService.hide();
     }, 3000);
   }
 
