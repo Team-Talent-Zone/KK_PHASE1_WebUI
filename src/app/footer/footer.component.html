@@ -70,6 +70,11 @@
 								<li><a routerLink='/vieworeditprofile/{{userService.currentUserValue.userId}}'
 										(click)="topFunction()">
 										{{ 'DASHOARD_FU_MENU.EDIT_PROFILE' | translate }}</a></li>
+								<li *ngIf="this.userService.currentUserValue.freeLanceDetails.isregfeedone">
+									<a [routerLink]="['/paymenthistory']">
+										{{ 'DASHOARD_FU_MENU.PAYMENTHISTORY' | translate }}
+									</a>
+								</li>
 							</ul>
 						</div>
 					</div>
@@ -89,23 +94,32 @@
 										My Services
 									</a>
 								</li>
+								<li>
+									<a [routerLink]="['/paymenthistory']">
+										Payment History
+									</a>
+								</li>
 							</ul>
 						</div>
 					</div>
-
-					<div class="col-md-2" *ngIf="this.userService.currentUserValue != null && 
-						this.userService.currentUserValue.userroles.rolecode=='CORE_SERVICE_SUPPORT_MANAGER' ||
+					<div *ngIf="this.userService.currentUserValue != null">
+						<div *ngIf="this.userService.currentUserValue.userroles.rolecode=='CORE_SERVICE_SUPPORT_MANAGER' ||
 						this.userService.currentUserValue.userroles.rolecode =='CORE_SERVICE_SUPPORT_TEAM'">
-						<div class="address">
-							<h2>{{ 'FOOTER.USEFULLINKS' | translate }}</h2>
-							<!-- <hr> -->
-							<ul style="list-style: circle;">
-								<li><a [routerLink]="['/dashboard']" (click)="topFunction()">Dashboard</a>
-								</li>
-								<li><a [routerLink]="['/manageuser']" (click)="topFunction()"> Manage Users</a></li>
-								<li><a [routerLink]="['/manageservice']" (click)="topFunction()"> Manage Services</a>
-								</li>
-							</ul>
+							<div class="col-md-2">
+								<div class="address">
+									<h2>{{ 'FOOTER.USEFULLINKS' | translate }}</h2>
+									<!-- <hr> -->
+									<ul style="list-style: circle;">
+										<li><a [routerLink]="['/dashboard']" (click)="topFunction()">Dashboard</a>
+										</li>
+										<li><a [routerLink]="['/manageuser']" (click)="topFunction()"> Manage Users</a>
+										</li>
+										<li><a [routerLink]="['/manageservice']" (click)="topFunction()"> Manage
+												Services</a>
+										</li>
+									</ul>
+								</div>
+							</div>
 						</div>
 					</div>
 					<div class="col-md-2">

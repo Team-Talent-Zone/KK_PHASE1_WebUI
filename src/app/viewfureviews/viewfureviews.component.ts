@@ -31,9 +31,7 @@ export class ViewfureviewsComponent implements OnInit {
     this.fureviews = [];
     this.freelanceserviceService.getFUFeebackDetailsByUserId(this.userService.currentUserValue.userId).subscribe(
       (reviews: any) => {
-        console.log('reviews====' , reviews);
         reviews.forEach((element: any) => {
-          console.log('element====' , element);
           element.starrate = Array(element.starrate);
           // tslint:disable-next-line: max-line-length
           if (this.userService.currentUserValue.preferlang === config.lang_code_te || this.userService.currentUserValue.preferlang === config.lang_code_hi) {
@@ -57,7 +55,6 @@ export class ViewfureviewsComponent implements OnInit {
                 element.label = txt;
               }
             );
-            console.log('element' , element);
             this.fureviews.push(element);
           } else {
             this.fureviews.push(element);
