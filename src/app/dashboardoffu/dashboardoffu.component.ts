@@ -106,15 +106,13 @@ export class DashboardoffuComponent implements OnInit {
     this.newJobList = [];
     this.upcomingJobList = [];
     this.completedJobList = [];
-
+    this.spinnerService.show();
     this.listofalljobs = [];
     // tslint:disable-next-line: max-line-length
     this.freelanceSvc.getUserAllJobDetails(this.userService.currentUserValue.freeLanceDetails.subCategory).subscribe((resp: FreelanceOnSvc) => {
       this.listofalljobs = resp;
       for (const element of this.listofalljobs) {
-        this.spinnerService.show();
         if (this.userService.currentUserValue.preferlang !== config.default_prefer_lang) {
-          this.spinnerService.show();
           this.referService.translatetext(element.bizname, this.userService.currentUserValue.preferlang).subscribe(
             (trantxt: any) => {
               element.bizname = trantxt;
@@ -156,10 +154,7 @@ export class DashboardoffuComponent implements OnInit {
           this.completedJobList.push(element);
         }
       }
-      setTimeout(() => {
-        this.builtEarningCard();
-        this.spinnerService.hide();
-      }, 1000);
+      this.builtEarningCard();
     },
       error => {
         this.spinnerService.hide();
@@ -184,7 +179,6 @@ export class DashboardoffuComponent implements OnInit {
     if (this.upcomingJobList.length > 0) {
       this.totalupcomingEarnings = 0;
       this.upcomingflag = false;
-
       this.upcomingJobList.forEach(element => {
         if (element.isupcoming === '1' && element.isjobaccepted) {
           this.totalupcomingEarnings = this.totalupcomingEarnings + Number.parseFloat(element.tofreelanceamount);
@@ -197,7 +191,6 @@ export class DashboardoffuComponent implements OnInit {
     }
 
     if (this.earnFlag && this.upcomingflag) {
-      this.spinnerService.show();
       this.referService.translatetext("Estimated Payment", this.userService.currentUserValue.preferlang).subscribe(
         (trantxt: any) => {
           this.upcomingpaytext = trantxt;
@@ -216,13 +209,14 @@ export class DashboardoffuComponent implements OnInit {
           this.alertService.error(error);
         }
       );
-      this.spinnerService.hide();
       setTimeout(() => {
         this.infoCards = [
           { name: this.upcomingpaytext, value: this.totalupcomingEarnings },
           { name: this.totalearnings, value: this.totalEarnings },
         ];
+        this.spinnerService.hide();
       }, 3000);
+
     }
   }
 
