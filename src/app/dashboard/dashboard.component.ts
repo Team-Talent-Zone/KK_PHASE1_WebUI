@@ -1,3 +1,4 @@
+import { UsersrvdetailsService } from './../AppRestCall/userservice/usersrvdetails.service';
 import { ReferenceAdapter } from './../adapters/referenceadapter';
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../AppRestCall/user/user.service';
@@ -39,6 +40,9 @@ export class DashboardComponent implements OnInit {
   fullname: string;
   indiaTime = this.datepipe.transform(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }), "dd/MM/yyyy hh:mm:ss");
   defaultTxtImg: string = '//placehold.it/200/dddddd/fff?text=' + this.getNameInitials();
+  notifcationbellList: any;
+  notificationCount: number;
+  isbellenable: boolean = false;
 
   constructor(
     public userService: UserService,
@@ -50,7 +54,8 @@ export class DashboardComponent implements OnInit {
     private paymentsvc: PaymentService,
     private referService: ReferenceService,
     public translate: TranslateService,
-    public datepipe: DatePipe
+    public datepipe: DatePipe,
+    public usersrvdetails: UsersrvdetailsService
   ) {
     route.params.subscribe(params => {
       this.txtid = params.txtid;
@@ -64,10 +69,40 @@ export class DashboardComponent implements OnInit {
     setTimeout(() => {
       this.resetLoggedInUser();
     }, 1000);
-
     if (this.userService.currentUserValue.userroles.rolecode !== config.user_rolecode_fu.toString()) {
       this.getAllAvailableFUSkills();
     }
+    this.getAllBellNotifications();
+  }
+
+  getAllBellNotifications() {
+    this.notifcationbellList = [];
+    this.spinnerService.show();
+    setTimeout(() => {
+      this.usersrvdetails.getAllBellNotifications(this.userService.currentUserValue.userId).subscribe(
+        (notifcationlist: any) => {
+          this.notifcationbellList = notifcationlist;
+          console.log('this is notifcationbellList', this.notifcationbellList);
+          if (this.notifcationbellList != null) {
+            this.notificationCount = this.notifcationbellList.length;
+          }
+          else {
+            this.notificationCount = 0;
+          }
+        },
+        error => {
+          this.spinnerService.hide();
+          this.alertService.error(error);
+        }
+      );
+
+      this.spinnerService.hide();
+    }, 3000);
+  }
+
+  enableNotificationFlag() {
+    this.isbellenable = true;
+    this.getAllBellNotifications();
   }
 
   getFullNameByPreferLang() {

@@ -73,11 +73,11 @@ export class LoginComponent implements OnInit {
   }
 
   loginUserByUsername() {
+    this.spinnerService.show();
     this.issubmit = true;
     if (this.loginForm.invalid) {
       return;
     }
-    this.spinnerService.show();
     this.userService.checkusername(
       this.loginForm.get('username').value
     ).subscribe(

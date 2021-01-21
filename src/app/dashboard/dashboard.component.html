@@ -66,14 +66,14 @@
                     *ngIf="this.userService.currentUserValue.userroles.rolecode =='CORE_SERVICE_SUPPORT_TEAM' || this.userService.currentUserValue.userroles.rolecode =='CORE_SERVICE_SUPPORT_MANAGER'">
                     <a [routerLink]="['/manageuser']" class="list-group-item list-group-item-action bg-light">
                         <i class="fa fa-cogs" style="color:#FF4949"></i>
-                        <b>Manage Users</b>
+                        <b> Manage Users</b>
                     </a>
                 </li>
                 <li
                     *ngIf="this.userService.currentUserValue.userroles.rolecode =='CORE_SERVICE_SUPPORT_TEAM' || this.userService.currentUserValue.userroles.rolecode =='CORE_SERVICE_SUPPORT_MANAGER'">
                     <a [routerLink]="['/manageservice']" class="list-group-item list-group-item-action bg-light">
                         <i class="fa fa-gear" style="color:#FF4949"></i>
-                        <b> Manage New Services</b></a>
+                        <b> Manage Services</b></a>
                 </li>
                 <li *ngIf="this.userService.currentUserValue.userroles.rolecode =='CLIENT_BUSINESS_ADMINISTRATOR'">
                     <a [routerLink]="['/myservices']" class="list-group-item list-group-item-action bg-light">
@@ -121,14 +121,14 @@
                         [routerLink]="['/signupadmin']" class="list-group-item list-group-item-action bg-light">
                         <i class="fa fa-gear" style="color:#FF4949"></i>
                         <b>
-                            Create New User
+                            Create User
                         </b>
                     </a></li>
                 <li *ngIf="this.userService.currentUserValue.userroles.rolecode =='CORE_SERVICE_SUPPORT_TEAM'"><a
                         [routerLink]="['/newservice']" class="list-group-item list-group-item-action bg-light">
                         <i class="fa fa-gear" style="color:#FF4949"></i>
                         <b>
-                            Create New Service
+                            Create Service
                         </b>
                     </a></li>
                 <li>
@@ -148,14 +148,16 @@
                             <span><b>{{ 'DASHOARD_HEADER.WELCOMEBACK' | translate }}
                                     {{this.userService.currentUserValue.fullname}}</b></span>
                         </div>
-                        <div class="col-xl-5 col-lg-6">
+                        <div class="col-xl-4 col-lg-6">
                             <span class="float-right">
                                 <small><i>{{indiaTime}}</i></small>
                             </span>
                         </div>
-                        <div class="col-xl-1 col-lg-6 float-right">
-                            <i class="fa fa-bell-o"></i>
-                            &nbsp;
+                        <div class="col-xl-2 col-lg-6 float-right">
+                            <a class="btn" (click)='enableNotificationFlag()'>
+                                <i class="fa fa-bell-o" *ngIf="notifcationbellList != null">{{notificationCount}}</i>
+                            </a>
+                            <i class="fa fa-bell-o" *ngIf="notifcationbellList == null">{{notificationCount}}</i>
                             <a routerLink='/vieworeditprofile/{{userService.currentUserValue.userId}}'>
                                 <img *ngIf="userService.currentUserValue.avtarurl != null" class="avatar"
                                     src="{{userService.currentUserValue.avtarurl}}">
@@ -165,7 +167,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- <hr> -->
                 <!--Alert-->
                 <div class="alert alert-success alert-dismissible fade show w-100" role="alert"
                     *ngIf="txtid != null && ispaysuccess">
@@ -193,8 +194,20 @@
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
+                <!--Notification Section-->
+                <div *ngIf="notifcationbellList != null && isbellenable">
+                    <div class="alert alert-info alert-dismissible fade show w-100" role="alert"
+                        *ngFor="let bell of notifcationbellList">
+                        <h6 class="display-5">
+                            {{bell.msg}}
+                        </h6>
+                        <!--Close Icon-->
+                        <button type="button" class="btn close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                </div>
                 <router-outlet></router-outlet>
-
             </div>
             <!--/row-->
             <!--/row-->
@@ -205,5 +218,6 @@
     </div>
 </div>
 <!-- Footer Section -->
+<div class="row mb-3"></div>
 <app-footer></app-footer>
 <!--/.container-->
