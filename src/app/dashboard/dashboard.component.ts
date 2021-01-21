@@ -12,6 +12,8 @@ import { ReferenceService } from '../AppRestCall/reference/reference.service';
 import { map } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
 import { DatePipe } from '@angular/common';
+import { timer } from 'rxjs';
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -40,7 +42,7 @@ export class DashboardComponent implements OnInit {
   fullname: string;
   indiaTime = this.datepipe.transform(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }), "dd/MM/yyyy hh:mm:ss");
   defaultTxtImg: string = '//placehold.it/200/dddddd/fff?text=' + this.getNameInitials();
-  notifcationbellList: any;
+  notifcationbellList: any = [];
   notificationCount: number;
   isbellenable: boolean = false;
 
@@ -72,31 +74,39 @@ export class DashboardComponent implements OnInit {
     if (this.userService.currentUserValue.userroles.rolecode !== config.user_rolecode_fu.toString()) {
       this.getAllAvailableFUSkills();
     }
-    this.getAllBellNotifications();
+    const source = timer(1000, 50000);
+    source.subscribe((val: number) => {
+      this.isbellenable = false;
+      this.getAllBellNotifications();
+    });
   }
 
   getAllBellNotifications() {
     this.notifcationbellList = [];
-    this.spinnerService.show();
-    setTimeout(() => {
-      this.usersrvdetails.getAllBellNotifications(this.userService.currentUserValue.userId).subscribe(
-        (notifcationlist: any) => {
+    this.usersrvdetails.getAllBellNotifications(this.userService.currentUserValue.userId).subscribe(
+      (notifcationlist: any) => {
+        if (this.userService.currentUserValue.preferlang !== config.default_prefer_lang) {
+            notifcationlist.forEach((element: any) => {
+              this.referService.translatetext(element.msg.toString(), this.userService.currentUserValue.preferlang).subscribe(
+                (trantxt: any) => {
+                  element.msg = trantxt;
+                  this.notifcationbellList.push(element);
+                },
+                error => {
+                  this.spinnerService.hide();
+                  this.alertService.error(error);
+                }
+              );
+            });
+        } else {
           this.notifcationbellList = notifcationlist;
-          console.log('this is notifcationbellList', this.notifcationbellList);
-          if (this.notifcationbellList != null) {
-            this.notificationCount = this.notifcationbellList.length;
-          }
-          else {
-            this.notificationCount = 0;
-          }
-          this.spinnerService.hide();
-        },
-        error => {
-          this.spinnerService.hide();
-          this.alertService.error(error);
         }
-      );
-    }, 3000);
+      },
+      error => {
+        this.spinnerService.hide();
+        this.alertService.error(error);
+      }
+    );
   }
 
   enableNotificationFlag() {

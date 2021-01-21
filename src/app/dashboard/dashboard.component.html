@@ -154,10 +154,10 @@
                             </span>
                         </div>
                         <div class="col-xl-2 col-lg-6 float-right">
-                            <a class="btn" (click)='enableNotificationFlag()'>
-                                <i class="fa fa-bell-o" *ngIf="notifcationbellList != null">{{notificationCount}}</i>
-                            </a>
-                            <i class="fa fa-bell-o" *ngIf="notifcationbellList == null">{{notificationCount}}</i>
+                            <a style="cursor:pointer" (click)='enableNotificationFlag()'>
+                                <i class="fa fa-bell-o"
+                                    *ngIf="notifcationbellList != null ">{{notifcationbellList.length}}</i>
+                            </a> &nbsp;
                             <a routerLink='/vieworeditprofile/{{userService.currentUserValue.userId}}'>
                                 <img *ngIf="userService.currentUserValue.avtarurl != null" class="avatar"
                                     src="{{userService.currentUserValue.avtarurl}}">
