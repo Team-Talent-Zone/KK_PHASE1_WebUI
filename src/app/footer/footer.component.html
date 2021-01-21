@@ -92,6 +92,22 @@
 							</ul>
 						</div>
 					</div>
+
+					<div class="col-md-2" *ngIf="this.userService.currentUserValue != null && 
+						this.userService.currentUserValue.userroles.rolecode=='CORE_SERVICE_SUPPORT_MANAGER' ||
+						this.userService.currentUserValue.userroles.rolecode =='CORE_SERVICE_SUPPORT_TEAM'">
+						<div class="address">
+							<h2>{{ 'FOOTER.USEFULLINKS' | translate }}</h2>
+							<!-- <hr> -->
+							<ul style="list-style: circle;">
+								<li><a [routerLink]="['/dashboard']" (click)="topFunction()">Dashboard</a>
+								</li>
+								<li><a [routerLink]="['/manageuser']" (click)="topFunction()"> Manage Users</a></li>
+								<li><a [routerLink]="['/manageservice']" (click)="topFunction()"> Manage Services</a>
+								</li>
+							</ul>
+						</div>
+					</div>
 					<div class="col-md-2">
 						<img style="padding-top:0px;height: 150px;" src="assets/img/backgrounds/pay14-transparent.png">
 					</div>
