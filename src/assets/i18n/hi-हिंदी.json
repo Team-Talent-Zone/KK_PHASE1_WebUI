@@ -139,7 +139,8 @@
     "PAYMENTHISTORY":"भुगतान इतिहास",
     "REVIEWS":"समीक्षा",
     "CURRENTSTAGE":"करंट ऑनबोर्ड स्टेज",
-    "EDIT_PROFILE" : "प्रोफ़ाइल"
+    "EDIT_PROFILE" : "प्रोफ़ाइल",
+    "NOTIFICATIONMEG_HEADER": "अधिसूचना संदेश"
   },
   "DASHBOARD_FU_BODY":{
     "PROFILEEUPDATE":"प्रोफ़ाइल अपडेट",

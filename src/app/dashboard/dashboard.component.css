@@ -2,7 +2,6 @@
  * Off Canvas at medium breakpoint
  * --------------------------------------------------
  */
-
 @media screen and (max-width: 48em) {
   .row-offcanvas {
     position: relative;

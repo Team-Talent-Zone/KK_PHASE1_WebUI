@@ -1,3 +1,4 @@
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { UsersrvdetailsService } from './../AppRestCall/userservice/usersrvdetails.service';
 import { ReferenceAdapter } from './../adapters/referenceadapter';
 import { Component, OnInit } from '@angular/core';
@@ -13,6 +14,8 @@ import { map } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
 import { DatePipe } from '@angular/common';
 import { timer } from 'rxjs';
+import { ModalOptions } from 'ngx-bootstrap';
+import { ReadMorePopupComponent } from '../read-more-popup/read-more-popup.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -33,7 +36,11 @@ export class DashboardComponent implements OnInit {
   showError = false;
   selectedIndex = -1;
   // the list to be shown after filtering
-
+  modalRef: BsModalRef;
+  config: ModalOptions = {
+    class: 'modal-lg', backdrop: 'static',
+    keyboard: false
+  };
   filterOn = '0';
   inputItemCode: string;
   txtid: string;
@@ -57,7 +64,8 @@ export class DashboardComponent implements OnInit {
     private referService: ReferenceService,
     public translate: TranslateService,
     public datepipe: DatePipe,
-    public usersrvdetails: UsersrvdetailsService
+    public usersrvdetails: UsersrvdetailsService,
+    private modalService: BsModalService,
   ) {
     route.params.subscribe(params => {
       this.txtid = params.txtid;
@@ -74,7 +82,7 @@ export class DashboardComponent implements OnInit {
     if (this.userService.currentUserValue.userroles.rolecode !== config.user_rolecode_fu.toString()) {
       this.getAllAvailableFUSkills();
     }
-    const source = timer(1000, 50000);
+    const source = timer(1000, 60000);
     source.subscribe((val: number) => {
       this.isbellenable = false;
       this.getAllBellNotifications();
@@ -83,21 +91,31 @@ export class DashboardComponent implements OnInit {
 
   getAllBellNotifications() {
     this.notifcationbellList = [];
+    if (this.userService.currentUserValue.userroles.rolecode == config.user_rolecode_fu.toString() ||
+      this.userService.currentUserValue.userroles.rolecode == config.user_rolecode_cba.toString()) {
+      this.getNotificationUserByUserId();
+    } else {
+      this.getNotificationUserByRole();
+    }
+  }
+
+  getNotificationUserByUserId() {
     this.usersrvdetails.getAllBellNotifications(this.userService.currentUserValue.userId).subscribe(
       (notifcationlist: any) => {
         if (this.userService.currentUserValue.preferlang !== config.default_prefer_lang) {
-            notifcationlist.forEach((element: any) => {
-              this.referService.translatetext(element.msg.toString(), this.userService.currentUserValue.preferlang).subscribe(
-                (trantxt: any) => {
-                  element.msg = trantxt;
-                  this.notifcationbellList.push(element);
-                },
-                error => {
-                  this.spinnerService.hide();
-                  this.alertService.error(error);
-                }
-              );
-            });
+          notifcationlist.forEach((element: any) => {
+            this.referService.translatetext(element.msg.toString(), this.userService.currentUserValue.preferlang).subscribe(
+              (trantxt: any) => {
+                element.msg = trantxt;
+                this.notifcationbellList.push(element);
+              },
+              error => {
+                this.spinnerService.hide();
+                this.alertService.error(error);
+              }
+            );
+          });
+
         } else {
           this.notifcationbellList = notifcationlist;
         }
@@ -109,9 +127,30 @@ export class DashboardComponent implements OnInit {
     );
   }
 
-  enableNotificationFlag() {
-    this.isbellenable = true;
-    this.getAllBellNotifications();
+  getNotificationUserByRole() {
+    this.usersrvdetails.getAllBellNotificationsByRoleCode(this.userService.currentUserValue.userroles.rolecode).subscribe(
+      (notifcationlist: any) => {
+        this.notifcationbellList = notifcationlist;
+      },
+      error => {
+        this.spinnerService.hide();
+        this.alertService.error(error);
+      }
+    );
+  }
+
+  openNotifcationWindow() {
+    const initialState = {
+      notificationEnable: true,
+      contentList: this.notifcationbellList
+    };
+    this.modalRef = this.modalService.show(ReadMorePopupComponent, Object.assign(
+      {},
+      this.config,
+      {
+        initialState
+      }
+    ));
   }
 
   getFullNameByPreferLang() {

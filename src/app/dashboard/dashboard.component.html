@@ -155,10 +155,13 @@
                             </span>
                         </div>
                         <div class="col-xl-2 col-lg-6 float-right">
-                            <a style="cursor:pointer" (click)='enableNotificationFlag()'>
-                                <i class="fa fa-comments-o"
-                                    *ngIf="notifcationbellList != null ">{{notifcationbellList.length}}</i>
+                            <a style="cursor:pointer" (click)='openNotifcationWindow()'
+                                *ngIf="notifcationbellList != null && notifcationbellList.length>0; else NoNotifiction ">
+                                <i class="fa fa-comments-o">{{notifcationbellList.length}}</i>
                             </a> &nbsp;
+                            <ng-template #NoNotifiction>
+                                <i class="fa fa-comments-o">0</i>
+                            </ng-template>
                             <a routerLink='/vieworeditprofile/{{userService.currentUserValue.userId}}'>
                                 <img *ngIf="userService.currentUserValue.avtarurl != null" class="avatar"
                                     src="{{userService.currentUserValue.avtarurl}}">
@@ -195,19 +198,6 @@
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <!--Notification Section-->
-                <div *ngIf="notifcationbellList != null && isbellenable">
-                    <div class="alert alert-info alert-dismissible fade show w-100" role="alert"
-                        *ngFor="let bell of notifcationbellList">
-                        <h6 class="display-5">
-                            {{bell.msg}}
-                        </h6>
-                        <!--Close Icon-->
-                        <button type="button" class="btn close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
-                </div>
                 <router-outlet></router-outlet>
             </div>
             <!--/row-->
@@ -219,5 +209,5 @@
 </div>
 <!-- Footer Section -->
 <div class="row mb-3"></div>
-<app-footer class="fixed-bottom"></app-footer>
-<!--/.container-->  
+<app-footer></app-footer>
+<!--/.container-->

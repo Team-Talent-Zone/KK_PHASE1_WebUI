@@ -33,6 +33,11 @@ export class DashboardofcbaComponent implements OnInit {
   domainServiceProviderObj: any = [];
 
   config: ModalOptions = {
+    class: 'modal-sm', backdrop: 'static',
+    keyboard: false
+  };
+
+  configsrvdescription: ModalOptions = {
     class: 'modal-lg', backdrop: 'static',
     keyboard: false
   };
@@ -41,7 +46,7 @@ export class DashboardofcbaComponent implements OnInit {
   userservicedetailsFormServicePack: FormGroup;
   listOfServicesForCheckOut: any = [];
   fullContent: any[];
-
+  configuration: any;
   constructor(
     private referService: ReferenceService,
     public userService: UserService,
@@ -276,9 +281,14 @@ export class DashboardofcbaComponent implements OnInit {
       headerlabel: label,
       contentList: contentListFeatures,
     };
+    if (fullcontent == null) {
+      this.configuration = this.config
+    } else {
+      this.configuration = this.configsrvdescription
+    };
     this.modalRef = this.modalService.show(ReadMorePopupComponent, Object.assign(
       {},
-      this.config,
+      this.configuration,
       {
         initialState
       }

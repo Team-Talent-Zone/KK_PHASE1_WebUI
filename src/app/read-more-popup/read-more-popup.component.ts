@@ -11,13 +11,13 @@ export class ReadMorePopupComponent implements OnInit {
   @Input() content: string;
   @Input() headerlabel: string;
   @Input() contentList: any;
+  @Input() notificationEnable: boolean;
 
   constructor(
     public modalRef: BsModalRef,
   ) { }
 
   ngOnInit() {
-    console.log('this is test', this.contentList);
   }
 
 }

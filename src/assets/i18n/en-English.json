@@ -140,7 +140,8 @@
       "PAYMENTHISTORY":"Payment History",
       "REVIEWS":"Reviews",
       "CURRENTSTAGE":"Current Onboard Stage",
-      "EDIT_PROFILE" : "Profile"
+      "EDIT_PROFILE" : "Profile",
+      "NOTIFICATIONMEG_HEADER": "Notification Messages"
     },
     "DASHBOARD_FU_BODY":{
       "PROFILEEUPDATE":"Profile Updated",

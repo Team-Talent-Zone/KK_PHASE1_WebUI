@@ -17,11 +17,26 @@
   </div>
 </div>
 
-<div *ngIf="contentList != null">
+<div *ngIf="contentList != null && !notificationEnable">
   <div class="modal-body">
     <button type="button" class="close" (click)="modalRef.hide()">&times;</button>
     <small *ngFor="let features of contentList">
       <p class="text-center">{{features}}</p>
     </small>
+  </div>
+</div>
+
+<!--Notification Section-->
+<div *ngIf="notificationEnable">
+  <div class="modal-header">
+    <h4 class="modal-title">{{ 'DASHOARD_FU_MENU.NOTIFICATIONMEG_HEADER' | translate }}</h4>
+    <button type="button" class="close" (click)="modalRef.hide()">&times;</button>
+  </div>
+  <div class="modal-body">
+    <div class="alert alert-info alert-dismissible fade show w-100" role="alert" *ngFor="let bell of contentList">
+      <h6 class="display-5">
+        {{bell.msg}}
+      </h6>
+    </div>
   </div>
 </div>

@@ -76,22 +76,26 @@ export class DashboardoffuComponent implements OnInit {
       }
     });
     if (!this.userService.currentUserValue.freeLanceDetails.isregfeedone) {
-      setTimeout(() => {
-        this.spinnerService.show();
-        this.referService.getReferenceLookupByKey(config.refer_key_furegfee.toString()).pipe().subscribe((refObj: any) => {
-          this.referenceobj = refObj;
-          this.spinnerService.hide();
-          this.istimelap = true;
-        },
-          error => {
-            this.spinnerService.hide();
-            this.alertService.error(error);
-          });
-      }, 500);
+      this.getPaymentRegistrationFeeAmount();
     }
     this.usrObj = this.userService.currentUserValue;
   }
 
+  getPaymentRegistrationFeeAmount() {
+    setTimeout(() => {
+      this.spinnerService.show();
+      this.referService.getReferenceLookupByKey(config.refer_key_furegfee.toString()).pipe().subscribe((refObj: any) => {
+        this.referenceobj = refObj;
+        this.spinnerService.hide();
+        this.istimelap = true;
+      },
+        error => {
+          this.spinnerService.hide();
+          this.alertService.error(error);
+        });
+    }, 500);
+  }
+  
   openPaymentComponent() {
     this.modalRef = this.modalService.show(PaymentComponent, {
       initialState: {
@@ -191,32 +195,21 @@ export class DashboardoffuComponent implements OnInit {
     }
 
     if (this.earnFlag && this.upcomingflag) {
-      this.referService.translatetext("Estimated Payment", this.userService.currentUserValue.preferlang).subscribe(
-        (trantxt: any) => {
-          this.upcomingpaytext = trantxt;
-        },
-        error => {
-          this.spinnerService.hide();
-          this.alertService.error(error);
-        }
-      );
-      this.referService.translatetext("Total Earnings", this.userService.currentUserValue.preferlang).subscribe(
-        (trantxt: any) => {
-          this.totalearnings = trantxt;
-        },
-        error => {
-          this.spinnerService.hide();
-          this.alertService.error(error);
-        }
-      );
-      setTimeout(() => {
-        this.infoCards = [
-          { name: this.upcomingpaytext, value: this.totalupcomingEarnings },
-          { name: this.totalearnings, value: this.totalEarnings },
-        ];
-        this.spinnerService.hide();
-      }, 3000);
-
+      if (this.userService.currentUserValue.preferlang == config.lang_code_te) {
+        this.upcomingpaytext = config.upcomingpay_te;
+        this.totalearnings = config.totalearnings_te;
+      } else if (this.userService.currentUserValue.preferlang == config.lang_code_hi) {
+        this.upcomingpaytext = config.upcomingpay_hi;
+        this.totalearnings = config.totalearnings_hi;
+      } else {
+        this.upcomingpaytext = config.upcomingpay_en;
+        this.totalearnings = config.totalearnings_en;
+      }
+      this.infoCards = [
+        { name: this.upcomingpaytext, value: this.totalupcomingEarnings },
+        { name: this.totalearnings, value: this.totalEarnings },
+      ];
+      this.spinnerService.hide();
     }
   }
 

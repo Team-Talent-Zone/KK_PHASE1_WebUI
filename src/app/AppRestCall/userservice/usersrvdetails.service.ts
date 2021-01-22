@@ -46,4 +46,8 @@ export class UsersrvdetailsService {
   getAllBellNotifications(userId: number) {
     return this.http.get(`${environment.apiUrl}/getAllBellNotifications/` + userId + '/');
   }
+
+  getAllBellNotificationsByRoleCode(role: string) {
+    return this.http.get(`${environment.apiUrl}/getAllAdminBellNotifications/` + role + '/');
+  }
 }

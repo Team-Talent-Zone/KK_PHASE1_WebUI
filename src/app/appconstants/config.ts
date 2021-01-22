@@ -84,6 +84,13 @@ export const config = {
   banner_video2_te: 'video2te',
   banner_video1_hi: 'video1hi',
   banner_video2_hi: 'video2hi',
+  upcomingpay_te: 'అంచనా చెల్లింపు',
+  upcomingpay_en: 'Estimated Payment',
+  upcomingpay_hi: 'अनुमानित भुगतान',
+  totalearnings_te: 'మొత్తం సంపాదన',
+  totalearnings_en: 'Total Earnings',
+  totalearnings_hi: 'कुल आय',
+
 };
 
 
