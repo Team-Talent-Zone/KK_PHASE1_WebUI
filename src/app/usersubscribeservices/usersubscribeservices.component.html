@@ -16,10 +16,9 @@
                     </a>
                     <span *ngIf="svc.category !=='FS_S'" class="pull-right">
                         <a [routerLink]="['/createoreditwidget',svc.ourserviceId]">
-                            <i class="fa fa-window-restore" title="Go to edit widget"
-                                style="color:azure"></i></a>
-                        </span>
-                    <span *ngIf="istimelap" class="pull-right"  style="padding-right:10px">
+                            <i class="fa fa-window-restore" title="Go to edit widget" style="color:azure"></i></a>
+                    </span>
+                    <span *ngIf="istimelap" class="pull-right" style="padding-right:10px">
                         <a (click)="publishNow(svc.serviceId)"
                             *ngIf="svc.status === 'PAYMENT_PAID' && svc.category !=='FS_S'">
                             <i class="fa fa-play"
@@ -63,9 +62,7 @@
         <!-- </div> -->
     </div>
 
-
-    <div style="margin-top:8px !important" *ngIf="
-listOfSubscribedServicesByUser.length === 0 && istimelap">
+    <div style="margin-top:8px !important" *ngIf="listOfSubscribedServicesByUser.length === 0 && istimelap">
         <p>
             <b>
                 No Services Subscribed . <a [routerLink]="['/dashboard']">Show Avaiable Services</a>

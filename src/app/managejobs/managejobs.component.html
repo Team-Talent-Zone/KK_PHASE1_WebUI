@@ -26,8 +26,7 @@
         aria-labelledby="collapseFUUpcomingJobs-tab">
         <br><br>
         <div class="row" *ngIf="upComingPostedJobs.length > 0">
-            <div class="col-md-3" style="margin-bottom:8px !important"
-                *ngFor="let element of upComingPostedJobs">
+            <div class="col-md-3" style="margin-bottom:8px !important" *ngFor="let element of upComingPostedJobs">
                 <div class="card card-flip h-100 ">
                     <div class="card-header text-white bg-secondary">
                         <p> <b>{{ 'DASHBOARD_FU_BODY.JOB' | translate }}#{{element.jobId}} </b>
@@ -126,7 +125,11 @@
                             </button>
                             <button class="bg-danger pull-right"
                                 *ngIf="newlyjob.isjobactive && newlyjob.isdeactive != null"
-                                (click)="cancelJob(newlyjob.jobId)">Cancel
+                                (click)="cancelJob(newlyjob.jobId)">Remove
+                                <i class="fa fa-times"></i></button>
+
+                            <button class="bg-warning pull-right" *ngIf="!newlyjob.isjobactive && newlyjob.isdeactive"
+                                (click)="cancelJob(newlyjob.jobId)">Remove
                                 <i class="fa fa-times"></i></button>
                         </p>
                         <span class="display-4">
@@ -170,17 +173,11 @@
                         <div class="row">
                             <p class="text-danger text-center">
                                 <i class="fa fa-info-circle "></i>
-                                <small class="text-muted ">You have not activiated this job on time and the
-                                    job
-                                    start date has crossed current date. Please create new job again
+                                <small class="text-muted ">
+                                    You have not activiated this job on time and the job start date has crossed current
+                                    date.
                                 </small>
                             </p>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3"></div>
-                            <div class="col-sm-4">
-                                <a (click)="cancelJob(newlyjob.jobId)" class="btn  btn-danger btn-sm">Cancel</a>
-                            </div>
                         </div>
                     </div>
                     <div class="card-footer"
@@ -188,13 +185,9 @@
                         <div class="row">
                             <p class="text-primary text-center"><i class="fa fa-info-circle"></i>
                                 <small class="text-muted ">
-                                    Thank you for
-                                    activating the
-                                    job . Our
-                                    pool of skilled workers
+                                    Thank you for activating the job . Our pool of skilled workers
                                     will be available to accept this job shortly.
-                                    <br> We will notify via bell notification
-                                    message.
+                                    We will notify on message notification.
                                 </small>
                             </p>
                         </div>
@@ -202,9 +195,8 @@
                     <div class="card-footer" *ngIf="newlyjob.isjobactive && newlyjob.isdeactive != null">
                         <div class="row">
                             <p class="text-danger text-center"><i class="fa fa-info-circle"></i>
-                                <small class="text-muted ">No skilled worker has
-                                    accepted
-                                    this job. Please provide to cancel job & create new job again.
+                                <small class="text-muted ">No skilled worker has accepted this job. Please proceed to
+                                    remove this job & create new job again.
                                 </small>
                             </p>
                         </div>
@@ -222,12 +214,11 @@
                 <div class="card card-flip h-100 ">
                     <div class="card-header text-white bg-secondary">
                         <p> <b>{{ 'DASHBOARD_FU_BODY.JOB' | translate }}#{{completedjob.jobId}} </b>
-                            <button class="bg-warning" *ngIf="completedjob.isjobamtpaidtocompany"
-                                [routerLink]="['/payment',completedjob.txnid]">PayInfo<i
-                                    title="Go to payment details" class="fa fa-sitemap"
-                                    style="color:#FF4949"></i></button>
+                            <button class="bg-warning pull-right" *ngIf="completedjob.isjobamtpaidtocompany"
+                                [routerLink]="['/payment',completedjob.txnid]">PayInfo<i title="Go to payment details"
+                                    class="fa fa-sitemap" style="color:#FF4949"></i></button>
                             <button class="bg-info pull-right" data-toggle="modal" data-target="#rateit"
-                                (click)="feedback(completedjob.jobId)"> Rate <i class="fa fa-meh-o"
+                                (click)="feedback(completedjob.jobId)"> <i class="fa fa-meh-o"
                                     title="Please rate to {{completedjob.fullname}}"></i></button>
                         </p>
                         <span class="display-4">
@@ -292,7 +283,6 @@
         </div>
     </div>
 </div>
-
 <div class="modal fade" id="rateit" *ngIf="isratingdisplay">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -336,14 +326,77 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">Save Changes</button>
                     </div>
-
                 </form>
             </div>
-
         </div>
     </div>
 </div>
+
+<hr>
+<dl class="row">
+    <dt class="col-sm-3">
+        <h4>{{ 'DASHBOARD_FU_BODY.IMPINST_HEADER' | translate }}</h4>
+    </dt>
+    <dd class="col-sm-9"> </dd>
+    <dt class="col-sm-3">
+        <button class="bg-info" style="font-size:14px">Job Done
+            <i class="fa fa-check"></i></button>
+    </dt>
+    <dd class="col-sm-9">
+        Clicking on this BUTTON indicates the job is completed.
+    </dd>
+    <dt class="col-sm-3 ">
+        <button class="bg-success" style="font-size:14px">Pay
+            <i class="fa fa-inr"></i></button>
+    </dt>
+    <dd class="col-sm-9">
+        Clicking on this BUTTON indicates to pay for the job invoice payment with our secured online gateway payment
+        process.
+    </dd>
+    <dt class="col-sm-3">
+        <button class="bg-warning ">Cancel
+            <i class="fa fa-times"></i></button>
+    </dt>
+    <dd class="col-sm-9">
+        Clicking on this BUTTON indicates to cancel the job before activatation.
+    </dd>
+    <dt class="col-sm-3">
+        <button class="bg-info">Activiate
+            <i class=" fa fa-check"></i>
+        </button>
+    </dt>
+    <dd class="col-sm-9">
+        Clicking on this BUTTON indicates to activiate the job. Until this button is not click the skilled worker is not
+        able to see the created job.
+    </dd>
+    <dt class="col-sm-3">
+        <button class="bg-danger">Remove
+            <i class="fa fa-times"></i></button>
+    </dt>
+    <dd class="col-sm-9">
+        Clicking on this BUTTON indicates to cancel the job because no skilled worker has accepted the job.
+    </dd>
+    <dt class="col-sm-3">
+        <button class="bg-warning ">Remove
+            <i class="fa fa-times"></i></button>
+    </dt>
+    <dd class="col-sm-9">
+        Clicking on this BUTTON indicates to cancel the job because you have not activiated the job on time and the job
+        start date has crossed current date.
+    </dd>
+    <dt class="col-sm-3">
+        <button class="bg-warning">PayInfo<i class="fa fa-sitemap" style="color:#FF4949"></i></button>
+    </dt>
+    <dd class="col-sm-9">
+        Clicking on this BUTTON indicates to view the payment details for the respective Job Id.
+    </dd>
+    <dt class="col-sm-3">
+        <button class="bg-info"> <i class="fa fa-meh-o"></i></button>
+    </dt>
+    <dd class="col-sm-9">
+        Clicking on this BUTTON indicates to provide star rating to the skilled worker after the job is completed.
+    </dd>
+</dl>
