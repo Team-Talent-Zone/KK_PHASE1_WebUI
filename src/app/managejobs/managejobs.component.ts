@@ -11,8 +11,11 @@ import { timer } from 'rxjs';
 import { FreelanceStarReview } from '../appmodels/FreelanceStarReview';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Toaster, ToastType } from 'ngx-toast-notifications';
-import {  ModalOptions } from 'ngx-bootstrap/modal';
+import { ModalOptions } from 'ngx-bootstrap/modal';
 import { ReadMorePopupComponent } from '../read-more-popup/read-more-popup.component';
+import { DashboardComponent } from '../dashboard/dashboard.component';
+import { config } from '../appconstants/config';
+import { UsersrvdetailsService } from '../AppRestCall/userservice/usersrvdetails.service';
 
 @Component({
   selector: 'app-managejobs',
@@ -31,6 +34,7 @@ export class ManagejobsComponent implements OnInit {
   issubmit = false;
   isratingdisplay = false;
   private types: Array<ToastType> = ['success', 'danger', 'warning', 'info', 'primary', 'secondary', 'dark', 'light'];
+  notifcationbellList: any = [];
   config: ModalOptions = {
     class: 'modal-md', backdrop: 'static',
     keyboard: false
@@ -46,21 +50,41 @@ export class ManagejobsComponent implements OnInit {
     private spinnerService: Ng4LoadingSpinnerService,
     private modalRef: BsModalRef,
     private modalService: BsModalService,
+    private dashboard: DashboardComponent,
+    public usersrvdetails: UsersrvdetailsService,
   ) {
   }
 
   ngOnInit() {
     this.spinnerService.show();
     if (this.router.url.toString() === '/job'.toString()) {
-      const sourcerefresh = timer(1000, 50000);
+      const source = timer(1000, 20000);
+      const sourcerefresh = timer(1000, 90000);
       sourcerefresh.subscribe((val: number) => {
         this.getUserAllJobDetailsByUserId();
+      });
+      source.subscribe((val: number) => {
+        this.getToastNotificationUserByRole(config.rolecode_toast_notification_cba);
       });
     }
   }
 
-  autoToastNotificationsForCBA(fullmsg: string, typetxt: string, toasttitle: string) {
-    this.showToastNotificationForFCBA(fullmsg, typetxt, toasttitle);
+  private getToastNotificationUserByRole(roleCode: string) {
+    this.usersrvdetails.getAllBellNotificationsByRoleCode(roleCode).subscribe(
+      (notifcationlist: any) => {
+        console.log('notifcationlist List', notifcationlist);
+        if (notifcationlist != null) {
+          console.log('notifcationlist', notifcationlist);
+          notifcationlist.forEach(element => {
+            this.showToastNotificationForFCBA(element.msg, this.types[3], 'Friendly');
+          });
+        }
+      },
+      error => {
+        this.spinnerService.hide();
+        this.alertService.error(error);
+      }
+    );
   }
 
   showToastNotificationForFCBA(txtmsg: string, typeName: any, toastheader: string) {
@@ -160,7 +184,6 @@ export class ManagejobsComponent implements OnInit {
           if (!element.isjobactive && !element.isdeactive) {
             // tslint:disable-next-line: max-line-length
             const fullmsg = 'Hi ' + this.userService.currentUserValue.fullname + ', JobId:' + element.jobId + ' is not active yet. Please activiate it to make freelancer visible';
-            //this.autoToastNotificationsForCBA(fullmsg, this.types[2], 'Job');
           }
         }
         // tslint:disable-next-line: max-line-length
@@ -171,7 +194,6 @@ export class ManagejobsComponent implements OnInit {
             const ref = timer(10000, 50000);
             ref.subscribe((val: number) => {
               const fullmsg = 'Hi ' + this.userService.currentUserValue.fullname + ', For the JobId:' + element.jobId + ' pay now.';
-              //this.autoToastNotificationsForCBA(fullmsg, this.types[1], 'Job Payment Pending');
             });
           }
         }
@@ -181,7 +203,6 @@ export class ManagejobsComponent implements OnInit {
         }
       });
       this.spinnerService.hide();
-      console.log('this.newlyPostedJobs' , this.newlyPostedJobs);
     },
       error => {
         this.spinnerService.hide();
@@ -247,7 +268,7 @@ export class ManagejobsComponent implements OnInit {
   }
 
   openReadMorePopup(fullcontent: string) {
-     const initialState = {
+    const initialState = {
       content: fullcontent
     };
     this.modalRef = this.modalService.show(ReadMorePopupComponent, Object.assign(
