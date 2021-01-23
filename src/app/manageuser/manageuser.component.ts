@@ -47,13 +47,7 @@ export class ManageuserComponent implements OnInit {
 
   ngOnInit() {
     this.getAllUser();
-    $(document).ready(function () {
-      /*$('#example').DataTable({
-        aLengthMenu: [[5, 10, 25, -1], [5, 10, 25, 'All']],
-        iDisplayLength: 5
-      });*/
-    });
-    const source = timer(1000, 20000);
+    const source = timer(1000, 90000);
     source.subscribe((val: number) => {
    //   this.getlistOfNewUsersToastNofications();
     });

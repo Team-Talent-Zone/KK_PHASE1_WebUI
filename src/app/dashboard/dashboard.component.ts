@@ -82,7 +82,7 @@ export class DashboardComponent implements OnInit {
     if (this.userService.currentUserValue.userroles.rolecode !== config.user_rolecode_fu.toString()) {
       this.getAllAvailableFUSkills();
     }
-    const source = timer(1000, 60000);
+    const source = timer(1000, 90000);
     source.subscribe((val: number) => {
       this.isbellenable = false;
       this.getAllBellNotifications();
@@ -91,33 +91,42 @@ export class DashboardComponent implements OnInit {
 
   getAllBellNotifications() {
     this.notifcationbellList = [];
-    if (this.userService.currentUserValue.userroles.rolecode == config.user_rolecode_fu.toString() ||
-      this.userService.currentUserValue.userroles.rolecode == config.user_rolecode_cba.toString()) {
+    if (this.userService.currentUserValue.userroles.rolecode == config.user_rolecode_fu.toString()) {
       this.getNotificationUserByUserId();
+      setTimeout(() => {
+        this.spinnerService.show();
+        this.getNotificationUserByRole(config.rolecode_notification);
+        this.spinnerService.hide();
+      }, 3000);
     } else {
-      this.getNotificationUserByRole();
+      if (this.userService.currentUserValue.userroles.rolecode == config.user_rolecode_cba.toString()) {
+        this.getNotificationUserByUserId();
+      } else {
+        this.getNotificationUserByRole(this.userService.currentUserValue.userroles.rolecode);
+      }
     }
   }
 
   getNotificationUserByUserId() {
-    this.usersrvdetails.getAllBellNotifications(this.userService.currentUserValue.userId).subscribe(
+    this.usersrvdetails.getAllBellNotifications(this.userService.currentUserValue.userId, this.userService.currentUserValue.userroles.rolecode).subscribe(
       (notifcationlist: any) => {
-        if (this.userService.currentUserValue.preferlang !== config.default_prefer_lang) {
-          notifcationlist.forEach((element: any) => {
-            this.referService.translatetext(element.msg.toString(), this.userService.currentUserValue.preferlang).subscribe(
-              (trantxt: any) => {
-                element.msg = trantxt;
-                this.notifcationbellList.push(element);
-              },
-              error => {
-                this.spinnerService.hide();
-                this.alertService.error(error);
-              }
-            );
-          });
-
-        } else {
-          this.notifcationbellList = notifcationlist;
+        if (notifcationlist != null) {
+          if (this.userService.currentUserValue.preferlang !== config.default_prefer_lang) {
+            notifcationlist.forEach((element: any) => {
+              this.referService.translatetext(element.msg.toString(), this.userService.currentUserValue.preferlang).subscribe(
+                (trantxt: any) => {
+                  element.msg = trantxt;
+                  this.notifcationbellList.push(element);
+                },
+                error => {
+                  this.spinnerService.hide();
+                  this.alertService.error(error);
+                }
+              );
+            });
+          } else {
+            this.notifcationbellList = notifcationlist;
+          }
         }
       },
       error => {
@@ -127,10 +136,39 @@ export class DashboardComponent implements OnInit {
     );
   }
 
-  getNotificationUserByRole() {
-    this.usersrvdetails.getAllBellNotificationsByRoleCode(this.userService.currentUserValue.userroles.rolecode).subscribe(
+  getNotificationUserByRole(roleCode: string) {
+    this.usersrvdetails.getAllBellNotificationsByRoleCode(roleCode).subscribe(
       (notifcationlist: any) => {
-        this.notifcationbellList = notifcationlist;
+        if (notifcationlist != null) {
+          if (this.userService.currentUserValue.preferlang !== config.default_prefer_lang) {
+            notifcationlist.forEach((element: any) => {
+              if (element.subcategory = this.userService.currentUserValue.freeLanceDetails.subCategory) {
+                this.referService.translatetext(element.msg.toString(), this.userService.currentUserValue.preferlang).subscribe(
+                  (trantxt: any) => {
+                    element.msg = trantxt;
+                    this.notifcationbellList.push(element);
+                  },
+                  error => {
+                    this.spinnerService.hide();
+                    this.alertService.error(error);
+                  }
+                );
+                this.spinnerService.hide();
+              }
+            });
+          } else {
+            if (this.userService.currentUserValue.userroles.rolecode == config.user_rolecode_fu.toString()) {
+              notifcationlist.forEach((element: any) => {
+                if (element.subcategory = this.userService.currentUserValue.freeLanceDetails.subCategory) {
+                  this.notifcationbellList.push(element);
+                }
+              });
+              this.spinnerService.hide();
+            } else {
+              this.notifcationbellList = notifcationlist;
+            }
+          }
+        }
       },
       error => {
         this.spinnerService.hide();
@@ -174,22 +212,43 @@ export class DashboardComponent implements OnInit {
       this.fullname = this.userService.currentUserValue.fullname;
     }
   }
+
   getPaymentDetailsByTxnId(txnid: string) {
     this.paymentsvc.getPaymentDetailsByTxnId(txnid).subscribe((paymentobj: any) => {
       if (paymentobj.paymentsCBATrans != null) {
-        if (paymentobj.paymentsCBATrans.status === 'Success') {
+        if (paymentobj.paymentsCBATrans.status === config.payment_success.toString()) {
           this.ispaysuccess = true;
-          // tslint:disable-next-line: max-line-length
           this.alertService.success('Thank you for the payment. Payment is Successfully');
         } else {
           this.alertService.info('Transcation Failed. Please try again.');
         }
       }
       if (paymentobj.paymentsFUTrans != null) {
-        if (paymentobj.paymentsFUTrans.status === 'Success') {
-          this.alertService.success('Thank you for the payment. Payment is Successfully');
+        this.ispaysuccess = true;
+        var paymentsucess;
+        var paymentfailed;
+        if (paymentobj.paymentsFUTrans.status === config.payment_success.toString()) {
+          if (this.userService.currentUserValue.preferlang == config.default_prefer_lang) {
+            paymentsucess = config.payment_sucesss_alert_en.toString();
+          } else {
+            if (this.userService.currentUserValue.preferlang == config.lang_code_hi) {
+              paymentsucess = config.payment_sucesss_alert_hi.toString();
+            } else {
+              paymentsucess = config.payment_sucesss_alert_te.toString();
+            }
+          }
+          this.alertService.success(paymentsucess);
         } else {
-          this.alertService.info('Transcation Failed. Please try again.');
+          if (this.userService.currentUserValue.preferlang == config.default_prefer_lang) {
+            paymentfailed = config.payment_fail_alert_en.toString();
+          } else {
+            if (this.userService.currentUserValue.preferlang == config.lang_code_hi) {
+              paymentfailed = config.payment_fail_alert_hi.toString();
+            } else {
+              paymentfailed = config.payment_fail_alert_te.toString();
+            }
+          }
+          this.alertService.info(paymentfailed);
         }
       }
     },
@@ -323,6 +382,16 @@ export class DashboardComponent implements OnInit {
       }, 500);
     }
   }
+
+  getNameInitials() {
+    if (this.userService.currentUserValue != null) {
+      if (this.userService.currentUserValue.fullname !== null) {
+        let initials = this.userService.currentUserValue.fullname.match(/\b\w/g) || [];
+        let initialsfinal = ((initials.shift() || '') + (initials.pop() || '')).toUpperCase();
+        return initialsfinal;
+      }
+    }
+  }
   translateToLanguage(preferedLang: string) {
     if (preferedLang === config.lang_code_hi.toString()) {
       preferedLang = config.lang_hindi_word.toString();
@@ -334,15 +403,5 @@ export class DashboardComponent implements OnInit {
       preferedLang = config.lang_english_word.toString();
     }
     this.translate.use(preferedLang);
-  }
-
-  getNameInitials() {
-    if (this.userService.currentUserValue != null) {
-      if (this.userService.currentUserValue.fullname !== null) {
-        let initials = this.userService.currentUserValue.fullname.match(/\b\w/g) || [];
-        let initialsfinal = ((initials.shift() || '') + (initials.pop() || '')).toUpperCase();
-        return initialsfinal;
-      }
-    }
   }
 }

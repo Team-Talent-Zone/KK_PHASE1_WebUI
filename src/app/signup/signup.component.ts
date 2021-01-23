@@ -46,7 +46,6 @@ export class SignupComponent implements OnInit {
   usrObj: User;
   templateObj: ReferenceLookUpTemplate;
   util: Util;
-  isSelectedCategoryVal: string;
   usernotification: UserNotification;
   today = new Date();
   user: User;
@@ -176,17 +175,13 @@ export class SignupComponent implements OnInit {
     );
   }
 
-  subCategoryByMapId(value: string) {
-    this.isSelectedCategoryVal = value;
-    for (const listofcat of this.referencedetailsmapsubcat) {
-      if (listofcat.mapId == value) {
-        this.referencedetailsmapsubcatselectedmapId.push(listofcat);
-        this.issubcatdisplay = false;
-      } else {
-        this.referencedetailsmapsubcatselectedmapId = [];
-        this.issubcatdisplay = true;
+  subCategoryByMapId(value: number) {
+    this.referencedetailsmapsubcatselectedmapId = [];
+    this.referencedetailsmapsubcat.forEach(element => {
+      if (element.mapId == value) {
+        this.referencedetailsmapsubcatselectedmapId.push(element);
       }
-    }
+    });
   }
 
   get f() {

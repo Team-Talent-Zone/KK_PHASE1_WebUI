@@ -4,7 +4,7 @@
     <div class="row mb-3"></div>
     <div class="row placeholders justify-content-between ">
         <h5 class="col-12 col-sm-2 placeholder text-center d-lg-none">
-             {{ 'DASHOARD_FU_MENU.CURRENTSTAGE' | translate }}  
+            {{ 'DASHOARD_FU_MENU.CURRENTSTAGE' | translate }}
         </h5>
         <div class="row mb-5 d-lg-none"></div>
         <div class="col-12 col-sm-2 placeholder text-center d-lg-none">
@@ -31,11 +31,18 @@
                     </small>
                 </a>
             </p>
-            <p
-                *ngIf="userService.currentUserValue.freeLanceDetails.isbgstarted && userService.currentUserValue.freeLanceDetails.bgcurrentstatus === null">
+            <div
+                *ngIf="userService.currentUserValue.freeLanceDetails.isregfeedone && !userService.currentUserValue.freeLanceDetails.isbgstarted">
+                <i class="fa fa-credit-card-alt rounded-circle" [ngStyle]=" {'background': 'cornflowerblue'}"></i>
+                <p><small><b>{{ 'DASHBOARD_FU_BODY.PAYMENTCOMPLETED' | translate }}</b></small></p>
+            </div>
+            <div *ngIf="userService.currentUserValue.freeLanceDetails.isbgstarted && userService.currentUserValue.freeLanceDetails.bgcurrentstatus == 'BG_SENTTOCSST' ||
+                userService.currentUserValue.freeLanceDetails.bgcurrentstatus =='BG_SENTTOCSSM'">
                 <i class="fa fa-street-view rounded-circle" [ngStyle]=" {'background': 'cornflowerblue' }"></i>
-                <span><small><b>{{ 'DASHBOARD_FU_BODY.BGVERIFICATIONINITIATED' | translate }}</b></small></span>
-            </p>
+                <p>
+                    <span><small><b>{{ 'DASHBOARD_FU_BODY.BGVERIFICATIONINITIATED' | translate }}</b></small></span>
+                </p>
+            </div>
             <i class="fa fa fa-hand-paper-o rounded-circle" *ngIf="userService.currentUserValue.freeLanceDetails.isbgdone && 
                 userService.currentUserValue.freeLanceDetails.bgcurrentstatus == 'BG_APPROVED' || 
                 userService.currentUserValue.freeLanceDetails.bgcurrentstatus == 'BG_REJECTED'" [ngStyle]=" {'background': userService.currentUserValue.freeLanceDetails.bgcurrentstatus=='BG_APPROVED'
@@ -270,9 +277,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row" *ngIf="upcomingJobList.length == 0">
-                        <p class="pull-center"><small><b>{{ 'DASHBOARD_FU_BODY.NO_UPCOMING_MSG' | translate }} </b>
-                            </small></p>
+                    <div class="alert alert-success alert-dismissible fade show w-100" role="alert"
+                        *ngIf="upcomingJobList.length == 0">
+                        <h5 class="display-5">
+                            {{ 'DASHBOARD_FU_BODY.NO_UPCOMING_MSG' | translate }}
+                        </h5>
                     </div>
                 </div>
                 <div class="tab-pane fade" id="collapseFUUpcomingJobs" role="tabpanel"
@@ -285,7 +294,8 @@
                                 <div class="card-header text-white bg-secondary">
                                     <p> <b>{{ 'DASHBOARD_FU_BODY.JOB' | translate }}#{{element.jobId}} </b>
                                         <button class="bg-success pull-right" (click)="accept(element.jobId)"
-                                            style="font-size:14px">{{ 'DASHBOARD_FU_BODY.ACCEPTJOBBUTTON' | translate }}
+                                            *ngIf="upcomingJobList.length < 3" style="font-size:14px">{{
+                                            'DASHBOARD_FU_BODY.ACCEPTJOBBUTTON' | translate }}
                                             <i class="fa fa-play"></i></button>
                                     </p>
                                     <span class="display-4">
@@ -334,9 +344,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row" *ngIf="newJobList.length == 0">
-                        <p class="pull-center"><small><b>{{ 'DASHBOARD_FU_BODY.NO_NEWJOB_MSG' | translate }} </b>
-                            </small></p>
+                    <div class="alert alert-success alert-dismissible fade show w-100" role="alert"
+                        *ngIf="newJobList.length == 0">
+                        <h5 class="display-5">
+                            {{ 'DASHBOARD_FU_BODY.NO_NEWJOB_MSG' | translate }}
+                        </h5>
                     </div>
                 </div>
                 <div class="tab-pane fade" id="collapseCompletedJobs" role="tabpanel"
@@ -368,6 +380,12 @@
                                         </small>
                                         <small class="pull-left">
                                             <b>{{ 'DASHBOARD_FU_BODY.ENDON' | translate }} </b> {{element.jobendedon}}
+                                        </small>
+                                    </p>
+                                    <p *ngIf="element.freelanceuserId > 0">
+                                        <small class="pull-left">
+                                            <b>{{ 'DASHBOARD_FU_BODY.ACCEPTEDON' | translate }}
+                                            </b>{{element.jobaccepteddate}}
                                         </small>
                                     </p>
                                 </div>
@@ -406,9 +424,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row" *ngIf="completedJobList.length == 0">
-                        <p class="pull-center"><small><b>{{ 'DASHBOARD_FU_BODY.NO_COMPLETEDJOBS_MSG' | translate }} </b>
-                            </small></p>
+                    <div class="alert alert-success alert-dismissible fade show w-100" role="alert"
+                        *ngIf="completedJobList.length == 0">
+                        <h5 class="display-5">
+                            {{ 'DASHBOARD_FU_BODY.NO_COMPLETEDJOBS_MSG' | translate }}
+                        </h5>
                     </div>
                 </div>
             </div>
@@ -434,7 +454,8 @@
                 <i class="fa fa-play"></i></button>
         </dt>
         <dd class="col-sm-9">
-            {{ 'DASHBOARD_FU_BODY.IMPINST_NEWJOBS_ACCEPTBUTTON' | translate }}
+            <p>{{ 'DASHBOARD_FU_BODY.IMPINST_NEWJOBS_ACCEPTBUTTON' | translate }}</p>
+            <p>{{ 'DASHBOARD_FU_BODY.IMPINST_HEADER_NOACCEPTBUTTON' | translate }}</p>
         </dd>
         <dt class="col-sm-3">
             <i class="fa fa-minus-circle fa-2x pull-left" style="color:red"></i>

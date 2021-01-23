@@ -5,6 +5,7 @@ import { FreelanceserviceService } from '../AppRestCall/freelanceservice/freelan
 import { ReferenceService } from '../AppRestCall/reference/reference.service';
 import { UserService } from '../AppRestCall/user/user.service';
 import { config } from 'src/app/appconstants/config';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-viewfureviews',
@@ -21,6 +22,7 @@ export class ViewfureviewsComponent implements OnInit {
     private spinnerService: Ng4LoadingSpinnerService,
     private alertService: AlertsService,
     private referService: ReferenceService,
+    public datepipe: DatePipe,
   ) { }
 
   ngOnInit() {
@@ -28,6 +30,7 @@ export class ViewfureviewsComponent implements OnInit {
   }
 
   getFUFeebackDetailsByUserId() {
+    this.spinnerService.show();
     this.fureviews = [];
     this.freelanceserviceService.getFUFeebackDetailsByUserId(this.userService.currentUserValue.userId).subscribe(
       (reviews: any) => {
@@ -53,11 +56,13 @@ export class ViewfureviewsComponent implements OnInit {
             this.referService.translatetext(element.label, this.userService.currentUserValue.preferlang).subscribe(
               (txt: string) => {
                 element.label = txt;
-              } 
+              }
             );
             this.fureviews.push(element);
+            this.spinnerService.hide();
           } else {
             this.fureviews.push(element);
+            this.spinnerService.hide();
           }
         });
       },

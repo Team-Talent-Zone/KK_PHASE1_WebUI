@@ -24,9 +24,9 @@
 <div class="tab-content background" id="myTabContent">
     <div class="tab-pane fade show active" id="collapseFUUpcomingJobs" role="tabpanel"
         aria-labelledby="collapseFUUpcomingJobs-tab">
-        <br><br>
+        <div class="row mb-3"></div>
         <div class="row" *ngIf="upComingPostedJobs.length > 0">
-            <div class="col-md-3" style="margin-bottom:8px !important" *ngFor="let element of upComingPostedJobs">
+            <div class="col-md-4 mb-3 mb-md-0" style="margin-bottom:8px !important" *ngFor="let element of upComingPostedJobs">
                 <div class="card card-flip h-100 ">
                     <div class="card-header text-white bg-secondary">
                         <p> <b>{{ 'DASHBOARD_FU_BODY.JOB' | translate }}#{{element.jobId}} </b>
@@ -49,6 +49,7 @@
                                 <b>{{ 'DASHBOARD_FU_BODY.ENDON' | translate }} </b> {{element.jobendedon}}
                             </small>
                         </p>
+
                     </div>
                     <div class="card-body">
                         <div class="row">
@@ -67,6 +68,12 @@
                         <p>
                             <small class="pull-left">
                                 <b>{{ 'DASHBOARD_FU_BODY.PHONENO' | translate }} </b> {{element.fuphoneno}}
+                            </small>
+                        </p>
+                        <p *ngIf="element.freelanceuserId > 0">
+                            <small class="pull-left">
+                                <b>{{ 'DASHBOARD_FU_BODY.ACCEPTEDON' | translate }}
+                                </b>{{element.jobaccepteddate}}
                             </small>
                         </p>
 
@@ -102,14 +109,18 @@
                 </div>
             </div>
         </div>
-        <div class="row" *ngIf="upComingPostedJobs.length == 0">
-            <p class="pull-center"><small><b> There are no upcoming jobs. </b> </small></p>
+        <div class="alert alert-success alert-dismissible fade show w-100" role="alert"
+            *ngIf="upComingPostedJobs.length == 0">
+            <h5 class="display-5">
+                Currently there are no upcoming jobs. We recommend you to search for the skilled worker and create a
+                job.
+            </h5>
         </div>
     </div>
     <div class="tab-pane fade" id="collapseFUNewJobs" role="tabpanel" aria-labelledby="collapseFUNewJobs-tab">
-        <br><br>
-        <div class="row">
-            <div class="col-md-3 mb-3 mb-md-0" style="margin-bottom:8px !important"
+        <div class="row mb-3"></div>
+        <div class="row" *ngIf="newlyPostedJobs.length > 0">
+            <div class="col-md-4 mb-3 mb-md-0" style="margin-bottom:8px !important"
                 *ngFor="let newlyjob of newlyPostedJobs">
                 <div class="card card-flip h-100 ">
                     <div class="card-header text-white bg-secondary">
@@ -169,7 +180,7 @@
                                     {{ 'DASHBOARD_FU_BODY.JOBDESCPTION' | translate }}</i></a>
                         </div>
                     </div>
-                    <div class="card-footer" *ngIf="!newlyjob.isjobactive && newlyjob.isdeactive">
+                    <!--<div class="card-footer" *ngIf="!newlyjob.isjobactive && newlyjob.isdeactive">
                         <div class="row">
                             <p class="text-danger text-center">
                                 <i class="fa fa-info-circle "></i>
@@ -179,7 +190,7 @@
                                 </small>
                             </p>
                         </div>
-                    </div>
+                    </div>-->
                     <div class="card-footer"
                         *ngIf="newlyjob.isjobactive && !newlyjob.isjobaccepted &&  newlyjob.isdeactive == null">
                         <div class="row">
@@ -192,7 +203,7 @@
                             </p>
                         </div>
                     </div>
-                    <div class="card-footer" *ngIf="newlyjob.isjobactive && newlyjob.isdeactive != null">
+                    <!--   <div class="card-footer" *ngIf="newlyjob.isjobactive && newlyjob.isdeactive != null">
                         <div class="row">
                             <p class="text-danger text-center"><i class="fa fa-info-circle"></i>
                                 <small class="text-muted ">No skilled worker has accepted this job. Please proceed to
@@ -201,21 +212,28 @@
                             </p>
                         </div>
                     </div>
+                    -->
                 </div>
             </div>
+        </div>
+        <div class="alert alert-success alert-dismissible fade show w-100" role="alert"
+            *ngIf="newlyPostedJobs.length == 0">
+            <h5 class="display-5">
+                Currently there are no new jobs. We recommend you to search for the skilled worker and create a job.
+            </h5>
         </div>
     </div>
     <div class="tab-pane fade" id="collapseFUCompletedJobs" role="tabpanel"
         aria-labelledby="collapseFUCompletedJobs-tab">
-        <br><br>
-        <div class="row">
-            <div class="col-md-3 mb-3 mb-md-0" style="margin-bottom:8px !important"
+        <div class="row mb-3"></div>
+        <div class="row" *ngIf="completedJobs.length > 0">
+            <div class="col-md-4 mb-3 mb-md-0" style="margin-bottom:8px !important"
                 *ngFor="let completedjob of completedJobs">
                 <div class="card card-flip h-100 ">
                     <div class="card-header text-white bg-secondary">
                         <p> <b>{{ 'DASHBOARD_FU_BODY.JOB' | translate }}#{{completedjob.jobId}} </b>
-                            <button class="bg-warning" *ngIf="completedjob.isjobamtpaidtocompany"
-                                [routerLink]="['/payment',completedjob.txnid]">PayInfo<i title="Go to payment details"
+                            <button class="bg-warnin  pull-right" *ngIf="completedjob.isjobamtpaidtocompany"
+                                [routerLink]="['/payment',completedjob.txnid]">Payment Info<i title="Go to payment details"
                                     class="fa fa-sitemap" style="color:#FF4949"></i></button>
                             <button class="bg-info pull-right" data-toggle="modal" data-target="#rateit"
                                 (click)="feedback(completedjob.jobId)"> Rate <i class="fa fa-meh-o"
@@ -232,6 +250,7 @@
                                 <b>{{ 'DASHBOARD_FU_BODY.ENDON' | translate }} </b> {{completedjob.jobendedon}}
                             </small>
                         </p>
+
                     </div>
                     <div class="card-body">
                         <div class="row">
@@ -250,6 +269,12 @@
                         <p>
                             <small class="pull-left">
                                 <b>{{ 'DASHBOARD_FU_BODY.PHONENO' | translate }}: </b> {{completedjob.fuphoneno}}
+                            </small>
+                        </p>
+                        <p *ngIf="completedjob.freelanceuserId > 0">
+                            <small class="pull-left">
+                                <b>{{ 'DASHBOARD_FU_BODY.ACCEPTEDON' | translate }}
+                                </b>{{completedjob.jobaccepteddate}}
                             </small>
                         </p>
                     </div>
@@ -280,6 +305,13 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="alert alert-success alert-dismissible fade show w-100" role="alert"
+            *ngIf="completedJobs.length == 0">
+            <h5 class="display-5">
+                Currently there are no completed jobs. We recommend you to search for the skilled worker and create a
+                job.
+            </h5>
         </div>
     </div>
 </div>
@@ -334,7 +366,6 @@
         </div>
     </div>
 </div>
-
 <hr>
 <dl class="row">
     <dt class="col-sm-3">
@@ -377,7 +408,8 @@
             <i class="fa fa-times"></i></button>
     </dt>
     <dd class="col-sm-9">
-        Clicking on this BUTTON indicates to cancel the job because no skilled worker has accepted the job.
+        Clicking on this BUTTON indicates to cancel the job because no skilled worker has accepted the job.So please
+        proceed to remove this job & create new job again.
     </dd>
     <dt class="col-sm-3">
         <button class="bg-warning ">Remove
@@ -385,7 +417,7 @@
     </dt>
     <dd class="col-sm-9">
         Clicking on this BUTTON indicates to cancel the job because you have not activiated the job on time and the job
-        start date has crossed current date.
+        start date has crossed current date.So please proceed to remove this job & create new job again.
     </dd>
     <dt class="col-sm-3">
         <button class="bg-warning">PayInfo<i class="fa fa-sitemap" style="color:#FF4949"></i></button>

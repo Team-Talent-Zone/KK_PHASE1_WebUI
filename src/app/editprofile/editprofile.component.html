@@ -391,11 +391,11 @@
                                                     </div>
                                                 </div>
                                                 <button type="button" class="btn btn-info btn-md"
-                                                    (click)="fileInput.click()" *ngIf="nationalIDURL != null && 
+                                                    (click)="fileInput.click()" *ngIf="nationalIDURL == null && 
                                                 !this.userService.currentUserValue.freeLanceDetails.isprofilecompleted
                                                  ">
                                                     <span>
-                                                        {{ 'DASHBOARD_FU_PROFILE.PROFILE_REUPLOAD' | translate }}</span>
+                                                        {{ 'DASHBOARD_FU_PROFILE.PROFILE_UPLOAD' | translate }}</span>
                                                 </button>
                                                 <button type="button" class="btn btn-info btn-md"
                                                     (click)="fileInput.click()" *ngIf="nationalIDURL != null && 

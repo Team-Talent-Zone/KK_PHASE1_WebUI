@@ -157,7 +157,7 @@
                         <div class="col-xl-2 col-lg-6 float-right">
                             <a style="cursor:pointer" (click)='openNotifcationWindow()'
                                 *ngIf="notifcationbellList != null && notifcationbellList.length>0; else NoNotifiction ">
-                                <i class="fa fa-comments-o">{{notifcationbellList.length}}</i>
+                                <i class="fa fa-comments-o" style="color:#FF4949">{{notifcationbellList.length}}</i>
                             </a> &nbsp;
                             <ng-template #NoNotifiction>
                                 <i class="fa fa-comments-o">0</i>

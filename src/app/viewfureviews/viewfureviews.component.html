@@ -11,7 +11,7 @@
 							<i class="fa fa-star" *ngFor="let i of item.starrate"> </i>
 						</p>
 						<p class="pull-right">
-							<small><i>{{item.feedbackon}}</i></small>
+							<small><i>{{ this.datepipe.transform(item.feedbackon)}}</i></small>
 						</p>
 						<div class="clearfix"></div>
 						<p>{{item.feedbackcomment}}</p>
@@ -21,8 +21,10 @@
 		</div>
 	</div>
 	<ng-template #elseNoReviews>
-		<p>
-			<b>{{'FU_REVIEW.NOREVIEWS' | translate }}</b>
-		</p>
+		<div class="alert alert-success alert-dismissible fade show w-100" role="alert">
+			<h5 class="display-5">
+				{{'FU_REVIEW.NOREVIEWS' | translate }}
+			</h5>
+		</div>
 	</ng-template>
 </div>

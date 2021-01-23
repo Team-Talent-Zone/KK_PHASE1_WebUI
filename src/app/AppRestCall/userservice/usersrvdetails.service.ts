@@ -43,8 +43,8 @@ export class UsersrvdetailsService {
     return this.http.post(`${environment.apiUrl}/deleteUserSVCDetails/`, usersrvobj);
   }
 
-  getAllBellNotifications(userId: number) {
-    return this.http.get(`${environment.apiUrl}/getAllBellNotifications/` + userId + '/');
+  getAllBellNotifications(userId: number , role: string) {
+    return this.http.get(`${environment.apiUrl}/getAllBellNotifications/` + userId + '/' + role + '/');
   }
 
   getAllBellNotificationsByRoleCode(role: string) {

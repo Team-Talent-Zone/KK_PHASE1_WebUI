@@ -90,7 +90,14 @@ export const config = {
   totalearnings_te: 'మొత్తం సంపాదన',
   totalearnings_en: 'Total Earnings',
   totalearnings_hi: 'कुल आय',
-
+  rolecode_notification: 'FREELANCER_USER_ALL',
+  payment_success: 'Success',
+  payment_sucesss_alert_hi: 'भुगतान के लिए धन्यवाद। भुगतान सफलतापूर्वक है',
+  payment_sucesss_alert_te: 'చెల్లింపుకు ధన్యవాదాలు. చెల్లింపు విజయవంతంగా ఉంది',
+  payment_sucesss_alert_en: 'Thank you for the payment. Payment is Successfully',
+  payment_fail_alert_hi: 'ट्रांसकेशन फेल हो गया। कृपया पुन: प्रयास करें।',
+  payment_fail_alert_te: 'ట్రాన్స్‌కేషన్ విఫలమైంది. దయచేసి మళ్ళీ ప్రయత్నించండి.',
+  payment_fail_alert_en: 'Transcation Failed. Please try again.',
 };
 
 

@@ -64,7 +64,7 @@ export class DashboardoffuComponent implements OnInit {
 
   ngOnInit() {
     const source = timer(1000, 20000);
-    const sourcerefresh = timer(1000, 30000);
+    const sourcerefresh = timer(1000, 90000);
     source.subscribe((val: number) => {
       //this.autoToastNotificationsForFU();
     });
@@ -221,7 +221,7 @@ export class DashboardoffuComponent implements OnInit {
           freelancedetailsbyId.freelanceuserId = this.userService.currentUserValue.userId;
           freelancedetailsbyId.isjobaccepted = true;
           this.freelanceSvc.saveOrUpdateFreeLanceOnService(freelancedetailsbyId).subscribe((updatedobjfreelanceservice: FreelanceOnSvc) => {
-            this.referService.translatetext('Thank you for accepting the JobId#' + jobId + '.Go to upcoming job tab to view', this.userService.currentUserValue.preferlang).subscribe(
+            this.referService.translatetext('Thank you for accepting the Job Id ' + jobId + '.Go to upcoming job tab to view', this.userService.currentUserValue.preferlang).subscribe(
               (trantxt: any) => {
                 this.getUserAllJobDetailsByUserId();
                 this.spinnerService.hide();
@@ -238,7 +238,7 @@ export class DashboardoffuComponent implements OnInit {
               this.alertService.error(error);
             });
         } else {
-          this.referService.translatetext('Sorry' + this.userService.currentUserValue.firstname + 'This JobId#' + jobId + 'has been accepted by another skilled worker', this.userService.currentUserValue.preferlang).subscribe(
+          this.referService.translatetext('Sorry' + this.userService.currentUserValue.firstname + 'This Job Id' + jobId + 'has been accepted by another skilled worker', this.userService.currentUserValue.preferlang).subscribe(
             (trantxt: any) => {
               this.spinnerService.hide();
               this.alertService.info(trantxt);
@@ -273,7 +273,7 @@ export class DashboardoffuComponent implements OnInit {
                 freelancedetailsbyId.isjobcancel = false;
                 // tslint:disable-next-line: max-line-length
                 this.freelanceSvc.saveOrUpdateFreeLanceOnService(freelancedetailsbyId).subscribe((updatedobjfreelanceservice: FreelanceOnSvc) => {
-                  this.referService.translatetext('Hey' + this.userService.currentUserValue.firstname + 'The JobId#' + jobId + 'is cancelled succesfully.', this.userService.currentUserValue.preferlang).subscribe(
+                  this.referService.translatetext('Hey' + this.userService.currentUserValue.firstname + 'The Job Id' + jobId + 'is cancelled succesfully.', this.userService.currentUserValue.preferlang).subscribe(
                     (trantxt: any) => {
                       this.getUserAllJobDetailsByUserId();
                       this.spinnerService.hide();

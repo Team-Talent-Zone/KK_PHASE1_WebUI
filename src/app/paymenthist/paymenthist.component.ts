@@ -41,16 +41,15 @@ export class PaymenthistComponent implements OnInit {
         if (this.userService.currentUserValue.userroles.rolecode === config.user_rolecode_cba.toString()) {
           this.getPaymentCBADetailsByUserId(this.userService.currentUserValue.userId);
         }
-      
-       
+
+
   }
   getPaymentDetailsByTxnId(txnid: string) {
     this.paymentdetails = null;
-    this.spinnerService.show();
-    this.paymentService.getPaymentDetailsByTxnId(txnid).subscribe((paymentobj: any) => {
+     this.paymentService.getPaymentDetailsByTxnId(txnid).subscribe((paymentobj: any) => {
       this.paymentdetails = paymentobj;
-      this.spinnerService.hide();
-    },
+      console.log(' this.paymentdetails' ,  this.paymentdetails);
+     },
       error => {
         this.spinnerService.hide();
         this.alertService.error(error);
@@ -61,11 +60,13 @@ export class PaymenthistComponent implements OnInit {
     this.spinnerService.show();
     this.fupaymenthistorydetails = [];
     this.paymentService.getPaymentFUDetailsByUserId(userId).subscribe((fupaymentobjlist: any) => {
-      fupaymentobjlist.forEach(element => {
-        if (element.status != null) {
-          this.fupaymenthistorydetails.push(element);
-        }
-      });
+      if (fupaymentobjlist != null) {
+        fupaymentobjlist.forEach(element => {
+          if (element.status != null) {
+            this.fupaymenthistorydetails.push(element);
+          }
+        });
+      }
       this.spinnerService.hide();
     },
       error => {
@@ -78,12 +79,14 @@ export class PaymenthistComponent implements OnInit {
     this.cbapaymenthistorydetails = [];
     this.spinnerService.show();
     this.paymentService.getPaymentCBADetailsByUserId(userId).subscribe((cbupaymentobjlist: any) => {
-      cbupaymentobjlist.forEach(element => {
-        if (element.status != null) {
-          this.cbapaymenthistorydetails.push(element);
-        }
-      });
-      this.spinnerService.hide();
+      if (cbupaymentobjlist != null) {
+        cbupaymentobjlist.forEach(element => {
+          if (element.status != null) {
+            this.cbapaymenthistorydetails.push(element);
+          }
+        });
+        this.spinnerService.hide();
+      }
     },
       error => {
         this.spinnerService.hide();
