@@ -1,7 +1,6 @@
 export const ConfigMsg = {
     signup_successmsg: 'Signup is successfully and email sent to register email address',
     fwdpassword_successmsg: 'Password sent to registered email address . Thank you for connecting with us',
-    // tslint:disable-next-line: max-line-length
     email_default_fromuser: 'team.spprt2019@gmail.com',
     email_verficationemailaddress_subj: 'Email Confirmation',
     email_forgotpasswordemailaddress_subj: 'Forgot Password',
@@ -21,8 +20,22 @@ export const ConfigMsg = {
     newservice_alreadyexist_msg: 'The entered service name is already exist',
     newservice_txt_cssm_comment: 'Please review the new service and approve it',
     upgradeservice_txt_cssm_comment: 'Please review the upgraded existing service and approve it',
-    // tslint:disable-next-line: max-line-length
     toast_notification_fu_isregfeenotcompelted: 'Please complete your registation fee  and start job employment with us after background vertification approves.',
     toast_notification_fu_isprofilenotcompelted: 'Please complete your profile for futher actions to complete',
-    toast_notification_fu_acceptjobmsg: 'You can have 3 jobs in upcoming list. Please accept the job from new jobs list'
+    toast_notification_fu_acceptjobmsg: 'You can have 3 jobs in upcoming list. Please accept the job from new jobs list',
+    payment_sucesss_alert_hi: 'भुगतान के लिए धन्यवाद। भुगतान सफलतापूर्वक है',
+    payment_sucesss_alert_te: 'చెల్లింపుకు ధన్యవాదాలు. చెల్లింపు విజయవంతంగా ఉంది',
+    payment_sucesss_alert_en: 'Thank you for the payment. Payment is Successfully',
+    payment_fail_alert_hi: 'ट्रांसकेशन फेल हो गया। कृपया पुन: प्रयास करें।',
+    payment_fail_alert_te: 'ట్రాన్స్‌కేషన్ విఫలమైంది. దయచేసి మళ్ళీ ప్రయత్నించండి.',
+    payment_fail_alert_en: 'Transcation Failed. Please try again.',
+    invalid_username_password: 'That email address or password combination isnt in our records.',
+    invalid_username_password_te: 'ఆ ఇమెయిల్ చిరునామా లేదా పాస్‌వర్డ్ కలయిక మా రికార్డుల్లో లేదు.',
+    invalid_username_password_hi: 'वह ईमेल पता या पासवर्ड संयोजन हमारे रिकॉर्ड में नहीं है।',
+    upcomingpay_te: 'అంచనా చెల్లింపు',
+    upcomingpay_en: 'Estimated Payment',
+    upcomingpay_hi: 'अनुमानित भुगतान',
+    totalearnings_te: 'మొత్తం సంపాదన',
+    totalearnings_en: 'Total Earnings',
+    totalearnings_hi: 'कुल आय',
 };

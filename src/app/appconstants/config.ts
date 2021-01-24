@@ -1,7 +1,6 @@
 import { HttpHeaders } from '@angular/common/http';
 
 export const config = {
-  //  httpHeaders : { headers: new HttpHeaders({Authorization: 'Basic cmVzdHNlcnZpY2ViYXNpY2F1dGh1c2VyOlRMIzIwMTdAUkVTVCo4MzI0NjMkIw=='})},
   key_domain: 'domain',
   key_service_term: 'Service_Period',
   key_apartmentservice_url: 'ApartmentService_URL',
@@ -38,7 +37,6 @@ export const config = {
   bg_code_senttoccst: 'BG_SENTTOCSST',
   bg_code_incompleteprofile: 'BG_INCOMPLETEPROFILE',
   bg_code_completedprofile: 'BG_COMPLETEDPROFILE',
-  login_avatar: 'https://platform-asserts.s3.amazonaws.com/Platform+Imgs/avatar1.png',
   default_prefer_lang: 'en',
   lang_code_hi: 'hi',
   lang_code_te: 'te',
@@ -75,30 +73,18 @@ export const config = {
   shortkey_privacypolicy_english: 'pp_english',
   shortkey_privacypolicy_telugu: 'pp_telugu',
   shortkey_privacypolicy_hindi: 'pp_hindi',
-  invalid_username_password: 'That email address or password combination isnt in our records.',
-  invalid_username_password_te: 'ఆ ఇమెయిల్ చిరునామా లేదా పాస్‌వర్డ్ కలయిక మా రికార్డుల్లో లేదు.',
-  invalid_username_password_hi: 'वह ईमेल पता या पासवर्ड संयोजन हमारे रिकॉर्ड में नहीं है।',
+
   banner_video1_en: 'video1en',
   banner_video2_en: 'video2en',
   banner_video1_te: 'video1te',
   banner_video2_te: 'video2te',
   banner_video1_hi: 'video1hi',
   banner_video2_hi: 'video2hi',
-  upcomingpay_te: 'అంచనా చెల్లింపు',
-  upcomingpay_en: 'Estimated Payment',
-  upcomingpay_hi: 'अनुमानित भुगतान',
-  totalearnings_te: 'మొత్తం సంపాదన',
-  totalearnings_en: 'Total Earnings',
-  totalearnings_hi: 'कुल आय',
+  
   rolecode_notification: 'FREELANCER_USER_ALL',
   rolecode_toast_notification_cba: 'TOASTER_CLIENT_BUSINESS_ADMINISTRATOR',
   payment_success: 'Success',
-  payment_sucesss_alert_hi: 'भुगतान के लिए धन्यवाद। भुगतान सफलतापूर्वक है',
-  payment_sucesss_alert_te: 'చెల్లింపుకు ధన్యవాదాలు. చెల్లింపు విజయవంతంగా ఉంది',
-  payment_sucesss_alert_en: 'Thank you for the payment. Payment is Successfully',
-  payment_fail_alert_hi: 'ट्रांसकेशन फेल हो गया। कृपया पुन: प्रयास करें।',
-  payment_fail_alert_te: 'ట్రాన్స్‌కేషన్ విఫలమైంది. దయచేసి మళ్ళీ ప్రయత్నించండి.',
-  payment_fail_alert_en: 'Transcation Failed. Please try again.',
+
   
 };
 

@@ -38,7 +38,6 @@ export class LoginComponent implements OnInit {
   util: Util;
   usernotification: UserNotification;
   today = new Date();
-  avatarURL: any = config.login_avatar;
 
   constructor(
     private modalService: BsModalService,
@@ -128,7 +127,7 @@ export class LoginComponent implements OnInit {
                 this.util.touser = this.usrObj.username;
                 this.util.templateurl = this.templateObj.url;
                 this.util.templatedynamicdata = JSON.stringify({
-                  firstName: this.usrObj.firstname,
+                  firstname: this.usrObj.firstname,
                   platformURL: `${environment.uiUrl}`,
                   userName: this.usrObj.username,
                   tempPassword: this.usrObj.password

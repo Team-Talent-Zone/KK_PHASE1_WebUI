@@ -4,9 +4,8 @@ import { Subscription } from 'rxjs';
 import { AlertsService } from '../AppRestCall/alerts/alerts.service';
 import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import { Router } from '@angular/router';
+import { ConfigMsg } from '../appconstants/configmsg';
 import { config } from '../appconstants/config';
-import { UserService } from '../AppRestCall/user/user.service';
-import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -55,39 +54,7 @@ export class AlertComponent implements OnInit {
       });
   }
 
-  /*openModal(template: TemplateRef<any>) {
-    console.log(' this alerts message status: ', this.message);
-
-    if (this.message.type === 'error') {
-      // tslint:disable-next-line: radix
-      if (Number.parseInt(this.message.text.status) === 504) {
-        this.router.navigate(['504error']);
-      } else {
-        // tslint:disable-next-line: radix
-        if (Number.parseInt(this.message.text.status) === 404) {
-          // tslint:disable-next-line: max-line-length
-          this.router.navigate(['404error']);
-        } else {
-          // tslint:disable-next-line: radix
-          if (Number.parseInt(this.message.text.status) !== 404 && Number.parseInt(this.message.text.status) !== 504) {
-            this.errormsg = this.message.text.error.errormessage;
-          }
-          if (this.errorCallCount === 0 && this.errormsg != null) {
-            this.modalRef = this.modalService.show(template, this.config);
-            this.errorCallCount = this.errorCallCount + 1;
-          } else {
-            this.modalRef = this.modalService.show(template, this.config);
-          }
-        }
-      }
-    } else {
-      this.errormsg = this.message.text;
-      this.modalRef = this.modalService.show(template, this.config);
-    }
-  }*/
-
   openModal(template: TemplateRef<any>) {
-    console.log(' this alerts message status: ', this.message);
     if (this.message.type === 'error') {
       // tslint:disable-next-line: radix
       if (Number.parseInt(this.message.text.status) === 504) {
@@ -100,12 +67,12 @@ export class AlertComponent implements OnInit {
         } else { // tslint:disable-next-line: radix
           if (Number.parseInt(this.message.text.status) === 401) {
             if (localStorage.getItem('langCode') === config.lang_code_hi) {
-              this.loginfailedmsg = config.invalid_username_password_hi;
+              this.loginfailedmsg = ConfigMsg.invalid_username_password_hi;
             } else
               if (localStorage.getItem('langCode') === config.lang_code_te) {
-                this.loginfailedmsg = config.invalid_username_password_te;
+                this.loginfailedmsg = ConfigMsg.invalid_username_password_te;
               } else {
-                this.loginfailedmsg = config.invalid_username_password;
+                this.loginfailedmsg = ConfigMsg.invalid_username_password;
               }
             this.errormsg = this.loginfailedmsg;
           } else

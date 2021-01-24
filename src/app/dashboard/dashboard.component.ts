@@ -16,6 +16,7 @@ import { DatePipe } from '@angular/common';
 import { timer } from 'rxjs';
 import { ModalOptions } from 'ngx-bootstrap';
 import { ReadMorePopupComponent } from '../read-more-popup/read-more-popup.component';
+import { ConfigMsg } from '../appconstants/configmsg';
 
 @Component({
   selector: 'app-dashboard',
@@ -229,23 +230,23 @@ export class DashboardComponent implements OnInit {
         var paymentfailed;
         if (paymentobj.paymentsFUTrans.status === config.payment_success.toString()) {
           if (this.userService.currentUserValue.preferlang == config.default_prefer_lang) {
-            paymentsucess = config.payment_sucesss_alert_en.toString();
+            paymentsucess = ConfigMsg.payment_sucesss_alert_en.toString();
           } else {
             if (this.userService.currentUserValue.preferlang == config.lang_code_hi) {
-              paymentsucess = config.payment_sucesss_alert_hi.toString();
+              paymentsucess = ConfigMsg.payment_sucesss_alert_hi.toString();
             } else {
-              paymentsucess = config.payment_sucesss_alert_te.toString();
+              paymentsucess = ConfigMsg.payment_sucesss_alert_te.toString();
             }
           }
           this.alertService.success(paymentsucess);
         } else {
           if (this.userService.currentUserValue.preferlang == config.default_prefer_lang) {
-            paymentfailed = config.payment_fail_alert_en.toString();
+            paymentfailed = ConfigMsg.payment_fail_alert_en.toString();
           } else {
             if (this.userService.currentUserValue.preferlang == config.lang_code_hi) {
-              paymentfailed = config.payment_fail_alert_hi.toString();
+              paymentfailed = ConfigMsg.payment_fail_alert_hi.toString();
             } else {
-              paymentfailed = config.payment_fail_alert_te.toString();
+              paymentfailed = ConfigMsg.payment_fail_alert_te.toString();
             }
           }
           this.alertService.info(paymentfailed);

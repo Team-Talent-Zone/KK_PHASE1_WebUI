@@ -196,14 +196,14 @@ export class DashboardoffuComponent implements OnInit {
 
     if (this.earnFlag && this.upcomingflag) {
       if (this.userService.currentUserValue.preferlang == config.lang_code_te) {
-        this.upcomingpaytext = config.upcomingpay_te;
-        this.totalearnings = config.totalearnings_te;
+        this.upcomingpaytext = ConfigMsg.upcomingpay_te;
+        this.totalearnings = ConfigMsg.totalearnings_te;
       } else if (this.userService.currentUserValue.preferlang == config.lang_code_hi) {
-        this.upcomingpaytext = config.upcomingpay_hi;
-        this.totalearnings = config.totalearnings_hi;
+        this.upcomingpaytext = ConfigMsg.upcomingpay_hi;
+        this.totalearnings = ConfigMsg.totalearnings_hi;
       } else {
-        this.upcomingpaytext = config.upcomingpay_en;
-        this.totalearnings = config.totalearnings_en;
+        this.upcomingpaytext = ConfigMsg.upcomingpay_en;
+        this.totalearnings = ConfigMsg.totalearnings_en;
       }
       this.infoCards = [
         { name: this.upcomingpaytext, value: this.totalupcomingEarnings },
