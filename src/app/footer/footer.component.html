@@ -59,16 +59,16 @@
 						</div>
 					</div>
 					<div class="col-md-2"
-						*ngIf="this.userService.currentUserValue != null && this.userService.currentUserValue.userroles.rolecode =='FREELANCER_USER'">
+						*ngIf="this.userService.currentUserValue != null &&
+						 this.userService.currentUserValue.userroles.rolecode =='FREELANCER_USER'">
 						<div class="address">
 							<h2>{{ 'FOOTER.USEFULLINKS' | translate }}</h2>
 							<!-- <hr> -->
 							<ul style="list-style: circle;">
-								<li><a [routerLink]="['/dashboard']" (click)="topFunction()">{{
+								<li><a [routerLink]="['/dashboard']">{{
 										'DASHOARD_FU_MENU.SUMMARY' | translate }}</a>
 								</li>
-								<li><a routerLink='/vieworeditprofile/{{userService.currentUserValue.userId}}'
-										(click)="topFunction()">
+								<li><a routerLink='/vieworeditprofile/{{userService.currentUserValue.userId}}'>
 										{{ 'DASHOARD_FU_MENU.EDIT_PROFILE' | translate }}</a></li>
 								<li *ngIf="this.userService.currentUserValue.freeLanceDetails.isregfeedone">
 									<a [routerLink]="['/paymenthistory']">
@@ -79,18 +79,18 @@
 						</div>
 					</div>
 					<div class="col-md-2"
-						*ngIf="this.userService.currentUserValue != null && this.userService.currentUserValue.userroles.rolecode =='CLIENT_BUSINESS_ADMINISTRATOR'">
+						*ngIf="this.userService.currentUserValue != null && 
+						this.userService.currentUserValue.userroles.rolecode =='CLIENT_BUSINESS_ADMINISTRATOR'">
 						<div class="address">
 							<h2>{{ 'FOOTER.USEFULLINKS' | translate }}</h2>
 							<!-- <hr> -->
 							<ul style="list-style: circle; ">
-								<li><a [routerLink]="['/dashboard']" (click)="topFunction()">Our Services</a>
+								<li><a [routerLink]="['/dashboard']">Our Services</a>
 								</li>
-								<li><a routerLink='/vieworeditprofile/{{userService.currentUserValue.userId}}'
-										(click)="topFunction()">
+								<li><a routerLink='/vieworeditprofile/{{userService.currentUserValue.userId}}'>
 										{{ 'DASHOARD_FU_MENU.EDIT_PROFILE' | translate }}</a></li>
 								<li>
-									<a [routerLink]="['/myservices']" (click)="topFunction()">
+									<a [routerLink]="['/myservices']">
 										My Services
 									</a>
 								</li>
@@ -110,11 +110,11 @@
 									<h2>{{ 'FOOTER.USEFULLINKS' | translate }}</h2>
 									<!-- <hr> -->
 									<ul style="list-style: circle;">
-										<li><a [routerLink]="['/dashboard']" (click)="topFunction()">Dashboard</a>
+										<li><a [routerLink]="['/dashboard']">Dashboard</a>
 										</li>
-										<li><a [routerLink]="['/manageuser']" (click)="topFunction()"> Manage Users</a>
+										<li><a [routerLink]="['/manageuser']"> Manage Users</a>
 										</li>
-										<li><a [routerLink]="['/manageservice']" (click)="topFunction()"> Manage
+										<li><a [routerLink]="['/manageservice']"> Manage
 												Services</a>
 										</li>
 									</ul>
@@ -125,10 +125,10 @@
 					<div class="col-md-2">
 						<img style="padding-top:0px;height: 150px;" src="assets/img/backgrounds/pay14-transparent.png">
 					</div>
-					<div class="col-md-2" *ngIf="this.userService.currentUserValue == null">
+					<div class="col-md-2" *ngIf="userService.currentUserValue == null">
 						<img style="padding-top:0px" src="assets/img/backgrounds/pay13.png">
 					</div>
-					<div class="col-md-2" *ngIf="this.userService.currentUserValue != null">
+					<div class="col-md-2" *ngIf="userService.currentUserValue != null">
 						<img style="padding-top:0px" src="assets/img/backgrounds/pay15.jpg">
 					</div>
 				</div>

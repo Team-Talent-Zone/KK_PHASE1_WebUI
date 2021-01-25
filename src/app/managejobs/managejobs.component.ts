@@ -178,7 +178,6 @@ export class ManagejobsComponent implements OnInit {
     this.spinnerService.show();
     this.freelanceserviceService.getUserAllJobDetailsByUserId(this.userService.currentUserValue.userId).subscribe((onserviceList: any) => {
       if (onserviceList != null && onserviceList.length > 0) {
-        console.log('onserviceList ==>', onserviceList.length);
         onserviceList.forEach((element: any) => {
           if (element.isjobactive && element.isjobaccepted && !element.isjobamtpaidtocompany) {
             this.upComingPostedJobs.push(element);
