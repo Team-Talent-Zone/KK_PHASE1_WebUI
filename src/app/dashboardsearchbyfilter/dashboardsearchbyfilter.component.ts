@@ -231,9 +231,9 @@ export class DashboardsearchbyfilterComponent implements OnInit {
           });
           this.createjobform.patchValue({ jobstartedon: this.getDateTimeFormat(this.startdate) });
         }
-        if (this.userService.currentUserValue.userbizdetails.bizname === null) {
+        if (this.userService.currentUserValue.userbizdetails.bizname === null && this.userService.currentUserValue.userbizdetails.biztype == config.biztype_cmp_en) {
           // tslint:disable-next-line: max-line-length
-          this.alertService.info('We need your business details before you create a job for ' + this.name + ', Go to Edit Profile & update');
+          this.alertService.info('We need your business details before creating a job for ' + this.name + ', Go to Edit Profile & update');
         } else
           if (this.isfreelancerservicesubscribed) {
             this.iscreatejobdiv = true;
@@ -241,8 +241,8 @@ export class DashboardsearchbyfilterComponent implements OnInit {
           else {
             if (!this.isfreelancerservicesubscribed) {
               // tslint:disable-next-line: max-line-length
-              let errorMsg = 'Please purchase Freelancer Service , before you create a job for ' + this.name;
-              this.alertService.success(errorMsg);
+              let errorMsg = 'Please purchase skilled worker search service before creating a job for ' + this.name + '. Go to Our Services & Add to Cart';
+              this.alertService.info(errorMsg);
             }
           }
       },

@@ -8,7 +8,6 @@ import { config } from 'src/app/appconstants/config';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { ReferenceService } from '../AppRestCall/reference/reference.service';
 import { AlertsService } from '../AppRestCall/alerts/alerts.service';
-import { AnimationStyleMetadata } from '@angular/animations';
 
 @Component({
   selector: 'app-header',
@@ -123,9 +122,6 @@ export class HeaderComponent implements OnInit {
           this.alertService.error(error);
         });
     }, 2000);
-
-    console.log('this is ban1videoURL', this.ban1videoURL);
-    console.log('this is ban2videoURL', this.ban2videoURL);
   }
   openSignupModalButton() {
     document.getElementById('clickModal').click();

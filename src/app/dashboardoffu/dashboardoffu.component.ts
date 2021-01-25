@@ -31,6 +31,7 @@ export class DashboardoffuComponent implements OnInit {
   newJobList: any = [];
   upcomingJobList: any = [];
   completedJobList: any = [];
+  listOfCompletedJobsWithoutPay: any = [];
   freelancesvcobj: FreelanceOnSvc;
   freelancedetailsbyId: any;
   totalEarnings = 0;
@@ -47,6 +48,10 @@ export class DashboardoffuComponent implements OnInit {
     keyboard: false
   };
   indiaTime = this.datepipe.transform(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }), "dd/MM/yyyy hh:mm:ss");
+  newjobsempty: boolean = false;
+  upcomingjobsempty: boolean = false;
+  completedjobsempty: boolean = false;
+
   constructor(
     public userService: UserService,
     private referService: ReferenceService,
@@ -95,7 +100,7 @@ export class DashboardoffuComponent implements OnInit {
         });
     }, 500);
   }
-  
+
   openPaymentComponent() {
     this.modalRef = this.modalService.show(PaymentComponent, {
       initialState: {
@@ -110,53 +115,69 @@ export class DashboardoffuComponent implements OnInit {
     this.newJobList = [];
     this.upcomingJobList = [];
     this.completedJobList = [];
+    this.listOfCompletedJobsWithoutPay = []
     this.spinnerService.show();
-    this.listofalljobs = [];
-    // tslint:disable-next-line: max-line-length
-    this.freelanceSvc.getUserAllJobDetails(this.userService.currentUserValue.freeLanceDetails.subCategory).subscribe((resp: FreelanceOnSvc) => {
-      this.listofalljobs = resp;
-      for (const element of this.listofalljobs) {
-        if (this.userService.currentUserValue.preferlang !== config.default_prefer_lang) {
-          this.referService.translatetext(element.bizname, this.userService.currentUserValue.preferlang).subscribe(
-            (trantxt: any) => {
-              element.bizname = trantxt;
-            },
-            error => {
-              this.spinnerService.hide();
-              this.alertService.error(error);
-            }
-          );
-          this.referService.translatetext(element.joblocation, this.userService.currentUserValue.preferlang).subscribe(
-            (trantxt: any) => {
-              element.joblocation = trantxt;
-            },
-            error => {
-              this.spinnerService.hide();
-              this.alertService.error(error);
-            }
-          );
-          this.referService.translatetext(element.jobdescription, this.userService.currentUserValue.preferlang).subscribe(
-            (trantxt: any) => {
-              element.jobdescription = trantxt;
-            },
-            error => {
-              this.spinnerService.hide();
-              this.alertService.error(error);
-            }
-          );
-        }
-        // tslint:disable-next-line: max-line-length
-        if (element.isjobactive && element.freelanceuserId === null && element.scategory === this.userService.currentUserValue.freeLanceDetails.subCategory) {
-          this.newJobList.push(element);
-        }
-        if (element.freelanceuserId == this.userService.currentUserValue.userId
-          && !element.isjobcompleted) {
-          this.upcomingJobList.push(element);
-        }
-        if (element.freelanceuserId == this.userService.currentUserValue.userId
-          && element.scategory === this.userService.currentUserValue.freeLanceDetails.subCategory && element.isjobcompleted) {
-          this.completedJobList.push(element);
-        }
+    this.freelanceSvc.getUserAllJobDetails(this.userService.currentUserValue.freeLanceDetails.subCategory).subscribe((responseBody: any) => {
+      if (responseBody != null) {
+        responseBody.forEach(element => {
+          if (this.userService.currentUserValue.preferlang !== config.default_prefer_lang) {
+            this.referService.translatetext(element.bizname, this.userService.currentUserValue.preferlang).subscribe(
+              (trantxt: any) => {
+                element.bizname = trantxt;
+              },
+              error => {
+                this.spinnerService.hide();
+                this.alertService.error(error);
+              }
+            );
+            this.referService.translatetext(element.joblocation, this.userService.currentUserValue.preferlang).subscribe(
+              (trantxt: any) => {
+                element.joblocation = trantxt;
+              },
+              error => {
+                this.spinnerService.hide();
+                this.alertService.error(error);
+              }
+            );
+            this.referService.translatetext(element.jobdescription, this.userService.currentUserValue.preferlang).subscribe(
+              (trantxt: any) => {
+                element.jobdescription = trantxt;
+              },
+              error => {
+                this.spinnerService.hide();
+                this.alertService.error(error);
+              }
+            );
+          }
+          if (element.isjobactive && element.freelanceuserId === null && element.scategory === this.userService.currentUserValue.freeLanceDetails.subCategory) {
+            this.newJobList.push(element);
+          }
+          if (element.freelanceuserId == this.userService.currentUserValue.userId
+            && !element.isjobcompleted) {
+            this.upcomingJobList.push(element);
+          }
+          if (element.freelanceuserId == this.userService.currentUserValue.userId
+            && element.scategory === this.userService.currentUserValue.freeLanceDetails.subCategory && element.isjobcompleted) {
+            this.completedJobList.push(element);
+          }
+          if (element.freelanceuserId == this.userService.currentUserValue.userId
+            && element.scategory === this.userService.currentUserValue.freeLanceDetails.subCategory
+            && element.isjobcompleted && !element.isjobamtpaidtocompany) {
+            this.listOfCompletedJobsWithoutPay.push(element);
+          }
+        });
+        if (this.upcomingJobList != null) {
+          this.upcomingjobsempty = true;
+        } else
+          if (this.newJobList != null) {
+            this.newjobsempty = true;
+          } else {
+            this.completedjobsempty = true;
+          }
+      } else {
+        this.upcomingjobsempty = true;
+        this.newjobsempty = true;
+        this.completedjobsempty = true;
       }
       this.builtEarningCard();
     },
@@ -214,16 +235,56 @@ export class DashboardoffuComponent implements OnInit {
   }
 
   accept(jobId: number) {
-    this.spinnerService.show();
-    this.freelanceSvc.getAllFreelanceOnServiceDetailsByJobId(jobId).subscribe(
-      (freelancedetailsbyId: FreelanceOnSvc) => {
-        if (!freelancedetailsbyId.isjobaccepted) {
-          freelancedetailsbyId.freelanceuserId = this.userService.currentUserValue.userId;
-          freelancedetailsbyId.isjobaccepted = true;
-          this.freelanceSvc.saveOrUpdateFreeLanceOnService(freelancedetailsbyId).subscribe((updatedobjfreelanceservice: FreelanceOnSvc) => {
-            this.referService.translatetext('Thank you for accepting the Job Id ' + jobId + '.Go to upcoming job tab to view', this.userService.currentUserValue.preferlang).subscribe(
+    this.getUserAllJobDetailsByUserId();
+    if (this.listOfCompletedJobsWithoutPay != null) {
+      this.referService.translatetext('You can not accept this job until the previous completed job payment with the client is paid fully. Please arrange the payment with the client to accept new jobs.', this.userService.currentUserValue.preferlang).subscribe(
+        (trantxt: any) => {
+          this.alertService.info(trantxt);
+        },
+        error => {
+          this.spinnerService.hide();
+          this.alertService.error(error);
+        }
+      );
+    } else if (this.upcomingJobList != null) {
+      if (this.upcomingJobList.length == 3) {
+        this.referService.translatetext('You can not accept this job until atleast one job is completed among 3 in the upcoming jobs.', this.userService.currentUserValue.preferlang).subscribe(
+          (trantxt: any) => {
+            this.alertService.info(trantxt);
+          },
+          error => {
+            this.spinnerService.hide();
+            this.alertService.error(error);
+          }
+        );
+      }
+    } else {
+      this.freelanceSvc.getAllFreelanceOnServiceDetailsByJobId(jobId).subscribe(
+        (freelancedetailsbyId: FreelanceOnSvc) => {
+          this.spinnerService.show();
+          if (!freelancedetailsbyId.isjobaccepted) {
+            freelancedetailsbyId.freelanceuserId = this.userService.currentUserValue.userId;
+            freelancedetailsbyId.isjobaccepted = true;
+            this.freelanceSvc.saveOrUpdateFreeLanceOnService(freelancedetailsbyId).subscribe((updatedobjfreelanceservice: FreelanceOnSvc) => {
+              this.referService.translatetext('Thank you for accepting the Job. Go to upcoming job tab to view', this.userService.currentUserValue.preferlang).subscribe(
+                (trantxt: any) => {
+                  this.getUserAllJobDetailsByUserId();
+                  this.spinnerService.hide();
+                  this.alertService.info(trantxt);
+                },
+                error => {
+                  this.spinnerService.hide();
+                  this.alertService.error(error);
+                }
+              );
+            },
+              error => {
+                this.spinnerService.hide();
+                this.alertService.error(error);
+              });
+          } else {
+            this.referService.translatetext('Sorry! This job is accepted by another skilled worker.', this.userService.currentUserValue.preferlang).subscribe(
               (trantxt: any) => {
-                this.getUserAllJobDetailsByUserId();
                 this.spinnerService.hide();
                 this.alertService.info(trantxt);
               },
@@ -232,28 +293,13 @@ export class DashboardoffuComponent implements OnInit {
                 this.alertService.error(error);
               }
             );
-          },
-            error => {
-              this.spinnerService.hide();
-              this.alertService.error(error);
-            });
-        } else {
-          this.referService.translatetext('Sorry' + this.userService.currentUserValue.firstname + 'This Job Id' + jobId + 'has been accepted by another skilled worker', this.userService.currentUserValue.preferlang).subscribe(
-            (trantxt: any) => {
-              this.spinnerService.hide();
-              this.alertService.info(trantxt);
-            },
-            error => {
-              this.spinnerService.hide();
-              this.alertService.error(error);
-            }
-          );
-        }
-      },
-      error => {
-        this.spinnerService.hide();
-        this.alertService.error(error);
-      });
+          }
+        },
+        error => {
+          this.spinnerService.hide();
+          this.alertService.error(error);
+        });
+    }
   }
 
   cancel(jobId: number) {
@@ -271,9 +317,8 @@ export class DashboardoffuComponent implements OnInit {
                 freelancedetailsbyId.freelanceuserId = null;
                 freelancedetailsbyId.isjobaccepted = false;
                 freelancedetailsbyId.isjobcancel = false;
-                // tslint:disable-next-line: max-line-length
                 this.freelanceSvc.saveOrUpdateFreeLanceOnService(freelancedetailsbyId).subscribe((updatedobjfreelanceservice: FreelanceOnSvc) => {
-                  this.referService.translatetext('Hey' + this.userService.currentUserValue.firstname + 'The Job Id' + jobId + 'is cancelled succesfully.', this.userService.currentUserValue.preferlang).subscribe(
+                  this.referService.translatetext('Hello! The Job is cancelled succesfully.', this.userService.currentUserValue.preferlang).subscribe(
                     (trantxt: any) => {
                       this.getUserAllJobDetailsByUserId();
                       this.spinnerService.hide();
@@ -295,8 +340,7 @@ export class DashboardoffuComponent implements OnInit {
                 this.alertService.error(error);
               });
           } else {
-            // tslint:disable-next-line: max-line-length
-            this.referService.translatetext("Cancellation only possible before 15 mins after accepting job .Any concerns, please call our core service support team", this.userService.currentUserValue.preferlang).subscribe(
+            this.referService.translatetext("Cancellation only possible before 15 mins of accepting the job. Any concerns, please call support@kaamkarega.com or read terms of services.", this.userService.currentUserValue.preferlang).subscribe(
               (trantxt: any) => {
                 this.alertService.info(trantxt);
                 this.spinnerService.hide();
@@ -316,20 +360,20 @@ export class DashboardoffuComponent implements OnInit {
         this.alertService.error(error);
       });
   }
+
   autoToastNotificationsForFU() {
     if (this.userService.currentUserValue.userroles.rolecode === config.user_rolecode_fu.toString()) {
       if (!this.userService.currentUserValue.freeLanceDetails.isprofilecompleted) {
-        // tslint:disable-next-line: max-line-length
         let msg = 'Hi ' + this.userService.currentUserValue.fullname + ', ' + ConfigMsg.toast_notification_fu_isprofilenotcompelted;
         this.showToastNotificationForFU(msg, this.types[3], 'Profile');
       } else
         if (!this.userService.currentUserValue.freeLanceDetails.isregfeedone) {
-          // tslint:disable-next-line: max-line-length
           let msg = 'Hi ' + this.userService.currentUserValue.fullname + ', ' + ConfigMsg.toast_notification_fu_isregfeenotcompelted;
           this.showToastNotificationForFU(msg, this.types[2], 'Payment');
         }
     }
   }
+
   showToastNotificationForFU(txtmsg: string, typeName: any, toastheader: string) {
     this.toaster.open({
       text: txtmsg,

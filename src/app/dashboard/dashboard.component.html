@@ -25,8 +25,8 @@
                 class="btn btn-text pull-right" style="margin-top: -38px;"><i class="fa fa-search"></i></a>
             <span *ngIf="showError" class="error-text"><i>Invalid Selection.</i></span>
             <div class="combobox-options" *ngIf="!listHidden">
-                <list-item *ngFor="let item of filteredList;let i = index" (click)="selectItem(i)"
-                    [ngClass]="{'selected': i===selectedIndex}">
+                <list-item class="nav-link" style="cursor:pointer" *ngFor="let item of filteredList;let i = index"
+                    (click)="selectItem(i)" [ngClass]="{'selected': i===selectedIndex}">
                     <div class="row mb-1"></div>{{item.label}}
                 </list-item>
             </div>
@@ -155,13 +155,20 @@
                             </span>
                         </div>
                         <div class="col-xl-2 col-lg-6 float-right">
-                            <a style="cursor:pointer" (click)='openNotifcationWindow()'
-                                *ngIf="notifcationbellList != null && notifcationbellList.length>0; else NoNotifiction ">
+                            <a style="cursor:pointer" (click)='openNotifcationWindow()' *ngIf="notifcationbellList != null && notifcationbellList.length>0 && 
+                             this.userService.currentUserValue.userroles.rolecode =='FREELANCER_USER' && 
+                             this.userService.currentUserValue.freeLanceDetails.bgcurrentstatus == 'BG_APPROVED'">
                                 <i class="fa fa-comments-o" style="color:#FF4949">{{notifcationbellList.length}}</i>
-                            </a> &nbsp;
-                            <ng-template #NoNotifiction>
+                            </a>
+                            <a style="cursor:pointer" (click)='openNotifcationWindow()'
+                                *ngIf="notifcationbellList != null && notifcationbellList.length>0 &&
+                                    this.userService.currentUserValue.userroles.rolecode =='CLIENT_BUSINESS_ADMINISTRATOR'">
+                                <i class="fa fa-comments-o" style="color:#FF4949">{{notifcationbellList.length}}</i>
+                            </a>
+                            <a *ngIf="notifcationbellList.length==0">
                                 <i class="fa fa-comments-o">0</i>
-                            </ng-template>
+                            </a>
+                            &nbsp;
                             <a routerLink='/vieworeditprofile/{{userService.currentUserValue.userId}}'>
                                 <img *ngIf="userService.currentUserValue.avtarurl != null" class="avatar"
                                     src="{{userService.currentUserValue.avtarurl}}">

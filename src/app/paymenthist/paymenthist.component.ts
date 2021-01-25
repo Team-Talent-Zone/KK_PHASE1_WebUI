@@ -17,6 +17,8 @@ export class PaymenthistComponent implements OnInit {
   cbapaymenthistorydetails: any = [];
   txnid: string;
   paymentdetails: any;
+  ispaymentdetailCBUempty: boolean = false;
+  ispaymentdetailFUempty: boolean = false;
 
   constructor(
     public userService: UserService,
@@ -41,15 +43,15 @@ export class PaymenthistComponent implements OnInit {
         if (this.userService.currentUserValue.userroles.rolecode === config.user_rolecode_cba.toString()) {
           this.getPaymentCBADetailsByUserId(this.userService.currentUserValue.userId);
         }
-
-
   }
+
   getPaymentDetailsByTxnId(txnid: string) {
     this.paymentdetails = null;
-     this.paymentService.getPaymentDetailsByTxnId(txnid).subscribe((paymentobj: any) => {
+    this.spinnerService.show();
+    this.paymentService.getPaymentDetailsByTxnId(txnid).subscribe((paymentobj: any) => {
       this.paymentdetails = paymentobj;
-      console.log(' this.paymentdetails' ,  this.paymentdetails);
-     },
+      this.spinnerService.hide();
+    },
       error => {
         this.spinnerService.hide();
         this.alertService.error(error);
@@ -57,8 +59,8 @@ export class PaymenthistComponent implements OnInit {
   }
 
   getPaymentFUDetailsByUserId(userId: number) {
-    this.spinnerService.show();
     this.fupaymenthistorydetails = [];
+    this.spinnerService.show();
     this.paymentService.getPaymentFUDetailsByUserId(userId).subscribe((fupaymentobjlist: any) => {
       if (fupaymentobjlist != null) {
         fupaymentobjlist.forEach(element => {
@@ -66,6 +68,8 @@ export class PaymenthistComponent implements OnInit {
             this.fupaymenthistorydetails.push(element);
           }
         });
+      } else {
+        this.ispaymentdetailFUempty = true;
       }
       this.spinnerService.hide();
     },
@@ -86,6 +90,8 @@ export class PaymenthistComponent implements OnInit {
           }
         });
         this.spinnerService.hide();
+      } else {
+        this.ispaymentdetailCBUempty = true;
       }
     },
       error => {
@@ -93,6 +99,4 @@ export class PaymenthistComponent implements OnInit {
         this.alertService.error(error);
       });
   }
-
-
 }

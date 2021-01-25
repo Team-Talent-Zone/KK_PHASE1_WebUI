@@ -15,6 +15,7 @@ import { DatePipe } from '@angular/common';
 export class ViewfureviewsComponent implements OnInit {
 
   fureviews: any;
+  fureviewsempty: boolean = false;
 
   constructor(
     private freelanceserviceService: FreelanceserviceService,
@@ -30,41 +31,44 @@ export class ViewfureviewsComponent implements OnInit {
   }
 
   getFUFeebackDetailsByUserId() {
-    this.spinnerService.show();
     this.fureviews = [];
+    this.spinnerService.show();
     this.freelanceserviceService.getFUFeebackDetailsByUserId(this.userService.currentUserValue.userId).subscribe(
       (reviews: any) => {
-        reviews.forEach((element: any) => {
-          element.starrate = Array(element.starrate);
-          // tslint:disable-next-line: max-line-length
-          if (this.userService.currentUserValue.preferlang === config.lang_code_te || this.userService.currentUserValue.preferlang === config.lang_code_hi) {
-            this.referService.translatetext(element.feedbackcomment, this.userService.currentUserValue.preferlang).subscribe(
-              (txt: string) => {
-                element.feedbackcomment = txt;
-              }
-            );
-            this.referService.translatetext(element.fullname, this.userService.currentUserValue.preferlang).subscribe(
-              (txt: string) => {
-                element.fullname = txt;
-              }
-            );
-            this.referService.translatetext(element.feedbackby, this.userService.currentUserValue.preferlang).subscribe(
-              (txt: string) => {
-                element.feedbackby = txt;
-              }
-            );
-            this.referService.translatetext(element.label, this.userService.currentUserValue.preferlang).subscribe(
-              (txt: string) => {
-                element.label = txt;
-              }
-            );
-            this.fureviews.push(element);
-            this.spinnerService.hide();
-          } else {
-            this.fureviews.push(element);
-            this.spinnerService.hide();
-          }
-        });
+        if (reviews != null) {
+          reviews.forEach((element: any) => {
+            element.starrate = Array(element.starrate);
+            if (this.userService.currentUserValue.preferlang === config.lang_code_te || this.userService.currentUserValue.preferlang === config.lang_code_hi) {
+              this.referService.translatetext(element.feedbackcomment, this.userService.currentUserValue.preferlang).subscribe(
+                (txt: string) => {
+                  element.feedbackcomment = txt;
+                }
+              );
+              this.referService.translatetext(element.fullname, this.userService.currentUserValue.preferlang).subscribe(
+                (txt: string) => {
+                  element.fullname = txt;
+                }
+              );
+              this.referService.translatetext(element.feedbackby, this.userService.currentUserValue.preferlang).subscribe(
+                (txt: string) => {
+                  element.feedbackby = txt;
+                }
+              );
+              this.referService.translatetext(element.label, this.userService.currentUserValue.preferlang).subscribe(
+                (txt: string) => {
+                  element.label = txt;
+                }
+              );
+              this.fureviews.push(element);
+              this.spinnerService.hide();
+            } else {
+              this.fureviews.push(element);
+              this.spinnerService.hide();
+            }
+          });
+        } else {
+          this.fureviewsempty = true;
+        }
       },
       error => {
         this.spinnerService.hide();

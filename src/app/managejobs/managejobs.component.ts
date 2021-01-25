@@ -39,6 +39,10 @@ export class ManagejobsComponent implements OnInit {
     class: 'modal-md', backdrop: 'static',
     keyboard: false
   };
+  newjobsempty: boolean = false;
+  upcomingjobsempty: boolean = false;
+  completedjobsempty: boolean = false;
+
   constructor(
     private toaster: Toaster,
     public fb: FormBuilder,
@@ -72,9 +76,7 @@ export class ManagejobsComponent implements OnInit {
   private getToastNotificationUserByRole(roleCode: string) {
     this.usersrvdetails.getAllBellNotificationsByRoleCode(roleCode).subscribe(
       (notifcationlist: any) => {
-        console.log('notifcationlist List', notifcationlist);
         if (notifcationlist != null) {
-          console.log('notifcationlist', notifcationlist);
           notifcationlist.forEach(element => {
             this.showToastNotificationForFCBA(element.msg, this.types[3], 'Friendly');
           });
@@ -95,15 +97,14 @@ export class ManagejobsComponent implements OnInit {
       type: type,
     });
   }
+
   jobDone(jobId: number) {
     this.spinnerService.show();
     this.freelanceserviceService.getAllFreelanceOnServiceDetailsByJobId(jobId).subscribe((objfreelanceservice: FreelanceOnSvc) => {
       objfreelanceservice.isjobcompleted = true;
-      // tslint:disable-next-line: max-line-length
       this.freelanceserviceService.saveOrUpdateFreelancerOnService(objfreelanceservice).subscribe((updatedobjfreelanceservice: FreelanceOnSvc) => {
         if (updatedobjfreelanceservice.jobId > 0) {
-          // tslint:disable-next-line: max-line-length
-          this.alertService.success('The JobId: ' + jobId + ' is completed successfully. Please click on the Pay. ');
+          this.alertService.success('The Job is completed successfully. Please click on the Pay. ');
           this.spinnerService.hide();
           this.getUserAllJobDetailsByUserId();
         }
@@ -128,11 +129,9 @@ export class ManagejobsComponent implements OnInit {
             objfreelanceservice.isjobactive = true;
             objfreelanceservice.tocompanyamount = element.tocompanyamount;
             objfreelanceservice.tofreelanceamount = element.tofreelanceamount;
-            // tslint:disable-next-line: max-line-length
             this.freelanceserviceService.saveOrUpdateFreelancerOnService(objfreelanceservice).subscribe((updatedobjfreelanceservice: FreelanceOnSvc) => {
               if (updatedobjfreelanceservice.jobId > 0) {
-                // tslint:disable-next-line: max-line-length
-                this.alertService.success('The JobId: ' + jobId + ' is activiated and you will get a confirmation email once freelancer accept the job. ');
+                this.alertService.success('The JobId: ' + jobId + ' is activiated succesfully . We will notify once the skilled worker accepts the job. ');
                 this.spinnerService.hide();
                 this.getUserAllJobDetailsByUserId();
               }
@@ -156,7 +155,7 @@ export class ManagejobsComponent implements OnInit {
     this.freelanceserviceService.getAllFreelanceOnServiceDetailsByJobId(jobId).subscribe((objfreelanceservice: FreelanceOnSvc) => {
       this.freelanceserviceService.deleteFreelanceSVCDetails(objfreelanceservice).subscribe((bol: boolean) => {
         if (bol) {
-          this.alertService.success('The JobId: ' + jobId + ' is Cancelled');
+          this.alertService.success('The JobId: ' + jobId + ' is cancelled successfully.');
           this.spinnerService.hide();
           this.getUserAllJobDetailsByUserId();
         }
@@ -176,33 +175,35 @@ export class ManagejobsComponent implements OnInit {
     this.newlyPostedJobs = [];
     this.completedJobs = [];
     this.upComingPostedJobs = [];
+    this.spinnerService.show();
     this.freelanceserviceService.getUserAllJobDetailsByUserId(this.userService.currentUserValue.userId).subscribe((onserviceList: any) => {
-      onserviceList.forEach(element => {
-        // tslint:disable-next-line: max-line-length
-        if (!element.isjobcancel && !element.isjobcompleted && !element.isjobamtpaidtocompany && !element.isjobaccepted) {
-          this.newlyPostedJobs.push(element);
-          if (!element.isjobactive && !element.isdeactive) {
-            // tslint:disable-next-line: max-line-length
-            const fullmsg = 'Hi ' + this.userService.currentUserValue.fullname + ', JobId:' + element.jobId + ' is not active yet. Please activiate it to make freelancer visible';
+      if (onserviceList != null && onserviceList.length > 0) {
+        console.log('onserviceList ==>', onserviceList.length);
+        onserviceList.forEach((element: any) => {
+          if (element.isjobactive && element.isjobaccepted && !element.isjobamtpaidtocompany) {
+            this.upComingPostedJobs.push(element);
           }
-        }
-        // tslint:disable-next-line: max-line-length
-        if (element.isjobactive && element.isjobaccepted && !element.isjobamtpaidtocompany) {
-          this.upComingPostedJobs.push(element);
-          if (element.isjobcompleted) {
-            // tslint:disable-next-line: max-line-length
-            const ref = timer(10000, 50000);
-            ref.subscribe((val: number) => {
-              const fullmsg = 'Hi ' + this.userService.currentUserValue.fullname + ', For the JobId:' + element.jobId + ' pay now.';
-            });
+          if (!element.isjobcancel && !element.isjobcompleted && !element.isjobamtpaidtocompany && !element.isjobaccepted) {
+            this.newlyPostedJobs.push(element);
           }
-        }
-        // tslint:disable-next-line: max-line-length
-        if (element.isjobactive && element.isjobcompleted && element.isjobamtpaidtocompany && element.isjobaccepted) {
-          this.completedJobs.push(element);
-        }
-      });
-      this.spinnerService.hide();
+          if (element.isjobactive && element.isjobcompleted && element.isjobamtpaidtocompany && element.isjobaccepted) {
+            this.completedJobs.push(element);
+          }
+        });
+        if (this.upComingPostedJobs != null) {
+          this.upcomingjobsempty = true;
+        } else
+          if (this.newlyPostedJobs != null) {
+            this.newjobsempty = true;
+          } else {
+            this.completedjobsempty = true;
+          }
+        this.spinnerService.hide();
+      } else {
+        this.newjobsempty = true;
+        this.upcomingjobsempty = true;
+        this.completedjobsempty = true;
+      }
     },
       error => {
         this.spinnerService.hide();

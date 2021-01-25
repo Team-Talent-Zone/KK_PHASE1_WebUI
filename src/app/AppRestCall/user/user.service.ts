@@ -79,25 +79,29 @@ export class UserService {
     userobj.userroles = new UserRole();
     userobj.userroles.rolecode = refCode;
     userobj.userbizdetails = new UserBiz();
-    if (shortkey === config.shortkey_role_fu) {
-      userobj.freeLanceDetails = new Freelance();
-      userobj.freeLanceDetails.category = user.category;
-      userobj.freeLanceDetails.subCategory = user.subcategory;
-      userobj.freeLanceDetails.bgcurrentstatus = config.bg_code_incompleteprofile;
-      userobj.freelancehistoryentity = new Array<FreelanceHistory>();
-      this.freelanceobj = new FreelanceHistory();
-      this.freelanceobj.bgstatus = config.bg_code_incompleteprofile;
-      userobj.freelancehistoryentity.push(this.freelanceobj);
+    if (shortkey === config.shortkey_role_cba) {
+      userobj.userbizdetails.biztype = user.biztype;
     } else
-      if (shortkey === config.shortkey_role_csst ||
-        shortkey === config.shortkey_role_cssm) {
-        userobj.createdby = this.currentUserValue.firstname + ' ' + this.currentUserValue.lastname;
-        userobj.updateby = this.currentUserValue.firstname + ' ' + this.currentUserValue.lastname;
-        userobj.usermanagerdetailsentity = new UserManagerDetails();
-        userobj.usermanagerdetailsentity.managerid = this.currentUserValue.userId;
-        userobj.password = user.password;
-        userobj.preferlang = user.preferlang;
-      }
+      if (shortkey === config.shortkey_role_fu) {
+        userobj.freeLanceDetails = new Freelance();
+        userobj.freeLanceDetails.category = user.category;
+        userobj.freeLanceDetails.subCategory = user.subcategory;
+        userobj.freeLanceDetails.bgcurrentstatus = config.bg_code_incompleteprofile;
+        userobj.freelancehistoryentity = new Array<FreelanceHistory>();
+        this.freelanceobj = new FreelanceHistory();
+        this.freelanceobj.bgstatus = config.bg_code_incompleteprofile;
+        userobj.freelancehistoryentity.push(this.freelanceobj);
+      } else
+        if (shortkey === config.shortkey_role_csst ||
+          shortkey === config.shortkey_role_cssm) {
+          userobj.createdby = this.currentUserValue.firstname + ' ' + this.currentUserValue.lastname;
+          userobj.updateby = this.currentUserValue.firstname + ' ' + this.currentUserValue.lastname;
+          userobj.usermanagerdetailsentity = new UserManagerDetails();
+          userobj.usermanagerdetailsentity.managerid = this.currentUserValue.userId;
+          userobj.password = user.password;
+          userobj.preferlang = user.preferlang;
+        }
+    console.log('userobj===============', userobj);
     return this.http.post(`${environment.apiUrl}/saveUser/`, userobj);
   }
 

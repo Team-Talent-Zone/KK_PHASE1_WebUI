@@ -24,20 +24,17 @@ export class DashboardofcbaComponent implements OnInit {
   newServiceCommentHistory: any = [];
   listOfAllApprovedNewServices: any = [];
   domainRealEstateIndustry: any = [];
-
   show: string = 'show';
   fullContentArray: any = [];
   userservicedetailsList: any = [];
   userservicedetailsAddedList: any = [];
   userservicedetailsExistingIds: any = [];
   domainServiceProviderObj: any = [];
-
-  config: ModalOptions = {
+  configsmall: ModalOptions = {
     class: 'modal-sm', backdrop: 'static',
     keyboard: false
   };
-
-  configsrvdescription: ModalOptions = {
+  configlarge: ModalOptions = {
     class: 'modal-lg', backdrop: 'static',
     keyboard: false
   };
@@ -47,6 +44,7 @@ export class DashboardofcbaComponent implements OnInit {
   listOfServicesForCheckOut: any = [];
   fullContent: any[];
   configuration: any;
+  
   constructor(
     private referService: ReferenceService,
     public userService: UserService,
@@ -267,7 +265,7 @@ export class DashboardofcbaComponent implements OnInit {
     };
     this.modalRef = this.modalService.show(UserservicecartComponent, Object.assign(
       {},
-      this.config,
+      this.configlarge,
       {
         initialState
       }
@@ -282,9 +280,9 @@ export class DashboardofcbaComponent implements OnInit {
       contentList: contentListFeatures,
     };
     if (fullcontent == null) {
-      this.configuration = this.config
+      this.configuration = this.configsmall
     } else {
-      this.configuration = this.configsrvdescription
+      this.configuration = this.configlarge
     };
     this.modalRef = this.modalService.show(ReadMorePopupComponent, Object.assign(
       {},

@@ -1,5 +1,3 @@
-import { HttpHeaders } from '@angular/common/http';
-
 export const config = {
   key_domain: 'domain',
   key_service_term: 'Service_Period',
@@ -73,19 +71,21 @@ export const config = {
   shortkey_privacypolicy_english: 'pp_english',
   shortkey_privacypolicy_telugu: 'pp_telugu',
   shortkey_privacypolicy_hindi: 'pp_hindi',
-
   banner_video1_en: 'video1en',
   banner_video2_en: 'video2en',
   banner_video1_te: 'video1te',
   banner_video2_te: 'video2te',
   banner_video1_hi: 'video1hi',
   banner_video2_hi: 'video2hi',
-  
   rolecode_notification: 'FREELANCER_USER_ALL',
   rolecode_toast_notification_cba: 'TOASTER_CLIENT_BUSINESS_ADMINISTRATOR',
   payment_success: 'Success',
-
-  
+  biztype_ind_en:'Individual',
+  biztype_cmp_en:'Company',
+  biztype_ind_te:'వ్యక్తిగత',
+  biztype_cmp_te:'సంస్థ',
+  biztype_ind_hi:'व्यक्ति',
+  biztype_cmp_hi:'कंपनी',
 };
 
 

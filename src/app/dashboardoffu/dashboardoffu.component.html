@@ -106,28 +106,21 @@
         <i class="fa fa-arrow-right d-none d-lg-block" style="font-size:36px;"
             [ngStyle]="{'color': userService.currentUserValue.freeLanceDetails.isregfeedone ? 'green':'lightgrey'}"></i>
         <div class="col-6 col-sm-2 placeholder text-center d-none d-lg-block">
-            <!-- <img src="{{stage3Img}}" class="mx-auto img-fluid rounded-circle" alt="Generic placeholder thumbnail"> -->
             <i class="fa fa-street-view rounded-circle"
                 [ngStyle]="{'background': userService.currentUserValue.freeLanceDetails.isbgstarted ? 'cornflowerblue':'white'}"></i>
             <p><small><b>{{ 'DASHBOARD_FU_BODY.BGVERIFICATIONINITIATED' | translate }}</b></small></p>
-
         </div>
         <i class="fa fa-arrow-right d-none d-lg-block" style="font-size:36px;"
             [ngStyle]="{'color': userService.currentUserValue.freeLanceDetails.isbgstarted ? 'green':'lightgrey'}"></i>
         <div class="col-6 col-sm-2 placeholder text-center d-none d-lg-block">
-            <!-- <img src="{{stage4Img}}" class="mx-auto img-fluid rounded-circle"
-                alt="Background Verification is In Progress"> -->
             <i class="fa fa-hourglass-start rounded-circle"
                 [ngStyle]="{'background': userService.currentUserValue.freeLanceDetails.isbgdone ? 'cornflowerblue':'white'}">
-
             </i>
             <p><small><b>{{ 'DASHBOARD_FU_BODY.BGVERFIFICATIONINPROGRESS' | translate }}</b></small></p>
-
         </div>
         <i class="fa fa-arrow-right d-none d-lg-block" style="font-size:36px;"
             [ngStyle]="{'color': userService.currentUserValue.freeLanceDetails.isbgdone ? 'green':'lightgrey'}"></i>
         <div class="col-6 col-sm-2 placeholder text-center d-none d-lg-block">
-            <!-- <img src="{{stage5Img}}" class="mx-auto img-fluid rounded-circle" alt="Final Result"> -->
             <i class="fa fa fa-hand-paper-o rounded-circle"
                 *ngIf='!userService.currentUserValue.freeLanceDetails.isbgdone'></i>
             <i class="fa fa fa-hand-paper-o rounded-circle" *ngIf="userService.currentUserValue.freeLanceDetails.isbgdone && 
@@ -143,20 +136,16 @@
                         'DASHBOARD_FU_BODY.BGVERFIFICATIONRESULT_REJECTED' | translate }}</b>
                 </small>
             </p>
-
         </div>
     </div>
     <div *ngIf="this.userService.currentUserValue.freeLanceDetails.isregfeedone && 
         this.userService.currentUserValue.freeLanceDetails.bgcurrentstatus == 'BG_APPROVED' ">
         <div class="row">
-
             <div class="col-sm-2"></div>
             <div class="col-sm-6 col-lg-4 mb-3 text-center" *ngFor="let card of infoCards, index as i">
-                <!-- <i class="fa fa-user text-center rounded-circle"></i> -->
-                <br>
+                <div class="row mb-2"></div>
                 <div class="" [ngClass]="i==0 ? 'bg-customupcoming card' : 'bg-custom card' "
                     style="padding-left: 27px;padding-top: 27px;color: white;">
-
                     <span style="color: white;">
                         <p class="pull-center"><b>{{ card.name }}</b>
                             &nbsp;
@@ -171,40 +160,44 @@
                             </h3>
                         </span>
                     </span>
-
                     <p style="color: black;"><small>{{ 'DASHBOARD_FU_BODY.LASTUPDATED' | translate }} {{indiaTime}} {{
                             'DASHBOARD_FU_BODY.MINSAGO' | translate }}</small></p>
                 </div>
             </div>
-            <br>
+            <div class="row mb-2"></div>
         </div>
-        <br>
+        <div class="row mb-3"></div>
         <div>
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item">
                     <a class="nav-link active" id="collapseFUNewJobs-tab" data-toggle="tab" href="#collapseFUNewJobs"
                         role="tab" aria-controls="collapseFUNewJobs" aria-selected="true">
                         <i class="fa fa-map-marker fatab"></i>
-                        <br><b>
+                        <div class="row mb-2"></div><b>
                             {{ 'DASHBOARD_FU_BODY.UPCOMINGJOBS' | translate }}
-                        </b></a>
+                        </b>
+                        <div class="row mb-2"></div>
+                    </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="collapseFUUpcomingJobs-tab" data-toggle="tab" href="#collapseFUUpcomingJobs"
                         role="tab" aria-controls="collapseFUUpcomingJobs" aria-selected="false">
-                        <i class="fa fa-podcast fatab"></i><br><b> {{ 'DASHBOARD_FU_BODY.NEWJOBS' | translate }}</b></a>
+                        <i class="fa fa-podcast fatab"></i>
+                        <div class="row mb-2"></div><b> {{ 'DASHBOARD_FU_BODY.NEWJOBS' | translate }}</b>
+                    </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="collapseCompletedJobs-tab" data-toggle="tab" href="#collapseCompletedJobs"
                         role="tab" aria-controls="collapseCompletedJobs" aria-selected="false">
                         <i class="fa fa-road fatab"></i>
-                        <br><b>{{ 'DASHBOARD_FU_BODY.COMPLETEDJOBS' | translate }}</b></a>
+                        <div class="row mb-2"></div><b>{{ 'DASHBOARD_FU_BODY.COMPLETEDJOBS' | translate }}</b>
+                    </a>
                 </li>
             </ul>
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="collapseFUNewJobs" role="tabpanel"
                     aria-labelledby="collapseFUNewJobs-tab">
-                    <br>
+                    <div class="row mb-2"></div>
                     <div class="row" *ngIf="upcomingJobList.length > 0">
                         <div class="col-lg-4 mb-3 mb-md-0" style="margin-bottom:8px !important"
                             *ngFor="let element of upcomingJobList">
@@ -278,7 +271,7 @@
                         </div>
                     </div>
                     <div class="alert alert-success alert-dismissible fade show w-100" role="alert"
-                        *ngIf="upcomingJobList.length == 0">
+                        *ngIf="upcomingjobsempty">
                         <h5 class="display-5">
                             {{ 'DASHBOARD_FU_BODY.NO_UPCOMING_MSG' | translate }}
                         </h5>
@@ -286,7 +279,7 @@
                 </div>
                 <div class="tab-pane fade" id="collapseFUUpcomingJobs" role="tabpanel"
                     aria-labelledby="collapseFUUpcomingJobs-tab">
-                    <br> <br>
+                    <div class="row mb-3"></div>
                     <div class="row" *ngIf="newJobList.length > 0">
                         <div class="col-sm-4 mb-3 mb-md-0" style="margin-bottom:8px !important"
                             *ngFor="let element of newJobList">
@@ -294,7 +287,7 @@
                                 <div class="card-header text-white bg-secondary">
                                     <p> <b>{{ 'DASHBOARD_FU_BODY.JOB' | translate }}#{{element.jobId}} </b>
                                         <button class="bg-success pull-right" (click)="accept(element.jobId)"
-                                            *ngIf="upcomingJobList.length < 3" style="font-size:14px">{{
+                                            style="font-size:14px">{{
                                             'DASHBOARD_FU_BODY.ACCEPTJOBBUTTON' | translate }}
                                             <i class="fa fa-play"></i></button>
                                     </p>
@@ -345,7 +338,7 @@
                         </div>
                     </div>
                     <div class="alert alert-success alert-dismissible fade show w-100" role="alert"
-                        *ngIf="newJobList.length == 0">
+                        *ngIf="newjobsempty">
                         <h5 class="display-5">
                             {{ 'DASHBOARD_FU_BODY.NO_NEWJOB_MSG' | translate }}
                         </h5>
@@ -353,7 +346,7 @@
                 </div>
                 <div class="tab-pane fade" id="collapseCompletedJobs" role="tabpanel"
                     aria-labelledby="collapseCompletedJobs-tab">
-                    <br> <br>
+                    <div class="row mb-3"></div>
                     <div class="row" *ngIf="completedJobList.length > 0">
                         <div class="col-sm-4 mb-3 mb-md-0" style="margin-bottom:8px !important"
                             *ngFor="let element of completedJobList">
@@ -425,7 +418,7 @@
                         </div>
                     </div>
                     <div class="alert alert-success alert-dismissible fade show w-100" role="alert"
-                        *ngIf="completedJobList.length == 0">
+                        *ngIf="completedjobsempty">
                         <h5 class="display-5">
                             {{ 'DASHBOARD_FU_BODY.NO_COMPLETEDJOBS_MSG' | translate }}
                         </h5>
@@ -441,11 +434,11 @@
             <h4>{{ 'DASHBOARD_FU_BODY.IMPINST_HEADER' | translate }}</h4>
         </dt>
         <dd class="col-sm-9"> </dd>
-        <dt class="col-sm-3 text-truncate">
+        <dt class="col-sm-3 mb-3">
             <button class="pull-left" style="font-size:14px">{{ 'DASHBOARD_FU_BODY.CANCELJOBBUTTON' | translate }}
                 <i class="fa fa-remove"></i></button>
         </dt>
-        <dd class="col-sm-9">
+        <dd class="col-sm-9 mb-3">
             {{ 'DASHBOARD_FU_BODY.IMPINST_CANCELBUTTON' | translate }}
         </dd>
         <dt class="col-sm-3">

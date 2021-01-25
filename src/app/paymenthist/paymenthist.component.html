@@ -25,8 +25,10 @@
                         <td>{{paymentdetails.txnid}}</td>
                         <td>{{paymentdetails.name}}</td>
                         <td>{{paymentdetails.createdon}}</td>
-                        <td *ngIf="userService.currentUserValue.userroles.rolecode === 'CLIENT_BUSINESS_ADMINISTRATOR'">{{paymentdetails.paymentsCBATrans.status}}</td>
-                        <td *ngIf="userService.currentUserValue.userroles.rolecode === 'FREELANCER_USER'">{{paymentdetails.paymentsFUTrans.status}}</td>
+                        <td *ngIf="userService.currentUserValue.userroles.rolecode === 'CLIENT_BUSINESS_ADMINISTRATOR'">
+                            {{paymentdetails.paymentsCBATrans.status}}</td>
+                        <td *ngIf="userService.currentUserValue.userroles.rolecode === 'FREELANCER_USER'">
+                            {{paymentdetails.paymentsFUTrans.status}}</td>
                         <td>{{paymentdetails.amount}}</td>
                         <td>{{paymentdetails.productinfo}}</td>
                     </tr>
@@ -59,8 +61,8 @@
                 </tbody>
             </table>
         </div>
-        <div class="alert alert-success alert-dismissible fade show w-100" role="alert" 
-            *ngIf="fupaymenthistorydetails.length == 0 && userService.currentUserValue.userroles.rolecode === 'FREELANCER_USER' && paymentdetails == null">
+        <div class="alert alert-success alert-dismissible fade show w-100" role="alert"
+            *ngIf="this.ispaymentdetailFUempty">
             <h5 class="display-5">
                 There is no payment history details.
             </h5>
@@ -93,7 +95,7 @@
             </table>
         </div>
         <div class="alert alert-success alert-dismissible fade show w-100" role="alert"
-            *ngIf="cbapaymenthistorydetails.length == 0 && userService.currentUserValue.userroles.rolecode === 'CLIENT_BUSINESS_ADMINISTRATOR' && paymentdetails == null">
+            *ngIf="this.ispaymentdetailCBUempty">
             <h5 class="display-5">
                 There is no payment history details.
             </h5>

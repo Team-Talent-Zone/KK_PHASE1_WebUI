@@ -1,7 +1,7 @@
 <!-- Top menu -->
 <nav class="navbar navbar-dark fixed-top navbar-expand-md" (scroll)="onWindowScroll($event);" id="navbar">
   <div class="container-fluid">
-    <a class="scroll-link" style="border: 0;" >
+    <a class="scroll-link" style="border: 0;">
       <img src="assets/img/logo-transparent.png" width="70" height="60" class="rounded-circle d-inline-block align-top"
         alt="Kaam Karega">
     </a>
@@ -142,7 +142,13 @@
     </div>
     <div class="carousel-item">
       <img class="d-block w-100" src="assets/img/backgrounds/ban3.jpg" data-holder-rendered="true">
-      <div class="carousel-caption  d-md-block">
+      <div class="carousel-caption d-lg-none">
+        <h5>{{'HOMENAV.BETTERSERVICECAPTION' | translate}}</h5>
+        <p> {{'HOMENAV.BETTERSERVICESUBCAPTION' | translate}}
+          {{'HOMENAV.BETTERSERVICESUBCAPTION1' | translate}}
+        </p>
+      </div>
+      <div class="carousel-caption d-none d-lg-block">
         <h5>{{'HOMENAV.BETTERSERVICECAPTION' | translate}}</h5>
         <p> {{'HOMENAV.BETTERSERVICESUBCAPTION' | translate}}
           {{'HOMENAV.BETTERSERVICESUBCAPTION1' | translate}}
@@ -212,4 +218,3 @@
     </div>
   </div>
 </div>
- 

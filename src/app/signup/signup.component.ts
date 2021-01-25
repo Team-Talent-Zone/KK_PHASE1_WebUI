@@ -60,6 +60,7 @@ export class SignupComponent implements OnInit {
   shortkeytermsofservices: string;
   shortkeyprivacypolicy: string;
   name: string;
+  biztypelist: any;
 
   constructor(
     private spinnerService: Ng4LoadingSpinnerService,
@@ -84,6 +85,17 @@ export class SignupComponent implements OnInit {
       this.getAllCategories(this.langcode);
     }
     this.getTermsofServicesAndPrivacyPolicyURLByLang(this.langcode);
+    if (this.key === config.shortkey_role_cba.toString()) {
+      if (localStorage.getItem('langCode') == config.default_prefer_lang.toString()) {
+        this.biztypelist = [config.biztype_ind_en, config.biztype_cmp_en];
+      } else {
+        if (localStorage.getItem('langCode') == config.lang_code_hi.toString()) {
+          this.biztypelist = [config.biztype_ind_hi, config.biztype_cmp_hi];
+        } else {
+          this.biztypelist = [config.biztype_ind_te, config.biztype_cmp_te];
+        }
+      }
+    }
   }
 
   formValidations() {
@@ -94,7 +106,8 @@ export class SignupComponent implements OnInit {
         firstname: ['', [Validators.required, Validators.maxLength(40)]],
         lastname: ['', [Validators.required, Validators.maxLength(40)]],
         preferlang: config.default_prefer_lang,
-        acceptsignupterms: [false, [Validators.requiredTrue]]
+        acceptsignupterms: [false, [Validators.requiredTrue]],
+        biztype: ['', [Validators.required]]
       });
     } else {
       this.signupForm = this.formBuilder.group({
@@ -251,7 +264,7 @@ export class SignupComponent implements OnInit {
                         this.alertService.error(error);
                       });
                   }
-                  if (this.ourserviceids !== null) {
+                  if (this.ourserviceids !== null && this.ourserviceids.length > 0) {
                     if (this.ourserviceids[0].packwithotherourserviceid != null) {
                       this.saveUserServiceDetailsForServicePkg(this.ourserviceids, this.usrObj);
                     } else {

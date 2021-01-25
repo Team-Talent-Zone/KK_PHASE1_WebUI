@@ -184,7 +184,8 @@
                         </div>
 
                         <div class="card"
-                            *ngIf="this.userService.currentUserValue.userroles.rolecode =='CLIENT_BUSINESS_ADMINISTRATOR'">
+                            *ngIf="this.userService.currentUserValue.userroles.rolecode =='CLIENT_BUSINESS_ADMINISTRATOR' && 
+                            this.userService.currentUserValue.userbizdetails.biztype == 'Company'">
                             <div class="card-header">
                                 <div class="card-actions float-right">
                                 </div>
@@ -237,15 +238,8 @@
                                         <span>
                                             <i class="fa fa-bars form-control-icon"></i>
                                         </span>
-                                        <input type="text" placeholder="Business Type*" class="form-control"
-                                            formControlName="biztype"
-                                            [ngClass]="{ 'is-invalid': issubmit && f.biztype.errors }">
-                                        <div *ngIf="issubmit && f.biztype.errors" class="invalid-feedback">
-                                            <div *ngIf="f.biztype.errors.required">Business Type is required
-                                            </div>
-                                            <div *ngIf="f.biztype.errors.maxlength">Business Type cant exceed 40
-                                                char</div>
-                                        </div>
+                                        <input type="text" readonly=true placeholder="Business Type*"
+                                            class="form-control" formControlName="biztype">
                                     </div>
                                     <div class="form-group col-md-6">
                                         <span>

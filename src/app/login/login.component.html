@@ -3,10 +3,9 @@
   <div class="section-4-container">
     <div class="container">
       <div class="row">
-        <div class="col-md-6 center" style="margin-top:68px;">
+        <div class="col-md-5 center" style="margin-top:68px;">
           <div *ngIf="!isfwd; else elseFwd">
             <div class="card card-container">
-              <!-- <img id="profile-img" class="profile-img-card" src="assets/img/backgrounds/login.jpg" />-->
               <h4 style="text-align: left;"> {{ 'HOMESIGNUP.ACCOUNTLOGIN' | translate }}</h4>
               <p id="profile-name" class="profile-name-card"> </p>
               <form [formGroup]="loginForm" (ngSubmit)="loginUserByUsername()">
@@ -16,7 +15,6 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="fa fa-user-circle form-control-icon"></i></span>
                     </div>
-
                     <input type="email" formControlName="username"
                       [ngClass]="{ 'is-invalid': issubmit && f.username.errors }" class="form-control"
                       placeholder="{{ 'HOMESIGNUP.EMAILADDRESS' | translate }}">
