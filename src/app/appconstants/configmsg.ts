@@ -4,7 +4,7 @@ export const ConfigMsg = {
     email_default_fromuser: 'team.spprt2019@gmail.com',
     email_verficationemailaddress_subj: 'Email Confirmation',
     email_forgotpasswordemailaddress_subj: 'Forgot Password',
-    email_welcomeemailaddress_subj: 'Welcome To Company',
+    email_welcomeemailaddress_subj: 'Welcome To Kaam Karega',
     email_verficationemailaddress_successmsg: 'Your email verfiication is completed. Please Login',
     email_verficationemailaddress_alreadydone: 'Your email verfiication is already completed. \n Please login with your username.',
     login_invalid_password: 'You entered invalid password',
@@ -38,4 +38,12 @@ export const ConfigMsg = {
     totalearnings_te: 'మొత్తం సంపాదన',
     totalearnings_en: 'Total Earnings',
     totalearnings_hi: 'कुल आय',
+    biztype_ind_en: 'Individual',
+    biztype_cmp_en: 'Company',
+    biztype_ind_te: 'వ్యక్తిగత',
+    biztype_cmp_te: 'సంస్థ',
+    biztype_ind_hi: 'व्यक्ति',
+    biztype_cmp_hi: 'कंपनी',
+    voliation_msg :'Sorry for the inconvenience caused. We are analzying with the skilled worker on not attending at the work location as per scheduled appointment date. We will get back to you .'
+
 };

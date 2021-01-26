@@ -12,6 +12,7 @@ import { FreelanceserviceService } from '../AppRestCall/freelanceservice/freelan
 import { ReferenceService } from '../AppRestCall/reference/reference.service';
 import { ApiService, Maps } from '../adapters/api.service';
 import { ManageuserComponent } from '../manageuser/manageuser.component';
+import { SignupComponent } from '../signup/signup.component';
 
 @Component({
   selector: 'app-dashboardsearchbyfilter',
@@ -74,7 +75,8 @@ export class DashboardsearchbyfilterComponent implements OnInit {
     private router: Router,
     private ngZone: NgZone,
     public apiService: ApiService,
-    public manageuserComponent: ManageuserComponent
+    public manageuserComponent: ManageuserComponent,
+    public signupComponent: SignupComponent,
   ) {
     setTimeout(() => {
       this.apiService.api.then(maps => {
@@ -127,7 +129,8 @@ export class DashboardsearchbyfilterComponent implements OnInit {
       state: [''],
       country: [''],
       lat: [''],
-      lng: ['']
+      lng: [''],
+      acceptjobterms : [false, [Validators.requiredTrue]]
     });
   }
 
@@ -194,7 +197,7 @@ export class DashboardsearchbyfilterComponent implements OnInit {
             if (obj.jobId > 0) {
               this.spinnerService.hide();
               this.router.navigate(['/job']);
-              this.alertService.success('Job Id : ' + obj.jobId + ' is created successfully ');
+              this.alertService.success('The Job Id : ' + obj.jobId + ' is created successfully. Go to New Job Tab to activate. ');
             }
           },
             error => {

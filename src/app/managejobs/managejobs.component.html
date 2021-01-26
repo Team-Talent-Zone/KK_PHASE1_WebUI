@@ -31,13 +31,24 @@
                 <div class="card card-flip h-100 ">
                     <div class="card-header text-white bg-secondary">
                         <p> <b>{{ 'DASHBOARD_FU_BODY.JOB' | translate }}#{{element.jobId}} </b>
-                            <button class="bg-info pull-right" *ngIf="!element.isjobcompleted"
+                            <button class="bg-info pull-right"
+                                *ngIf="!element.isjobcompleted && element.isfreelancerjobattendant"
                                 (click)="jobDone(element.jobId)" style="font-size:14px">Job Done
-                                <i class="fa fa-check"></i></button>
+                                <i class="fa fa-check" title="Click when the job is completed."></i></button>
                             <button class="bg-success pull-right" *ngIf="element.isjobcompleted"
                                 (click)="openPaymentComponent(element.amount, element.jobId , element.subcategorylabel)"
                                 style="font-size:14px">Pay
-                                <i class="fa fa-inr"></i></button>
+                                <i class="fa fa-inr" title="Click to pay the job invoice"></i></button>
+                            <button class="bg-info pull-right" *ngIf="element.freelancerjobattendant == 'NO'"
+                                (click)="updateFreelancerAttendance(element.jobId)"
+                                style="font-size:14px">{{element.fullname | slice:0:10}}.. is here to work
+                                <i class="fa fa-sign-in"
+                                    title="Click when the skilled worker is at the location to provide the service."></i></button>
+                            <button class="bg-warning pull-right" *ngIf="element.isjobactive && element.deactivefromupcomingjob 
+                                && element.isjobaccepted && !element.isfreelancerjobattendant"
+                                (click)="deactivateJob(element.jobId,'voliation')">{{element.fullname}} is absent
+                                <i class="fa fa-times"
+                                    title="Click when the skilled worker is not at job location to provide the service."></i></button>
                         </p>
                         <span class="display-4">
                             <i class="fa fa-inr">{{element.amount | number}}</i></span>
@@ -126,22 +137,25 @@
                     <div class="card-header text-white bg-secondary">
                         <p> <b>{{ 'DASHBOARD_FU_BODY.JOB' | translate }}#{{newlyjob.jobId}} </b>
                             <button class="bg-warning pull-right"
-                                *ngIf="!newlyjob.isjobactive && newlyjob.isdeactive == null"
+                                *ngIf="!newlyjob.isjobactive && newlyjob.deactivefromnewjobs == null && !newlyjob.deactivefromupcomingjob "
                                 (click)="cancelJob(newlyjob.jobId)">Cancel
-                                <i class="fa fa-times"></i></button>
+                                <i class="fa fa-times" title="Click to cancel the job."> </i></button>
                             <button class="bg-info pull-right"
-                                *ngIf="!newlyjob.isjobactive && newlyjob.isdeactive == null"
+                                *ngIf="!newlyjob.isjobactive && newlyjob.deactivefromnewjobs == null && !newlyjob.deactivefromupcomingjob "
                                 (click)="activateJob(newlyjob.jobId)">Activiate
-                                <i class="fa fa-check"></i>
+                                <i class="fa fa-check" title="Click to activate the job"></i>
                             </button>
-                            <button class="bg-danger pull-right"
-                                *ngIf="newlyjob.isjobactive && newlyjob.isdeactive != null"
+                            <button class="bg-danger pull-right" *ngIf="newlyjob.isjobactive && newlyjob.deactivefromnewjobs 
+                                && !newlyjob.isjobaccepted"
+                                (click)="deactivateJob(newlyjob.jobId,'noskilledworkeraccepted')">No One Accepted
+                                <i class="fa fa-times" title="No skilled worker has accepted this job. Please
+                                proceed to remove this job & create new job again"></i></button>
+                            <button class="bg-warning pull-right" *ngIf="!newlyjob.isjobactive 
+                            && newlyjob.deactivefromnewjobs && !newlyjob.deactivefromupcomingjob "
                                 (click)="cancelJob(newlyjob.jobId)">Remove
-                                <i class="fa fa-times"></i></button>
-
-                            <button class="bg-warning pull-right" *ngIf="!newlyjob.isjobactive && newlyjob.isdeactive"
-                                (click)="cancelJob(newlyjob.jobId)">Remove
-                                <i class="fa fa-times"></i></button>
+                                <i class="fa fa-times"
+                                    title="You have not activiated this job on time and the job
+                                start date has crossed current date.So please proceed to remove this job & create new job again"></i></button>
                         </p>
                         <span class="display-4">
                             <i class="fa fa-inr">{{newlyjob.amount | number}}</i></span>
@@ -192,7 +206,7 @@
                         </div>
                     </div>-->
                     <div class="card-footer"
-                        *ngIf="newlyjob.isjobactive && !newlyjob.isjobaccepted &&  newlyjob.isdeactive == null">
+                        *ngIf="newlyjob.isjobactive && !newlyjob.isjobaccepted &&  newlyjob.deactivefromnewjobs == null">
                         <div class="row">
                             <p class="text-primary text-center"><i class="fa fa-info-circle"></i>
                                 <small class="text-muted ">
@@ -403,7 +417,7 @@
         able to see the created job.
     </dd>
     <dt class="col-sm-3">
-        <button class="bg-danger">Remove
+        <button class="bg-danger">No One Accepted
             <i class="fa fa-times"></i></button>
     </dt>
     <dd class="col-sm-9">

@@ -170,20 +170,21 @@
         <div>
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link active" id="collapseFUNewJobs-tab" data-toggle="tab" href="#collapseFUNewJobs"
-                        role="tab" aria-controls="collapseFUNewJobs" aria-selected="true">
-                        <i class="fa fa-map-marker fatab"></i>
-                        <div class="row mb-2"></div><b>
-                            {{ 'DASHBOARD_FU_BODY.UPCOMINGJOBS' | translate }}
-                        </b>
-                        <div class="row mb-2"></div>
+                    <a class="nav-link active" id="collapseFUUpcomingJobs-tab" data-toggle="tab"
+                        href="#collapseFUUpcomingJobs" role="tab" aria-controls="collapseFUUpcomingJobs"
+                        aria-selected="false">
+                        <i class="fa fa-podcast fatab"></i>
+                        <div class="row mb-2"></div><b> {{ 'DASHBOARD_FU_BODY.UPCOMINGJOBS' | translate }}</b>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="collapseFUUpcomingJobs-tab" data-toggle="tab" href="#collapseFUUpcomingJobs"
-                        role="tab" aria-controls="collapseFUUpcomingJobs" aria-selected="false">
-                        <i class="fa fa-podcast fatab"></i>
-                        <div class="row mb-2"></div><b> {{ 'DASHBOARD_FU_BODY.NEWJOBS' | translate }}</b>
+                    <a class="nav-link" id="collapseFUNewJobs-tab" data-toggle="tab" href="#collapseFUNewJobs"
+                        role="tab" aria-controls="collapseFUNewJobs" aria-selected="true">
+                        <i class="fa fa-map-marker fatab"></i>
+                        <div class="row mb-2"></div><b>
+                            {{ 'DASHBOARD_FU_BODY.NEWJOBS' | translate }}
+                        </b>
+                        <div class="row mb-2"></div>
                     </a>
                 </li>
                 <li class="nav-item">
@@ -193,10 +194,17 @@
                         <div class="row mb-2"></div><b>{{ 'DASHBOARD_FU_BODY.COMPLETEDJOBS' | translate }}</b>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="collapseVoliationJobs-tab" data-toggle="tab" href="#collapseVoliationJobs"
+                        role="tab" aria-controls="collapseVoliationJobs" aria-selected="false">
+                        <i class="fa fa-ban fatab"></i>
+                        <div class="row mb-2"></div><b>{{ 'DASHBOARD_FU_BODY.VOLIATIONJOBS' | translate }}</b>
+                    </a>
+                </li>
             </ul>
             <div class="tab-content" id="myTabContent">
-                <div class="tab-pane fade show active" id="collapseFUNewJobs" role="tabpanel"
-                    aria-labelledby="collapseFUNewJobs-tab">
+                <div class="tab-pane fade show active" id="collapseFUUpcomingJobs" role="tabpanel"
+                    aria-labelledby="collapseFUUpcomingJobs-tab">
                     <div class="row mb-2"></div>
                     <div class="row" *ngIf="upcomingJobList.length > 0">
                         <div class="col-lg-4 mb-3 mb-md-0" style="margin-bottom:8px !important"
@@ -205,8 +213,15 @@
                                 <div class="card-header text-white bg-secondary">
                                     <p> <b>{{ 'DASHBOARD_FU_BODY.JOB' | translate }}#{{element.jobId}} </b>
                                         <button class="pull-right" (click)="cancel(element.jobId)"
-                                            style="font-size:14px">{{ 'DASHBOARD_FU_BODY.CANCELJOBBUTTON' | translate }}
+                                            *ngIf="element.cbajobattendantdate == null" style="font-size:14px">{{
+                                            'DASHBOARD_FU_BODY.CANCELJOBBUTTON' | translate }}
                                             <i class="fa fa-remove"></i></button>
+                                        <button class="bg-info pull-right" *ngIf="element.freelancerjobattendant == 'YES'
+                                            && element.freelancerjobattendantdate == null"
+                                            (click)="updateFreelancerAttendance(element.jobId)"
+                                            style="font-size:14px">{{
+                                            'DASHBOARD_FU_BODY.IAMATLOCATION' | translate }}
+                                            <i class="fa fa-sign-in"></i></button>
                                     </p>
                                     <span class="display-4">
                                         <i class="fa fa-inr">{{element.tofreelanceamount | number}}</i></span>
@@ -260,9 +275,12 @@
                                 <div class="card-footer">
                                     <div class="row">
                                         <small class="text-muted ">
-                                            <p class="text-danger">
+                                            <p class="text-danger" *ngIf="!element.deactivefromupcomingjob && element.cbajobattendantdate == null">
                                                 {{ 'DASHBOARD_FU_BODY.CANCELNOTE1' | translate }} <b><u>
                                                         {{ 'DASHBOARD_FU_BODY.CANCELNOTE2' | translate }} </u></b>
+                                            </p>
+                                            <p class="text-danger" *ngIf="element.deactivefromupcomingjob">
+                                                {{ 'DASHBOARD_FU_BODY.VOLIATION_JOB' | translate }}
                                             </p>
                                         </small>
                                     </div>
@@ -277,8 +295,8 @@
                         </h5>
                     </div>
                 </div>
-                <div class="tab-pane fade" id="collapseFUUpcomingJobs" role="tabpanel"
-                    aria-labelledby="collapseFUUpcomingJobs-tab">
+                <div class="tab-pane fade" id="collapseFUNewJobs" role="tabpanel"
+                    aria-labelledby="collapseFUNewJobs-tab">
                     <div class="row mb-3"></div>
                     <div class="row" *ngIf="newJobList.length > 0">
                         <div class="col-sm-4 mb-3 mb-md-0" style="margin-bottom:8px !important"
@@ -424,6 +442,91 @@
                         </h5>
                     </div>
                 </div>
+                <div class="tab-pane fade " id="collapseVoliationJobs" role="tabpanel"
+                    aria-labelledby="collapseVoliationJobs-tab">
+                    <div class="row mb-2"></div>
+                    <div class="row" *ngIf="listOfVolidationJobs.length > 0">
+                        <div class="col-lg-4 mb-3 mb-md-0" style="margin-bottom:8px !important"
+                            *ngFor="let element of listOfVolidationJobs">
+                            <div class="card card-flip h-100 ">
+                                <div class="card-header text-white bg-secondary">
+                                    <p> <b>{{ 'DASHBOARD_FU_BODY.JOB' | translate }}#{{element.jobId}} </b>
+                                        <i class="fa fa-ban fa-2x pull-right" style="color:red"
+                                            *ngIf="element.deactivefromupcomingjob"
+                                            title="{{ 'DASHBOARD_FU_BODY.VOLIATION_JOB' | translate }}"></i>
+                                    </p>
+                                    <span class="display-4">
+                                        <i class="fa fa-inr">{{element.tofreelanceamount | number}}</i></span>
+                                    <p>
+                                        <small class="pull-left">
+                                            <b>{{ 'DASHBOARD_FU_BODY.STARTON' | translate }} </b>
+                                            {{element.jobstartedon}}
+                                        </small>
+                                        <small class="pull-left">
+                                            <b>{{ 'DASHBOARD_FU_BODY.ENDON' | translate }} </b> {{element.jobendedon}}
+                                        </small>
+                                    </p>
+                                    <p *ngIf="element.freelanceuserId > 0">
+                                        <small class="pull-left">
+                                            <b>{{ 'DASHBOARD_FU_BODY.ACCEPTEDON' | translate }}
+                                            </b>{{element.jobaccepteddate}}
+                                        </small>
+                                    </p>
+                                </div>
+                                <div class="card-body">
+                                    <i class="fa fa-briefcase fa-3x float-right"></i>
+                                    <h2> <b>{{ 'DASHBOARD_FU_BODY.JOBDETAILS' | translate }} </b> </h2>
+                                    <p>
+                                        <small class="pull-left">
+                                            <b>{{ 'DASHBOARD_FU_BODY.CLIENTNAME' | translate }} </b> {{element.bizname}}
+                                        </small>
+                                    </p>
+                                    <p>
+                                        <small class="pull-left">
+                                            <b> {{ 'DASHBOARD_FU_BODY.JOBLOCATION' | translate }} </b>
+                                            {{element.joblocation}}
+                                        </small>
+                                    </p>
+                                    <p>
+                                        <small class="pull-left">
+                                            <b>{{ 'DASHBOARD_FU_BODY.PHONENO' | translate }} </b> {{element.cbaphoneno}}
+                                        </small>
+                                    </p>
+                                    <p>
+                                        <small class="pull-left">
+                                            <b>{{ 'DASHBOARD_FU_BODY.TOTAL_HOURSOFWORK' | translate }}</b>
+                                            {{element.totalhoursofjob}}
+                                        </small>
+                                    </p>
+                                    <div class="tooltips">
+                                        <a style="cursor:pointer"
+                                            (click)="openReadMorePopup(element.jobdescription)"><i>
+                                                {{ 'DASHBOARD_FU_BODY.JOBDESCPTION' | translate }}</i></a>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="row">
+                                        <small class="text-muted ">
+                                            <p class="text-danger" *ngIf="!element.deactivefromupcomingjob">
+                                                {{ 'DASHBOARD_FU_BODY.CANCELNOTE1' | translate }} <b><u>
+                                                        {{ 'DASHBOARD_FU_BODY.CANCELNOTE2' | translate }} </u></b>
+                                            </p>
+                                            <p class="text-danger" *ngIf="element.deactivefromupcomingjob">
+                                                {{ 'DASHBOARD_FU_BODY.VOLIATION_JOB' | translate }}
+                                            </p>
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="alert alert-success alert-dismissible fade show w-100" role="alert"
+                        *ngIf="voliationjobsempty">
+                        <h5 class="display-5">
+                            {{ 'DASHBOARD_FU_BODY.NO_VOLIATION_MSG' | translate }}
+                        </h5>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -462,5 +565,12 @@
         <dd class="col-sm-9">
             {{ 'DASHBOARD_FU_BODY.IMPINST_ICON2' | translate }}
         </dd>
+        <dt class="col-sm-3">
+            <i class="fa fa-ban fa-2x pull-left" style="color:red"></i>
+        </dt>
+        <dd class="col-sm-9">
+            {{ 'DASHBOARD_FU_BODY.IMPINST_ICON2' | translate }}
+        </dd>
+
     </dl>
 </div>

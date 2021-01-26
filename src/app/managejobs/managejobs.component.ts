@@ -16,6 +16,8 @@ import { ReadMorePopupComponent } from '../read-more-popup/read-more-popup.compo
 import { DashboardComponent } from '../dashboard/dashboard.component';
 import { config } from '../appconstants/config';
 import { UsersrvdetailsService } from '../AppRestCall/userservice/usersrvdetails.service';
+import { DatePipe } from '@angular/common';
+import { ConfigMsg } from '../appconstants/configmsg';
 
 @Component({
   selector: 'app-managejobs',
@@ -39,6 +41,8 @@ export class ManagejobsComponent implements OnInit {
     class: 'modal-md', backdrop: 'static',
     keyboard: false
   };
+  indiaTime = this.datepipe.transform(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }), "dd/MM/yyyy hh:mm:ss");
+
   newjobsempty: boolean = false;
   upcomingjobsempty: boolean = false;
   completedjobsempty: boolean = false;
@@ -56,13 +60,14 @@ export class ManagejobsComponent implements OnInit {
     private modalService: BsModalService,
     private dashboard: DashboardComponent,
     public usersrvdetails: UsersrvdetailsService,
+    public datepipe: DatePipe,
   ) {
   }
 
   ngOnInit() {
     this.spinnerService.show();
     if (this.router.url.toString() === '/job'.toString()) {
-      const source = timer(1000, 20000);
+      const source = timer(1000, 60000);
       const sourcerefresh = timer(1000, 90000);
       sourcerefresh.subscribe((val: number) => {
         this.getUserAllJobDetailsByUserId();
@@ -120,6 +125,28 @@ export class ManagejobsComponent implements OnInit {
       });
   }
 
+  updateFreelancerAttendance(jobId: number) {
+    this.spinnerService.show();
+    this.freelanceserviceService.getAllFreelanceOnServiceDetailsByJobId(jobId).subscribe((objfreelanceservice: FreelanceOnSvc) => {
+      objfreelanceservice.isfreelancerjobattendant = true;
+      objfreelanceservice.cbajobattendantdate = this.indiaTime.toString();
+      this.freelanceserviceService.saveOrUpdateFreelancerOnService(objfreelanceservice).subscribe((updatedobjfreelanceservice: FreelanceOnSvc) => {
+        if (updatedobjfreelanceservice.jobId > 0) {
+          this.alertService.success('We have noted that our skilled worker is at your work location ' + updatedobjfreelanceservice.joblocation + ' on' + this.indiaTime.toString());
+          this.spinnerService.hide();
+          this.getUserAllJobDetailsByUserId();
+        }
+      },
+        error => {
+          this.spinnerService.hide();
+          this.alertService.error(error);
+        });
+    },
+      error => {
+        this.spinnerService.hide();
+        this.alertService.error(error);
+      });
+  }
   activateJob(jobId: number) {
     if (this.newlyPostedJobs !== null) {
       this.newlyPostedJobs.forEach(element => {
@@ -129,6 +156,8 @@ export class ManagejobsComponent implements OnInit {
             objfreelanceservice.isjobactive = true;
             objfreelanceservice.tocompanyamount = element.tocompanyamount;
             objfreelanceservice.tofreelanceamount = element.tofreelanceamount;
+            objfreelanceservice.isfreelancerjobattendant = false;
+            objfreelanceservice.isjobvoliation = false;
             this.freelanceserviceService.saveOrUpdateFreelancerOnService(objfreelanceservice).subscribe((updatedobjfreelanceservice: FreelanceOnSvc) => {
               if (updatedobjfreelanceservice.jobId > 0) {
                 this.alertService.success('The JobId: ' + jobId + ' is activiated succesfully . We will notify once the skilled worker accepts the job. ');
@@ -171,6 +200,34 @@ export class ManagejobsComponent implements OnInit {
       });
   }
 
+  deactivateJob(jobId: number, reason: string) {
+    this.spinnerService.show();
+    this.freelanceserviceService.getAllFreelanceOnServiceDetailsByJobId(jobId).subscribe((objfreelanceservice: FreelanceOnSvc) => {
+      if (reason == config.voliation.toString()) {
+        objfreelanceservice.isjobvoliation = true;
+      }
+      objfreelanceservice.isjobactive = false;
+      this.freelanceserviceService.saveOrUpdateFreelancerOnService(objfreelanceservice).subscribe((bol: boolean) => {
+        if (bol) {
+          if (reason != config.voliation.toString()) {
+            this.alertService.success('The JobId: ' + jobId + ' is cancelled successfully.');
+          } else {
+            this.alertService.success(ConfigMsg.voliation_msg + ' The JobId: ' + jobId + ' is cancelled successfully.');
+          }
+          this.getUserAllJobDetailsByUserId();
+          this.spinnerService.hide();
+        }
+      },
+        error => {
+          this.spinnerService.hide();
+          this.alertService.error(error);
+        });
+    },
+      error => {
+        this.spinnerService.hide();
+        this.alertService.error(error);
+      });
+  }
   getUserAllJobDetailsByUserId() {
     this.newlyPostedJobs = [];
     this.completedJobs = [];
@@ -189,14 +246,21 @@ export class ManagejobsComponent implements OnInit {
             this.completedJobs.push(element);
           }
         });
-        if (this.upComingPostedJobs != null) {
+        if (this.upComingPostedJobs != null && this.upComingPostedJobs.length > 0) {
+          this.upcomingjobsempty = false;
+        } else {
           this.upcomingjobsempty = true;
-        } else
-          if (this.newlyPostedJobs != null) {
-            this.newjobsempty = true;
-          } else {
-            this.completedjobsempty = true;
-          }
+        }
+        if (this.newlyPostedJobs != null && this.newlyPostedJobs.length > 0) {
+          this.newjobsempty = false;
+        } else {
+          this.newjobsempty = true;
+        }
+        if (this.completedJobs != null && this.completedJobs.length > 0) {
+          this.completedjobsempty = false;
+        } else {
+          this.completedjobsempty = true;
+        }
         this.spinnerService.hide();
       } else {
         this.newjobsempty = true;

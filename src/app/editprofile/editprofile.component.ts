@@ -18,6 +18,7 @@ import {
 } from '@angular/forms';
 import { ApiService, Maps } from '../adapters/api.service';
 import { ReferenceService } from '../AppRestCall/reference/reference.service';
+import { ConfigMsg } from '../appconstants/configmsg';
 @Component({
   selector: 'app-editprofile',
   templateUrl: './editprofile.component.html',
@@ -156,7 +157,7 @@ export class EditprofileComponent implements OnInit {
   }
 
   editProfileFormValidations() {
-    if (this.roleCode === config.user_rolecode_cba.toString() && this.userService.currentUserValue.userbizdetails.biztype == config.biztype_ind_en) {
+    if (this.roleCode === config.user_rolecode_cba.toString() && this.userService.currentUserValue.userbizdetails.biztype == ConfigMsg.biztype_ind_en) {
       this.editprofileForm = this.formBuilder.group({
         username: ['', [Validators.required]],
         firstname: ['', [Validators.required, Validators.maxLength(40)]],
@@ -167,7 +168,7 @@ export class EditprofileComponent implements OnInit {
         phoneno: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern("[0-9 ]{10}")]]
       });
     } else
-      if (this.roleCode === config.user_rolecode_cba.toString() && this.userService.currentUserValue.userbizdetails.biztype == config.biztype_cmp_en) {
+      if (this.roleCode === config.user_rolecode_cba.toString() && this.userService.currentUserValue.userbizdetails.biztype == ConfigMsg.biztype_cmp_en) {
         this.editprofileForm = this.formBuilder.group({
           username: ['', [Validators.required]],
           firstname: ['', [Validators.required, Validators.maxLength(40)]],
@@ -237,7 +238,7 @@ export class EditprofileComponent implements OnInit {
           this.editprofileForm.patchValue({ preferlang: this.edituserobj.preferlang });
           this.editprofileForm.patchValue({ phoneno: this.edituserobj.phoneno });
           this.editprofileForm.patchValue({ fulladdress: this.edituserobj.userbizdetails.fulladdress });
-          if (this.roleCode === config.user_rolecode_cba.toString() && this.userService.currentUserValue.userbizdetails.biztype === config.biztype_cmp_en) {
+          if (this.roleCode === config.user_rolecode_cba.toString() && this.userService.currentUserValue.userbizdetails.biztype === ConfigMsg.biztype_cmp_en) {
             this.editprofileForm.patchValue({ bizname: this.edituserobj.userbizdetails.bizname });
             this.editprofileForm.patchValue({ biztype: this.edituserobj.userbizdetails.biztype });
             this.editprofileForm.patchValue({ bizwebsite: this.edituserobj.userbizdetails.bizwebsite });
@@ -267,7 +268,7 @@ export class EditprofileComponent implements OnInit {
 
   preparetosaveorupdateeditprofile() {
     if (this.userService.currentUserValue.userroles.rolecode === config.user_rolecode_cba.toString() &&
-      this.userService.currentUserValue.userbizdetails.biztype === config.biztype_cmp_en) {
+      this.userService.currentUserValue.userbizdetails.biztype === ConfigMsg.biztype_cmp_en) {
       this.isBizNameAlreadyExist(this.editprofileForm.get('bizname').value);
     }
     if (!this.isbiznamexist) {
@@ -302,7 +303,7 @@ export class EditprofileComponent implements OnInit {
       this.edituserobj.userbizdetails.lat = this.lat;
       this.edituserobj.userbizdetails.lng = this.lng;
     }
-    if (this.roleCode === config.user_rolecode_cba.toString() && this.userService.currentUserValue.userbizdetails.biztype === config.biztype_cmp_en) {
+    if (this.roleCode === config.user_rolecode_cba.toString() && this.userService.currentUserValue.userbizdetails.biztype === ConfigMsg.biztype_cmp_en) {
       this.edituserobj.userbizdetails.bizname = this.editprofileForm.get('bizname').value;
       this.edituserobj.userbizdetails.biztype = this.editprofileForm.get('biztype').value;
       this.edituserobj.userbizdetails.bizwebsite = this.editprofileForm.get('bizwebsite').value;

@@ -32,6 +32,7 @@ export class DashboardoffuComponent implements OnInit {
   upcomingJobList: any = [];
   completedJobList: any = [];
   listOfCompletedJobsWithoutPay: any = [];
+  listOfVolidationJobs: any = [];
   freelancesvcobj: FreelanceOnSvc;
   freelancedetailsbyId: any;
   totalEarnings = 0;
@@ -51,6 +52,7 @@ export class DashboardoffuComponent implements OnInit {
   newjobsempty: boolean = false;
   upcomingjobsempty: boolean = false;
   completedjobsempty: boolean = false;
+  voliationjobsempty: boolean = false;
 
   constructor(
     public userService: UserService,
@@ -68,7 +70,7 @@ export class DashboardoffuComponent implements OnInit {
   }
 
   ngOnInit() {
-    const source = timer(1000, 20000);
+    const source = timer(1000, 60000);
     const sourcerefresh = timer(1000, 90000);
     source.subscribe((val: number) => {
       //this.autoToastNotificationsForFU();
@@ -111,11 +113,33 @@ export class DashboardoffuComponent implements OnInit {
     });
   }
 
+  updateFreelancerAttendance(jobId: number) {
+    this.spinnerService.show();
+    this.freelanceSvc.getAllFreelanceOnServiceDetailsByJobId(jobId).subscribe((objfreelanceservice: FreelanceOnSvc) => {
+      objfreelanceservice.freelancerjobattendantdate = this.indiaTime.toString();
+      this.freelanceSvc.saveOrUpdateFreeLanceOnService(objfreelanceservice).subscribe((updatedobjfreelanceservice: FreelanceOnSvc) => {
+        if (updatedobjfreelanceservice.jobId > 0) {
+          this.alertService.success('We have noted that your at work location at ' + updatedobjfreelanceservice.joblocation + ' on' + this.indiaTime.toString());
+          this.spinnerService.hide();
+          this.getUserAllJobDetailsByUserId();
+        }
+      },
+        error => {
+          this.spinnerService.hide();
+          this.alertService.error(error);
+        });
+    },
+      error => {
+        this.spinnerService.hide();
+        this.alertService.error(error);
+      });
+  }
   getUserAllJobDetailsByUserId() {
     this.newJobList = [];
     this.upcomingJobList = [];
     this.completedJobList = [];
-    this.listOfCompletedJobsWithoutPay = []
+    this.listOfCompletedJobsWithoutPay = [];
+    this.listOfVolidationJobs = [];
     this.spinnerService.show();
     this.freelanceSvc.getUserAllJobDetails(this.userService.currentUserValue.freeLanceDetails.subCategory).subscribe((responseBody: any) => {
       if (responseBody != null) {
@@ -152,32 +176,50 @@ export class DashboardoffuComponent implements OnInit {
           if (element.isjobactive && element.freelanceuserId === null && element.scategory === this.userService.currentUserValue.freeLanceDetails.subCategory) {
             this.newJobList.push(element);
           }
-          if (element.freelanceuserId == this.userService.currentUserValue.userId
+          if (element.isjobactive && element.freelanceuserId == this.userService.currentUserValue.userId
             && !element.isjobcompleted) {
             this.upcomingJobList.push(element);
           }
-          if (element.freelanceuserId == this.userService.currentUserValue.userId
+          if (element.isjobactive && element.freelanceuserId == this.userService.currentUserValue.userId
             && element.scategory === this.userService.currentUserValue.freeLanceDetails.subCategory && element.isjobcompleted) {
             this.completedJobList.push(element);
           }
-          if (element.freelanceuserId == this.userService.currentUserValue.userId
+          if (element.isjobactive && element.freelanceuserId == this.userService.currentUserValue.userId
             && element.scategory === this.userService.currentUserValue.freeLanceDetails.subCategory
             && element.isjobcompleted && !element.isjobamtpaidtocompany) {
             this.listOfCompletedJobsWithoutPay.push(element);
           }
-        });
-        if (this.upcomingJobList != null) {
-          this.upcomingjobsempty = true;
-        } else
-          if (this.newJobList != null) {
-            this.newjobsempty = true;
-          } else {
-            this.completedjobsempty = true;
+          if (element.freelanceuserId == this.userService.currentUserValue.userId
+            && element.scategory === this.userService.currentUserValue.freeLanceDetails.subCategory
+            && element.deactivefromupcomingjob) {
+            this.listOfVolidationJobs.push(element);
           }
+        });
+        if (this.upcomingJobList != null && this.upcomingJobList.length > 0) {
+          this.upcomingjobsempty = false;
+        } else {
+          this.upcomingjobsempty = true;
+        }
+        if (this.newJobList != null && this.newJobList.length > 0) {
+          this.newjobsempty = false;
+        } else {
+          this.newjobsempty = true;
+        }
+        if (this.completedJobList != null && this.completedJobList.length > 0) {
+          this.completedjobsempty = false;
+        } else {
+          this.completedjobsempty = true;
+        }
+        if (this.listOfVolidationJobs != null && this.listOfVolidationJobs.length > 0) {
+          this.voliationjobsempty = false;
+        } else {
+          this.voliationjobsempty = true;
+        }
       } else {
         this.upcomingjobsempty = true;
         this.newjobsempty = true;
         this.completedjobsempty = true;
+        this.voliationjobsempty = true;
       }
       this.builtEarningCard();
     },
@@ -214,7 +256,6 @@ export class DashboardoffuComponent implements OnInit {
       this.totalupcomingEarnings = 0;
       this.upcomingflag = true;
     }
-
     if (this.earnFlag && this.upcomingflag) {
       if (this.userService.currentUserValue.preferlang == config.lang_code_te) {
         this.upcomingpaytext = ConfigMsg.upcomingpay_te;
@@ -230,27 +271,47 @@ export class DashboardoffuComponent implements OnInit {
         { name: this.upcomingpaytext, value: this.totalupcomingEarnings },
         { name: this.totalearnings, value: this.totalEarnings },
       ];
-      this.spinnerService.hide();
     }
+    this.spinnerService.hide();
   }
 
   accept(jobId: number) {
     this.getUserAllJobDetailsByUserId();
-    if (this.listOfCompletedJobsWithoutPay != null) {
-      this.referService.translatetext('You can not accept this job until the previous completed job payment with the client is paid fully. Please arrange the payment with the client to accept new jobs.', this.userService.currentUserValue.preferlang).subscribe(
+    setTimeout(() => {
+      this.spinnerService.show();
+      this.preparetoacceptjob(jobId);
+    }, 3000);
+  }
+
+  private preparetoacceptjob(jobId: number) {
+    if (this.listOfVolidationJobs != null && this.listOfVolidationJobs.length > 0) {
+      this.referService.translatetext('You can not accept this job as there are voliation jobs in upcoming list. Please call us as soon as possible. Util this violation issue not resolved you can not accept new jobs. ', this.userService.currentUserValue.preferlang).subscribe(
         (trantxt: any) => {
           this.alertService.info(trantxt);
+          this.spinnerService.hide();
         },
         error => {
           this.spinnerService.hide();
           this.alertService.error(error);
         }
       );
-    } else if (this.upcomingJobList != null) {
-      if (this.upcomingJobList.length == 3) {
+    } else
+      if (this.listOfCompletedJobsWithoutPay != null && this.listOfCompletedJobsWithoutPay.length > 0) {
+        this.referService.translatetext('You can not accept this job until the previous completed job payment with the client is paid fully. Please arrange the payment with the client to accept new jobs.', this.userService.currentUserValue.preferlang).subscribe(
+          (trantxt: any) => {
+            this.alertService.info(trantxt);
+            this.spinnerService.hide();
+          },
+          error => {
+            this.spinnerService.hide();
+            this.alertService.error(error);
+          }
+        );
+      } else if (this.upcomingJobList != null && this.upcomingJobList.length == 3) {
         this.referService.translatetext('You can not accept this job until atleast one job is completed among 3 in the upcoming jobs.', this.userService.currentUserValue.preferlang).subscribe(
           (trantxt: any) => {
             this.alertService.info(trantxt);
+            this.spinnerService.hide();
           },
           error => {
             this.spinnerService.hide();
@@ -258,13 +319,14 @@ export class DashboardoffuComponent implements OnInit {
           }
         );
       }
-    } else {
+    if (this.listOfVolidationJobs.length == 0 && this.listOfCompletedJobsWithoutPay.length == 0 && this.upcomingJobList.length < 3) {
+      this.spinnerService.show();
       this.freelanceSvc.getAllFreelanceOnServiceDetailsByJobId(jobId).subscribe(
         (freelancedetailsbyId: FreelanceOnSvc) => {
-          this.spinnerService.show();
           if (!freelancedetailsbyId.isjobaccepted) {
             freelancedetailsbyId.freelanceuserId = this.userService.currentUserValue.userId;
             freelancedetailsbyId.isjobaccepted = true;
+            freelancedetailsbyId.jobaccepteddate = this.indiaTime.toString();
             this.freelanceSvc.saveOrUpdateFreeLanceOnService(freelancedetailsbyId).subscribe((updatedobjfreelanceservice: FreelanceOnSvc) => {
               this.referService.translatetext('Thank you for accepting the Job. Go to upcoming job tab to view', this.userService.currentUserValue.preferlang).subscribe(
                 (trantxt: any) => {

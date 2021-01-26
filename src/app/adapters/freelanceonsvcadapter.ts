@@ -35,7 +35,11 @@ export class FreelanceOnSvcAdapter implements Adapter<FreelanceOnSvc> {
             item.jobdescription,
             item.txnid,
             item.futxnid,
-            item.jobaccepteddate
+            item.jobaccepteddate, 
+            item.freelancerjobattendantdate,
+            item.cbajobattendantdate,
+            item.isfreelancerjobattendant,
+            item.isjobvoliation
         );
     }
 }

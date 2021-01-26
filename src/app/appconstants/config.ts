@@ -77,15 +77,10 @@ export const config = {
   banner_video2_te: 'video2te',
   banner_video1_hi: 'video1hi',
   banner_video2_hi: 'video2hi',
-  rolecode_notification: 'FREELANCER_USER_ALL',
+  rolecode_notification: 'TOASTER_FREELANCER_USER_ALL',
   rolecode_toast_notification_cba: 'TOASTER_CLIENT_BUSINESS_ADMINISTRATOR',
   payment_success: 'Success',
-  biztype_ind_en:'Individual',
-  biztype_cmp_en:'Company',
-  biztype_ind_te:'వ్యక్తిగత',
-  biztype_cmp_te:'సంస్థ',
-  biztype_ind_hi:'व्यक्ति',
-  biztype_cmp_hi:'कंपनी',
+  voliation:'voliation'
 };
 
 

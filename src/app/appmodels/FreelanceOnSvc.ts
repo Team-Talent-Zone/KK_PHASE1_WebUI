@@ -30,7 +30,11 @@ export class FreelanceOnSvc {
         public jobdescription: string,
         public txnid: string,
         public futxnid: string,
-        public jobaccepteddate: string
+        public jobaccepteddate: string,
+        public freelancerjobattendantdate: string,
+        public cbajobattendantdate: string,
+        public isfreelancerjobattendant: boolean,
+        public isjobvoliation: boolean
     ) {
 
     }

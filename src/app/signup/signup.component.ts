@@ -87,12 +87,12 @@ export class SignupComponent implements OnInit {
     this.getTermsofServicesAndPrivacyPolicyURLByLang(this.langcode);
     if (this.key === config.shortkey_role_cba.toString()) {
       if (localStorage.getItem('langCode') == config.default_prefer_lang.toString()) {
-        this.biztypelist = [config.biztype_ind_en, config.biztype_cmp_en];
+        this.biztypelist = [ConfigMsg.biztype_ind_en, ConfigMsg.biztype_cmp_en];
       } else {
         if (localStorage.getItem('langCode') == config.lang_code_hi.toString()) {
-          this.biztypelist = [config.biztype_ind_hi, config.biztype_cmp_hi];
+          this.biztypelist = [ConfigMsg.biztype_ind_hi, ConfigMsg.biztype_cmp_hi];
         } else {
-          this.biztypelist = [config.biztype_ind_te, config.biztype_cmp_te];
+          this.biztypelist = [ConfigMsg.biztype_ind_te, ConfigMsg.biztype_cmp_te];
         }
       }
     }
