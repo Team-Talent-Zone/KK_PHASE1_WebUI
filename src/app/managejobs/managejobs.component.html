@@ -39,9 +39,9 @@
                                 (click)="openPaymentComponent(element.amount, element.jobId , element.subcategorylabel)"
                                 style="font-size:14px">Pay
                                 <i class="fa fa-inr" title="Click to pay the job invoice"></i></button>
-                            <button class="bg-info pull-right" *ngIf="element.freelancerjobattendant == 'NO'"
-                                (click)="updateFreelancerAttendance(element.jobId)"
-                                style="font-size:14px">{{element.fullname | slice:0:10}}.. is here to work
+                            <button class="bg-success pull-right" *ngIf="element.freelancerjobattendant == 'NO'"
+                                (click)="updateFreelancerAttendance(element.jobId)">{{element.fullname | slice:0:10}}..
+                                is here to work
                                 <i class="fa fa-sign-in"
                                     title="Click when the skilled worker is at the location to provide the service."></i></button>
                             <button class="bg-warning pull-right" *ngIf="element.isjobactive && element.deactivefromupcomingjob 
@@ -391,6 +391,26 @@
     </dt>
     <dd class="col-sm-9">
         Clicking on this BUTTON indicates the job is completed.
+    </dd>
+    <dt class="col-sm-3">
+        <button class="bg-success pull-left">workername.. is here to work
+            <i class="fa fa-sign-in"></i></button>
+    </dt>
+    <dd class="col-sm-9">
+        <p style="color:red"><i><b>Clicking on this BUTTON indicates the skilled worker is at job location and ready to
+                    work . Always provide
+                    attendance to the skilled worker.
+                </b>
+            </i>
+        </p>
+    </dd>
+    <dt class="col-sm-3">
+        <button class="bg-warning pull-left">#workername is absent
+            <i class="fa fa-times"></i></button>
+    </dt>
+    <dd class="col-sm-9">
+        Clicking on this BUTTON indicates the skilled worker is not at job location before job end date and time. By
+        clicking your notifying to managment to take necceasary action.
     </dd>
     <dt class="col-sm-3 ">
         <button class="bg-success" style="font-size:14px">Pay

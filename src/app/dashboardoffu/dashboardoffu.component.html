@@ -275,7 +275,8 @@
                                 <div class="card-footer">
                                     <div class="row">
                                         <small class="text-muted ">
-                                            <p class="text-danger" *ngIf="!element.deactivefromupcomingjob && element.cbajobattendantdate == null">
+                                            <p class="text-danger"
+                                                *ngIf="!element.deactivefromupcomingjob && element.cbajobattendantdate == null">
                                                 {{ 'DASHBOARD_FU_BODY.CANCELNOTE1' | translate }} <b><u>
                                                         {{ 'DASHBOARD_FU_BODY.CANCELNOTE2' | translate }} </u></b>
                                             </p>
@@ -538,6 +539,14 @@
         </dt>
         <dd class="col-sm-9"> </dd>
         <dt class="col-sm-3 mb-3">
+            <button class="bg-info pull-left" style="font-size:14px">{{
+                'DASHBOARD_FU_BODY.IAMATLOCATION' | translate }}
+                <i class="fa fa-sign-in"></i></button>
+        </dt>
+        <dd class="col-sm-9 mb-3">
+            {{ 'DASHBOARD_FU_BODY.IMPINST_IAMHERE' | translate }}
+        </dd>
+        <dt class="col-sm-3 mb-3">
             <button class="pull-left" style="font-size:14px">{{ 'DASHBOARD_FU_BODY.CANCELJOBBUTTON' | translate }}
                 <i class="fa fa-remove"></i></button>
         </dt>
@@ -551,7 +560,7 @@
         </dt>
         <dd class="col-sm-9">
             <p>{{ 'DASHBOARD_FU_BODY.IMPINST_NEWJOBS_ACCEPTBUTTON' | translate }}</p>
-            <p>{{ 'DASHBOARD_FU_BODY.IMPINST_HEADER_NOACCEPTBUTTON' | translate }}</p>
+            <p style="color:red"><i><b>{{ 'DASHBOARD_FU_BODY.IMPINST_HEADER_NOACCEPTBUTTON' | translate }}</b></i></p>
         </dd>
         <dt class="col-sm-3">
             <i class="fa fa-minus-circle fa-2x pull-left" style="color:red"></i>

@@ -86,7 +86,7 @@ export class HometestimonialsComponent implements OnInit {
     }
   }
   onToggleNext() {
-    if (this.listofTestimonals.length == this.endindex) {
+    if (this.listofTestimonals.length == this.endindex || this.listofTestimonals.length < this.endindex) {
       this.onTogglePrev();
     } else {
       this.startindex = this.endindex;
