@@ -468,7 +468,7 @@
                                                 <i class="fa fa-university  form-control-icon"></i>
                                             </span>
                                             <input type="password" formControlName="verfiyaccountno"
-                                                class="form-control"
+                                                class="form-control" autocomplete="new-password"
                                                 placeholder="{{'DASHBOARD_FU_PROFILE.PROFILE_BANKACCT_VERIFY' | translate }}"
                                                 [ngClass]="{ 'is-invalid': issubmit && f.verfiyaccountno.errors }">
                                             <div *ngIf="issubmit && f.verfiyaccountno.errors" class="invalid-feedback">
