@@ -18,6 +18,7 @@ import { config } from '../appconstants/config';
 import { UsersrvdetailsService } from '../AppRestCall/userservice/usersrvdetails.service';
 import { DatePipe } from '@angular/common';
 import { ConfigMsg } from '../appconstants/configmsg';
+import { ConfirmationDialogService } from '../AppRestCall/confirmation/confirmation-dialog.service';
 
 @Component({
   selector: 'app-managejobs',
@@ -62,6 +63,7 @@ export class ManagejobsComponent implements OnInit {
     private dashboard: DashboardComponent,
     public usersrvdetails: UsersrvdetailsService,
     public datepipe: DatePipe,
+    public confirmationDialogService: ConfirmationDialogService
   ) {
   }
 
@@ -127,26 +129,31 @@ export class ManagejobsComponent implements OnInit {
   }
 
   updateFreelancerAttendance(jobId: number) {
-    this.spinnerService.show();
-    this.freelanceserviceService.getAllFreelanceOnServiceDetailsByJobId(jobId).subscribe((objfreelanceservice: FreelanceOnSvc) => {
-      objfreelanceservice.isfreelancerjobattendant = true;
-      objfreelanceservice.cbajobattendantdate = this.indiaTimeFormat.toString();
-      this.freelanceserviceService.saveOrUpdateFreelancerOnService(objfreelanceservice).subscribe((updatedobjfreelanceservice: FreelanceOnSvc) => {
-        if (updatedobjfreelanceservice.jobId > 0) {
-          this.alertService.success('We have noted that our skilled worker is at your work location ' + updatedobjfreelanceservice.joblocation + ' on' + this.indiaTime.toString());
-          this.spinnerService.hide();
-          this.getUserAllJobDetailsByUserId();
+    this.confirmationDialogService.confirm('Please confirm', 'Your confirming that our skilled worker at the job location?', 'Present', 'Cancel')
+      .then((confirmed) => {
+        if (confirmed) {
+          this.spinnerService.show();
+          this.freelanceserviceService.getAllFreelanceOnServiceDetailsByJobId(jobId).subscribe((objfreelanceservice: FreelanceOnSvc) => {
+            objfreelanceservice.isfreelancerjobattendant = true;
+            objfreelanceservice.cbajobattendantdate = this.indiaTimeFormat.toString();
+            this.freelanceserviceService.saveOrUpdateFreelancerOnService(objfreelanceservice).subscribe((updatedobjfreelanceservice: FreelanceOnSvc) => {
+              if (updatedobjfreelanceservice.jobId > 0) {
+                this.alertService.success('We have noted that our skilled worker is at your work location ' + updatedobjfreelanceservice.joblocation + ' on' + this.indiaTime.toString());
+                this.spinnerService.hide();
+                this.getUserAllJobDetailsByUserId();
+              }
+            },
+              error => {
+                this.spinnerService.hide();
+                this.alertService.error(error);
+              });
+          },
+            error => {
+              this.spinnerService.hide();
+              this.alertService.error(error);
+            });
         }
-      },
-        error => {
-          this.spinnerService.hide();
-          this.alertService.error(error);
-        });
-    },
-      error => {
-        this.spinnerService.hide();
-        this.alertService.error(error);
-      });
+      })
   }
   activateJob(jobId: number) {
     if (this.newlyPostedJobs !== null) {
@@ -181,54 +188,65 @@ export class ManagejobsComponent implements OnInit {
   }
 
   cancelJob(jobId: number) {
-    this.spinnerService.show();
-    this.freelanceserviceService.getAllFreelanceOnServiceDetailsByJobId(jobId).subscribe((objfreelanceservice: FreelanceOnSvc) => {
-      this.freelanceserviceService.deleteFreelanceSVCDetails(objfreelanceservice).subscribe((bol: boolean) => {
-        if (bol) {
-          this.alertService.success('The JobId: ' + jobId + ' is cancelled successfully.');
-          this.spinnerService.hide();
-          this.getUserAllJobDetailsByUserId();
+    this.confirmationDialogService.confirm('Please confirm', 'Do you want to cancel this jobId#' + jobId + ' ?', 'Ok', 'Cancel')
+      .then((confirmed) => {
+        if (confirmed) {
+          this.spinnerService.show();
+          this.freelanceserviceService.getAllFreelanceOnServiceDetailsByJobId(jobId).subscribe((objfreelanceservice: FreelanceOnSvc) => {
+            this.freelanceserviceService.deleteFreelanceSVCDetails(objfreelanceservice).subscribe((bol: boolean) => {
+              if (bol) {
+                this.alertService.success('The JobId: ' + jobId + ' is cancelled successfully.');
+                this.spinnerService.hide();
+                this.getUserAllJobDetailsByUserId();
+              }
+            },
+              error => {
+                this.spinnerService.hide();
+                this.alertService.error(error);
+              });
+          },
+            error => {
+              this.spinnerService.hide();
+              this.alertService.error(error);
+            });
         }
-      },
-        error => {
-          this.spinnerService.hide();
-          this.alertService.error(error);
-        });
-    },
-      error => {
-        this.spinnerService.hide();
-        this.alertService.error(error);
-      });
+      })
   }
 
   deactivateJob(jobId: number, reason: string) {
-    this.spinnerService.show();
-    this.freelanceserviceService.getAllFreelanceOnServiceDetailsByJobId(jobId).subscribe((objfreelanceservice: FreelanceOnSvc) => {
-      if (reason == config.voliation.toString()) {
-        objfreelanceservice.isjobvoliation = true;
-      }
-      objfreelanceservice.isjobactive = false;
-      this.freelanceserviceService.saveOrUpdateFreelancerOnService(objfreelanceservice).subscribe((bol: boolean) => {
-        if (bol) {
-          if (reason != config.voliation.toString()) {
-            this.alertService.success('The JobId: ' + jobId + ' is cancelled successfully.');
-          } else {
-            this.alertService.success(ConfigMsg.voliation_msg + ' The JobId: ' + jobId + ' is cancelled successfully.');
-          }
-          this.getUserAllJobDetailsByUserId();
-          this.spinnerService.hide();
+    this.confirmationDialogService.confirm('Please confirm', 'Are you sure on the decision ?', 'Yes', 'No')
+      .then((confirmed) => {
+        if (confirmed) {
+          this.spinnerService.show();
+          this.freelanceserviceService.getAllFreelanceOnServiceDetailsByJobId(jobId).subscribe((objfreelanceservice: FreelanceOnSvc) => {
+            if (reason == config.voliation.toString()) {
+              objfreelanceservice.isjobvoliation = true;
+            }
+            objfreelanceservice.isjobactive = false;
+            this.freelanceserviceService.saveOrUpdateFreelancerOnService(objfreelanceservice).subscribe((bol: boolean) => {
+              if (bol) {
+                if (reason != config.voliation.toString()) {
+                  this.alertService.success('The JobId: ' + jobId + ' is cancelled successfully.');
+                } else {
+                  this.alertService.success(ConfigMsg.voliation_msg + ' The JobId: ' + jobId + ' is cancelled successfully.');
+                }
+                this.getUserAllJobDetailsByUserId();
+                this.spinnerService.hide();
+              }
+            },
+              error => {
+                this.spinnerService.hide();
+                this.alertService.error(error);
+              });
+          },
+            error => {
+              this.spinnerService.hide();
+              this.alertService.error(error);
+            });
         }
-      },
-        error => {
-          this.spinnerService.hide();
-          this.alertService.error(error);
-        });
-    },
-      error => {
-        this.spinnerService.hide();
-        this.alertService.error(error);
-      });
+      })
   }
+
   getUserAllJobDetailsByUserId() {
     this.newlyPostedJobs = [];
     this.completedJobs = [];

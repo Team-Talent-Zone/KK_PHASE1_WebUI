@@ -1,3 +1,4 @@
+import { ConfirmationDialogService } from './../AppRestCall/confirmation/confirmation-dialog.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { UsersrvdetailsService } from './../AppRestCall/userservice/usersrvdetails.service';
 import { ReferenceAdapter } from './../adapters/referenceadapter';
@@ -17,6 +18,7 @@ import { timer } from 'rxjs';
 import { ModalOptions } from 'ngx-bootstrap';
 import { ReadMorePopupComponent } from '../read-more-popup/read-more-popup.component';
 import { ConfigMsg } from '../appconstants/configmsg';
+import { Inject } from '@angular/core';
 
 @Component({
   selector: 'app-dashboard',
@@ -413,4 +415,5 @@ export class DashboardComponent implements OnInit {
     }
     this.translate.use(preferedLang);
   }
+
 }

@@ -1,3 +1,4 @@
+import { ConfirmationDialogService } from './../AppRestCall/confirmation/confirmation-dialog.service';
 import { CustomToastComponent } from './../app.component';
 import { UserService } from './../AppRestCall/user/user.service';
 import { Component, Input, OnInit } from '@angular/core';
@@ -67,7 +68,8 @@ export class DashboardoffuComponent implements OnInit {
     private freelanceSvc: FreelanceOnSvcService,
     private toaster: Toaster,
     private router: Router,
-    public datepipe: DatePipe
+    public datepipe: DatePipe,
+    public confirmationDialogService: ConfirmationDialogService
   ) {
   }
 
@@ -175,11 +177,9 @@ export class DashboardoffuComponent implements OnInit {
               }
             );
           }
-          console.log('  this.element ', element);
           if (element.isjobactive && element.freelanceuserId === this.userService.currentUserValue.userId &&
             element.scategory === this.userService.currentUserValue.freeLanceDetails.subCategory &&
             !element.isjobaccepted) {
-            console.log('  this.element inside', element);
             this.newJobList.push(element);
           }
           if (element.isjobactive && element.freelanceuserId == this.userService.currentUserValue.userId
@@ -222,7 +222,6 @@ export class DashboardoffuComponent implements OnInit {
         } else {
           this.voliationjobsempty = true;
         }
-        console.log('  this.newJobList ', this.newJobList);
       } else {
         this.upcomingjobsempty = true;
         this.newjobsempty = true;
@@ -373,62 +372,65 @@ export class DashboardoffuComponent implements OnInit {
   }
 
   cancel(jobId: number) {
-    this.spinnerService.show();
-    this.listofalljobs = [];
-    // tslint:disable-next-line: max-line-length
-    this.freelanceSvc.getUserAllJobDetails(this.userService.currentUserValue.freeLanceDetails.subCategory).subscribe((resp: FreelanceOnSvc) => {
-      this.listofalljobs = resp;
-      for (const element of this.listofalljobs) {
-        if (element.freelanceuserId == this.userService.currentUserValue.userId && element.jobId == jobId
-          && !element.isjobcompleted) {
-          if (!element.diffinmins) {
-            this.freelanceSvc.getAllFreelanceOnServiceDetailsByJobId(jobId).subscribe(
-              (freelancedetailsbyId: FreelanceOnSvc) => {
-                freelancedetailsbyId.freelanceuserId = null;
-                freelancedetailsbyId.isjobaccepted = false;
-                freelancedetailsbyId.isjobcancel = false;
-                this.freelanceSvc.saveOrUpdateFreeLanceOnService(freelancedetailsbyId).subscribe((updatedobjfreelanceservice: FreelanceOnSvc) => {
-                  this.referService.translatetext('Hello! The Job is cancelled succesfully.', this.userService.currentUserValue.preferlang).subscribe(
-                    (trantxt: any) => {
-                      this.getUserAllJobDetailsByUserId();
+    this.confirmationDialogService.confirm('Please confirm', 'Do you really want to cancel the Job Id#' + jobId + ' ?', 'Ok', 'Cancel')
+      .then((confirmed) => {
+        if (confirmed) {
+          this.spinnerService.show();
+          this.listofalljobs = [];
+          this.freelanceSvc.getUserAllJobDetails(this.userService.currentUserValue.freeLanceDetails.subCategory).subscribe((resp: FreelanceOnSvc) => {
+            this.listofalljobs = resp;
+            for (const element of this.listofalljobs) {
+              if (element.freelanceuserId == this.userService.currentUserValue.userId && element.jobId == jobId
+                && !element.isjobcompleted) {
+                if (!element.diffinmins) {
+                  this.freelanceSvc.getAllFreelanceOnServiceDetailsByJobId(jobId).subscribe(
+                    (freelancedetailsbyId: FreelanceOnSvc) => {
+                      freelancedetailsbyId.freelanceuserId = null;
+                      freelancedetailsbyId.isjobaccepted = false;
+                      freelancedetailsbyId.isjobcancel = false;
+                      this.freelanceSvc.saveOrUpdateFreeLanceOnService(freelancedetailsbyId).subscribe((updatedobjfreelanceservice: FreelanceOnSvc) => {
+                        this.referService.translatetext('Hello! The Job is cancelled succesfully.', this.userService.currentUserValue.preferlang).subscribe(
+                          (trantxt: any) => {
+                            this.getUserAllJobDetailsByUserId();
+                            this.spinnerService.hide();
+                            this.alertService.info(trantxt);
+                          },
+                          error => {
+                            this.spinnerService.hide();
+                            this.alertService.error(error);
+                          }
+                        );
+                      },
+                        error => {
+                          this.spinnerService.hide();
+                          this.alertService.error(error);
+                        });
+                    },
+                    error => {
                       this.spinnerService.hide();
+                      this.alertService.error(error);
+                    });
+                } else {
+                  this.referService.translatetext("Cancellation only possible before 15 mins of accepting the job. Any concerns, please call support@kaamkarega.com or read terms of services.", this.userService.currentUserValue.preferlang).subscribe(
+                    (trantxt: any) => {
                       this.alertService.info(trantxt);
+                      this.spinnerService.hide();
                     },
                     error => {
                       this.spinnerService.hide();
                       this.alertService.error(error);
                     }
                   );
-                },
-                  error => {
-                    this.spinnerService.hide();
-                    this.alertService.error(error);
-                  });
-              },
-              error => {
-                this.spinnerService.hide();
-                this.alertService.error(error);
-              });
-          } else {
-            this.referService.translatetext("Cancellation only possible before 15 mins of accepting the job. Any concerns, please call support@kaamkarega.com or read terms of services.", this.userService.currentUserValue.preferlang).subscribe(
-              (trantxt: any) => {
-                this.alertService.info(trantxt);
-                this.spinnerService.hide();
-              },
-              error => {
-                this.spinnerService.hide();
-                this.alertService.error(error);
+                }
               }
-            );
-          }
-
+            }
+          },
+            error => {
+              this.spinnerService.hide();
+              this.alertService.error(error);
+            });
         }
-      }
-    },
-      error => {
-        this.spinnerService.hide();
-        this.alertService.error(error);
-      });
+      })
   }
 
   autoToastNotificationsForFU() {

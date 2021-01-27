@@ -1,3 +1,4 @@
+import { NgbModalBackdrop } from '@ng-bootstrap/ng-bootstrap/modal/modal-backdrop';
 import { NewServiceAdapter } from './adapters/newserviceadapter';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -70,14 +71,16 @@ import { ReadMoreComponent } from './read-more/read-more.component';
 import { DataTableModule } from 'ng-angular8-datatable';
 import { ReadMorePopupComponent } from './read-more-popup/read-more-popup.component';
 import { DatePipe } from '@angular/common';
-
+import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
+import { ConfirmationDialogService } from './AppRestCall/confirmation/confirmation-dialog.service';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
 }
 
 @NgModule({
-  declarations: [	
+  declarations: [
     AppComponent,
     HomeComponent,
     FooterComponent,
@@ -119,8 +122,9 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     Error404pageComponent,
     CustomToastComponent,
     ReadMoreComponent,
-    ReadMorePopupComponent
-   ],
+    ReadMorePopupComponent,
+    ConfirmationDialogComponent
+  ],
   imports: [
     ToastNotificationsModule,
     OwlDateTimeModule,
@@ -142,9 +146,10 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
         deps: [HttpClient]
       }
     }),
+    NgbModule,
     Ng4LoadingSpinnerModule.forRoot(),
     MatomoModule,
-    DataTableModule
+    DataTableModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
@@ -170,7 +175,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
       useClass: BasicAuthHtppInterceptorService,
       multi: true
     },
-    DatePipe
+    DatePipe,
+    ConfirmationDialogService
   ],
   entryComponents: [
     ViewaccountdetailsComponent,
@@ -180,7 +186,9 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     UserservicecartComponent,
     PaymentComponent,
     CustomToastComponent,
-    ReadMorePopupComponent
+    ReadMorePopupComponent,
+    ConfirmationDialogComponent,
+    
   ],
   bootstrap: [AppComponent]
 })

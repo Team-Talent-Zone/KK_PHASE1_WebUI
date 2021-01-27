@@ -25,6 +25,10 @@ export class FreelanceserviceService {
     return this.http.get(`${environment.apiUrl}/getUserAllJobDetailsByUserId/` + userId + '/');
   }
 
+  getUserAllJobDetails() {
+    return this.http.get(`${environment.apiUrl}/getUserAllJobDetails/`);
+  }
+
   getAllFreelanceOnServiceDetailsByJobId(jobId: number) {
     return this.http.get(`${environment.apiUrl}/getAllFreelanceOnServiceDetailsByJobId/` + jobId + '/');
   }
