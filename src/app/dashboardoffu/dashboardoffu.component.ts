@@ -49,6 +49,8 @@ export class DashboardoffuComponent implements OnInit {
     keyboard: false
   };
   indiaTime = this.datepipe.transform(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }), "dd/MM/yyyy hh:mm:ss");
+  indiaTimeFormat = this.datepipe.transform(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }), "yyyy-MM-dd hh:mm:ss");
+
   newjobsempty: boolean = false;
   upcomingjobsempty: boolean = false;
   completedjobsempty: boolean = false;
@@ -326,7 +328,7 @@ export class DashboardoffuComponent implements OnInit {
           if (!freelancedetailsbyId.isjobaccepted) {
             freelancedetailsbyId.freelanceuserId = this.userService.currentUserValue.userId;
             freelancedetailsbyId.isjobaccepted = true;
-            freelancedetailsbyId.jobaccepteddate = this.indiaTime.toString();
+            freelancedetailsbyId.jobaccepteddate = this.indiaTimeFormat.toString();
             this.freelanceSvc.saveOrUpdateFreeLanceOnService(freelancedetailsbyId).subscribe((updatedobjfreelanceservice: FreelanceOnSvc) => {
               this.referService.translatetext('Thank you for accepting the Job. Go to upcoming job tab to view', this.userService.currentUserValue.preferlang).subscribe(
                 (trantxt: any) => {

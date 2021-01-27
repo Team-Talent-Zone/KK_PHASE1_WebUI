@@ -42,6 +42,7 @@ export class ManagejobsComponent implements OnInit {
     keyboard: false
   };
   indiaTime = this.datepipe.transform(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }), "dd/MM/yyyy hh:mm:ss");
+  indiaTimeFormat = this.datepipe.transform(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }), "yyyy-MM-dd hh:mm:ss");
 
   newjobsempty: boolean = false;
   upcomingjobsempty: boolean = false;
@@ -129,7 +130,7 @@ export class ManagejobsComponent implements OnInit {
     this.spinnerService.show();
     this.freelanceserviceService.getAllFreelanceOnServiceDetailsByJobId(jobId).subscribe((objfreelanceservice: FreelanceOnSvc) => {
       objfreelanceservice.isfreelancerjobattendant = true;
-      objfreelanceservice.cbajobattendantdate = this.indiaTime.toString();
+      objfreelanceservice.cbajobattendantdate = this.indiaTimeFormat.toString();
       this.freelanceserviceService.saveOrUpdateFreelancerOnService(objfreelanceservice).subscribe((updatedobjfreelanceservice: FreelanceOnSvc) => {
         if (updatedobjfreelanceservice.jobId > 0) {
           this.alertService.success('We have noted that our skilled worker is at your work location ' + updatedobjfreelanceservice.joblocation + ' on' + this.indiaTime.toString());

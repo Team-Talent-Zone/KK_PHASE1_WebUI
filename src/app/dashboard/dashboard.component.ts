@@ -141,9 +141,9 @@ export class DashboardComponent implements OnInit {
     this.usersrvdetails.getAllBellNotificationsByRoleCode(roleCode).subscribe(
       (notifcationlist: any) => {
         if (notifcationlist != null) {
-          if (this.userService.currentUserValue.preferlang !== config.default_prefer_lang) {
+          if (this.userService.currentUserValue.preferlang !== config.default_prefer_lang && this.userService.currentUserValue.userroles.rolecode == config.user_rolecode_fu.toString()) {
             notifcationlist.forEach((element: any) => {
-              if (element.subcategory = this.userService.currentUserValue.freeLanceDetails.subCategory) {
+              if (element.subcategory.toString() == this.userService.currentUserValue.freeLanceDetails.subCategory.toString()) {
                 this.referService.translatetext(element.msg.toString(), this.userService.currentUserValue.preferlang).subscribe(
                   (trantxt: any) => {
                     element.msg = trantxt;
@@ -160,7 +160,7 @@ export class DashboardComponent implements OnInit {
           } else {
             if (this.userService.currentUserValue.userroles.rolecode == config.user_rolecode_fu.toString()) {
               notifcationlist.forEach((element: any) => {
-                if (element.subcategory = this.userService.currentUserValue.freeLanceDetails.subCategory) {
+                if (element.subcategory.toString() == this.userService.currentUserValue.freeLanceDetails.subCategory.toString()) {
                   this.notifcationbellList.push(element);
                 }
               });
