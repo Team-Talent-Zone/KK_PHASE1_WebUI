@@ -175,15 +175,20 @@ export class DashboardoffuComponent implements OnInit {
               }
             );
           }
-          if (element.isjobactive && element.freelanceuserId === null && element.scategory === this.userService.currentUserValue.freeLanceDetails.subCategory) {
+          console.log('  this.element ', element);
+          if (element.isjobactive && element.freelanceuserId === this.userService.currentUserValue.userId &&
+            element.scategory === this.userService.currentUserValue.freeLanceDetails.subCategory &&
+            !element.isjobaccepted) {
+            console.log('  this.element inside', element);
             this.newJobList.push(element);
           }
           if (element.isjobactive && element.freelanceuserId == this.userService.currentUserValue.userId
-            && !element.isjobcompleted) {
+            && !element.isjobcompleted && element.isjobaccepted) {
             this.upcomingJobList.push(element);
           }
           if (element.isjobactive && element.freelanceuserId == this.userService.currentUserValue.userId
-            && element.scategory === this.userService.currentUserValue.freeLanceDetails.subCategory && element.isjobcompleted) {
+            && element.scategory === this.userService.currentUserValue.freeLanceDetails.subCategory &&
+            element.isjobcompleted) {
             this.completedJobList.push(element);
           }
           if (element.isjobactive && element.freelanceuserId == this.userService.currentUserValue.userId
@@ -217,6 +222,7 @@ export class DashboardoffuComponent implements OnInit {
         } else {
           this.voliationjobsempty = true;
         }
+        console.log('  this.newJobList ', this.newJobList);
       } else {
         this.upcomingjobsempty = true;
         this.newjobsempty = true;

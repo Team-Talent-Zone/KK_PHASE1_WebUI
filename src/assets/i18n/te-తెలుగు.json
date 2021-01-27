@@ -220,6 +220,7 @@
     "PROFILE_EXP_REQ":"అనుభవం అవసరం",
     "PROFILE_EXP_EXCEED":"అనుభవం 2 అంకెలు మించకూడదు",
     "PROFILE_DIGIT":"అంకెలు మాత్రమే ఉండాలి",
+    "PROFILE_ONLYALPHATES":"వర్ణమాల మాత్రమే ఉండాలి",
     "PROFILE_HOURLYRATE":"గంటకు రేటు*",
     "PROFILE_HOURLYRATE_REQ":"గంట రేటు అవసరం",
     "PROFILE_HOURLYRATE_EXCEED":"గంట రేటు 5 అంకెలు మించదు",

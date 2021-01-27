@@ -438,6 +438,9 @@
                                                 <div *ngIf="f.accountname.errors.maxlength">
                                                     {{ 'DASHBOARD_FU_PROFILE.PROFILE_BANKACCTNAME_EXCEED' | translate }}
                                                 </div>
+                                                <div *ngIf="f.accountname.errors.pattern">{{
+                                                    'DASHBOARD_FU_PROFILE.PROFILE_ONLYALPHATES' | translate }}
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="form-group">

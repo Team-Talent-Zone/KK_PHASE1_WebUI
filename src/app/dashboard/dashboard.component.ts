@@ -92,18 +92,20 @@ export class DashboardComponent implements OnInit {
 
   getAllBellNotifications() {
     this.notifcationbellList = [];
-    if (this.userService.currentUserValue.userroles.rolecode == config.user_rolecode_fu.toString()) {
-      this.getNotificationUserByUserId();
-      setTimeout(() => {
-        this.spinnerService.show();
-        this.getNotificationUserByRole(config.rolecode_notification);
-        this.spinnerService.hide();
-      }, 3000);
-    } else {
-      if (this.userService.currentUserValue.userroles.rolecode == config.user_rolecode_cba.toString()) {
+    if (this.userService.currentUserValue != null) {
+      if (this.userService.currentUserValue.userroles.rolecode == config.user_rolecode_fu.toString()) {
         this.getNotificationUserByUserId();
+        /* setTimeout(() => {
+           this.spinnerService.show();
+           this.getNotificationUserByRole(config.rolecode_notification);
+           this.spinnerService.hide();
+         }, 3000);*/
       } else {
-        this.getNotificationUserByRole(this.userService.currentUserValue.userroles.rolecode);
+        if (this.userService.currentUserValue.userroles.rolecode == config.user_rolecode_cba.toString()) {
+          this.getNotificationUserByUserId();
+        } else {
+          this.getNotificationUserByRole(this.userService.currentUserValue.userroles.rolecode);
+        }
       }
     }
   }
@@ -114,19 +116,25 @@ export class DashboardComponent implements OnInit {
         if (notifcationlist != null) {
           if (this.userService.currentUserValue.preferlang !== config.default_prefer_lang) {
             notifcationlist.forEach((element: any) => {
-              this.referService.translatetext(element.msg.toString(), this.userService.currentUserValue.preferlang).subscribe(
-                (trantxt: any) => {
-                  element.msg = trantxt;
-                  this.notifcationbellList.push(element);
-                },
-                error => {
-                  this.spinnerService.hide();
-                  this.alertService.error(error);
-                }
-              );
+              if (element.subcategory.toString() == this.userService.currentUserValue.freeLanceDetails.subCategory.toString()) {
+                this.referService.translatetext(element.msg.toString(), this.userService.currentUserValue.preferlang).subscribe(
+                  (trantxt: any) => {
+                    element.msg = trantxt;
+                    this.notifcationbellList.push(element);
+                  },
+                  error => {
+                    this.spinnerService.hide();
+                    this.alertService.error(error);
+                  }
+                );
+              }
             });
           } else {
-            this.notifcationbellList = notifcationlist;
+            notifcationlist.forEach((element: any) => {
+              if (element.subcategory.toString() == this.userService.currentUserValue.freeLanceDetails.subCategory.toString()) {
+                this.notifcationbellList.push(element);
+              }
+            });
           }
         }
       },

@@ -392,8 +392,6 @@ export class DashboardsearchbyfilterComponent implements OnInit {
       } else {
         this.spinnerService.show();
         let sdate = this.getDateFormat(startdate);
-        console.log('this is sdate' , sdate);
-        console.log('this is this.code' , this.code)
         this.userService.getUserDetailsByJobAvailableByCreateOn(sdate, this.code).subscribe(
           (userObjList: any) => {
             if (userObjList !== null) {

@@ -220,6 +220,7 @@
     "PROFILE_EXP_REQ":"अनुभव की आवश्यकता है",
     "PROFILE_EXP_EXCEED":"अनुभव 2 अंकों से अधिक नहीं हो सकता",
     "PROFILE_DIGIT":"केवल अंक होना चाहिए",
+    "PROFILE_ONLYALPHATES":"केवल वर्णमाला होनी चाहिए",
     "PROFILE_HOURLYRATE":"प्रति घंटा - दर*",
     "PROFILE_HOURLYRATE_REQ":"प्रति घंटा की दर से आवश्यक है",
     "PROFILE_HOURLYRATE_EXCEED":"हर घंटे की दर 5 अंकों से अधिक नहीं हो सकती",

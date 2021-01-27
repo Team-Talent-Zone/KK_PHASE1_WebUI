@@ -223,6 +223,7 @@
      "PROFILE_EXP_REQ":"Experience is required",
      "PROFILE_EXP_EXCEED":"Experience cannot exceed 2 digits",
      "PROFILE_DIGIT":"Must be digit only",
+     "PROFILE_ONLYALPHATES":"Must be only alphabet",
      "PROFILE_HOURLYRATE":"Hourly Rate*",
      "PROFILE_HOURLYRATE_REQ":"Hourly Rate is required",
      "PROFILE_HOURLYRATE_EXCEED":"Hourly Rate cant exceed 5 digits",

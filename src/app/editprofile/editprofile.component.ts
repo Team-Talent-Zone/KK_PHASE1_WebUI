@@ -199,7 +199,7 @@ export class EditprofileComponent implements OnInit {
             uploadValidPhotoidImgUrl: ['', [Validators.required]],
             avtarurl: ['', [Validators.required]],
             hourlyRate: ['', [Validators.required, Validators.maxLength(5), Validators.pattern('^[0-9]*$')]],
-            accountname: ['', [Validators.required, Validators.maxLength(20)]],
+            accountname: ['', [Validators.required, Validators.maxLength(20), Validators.pattern('^[a-zA-Z ]*$')]],
             accountno: ['', [Validators.required, Validators.maxLength(15), Validators.pattern('^[0-9]*$')]],
             verfiyaccountno: ['', [Validators.required]],
             ifsc: ['', [Validators.required, Validators.minLength(11), Validators.maxLength(11)]],
