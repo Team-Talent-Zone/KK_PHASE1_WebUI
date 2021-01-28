@@ -2,7 +2,7 @@
 <hr>
 <div class="row mb-2"></div>
 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-  <div class="panel panel-default active">
+  <div class="panel panel-default">
     <div class="panel-heading" role="tab" id="headingOne">
       <h4 class="panel-title">
         <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true"
@@ -78,6 +78,11 @@
             <a class="btn btn-warning" data-toggle="collapse" href="#resolvedVoliations" role="button"
               aria-expanded="false" aria-controls="resolvedVoliations">
               <i class="fa fa-reorder"></i> Resolved Voliations
+              <span *ngIf="todaysvoliationList != null">
+                <b>
+                  [{{totalvoliationResolvedList.length}}]
+                </b>
+              </span>
             </a>
           </div>
         </div>
@@ -154,7 +159,7 @@
                         <td>{{voliation.jobendedon}}</td>
                         <td>
                           <p>
-                            <button type="button" class="btn btn-primary"><i class="fa fa-eye" title='Voliation Resolved'></i></button>
+                            <button type="button" class="btn btn-primary"><i class="fa fa-eye" title='Click once the voliation is resolved.'></i></button>
                           </p>
                         </td>
                       </tr>
@@ -168,7 +173,48 @@
         <div class="row mb-2"></div>
         <div class="collapse" id="resolvedVoliations">
           <div class="card card-body">
-            resolvedVoliations
+            <div class="row">
+              <div class="col-12">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th scope="col">Job Id</th>
+                      <th scope="col">Skilled Worker Name</th>
+                      <th scope="col">Client</th>
+                      <th scope="col">Amount</th>
+                      <th scope="col">Job Start Date</th>
+                      <th scope="col">Job End Date</th>
+                      <th scope="col">Voliation Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let voliation of totalvoliationResolvedList">
+                      <td>{{voliation.jobId}}</td>
+                      <td>
+                        <a href="javascript: return false;"
+                          (click)='manageruser.openViewAccountDetailsModal(voliation.freelanceuserId)'>
+                          {{voliation.fullname}}
+                        </a>
+                      </td>
+                      <td>
+                        <a href="javascript: return false;"
+                          (click)='manageruser.openViewAccountDetailsModal(voliation.userId)'>
+                          {{voliation.bizname}}
+                        </a>
+                      </td>
+                      <td>{{voliation.tocompanyamount}}</td>
+                      <td>{{voliation.jobstartedon}}</td>
+                      <td>{{voliation.jobendedon}}</td>
+                      <td>
+                        <p>
+                          <i class="fa fa-check" style="color:green" title='Voliation is Resolved'></i>
+                        </p>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
         </div>
         <div class="row mb-2"></div>
@@ -220,18 +266,18 @@
 
 <div class="row mb-4"></div>
 <!-- Summary of All Service Dashboard -->
-<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+<div class="panel-group" id="accordion2" role="tablist" aria-multiselectable="true">
   <div class="panel panel-default">
-    <div class="panel-heading" role="tab" id="headingOne">
+    <div class="panel-heading" role="tab" id="headingTwo">
       <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true"
+        <a data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo" aria-expanded="true"
           aria-controls="collapseTwo">
           <i class="fa fa-caret-right"></i>
           Summary - All Services
         </a>
       </h4>
     </div>
-    <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
       <div class="panel-body">
         Upcoming Soone - Full Summary Pages of All Services
       </div>

@@ -14,7 +14,7 @@ export class DashboardofadminComponent implements OnInit {
 
   indiaTime = this.datepipe.transform(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }), "yyyy-mm-dd");
   todaysvoliationList: any = [];
-  totalvoliationList: any = []
+  totalvoliationResolvedList: any = []
   todaysjobscheduledList: any = [];
   upcomingjobscheduledList: any = [];
   newjobsbutnotactiviatedList: any = [];
@@ -48,7 +48,7 @@ export class DashboardofadminComponent implements OnInit {
             this.todaysvoliationList.push(element);
           }
           if (element.isjobvoliation && element.isfreelancerjobattendant) {
-            this.totalvoliationList.push(element);
+            this.totalvoliationResolvedList.push(element);
           }
           if (element.isjobactive && element.isjobaccepted && this.getDate(element.jobstartedon) == this.indiaTime.toString()) {
             this.todaysjobscheduledList.push(element);
@@ -77,7 +77,7 @@ export class DashboardofadminComponent implements OnInit {
           }
           
         });
-        console.log('this is test', this.todaysvoliationList);
+        console.log('this is test', this.todaysjobscheduledList);
       }
     },
       error => {
