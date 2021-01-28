@@ -20,6 +20,8 @@ export class DashboardofadminComponent implements OnInit {
   newjobsbutnotactiviatedList: any = [];
   newjobsactiviatedbutnotacceptedList: any = [];
   jobscompletedList: any = [];
+  jobscompletedwithoutpaymentList: any = [];
+  jobscompletedpayoutpendingList: any = [];
 
   totalmoneyearnedbycompanytilltoday: number = 0;
   totalmoneyearnedbyskilledworkerstilltoday: number = 0;
@@ -31,7 +33,7 @@ export class DashboardofadminComponent implements OnInit {
     private spinnerService: Ng4LoadingSpinnerService,
     private alertService: AlertsService,
     public datepipe: DatePipe,
-    public manageruser : ManageuserComponent,
+    public manageruser: ManageuserComponent,
   ) { }
 
   ngOnInit() {
@@ -60,12 +62,20 @@ export class DashboardofadminComponent implements OnInit {
           if (element.isjobactive && !element.isjobaccepted) {
             this.newjobsactiviatedbutnotacceptedList.push(element);
           }
-          if (element.isjobactive && element.iscompleted) {
+          if (element.isjobactive && element.iscompleted && element.isjobamtpaidtocompany && element.isjobamtpaidtofu) {
             this.jobscompletedList.push(element);
             this.totalmoneyearnedbycompanytilltoday = Number.parseFloat(element.tocompanyamount) + this.totalmoneyearnedbycompanytilltoday;
             this.totalmoneyearnedbyskilledworkerstilltoday = Number.parseFloat(element.tofreelanceamount) + this.totalmoneyearnedbyskilledworkerstilltoday;
             this.totalcompletedjobswithoutpaymentbyclient = Number.parseFloat(element.tocompanyamount) + this.totalcompletedjobswithoutpaymentbyclient;
           }
+          if (element.isjobactive && element.iscompleted && !element.isjobamtpaidtocompany) {
+            this.jobscompletedwithoutpaymentList.push(element);
+          }
+
+          if (element.isjobactive && element.iscompleted && !element.isjobamtpaidtofu) {
+            this.jobscompletedpayoutpendingList.push(element);
+          }
+          
         });
         console.log('this is test', this.todaysvoliationList);
       }
