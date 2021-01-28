@@ -49,7 +49,7 @@ export class ManageuserComponent implements OnInit {
     this.getAllUser();
     const source = timer(1000, 90000);
     source.subscribe((val: number) => {
-   //   this.getlistOfNewUsersToastNofications();
+      //   this.getlistOfNewUsersToastNofications();
     });
   }
   getReferenceDataByKey(key: string) {
@@ -63,6 +63,13 @@ export class ManageuserComponent implements OnInit {
       });
   }
   getAllUser() {
+    this.usrObjCBAs = [];
+    this.usrObjFUs = [];
+    this.usrObjTotalUsers = [];
+    this.usrObjPlatformAdmins = [];
+    this.usrObjMyWork = [];
+    this.usrObj = [];
+    
     this.getReferenceDataByKey(config.key_bgstatus.toString());
     this.spinnerService.show();
     this.userService.getAllUsers().subscribe(
@@ -256,5 +263,38 @@ export class ManageuserComponent implements OnInit {
     var startDtFmt = mm + '/' + dd + '/' + y;
     st = new Date(startDtFmt);
     return st;
+  }
+
+  userAction(userId: number, actionName: string) {
+    this.spinnerService.show();
+    this.userService.getUserByUserId(userId).pipe(first()).subscribe(
+      (respuser: any) => {
+        if (actionName == 'deactive') {
+          respuser.isactive = false;
+        } else {
+          respuser.isactive = true;
+        }
+        this.userService.saveorupdate(respuser).subscribe(
+          (userObj: any) => {
+            this.usrObj = this.userAdapter.adapt(userObj);
+            if (this.usrObj.userId > 0) {
+            
+              if (actionName == 'deactive') {
+                this.alertService.success('User successfully deactivaited.');
+              } else {
+                this.alertService.success('User successfully activiated again.');
+              }
+              this.getAllUser();
+            }
+          },
+          error => {
+            this.spinnerService.hide();
+            this.alertService.error(error);
+          });
+      },
+      error => {
+        this.spinnerService.hide();
+        this.alertService.error(error);
+      });
   }
 }

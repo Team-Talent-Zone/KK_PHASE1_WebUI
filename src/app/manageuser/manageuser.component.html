@@ -77,55 +77,44 @@
 
                         <span>
                             <div class="col-md-12 bg-search">
-
-                                <input type="text" class="form-control col-md-3" placeholder="Search Results">
-
-                                <div class="pull-right mt-btn-v">
-                                    <button class="btn btn-primary btn-sm pull-right">View All</button>
-                                </div>
-
+                                <input type="text" id="myTaskInputUser" onkeyup='manageUsersTableSearch(mytask);'
+                                    class="form-control col-md-3" placeholder="Search by name">
                             </div>
                         </span>
                         <br>
 
-                        <table id="example" class="table table-bordered table-hover table-sm table-striped">
+                        <table id="userMYTasktable" class="table table-bordered table-hover table-sm table-striped">
                             <thead *ngIf="usrObjMyWork != ''">
                                 <tr>
                                     <th>Name</th>
+                                    <th>Active?</th>
                                     <th>Email Address</th>
                                     <th>Created On</th>
                                     <th>Last Updated On</th>
-                                    <th>Language</th>
-                                    <th></th>
+                                    <th>Phone Number</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody *ngIf="usrObjMyWork != ''; else elseNoBGWork">
-                                <tr *ngFor="let mywork of usrObjMyWork">
+                                <tr class="text-center-row" *ngFor="let mywork of usrObjMyWork">
                                     <td>
                                         <a href="javascript: return false;"
                                             (click)='openViewAccountDetailsModal(mywork.userId)'>
                                             {{mywork.fullname}}
                                         </a>
                                     </td>
+                                    <td>
+                                        <i class="fa fa-smile-o" style="color:#0a382b" *ngIf="mywork.isactive"> </i>
+                                        <i class="fa fa-frown-o" style="color:#FF4949" *ngIf="!mywork.isactive"> </i>
+                                    </td>
                                     <td>{{mywork.username}}</td>
                                     <td>{{mywork.createdon}}</td>
                                     <td>{{mywork.updatedon}}</td>
-                                    <td>
-                                        <div *ngIf="mywork.preferlang == 'en'">
-                                            English
-                                        </div>
-                                        <div *ngIf="mywork.preferlang == 'te'">
-                                            తెలుగు
-                                        </div>
-                                        <div *ngIf="mywork.preferlang == 'hi'">
-                                            हिंदी
-                                        </div>
-                                    </td>
+                                    <td>{{mywork.phoneno}}</td>
                                     <td>
                                         <a *ngIf="mywork.freelancehistoryentity.islocked" class="btn  btn-sm"
                                             (click)='processbgverficiationopenmodal(mywork.userId)'>
-                                            <i title="You can start working.." class="fa fa-lock"
-                                                style="color: rgb(37, 165, 37)">
+                                            <i title="You can start working.." class="fa fa-lock" style="color:#0a382b">
                                             </i>
                                         </a>
                                     </td>
@@ -142,52 +131,50 @@
                     <div id="cbatab" class="tab-pane fade ">
                         <span>
                             <div class="col-md-12 bg-search">
-
-                                <input type="text" class="form-control col-md-3" placeholder="Search Results">
-
-                                <div class="pull-right mt-btn-v">
-                                    <button class="btn btn-primary btn-sm pull-right">View All</button>
-                                </div>
-
+                                <input type="text" id="myCBAInputUser" onkeyup="manageUsersTableSearch('cba')"
+                                    class="form-control col-md-3" placeholder="Search by name">
                             </div>
                         </span>
                         <br>
-
-                        <table id="example" class="table table-bordered table-hover table-sm table-striped">
+                        <table id="userCBAtable" class="table table-bordered table-hover table-sm table-striped">
                             <thead>
                                 <tr>
                                     <th>Name</th>
+                                    <th>Active?</th>
                                     <th>Email Address</th>
                                     <th>Created On</th>
-                                    <th>Language</th>
-                                    <th></th>
+                                    <th>Phone Number</th>
+                                    <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let cbu of usrObjCBAs">
+                                <tr class="text-center-row" *ngFor="let cbu of usrObjCBAs">
                                     <td>
                                         <a href="javascript: return false;"
                                             (click)='openViewAccountDetailsModal(cbu.userId)'>
                                             {{cbu.fullname}}
                                         </a>
                                     </td>
+                                    <td>
+                                        <i class="fa fa-smile-o" style="color:#0a382b" *ngIf="cbu.isactive"> </i>
+                                        <i class="fa fa-frown-o" style="color:#FF4949" *ngIf="!cbu.isactive"> </i>
+                                    </td>
                                     <td>{{cbu.username}}</td>
                                     <td>{{cbu.createdon}}</td>
-                                    <td>
-                                        <div *ngIf="cbu.preferlang == 'en'">
-                                            English
-                                        </div>
-                                        <div *ngIf="cbu.preferlang == 'te'">
-                                            తెలుగు
-                                        </div>
-                                        <div *ngIf="cbu.preferlang == 'hi'">
-                                            हिंदी
-                                        </div>
-                                    </td>
+                                    <td>{{cbu.phoneno}}</td>
                                     <td>
                                         <a href="javascript: return false;"
                                             [routerLink]="['/viewuserservicedetails',cbu.userId]">
-                                            View Associated Services
+                                            <i class="fa fa-cog" title="View Associated Services"
+                                                style="color:#0a382b"></i>
+                                        </a>
+                                        <a class="btn  btn-sm" (click)='userAction(cbu.userId,"deactive");'
+                                            *ngIf="cbu.isactive">
+                                            <i title="Deactivate User" class="fa fa-trash" style="color:#FF4949"></i>
+                                        </a>
+                                        <a class="btn  btn-sm" (click)='userAction(cbu.userId,"active");'
+                                            *ngIf="!cbu.isactive">
+                                            <i title="Activate User" class="fa fa-eye" style="color:#0a382b"></i>
                                         </a>
                                     </td>
                                 </tr>
@@ -197,67 +184,45 @@
                     <div id="futab" class="tab-pane fade">
                         <span>
                             <div class="col-md-12 bg-search">
-
-                                <input type="text" class="form-control col-md-3" placeholder="Search Results">
-
-                                <div class="pull-right mt-btn-v">
-                                    <button class="btn btn-primary btn-sm pull-right">View All</button>
-                                </div>
-
+                                <input type="text" id="myFUInputUser" onkeyup="manageUsersTableSearch('fu')"
+                                    class="form-control col-md-3" placeholder="Search by name">
                             </div>
                         </span>
                         <br>
 
-                        <table id="example" class="table table-bordered table-hover table-sm table-striped">
+                        <table id="userFUtable" class="table table-bordered table-hover table-sm table-striped">
                             <thead>
                                 <tr>
-                                    <th></th>
                                     <th>Name</th>
-                                    <th>Email Address</th>
-                                    <th>Language</th>
-                                    <th>Is BG Complete</th>
-                                    <th>Is BG Start</th>
-                                    <th>Is Profile Completed</th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
+                                    <th>Active?</th>
+                                    <th>Phone Number</th>
+                                    <th>BG Completed?</th>
+                                    <th>BG Initated ?</th>
+                                    <th>Profile Completed?</th>
+                                    <th>Pay?</th>
+                                    <!-- <th>Current Status</th> -->
+                                    <th>BG Status</th>
+                                    <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let fu of usrObjFUs">
-                                    <td
-                                        *ngIf="userService.currentUserValue.userroles.rolecode == 'CORE_SERVICE_SUPPORT_TEAM' || 
-                                        userService.currentUserValue.userroles.rolecode == 'CORE_SERVICE_SUPPORT_MANAGER'">
-                                        <a *ngIf="fu.freeLanceDetails.isprofilecompleted && fu.freeLanceDetails.isregfeedone
-                                         && !fu.freeLanceDetails.isbgstarted" class="btn  btn-sm"
-                                            (click)='executeBGVerificationCheck(fu.userId)'>
-                                            <i title="Initiate Background verification" class="fa fa-play"
-                                                style="color: rgb(37, 165, 37)"></i>
-                                        </a>
-                                    </td>
+                                <tr class="text-center-row" *ngFor="let fu of usrObjFUs">
                                     <td>
                                         <a href="javascript: return false;"
                                             (click)='openViewAccountDetailsModal(fu.userId)'>
                                             {{fu.fullname}}
                                         </a>
                                     </td>
-                                    <td>{{fu.username}}</td>
                                     <td>
-                                        <div *ngIf="fu.preferlang == 'en'">
-                                            English
-                                        </div>
-                                        <div *ngIf="fu.preferlang == 'te'">
-                                            తెలుగు
-                                        </div>
-                                        <div *ngIf="fu.preferlang == 'hi'">
-                                            हिंदी
-                                        </div>
+                                        <i class="fa fa-smile-o" style="color:#0a382b" *ngIf="fu.isactive"> </i>
+                                        <i class="fa fa-frown-o" style="color:#FF4949" *ngIf="!fu.isactive"> </i>
                                     </td>
+                                    <td> {{fu.phoneno}}</td>
                                     <td *ngIf="fu.freeLanceDetails !=null">
                                         <div *ngIf="fu.freeLanceDetails.isbgstarted">
                                             <div *ngIf="fu.freeLanceDetails.isbgdone">
                                                 <i class="fa fa-check" title="Bg verification is completed"
-                                                    style="color: rgb(37, 165, 37)"></i>
+                                                    style="color: #0a382b"></i>
                                             </div>
                                             <div *ngIf="!fu.freeLanceDetails.isbgdone">
                                                 <i class="fa fa-spinner" title="Bg verification is in-progress"
@@ -268,7 +233,7 @@
                                     <td *ngIf="fu.freeLanceDetails !=null">
                                         <div *ngIf="fu.freeLanceDetails.isbgstarted; else elseIsBgNotDone">
                                             <i class="fa fa-check" title="Bg  verification started"
-                                                style="color: rgb(37, 165, 37)"></i>
+                                                style="color: #0a382b"></i>
                                         </div>
                                         <ng-template #elseIsBgNotDone>
                                             <i class="fa fa-ban" title="Bg verification not started"
@@ -277,16 +242,26 @@
                                     </td>
                                     <td *ngIf="fu.freeLanceDetails !=null">
                                         <div
-                                            *ngIf="fu.freeLanceDetails.isprofilecompleted; else elseIsProfileCompleted">
+                                            *ngIf="fu.freeLanceDetails.isprofilecompleted; else elseIsProfileNotCompleted">
                                             <i class="fa fa-check" title="Profile data is available"
-                                                style="color: rgb(37, 165, 37)"></i>
+                                                style="color:#0a382b"></i>
                                         </div>
-                                        <ng-template #elseIsProfileCompleted>
+                                        <ng-template #elseIsProfileNotCompleted>
                                             <i class="fa fa-ban" title="Profile data not available"
                                                 style="color:rgb(199, 25, 25)"></i>
                                         </ng-template>
                                     </td>
-                                    <td *ngIf="fu.freelancehistoryentity !=null">
+                                    <td *ngIf="fu.freeLanceDetails !=null">
+                                        <div *ngIf="fu.freeLanceDetails.isregfeedone; else elseIsRegNotCompleted">
+                                            <i class="fa fa-inr" title="Registration is completed"
+                                                style="color:#0a382b"></i>
+                                        </div>
+                                        <ng-template #elseIsRegNotCompleted>
+                                            <i class="fa fa-inr" title="Registration is not completed"
+                                                style="color:rgb(199, 25, 25)"></i>
+                                        </ng-template>
+                                    </td>
+                                    <!-- <td *ngIf="fu.freelancehistoryentity !=null">
                                         <div *ngFor="let refdata of refDataObj">
                                             <div *ngIf="refdata.code === fu.freeLanceDetails.bgcurrentstatus">
                                                 {{refdata.label}}
@@ -298,54 +273,65 @@
                                             </div>
                                         </div>
                                     </td>
+                                -->
                                     <td>
                                         <i title="{{fu.fullname}} background verification is rejected"
-                                            class="fa fa-thumbs-down " style="color:rgb(241, 18, 18)"
+                                            class="fa fa-thumbs-down - Decision by {{fu.freelancehistoryentity.decisionby}} "
+                                            style="color:rgb(241, 18, 18)"
                                             *ngIf="fu.freeLanceDetails.bgcurrentstatus == 'BG_REJECTED'; else elseApproved ">
                                         </i>
                                         <ng-template #elseApproved>
                                             <i *ngIf="fu.freeLanceDetails.bgcurrentstatus == 'BG_APPROVED'; else elseInProgress"
-                                                title="{{fu.fullname}} background verification is approved"
-                                                class="fa fa-thumbs-up" style="color:green"></i>
+                                                title="{{fu.fullname}} background verification is approved - Decision by {{fu.freelancehistoryentity.decisionby}}"
+                                                class="fa fa-thumbs-up" style="color:#0a382b"></i>
                                         </ng-template>
                                         <ng-template #elseInProgress>
-                                            <i title="{{fu.fullname}} background verification is in-progress"
+                                            <i title="{{fu.fullname}} background verification is in-progress - Decision by {{fu.freelancehistoryentity.decisionby}}"
                                                 class="fa fa-spinner" style="color:blue"></i>
                                         </ng-template>
-
                                     </td>
                                     <td>
-                                        <a href="javascript: return false;"
-                                            [routerLink]="['/viewfujobdetails',fu.userId]">
-                                            View Jobs
+                                        <a *ngIf="fu.freeLanceDetails.isprofilecompleted && fu.freeLanceDetails.isregfeedone
+                                        && !fu.freeLanceDetails.isbgstarted &&
+                                        userService.currentUserValue.userroles.rolecode == 'CORE_SERVICE_SUPPORT_TEAM'"
+                                            class="btn  btn-sm" (click)='executeBGVerificationCheck(fu.userId)'>
+                                            <i title="Initiate Background verification" class="fa fa-play"
+                                                style="color:#0a382b"></i>
+                                        </a>
+                                        <a class="btn  btn-sm" [routerLink]="['/viewfujobdetails',fu.userId]">
+                                            <i title="View Jobs" class="fa fa-briefcase" style="color:#0a382b"></i>
+                                        </a>
+                                        <a class="btn  btn-sm" (click)='userAction(fu.userId,"deactive");'
+                                            *ngIf="fu.isactive">
+                                            <i title="Deactivate User" class="fa fa-trash" style="color:#FF4949"></i>
+                                        </a>
+                                        <a class="btn  btn-sm" (click)='userAction(fu.userId,"active");'
+                                            *ngIf="!fu.isactive">
+                                            <i title="Activate User" class="fa fa-eye" style="color:#0a382b"></i>
                                         </a>
                                     </td>
                                 </tr>
                         </table>
                     </div>
                     <div id="admintab" class="tab-pane fade">
-
                         <span>
                             <div class="col-md-12 bg-search">
-
-                                <input type="text" class="form-control col-md-3" placeholder="Search Results">
-
-                                <div class="pull-right mt-btn-v">
-                                    <button class="btn btn-primary btn-sm pull-right">View All</button>
-                                </div>
-
+                                <input type="text" id="myAdminInputUser" onkeyup="manageUsersTableSearch('admin')"
+                                    class="form-control col-md-3" placeholder="Search by name">
                             </div>
                         </span>
                         <br>
-                        <table id="example" class="table table-bordered table-hover table-sm table-striped">
+                        <table id="userAdmintable" class="table table-bordered table-hover table-sm table-striped">
                             <thead>
                                 <tr>
                                     <th>Name</th>
+                                    <th>Active?</th>
                                     <th>Email Address</th>
                                     <th>Created On</th>
                                     <th>Created By</th>
                                     <th>Language</th>
                                     <th>Designation</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -355,6 +341,12 @@
                                             (click)='openViewAccountDetailsModal(platformuser.userId)'>
                                             {{platformuser.fullname}}
                                         </a>
+                                    </td>
+                                    <td>
+                                        <i class="fa fa-smile-o" style="color:#0a382b" *ngIf="platformuser.isactive">
+                                        </i>
+                                        <i class="fa fa-frown-o" style="color:#FF4949" *ngIf="!platformuser.isactive">
+                                        </i>
                                     </td>
                                     <td>{{platformuser.username}}</td>
                                     <td>{{platformuser.createdon}}</td>
@@ -379,6 +371,17 @@
                                             Core Service Manager
                                         </ng-template>
                                     </td>
+                                    <td>
+                                        <a class="btn  btn-sm" (click)='userAction(platformuser.userId,"deactive");'
+                                            *ngIf="platformuser.isactive">
+                                            <i title="Deactivate User" class="fa fa-trash" style="color:#FF4949"></i>
+                                        </a>
+                                        <a class="btn  btn-sm" (click)='userAction(platformuser.userId,"active");'
+                                            *ngIf="!platformuser.isactive">
+                                            <i title="Activate User" class="fa fa-eye" style="color:#0a382b"></i>
+                                        </a>
+                                    </td>
+
                                 </tr>
                         </table>
                     </div>

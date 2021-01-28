@@ -12,7 +12,7 @@ export class FooterComponent implements OnInit {
 
    constructor(
     private signupComponent: SignupComponent,
-    private userService: UserService
+    public userService: UserService
   ) {
   }
 

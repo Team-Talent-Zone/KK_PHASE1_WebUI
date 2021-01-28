@@ -58,8 +58,7 @@
 							</ul>
 						</div>
 					</div>
-					<div class="col-md-2"
-						*ngIf="this.userService.currentUserValue != null &&
+					<div class="col-md-2" *ngIf="this.userService.currentUserValue != null &&
 						 this.userService.currentUserValue.userroles.rolecode =='FREELANCER_USER'">
 						<div class="address">
 							<h2>{{ 'FOOTER.USEFULLINKS' | translate }}</h2>
@@ -78,9 +77,8 @@
 							</ul>
 						</div>
 					</div>
-					<div class="col-md-2"
-						*ngIf="this.userService.currentUserValue != null && 
-						this.userService.currentUserValue.userroles.rolecode =='CLIENT_BUSINESS_ADMINISTRATOR'">
+					<div class="col-md-2" *ngIf="userService.currentUserValue != null && 
+						userService.currentUserValue.userroles.rolecode =='CLIENT_BUSINESS_ADMINISTRATOR'">
 						<div class="address">
 							<h2>{{ 'FOOTER.USEFULLINKS' | translate }}</h2>
 							<!-- <hr> -->
@@ -102,24 +100,20 @@
 							</ul>
 						</div>
 					</div>
-					<div *ngIf="this.userService.currentUserValue != null">
-						<div *ngIf="this.userService.currentUserValue.userroles.rolecode=='CORE_SERVICE_SUPPORT_MANAGER' ||
-						this.userService.currentUserValue.userroles.rolecode =='CORE_SERVICE_SUPPORT_TEAM'">
-							<div class="col-md-2">
-								<div class="address">
-									<h2>{{ 'FOOTER.USEFULLINKS' | translate }}</h2>
-									<!-- <hr> -->
-									<ul style="list-style: circle;">
-										<li><a [routerLink]="['/dashboard']">Dashboard</a>
-										</li>
-										<li><a [routerLink]="['/manageuser']"> Manage Users</a>
-										</li>
-										<li><a [routerLink]="['/manageservice']"> Manage
-												Services</a>
-										</li>
-									</ul>
-								</div>
-							</div>
+					<div class="col-md-2" *ngIf="userService.currentUserValue != null && userService.currentUserValue.userroles.rolecode=='CORE_SERVICE_SUPPORT_MANAGER' ||
+					userService.currentUserValue.userroles.rolecode =='CORE_SERVICE_SUPPORT_TEAM'">
+						<div class="address">
+							<h2>{{ 'FOOTER.USEFULLINKS' | translate }}</h2>
+							<!-- <hr> -->
+							<ul style="list-style: circle;">
+								<li><a [routerLink]="['/dashboard']">Dashboard</a>
+								</li>
+								<li><a [routerLink]="['/manageuser']"> Manage Users</a>
+								</li>
+								<li><a [routerLink]="['/manageservice']"> Manage
+										Services</a>
+								</li>
+							</ul>
 						</div>
 					</div>
 					<div class="col-md-2">

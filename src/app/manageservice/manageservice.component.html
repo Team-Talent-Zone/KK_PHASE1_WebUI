@@ -18,7 +18,7 @@
                 <div class="rotate">
                     <i class="fa fa-briefcase  fa-4x"></i>
                 </div>
-                <h6 class="text-uppercase">Under Progress</h6>
+                <h6 class="text-uppercase">Review In-Progress</h6>
                 <h1 class="display-4">{{listOfAllPendingNewServices.length}}</h1>
             </div>
         </div>
@@ -29,7 +29,7 @@
                 <div class="rotate">
                     <i class="fa fa-briefcase  fa-4x"></i>
                 </div>
-                <h6 class="text-uppercase">Active On Platform</h6>
+                <h6 class="text-uppercase">Approved Services</h6>
                 <h1 class="display-4">{{listOfAllApprovedNewServices.length}}</h1>
             </div>
         </div>
@@ -40,7 +40,7 @@
                 <div class="rotate">
                     <i class="fa fa-briefcase  fa-4x"></i>
                 </div>
-                <h6 class="text-uppercase">InActive On Platform</h6>
+                <h6 class="text-uppercase">Rejected Services</h6>
                 <h1 class="display-4">{{listOfAllRejectedNewServices.length}}</h1>
             </div>
         </div>
@@ -66,18 +66,13 @@
 
                         <span>
                             <div class="col-md-12 bg-search">
-
-                                <input type="text" class="form-control col-md-3" placeholder="Search Results">
-                                
-                                <div class="pull-right mt-btn-v">
-                                <button class="btn btn-primary btn-sm pull-right">View All</button>
-                                </div>
-                                
-                                </div>
-                            </span>
-                            <br> 
-
-                        <table id="example" class="table table-bordered table-hover table-sm table-striped">
+                                <input type="text" class="form-control col-md-3" id="myTaskServiceReview"
+                                    onkeyup="manageServicesTableSearch('review')" placeholder="Search by service name">
+                            </div>
+                        </span>
+                        <br>
+                        <table id="myNewServiceReviewTable"
+                            class="table table-bordered table-hover table-sm table-striped">
                             <thead *ngIf="myNewServiceForReview.length > 0">
                                 <tr>
                                     <th>Name</th>
@@ -108,7 +103,8 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <div *ngFor="let referencelookupmap of  signupComponent.fullReferencedetailsmap">
+                                        <div
+                                            *ngFor="let referencelookupmap of  signupComponent.fullReferencedetailsmap">
                                             <div *ngIf="mywork.category === referencelookupmap.code">
                                                 {{referencelookupmap.label}}
                                             </div>
@@ -158,18 +154,14 @@
                     <div id="underprogresstab" class="tab-pane fade ">
                         <span>
                             <div class="col-md-12 bg-search">
-
-                                <input type="text" class="form-control col-md-3" placeholder="Search Results">
-                                
-                                <div class="pull-right mt-btn-v">
-                                <button class="btn btn-primary btn-sm pull-right">View All</button>
-                                </div>
-                                
-                                </div>
-                            </span>
-                            <br> 
-
-                        <table id="example" class="table table-bordered table-hover table-sm table-striped">
+                                <input type="text" class="form-control col-md-3" id="myPendingServiceReview"
+                                    onkeyup="manageServicesTableSearch('pendingnewservices')"
+                                    placeholder="Search by service name">
+                            </div>
+                        </span>
+                        <br>
+                        <table id="mypendingserviceTable"
+                            class="table table-bordered table-hover table-sm table-striped">
                             <thead *ngIf="listOfAllPendingNewServices.length > 0;">
                                 <tr>
                                     <th>Name</th>
@@ -177,7 +169,7 @@
                                     <th>Category</th>
                                     <th>Created On</th>
                                     <th>Created By</th>
-                                    <th>Decision Taken</th>
+                                    <th>Decision By</th>
                                     <th>Status</th>
                                 </tr>
                             </thead>
@@ -197,7 +189,8 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <div *ngFor="let referencelookupmap of  signupComponent.fullReferencedetailsmap">
+                                        <div
+                                            *ngFor="let referencelookupmap of  signupComponent.fullReferencedetailsmap">
                                             <div *ngIf="newserviceobj.category == referencelookupmap.code">
                                                 {{referencelookupmap.label}}
                                             </div>
@@ -233,20 +226,16 @@
                         </table>
                     </div>
                     <div id="approvedtab" class="tab-pane fade ">
-
                         <span>
                             <div class="col-md-12 bg-search">
-
-                                <input type="text" class="form-control col-md-3" placeholder="Search Results">
-                                
-                                <div class="pull-right mt-btn-v">
-                                <button class="btn btn-primary btn-sm pull-right">View All</button>
-                                </div>
-                                
-                                </div>
-                            </span>
-                            <br> 
-                        <table id="example" class="table table-bordered table-hover table-sm table-striped">
+                                <input type="text" class="form-control col-md-3" id="myApprovedServiceReview"
+                                    onkeyup="manageServicesTableSearch('approvednewservices')"
+                                    placeholder="Search by service name">
+                            </div>
+                        </span>
+                        <br>
+                        <table id="approvedServiceTable"
+                            class="table table-bordered table-hover table-sm table-striped">
                             <thead *ngIf="listOfAllApprovedNewServices.length > 0">
                                 <tr>
                                     <th>Name</th>
@@ -254,10 +243,11 @@
                                     <th>Category</th>
                                     <th>Created On</th>
                                     <th>Created By</th>
-                                    <th>Decision Taken</th>
+                                    <th>Decision By</th>
                                     <th>Status</th>
                                     <th
                                         *ngIf="userService.currentUserValue.userroles.rolecode =='CORE_SERVICE_SUPPORT_TEAM'">
+                                        Actions
                                     </th>
                                 </tr>
                             </thead>
@@ -277,7 +267,8 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <div *ngFor="let referencelookupmap of  signupComponent.fullReferencedetailsmap">
+                                        <div
+                                            *ngFor="let referencelookupmap of  signupComponent.fullReferencedetailsmap">
                                             <div *ngIf="newserviceobj.category == referencelookupmap.code">
                                                 {{referencelookupmap.label}}
                                             </div>
@@ -324,16 +315,14 @@
                         <span>
                             <div class="col-md-12 bg-search">
 
-                                <input type="text" class="form-control col-md-3" placeholder="Search Results">
-                                
-                                <div class="pull-right mt-btn-v">
-                                <button class="btn btn-primary btn-sm pull-right">View All</button>
-                                </div>
-                                
-                                </div>
-                            </span>
-                            <br> 
-                        <table id="example" class="table table-bordered table-hover table-sm table-striped">
+                                <input type="text" class="form-control col-md-3" id="myrejectServiceReview"
+                                    onkeyup="manageServicesTableSearch('rejectednewservices')"
+                                    placeholder="Search by service name">
+                            </div>
+                        </span>
+                        <br>
+                        <table id="rejectedServicesTable"
+                            class="table table-bordered table-hover table-sm table-striped">
                             <thead *ngIf="listOfAllRejectedNewServices.length > 0">
                                 <tr>
                                     <th>Name</th>
@@ -361,7 +350,8 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <div *ngFor="let referencelookupmap of  signupComponent.fullReferencedetailsmap">
+                                        <div
+                                            *ngFor="let referencelookupmap of  signupComponent.fullReferencedetailsmap">
                                             <div *ngIf="newserviceobj.category == referencelookupmap.code">
                                                 {{referencelookupmap.label}}
                                             </div>

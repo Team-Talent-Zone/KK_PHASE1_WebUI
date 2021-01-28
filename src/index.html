@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <title>Kaam Karega</title>
@@ -99,7 +100,6 @@
 <script>
   //Get the button
   var mybutton = document.getElementById("myBtn");
-
   // When the user scrolls down 20px from the top of the document, show the button
   // window.onscroll = function() {scrollFunction()};
 
@@ -136,6 +136,72 @@
       }
     }
   }
+
+  function manageUsersTableSearch(inputvar) {
+    var input, filter, table, tr, td, i, txtValue;
+    if (inputvar == 'mytask') {
+      input = document.getElementById("myTaskInputUser");
+      table = document.getElementById("userMYTasktable");
+    }
+    if (inputvar == 'cba') {
+      input = document.getElementById("myCBAInputUser");
+      table = document.getElementById("userCBAtable");
+    }
+    if (inputvar == 'fu') {
+      input = document.getElementById("myFUInputUser");
+      table = document.getElementById("userFUtable");
+    }
+    if (inputvar == 'admin') {
+      input = document.getElementById("myAdminInputUser");
+      table = document.getElementById("userAdmintable");
+    }
+    filter = input.value.toUpperCase();
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName("td")[0];
+      if (td) {
+        txtValue = td.textContent || td.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }
+    }
+  }
+
+  function manageServicesTableSearch(inputvar) {
+    var input, filter, table, tr, td, i, txtValue;
+    if (inputvar == 'review') {
+      input = document.getElementById("myTaskServiceReview");
+      table = document.getElementById("myNewServiceReviewTable");
+    }
+    if (inputvar == 'pendingnewservices') {
+      input = document.getElementById("myPendingServiceReview");
+      table = document.getElementById("mypendingserviceTable");
+    }
+    if (inputvar == 'approvednewservices') {
+      input = document.getElementById("myApprovedServiceReview");
+      table = document.getElementById("approvedServiceTable");
+    }
+    if (inputvar == 'rejectednewservices') {
+      input = document.getElementById("myrejectServiceReview");
+      table = document.getElementById("rejectedServicesTable");
+    }
+    filter = input.value.toUpperCase();
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName("td")[0];
+      if (td) {
+        txtValue = td.textContent || td.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }
+    }
+  }
   function offcanvas() {
     $(".row-offcanvas").toggleClass("active");
   }
@@ -152,4 +218,5 @@
     });
   });
 </script>
+
 </html>
