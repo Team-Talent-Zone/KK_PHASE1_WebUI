@@ -4,6 +4,8 @@ import { Component, OnInit } from '@angular/core';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { AlertsService } from '../AppRestCall/alerts/alerts.service';
 import { FreelanceserviceService } from '../AppRestCall/freelanceservice/freelanceservice.service';
+import { UserService } from '../AppRestCall/user/user.service';
+import { config } from '../appconstants/config';
 
 @Component({
   selector: 'app-dashboardofadmin',
@@ -28,12 +30,16 @@ export class DashboardofadminComponent implements OnInit {
   totalmoneyyettopaybytheclientstilltoday: number = 0;
   totalcompletedjobswithoutpaymentbyclient: number = 0;
 
+  allFreelancerUsersList: any = [];
+
+
   constructor(
     private freelanceserviceService: FreelanceserviceService,
     private spinnerService: Ng4LoadingSpinnerService,
     private alertService: AlertsService,
     public datepipe: DatePipe,
     public manageruser: ManageuserComponent,
+    public userService: UserService
   ) { }
 
   ngOnInit() {
@@ -56,14 +62,15 @@ export class DashboardofadminComponent implements OnInit {
           if (element.isjobactive && element.isjobaccepted && element.isupcoming == 'TRUE') {
             this.upcomingjobscheduledList.push(element);
           }
-          if (!element.isjobactive) {
+          if (!element.isjobactive && !element.isjobvoliation) {
             this.newjobsbutnotactiviatedList.push(element);
           }
-          if (element.isjobactive && !element.isjobaccepted) {
+          if (element.isjobactive && !element.isjobaccepted && !element.isjobvoliation) {
             this.newjobsactiviatedbutnotacceptedList.push(element);
           }
           if (element.isjobactive && element.iscompleted && element.isjobamtpaidtocompany && element.isjobamtpaidtofu) {
             this.jobscompletedList.push(element);
+            console.log('Number ', Number.parseFloat(element.tocompanyamount) );
             this.totalmoneyearnedbycompanytilltoday = Number.parseFloat(element.tocompanyamount) + this.totalmoneyearnedbycompanytilltoday;
             this.totalmoneyearnedbyskilledworkerstilltoday = Number.parseFloat(element.tofreelanceamount) + this.totalmoneyearnedbyskilledworkerstilltoday;
             this.totalcompletedjobswithoutpaymentbyclient = Number.parseFloat(element.tocompanyamount) + this.totalcompletedjobswithoutpaymentbyclient;
@@ -75,9 +82,24 @@ export class DashboardofadminComponent implements OnInit {
           if (element.isjobactive && element.iscompleted && !element.isjobamtpaidtofu) {
             this.jobscompletedpayoutpendingList.push(element);
           }
-          
+
         });
-        console.log('this is test', this.todaysjobscheduledList);
+        if (this.newjobsactiviatedbutnotacceptedList != null) {
+          this.userService.getUsersByRole(config.user_rolecode_fu).subscribe((userList: any) => {
+            if (userList != null) {
+              userList.forEach(element => {
+                if (element.isactive && element.freeLanceDetails.bgcurrentstatus == config.bg_code_approved) {
+                  this.allFreelancerUsersList.push(element);
+                }
+              });
+            }
+          },
+            error => {
+              this.spinnerService.hide();
+              this.alertService.error(error);
+            });
+        }
+        console.log('this is test', this.newjobsbutnotactiviatedList);
       }
     },
       error => {

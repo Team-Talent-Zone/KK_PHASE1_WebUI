@@ -34,7 +34,8 @@ export class FreelanceOnSvc {
         public freelancerjobattendantdate: string,
         public cbajobattendantdate: string,
         public isfreelancerjobattendant: boolean,
-        public isjobvoliation: boolean
+        public isjobvoliation: boolean,
+        public resolvedvoliationreason: string,
     ) {
 
     }

@@ -118,7 +118,7 @@ export class DashboardComponent implements OnInit {
         if (notifcationlist != null) {
           if (this.userService.currentUserValue.preferlang !== config.default_prefer_lang) {
             notifcationlist.forEach((element: any) => {
-              if (element.subcategory.toString() == this.userService.currentUserValue.freeLanceDetails.subCategory.toString()) {
+              if (element.subcategory.toString() == this.userService.currentUserValue.freeLanceDetails.subCategory) {
                 this.referService.translatetext(element.msg.toString(), this.userService.currentUserValue.preferlang).subscribe(
                   (trantxt: any) => {
                     element.msg = trantxt;
@@ -133,9 +133,7 @@ export class DashboardComponent implements OnInit {
             });
           } else {
             notifcationlist.forEach((element: any) => {
-              if (element.subcategory.toString() == this.userService.currentUserValue.freeLanceDetails.subCategory.toString()) {
                 this.notifcationbellList.push(element);
-              }
             });
           }
         }

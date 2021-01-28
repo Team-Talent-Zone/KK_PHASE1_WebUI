@@ -51,11 +51,13 @@
           </div>
         </div>
         <div class="row mb-4 justify-content-between">
-          <div class="col-xl-2 col-sm-6 py-2">
-            <a class="btn btn-danger" data-toggle="collapse" href="#reportedVoliations" role="button"
-              aria-expanded="false" aria-controls="reportedVoliations">
-              <i class="fa fa-reorder"></i> Reported Voliations
-              <span *ngIf="todaysvoliationList != null">
+          <div class="col-xl-2 col-sm-6 py-2 ">
+            <a class="btn" [ngStyle]="{'background-color': todaysvoliationList == null ? '#28a745':'#dc3545'}"
+              data-toggle="collapse" href="#reportedVoliations" role="button" aria-expanded="false"
+              aria-controls="reportedVoliations">
+              <i class="fa fa-reorder iconCSS"></i>
+              <span class="textCSS" *ngIf="todaysvoliationList != null">
+                Reported Voliations
                 <b>
                   [{{todaysvoliationList.length}}]
                 </b>
@@ -63,18 +65,30 @@
             </a>
           </div>
           <div class="col-xl-2 col-sm-6 py-2">
-            <a class="btn btn-danger" data-toggle="collapse" href="#newlyactivatedjobs" role="button"
+            <a class="btn" [ngStyle]="{'background-color': todaysvoliationList == null ? '#28a745':'#dc3545'}"
+              data-toggle="collapse" href="#newnonactivatedjobs" role="button" aria-expanded="false"
+              aria-controls="newnonactivatedjobs">
+              <i class="fa fa-reorder iconCSS"></i>
+              <span class="textCSS" *ngIf="newjobsbutnotactiviatedList != null">
+                New Jobs - Not Activated
+                <b>
+                  [{{newjobsbutnotactiviatedList.length}}]
+                </b>
+              </span>
+            </a>
+          </div>
+          <div class="col-xl-2 col-sm-6 py-2">
+            <a class="btn btn-warning" data-toggle="collapse" href="#newlyactivatedjobs" role="button"
               aria-expanded="false" aria-controls="newlyactivatedjobs">
               <i class="fa fa-reorder"></i> New Jobs - Just Activated
+              <span *ngIf="newjobsactiviatedbutnotacceptedList != null">
+                <b>
+                  [{{newjobsactiviatedbutnotacceptedList.length}}]
+                </b>
+              </span>
             </a>
           </div>
-          <div class="col-xl-2 col-sm-6 py-2">
-            <a class="btn btn-warning" data-toggle="collapse" href="#newnonactivatedjobs" role="button"
-              aria-expanded="false" aria-controls="newnonactivatedjobs">
-              <i class="fa fa-reorder"></i> New Jobs - Not Activated
-            </a>
-          </div>
-          <div class="col-xl-2 col-sm-6 py-2">
+          <div class="col-xl-3 col-sm-6 py-2">
             <a class="btn btn-warning" data-toggle="collapse" href="#resolvedVoliations" role="button"
               aria-expanded="false" aria-controls="resolvedVoliations">
               <i class="fa fa-reorder"></i> Resolved Voliations
@@ -91,12 +105,22 @@
             <a class="btn btn-success" data-toggle="collapse" href="#totalscheduledjobs" role="button"
               aria-expanded="false" aria-controls="totalscheduledjobs">
               <i class="fa fa-reorder"></i> Today's Scheduled Jobs
+              <span *ngIf="todaysvoliationList != null">
+                <b>
+                  [{{todaysjobscheduledList.length}}]
+                </b>
+              </span>
             </a>
           </div>
           <div class="col-xl-3 col-sm-6 py-2">
             <a class="btn btn-info" data-toggle="collapse" href="#upcomingscheduledjobs" role="button"
               aria-expanded="false" aria-controls="upcomingscheduledjobs">
               <i class="fa fa-reorder"></i> Upcoming Scheduled Jobs
+              <span *ngIf="upcomingjobscheduledList != null">
+                <b>
+                  [{{upcomingjobscheduledList.length}}]
+                </b>
+              </span>
             </a>
           </div>
 
@@ -106,18 +130,35 @@
             <a class="btn btn-success" data-toggle="collapse" href="#jobscompletedList" role="button"
               aria-expanded="false" aria-controls="jobscompletedList">
               <i class="fa fa-reorder"></i> Client & Payout Payment Complete
+              <span *ngIf="jobscompletedList != null">
+                <b>
+                  [{{jobscompletedList.length}}]
+                </b>
+              </span>
             </a>
           </div>
           <div class="col-xl-3 col-sm-6 py-2">
-            <a class="btn btn-danger" data-toggle="collapse" href="#jobscompletedwithoutpaymentList" role="button"
-              aria-expanded="false" aria-controls="jobscompletedwithoutpaymentList">
-              <i class="fa fa-reorder"></i> Client Payment Pending
+            <a class="btn" [ngStyle]="{'background-color': todaysvoliationList == null ? '#28a745':'#dc3545'}"
+              data-toggle="collapse" href="#jobscompletedwithoutpaymentList" role="button" aria-expanded="false"
+              aria-controls="jobscompletedwithoutpaymentList">
+              <i class="fa fa-reorder iconCSS"></i>
+              <span class="textCSS" *ngIf="jobscompletedwithoutpaymentList != null">
+                Client Payment Pending
+                <b>
+                  [{{jobscompletedwithoutpaymentList.length}}]
+                </b>
+              </span>
             </a>
           </div>
           <div class="col-xl-3 col-sm-6 py-2">
             <a class="btn btn-warning" data-toggle="collapse" href="#jobscompletedpayoutpendingList" role="button"
               aria-expanded="false" aria-controls="jobscompletedpayoutpendingList">
               <i class="fa fa-reorder"></i> Todays Payout Pending Payments
+              <span *ngIf="jobscompletedpayoutpendingList != null">
+                <b>
+                  [{{jobscompletedpayoutpendingList.length}}]
+                </b>
+              </span>
             </a>
           </div>
         </div>
@@ -127,6 +168,7 @@
             <div class="container">
               <div class="row">
                 <div class="col-12">
+                  <h5>Reported Voliations</h5>
                   <table class="table table-bordered">
                     <thead>
                       <tr>
@@ -140,26 +182,27 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr *ngFor="let voliation of todaysvoliationList">
-                        <td>{{voliation.jobId}}</td>
+                      <tr *ngFor="let job of todaysvoliationList">
+                        <td>{{job.jobId}}</td>
                         <td>
                           <a href="javascript: return false;"
-                            (click)='manageruser.openViewAccountDetailsModal(voliation.freelanceuserId)'>
-                            {{voliation.fullname}}
+                            (click)='manageruser.openViewAccountDetailsModal(job.freelanceuserId)'>
+                            {{job.fullname}}
                           </a>
                         </td>
                         <td>
                           <a href="javascript: return false;"
-                            (click)='manageruser.openViewAccountDetailsModal(voliation.userId)'>
-                            {{voliation.bizname}}
+                            (click)='manageruser.openViewAccountDetailsModal(job.userId)'>
+                            {{job.bizname}}
                           </a>
                         </td>
-                        <td>{{voliation.tocompanyamount}}</td>
-                        <td>{{voliation.jobstartedon}}</td>
-                        <td>{{voliation.jobendedon}}</td>
+                        <td>{{job.tocompanyamount}}</td>
+                        <td>{{job.jobstartedon}}</td>
+                        <td>{{job.jobendedon}}</td>
                         <td>
                           <p>
-                            <button type="button" class="btn btn-primary"><i class="fa fa-eye" title='Click once the voliation is resolved.'></i></button>
+                            <button type="button" class="btn btn-primary"><i class="fa fa-eye"
+                                title='Click once the voliation is resolved.'></i></button>
                           </p>
                         </td>
                       </tr>
@@ -175,6 +218,7 @@
           <div class="card card-body">
             <div class="row">
               <div class="col-12">
+                <h5>Resolved Voliations</h5>
                 <table class="table table-bordered">
                   <thead>
                     <tr>
@@ -188,23 +232,23 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let voliation of totalvoliationResolvedList">
-                      <td>{{voliation.jobId}}</td>
+                    <tr *ngFor="let job of totalvoliationResolvedList">
+                      <td>{{job.jobId}}</td>
                       <td>
                         <a href="javascript: return false;"
-                          (click)='manageruser.openViewAccountDetailsModal(voliation.freelanceuserId)'>
-                          {{voliation.fullname}}
+                          (click)='manageruser.openViewAccountDetailsModal(job.freelanceuserId)'>
+                          {{job.fullname}}
                         </a>
                       </td>
                       <td>
                         <a href="javascript: return false;"
-                          (click)='manageruser.openViewAccountDetailsModal(voliation.userId)'>
-                          {{voliation.bizname}}
+                          (click)='manageruser.openViewAccountDetailsModal(job.userId)'>
+                          {{job.bizname}}
                         </a>
                       </td>
-                      <td>{{voliation.tocompanyamount}}</td>
-                      <td>{{voliation.jobstartedon}}</td>
-                      <td>{{voliation.jobendedon}}</td>
+                      <td>{{job.tocompanyamount}}</td>
+                      <td>{{job.jobstartedon}}</td>
+                      <td>{{job.jobendedon}}</td>
                       <td>
                         <p>
                           <i class="fa fa-check" style="color:green" title='Voliation is Resolved'></i>
@@ -220,43 +264,326 @@
         <div class="row mb-2"></div>
         <div class="collapse" id="totalscheduledjobs">
           <div class="card card-body">
-            totalscheduledjobs
+            <div class="container">
+              <div class="row">
+                <div class="col-12">
+                  <h5>Todays Scheduled Jobs</h5>
+                  <table class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th scope="col">Job Id</th>
+                        <th scope="col">Skilled Worker Name</th>
+                        <th scope="col">Client</th>
+                        <th scope="col">Amount</th>
+                        <th scope="col">Job Start Date</th>
+                        <th scope="col">Job End Date</th>
+                        <th scope="col">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let job of todaysjobscheduledList">
+                        <td>{{job.jobId}}</td>
+                        <td>
+                          <a href="javascript: return false;"
+                            (click)='manageruser.openViewAccountDetailsModal(job.freelanceuserId)'>
+                            {{job.fullname}}
+                          </a>
+                        </td>
+                        <td>
+                          <a href="javascript: return false;"
+                            (click)='manageruser.openViewAccountDetailsModal(job.userId)'>
+                            {{job.bizname}}
+                          </a>
+                        </td>
+                        <td>{{job.tocompanyamount}}</td>
+                        <td>{{job.jobstartedon}}</td>
+                        <td>{{job.jobendedon}}</td>
+                        <td>
+                          <p>
+                            <button type="button" class="btn btn-primary"><i class="fa fa-eye"
+                                title='Click once the voliation is resolved.'></i></button>
+                          </p>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <div class="row mb-2"></div>
         <div class="collapse" id="upcomingscheduledjobs">
           <div class="card card-body">
-            upcomingscheduledjobs
+            <div class="row">
+              <div class="col-12">
+                <h5>Upcoming Scheduled Jobs</h5>
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th scope="col">Job Id</th>
+                      <th scope="col">Skilled Worker Name</th>
+                      <th scope="col">Client</th>
+                      <th scope="col">Amount</th>
+                      <th scope="col">Job Start Date</th>
+                      <th scope="col">Job End Date</th>
+                      <th scope="col">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let job of upcomingjobscheduledList">
+                      <td>{{job.jobId}}</td>
+                      <td>
+                        <a href="javascript: return false;"
+                          (click)='manageruser.openViewAccountDetailsModal(job.freelanceuserId)'>
+                          {{job.fullname}}
+                        </a>
+                      </td>
+                      <td>
+                        <a href="javascript: return false;"
+                          (click)='manageruser.openViewAccountDetailsModal(job.userId)'>
+                          {{job.bizname}}
+                        </a>
+                      </td>
+                      <td>{{job.tocompanyamount}}</td>
+                      <td>{{job.jobstartedon}}</td>
+                      <td>{{job.jobendedon}}</td>
+                      <td>
+                        <p>
+                          <button type="button" class="btn btn-primary"><i class="fa fa-eye"
+                              title='Click once the voliation is resolved.'></i></button>
+                        </p>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
         </div>
         <div class="row mb-2"></div>
         <div class="collapse" id="newnonactivatedjobs">
           <div class="card card-body">
-            newnonactivatedjobs
+            <div class="row">
+              <h5>Newly Not Activated Jobs</h5>
+              <div class="col-12">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th scope="col">Job Id</th>
+                      <th scope="col">Client</th>
+                      <th scope="col">Job Start Date</th>
+                      <th scope="col">Job End Date</th>
+                      <th scope="col">Amount</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let job of newjobsbutnotactiviatedList">
+                      <td>{{job.jobId}}</td>
+                      <td>
+                        <a href="javascript: return false;"
+                          (click)='manageruser.openViewAccountDetailsModal(job.userId)'>
+                          {{job.bizname}}
+                        </a>
+                      </td>
+                      <td>{{job.jobstartedon}}</td>
+                      <td>{{job.jobendedon}}</td>
+                      <td>{{job.amount}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
         </div>
         <div class="row mb-2"></div>
         <div class="collapse" id="newlyactivatedjobs">
           <div class="card card-body">
-            newlyactivatedjobs
+            <div class="row">
+              <div class="col-12">
+                <h5>Newly Activiated Jobs</h5>
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th scope="col">Job Id</th>
+                      <th scope="col">Client</th>
+                      <th scope="col">Skilled Worker Amount</th>
+                      <th scope="col">Job Start Date</th>
+                      <th scope="col">Job End Date</th>
+                      <th scope="col">Company % Amount</th>
+                      <th scope="col">Total Amount</th>
+                      <th scope="col">Re-Assign/Assign</th>
+                      <th scope="col">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let job of newjobsactiviatedbutnotacceptedList">
+                      <td>{{job.jobId}}</td>
+                      <td>
+                        <a href="javascript: return false;"
+                          (click)='manageruser.openViewAccountDetailsModal(job.userId)'>
+                          {{job.bizname}}
+                        </a>
+                      </td>
+                      <td>{{job.tofreelanceamount}}</td>
+                      <td>{{job.jobstartedon}}</td>
+                      <td>{{job.jobendedon}}</td>
+                      <td>{{job.tocompanyamount}}</td>
+                      <td>{{job.amount}}</td>
+                      <td>
+                        <select>
+                          <option *ngFor="let item of allFreelancerUsersList" value={{item.userId}}>{{item.fullname}} -
+                            {{item.label}}
+                          </option>
+                        </select>
+                      </td>
+                      <td>
+                        <p>
+                          <button type="button" class="btn btn-primary"><i class="fa fa-floppy-o"
+                              title='Click to save and notify to the skilled worker'></i></button>
+                        </p>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
         </div>
         <div class="row mb-2"></div>
         <div class="collapse" id="jobscompletedList">
           <div class="card card-body">
-            jobscompletedList
+            <div class="row">
+              <div class="col-12">
+                <h5>Completed Jobs</h5>
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th scope="col">Job Id</th>
+                      <th scope="col">Skilled Worker Name</th>
+                      <th scope="col">Client</th>
+                      <th scope="col">Skilled Worker Amount</th>
+                      <th scope="col">Job Start Date</th>
+                      <th scope="col">Job End Date</th>
+                      <th scope="col">Company % Amount</th>
+                      <th scope="col">Total Amount</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let job of jobscompletedList">
+                      <td>{{job.jobId}}</td>
+                      <td>
+                        <a href="javascript: return false;"
+                          (click)='manageruser.openViewAccountDetailsModal(job.freelanceuserId)'>
+                          {{job.fullname}}
+                        </a>
+                      </td>
+                      <td>
+                        <a href="javascript: return false;"
+                          (click)='manageruser.openViewAccountDetailsModal(job.userId)'>
+                          {{job.bizname}}
+                        </a>
+                      </td>
+                      <td>{{job.tofreelanceamount}}</td>
+                      <td>{{job.jobstartedon}}</td>
+                      <td>{{job.jobendedon}}</td>
+                      <td>{{job.tocompanyamount}}</td>
+                      <td>{{job.amount}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
         </div>
         <div class="row mb-2"></div>
         <div class="collapse" id="jobscompletedwithoutpaymentList">
           <div class="card card-body">
-            jobscompletedwithoutpaymentList
+            <div class="row">
+              <div class="col-12">
+                <h5>Completed Jobs Without Client Payment</h5>
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th scope="col">Job Id</th>
+                      <th scope="col">Skilled Worker Name</th>
+                      <th scope="col">Client</th>
+                      <th scope="col">Skilled Worker Amount</th>
+                      <th scope="col">Job Start Date</th>
+                      <th scope="col">Job End Date</th>
+                      <th scope="col">Company % Amount</th>
+                      <th scope="col">Total Amount</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let job of jobscompletedwithoutpaymentList">
+                      <td>{{job.jobId}}</td>
+                      <td>
+                        <a href="javascript: return false;"
+                          (click)='manageruser.openViewAccountDetailsModal(job.freelanceuserId)'>
+                          {{job.fullname}}
+                        </a>
+                      </td>
+                      <td>
+                        <a href="javascript: return false;"
+                          (click)='manageruser.openViewAccountDetailsModal(job.userId)'>
+                          {{job.bizname}}
+                        </a>
+                      </td>
+                      <td>{{job.tofreelanceamount}}</td>
+                      <td>{{job.jobstartedon}}</td>
+                      <td>{{job.jobendedon}}</td>
+                      <td>{{job.tocompanyamount}}</td>
+                      <td>{{job.amount}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
         </div>
         <div class="row mb-2"></div>
         <div class="collapse" id="jobscompletedpayoutpendingList">
           <div class="card card-body">
-            jobscompletedpayoutpendingList
+            <div class="row">
+              <div class="col-12">
+                <h5>Completed Jobs Payout Pending</h5>
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th scope="col">Job Id</th>
+                      <th scope="col">Skilled Worker Name</th>
+                      <th scope="col">Client</th>
+                      <th scope="col">Skilled Worker Amount</th>
+                      <th scope="col">Job Start Date</th>
+                      <th scope="col">Job End Date</th>
+                      <th scope="col">Total Amount</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let job of jobscompletedpayoutpendingList">
+                      <td>{{job.jobId}}</td>
+                      <td>
+                        <a href="javascript: return false;"
+                          (click)='manageruser.openViewAccountDetailsModal(job.freelanceuserId)'>
+                          {{job.fullname}}
+                        </a>
+                      </td>
+                      <td>
+                        <a href="javascript: return false;"
+                          (click)='manageruser.openViewAccountDetailsModal(job.userId)'>
+                          {{job.bizname}}
+                        </a>
+                      </td>
+                      <td>{{job.tofreelanceamount}}</td>
+                      <td>{{job.jobstartedon}}</td>
+                      <td>{{job.jobendedon}}</td>
+                      <td>{{job.amount}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
         </div>
       </div>

@@ -101,7 +101,6 @@ export class UserService {
           userobj.password = user.password;
           userobj.preferlang = user.preferlang;
         }
-    console.log('userobj===============', userobj);
     return this.http.post(`${environment.apiUrl}/saveUser/`, userobj);
   }
 

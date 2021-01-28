@@ -20,4 +20,9 @@
   -ms-transform: rotate(-44deg);
   transform: rotate(-44deg);
 }
- 
+.textCSS {
+  color: white;
+}
+.iconCSS {
+  color: black;
+}
