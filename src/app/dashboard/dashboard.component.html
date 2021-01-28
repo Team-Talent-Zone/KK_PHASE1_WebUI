@@ -66,19 +66,19 @@
                 <li
                     *ngIf="this.userService.currentUserValue.userroles.rolecode =='CORE_SERVICE_SUPPORT_TEAM' || this.userService.currentUserValue.userroles.rolecode =='CORE_SERVICE_SUPPORT_MANAGER'">
                     <a [routerLink]="['/manageuser']" class="list-group-item list-group-item-action bg-light">
-                        <i class="fa fa-cogs" style="color:#FF4949"></i>
+                        <i class="fa fa-users" style="color:#FF4949"></i>
                         <b> Manage Users</b>
                     </a>
                 </li>
                 <li
                     *ngIf="this.userService.currentUserValue.userroles.rolecode =='CORE_SERVICE_SUPPORT_TEAM' || this.userService.currentUserValue.userroles.rolecode =='CORE_SERVICE_SUPPORT_MANAGER'">
                     <a [routerLink]="['/manageservice']" class="list-group-item list-group-item-action bg-light">
-                        <i class="fa fa-gear" style="color:#FF4949"></i>
+                        <i class="fa fa-cogs" style="color:#FF4949"></i>
                         <b> Manage Services</b></a>
                 </li>
                 <li *ngIf="this.userService.currentUserValue.userroles.rolecode =='CLIENT_BUSINESS_ADMINISTRATOR'">
                     <a [routerLink]="['/myservices']" class="list-group-item list-group-item-action bg-light">
-                        <i class="fa fa-cogs" style="color:#FF4949"></i>
+                        <i class="fa fa-cog" style="color:#FF4949"></i>
                         <b>
                             My Services
                         </b>
@@ -120,16 +120,25 @@
                 </li>
                 <li *ngIf="this.userService.currentUserValue.userroles.rolecode =='CORE_SERVICE_SUPPORT_MANAGER'"><a
                         [routerLink]="['/signupadmin']" class="list-group-item list-group-item-action bg-light">
-                        <i class="fa fa-gear" style="color:#FF4949"></i>
+                        <i class="fa fa-user" style="color:#FF4949"></i>
                         <b>
                             Create User
                         </b>
                     </a></li>
                 <li *ngIf="this.userService.currentUserValue.userroles.rolecode =='CORE_SERVICE_SUPPORT_TEAM'"><a
                         [routerLink]="['/newservice']" class="list-group-item list-group-item-action bg-light">
-                        <i class="fa fa-gear" style="color:#FF4949"></i>
+                        <i class="fa fa-cog" style="color:#FF4949"></i>
                         <b>
                             Create Service
+                        </b>
+                    </a></li>
+                <li>
+                <li *ngIf="this.userService.currentUserValue.userroles.rolecode =='CORE_SERVICE_SUPPORT_TEAM'  || 
+                    this.userService.currentUserValue.userroles.rolecode =='CORE_SERVICE_SUPPORT_MANAGER'"><a
+                        [routerLink]="['/analytics']" class="list-group-item list-group-item-action bg-light">
+                        <i class="fa fa-signal " style="color:#FF4949"></i>
+                        <b>
+                            Strategic Analytics Report
                         </b>
                     </a></li>
                 <li>

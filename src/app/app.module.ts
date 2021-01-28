@@ -74,6 +74,7 @@ import { DatePipe } from '@angular/common';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 import { ConfirmationDialogService } from './AppRestCall/confirmation/confirmation-dialog.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { DashboardofadminanalyticsComponent } from './dashboardofadminanalytics/dashboardofadminanalytics.component';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
@@ -123,7 +124,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     CustomToastComponent,
     ReadMoreComponent,
     ReadMorePopupComponent,
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    DashboardofadminanalyticsComponent
   ],
   imports: [
     ToastNotificationsModule,

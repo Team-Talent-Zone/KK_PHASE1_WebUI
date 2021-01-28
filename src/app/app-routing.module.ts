@@ -1,3 +1,4 @@
+import { DashboardofadminanalyticsComponent } from './dashboardofadminanalytics/dashboardofadminanalytics.component';
 import { FooterComponent } from './footer/footer.component';
 import { Error404pageComponent } from './error404page/error404page.component';
 import { ViewfureviewsComponent } from './viewfureviews/viewfureviews.component';
@@ -82,6 +83,17 @@ const routes: Routes = [
       {
         path: '',
         component: NewserviceComponent
+      }
+    ]
+  },
+  {
+    path: 'analytics',
+    component: DashboardComponent,
+    canActivate: [AuthgaurdService],
+    children: [
+      {
+        path: '',
+        component: DashboardofadminanalyticsComponent
       }
     ]
   },
