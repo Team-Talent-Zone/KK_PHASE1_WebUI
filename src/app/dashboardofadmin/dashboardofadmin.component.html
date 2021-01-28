@@ -1,25 +1,16 @@
 <h4>Dashboard</h4>
 <hr>
-<div class="row mb-4  justify-content-between">
+<h5><b><u>Skilled Worker Search Service</u></b></h5>
+<div class="row mb-2"></div>
+<div class="row mb-4 justify-content-center">
   <div class="col-xl-2 col-sm-6 py-2">
     <div class="card bg-success text-white h-100">
-      <div class="card-body bg-warning">
+      <div class="card-body bg-success">
         <div class="rotate">
-          <i class="fa fa-reorder fa-4x"></i>
+          <i class="fa fa-inr fa-4x"></i>
         </div>
-        <h6 class="text-uppercase">My Work</h6>
-        <h1 class="display-4">1</h1>
-      </div>
-    </div>
-  </div>
-  <div class="col-xl-2 col-sm-6 py-2">
-    <div class="card text-white bg-info h-100">
-      <div class="card-body bg-info">
-        <div class="rotate">
-          <i class="fa fa-user fa-4x"></i>
-        </div>
-        <h6 class="text-uppercase">SW</h6>
-        <h1 class="display-4">31</h1>
+        <h6 class="text-uppercase">Company Earns</h6>
+        <h1>{{this.totalmoneyearnedbycompanytilltoday}}</h1>
       </div>
     </div>
   </div>
@@ -27,29 +18,157 @@
     <div class="card bg-success text-white h-100">
       <div class="card-body bg-success">
         <div class="rotate">
-          <i class="fa fa-users fa-4x"></i>
+          <i class="fa fa-inr fa-4x"></i>
         </div>
-        <h6 class="text-uppercase">Total Users</h6>
-        <h1 class="display-4">4</h1>
+        <h6 class="text-uppercase">Workers Earns</h6>
+        <h5> {{this.totalmoneyearnedbyskilledworkerstilltoday}}
+        </h5>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-2 col-sm-6 py-2">
+    <div class="card bg-success text-white h-100">
+      <div class="card-body bg-danger">
+        <div class="rotate">
+          <i class="fa fa-inr fa-4x"></i>
+        </div>
+        <h6 class="text-uppercase">Pending Payments</h6>
+        <h5> {{this.totalcompletedjobswithoutpaymentbyclient}}</h5>
       </div>
     </div>
   </div>
 </div>
-
-<p>
-  <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-    Link with href
-  </a>
-  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-    Button with data-target
-  </button>
-</p>
-<div class="collapse" id="collapseExample">
-  <div class="card card-body">
-    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+<div class="row mb-4 justify-content-between">
+  <div class="col-xl-2 col-sm-6 py-2">
+    <a class="btn btn-danger" data-toggle="collapse" href="#reportedVoliations" role="button" aria-expanded="false"
+      aria-controls="reportedVoliations">
+      <i class="fa fa-reorder"></i> Reported Voliations
+      <span *ngIf="todaysvoliationList != null">
+        <b>
+          [{{todaysvoliationList.length}}]
+        </b>
+      </span>
+    </a>
+  </div>
+  <div class="col-xl-2 col-sm-6 py-2">
+    <a class="btn btn-danger" data-toggle="collapse" href="#newlyactivatedjobs" role="button" aria-expanded="false"
+      aria-controls="newlyactivatedjobs">
+      <i class="fa fa-reorder"></i> New Jobs - Just Activated
+    </a>
+  </div>
+  <div class="col-xl-2 col-sm-6 py-2">
+    <a class="btn btn-warning" data-toggle="collapse" href="#newnonactivatedjobs" role="button" aria-expanded="false"
+      aria-controls="newnonactivatedjobs">
+      <i class="fa fa-reorder"></i> New Jobs - Not Activated
+    </a>
+  </div>
+  <div class="col-xl-2 col-sm-6 py-2">
+    <a class="btn btn-warning" data-toggle="collapse" href="#resolvedVoliations" role="button" aria-expanded="false"
+      aria-controls="resolvedVoliations">
+      <i class="fa fa-reorder"></i> Resolved Voliations
+    </a>
   </div>
 </div>
+<div class="row mb-4 justify-content-center">
+  <div class="col-xl-3 col-sm-6 py-2">
+    <a class="btn btn-success" data-toggle="collapse" href="#totalscheduledjobs" role="button" aria-expanded="false"
+      aria-controls="totalscheduledjobs">
+      <i class="fa fa-reorder"></i> Today's Scheduled Jobs
+    </a>
+  </div>
+  <div class="col-xl-3 col-sm-6 py-2">
+    <a class="btn btn-info" data-toggle="collapse" href="#upcomingscheduledjobs" role="button" aria-expanded="false"
+      aria-controls="upcomingscheduledjobs">
+      <i class="fa fa-reorder"></i> Upcoming Scheduled Jobs
+    </a>
+  </div>
+</div>
+<!-- Reported Voliations -->
+<div class="collapse" id="reportedVoliations">
+  <div class="card card-body">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th scope="col">Job Id</th>
+                <th scope="col">Skilled Worker Name</th>
+                <th scope="col">Client</th>
+                <th scope="col">Amount</th>
+                <th scope="col">Job Start Date</th>
+                <th scope="col">Job End Date</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let voliation of todaysvoliationList">
+                <td>{{voliation.jobId}}</td>
+                <td>
+                  <a href="javascript: return false;"
+                    (click)='manageruser.openViewAccountDetailsModal(voliation.freelanceuserId)'>
+                    {{voliation.fullname}}
+                  </a>
+                </td>
+                <td>
+                  <a href="javascript: return false;"
+                    (click)='manageruser.openViewAccountDetailsModal(voliation.userId)'>
+                    {{voliation.bizname}}
+                  </a>
+                </td>
+                <td>{{voliation.tocompanyamount}}</td>
+                <td>{{voliation.jobstartedon}}</td>
+                <td>{{voliation.jobendedon}}</td>
+                <td>
+                  <p>
+                    <button type="button" class="btn btn-primary"><i class="fa fa-eye"></i></button>
+                    <button type="button" class="btn btn-success"><i class="fa fa-edit"></i></button>
+                    <button type="button" class="btn btn-danger"><i class="fa fa-pencil-square-o"></i></button>
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row mb-2"></div>
+<div class="collapse" id="resolvedVoliations">
+  <div class="card card-body">
+    resolvedVoliations
+  </div>
+</div>
+<div class="row mb-2"></div>
+<div class="collapse" id="totalscheduledjobs">
+  <div class="card card-body">
+    totalscheduledjobs
+  </div>
+</div>
+<div class="row mb-2"></div>
+<div class="collapse" id="upcomingscheduledjobs">
+  <div class="card card-body">
+    upcomingscheduledjobs
+  </div>
+</div>
+<div class="row mb-2"></div>
+<div class="collapse" id="newnonactivatedjobs">
+  <div class="card card-body">
+    newnonactivatedjobs
+  </div>
+</div>
+<div class="row mb-2"></div>
+<div class="collapse" id="newlyactivatedjobs">
+  <div class="card card-body">
+    newlyactivatedjobs
+  </div>
+</div>
+<div class="row mb-4"></div>
 <!-- Matomo -->
+<hr>
+<h5><b><u>Strategic Analytics</u></b></h5>
+<div class="row mb-2"></div>
 <iframe
   src="http://ec2-35-170-191-222.compute-1.amazonaws.com:3002/index.php?module=Widgetize&action=iframe&moduleToWidgetize=Dashboard&actionToWidgetize=index&idSite=1&period=week&date=yesterday&token_auth=ad11571d563d9c54ecf20ae11bddb253"
   frameborder="0" marginheight="0" marginwidth="0" width="100%" height="600%"></iframe>

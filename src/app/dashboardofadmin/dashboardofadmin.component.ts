@@ -1,3 +1,4 @@
+import { ManageuserComponent } from './../manageuser/manageuser.component';
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
@@ -14,60 +15,59 @@ export class DashboardofadminComponent implements OnInit {
   indiaTime = this.datepipe.transform(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }), "yyyy-mm-dd");
   todaysvoliationList: any = [];
   totalvoliationList: any = []
-  todaysjobscheduled: any = [];
-  tommorwsjobscheduled: any = [];
-  newjobsbutnotactiviated: any = [];
-  newjobsactiviatedbutnotaccepted: any = [];
-  jobspaymentpaidbyclient: any = [];
-  jobspaymentcompletedbycompany: any = [];
-  completedjobswithoutpaymentbyclient: any = [];
+  todaysjobscheduledList: any = [];
+  upcomingjobscheduledList: any = [];
+  newjobsbutnotactiviatedList: any = [];
+  newjobsactiviatedbutnotacceptedList: any = [];
+  jobscompletedList: any = [];
 
-  totalmoneyearnedbyskilledworkerstilltoday: number;
-  totalmoneyearnedbycompanytilltoday: number;
-  totalmoneyyettopaybytheclientstilltoday: number;
-  totalcompletedjobswithoutpaymentbyclient: number;
+  totalmoneyearnedbycompanytilltoday: number = 0;
+  totalmoneyearnedbyskilledworkerstilltoday: number = 0;
+  totalmoneyyettopaybytheclientstilltoday: number = 0;
+  totalcompletedjobswithoutpaymentbyclient: number = 0;
 
   constructor(
     private freelanceserviceService: FreelanceserviceService,
     private spinnerService: Ng4LoadingSpinnerService,
     private alertService: AlertsService,
     public datepipe: DatePipe,
+    public manageruser : ManageuserComponent,
   ) { }
 
   ngOnInit() {
-    console.log('this is india date', this.indiaTime);
+    this.dashboardSummaryOfSkilledWorkerSearchService();
   }
 
   dashboardSummaryOfSkilledWorkerSearchService() {
     this.freelanceserviceService.getUserAllJobDetails().subscribe((jobdetailsList: any) => {
       if (jobdetailsList != null) {
         jobdetailsList.forEach(element => {
-          if (element.isfreelancerjobattendant) {
+          if (element.isjobvoliation && element.cbajobattendantdate == null && !element.isfreelancerjobattendant && !element.isjobactive) {
             this.todaysvoliationList.push(element);
           }
-          if (element.isjobvoliation) {
+          if (element.isjobvoliation && element.isfreelancerjobattendant) {
             this.totalvoliationList.push(element);
           }
+          if (element.isjobactive && element.isjobaccepted && this.getDate(element.jobstartedon) == this.indiaTime.toString()) {
+            this.todaysjobscheduledList.push(element);
+          }
+          if (element.isjobactive && element.isjobaccepted && element.isupcoming == 'TRUE') {
+            this.upcomingjobscheduledList.push(element);
+          }
           if (!element.isjobactive) {
-            this.newjobsbutnotactiviated.push(element);
+            this.newjobsbutnotactiviatedList.push(element);
           }
           if (element.isjobactive && !element.isjobaccepted) {
-            this.newjobsbutnotactiviated.push(element);
+            this.newjobsactiviatedbutnotacceptedList.push(element);
           }
-          if (element.isjobactive && element.isjobamtpaidtofu) {
-            this.jobspaymentcompletedbycompany.push(element);
-            this.totalmoneyearnedbyskilledworkerstilltoday = Number.parseFloat(element.tofreelanceamount) + this.totalmoneyearnedbyskilledworkerstilltoday;
-          }
-          if (element.isjobactive && element.isjobamtpaidtocompany) {
-            this.jobspaymentpaidbyclient.push(element);
+          if (element.isjobactive && element.iscompleted) {
+            this.jobscompletedList.push(element);
             this.totalmoneyearnedbycompanytilltoday = Number.parseFloat(element.tocompanyamount) + this.totalmoneyearnedbycompanytilltoday;
-          }
-          if (element.isjobcompleted && !element.isjobamtpaidtocompany) {
-            this.completedjobswithoutpaymentbyclient.push(element);
+            this.totalmoneyearnedbyskilledworkerstilltoday = Number.parseFloat(element.tofreelanceamount) + this.totalmoneyearnedbyskilledworkerstilltoday;
             this.totalcompletedjobswithoutpaymentbyclient = Number.parseFloat(element.tocompanyamount) + this.totalcompletedjobswithoutpaymentbyclient;
           }
-          console.log('element.jobstartedon', this.getDate(element.jobstartedon));
         });
+        console.log('this is test', this.todaysvoliationList);
       }
     },
       error => {
