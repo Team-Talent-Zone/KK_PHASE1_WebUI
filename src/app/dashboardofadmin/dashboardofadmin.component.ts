@@ -14,6 +14,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DashboardComponent } from '../dashboard/dashboard.component';
 import { ReferenceAdapter } from '../adapters/referenceadapter';
 import { map } from 'rxjs/operators';
+import { UsersrvdetailsService } from '../AppRestCall/userservice/usersrvdetails.service';
+import { timer } from 'rxjs';
 
 @Component({
   selector: 'app-dashboardofadmin',
@@ -50,6 +52,14 @@ export class DashboardofadminComponent implements OnInit {
 
   onworkfreelancelistsbysubcategory: any;
   onnotworkfreelancelistsbysubcategory: any;
+
+  /*
+  All - Service related varaible
+  */
+
+  listofallpaidservices: any;
+  listofallnotpaidservices: any;
+
   constructor(
     private freelanceserviceService: FreelanceserviceService,
     private spinnerService: Ng4LoadingSpinnerService,
@@ -62,14 +72,19 @@ export class DashboardofadminComponent implements OnInit {
     private formBuilder: FormBuilder,
     private refAdapter: ReferenceAdapter,
     private referService: ReferenceService,
-
+    private usersrvdetailsService: UsersrvdetailsService,
   ) { }
 
   ngOnInit() {
-    this.dashboardSummaryOfSkilledWorkerSearchService();
-    this.getAllAvailableFUSkills();
-    this.formValidations();
+    const sourcerefresh = timer(1000, 90000);
+   // sourcerefresh.subscribe((val: number) => {
+      this.formValidations();
+      this.dashboardSummaryOfSkilledWorkerSearchService();
+      this.getAllAvailableFUSkills();
+      this.getAllUserServices();
+    //});
   }
+
   formValidations() {
     this.voliationResolvedForm = this.formBuilder.group({
       resolvedvoliationreason: ['', [Validators.required]],
@@ -302,6 +317,33 @@ export class DashboardofadminComponent implements OnInit {
           }
         })
       });
+  }
+
+  /****
+   * Summary  - All Services
+   */
+
+  getAllUserServices() {
+    this.listofallnotpaidservices = [];
+    this.listofallpaidservices = [];
+    this.usersrvdetailsService.getAllUserServiceDetailsView().subscribe((allservices: any) => {
+      if (allservices != null) {
+        console.log('this is allservices' , allservices);
+        allservices.forEach(element => {
+          if (element.isservicepurchased) {
+            this.listofallpaidservices.push(element);
+          }
+          if (!element.isservicepurchased) {
+            this.listofallnotpaidservices.push(element);
+          }
+        });
+      }
+    },
+      error => {
+        this.spinnerService.hide();
+        this.alertService.error(error);
+      }
+    );
   }
 
 }

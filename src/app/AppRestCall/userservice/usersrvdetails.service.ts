@@ -38,12 +38,16 @@ export class UsersrvdetailsService {
   getUserServiceDetailsByServiceId(serviceId: number) {
     return this.http.get(`${environment.apiUrl}/getUserServiceDetailsByServiceId/` + serviceId);
   }
-
+  
+  getAllUserServiceDetailsView() {
+    return this.http.get(`${environment.apiUrl}/getAllUserServiceDetailsView/`);
+  }
+  
   deleteUserSVCDetails(usersrvobj: UserServiceDetails) {
     return this.http.post(`${environment.apiUrl}/deleteUserSVCDetails/`, usersrvobj);
   }
 
-  getAllBellNotifications(userId: number , role: string) {
+  getAllBellNotifications(userId: number, role: string) {
     return this.http.get(`${environment.apiUrl}/getAllBellNotifications/` + userId + '/' + role + '/');
   }
 

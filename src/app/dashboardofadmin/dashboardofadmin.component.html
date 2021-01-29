@@ -231,7 +231,7 @@
 
               <div class="row">
                 <div class="col-12">
-                  <h5>No Jobs To These User</h5>
+                  <h5>No Jobs To TheseUser</h5>
                   <table class="table table-bordered">
                     <thead>
                       <tr>
@@ -712,7 +712,101 @@
     <!-- Summary of All Service Dashboard -->
     <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
       <div class="panel-body">
-        Upcoming Sooner - Full Summary Pages of All Services
+        <div class="card card-body">
+          <div class="row">
+            <div class="col-12">
+              <h5>Client Purchased Service</h5>
+              <span>
+                <div class="col-md-12 bg-search">
+                  <input type="text" id="myAdminInputUser" onkeyup="manageUsersTableSearch('admin')"
+                    class="form-control col-md-3" placeholder="Search by service name">
+                </div>
+              </span>
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col">Service Id</th>
+                    <th scope="col">Service Name</th>
+                    <th scope="col">Client Name</th>
+                    <th scope="col">Client Business Name</th>
+                    <th scope="col">Phone No</th>
+                    <th scope="col">Validate </th>
+                    <th scope="col">Service Start On</th>
+                    <th scope="col">Service End Date</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Txn Id</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let srv of listofallpaidservices">
+                    <td>{{srv.serviceId}}</td>
+                    <td>
+                      {{srv.name}}
+                    </td>
+                    <td>
+                      <a href="javascript: return false;" (click)='manageruser.openViewAccountDetailsModal(srv.userId)'>
+                        {{srv.fullname}}
+                      </a>
+                    </td>
+                    <td>{{srv.bizname}}</td>
+                    <td>{{srv.phoneno}}</td>
+                    <td>{{srv.validPeriodLabel}}</td>
+                    <td>{{srv.servicestarton}}</td>
+                    <td>{{srv.serviceendon}}</td>
+                    <td>{{srv.amount}}</td>
+                    <td>{{srv.txnid}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12">
+              <h5>Client Add Cart & Pending Payment</h5>
+              <span>
+                <div class="col-md-12 bg-search">
+                  <input type="text" id="myAdminInputUser" onkeyup="manageUsersTableSearch('admin')"
+                    class="form-control col-md-3" placeholder="Search by service name">
+                </div>
+              </span>
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col">Service Id</th>
+                    <th scope="col">Service Name</th>
+                    <th scope="col">Client Name</th>
+                    <th scope="col">Client Business Name</th>
+                    <th scope="col">Phone No</th>
+                    <th scope="col">Validate </th>
+                    <th scope="col">Service Start On</th>
+                    <th scope="col">Service End Date</th>
+                    <th scope="col">Amount</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let srv of listofallnotpaidservices">
+                    <td>{{srv.serviceId}}</td>
+                    <td>
+                      {{srv.name}}
+                    </td>
+                    <td>
+                      <a href="javascript: return false;" (click)='manageruser.openViewAccountDetailsModal(srv.userId)'>
+                        {{srv.fullname}}
+                      </a>
+                    </td>
+                    <td>{{srv.bizname}}</td>
+                    <td>{{srv.phoneno}}</td>
+                    <td>{{srv.validPeriodLabel}}</td>
+                    <td>{{srv.servicestarton}}</td>
+                    <td>{{srv.serviceendon}}</td>
+                    <td>{{srv.amount}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <!-- Summary of All Service Dashboard -->
