@@ -58,62 +58,68 @@
 							</ul>
 						</div>
 					</div>
-					<div class="col-md-2" *ngIf="this.userService.currentUserValue != null &&
-						 this.userService.currentUserValue.userroles.rolecode =='FREELANCER_USER'">
-						<div class="address">
-							<h2>{{ 'FOOTER.USEFULLINKS' | translate }}</h2>
-							<!-- <hr> -->
-							<ul style="list-style: circle;">
-								<li><a [routerLink]="['/dashboard']">{{
-										'DASHOARD_FU_MENU.SUMMARY' | translate }}</a>
-								</li>
-								<li><a routerLink='/vieworeditprofile/{{userService.currentUserValue.userId}}'>
-										{{ 'DASHOARD_FU_MENU.EDIT_PROFILE' | translate }}</a></li>
-								<li *ngIf="this.userService.currentUserValue.freeLanceDetails.isregfeedone">
-									<a [routerLink]="['/paymenthistory']">
-										{{ 'DASHOARD_FU_MENU.PAYMENTHISTORY' | translate }}
-									</a>
-								</li>
-							</ul>
+					<div *ngIf="this.userService.currentUserValue != null">
+						<div class="col-md-2"
+							*ngIf="this.userService.currentUserValue.userroles.rolecode =='FREELANCER_USER'">
+							<div class="address">
+								<h2>{{ 'FOOTER.USEFULLINKS' | translate }}</h2>
+								<!-- <hr> -->
+								<ul style="list-style: circle;">
+									<li><a [routerLink]="['/dashboard']">{{
+											'DASHOARD_FU_MENU.SUMMARY' | translate }}</a>
+									</li>
+									<li><a routerLink='/vieworeditprofile/{{userService.currentUserValue.userId}}'>
+											{{ 'DASHOARD_FU_MENU.EDIT_PROFILE' | translate }}</a></li>
+									<li *ngIf="this.userService.currentUserValue.freeLanceDetails.isregfeedone">
+										<a [routerLink]="['/paymenthistory']">
+											{{ 'DASHOARD_FU_MENU.PAYMENTHISTORY' | translate }}
+										</a>
+									</li>
+								</ul>
+							</div>
 						</div>
 					</div>
-					<div class="col-md-2" *ngIf="userService.currentUserValue != null && 
-						userService.currentUserValue.userroles.rolecode =='CLIENT_BUSINESS_ADMINISTRATOR'">
-						<div class="address">
-							<h2>{{ 'FOOTER.USEFULLINKS' | translate }}</h2>
-							<!-- <hr> -->
-							<ul style="list-style: circle; ">
-								<li><a [routerLink]="['/dashboard']">Our Services</a>
-								</li>
-								<li><a routerLink='/vieworeditprofile/{{userService.currentUserValue.userId}}'>
-										{{ 'DASHOARD_FU_MENU.EDIT_PROFILE' | translate }}</a></li>
-								<li>
-									<a [routerLink]="['/myservices']">
-										My Services
-									</a>
-								</li>
-								<li>
-									<a [routerLink]="['/paymenthistory']">
-										Payment History
-									</a>
-								</li>
-							</ul>
+					<div *ngIf="userService.currentUserValue != null">
+						<div class="col-md-2"
+							*ngIf="userService.currentUserValue.userroles.rolecode =='CLIENT_BUSINESS_ADMINISTRATOR'">
+							<div class="address">
+								<h2>{{ 'FOOTER.USEFULLINKS' | translate }}</h2>
+								<!-- <hr> -->
+								<ul style="list-style: circle; ">
+									<li><a [routerLink]="['/dashboard']">Our Services</a>
+									</li>
+									<li><a routerLink='/vieworeditprofile/{{userService.currentUserValue.userId}}'>
+											{{ 'DASHOARD_FU_MENU.EDIT_PROFILE' | translate }}</a></li>
+									<li>
+										<a [routerLink]="['/myservices']">
+											My Services
+										</a>
+									</li>
+									<li>
+										<a [routerLink]="['/paymenthistory']">
+											Payment History
+										</a>
+									</li>
+								</ul>
+							</div>
 						</div>
 					</div>
-					<div class="col-md-2" *ngIf="userService.currentUserValue != null && userService.currentUserValue.userroles.rolecode=='CORE_SERVICE_SUPPORT_MANAGER' ||
+					<div *ngIf="userService.currentUserValue != null">
+						<div class="col-md-2" *ngIf="userService.currentUserValue.userroles.rolecode=='CORE_SERVICE_SUPPORT_MANAGER' ||
 					userService.currentUserValue.userroles.rolecode =='CORE_SERVICE_SUPPORT_TEAM'">
-						<div class="address">
-							<h2>{{ 'FOOTER.USEFULLINKS' | translate }}</h2>
-							<!-- <hr> -->
-							<ul style="list-style: circle;">
-								<li><a [routerLink]="['/dashboard']">Dashboard</a>
-								</li>
-								<li><a [routerLink]="['/manageuser']"> Manage Users</a>
-								</li>
-								<li><a [routerLink]="['/manageservice']"> Manage
-										Services</a>
-								</li>
-							</ul>
+							<div class="address">
+								<h2>{{ 'FOOTER.USEFULLINKS' | translate }}</h2>
+								<!-- <hr> -->
+								<ul style="list-style: circle;">
+									<li><a [routerLink]="['/dashboard']">Dashboard</a>
+									</li>
+									<li><a [routerLink]="['/manageuser']"> Manage Users</a>
+									</li>
+									<li><a [routerLink]="['/manageservice']"> Manage
+											Services</a>
+									</li>
+								</ul>
+							</div>
 						</div>
 					</div>
 					<div class="col-md-2">

@@ -122,7 +122,7 @@
             <i class="fa fa fa-certificate	
            form-control-icon"></i>
           </span>
-          <select class="form-control" class="form-control" formControlName="subcategory"
+          <select class="form-control" formControlName="subcategory"
             [ngClass]="{ 'is-invalid': issubmit && f.subcategory.errors }">
             <option value="" selected>{{'HOMESIGNUP.SKILL' | translate}}</option>
             <option *ngFor="let referencelookupmapcat of referencedetailsmapsubcatselectedmapId"

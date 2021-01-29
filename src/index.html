@@ -205,6 +205,7 @@
   function offcanvas() {
     $(".row-offcanvas").toggleClass("active");
   }
+
 </script>
 <script>
   $(document).ready(function () {
@@ -215,6 +216,13 @@
       document.getElementById('video2').pause();
       document.getElementById('video3').pause();
       document.getElementById('video4').pause();
+    });
+    $('.panel-collapse').on('show.bs.collapse', function () {
+      $(this).siblings('.panel-heading').addClass('active');
+    });
+
+    $('.panel-collapse').on('hide.bs.collapse', function () {
+      $(this).siblings('.panel-heading').removeClass('active');
     });
   });
 </script>

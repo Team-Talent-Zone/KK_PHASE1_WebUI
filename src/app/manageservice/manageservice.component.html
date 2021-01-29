@@ -81,9 +81,10 @@
                                     <th>Created On</th>
                                     <th>Valid Period</th>
                                     <th>Price</th>
-                                    <th></th>
+                                    <th>Actions</th>
                                     <th
                                         *ngIf="userService.currentUserValue.userroles.rolecode =='CORE_SERVICE_SUPPORT_TEAM'; ">
+                                        Edit
                                     </th>
                                 </tr>
                             </thead>
@@ -129,7 +130,7 @@
                                     <td *ngFor="let newserviceobj of mywork.serviceHistory">
                                         <a *ngIf="newserviceobj.islocked" class="btn  btn-sm"
                                             (click)='processnewserviceopenmodal(newserviceobj.ourserviceId)'>
-                                            <i title="You can start working.." class="fa fa-lock"
+                                            <i title="You can start working.." class="fa fa-eye"
                                                 style="color: rgb(37, 165, 37)">
                                             </i>
                                         </a>
@@ -299,7 +300,6 @@
                                         <a routerLink='/editorviewnewservice/{{newserviceobj.ourserviceId}}'>
                                             <i class="fa fa-edit" title="Upgrade Service Now "> </i>
                                         </a>
-
                                     </td>
                                 </tr>
                             </tbody>

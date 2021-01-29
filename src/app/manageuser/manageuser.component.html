@@ -92,7 +92,7 @@
                                     <th>Created On</th>
                                     <th>Last Updated On</th>
                                     <th>Phone Number</th>
-                                    <th>Action</th>
+                                    <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody *ngIf="usrObjMyWork != ''; else elseNoBGWork">
@@ -114,7 +114,7 @@
                                     <td>
                                         <a *ngIf="mywork.freelancehistoryentity.islocked" class="btn  btn-sm"
                                             (click)='processbgverficiationopenmodal(mywork.userId)'>
-                                            <i title="You can start working.." class="fa fa-lock" style="color:#0a382b">
+                                            <i title="You can start working.." class="fa fa-eye" style="color:#0a382b">
                                             </i>
                                         </a>
                                     </td>
@@ -331,7 +331,7 @@
                                     <th>Created By</th>
                                     <th>Language</th>
                                     <th>Designation</th>
-                                    <th>Action</th>
+                                    <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
