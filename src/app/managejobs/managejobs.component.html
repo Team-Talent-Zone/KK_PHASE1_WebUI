@@ -1,26 +1,32 @@
 <!-- <div class="container p-1"> -->
 <h4>Manage Jobs</h4>
 <hr>
-<ul class="nav nav-tabs background" id="myTab" role="tablist">
-    <li class="nav-item">
-        <a class="nav-link active" id="collapseFUUpcomingJobs-tab" data-toggle="tab" href="#collapseFUUpcomingJobs"
-            role="tab" aria-controls="collapseFUUpcomingJobs" aria-selected="true">
-            <i class="fa fa-map-marker fatab"></i>
-            <br><b>
-                {{ 'DASHBOARD_FU_BODY.UPCOMINGJOBS' | translate }}
-            </b></a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" id="collapseFUNewJobs-tab" data-toggle="tab" href="#collapseFUNewJobs" role="tab"
-            aria-controls="collapseFUNewJobs" aria-selected="false"> <i class="fa fa-podcast fatab"></i><br><b> {{
-                'DASHBOARD_FU_BODY.NEWJOBS' | translate }}</b></a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" id="collapseFUCompletedJobs-tab" data-toggle="tab" href="#collapseFUCompletedJobs"
-            role="tab" aria-controls="contact" aria-selected="false"><i class="fa fa-road fatab"></i>
-            <br><b>{{ 'DASHBOARD_FU_BODY.COMPLETEDJOBS' | translate }}</b></a>
-    </li>
-</ul>
+<div class="container">
+    <div class="row">
+            <ul class="nav nav-tabs background" id="myTab" role="tablist">
+                <li class="nav-item col-md-4">
+                    <a class="nav-link active" id="collapseFUUpcomingJobs-tab" data-toggle="tab" href="#collapseFUUpcomingJobs"
+                        role="tab" aria-controls="collapseFUUpcomingJobs" aria-selected="true">
+                        <i class="fa fa-map-marker fatab"></i>
+                        <br><b>
+                            {{ 'DASHBOARD_FU_BODY.UPCOMINGJOBS' | translate }}
+                        </b></a>
+                </li>
+                <li class="nav-item col-md-4">
+                    <a class="nav-link" id="collapseFUNewJobs-tab" data-toggle="tab" href="#collapseFUNewJobs" role="tab"
+                        aria-controls="collapseFUNewJobs" aria-selected="false"> <i class="fa fa-podcast fatab"></i><br><b> {{
+                            'DASHBOARD_FU_BODY.NEWJOBS' | translate }}</b></a>
+                </li>
+                <li class="nav-item col-md-4">
+                    <a class="nav-link" id="collapseFUCompletedJobs-tab" data-toggle="tab" href="#collapseFUCompletedJobs"
+                        role="tab" aria-controls="contact" aria-selected="false"><i class="fa fa-road fatab"></i>
+                        <br><b>{{ 'DASHBOARD_FU_BODY.COMPLETEDJOBS' | translate }}</b></a>
+                </li>
+            </ul>
+    </div>    
+</div>
+    
+
 <div class="tab-content background" id="myTabContent">
     <div class="tab-pane fade show active" id="collapseFUUpcomingJobs" role="tabpanel"
         aria-labelledby="collapseFUUpcomingJobs-tab">

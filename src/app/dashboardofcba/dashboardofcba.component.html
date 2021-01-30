@@ -1,6 +1,6 @@
 <h4>Our Services</h4>
 <hr>
-<i class="fa fa-shopping-cart pull-right" style="cursor:pointer" (click)="openUserServiceCart()"
+<i class="fa fa-shopping-cart pull-right" aria-hidden="true" style="cursor:pointer; font-size: 22px;" (click)="openUserServiceCart()"
   *ngIf="userservicedetailsAddedList.length > 0 ">
   <span *ngIf="userservicedetailsAddedList.length == 1 ; else morethenOne">
     {{userservicedetailsAddedList.length}}
