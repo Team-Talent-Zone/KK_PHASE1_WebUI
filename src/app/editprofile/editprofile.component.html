@@ -33,10 +33,12 @@
                                     </i>
                                     <span style="color:white">
                                         {{
-                                        'DASHBOARD_FU_PROFILE.PROFILE_BASIC_DETAILS_INFO_1' | translate }}
+                                        'DASHBOARD_FU_PROFILE.PROFILE_BASIC_DETAILS_INFO_1' | translate }} 
+                                    </span>
+                                    <div style="color:white">
                                         {{
                                         'DASHBOARD_FU_PROFILE.PROFILE_BASIC_DETAILS_INFO_2' | translate }}
-                                    </span>
+                                        </div>
                                 </small>
                             </div>
                             <div class="card-body">
@@ -53,7 +55,7 @@
                                             <span>
                                                 <i class="fa fa-user-circle form-control-icon"></i>
                                             </span>
-                                            <input type="text" readonly=true
+                                            <input type="text"
                                                 placeholder=" {{ 'DASHBOARD_FU_PROFILE.PROFILE_FIRSTNAME' | translate }}"
                                                 class="form-control" id="inputFirstName"
                                                 [ngClass]="{ 'is-invalid': issubmit && f.firstname.errors }"
@@ -71,7 +73,7 @@
                                             <span>
                                                 <i class="fa fa-user-circle form-control-icon"></i>
                                             </span>
-                                            <input type="text" readonly=true
+                                            <input type="text"
                                                 placeholder="{{ 'DASHBOARD_FU_PROFILE.PROFILE_LASTNAME' | translate }}"
                                                 class="form-control" id="inputLastName" formControlName="lastname"
                                                 [ngClass]="{ 'is-invalid': issubmit && f.lastname.errors }">

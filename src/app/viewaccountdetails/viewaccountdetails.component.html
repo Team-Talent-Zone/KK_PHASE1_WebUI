@@ -13,7 +13,7 @@
     </tr>
     <tr>
       <th>Profile Picture</th>
-      <td> <a href="{{usrdetailsObj.avtarurl}}" target="_blank" class="fa fa-image"></a></td>
+      <td> <img src="{{usrdetailsObj.avtarurl}}" width="100px" height="80px"></td>
     </tr>
     <tr>
       <th>Email Address </th>
@@ -211,7 +211,7 @@
       </tr>
       <tr *ngFor="let value of usrdetailsObj.freelancedocumententity ">
 
-        <td><a href="{{value.docurl}}">{{value.docname}}</a> </td>
+        <td><a href="{{value.docurl}}"  target="_blank">{{value.docname}} </a> </td>
         <td>{{value.uploaddate}}</td>
       </tr>
     </table>

@@ -104,7 +104,7 @@
                                         </a>
                                     </td>
                                     <td>
-                                        <i class="fa fa-smile-o" style="color:#0a382b" *ngIf="mywork.isactive"> </i>
+                                        <i class="fa fa-smile-o" style="color:#0a382b;" *ngIf="mywork.isactive"> </i>
                                         <i class="fa fa-frown-o" style="color:#FF4949" *ngIf="!mywork.isactive"> </i>
                                     </td>
                                     <td>{{mywork.username}}</td>
@@ -114,7 +114,7 @@
                                     <td>
                                         <a *ngIf="mywork.freelancehistoryentity.islocked" class="btn  btn-sm"
                                             (click)='processbgverficiationopenmodal(mywork.userId)'>
-                                            <i title="You can start working.." class="fa fa-eye" style="color:#0a382b">
+                                            <i title="You can start working.." class="fa fa-eye" style="color:#0a382b;">
                                             </i>
                                         </a>
                                     </td>
@@ -156,7 +156,7 @@
                                         </a>
                                     </td>
                                     <td>
-                                        <i class="fa fa-smile-o" style="color:#0a382b" *ngIf="cbu.isactive"> </i>
+                                        <i class="fa fa-smile-o" style="color:#0a382b; padding: 40px;" *ngIf="cbu.isactive"> </i>
                                         <i class="fa fa-frown-o" style="color:#FF4949" *ngIf="!cbu.isactive"> </i>
                                     </td>
                                     <td>{{cbu.username}}</td>
