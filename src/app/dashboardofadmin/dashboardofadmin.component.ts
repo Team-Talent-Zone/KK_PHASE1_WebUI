@@ -16,6 +16,7 @@ import { ReferenceAdapter } from '../adapters/referenceadapter';
 import { map } from 'rxjs/operators';
 import { UsersrvdetailsService } from '../AppRestCall/userservice/usersrvdetails.service';
 import { timer } from 'rxjs';
+import { NewsvcService } from '../AppRestCall/newsvc/newsvc.service';
 
 @Component({
   selector: 'app-dashboardofadmin',
@@ -52,6 +53,9 @@ export class DashboardofadminComponent implements OnInit {
 
   onworkfreelancelistsbysubcategory: any;
   onnotworkfreelancelistsbysubcategory: any;
+  isshowswithjobbycategory : boolean = false;
+  isshowswithnojobbycategory : boolean = false;
+  isshownofreelancerinsystem : boolean = false;
 
   /*
   All - Service related varaible
@@ -59,6 +63,12 @@ export class DashboardofadminComponent implements OnInit {
 
   listofallpaidservices: any;
   listofallnotpaidservices: any;
+  onlistofallactivenewservices: any;
+  servicetableenabled : boolean = false;
+  totalearningonservice: number = 0;
+  totalearningallservices: number = 0;
+  ispurchasedserviceempty: boolean = false;
+  isnotpurchasedserviceempty:boolean = false;
 
   constructor(
     private freelanceserviceService: FreelanceserviceService,
@@ -73,6 +83,7 @@ export class DashboardofadminComponent implements OnInit {
     private refAdapter: ReferenceAdapter,
     private referService: ReferenceService,
     private usersrvdetailsService: UsersrvdetailsService,
+    private newService: NewsvcService,
   ) { }
 
   ngOnInit() {
@@ -81,8 +92,9 @@ export class DashboardofadminComponent implements OnInit {
       this.formValidations();
       this.dashboardSummaryOfSkilledWorkerSearchService();
       this.getAllAvailableFUSkills();
-      this.getAllUserServices();
+     
     //});
+    this.getAllNewServiceDetails();
   }
 
   formValidations() {
@@ -127,21 +139,19 @@ export class DashboardofadminComponent implements OnInit {
           if (element.isjobactive && !element.isjobaccepted && !element.isjobvoliation && element.jobaccepteddate == null) {
             this.newjobsactiviatedbutnotacceptedList.push(element);
           }
-          if (element.isjobactive && element.iscompleted && element.isjobamtpaidtocompany && element.isjobamtpaidtofu && element.jobaccepteddate != null) {
+          if (element.isjobactive && element.isjobcompleted && element.isjobamtpaidtocompany && element.isjobamtpaidtofu && element.jobaccepteddate != null) {
             this.jobscompletedList.push(element);
-            console.log('Number ', Number.parseFloat(element.tocompanyamount));
             this.totalmoneyearnedbycompanytilltoday = Number.parseFloat(element.tocompanyamount) + this.totalmoneyearnedbycompanytilltoday;
             this.totalmoneyearnedbyskilledworkerstilltoday = Number.parseFloat(element.tofreelanceamount) + this.totalmoneyearnedbyskilledworkerstilltoday;
           }
-          if (element.isjobactive && element.iscompleted && !element.isjobamtpaidtocompany && element.jobaccepteddate != null) {
+          if (element.isjobactive && element.isjobcompleted && !element.isjobamtpaidtocompany && element.jobaccepteddate != null) {
             this.jobscompletedwithoutpaymentList.push(element);
             this.totalcompletedjobswithoutpaymentbyclient = Number.parseFloat(element.tocompanyamount) + this.totalcompletedjobswithoutpaymentbyclient;
           }
-          if (element.isjobactive && element.iscompleted && !element.isjobamtpaidtofu && element.jobaccepteddate != null) {
+          if (element.isjobactive && element.isjobcompleted && !element.isjobamtpaidtofu && element.jobaccepteddate != null) {
             this.jobscompletedpayoutpendingList.push(element);
           }
         });
-        console.log('this is jobdetailsList :', this.upcomingjobscheduledList);
       }
     },
       error => {
@@ -195,37 +205,64 @@ export class DashboardofadminComponent implements OnInit {
 
   getFUWorkStatus(event: Event) {
     this.onworkfreelancelistsbysubcategory = [];
+    this.onnotworkfreelancelistsbysubcategory = [];
     let selectedOptions = event.target['options'];
     let selectedIndex = selectedOptions.selectedIndex;
     let selectElementText = selectedOptions[selectedIndex].text;
     let selectElementCode = selectedOptions[selectedIndex].value;
-    this.freelanceserviceService.getUserAllJobDetailsBySubCategory(selectElementCode).subscribe((freelanceserviceList: any) => {
-      if (freelanceserviceList != null) {
-        freelanceserviceList.forEach(element => {
-          if (element.isjobactive && !element.isjobvoliation && element.jobaccepteddate == null) {
-            this.onworkfreelancelistsbysubcategory.push(element);
-          }
-        });
-        this.userService.getUsersByRole(config.user_rolecode_fu).subscribe((userList: any) => {
-          if (userList != null) {
-            freelanceserviceList.forEach(elementFUList => {
-              userList.forEach(element => {
-                if (elementFUList.freelanceuserId != element.userId && element.isactive && element.freeLanceDetails.bgcurrentstatus == config.bg_code_approved) {
-                  this.onnotworkfreelancelistsbysubcategory.push(element);
-                }
-              });
+    this.isshowswithjobbycategory = false;
+    this.isshowswithnojobbycategory = false;
+    this.isshownofreelancerinsystem = false;
+    if(selectElementCode.length > 0){
+        this.freelanceserviceService.getUserAllJobDetailsBySubCategory(selectElementCode).subscribe((freelanceserviceList: any) => {
+          if (freelanceserviceList != null) {
+            freelanceserviceList.forEach(element => {
+              if (element.isjobactive && !element.isjobvoliation && element.jobaccepteddate != null) {
+                this.onworkfreelancelistsbysubcategory.push(element);
+              }
             });
+              setTimeout(() => {
+                if(this.onworkfreelancelistsbysubcategory.length > 0){
+                  this.isshowswithjobbycategory = true;
+                }
+                this.userService.getUsersByRole(config.user_rolecode_fu).subscribe((userList: any) => {
+                  if (userList != null) {
+                    if(this.onworkfreelancelistsbysubcategory.length > 0){
+                      userList.forEach(element => {
+                        var isexist = this.onworkfreelancelistsbysubcategory.filter(e => e.freelanceuserId === element.userId);
+                        if (isexist == null && element.isactive && 
+                          element.freeLanceDetails.bgcurrentstatus == config.bg_code_approved && 
+                          selectElementCode == element.freeLanceDetails.subCategory ) {
+                          this.onnotworkfreelancelistsbysubcategory.push(element);
+                          this.isshowswithnojobbycategory = true;
+                          }
+                    });
+                  } else{
+                    userList.forEach(element => {
+                      if (element.isactive && 
+                        element.freeLanceDetails.bgcurrentstatus == config.bg_code_approved && 
+                        selectElementCode == element.freeLanceDetails.subCategory ) {
+                        this.onnotworkfreelancelistsbysubcategory.push(element);
+                        this.isshowswithnojobbycategory = true;
+                      }
+                    })
+                  }
+                  }
+                },
+                  error => {
+                    this.spinnerService.hide();
+                    this.alertService.error(error);
+                  });
+                  if(this.onnotworkfreelancelistsbysubcategory.length == 0 && this.onworkfreelancelistsbysubcategory == 0 ){
+                    this.isshownofreelancerinsystem = true;
+                  }
+              }, 500);
           }
-        },
-          error => {
-            this.spinnerService.hide();
-            this.alertService.error(error);
-          });
+        }, error => {
+          this.spinnerService.hide();
+          this.alertService.error(error);
+        });
       }
-    }, error => {
-      this.spinnerService.hide();
-      this.alertService.error(error);
-    });
   }
 
   reassign(jobId: number) {
@@ -275,7 +312,6 @@ export class DashboardofadminComponent implements OnInit {
       .then((confirmed) => {
         if (confirmed) {
           this.spinnerService.show();
-          console.log('this is resoin', this.voliationResolvedForm.get('resolvedvoliationreason').value);
           if (this.voliationResolvedForm.get('resolvedvoliationreason').value != null) {
             this.freelanceSvc.getAllFreelanceOnServiceDetailsByJobId(jobId).subscribe((objfreelanceservice: FreelanceOnSvc) => {
               objfreelanceservice.isfreelancerjobattendant = true;
@@ -323,20 +359,59 @@ export class DashboardofadminComponent implements OnInit {
    * Summary  - All Services
    */
 
-  getAllUserServices() {
+  getAllNewServiceDetails(){
+    this.onlistofallactivenewservices = [];
+    this.servicetableenabled = false;
+    this.totalearningonservice = 0;
+    this.totalearningallservices = 0;
+    this.newService.getAllNewServiceDetails().subscribe((allnewservices: any) => {
+      if (allnewservices != null) {
+        this.onlistofallactivenewservices = allnewservices;
+      }},
+      error => {
+        this.spinnerService.hide();
+        this.alertService.error(error);
+      });
+  }
+
+  getServicesDetailsByServiceId(event : Event) {
     this.listofallnotpaidservices = [];
     this.listofallpaidservices = [];
+    this.totalearningonservice = 0;
+    this.totalearningallservices = 0;
+    this.ispurchasedserviceempty = false;
+    this.isnotpurchasedserviceempty = false;
+
+    let selectedOptions = event.target['options'];
+    let selectedIndex = selectedOptions.selectedIndex;
+    let selectElementText = selectedOptions[selectedIndex].text;
+    let selectElementCode = selectedOptions[selectedIndex].value;
     this.usersrvdetailsService.getAllUserServiceDetailsView().subscribe((allservices: any) => {
       if (allservices != null) {
-        console.log('this is allservices' , allservices);
         allservices.forEach(element => {
-          if (element.isservicepurchased) {
-            this.listofallpaidservices.push(element);
-          }
-          if (!element.isservicepurchased) {
-            this.listofallnotpaidservices.push(element);
-          }
+          if(selectElementCode == element.ourserviceId){
+            if (element.isservicepurchased) {
+              this.listofallpaidservices.push(element);
+              this.totalearningonservice = element.amount + this.totalearningonservice;
+            }
+            if (!element.isservicepurchased) {
+              this.listofallnotpaidservices.push(element);
+            }
+        }
+        if (element.isservicepurchased) {
+          this.totalearningallservices = element.amount + this.totalearningallservices;
+        }
         });
+        this.servicetableenabled = true;
+        setTimeout(() => {
+          if(this.listofallpaidservices.length == 0){
+            this.ispurchasedserviceempty = true;
+          }
+          if(this.listofallnotpaidservices.length == 0){
+            this.isnotpurchasedserviceempty = true;
+          }
+        }, 500);
+        console.log('listofallpaidservices' ,this.listofallpaidservices);
       }
     },
       error => {

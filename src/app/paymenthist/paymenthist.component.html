@@ -15,7 +15,9 @@
                         <th> {{ 'PAYMENTHIST.PAYMENTHIST_TRAN_NUMBER' | translate }} </th>
                         <th>{{ 'PAYMENTHIST.PAYMENTHIST_FIRSTNAME' | translate }}</th>
                         <th>{{ 'PAYMENTHIST.PAYMENTHIST_TRAN_DATE' | translate }}</th>
-                        <th>{{ 'PAYMENTHIST.PAYMENTHIST_STATUS' | translate }}</th>
+                        <th *ngIf="userService.currentUserValue.userroles.rolecode === 'CLIENT_BUSINESS_ADMINISTRATOR' ||
+                        userService.currentUserValue.userroles.rolecode === 'FREELANCER_USER'"
+                        >{{ 'PAYMENTHIST.PAYMENTHIST_STATUS' | translate }}</th>
                         <th>{{ 'PAYMENTHIST.PAYMENTHIST_AMOUNT' | translate }}</th>
                         <th>{{ 'PAYMENTHIST.PAYMENTHIST_NOTES' | translate }}</th>
                     </tr>

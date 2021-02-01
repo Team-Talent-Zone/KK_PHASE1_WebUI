@@ -1,4 +1,3 @@
-import { ConfigMsg } from './../AppConstants/configmsg';
 import {
   HttpEvent,
   HttpInterceptor,

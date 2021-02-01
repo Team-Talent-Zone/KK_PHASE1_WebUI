@@ -65,7 +65,7 @@
               aria-controls="reportedVoliations">
               <i class="fa fa-reorder iconCSS"></i>
               <span class="textCSS" *ngIf="todaysvoliationList != null">
-                Reported Voliations
+                Pending Reported Voliations
                 <b>
                   [{{todaysvoliationList.length}}]
                 </b>
@@ -163,7 +163,7 @@
           <div class="col-xl-3 col-sm-6 py-2">
             <a class="btn btn-warning" data-toggle="collapse" href="#jobscompletedpayoutpendingList" role="button"
               aria-expanded="false" aria-controls="jobscompletedpayoutpendingList">
-              <i class="fa fa-reorder"></i> Todays Payout Pending Payments
+              <i class="fa fa-reorder"></i> Payout Pending Payments
               <span *ngIf="jobscompletedpayoutpendingList != null">
                 <b>
                   [{{jobscompletedpayoutpendingList.length}}]
@@ -174,23 +174,17 @@
         </div>
         <div class="row mb-4 justify-content-center">
           <div class="col-xl-4 col-sm-6 py-2">
-            <a class="btn btn-success" data-toggle="collapse" href="#searchFUWorkStatusList" role="button"
-              aria-expanded="false" aria-controls="searchFUWorkStatusList">
-              <select (change)="getFUWorkStatus($event);">
-                <option value=null> --Select Category --</option>
+              <select  class="btn btn-dark"   (change)="getFUWorkStatus($event);">
+                <option value=''> --Select Category --</option>
                 <option *ngFor="let item of listofAllFUSkills" value={{item.code}}>
                   {{item.label}}
                 </option>
               </select>
-            </a>
           </div>
-        </div>
+        </div> 
         <!-- Selected Sub Category Results -->
-        <div class="collapse" id="searchFUWorkStatusList">
-          <div class="card card-body">
-            <div class="container">
-              <div class="row">
-                <div class="col-12">
+              <div class="row" *ngIf="isshowswithjobbycategory">
+                <div class="col-14">
                   <h5>Jobs ON Users</h5>
                   <table class="table table-bordered">
                     <thead>
@@ -212,6 +206,8 @@
                             (click)='manageruser.openViewAccountDetailsModal(job.freelanceuserId)'>
                             {{job.fullname}}
                           </a>
+                          <p><i><small>{{job.subcategorylabel}}</small></i></p>
+
                         </td>
                         <td>{{job.fuphoneno}}</td>
                         <td>
@@ -220,7 +216,7 @@
                             {{job.bizname}}
                           </a>
                         </td>
-                        <td>{{job.tocompanyamount}}</td>
+                        <td>{{job.tocompanyamount | currency:"INR$"}}</td>
                         <td>{{job.jobstartedon}}</td>
                         <td>{{job.jobendedon}}</td>
                       </tr>
@@ -228,15 +224,14 @@
                   </table>
                 </div>
               </div>
-
-              <div class="row">
-                <div class="col-12">
-                  <h5>No Jobs To TheseUser</h5>
+              <div class="row" *ngIf="isshowswithnojobbycategory">
+                <div class="col-14">
+                  <h5>No Jobs for the below users</h5>
                   <table class="table table-bordered">
                     <thead>
                       <tr>
                         <th scope="col">Skilled Worker Name</th>
-                        <th scope="col">Skilled WOrker PhoneNo</th>
+                        <th scope="col">Skilled Worker Phone Number</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -252,18 +247,19 @@
                     </tbody>
                   </table>
                 </div>
-              </div>
-            </div>
+             </div>
+             <div class="alert alert-success alert-dismissible fade show w-100" role="alert"
+              *ngIf="isshownofreelancerinsystem">
+              <h5 class="display-5">
+                  No skilled workers onboard in the platform under this skill category.
+              </h5>
           </div>
-        </div>
 
         <!-- Reported Voliations -->
         <div class="collapse" id="reportedVoliations">
-          <div class="card card-body">
-            <div class="container">
               <div class="row">
-                <div class="col-12">
-                  <h5>Reported Voliations</h5>
+                <div class="col-14">
+                  <h5>Pending Reported Voliations</h5>
                   <form [formGroup]="voliationResolvedForm">
                     <table class="table table-bordered">
                       <thead>
@@ -272,10 +268,9 @@
                           <th scope="col">SW Name</th>
                           <th scope="col">SW PhoneNo</th>
                           <th scope="col">Client</th>
-                          <th scope="col">Total Amount</th>
                           <th scope="col">Job Start Date</th>
                           <th scope="col">Job End Date</th>
-                          <th scope="col">Voliation Reason Comments</th>
+                          <th scope="col">Voliation Comments</th>
                           <th scope="col">Actions</th>
                         </tr>
                       </thead>
@@ -285,8 +280,9 @@
                           <td>
                             <a href="javascript: return false;"
                               (click)='manageruser.openViewAccountDetailsModal(job.freelanceuserId)'>
-                              {{job.fullname}}
+                              <p>{{job.fullname}}</p>
                             </a>
+                            <p><i><small>{{job.subcategorylabel}}</small></i></p>
                           </td>
                           <td>{{job.fuphoneno}}</td>
                           <td>
@@ -295,7 +291,6 @@
                               {{job.bizname}}
                             </a>
                           </td>
-                          <td>{{job.tocompanyamount}}</td>
                           <td>{{job.jobstartedon}}</td>
                           <td>{{job.jobendedon}}</td>
                           <td>
@@ -310,9 +305,12 @@
                           </td>
                           <td>
                             <p>
-                              <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"
+                              <button type="submit" class="btn-sm btn-primary"><i class="fa fa-floppy-o"
                                   (click)="savevoliationResolvedReason(job.jobId)"
                                   title='Click once the save is resolved voliation.'></i></button>
+                                  &nbsp;
+                              <button type="button" class="btn-sm btn-info"><i class="fa fa-undo"
+                                  title='Click to recreate a new job.'></i></button>
                             </p>
                           </td>
                         </tr>
@@ -320,17 +318,14 @@
                     </table>
                   </form>
                 </div>
-              </div>
 
 
             </div>
-          </div>
         </div>
         <div class="row mb-2"></div>
         <div class="collapse" id="resolvedVoliations">
-          <div class="card card-body">
             <div class="row">
-              <div class="col-12">
+              <div class="col-14">
                 <h5>Resolved Voliations</h5>
                 <table class="table table-bordered">
                   <thead>
@@ -342,6 +337,7 @@
                       <th scope="col">Total Amount</th>
                       <th scope="col">Job Start Date</th>
                       <th scope="col">Job End Date</th>
+                      <th scope="col">Voliation Comments</th>
                       <th scope="col">Voliation Status</th>
                     </tr>
                   </thead>
@@ -353,6 +349,8 @@
                           (click)='manageruser.openViewAccountDetailsModal(job.freelanceuserId)'>
                           {{job.fullname}}
                         </a>
+                        <p><i><small>{{job.subcategorylabel}}</small></i></p>
+
                       </td>
                       <td>{{job.fuphoneno}}</td>
                       <td>
@@ -361,9 +359,10 @@
                           {{job.bizname}}
                         </a>
                       </td>
-                      <td>{{job.tocompanyamount}}</td>
+                      <td>{{job.tocompanyamount | currency:"INR$"}}</td>
                       <td>{{job.jobstartedon}}</td>
                       <td>{{job.jobendedon}}</td>
+                      <td>{{job.resolvedvoliationreason}}</td>
                       <td>
                         <p>
                           <i class="fa fa-check" style="color:green" title='Voliation is Resolved'></i>
@@ -373,15 +372,12 @@
                   </tbody>
                 </table>
               </div>
-            </div>
           </div>
         </div>
         <div class="row mb-2"></div>
         <div class="collapse" id="totalscheduledjobs">
-          <div class="card card-body">
-            <div class="container">
               <div class="row">
-                <div class="col-12">
+                <div class="col-14">
                   <h5>Todays Scheduled Jobs</h5>
                   <table class="table table-bordered">
                     <thead>
@@ -403,6 +399,8 @@
                             (click)='manageruser.openViewAccountDetailsModal(job.freelanceuserId)'>
                             {{job.fullname}}
                           </a>
+                          <p><i><small>{{job.subcategorylabel}}</small></i></p>
+
                         </td>
                         <td>{{job.fuphoneno}}</td>
                         <td>
@@ -411,7 +409,7 @@
                             {{job.bizname}}
                           </a>
                         </td>
-                        <td>{{job.tocompanyamount}}</td>
+                        <td>{{job.tocompanyamount | currency:"INR$"}}</td>
                         <td>{{job.jobstartedon}}</td>
                         <td>{{job.jobendedon}}</td>
                       </tr>
@@ -419,14 +417,11 @@
                   </table>
                 </div>
               </div>
-            </div>
-          </div>
         </div>
         <div class="row mb-2"></div>
         <div class="collapse" id="upcomingscheduledjobs">
-          <div class="card card-body">
             <div class="row">
-              <div class="col-12">
+              <div class="col-14">
                 <h5>Upcoming Scheduled Jobs</h5>
                 <table class="table table-bordered">
                   <thead>
@@ -448,6 +443,8 @@
                           (click)='manageruser.openViewAccountDetailsModal(job.freelanceuserId)'>
                           {{job.fullname}}
                         </a>
+                        <p><i><small>{{job.subcategorylabel}}</small></i></p>
+
                       </td>
                       <td>{{job.fuphoneno}}</td>
                       <td>
@@ -456,7 +453,7 @@
                           {{job.bizname}}
                         </a>
                       </td>
-                      <td>{{job.tocompanyamount}}</td>
+                      <td>{{job.tocompanyamount | currency:"INR$"}}</td>
                       <td>{{job.jobstartedon}}</td>
                       <td>{{job.jobendedon}}</td>
                     </tr>
@@ -464,20 +461,19 @@
                 </table>
               </div>
             </div>
-          </div>
         </div>
         <div class="row mb-2"></div>
         <div class="collapse" id="newnonactivatedjobs">
-          <div class="card card-body">
             <div class="row">
-              <div class="col-12">
-                <h5>Newly Not Activated Jobs</h5>
+              <div class="col-14">
+                <h5>New Jobs - Not Activated</h5>
                 <table class="table table-bordered">
                   <thead>
                     <tr>
                       <th scope="col">Job Id</th>
                       <th scope="col">Client</th>
                       <th scope="col">Client Phone No</th>
+                      <th scope="col">Skill</th>
                       <th scope="col">Job Start Date</th>
                       <th scope="col">Job End Date</th>
                       <th scope="col">Total Amount</th>
@@ -493,22 +489,22 @@
                         </a>
                       </td>
                       <td>{{job.cbaphoneno}}</td>
+                      <td>{{job.subcategorylabel}}</td>
                       <td>{{job.jobstartedon}}</td>
                       <td>{{job.jobendedon}}</td>
-                      <td>{{job.amount}}</td>
+                      <td>{{job.amount | currency:"INR₹"}}</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
-            </div>
-          </div>
+    
+        </div>
         </div>
         <div class="row mb-2"></div>
         <div class="collapse" id="newlyactivatedjobs">
-          <div class="card card-body">
             <div class="row">
-              <div class="col-12">
-                <h5>Newly Activiated Jobs</h5>
+              <div class="col-14">
+                <h5>New Jobs - Just Activiated</h5>
                 <table class="table table-bordered">
                   <thead>
                     <tr>
@@ -535,9 +531,9 @@
                       </td>
                       <td>{{job.jobstartedon}}</td>
                       <td>{{job.jobendedon}}</td>
-                      <td>{{job.tocompanyamount}}</td>
-                      <td>{{job.tofreelanceamount}}</td>
-                      <td>{{job.amount}}</td>
+                      <td>{{job.tocompanyamount | currency:"INR$"}}</td>
+                      <td>{{job.tofreelanceamount | currency:"INR$"}}</td>
+                      <td>{{job.amount | currency:"INR₹"}}</td>
                       <td><a class="btn btn-info btn-sm" (click)="getFUUsersByCategory(job.scategory , i )">
                           Get All {{job.subcategorylabel}}
                         </a>
@@ -565,14 +561,12 @@
                 </table>
               </div>
             </div>
-          </div>
         </div>
         <div class="row mb-2"></div>
         <div class="collapse" id="jobscompletedList">
-          <div class="card card-body">
             <div class="row">
-              <div class="col-12">
-                <h5>Completed Jobs</h5>
+              <div class="col-14">
+                <h5>Client & Payout Payment Complete</h5>
                 <table class="table table-bordered">
                   <thead>
                     <tr>
@@ -594,6 +588,7 @@
                           (click)='manageruser.openViewAccountDetailsModal(job.freelanceuserId)'>
                           {{job.fullname}}
                         </a>
+                        <p><i><small>{{job.subcategorylabel}}</small></i></p>
                       </td>
                       <td>
                         <a href="javascript: return false;"
@@ -603,22 +598,20 @@
                       </td>
                       <td>{{job.jobstartedon}}</td>
                       <td>{{job.jobendedon}}</td>
-                      <td>{{job.tocompanyamount}}</td>
-                      <td>{{job.tofreelanceamount}}</td>
-                      <td>{{job.amount}}</td>
+                      <td>{{job.tocompanyamount | currency:"INR$"}}</td>
+                      <td>{{job.tofreelanceamount | currency:"INR$"}}</td>
+                      <td>{{job.amount | currency:"INR₹"}}</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
             </div>
-          </div>
         </div>
         <div class="row mb-2"></div>
         <div class="collapse" id="jobscompletedwithoutpaymentList">
-          <div class="card card-body">
             <div class="row">
               <div class="col-12">
-                <h5>Completed Jobs Without Client Payment</h5>
+                <h5>Client Payment Pending</h5>
                 <table class="table table-bordered">
                   <thead>
                     <tr>
@@ -641,6 +634,8 @@
                           (click)='manageruser.openViewAccountDetailsModal(job.freelanceuserId)'>
                           {{job.fullname}}
                         </a>
+                        <p><i><small>{{job.subcategorylabel}}</small></i></p>
+
                       </td>
                       <td>
                         <a href="javascript: return false;"
@@ -651,22 +646,20 @@
                       <td>{{job.fuphoneno}}</td>
                       <td>{{job.jobstartedon}}</td>
                       <td>{{job.jobendedon}}</td>
-                      <td>{{job.tocompanyamount}}</td>
-                      <td>{{job.tofreelanceamount}}</td>
-                      <td>{{job.amount}}</td>
+                      <td>{{job.tocompanyamount | currency:"INR₹"}}</td>
+                      <td>{{job.tofreelanceamount | currency:"INR₹"}}</td>
+                      <td>{{job.amount | currency:"INR₹"}}</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
             </div>
-          </div>
         </div>
         <div class="row mb-2"></div>
         <div class="collapse" id="jobscompletedpayoutpendingList">
-          <div class="card card-body">
             <div class="row">
-              <div class="col-12">
-                <h5>Completed Jobs Payout Pending</h5>
+              <div class="col-14">
+                <h5>Payout Pending Payments</h5>
                 <table class="table table-bordered">
                   <thead>
                     <tr>
@@ -688,6 +681,8 @@
                           (click)='manageruser.openViewAccountDetailsModal(job.freelanceuserId)'>
                           {{job.fullname}}
                         </a>
+                        <p><i><small>{{job.subcategorylabel}}</small></i></p>
+
                       </td>
                       <td>{{job.fuphoneno}}</td>
                       <td>
@@ -698,53 +693,81 @@
                       </td>
                       <td>{{job.jobstartedon}}</td>
                       <td>{{job.jobendedon}}</td>
-                      <td>{{job.tofreelanceamount}}</td>
-                      <td>{{job.amount}}</td>
+                      <td>{{job.tofreelanceamount | currency:"INR$"}}</td>
+                      <td>{{job.amount | currency:"INR₹"}}</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
-            </div>
+        
           </div>
         </div>
-      </div>
     </div>
+  </div>
+
     <!-- Summary of All Service Dashboard -->
-    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
       <div class="panel-body">
-        <div class="card card-body">
           <div class="row">
-            <div class="col-12">
-              <h5>Client Purchased Service</h5>
-              <span>
-                <div class="col-md-12 bg-search">
-                  <input type="text" id="myAdminInputUser" onkeyup="manageUsersTableSearch('admin')"
-                    class="form-control col-md-3" placeholder="Search by service name">
+            <div class="row mb-4 justify-content-end">
+              <div class="col-xl-4 col-sm-6 py-2">
+              <select  class="btn btn-info" (change)="getServicesDetailsByServiceId($event);">
+                <option value=null> --Select Services --</option>
+                <option *ngFor="let item of onlistofallactivenewservices" value={{item.ourserviceId}}>
+                  {{item.name}}
+                </option>
+              </select>
+            </div>
+            </div>
+          </div>
+          <div class="row mb-4 justify-content-end" *ngIf="servicetableenabled">
+            <div class="col-xl-2 col-sm-12 py-2">
+              <div class="card bg-success text-white h-100">
+                <div class="card-body bg-success">
+                  <div class="rotate">
+                    <i class="fa fa-inr fa-4x"></i>
+                  </div>
+                  <h6 class="text-uppercase">Total All Earnings</h6>
+                  <h1>{{this.totalearningallservices}}</h1>
                 </div>
-              </span>
-              <table class="table table-bordered">
+              </div>
+            </div>
+            <div class="col-xl-2 col-sm-12 py-2">
+              <div class="card bg-success text-white h-100">
+                <div class="card-body bg-info">
+                  <div class="rotate">
+                    <i class="fa fa-inr fa-4x"></i>
+                  </div>
+                  <h6 class="text-uppercase">Earned On This Service</h6>
+                  <h1>{{this.totalearningonservice}}</h1>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row" *ngIf="servicetableenabled" >
+            <div class="col-12">
+              <h5><u>Client Purchased Service</u></h5>
+              <table class="table table-bordered" *ngIf="!ispurchasedserviceempty">
                 <thead>
                   <tr>
-                    <th scope="col">Service Id</th>
                     <th scope="col">Service Name</th>
                     <th scope="col">Client Name</th>
-                    <th scope="col">Client Business Name</th>
+                    <th scope="col">Business Name</th>
                     <th scope="col">Phone No</th>
                     <th scope="col">Validate </th>
-                    <th scope="col">Service Start On</th>
-                    <th scope="col">Service End Date</th>
+                    <th scope="col">Start On</th>
+                    <th scope="col">End Date</th>
                     <th scope="col">Amount</th>
                     <th scope="col">Txn Id</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr *ngFor="let srv of listofallpaidservices">
-                    <td>{{srv.serviceId}}</td>
                     <td>
                       {{srv.name}}
                     </td>
                     <td>
-                      <a href="javascript: return false;" (click)='manageruser.openViewAccountDetailsModal(srv.userId)'>
+                      <a href="javascript: return false;" (click)='manageruser.openViewAccountDetailsModal(srv.userid)'>
                         {{srv.fullname}}
                       </a>
                     </td>
@@ -753,45 +776,44 @@
                     <td>{{srv.validPeriodLabel}}</td>
                     <td>{{srv.servicestarton}}</td>
                     <td>{{srv.serviceendon}}</td>
-                    <td>{{srv.amount}}</td>
-                    <td>{{srv.txnid}}</td>
+                    <td>{{srv.amount | currency:"INR₹"}}</td>
+                    <td>
+                      <a [routerLink]="['/payment',srv.txnid]">{{srv.txnid}}</a></td>
                   </tr>
                 </tbody>
               </table>
+              <div class="alert alert-success alert-dismissible fade show w-100" role="alert"
+              *ngIf="ispurchasedserviceempty">
+              <h5 class="display-5">
+                  No clients has purchased this service.
+              </h5>
+          </div>
             </div>
           </div>
-
-          <div class="row">
+          <div class="row mb-3"></div>
+          <div class="row" *ngIf="servicetableenabled"> 
             <div class="col-12">
-              <h5>Client Add Cart & Pending Payment</h5>
-              <span>
-                <div class="col-md-12 bg-search">
-                  <input type="text" id="myAdminInputUser" onkeyup="manageUsersTableSearch('admin')"
-                    class="form-control col-md-3" placeholder="Search by service name">
-                </div>
-              </span>
-              <table class="table table-bordered">
+              <h5><u>Client Add Cart & Pending Payment</u></h5>
+              <table class="table table-bordered" *ngIf="!isnotpurchasedserviceempty">
                 <thead>
                   <tr>
-                    <th scope="col">Service Id</th>
                     <th scope="col">Service Name</th>
                     <th scope="col">Client Name</th>
-                    <th scope="col">Client Business Name</th>
+                    <th scope="col">Business Name</th>
                     <th scope="col">Phone No</th>
                     <th scope="col">Validate </th>
-                    <th scope="col">Service Start On</th>
-                    <th scope="col">Service End Date</th>
+                    <th scope="col">Start On</th>
+                    <th scope="col">End Date</th>
                     <th scope="col">Amount</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr *ngFor="let srv of listofallnotpaidservices">
-                    <td>{{srv.serviceId}}</td>
                     <td>
                       {{srv.name}}
                     </td>
                     <td>
-                      <a href="javascript: return false;" (click)='manageruser.openViewAccountDetailsModal(srv.userId)'>
+                      <a href="javascript: return false;" (click)='manageruser.openViewAccountDetailsModal(srv.userid)'>
                         {{srv.fullname}}
                       </a>
                     </td>
@@ -800,15 +822,19 @@
                     <td>{{srv.validPeriodLabel}}</td>
                     <td>{{srv.servicestarton}}</td>
                     <td>{{srv.serviceendon}}</td>
-                    <td>{{srv.amount}}</td>
+                    <td>{{srv.amount | currency:"INR₹"}}</td>
                   </tr>
                 </tbody>
               </table>
+              <div class="alert alert-success alert-dismissible fade show w-100" role="alert"
+              *ngIf="isnotpurchasedserviceempty">
+              <h5 class="display-5">
+                  No clients has added this service on the cart for purchase.
+              </h5>
+          </div>
             </div>
           </div>
-        </div>
       </div>
     </div>
     <!-- Summary of All Service Dashboard -->
-  </div>
 </div>

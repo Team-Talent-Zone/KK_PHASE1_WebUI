@@ -18,7 +18,7 @@ export const ConfigMsg = {
     newservice_txt_cssm_msg: 'Pending Review with CSSM',
     newservice_txt_csst_msg: 'Pending Review with CSST',
     newservice_alreadyexist_msg: 'The entered service name is already exist',
-    newservice_txt_cssm_comment: 'Please review the new service and approve it',
+    newservice_txt_cssm_comment: 'Please review the new service and approve it', 
     upgradeservice_txt_cssm_comment: 'Please review the upgraded existing service and approve it',
     toast_notification_fu_isregfeenotcompelted: 'Please complete your registation fee  and start job employment with us after background vertification approves.',
     toast_notification_fu_isprofilenotcompelted: 'Please complete your profile for futher actions to complete',
