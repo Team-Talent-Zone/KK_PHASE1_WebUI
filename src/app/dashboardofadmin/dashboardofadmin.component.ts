@@ -17,6 +17,8 @@ import { map } from 'rxjs/operators';
 import { UsersrvdetailsService } from '../AppRestCall/userservice/usersrvdetails.service';
 import { timer } from 'rxjs';
 import { NewsvcService } from '../AppRestCall/newsvc/newsvc.service';
+import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
+import { ViewjobbyjobidPopupComponent } from '../viewjobbyjobid-popup/viewjobbyjobid-popup.component';
 
 @Component({
   selector: 'app-dashboardofadmin',
@@ -57,6 +59,11 @@ export class DashboardofadminComponent implements OnInit {
   isshowswithnojobbycategory : boolean = false;
   isshownofreelancerinsystem : boolean = false;
 
+  config: ModalOptions = {
+    class: 'modal-lg', backdrop: 'static',
+    keyboard: false
+  };
+  modalRef: BsModalRef;
   /*
   All - Service related varaible
   */
@@ -84,6 +91,7 @@ export class DashboardofadminComponent implements OnInit {
     private referService: ReferenceService,
     private usersrvdetailsService: UsersrvdetailsService,
     private newService: NewsvcService,
+    private modalService: BsModalService,
   ) { }
 
   ngOnInit() {
@@ -411,7 +419,6 @@ export class DashboardofadminComponent implements OnInit {
             this.isnotpurchasedserviceempty = true;
           }
         }, 500);
-        console.log('listofallpaidservices' ,this.listofallpaidservices);
       }
     },
       error => {
@@ -421,4 +428,16 @@ export class DashboardofadminComponent implements OnInit {
     );
   }
 
+  openViewJobDetailsModal(jobNo: number) {
+    const initialState = {
+      jobId: jobNo,
+    };
+    this.modalRef = this.modalService.show(ViewjobbyjobidPopupComponent, Object.assign(
+      {},
+      this.config,
+      {
+        initialState
+      }
+    ));
+  }
 }

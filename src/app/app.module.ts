@@ -75,6 +75,7 @@ import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-
 import { ConfirmationDialogService } from './AppRestCall/confirmation/confirmation-dialog.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DashboardofadminanalyticsComponent } from './dashboardofadminanalytics/dashboardofadminanalytics.component';
+import { ViewjobbyjobidPopupComponent } from './viewjobbyjobid-popup/viewjobbyjobid-popup.component';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
@@ -125,7 +126,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     ReadMoreComponent,
     ReadMorePopupComponent,
     ConfirmationDialogComponent,
-    DashboardofadminanalyticsComponent
+    DashboardofadminanalyticsComponent,
+    ViewjobbyjobidPopupComponent
   ],
   imports: [
     ToastNotificationsModule,
@@ -190,7 +192,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     CustomToastComponent,
     ReadMorePopupComponent,
     ConfirmationDialogComponent,
-    
+    ViewjobbyjobidPopupComponent
   ],
   bootstrap: [AppComponent]
 })

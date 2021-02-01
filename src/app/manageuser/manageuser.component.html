@@ -168,6 +168,11 @@
                                             <i class="fa fa-cog" title="View Associated Services"
                                                 style="color:#0a382b"></i>
                                         </a>
+                                        <a href="javascript: return false;"
+                                        [routerLink]="['/viewfujobdetails',cbu.userId,'cba']">
+                                        <i class="fa fa-briefcase" title="View Associated Jobs"
+                                            style="color:#0a382b"></i>
+                                         </a>
                                         <a class="btn  btn-sm" (click)='userAction(cbu.userId,"deactive");'
                                             *ngIf="cbu.isactive">
                                             <i title="Deactivate User" class="fa fa-trash" style="color:#FF4949"></i>
@@ -298,8 +303,10 @@
                                             <i title="Initiate Background verification" class="fa fa-play"
                                                 style="color:#0a382b"></i>
                                         </a>
-                                        <a class="btn  btn-sm" [routerLink]="['/viewfujobdetails',fu.userId]">
-                                            <i title="View Jobs" class="fa fa-briefcase" style="color:#0a382b"></i>
+                                        <a class="btn  btn-sm"
+                                        *ngIf="fu.freeLanceDetails.bgcurrentstatus == 'BG_APPROVED'"
+                                         [routerLink]="['/viewfujobdetails',fu.userId,'fu']">
+                                            <i title="View Assoicated Jobs" class="fa fa-briefcase" style="color:#0a382b"></i>
                                         </a>
                                         <a class="btn  btn-sm" (click)='userAction(fu.userId,"deactive");'
                                             *ngIf="fu.isactive">

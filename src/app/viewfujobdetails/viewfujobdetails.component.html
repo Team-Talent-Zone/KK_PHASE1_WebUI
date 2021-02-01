@@ -1,1 +1,45 @@
-<p>viewfujobdetails works!</p>
+<h4> View Full Job Details</h4>
+<hr class="my-4">
+<span>
+  <div class="col-md-12 bg-search">
+      <input type="text" id="myInput" onkeyup="viewFullJobTableSearch()"
+          class="form-control col-md-3" placeholder="Search by JobId">
+  </div>
+</span>
+<table id="myTable" class="container table table-striped table-bordered table-sm">
+    <thead>
+        <tr>
+            <th>JobId</th>
+            <th>Biz name</th>
+            <th>Current SW Name</th>
+            <th>Current SW Phone Number</th>
+            <th>Skill Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let job of listofalljobs">
+           <td>
+               <a href="javascript: return false;" (click)="openViewJobDetailsModal(job.jobId)">{{job.jobId}}</a></td>
+           <td>{{job.bizname}}</td>
+           <td>
+             <span *ngIf="job.freelanceuserId > 0">
+             {{job.fullname}}
+            </span>
+            <span *ngIf="job.freelanceuserId == null && job.isactive && !job.isjobaccepted">
+              No skilled worker accepted yet
+            </span>
+            <span *ngIf="job.freelanceuserId == null && !job.isactive && job.isjobaccepted">
+             Job not activated yet
+            </span>
+            </td>
+           <td>{{job.fuphoneno}}</td>
+           <td>{{job.subcategorylabel}}</td>
+        </tr>
+</table>
+<div *ngIf="isemptyjobs">
+  <div class="alert alert-success alert-dismissible fade show w-100" role="alert">
+    <h5 class="display-5">
+    No Assoicated Jobs.
+    </h5>
+  </div>
+</div>

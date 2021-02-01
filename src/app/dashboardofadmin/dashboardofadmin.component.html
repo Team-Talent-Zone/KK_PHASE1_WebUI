@@ -19,40 +19,42 @@
         </a>
       </h4>
     </div>
+  
     <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
       <div class="panel-body">
+        <hr>
         <div class="row mb-4 justify-content-center">
-          <div class="col-xl-2 col-sm-6 py-2">
+          <div class="col-xl-3 col-sm-6 py-5">
             <div class="card bg-success text-white h-100">
               <div class="card-body bg-success">
                 <div class="rotate">
                   <i class="fa fa-inr fa-4x"></i>
                 </div>
                 <h6 class="text-uppercase">Company Earns</h6>
-                <h1>{{this.totalmoneyearnedbycompanytilltoday}}</h1>
+                <h1>{{this.totalmoneyearnedbycompanytilltoday | currency:"INR"}}</h1>
               </div>
             </div>
           </div>
-          <div class="col-xl-2 col-sm-6 py-2">
+          <div class="col-xl-3 col-sm-6 py-5">
             <div class="card bg-success text-white h-100">
               <div class="card-body bg-info">
                 <div class="rotate">
                   <i class="fa fa-inr fa-4x"></i>
                 </div>
                 <h6 class="text-uppercase">Workers Earns</h6>
-                <h1> {{this.totalmoneyearnedbyskilledworkerstilltoday}}
+                <h1> {{this.totalmoneyearnedbyskilledworkerstilltoday | currency:"INR"}}
                 </h1>
               </div>
             </div>
           </div>
-          <div class="col-xl-2 col-sm-6 py-2">
+          <div class="col-xl-3 col-sm-6 py-5">
             <div class="card bg-success text-white h-100">
               <div class="card-body bg-danger">
                 <div class="rotate">
                   <i class="fa fa-inr fa-4x"></i>
                 </div>
                 <h6 class="text-uppercase">Pending Payments</h6>
-                <h1> {{this.totalcompletedjobswithoutpaymentbyclient}}</h1>
+                <h1> {{this.totalcompletedjobswithoutpaymentbyclient | currency:"INR"}}</h1>
               </div>
             </div>
           </div>
@@ -184,23 +186,24 @@
         </div> 
         <!-- Selected Sub Category Results -->
               <div class="row" *ngIf="isshowswithjobbycategory">
-                <div class="col-14">
+                <div class="col-12">
                   <h5>Jobs ON Users</h5>
                   <table class="table table-bordered">
                     <thead>
                       <tr>
                         <th scope="col">Job Id</th>
                         <th scope="col">SW Name</th>
-                        <th scope="col">SW PhoneNo</th>
+                        <th scope="col">SW Phone No</th>
                         <th scope="col">Client</th>
-                        <th scope="col">Total Amount</th>
-                        <th scope="col">Job Start Date</th>
-                        <th scope="col">Job End Date</th>
+                        <th scope="col">Client Phone No</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr *ngFor="let job of onworkfreelancelistsbysubcategory">
-                        <td>{{job.jobId}}</td>
+                        <td><a href="javascript: return false;" (click)="openViewJobDetailsModal(job.jobId)">
+                          {{job.jobId}}
+                        </a>
+                      </td>
                         <td>
                           <a href="javascript: return false;"
                             (click)='manageruser.openViewAccountDetailsModal(job.freelanceuserId)'>
@@ -216,9 +219,7 @@
                             {{job.bizname}}
                           </a>
                         </td>
-                        <td>{{job.tocompanyamount | currency:"INR$"}}</td>
-                        <td>{{job.jobstartedon}}</td>
-                        <td>{{job.jobendedon}}</td>
+                        <td>{{job.cbaphoneno}}</td>
                       </tr>
                     </tbody>
                   </table>
@@ -258,7 +259,7 @@
         <!-- Reported Voliations -->
         <div class="collapse" id="reportedVoliations">
               <div class="row">
-                <div class="col-14">
+                <div class="col-12">
                   <h5>Pending Reported Voliations</h5>
                   <form [formGroup]="voliationResolvedForm">
                     <table class="table table-bordered">
@@ -266,23 +267,25 @@
                         <tr>
                           <th scope="col">Job Id</th>
                           <th scope="col">SW Name</th>
-                          <th scope="col">SW PhoneNo</th>
+                          <th scope="col">SW Phone No</th>
                           <th scope="col">Client</th>
-                          <th scope="col">Job Start Date</th>
-                          <th scope="col">Job End Date</th>
+                          <th scope="col">Client Phone No</th>
+                          <th scope="col">Skill Name</th>
                           <th scope="col">Voliation Comments</th>
                           <th scope="col">Actions</th>
                         </tr>
                       </thead>
                       <tbody>
                         <tr *ngFor="let job of todaysvoliationList">
-                          <td>{{job.jobId}}</td>
+                          <td> <a href="javascript: return false;" (click)="openViewJobDetailsModal(job.jobId)">
+                            {{job.jobId}}
+                          </a></td>
                           <td>
                             <a href="javascript: return false;"
                               (click)='manageruser.openViewAccountDetailsModal(job.freelanceuserId)'>
                               <p>{{job.fullname}}</p>
                             </a>
-                            <p><i><small>{{job.subcategorylabel}}</small></i></p>
+                          
                           </td>
                           <td>{{job.fuphoneno}}</td>
                           <td>
@@ -291,8 +294,8 @@
                               {{job.bizname}}
                             </a>
                           </td>
-                          <td>{{job.jobstartedon}}</td>
-                          <td>{{job.jobendedon}}</td>
+                          <td>{{job.cbaphoneno}}</td>
+                          <td>{{job.subcategorylabel}}</td>
                           <td>
                             <textarea class="form-control" formControlName="resolvedvoliationreason" rows="5"
                               id="input5" placeholder="Enter Volidation Detailed Comment"
@@ -318,39 +321,36 @@
                     </table>
                   </form>
                 </div>
-
-
             </div>
         </div>
         <div class="row mb-2"></div>
         <div class="collapse" id="resolvedVoliations">
             <div class="row">
-              <div class="col-14">
+              <div class="col-12">
                 <h5>Resolved Voliations</h5>
                 <table class="table table-bordered">
                   <thead>
                     <tr>
                       <th scope="col">Job Id</th>
                       <th scope="col">SW Name</th>
-                      <th scope="col">SW PhoneNo</th>
+                      <th scope="col">SW Phone No</th>
                       <th scope="col">Client</th>
-                      <th scope="col">Total Amount</th>
-                      <th scope="col">Job Start Date</th>
-                      <th scope="col">Job End Date</th>
+                      <th scope="col">Client Phone No</th>
+                      <th scope="col">Skill Name</th>
                       <th scope="col">Voliation Comments</th>
                       <th scope="col">Voliation Status</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr *ngFor="let job of totalvoliationResolvedList">
-                      <td>{{job.jobId}}</td>
+                      <td><a href="javascript: return false;" (click)="openViewJobDetailsModal(job.jobId)">
+                        {{job.jobId}}
+                      </a></td>
                       <td>
                         <a href="javascript: return false;"
                           (click)='manageruser.openViewAccountDetailsModal(job.freelanceuserId)'>
                           {{job.fullname}}
                         </a>
-                        <p><i><small>{{job.subcategorylabel}}</small></i></p>
-
                       </td>
                       <td>{{job.fuphoneno}}</td>
                       <td>
@@ -359,9 +359,8 @@
                           {{job.bizname}}
                         </a>
                       </td>
-                      <td>{{job.tocompanyamount | currency:"INR$"}}</td>
-                      <td>{{job.jobstartedon}}</td>
-                      <td>{{job.jobendedon}}</td>
+                      <td>{{job.cbaphoneno}}</td>
+                      <td>{{job.subcategorylabel}}</td>
                       <td>{{job.resolvedvoliationreason}}</td>
                       <td>
                         <p>
@@ -377,30 +376,30 @@
         <div class="row mb-2"></div>
         <div class="collapse" id="totalscheduledjobs">
               <div class="row">
-                <div class="col-14">
+                <div class="col-12">
                   <h5>Todays Scheduled Jobs</h5>
                   <table class="table table-bordered">
                     <thead>
                       <tr>
                         <th scope="col">Job Id</th>
                         <th scope="col">SW Name</th>
-                        <th scope="col">SW Phone</th>
+                        <th scope="col">SW Phone No</th>
                         <th scope="col">Client</th>
-                        <th scope="col">Total Amount</th>
-                        <th scope="col">Job Start Date</th>
-                        <th scope="col">Job End Date</th>
+                        <th scope="col">Client Phone No</th>
+                        <th scope="col">Skill Name </th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr *ngFor="let job of todaysjobscheduledList">
-                        <td>{{job.jobId}}</td>
+                        <td><a href="javascript: return false;" (click)="openViewJobDetailsModal(job.jobId)">
+                          {{job.jobId}}
+                        </a>
+                       </td>
                         <td>
                           <a href="javascript: return false;"
                             (click)='manageruser.openViewAccountDetailsModal(job.freelanceuserId)'>
                             {{job.fullname}}
                           </a>
-                          <p><i><small>{{job.subcategorylabel}}</small></i></p>
-
                         </td>
                         <td>{{job.fuphoneno}}</td>
                         <td>
@@ -409,9 +408,8 @@
                             {{job.bizname}}
                           </a>
                         </td>
-                        <td>{{job.tocompanyamount | currency:"INR$"}}</td>
-                        <td>{{job.jobstartedon}}</td>
-                        <td>{{job.jobendedon}}</td>
+                        <td>{{job.cbaphoneno}}</td>
+                        <td>{{job.subcategorylabel}}</td>
                       </tr>
                     </tbody>
                   </table>
@@ -421,23 +419,24 @@
         <div class="row mb-2"></div>
         <div class="collapse" id="upcomingscheduledjobs">
             <div class="row">
-              <div class="col-14">
+              <div class="col-12">
                 <h5>Upcoming Scheduled Jobs</h5>
                 <table class="table table-bordered">
                   <thead>
                     <tr>
                       <th scope="col">Job Id</th>
                       <th scope="col">SWorker Name</th>
-                      <th scope="col">SWorker Phone</th>
+                      <th scope="col">SWorker Phone No</th>
                       <th scope="col">Client</th>
-                      <th scope="col">Total Amount</th>
-                      <th scope="col">Job Start Date</th>
-                      <th scope="col">Job End Date</th>
+                      <th scope="col">Client Phone No</th>
+                      <th scope="col">Skill Name</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr *ngFor="let job of upcomingjobscheduledList">
-                      <td>{{job.jobId}}</td>
+                      <td><a href="javascript: return false;" (click)="openViewJobDetailsModal(job.jobId)">
+                        {{job.jobId}}
+                      </a></td>
                       <td>
                         <a href="javascript: return false;"
                           (click)='manageruser.openViewAccountDetailsModal(job.freelanceuserId)'>
@@ -453,9 +452,8 @@
                           {{job.bizname}}
                         </a>
                       </td>
-                      <td>{{job.tocompanyamount | currency:"INR$"}}</td>
-                      <td>{{job.jobstartedon}}</td>
-                      <td>{{job.jobendedon}}</td>
+                      <td>{{job.cbaphoneno}}</td>
+                      <td>{{job.subcategorylabel}}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -465,7 +463,7 @@
         <div class="row mb-2"></div>
         <div class="collapse" id="newnonactivatedjobs">
             <div class="row">
-              <div class="col-14">
+              <div class="col-12">
                 <h5>New Jobs - Not Activated</h5>
                 <table class="table table-bordered">
                   <thead>
@@ -473,15 +471,15 @@
                       <th scope="col">Job Id</th>
                       <th scope="col">Client</th>
                       <th scope="col">Client Phone No</th>
-                      <th scope="col">Skill</th>
-                      <th scope="col">Job Start Date</th>
-                      <th scope="col">Job End Date</th>
-                      <th scope="col">Total Amount</th>
+                      <th scope="col">Skill Name</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr *ngFor="let job of newjobsbutnotactiviatedList">
-                      <td>{{job.jobId}}</td>
+                      <td><a href="javascript: return false;" (click)="openViewJobDetailsModal(job.jobId)">
+                        {{job.jobId}}
+                      </a>
+                    </td>
                       <td>
                         <a href="javascript: return false;"
                           (click)='manageruser.openViewAccountDetailsModal(job.userId)'>
@@ -490,52 +488,45 @@
                       </td>
                       <td>{{job.cbaphoneno}}</td>
                       <td>{{job.subcategorylabel}}</td>
-                      <td>{{job.jobstartedon}}</td>
-                      <td>{{job.jobendedon}}</td>
-                      <td>{{job.amount | currency:"INR₹"}}</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
-    
         </div>
         </div>
         <div class="row mb-2"></div>
         <div class="collapse" id="newlyactivatedjobs">
             <div class="row">
-              <div class="col-14">
+              <div class="col-12">
                 <h5>New Jobs - Just Activiated</h5>
                 <table class="table table-bordered">
                   <thead>
                     <tr>
                       <th scope="col">Job Id</th>
                       <th scope="col">Client</th>
-                      <th scope="col">Job Start Date</th>
-                      <th scope="col">Job End Date</th>
-                      <th scope="col">Company% </th>
-                      <th scope="col">SW Amount</th>
-                      <th scope="col">Total Amount</th>
-                      <th scope="col">Sub Category</th>
-                      <th scope="col" *ngIf="isshowfualluser">Re-Assign/Assign</th>
+                      <th scope="col">Client Phone Number</th>
+                      <th scope="col">Skill Name</th>
+                      <th scope="col">Assign</th>
+                      <th scope="col" *ngIf="isshowfualluser">Skilled Workers</th>
                       <th scope="col" *ngIf="fuUserId > 0">Actions</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr *ngFor="let job of newjobsactiviatedbutnotacceptedList;let i = index">
-                      <td>{{job.jobId}}</td>
+                      <td><a href="javascript: return false;" (click)="openViewJobDetailsModal(job.jobId)">
+                        {{job.jobId}}
+                      </a></td>
                       <td>
                         <a href="javascript: return false;"
                           (click)='manageruser.openViewAccountDetailsModal(job.userId)'>
                           {{job.bizname}}
                         </a>
                       </td>
-                      <td>{{job.jobstartedon}}</td>
-                      <td>{{job.jobendedon}}</td>
-                      <td>{{job.tocompanyamount | currency:"INR$"}}</td>
-                      <td>{{job.tofreelanceamount | currency:"INR$"}}</td>
-                      <td>{{job.amount | currency:"INR₹"}}</td>
-                      <td><a class="btn btn-info btn-sm" (click)="getFUUsersByCategory(job.scategory , i )">
-                          Get All {{job.subcategorylabel}}
+                      <td>{{job.cbaphoneno}}</td>
+                      <td> {{job.subcategorylabel}}
+                      </td>
+                      <td><a class="btn btn-warning btn-sm" (click)="getFUUsersByCategory(job.scategory , i )">
+                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                         </a>
                       </td>
                       <td *ngIf="isshowfualluser && i == this.index && allFreelancerUsersList != null">
@@ -551,7 +542,7 @@
                       </td>
                       <td *ngIf="fuUserId > 0 && i == this.index ">
                         <p>
-                          <button type="button" class="btn btn-primary" (click)='reassign(job.jobId)'><i
+                          <button type="button" class="btn btn-primary btn-sm" (click)='reassign(job.jobId)'><i
                               class="fa fa-floppy-o"
                               title='Click to save and notify to the skilled worker'></i></button>
                         </p>
@@ -565,42 +556,39 @@
         <div class="row mb-2"></div>
         <div class="collapse" id="jobscompletedList">
             <div class="row">
-              <div class="col-14">
+              <div class="col-12">
                 <h5>Client & Payout Payment Complete</h5>
                 <table class="table table-bordered">
                   <thead>
                     <tr>
                       <th scope="col">Job Id</th>
                       <th scope="col">SWorker Name</th>
+                      <th scope="col">SWorker Phone No</th>
                       <th scope="col">Client</th>
-                      <th scope="col">Job Start Date</th>
-                      <th scope="col">Job End Date</th>
-                      <th scope="col">Company%</th>
-                      <th scope="col">SWorker Amount</th>
-                      <th scope="col">Total Amount</th>
+                      <th scope="col">Client Phone No</th>
+                      <th scope="col">Skill Name</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr *ngFor="let job of jobscompletedList">
-                      <td>{{job.jobId}}</td>
+                      <td><a href="javascript: return false;" (click)="openViewJobDetailsModal(job.jobId)">
+                        {{job.jobId}}
+                      </a></td>
                       <td>
                         <a href="javascript: return false;"
                           (click)='manageruser.openViewAccountDetailsModal(job.freelanceuserId)'>
                           {{job.fullname}}
                         </a>
-                        <p><i><small>{{job.subcategorylabel}}</small></i></p>
                       </td>
+                      <td>{{job.fuphoneno}}</td>
                       <td>
                         <a href="javascript: return false;"
                           (click)='manageruser.openViewAccountDetailsModal(job.userId)'>
                           {{job.bizname}}
                         </a>
                       </td>
-                      <td>{{job.jobstartedon}}</td>
-                      <td>{{job.jobendedon}}</td>
-                      <td>{{job.tocompanyamount | currency:"INR$"}}</td>
-                      <td>{{job.tofreelanceamount | currency:"INR$"}}</td>
-                      <td>{{job.amount | currency:"INR₹"}}</td>
+                      <td>{{job.cbaphoneno}}</td>
+                      <td>{{job.subcategorylabel}}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -617,38 +605,32 @@
                     <tr>
                       <th scope="col">Job Id</th>
                       <th scope="col">SWorker Name</th>
-                      <th scope="col">SWorker PhoneNo</th>
+                      <th scope="col">SWorker Phone No</th>
                       <th scope="col">Client</th>
-                      <th scope="col">Job Start Date</th>
-                      <th scope="col">Job End Date</th>
-                      <th scope="col">Company%</th>
-                      <th scope="col">SWorker Amount</th>
-                      <th scope="col">Total Amount</th>
+                      <th scope="col">Client Phone No</th>
+                      <th scope="col">Skill Name</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr *ngFor="let job of jobscompletedwithoutpaymentList">
-                      <td>{{job.jobId}}</td>
+                      <td><a href="javascript: return false;" (click)="openViewJobDetailsModal(job.jobId)">
+                        {{job.jobId}}
+                      </a></td>
                       <td>
                         <a href="javascript: return false;"
                           (click)='manageruser.openViewAccountDetailsModal(job.freelanceuserId)'>
                           {{job.fullname}}
                         </a>
-                        <p><i><small>{{job.subcategorylabel}}</small></i></p>
-
                       </td>
+                      <td>{{job.fuphoneno}}</td>
                       <td>
                         <a href="javascript: return false;"
                           (click)='manageruser.openViewAccountDetailsModal(job.userId)'>
                           {{job.bizname}}
                         </a>
                       </td>
-                      <td>{{job.fuphoneno}}</td>
-                      <td>{{job.jobstartedon}}</td>
-                      <td>{{job.jobendedon}}</td>
-                      <td>{{job.tocompanyamount | currency:"INR₹"}}</td>
-                      <td>{{job.tofreelanceamount | currency:"INR₹"}}</td>
-                      <td>{{job.amount | currency:"INR₹"}}</td>
+                      <td>{{job.cbaphoneno}}</td>
+                      <td>{{job.subcategorylabel}}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -658,31 +640,29 @@
         <div class="row mb-2"></div>
         <div class="collapse" id="jobscompletedpayoutpendingList">
             <div class="row">
-              <div class="col-14">
+              <div class="col-12">
                 <h5>Payout Pending Payments</h5>
                 <table class="table table-bordered">
                   <thead>
                     <tr>
                       <th scope="col">Job Id</th>
                       <th scope="col">SWorker Name</th>
-                      <th scope="col">SWorker PhoneNo</th>
+                      <th scope="col">SWorker Phone No</th>
                       <th scope="col">Client</th>
-                      <th scope="col">Job Start Date</th>
-                      <th scope="col">Job End Date</th>
-                      <th scope="col">SWorker Amount</th>
-                      <th scope="col">Total Amount</th>
+                      <th scope="col">Client Phone No</th>
+                      <th scope="col">Skill Name</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr *ngFor="let job of jobscompletedpayoutpendingList">
-                      <td>{{job.jobId}}</td>
+                      <td><a href="javascript: return false;" (click)="openViewJobDetailsModal(job.jobId)">
+                        {{job.jobId}}
+                      </a></td>
                       <td>
                         <a href="javascript: return false;"
                           (click)='manageruser.openViewAccountDetailsModal(job.freelanceuserId)'>
                           {{job.fullname}}
                         </a>
-                        <p><i><small>{{job.subcategorylabel}}</small></i></p>
-
                       </td>
                       <td>{{job.fuphoneno}}</td>
                       <td>
@@ -691,10 +671,8 @@
                           {{job.bizname}}
                         </a>
                       </td>
-                      <td>{{job.jobstartedon}}</td>
-                      <td>{{job.jobendedon}}</td>
-                      <td>{{job.tofreelanceamount | currency:"INR$"}}</td>
-                      <td>{{job.amount | currency:"INR₹"}}</td>
+                      <td>{{job.cbaphoneno}}</td>
+                      <td>{{job.subcategorylabel}}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -704,13 +682,14 @@
         </div>
     </div>
   </div>
-
     <!-- Summary of All Service Dashboard -->
+
     <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
       <div class="panel-body">
+        <hr>
           <div class="row">
             <div class="row mb-4 justify-content-end">
-              <div class="col-xl-4 col-sm-6 py-2">
+              <div class="col-xl-3 col-sm-6 py-2">
               <select  class="btn btn-info" (change)="getServicesDetailsByServiceId($event);">
                 <option value=null> --Select Services --</option>
                 <option *ngFor="let item of onlistofallactivenewservices" value={{item.ourserviceId}}>
@@ -721,25 +700,25 @@
             </div>
           </div>
           <div class="row mb-4 justify-content-end" *ngIf="servicetableenabled">
-            <div class="col-xl-2 col-sm-12 py-2">
+            <div class="col-xl-3 col-sm-6 py-5">
               <div class="card bg-success text-white h-100">
                 <div class="card-body bg-success">
                   <div class="rotate">
                     <i class="fa fa-inr fa-4x"></i>
                   </div>
                   <h6 class="text-uppercase">Total All Earnings</h6>
-                  <h1>{{this.totalearningallservices}}</h1>
+                  <h1>{{this.totalearningallservices | currency:"INR"}}</h1>
                 </div>
               </div>
             </div>
-            <div class="col-xl-2 col-sm-12 py-2">
+            <div class="col-xl-3 col-sm-6 py-5">
               <div class="card bg-success text-white h-100">
                 <div class="card-body bg-info">
                   <div class="rotate">
                     <i class="fa fa-inr fa-4x"></i>
                   </div>
                   <h6 class="text-uppercase">Earned On This Service</h6>
-                  <h1>{{this.totalearningonservice}}</h1>
+                  <h1>{{this.totalearningonservice | currency:"INR"}}</h1>
                 </div>
               </div>
             </div>
@@ -754,9 +733,9 @@
                     <th scope="col">Client Name</th>
                     <th scope="col">Business Name</th>
                     <th scope="col">Phone No</th>
-                    <th scope="col">Validate </th>
-                    <th scope="col">Start On</th>
-                    <th scope="col">End Date</th>
+                    <th scope="col">Valid Period </th>
+                    <th scope="col">Valid From</th>
+                    <th scope="col">Valid Till</th>
                     <th scope="col">Amount</th>
                     <th scope="col">Txn Id</th>
                   </tr>
@@ -801,9 +780,9 @@
                     <th scope="col">Client Name</th>
                     <th scope="col">Business Name</th>
                     <th scope="col">Phone No</th>
-                    <th scope="col">Validate </th>
-                    <th scope="col">Start On</th>
-                    <th scope="col">End Date</th>
+                    <th scope="col">Valid Period </th>
+                    <th scope="col">Valid From</th>
+                    <th scope="col">Valid Till</th>
                     <th scope="col">Amount</th>
                   </tr>
                 </thead>

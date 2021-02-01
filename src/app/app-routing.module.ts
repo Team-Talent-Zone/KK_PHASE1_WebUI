@@ -197,7 +197,7 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'viewfujobdetails/:id',
+    path: 'viewfujobdetails/:id/:role',
     component: DashboardComponent,
     canActivate: [AuthgaurdService],
     children: [
