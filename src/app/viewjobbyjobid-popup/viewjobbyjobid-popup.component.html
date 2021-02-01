@@ -1,0 +1,102 @@
+<div class="modal-header">
+    <h4 class="modal-title">Job Details - {{jobId}}</h4>
+    <button type="button" class="btn btn-danger" (click)="modalRef.hide()">&times;</button>
+  </div>
+<div class="modal-body" *ngIf="jobdetails != null">
+    <div class="modal-body">
+        <small>
+            <table class="table table-hover table-borderless">
+              <tbody>
+                <tr>
+                  <th> Job Started On </th>
+                  <td>{{jobdetails.jobstartedon}}</td>
+                </tr>
+                <tr>
+                    <th> Job Ended On </th>
+                    <td>{{jobdetails.jobendedon}}</td>
+                  </tr>
+                  <tr>
+                    <th> Job Accepted </th>
+                    <td>{{jobdetails.jobaccepteddate}}</td>
+                  </tr>
+                  <tr>
+                    <th> Job Location</th>
+                    <td>{{jobdetails.joblocation}}</td>
+                  </tr>
+                  <tr>
+                    <th> Job Hours</th>
+                    <td>{{jobdetails.totalhoursofjob}}</td>
+                  </tr>
+                  <tr>
+                    <th> Amount</th>
+                    <td>{{jobdetails.amount | currency:"INR₹"}}</td>
+                  </tr>
+                  <tr>
+                    <th> Skilled Worker Amount</th>
+                    <td>{{jobdetails.tofreelanceamount | currency:"INR₹"}}</td>
+                  </tr>
+                  <tr>
+                    <th> Company %</th>
+                    <td>{{jobdetails.tocompanyamount | currency:"INR₹"}}</td>
+                  </tr>
+                  <tr>
+                    <th> Description</th>
+                    <td>{{jobdetails.jobdescription}}</td>
+                  </tr>
+                  <tr>
+                  <th>SW Attendent ?</th>
+                  <td>
+                    <i class="fa fa-smile-o" style="color:#0a382b" *ngIf="!jobdetails.isjobvoliation && jobdetails.isfreelancerjobattendant"> </i>
+                    <i class="fa fa-frown-o" style="color:#FF4949" *ngIf="jobdetails.isjobvoliation && jobdetails.cbajobattendantdate == null"> </i>
+                  </td>
+                  </tr>
+                  <tr>
+                  <th>Client Attendance Submitted Date</th>
+                  <td>{{jobdetails.cbajobattendantdate}}</td>
+                  </tr>
+                  <tr>
+                  <th>SW Attendance Submitted Date</th>
+                  <td>{{jobdetails.freelancerjobattendantdate}}</td>
+                </tr>
+                <tr>
+                  <th>Job Active?</th>
+                  <td>
+                    <i class="fa fa-smile-o" style="color:#0a382b" *ngIf="jobdetails.isjobactive"> </i>
+                    <i class="fa fa-frown-o" style="color:#FF4949" *ngIf="!jobdetails.isjobactive"> </i>
+                  </td>
+                </tr>
+                <tr>
+                  <th>Voliation ?</th>
+                  <td> <i class="fa fa-ban fatab" style="color:#FF4949" *ngIf="jobdetails.isjobvoliation"> </i></td>
+                </tr>
+                <tr>
+                  <th>Voliation Resolved?</th>
+                  <td>
+                    <i class="fa fa-thumbs-up" style="color:#0a382b" *ngIf="jobdetails.isjobvoliation && isfreelancerjobattendant"> </i>
+                    <i class="fa fa-thumbs-down" style="color:#FF4949" *ngIf="jobdetails.isjobvoliation && !isfreelancerjobattendant"> </i>
+                  </td>
+                </tr>
+                <tr>
+                  <th>Volidation Resolved Comments</th>
+                  <td>{{jobdetails.resolvedvoliationreason}}</td>
+                  </tr>
+                  <tr>
+                  <th>Payment Status</th>
+                  <td> <span *ngIf="jobdetails.isjobactive && jobdetails.isjobcompleted && !jobdetails.isjobamtpaidtocompany">
+                    Pending with Client
+                   </span>
+                   <span *ngIf="jobdetails.isjobactive && jobdetails.isjobcompleted && jobdetails.isjobamtpaidtocompany && !jobdetails.isjobamtpaidtofu">
+                    Pending with Payout
+                   </span>
+                   <span *ngIf="jobdetails.isjobactive && !jobdetails.isjobcompleted">
+                     Job Not Completed Yet
+                   </span>
+                   <span *ngIf="jobdetails.isjobactive && jobdetails.isjobcompleted && jobdetails.isjobamtpaidtocompany && jobdetails.isjobamtpaidtofu">
+                    Payment Successfully
+                  </span></td>
+                  </tr>
+                  </tbody>
+                </table>
+        </small>
+      </div>
+  </div>
