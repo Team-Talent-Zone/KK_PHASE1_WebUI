@@ -43,7 +43,7 @@ export class DashboardofadminComponent implements OnInit {
 
   minstartDate = new Date();
   maxstartDate = new Date();
-  newendjobdate : string;
+  newendjobdate: string;
   totalhoursofjob: number;
   totalmoneyearnedbycompanytilltoday: number = 0;
   totalmoneyearnedbyskilledworkerstilltoday: number = 0;
@@ -62,9 +62,9 @@ export class DashboardofadminComponent implements OnInit {
   bufferhours: number = 4;
   onworkfreelancelistsbysubcategory: any;
   onnotworkfreelancelistsbysubcategory: any;
-  isshowswithjobbycategory : boolean = false;
-  isshowswithnojobbycategory : boolean = false;
-  isshownofreelancerinsystem : boolean = false;
+  isshowswithjobbycategory: boolean = false;
+  isshowswithnojobbycategory: boolean = false;
+  isshownofreelancerinsystem: boolean = false;
   enddatevalue: string;
   resolvedvoliationreason: string;
 
@@ -81,11 +81,11 @@ export class DashboardofadminComponent implements OnInit {
   listofallpaidservices: any;
   listofallnotpaidservices: any;
   onlistofallactivenewservices: any;
-  servicetableenabled : boolean = false;
+  servicetableenabled: boolean = false;
   totalearningonservice: number = 0;
   totalearningallservices: number = 0;
   ispurchasedserviceempty: boolean = false;
-  isnotpurchasedserviceempty:boolean = false;
+  isnotpurchasedserviceempty: boolean = false;
 
   constructor(
     private freelanceserviceService: FreelanceserviceService,
@@ -106,15 +106,16 @@ export class DashboardofadminComponent implements OnInit {
 
   ngOnInit() {
     const sourcerefresh = timer(1000, 90000);
-   // sourcerefresh.subscribe((val: number) => 
-      this.dashboardSummaryOfSkilledWorkerSearchService();
-      this.getAllAvailableFUSkills();
-     
+    // sourcerefresh.subscribe((val: number) => 
+    this.dashboardSummaryOfSkilledWorkerSearchService();
+    this.getAllAvailableFUSkills();
+
     //});
     this.getAllNewServiceDetails();
   }
 
   dashboardSummaryOfSkilledWorkerSearchService() {
+    this.reset();
     this.todaysvoliationList = [];
     this.totalvoliationResolvedList = []
     this.todaysjobscheduledList = [];
@@ -163,7 +164,7 @@ export class DashboardofadminComponent implements OnInit {
             this.jobscompletedpayoutpendingList.push(element);
           }
         });
-        console.log('newjobsactiviatedbutnotacceptedList' , this.newjobsactiviatedbutnotacceptedList);
+        console.log('newjobsactiviatedbutnotacceptedList', this.newjobsactiviatedbutnotacceptedList);
       }
     },
       error => {
@@ -227,56 +228,56 @@ export class DashboardofadminComponent implements OnInit {
     this.isshowswithjobbycategory = false;
     this.isshowswithnojobbycategory = false;
     this.isshownofreelancerinsystem = false;
-    if(selectElementCode.length > 0){
-        this.freelanceserviceService.getUserAllJobDetailsBySubCategory(selectElementCode).subscribe((freelanceserviceList: any) => {
-          if (freelanceserviceList != null) {
-            freelanceserviceList.forEach(element => {
-              if (element.isjobactive && !element.isjobvoliation && element.jobaccepteddate != null) {
-                this.onworkfreelancelistsbysubcategory.push(element);
-              }
-            });
-              setTimeout(() => {
-                if(this.onworkfreelancelistsbysubcategory.length > 0){
-                  this.isshowswithjobbycategory = true;
-                }
-                this.userService.getUsersByRole(config.user_rolecode_fu).subscribe((userList: any) => {
-                  if (userList != null) {
-                    if(this.onworkfreelancelistsbysubcategory.length > 0){
-                      userList.forEach(element => {
-                        var isexist = this.onworkfreelancelistsbysubcategory.filter(e => e.freelanceuserId === element.userId);
-                        if (isexist == null && element.isactive && 
-                          element.freeLanceDetails.bgcurrentstatus == config.bg_code_approved && 
-                          selectElementCode == element.freeLanceDetails.subCategory ) {
-                          this.onnotworkfreelancelistsbysubcategory.push(element);
-                          this.isshowswithnojobbycategory = true;
-                          }
-                    });
-                  } else{
-                    userList.forEach(element => {
-                      if (element.isactive && 
-                        element.freeLanceDetails.bgcurrentstatus == config.bg_code_approved && 
-                        selectElementCode == element.freeLanceDetails.subCategory ) {
-                        this.onnotworkfreelancelistsbysubcategory.push(element);
-                        this.isshowswithnojobbycategory = true;
-                      }
-                    })
-                  }
-                  }
-                },
-                  error => {
-                    this.spinnerService.hide();
-                    this.alertService.error(error);
+    if (selectElementCode.length > 0) {
+      this.freelanceserviceService.getUserAllJobDetailsBySubCategory(selectElementCode).subscribe((freelanceserviceList: any) => {
+        if (freelanceserviceList != null) {
+          freelanceserviceList.forEach(element => {
+            if (element.isjobactive && !element.isjobvoliation && element.jobaccepteddate != null) {
+              this.onworkfreelancelistsbysubcategory.push(element);
+            }
+          });
+          setTimeout(() => {
+            if (this.onworkfreelancelistsbysubcategory.length > 0) {
+              this.isshowswithjobbycategory = true;
+            }
+            this.userService.getUsersByRole(config.user_rolecode_fu).subscribe((userList: any) => {
+              if (userList != null) {
+                if (this.onworkfreelancelistsbysubcategory.length > 0) {
+                  userList.forEach(element => {
+                    var isexist = this.onworkfreelancelistsbysubcategory.filter(e => e.freelanceuserId === element.userId);
+                    if (isexist == null && element.isactive &&
+                      element.freeLanceDetails.bgcurrentstatus == config.bg_code_approved &&
+                      selectElementCode == element.freeLanceDetails.subCategory) {
+                      this.onnotworkfreelancelistsbysubcategory.push(element);
+                      this.isshowswithnojobbycategory = true;
+                    }
                   });
-                  if(this.onnotworkfreelancelistsbysubcategory.length == 0 && this.onworkfreelancelistsbysubcategory == 0 ){
-                    this.isshownofreelancerinsystem = true;
-                  }
-              }, 500);
-          }
-        }, error => {
-          this.spinnerService.hide();
-          this.alertService.error(error);
-        });
-      }
+                } else {
+                  userList.forEach(element => {
+                    if (element.isactive &&
+                      element.freeLanceDetails.bgcurrentstatus == config.bg_code_approved &&
+                      selectElementCode == element.freeLanceDetails.subCategory) {
+                      this.onnotworkfreelancelistsbysubcategory.push(element);
+                      this.isshowswithnojobbycategory = true;
+                    }
+                  })
+                }
+              }
+            },
+              error => {
+                this.spinnerService.hide();
+                this.alertService.error(error);
+              });
+            if (this.onnotworkfreelancelistsbysubcategory.length == 0 && this.onworkfreelancelistsbysubcategory == 0) {
+              this.isshownofreelancerinsystem = true;
+            }
+          }, 500);
+        }
+      }, error => {
+        this.spinnerService.hide();
+        this.alertService.error(error);
+      });
+    }
   }
 
   reassign(jobId: number) {
@@ -313,7 +314,7 @@ export class DashboardofadminComponent implements OnInit {
       });
   }
 
-  triggervoliationwork(index: number){
+  triggervoliationwork(index: number) {
     this.volationindex = index;
     this.iscreatejobflag = false;
     this.allFreelancerUsersList = null;
@@ -324,7 +325,7 @@ export class DashboardofadminComponent implements OnInit {
     this.resolvedvoliationreason = null;
   }
 
-  reset(){
+  reset() {
     this.volationindex = -1;
     this.iscreatejobflag = false;
     this.allFreelancerUsersList = null;
@@ -336,20 +337,20 @@ export class DashboardofadminComponent implements OnInit {
   }
 
   savevoliationResolvedReason(jobId: number) {
-   if(this.resolvedvoliationreason == null){
-    this.alertService.info('Voliation Comment is required');
-    return;
-   } 
-   if(this.allFreelancerUsersList != null){
-    if(this.startdate == null){
-      this.alertService.info('Start Date is required');
+    if (this.resolvedvoliationreason == null) {
+      this.alertService.info('Voliation Comment is required');
       return;
     }
-    if(this.fuFullName == null){
-      this.alertService.info('Select Assignee is required');
-      return;
+    if (this.allFreelancerUsersList != null) {
+      if (this.startdate == null) {
+        this.alertService.info('Start Date is required');
+        return;
+      }
+      if (this.fuFullName == null) {
+        this.alertService.info('Select Assignee is required');
+        return;
+      }
     }
-  }
     this.confirmationDialogService.confirm('Please confirm', 'Do you want to voliation get resolved for the JobId#' + jobId + ' ?', 'Ok', 'Cancel')
       .then((confirmed) => {
         if (confirmed) {
@@ -358,39 +359,40 @@ export class DashboardofadminComponent implements OnInit {
             this.freelanceSvc.getAllFreelanceOnServiceDetailsByJobId(jobId).subscribe((objfreelanceservice: FreelanceOnSvc) => {
               objfreelanceservice.isfreelancerjobattendant = true;
               objfreelanceservice.resolvedvoliationreason = this.resolvedvoliationreason;
-              if(this.startdate != null){
               this.freelanceSvc.saveOrUpdateFreeLanceOnService(objfreelanceservice).subscribe((updatedobjfreelanceservice: FreelanceOnSvc) => {
-                if (updatedobjfreelanceservice.jobId > 0) {
-                  updatedobjfreelanceservice.jobId  = null;
-                  updatedobjfreelanceservice.isfreelancerjobattendant = false;
-                  updatedobjfreelanceservice.isjobvoliation = false;
-                  updatedobjfreelanceservice.jobstartedon = this.startdate.toString();
-                  updatedobjfreelanceservice.jobendedon = this.enddatevalue.toString();
-                  updatedobjfreelanceservice.freelanceuserId = this.fuUserId;
-                  updatedobjfreelanceservice.jobaccepteddate = null;
-                  updatedobjfreelanceservice.isjobactive = true;  
-                  this.freelanceserviceService.saveFreelancerOnService(updatedobjfreelanceservice).subscribe((obj: any) => {
-                    if (obj.jobId > 0) {
-                      this.spinnerService.hide();
-                      this.alertService.success('The Job Id : ' + obj.jobId + ' is created successfully. Go to New Job Tab to activate. ');
-                      this.dashboardSummaryOfSkilledWorkerSearchService();
-                    }
-                  },
-                    error => {
-                      this.spinnerService.hide();
-                      this.alertService.error(error);
-                    });
+                if (this.startdate != null) {
+                  if (updatedobjfreelanceservice.jobId > 0) {
+                    updatedobjfreelanceservice.jobId = null;
+                    updatedobjfreelanceservice.isfreelancerjobattendant = false;
+                    updatedobjfreelanceservice.isjobvoliation = false;
+                    updatedobjfreelanceservice.jobstartedon = this.startdate.toString();
+                    updatedobjfreelanceservice.jobendedon = this.enddatevalue.toString();
+                    updatedobjfreelanceservice.freelanceuserId = this.fuUserId;
+                    updatedobjfreelanceservice.jobaccepteddate = null;
+                    updatedobjfreelanceservice.isjobactive = true;
+                    this.freelanceserviceService.saveFreelancerOnService(updatedobjfreelanceservice).subscribe((obj: any) => {
+                      if (obj.jobId > 0) {
+                        this.spinnerService.hide();
+                        this.alertService.success('The Job Id : ' + obj.jobId + ' is created successfully. Go to New Job Tab to activate. ');
+                        this.dashboardSummaryOfSkilledWorkerSearchService();
+                      }
+                    },
+                      error => {
+                        this.spinnerService.hide();
+                        this.alertService.error(error);
+                      });
+                  }
+                } else {
+                  this.spinnerService.hide();
+                  this.alertService.success('The voliation is resolved for the the Job Id:' + jobId + '.');
+                  this.dashboardSummaryOfSkilledWorkerSearchService();
                 }
               },
                 error => {
                   this.spinnerService.hide();
                   this.alertService.error(error);
                 });
-              } else {
-                  this.alertService.success('The voliation is resolved for the the Job Id:' +jobId + '.');
-                  this.dashboardSummaryOfSkilledWorkerSearchService();
-                  this.spinnerService.hide();
-                }
+
             },
               error => {
                 this.spinnerService.hide();
@@ -418,7 +420,7 @@ export class DashboardofadminComponent implements OnInit {
         })
       });
   }
-  buildnewjobforvoliation(hours: number, index: number , subcat: string){
+  buildnewjobforvoliation(hours: number, index: number, subcat: string) {
     this.allFreelancerUsersList = [];
     this.iscreatejobflag = true;
     this.minstartDate.setTime(this.minstartDate.getTime() + (24 * 60 * 60 * 1000));
@@ -428,7 +430,7 @@ export class DashboardofadminComponent implements OnInit {
     this.userService.getUsersByRole(config.user_rolecode_fu).subscribe((userList: any) => {
       if (userList != null) {
         userList.forEach(element => {
-          if (element.isactive && element.freeLanceDetails.bgcurrentstatus == config.bg_code_approved && 
+          if (element.isactive && element.freeLanceDetails.bgcurrentstatus == config.bg_code_approved &&
             element.freeLanceDetails.subCategory == subcat.toString()) {
             this.allFreelancerUsersList.push(element);
           }
@@ -440,7 +442,7 @@ export class DashboardofadminComponent implements OnInit {
         this.alertService.error(error);
       });
   }
-  buildendateforvoliationcreatenewjob(event: any ){
+  buildendateforvoliationcreatenewjob(event: any) {
     var selectstdate = event.value;
     this.iscreatejobflag = true;
     var totalhours = (this.totalhoursofjob + this.bufferhours);
@@ -469,12 +471,12 @@ export class DashboardofadminComponent implements OnInit {
     var startDtFmt = yyyy + '-' + month + '-' + day + ' 10:00';
     return startDtFmt;
   }
-   
+
   /****
    * Summary  - All Services
    */
 
-  getAllNewServiceDetails(){
+  getAllNewServiceDetails() {
     this.onlistofallactivenewservices = [];
     this.servicetableenabled = false;
     this.totalearningonservice = 0;
@@ -482,14 +484,15 @@ export class DashboardofadminComponent implements OnInit {
     this.newService.getAllNewServiceDetails().subscribe((allnewservices: any) => {
       if (allnewservices != null) {
         this.onlistofallactivenewservices = allnewservices;
-      }},
+      }
+    },
       error => {
         this.spinnerService.hide();
         this.alertService.error(error);
       });
   }
 
-  getServicesDetailsByServiceId(event : Event) {
+  getServicesDetailsByServiceId(event: Event) {
     this.listofallnotpaidservices = [];
     this.listofallpaidservices = [];
     this.totalearningonservice = 0;
@@ -504,7 +507,7 @@ export class DashboardofadminComponent implements OnInit {
     this.usersrvdetailsService.getAllUserServiceDetailsView().subscribe((allservices: any) => {
       if (allservices != null) {
         allservices.forEach(element => {
-          if(selectElementCode == element.ourserviceId){
+          if (selectElementCode == element.ourserviceId) {
             if (element.isservicepurchased) {
               this.listofallpaidservices.push(element);
               this.totalearningonservice = element.amount + this.totalearningonservice;
@@ -512,17 +515,17 @@ export class DashboardofadminComponent implements OnInit {
             if (!element.isservicepurchased) {
               this.listofallnotpaidservices.push(element);
             }
-        }
-        if (element.isservicepurchased) {
-          this.totalearningallservices = element.amount + this.totalearningallservices;
-        }
+          }
+          if (element.isservicepurchased) {
+            this.totalearningallservices = element.amount + this.totalearningallservices;
+          }
         });
         this.servicetableenabled = true;
         setTimeout(() => {
-          if(this.listofallpaidservices.length == 0){
+          if (this.listofallpaidservices.length == 0) {
             this.ispurchasedserviceempty = true;
           }
-          if(this.listofallnotpaidservices.length == 0){
+          if (this.listofallnotpaidservices.length == 0) {
             this.isnotpurchasedserviceempty = true;
           }
         }, 500);
