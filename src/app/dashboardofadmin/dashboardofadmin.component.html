@@ -288,7 +288,7 @@
                             <i><small>[{{job.subcategorylabel}}]</small></i>
                             <div *ngIf="iscreatejobflag && i == volationindex">
                               <hr>
-                              <input [owlDateTime]="dt1" name="startdate" [min]="minstartDate"
+                              <input [owlDateTime]="dt1" name="startdateInputDate" [min]="minstartDate"
                               [max]="maxstartDate" [owlDateTimeTrigger]="dt1" class="form-control"
                               (dateTimeInput)="buildendateforvoliationcreatenewjob($event)"
                               placeholder="Choose start date">
@@ -536,6 +536,7 @@
                       <th scope="col">Assign</th>
                       <th scope="col" *ngIf="isshowfualluser">Skilled Workers</th>
                       <th scope="col" *ngIf="fuUserId > 0">Actions</th>
+                      <th>Notes</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -550,7 +551,7 @@
                         </a>
                       </td>
                       <td>{{job.cbaphoneno}}</td>
-                      <td> {{job.subcategorylabel}}
+                      <td> {{job.subcategorylabel}} {{job.fullname}}
                       </td>
                       <td><a class="btn btn-warning btn-sm" (click)="getFUUsersByCategory(job.scategory , i )">
                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
@@ -573,6 +574,12 @@
                               class="fa fa-floppy-o"
                               title='Click to save and notify to the skilled worker'></i></button>
                         </p>
+                      </td>
+                      <td>
+                        Support team has created this new job and assigned to <u>{{job.fullname}} </u> on {{job.updatedon}} 
+                        as part of voliation job. Next action item <u>{{job.fullname}} </u> to  accept the job.
+                        <b><u>Voliation Comments</u></b>
+                        {{job.resolvedvoliationreason}}
                       </td>
                     </tr>
                   </tbody>

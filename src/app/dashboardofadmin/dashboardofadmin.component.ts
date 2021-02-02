@@ -38,7 +38,9 @@ export class DashboardofadminComponent implements OnInit {
   jobscompletedwithoutpaymentList: any = [];
   jobscompletedpayoutpendingList: any = [];
   indiaTimeFormat = this.datepipe.transform(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }), "yyyy-MM-dd hh:mm:ss");
-  startdate: Date;
+  startdateInputDate: Date;
+  startdate: string;
+
   minstartDate = new Date();
   maxstartDate = new Date();
   newendjobdate : string;
@@ -161,6 +163,7 @@ export class DashboardofadminComponent implements OnInit {
             this.jobscompletedpayoutpendingList.push(element);
           }
         });
+        console.log('newjobsactiviatedbutnotacceptedList' , this.newjobsactiviatedbutnotacceptedList);
       }
     },
       error => {
@@ -312,6 +315,13 @@ export class DashboardofadminComponent implements OnInit {
 
   triggervoliationwork(index: number){
     this.volationindex = index;
+    this.iscreatejobflag = false;
+    this.allFreelancerUsersList = null;
+    this.enddatevalue = null;
+    this.startdate = null;
+    this.fuFullName = null;
+    this.fuUserId = null;
+    this.resolvedvoliationreason = null;
   }
 
   reset(){
@@ -352,17 +362,18 @@ export class DashboardofadminComponent implements OnInit {
               this.freelanceSvc.saveOrUpdateFreeLanceOnService(objfreelanceservice).subscribe((updatedobjfreelanceservice: FreelanceOnSvc) => {
                 if (updatedobjfreelanceservice.jobId > 0) {
                   updatedobjfreelanceservice.jobId  = null;
-                  updatedobjfreelanceservice.isjobaccepted = true;
-                  updatedobjfreelanceservice.isjobactive = true;
+                  updatedobjfreelanceservice.isfreelancerjobattendant = false;
+                  updatedobjfreelanceservice.isjobvoliation = false;
                   updatedobjfreelanceservice.jobstartedon = this.startdate.toString();
                   updatedobjfreelanceservice.jobendedon = this.enddatevalue.toString();
-                  updatedobjfreelanceservice.jobaccepteddate = this.indiaTimeFormat.toString();
+                  updatedobjfreelanceservice.freelanceuserId = this.fuUserId;
+                  updatedobjfreelanceservice.jobaccepteddate = null;
+                  updatedobjfreelanceservice.isjobactive = true;  
                   this.freelanceserviceService.saveFreelancerOnService(updatedobjfreelanceservice).subscribe((obj: any) => {
                     if (obj.jobId > 0) {
                       this.spinnerService.hide();
-                      this.spinnerService.hide();
-                      this.dashboardSummaryOfSkilledWorkerSearchService();
                       this.alertService.success('The Job Id : ' + obj.jobId + ' is created successfully. Go to New Job Tab to activate. ');
+                      this.dashboardSummaryOfSkilledWorkerSearchService();
                     }
                   },
                     error => {
@@ -377,6 +388,8 @@ export class DashboardofadminComponent implements OnInit {
                 });
               } else {
                   this.alertService.success('The voliation is resolved for the the Job Id:' +jobId + '.');
+                  this.dashboardSummaryOfSkilledWorkerSearchService();
+                  this.spinnerService.hide();
                 }
             },
               error => {
@@ -443,17 +456,18 @@ export class DashboardofadminComponent implements OnInit {
     var mins = min > 10 ? min : '0' + min;
     var addedhourstodate = y + '-' + month + '-' + day + ' ' + hr + ':' + mins;
     this.enddatevalue = addedhourstodate;
-    this.startdate = this.setDefaultTimeForStartDate(selectstdate);
+    this.startdate = this.setDefaultTimeForStartDate(new Date(event.value));
   }
 
   private setDefaultTimeForStartDate(st: Date) {
     st.setDate(st.getDate());
     var dd = st.getDate();
     var mm = st.getMonth() + 1;
-    var y = st.getFullYear();
-    var startDtFmt = mm + '/' + dd + '/' + y + ' 10:00';
-    st = new Date(startDtFmt);
-    return st;
+    var month = mm > 10 ? mm : '0' + mm;
+    var day = dd > 10 ? dd : '0' + dd;
+    var yyyy = st.getFullYear();
+    var startDtFmt = yyyy + '-' + month + '-' + day + ' 10:00';
+    return startDtFmt;
   }
    
   /****
