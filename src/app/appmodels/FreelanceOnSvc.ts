@@ -4,7 +4,7 @@ export class FreelanceOnSvc {
         public serviceId: number,
         public freelanceuserId: number,
         public userId: number,
-        public jobstartedon: number,
+        public jobstartedon: string,
         public jobendedon: string,
         public status: string,
         public isjobaccepted: boolean,

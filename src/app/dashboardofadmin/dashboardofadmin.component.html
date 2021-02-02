@@ -261,7 +261,6 @@
               <div class="row">
                 <div class="col-12">
                   <h5>Pending Reported Voliations</h5>
-                  <form [formGroup]="voliationResolvedForm">
                     <table class="table table-bordered">
                       <thead>
                         <tr>
@@ -270,24 +269,51 @@
                           <th scope="col">SW Phone No</th>
                           <th scope="col">Client</th>
                           <th scope="col">Client Phone No</th>
-                          <th scope="col">Skill Name</th>
-                          <th scope="col">Voliation Comments</th>
                           <th scope="col">Actions</th>
+                          <th scope="col">Voliation Comments</th>
                         </tr>
                       </thead>
                       <tbody>
-                        <tr *ngFor="let job of todaysvoliationList">
+                        <tr *ngFor="let job of todaysvoliationList; let i = index">
                           <td> <a href="javascript: return false;" (click)="openViewJobDetailsModal(job.jobId)">
                             {{job.jobId}}
                           </a></td>
                           <td>
                             <a href="javascript: return false;"
                               (click)='manageruser.openViewAccountDetailsModal(job.freelanceuserId)'>
-                              <p>{{job.fullname}}</p>
+                              <p *ngIf="iscreatejobflag && i == volationindex"><i><small>Previous {{job.fullname}}</small></i></p>
+                              <p *ngIf="!iscreatejobflag && i == volationindex">{{job.fullname}}</p>
+                              <p *ngIf="i != volationindex">{{job.fullname}}</p>
                             </a>
-                          
+                            <i><small>[{{job.subcategorylabel}}]</small></i>
+                            <div *ngIf="iscreatejobflag && i == volationindex">
+                              <hr>
+                              <input [owlDateTime]="dt1" name="startdate" [min]="minstartDate"
+                              [max]="maxstartDate" [owlDateTimeTrigger]="dt1" class="form-control"
+                              (dateTimeInput)="buildendateforvoliationcreatenewjob($event)"
+                              placeholder="Choose start date">
+                              <owl-date-time [pickerType]="'calendar'" #dt1></owl-date-time>
+                            </div>
+                            <br>
+                            <div *ngIf="iscreatejobflag && enddatevalue != null && i == this.volationindex && allFreelancerUsersList != null">
+                              <select (change)="captureUserDetails($event);">
+                                <option value=null> --Select New {{job.subcategorylabel}} To Assign --</option>
+                                <option *ngFor="let item of allFreelancerUsersList" value={{item.userId}}>{{item.fullname}}
+                                  {{item.label}}
+                                </option>
+                              </select>
+                            </div>
                           </td>
-                          <td>{{job.fuphoneno}}</td>
+                          <td>
+                            <p *ngIf="iscreatejobflag && i == volationindex"><i><small>Previous {{job.fuphoneno}}</small></i></p>
+                            <p *ngIf="!iscreatejobflag && i == volationindex">{{job.fuphoneno}}</p>
+                            <p *ngIf="i != volationindex">{{job.fuphoneno}}</p>
+                          <div *ngIf="iscreatejobflag && i == volationindex && enddatevalue != null">
+                            <hr>
+                            <p><i><small>[New Job End Date]</small></i></p>
+                            {{enddatevalue}}
+                          </div>
+                          </td>
                           <td>
                             <a href="javascript: return false;"
                               (click)='manageruser.openViewAccountDetailsModal(job.userId)'>
@@ -295,31 +321,32 @@
                             </a>
                           </td>
                           <td>{{job.cbaphoneno}}</td>
-                          <td>{{job.subcategorylabel}}</td>
-                          <td>
-                            <textarea class="form-control" formControlName="resolvedvoliationreason" rows="5"
-                              id="input5" placeholder="Enter Volidation Detailed Comment"
-                              [ngClass]="{ 'is-invalid': issubmit && f.resolvedvoliationreason.errors }"></textarea>
-                            <div *ngIf="issubmit && f.resolvedvoliationreason.errors" class="invalid-feedback">
-                              <div *ngIf="f.resolvedvoliationreason.errors.required">Voliation Resolved Comment is
-                                required
-                              </div>
-                            </div>
+                          <td *ngIf="iscreatejobflag && i == this.volationindex && allFreelancerUsersList == null">
+                            <small> No {{job.subcategorylabel}}'s </small>
                           </td>
                           <td>
                             <p>
-                              <button type="submit" class="btn-sm btn-primary"><i class="fa fa-floppy-o"
+                             <i *ngIf="i != this.volationindex" class="fa fa-eye btn btn-sm btn-primary"
+                                title='Click to work on to resolve this volation.' (click)="triggervoliationwork(i)">
+                              </i>
+                                <i class="fa fa-plus btn btn-sm btn-info"  (click)="buildnewjobforvoliation(job.totalhoursofjob,i,job.scategory)" 
+                                *ngIf="i == this.volationindex" 
+                                  title='Click to recreate a new job.'></i> 
+                                <i class="fa fa-floppy-o btn btn-sm btn-warning" *ngIf="i == this.volationindex" 
                                   (click)="savevoliationResolvedReason(job.jobId)"
-                                  title='Click once the save is resolved voliation.'></i></button>
-                                  &nbsp;
-                              <button type="button" class="btn-sm btn-info"><i class="fa fa-undo"
-                                  title='Click to recreate a new job.'></i></button>
+                                  title='Click to save'></i>
+                                  <i class="fa fa-refresh btn btn-sm btn-dark" *ngIf="i == this.volationindex && iscreatejobflag" 
+                                  (click)="reset()"
+                                  title='Refresh'></i>
                             </p>
+                          </td>
+                          <td>
+                            <textarea  *ngIf="i == this.volationindex"  class="form-control" [(ngModel)]="resolvedvoliationreason" rows="2"
+                              id="input5" placeholder="Enter Volidation Detailed Comment"></textarea>
                           </td>
                         </tr>
                       </tbody>
                     </table>
-                  </form>
                 </div>
             </div>
         </div>

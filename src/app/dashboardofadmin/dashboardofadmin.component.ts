@@ -38,7 +38,11 @@ export class DashboardofadminComponent implements OnInit {
   jobscompletedwithoutpaymentList: any = [];
   jobscompletedpayoutpendingList: any = [];
   indiaTimeFormat = this.datepipe.transform(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }), "yyyy-MM-dd hh:mm:ss");
-
+  startdate: Date;
+  minstartDate = new Date();
+  maxstartDate = new Date();
+  newendjobdate : string;
+  totalhoursofjob: number;
   totalmoneyearnedbycompanytilltoday: number = 0;
   totalmoneyearnedbyskilledworkerstilltoday: number = 0;
   totalmoneyyettopaybytheclientstilltoday: number = 0;
@@ -50,20 +54,24 @@ export class DashboardofadminComponent implements OnInit {
   fuUserId: number = 0;
   fuFullName: string;
   index: number;
-  voliationResolvedForm: FormGroup;
+  volationindex: number;
   issubmit = false;
-
+  iscreatejobflag: boolean = false;
+  bufferhours: number = 4;
   onworkfreelancelistsbysubcategory: any;
   onnotworkfreelancelistsbysubcategory: any;
   isshowswithjobbycategory : boolean = false;
   isshowswithnojobbycategory : boolean = false;
   isshownofreelancerinsystem : boolean = false;
+  enddatevalue: string;
+  resolvedvoliationreason: string;
 
   config: ModalOptions = {
     class: 'modal-lg', backdrop: 'static',
     keyboard: false
   };
   modalRef: BsModalRef;
+
   /*
   All - Service related varaible
   */
@@ -96,19 +104,12 @@ export class DashboardofadminComponent implements OnInit {
 
   ngOnInit() {
     const sourcerefresh = timer(1000, 90000);
-   // sourcerefresh.subscribe((val: number) => {
-      this.formValidations();
+   // sourcerefresh.subscribe((val: number) => 
       this.dashboardSummaryOfSkilledWorkerSearchService();
       this.getAllAvailableFUSkills();
      
     //});
     this.getAllNewServiceDetails();
-  }
-
-  formValidations() {
-    this.voliationResolvedForm = this.formBuilder.group({
-      resolvedvoliationreason: ['', [Validators.required]],
-    });
   }
 
   dashboardSummaryOfSkilledWorkerSearchService() {
@@ -203,6 +204,8 @@ export class DashboardofadminComponent implements OnInit {
   }
 
   captureUserDetails(event: Event) {
+    this.fuUserId = null;
+    this.fuFullName = null;
     let selectedOptions = event.target['options'];
     let selectedIndex = selectedOptions.selectedIndex;
     let selectElementText = selectedOptions[selectedIndex].text;
@@ -307,34 +310,74 @@ export class DashboardofadminComponent implements OnInit {
       });
   }
 
-  get f() {
-    return this.voliationResolvedForm.controls;
+  triggervoliationwork(index: number){
+    this.volationindex = index;
+  }
+
+  reset(){
+    this.volationindex = -1;
+    this.iscreatejobflag = false;
+    this.allFreelancerUsersList = null;
+    this.enddatevalue = null;
+    this.startdate = null;
+    this.fuFullName = null;
+    this.fuUserId = null;
+    this.resolvedvoliationreason = null;
   }
 
   savevoliationResolvedReason(jobId: number) {
-    this.issubmit = true;
-    if (this.voliationResolvedForm.invalid) {
+   if(this.resolvedvoliationreason == null){
+    this.alertService.info('Voliation Comment is required');
+    return;
+   } 
+   if(this.allFreelancerUsersList != null){
+    if(this.startdate == null){
+      this.alertService.info('Start Date is required');
       return;
     }
+    if(this.fuFullName == null){
+      this.alertService.info('Select Assignee is required');
+      return;
+    }
+  }
     this.confirmationDialogService.confirm('Please confirm', 'Do you want to voliation get resolved for the JobId#' + jobId + ' ?', 'Ok', 'Cancel')
       .then((confirmed) => {
         if (confirmed) {
           this.spinnerService.show();
-          if (this.voliationResolvedForm.get('resolvedvoliationreason').value != null) {
+          if (this.resolvedvoliationreason) {
             this.freelanceSvc.getAllFreelanceOnServiceDetailsByJobId(jobId).subscribe((objfreelanceservice: FreelanceOnSvc) => {
               objfreelanceservice.isfreelancerjobattendant = true;
-              objfreelanceservice.resolvedvoliationreason = this.voliationResolvedForm.get('resolvedvoliationreason').value;
+              objfreelanceservice.resolvedvoliationreason = this.resolvedvoliationreason;
+              if(this.startdate != null){
               this.freelanceSvc.saveOrUpdateFreeLanceOnService(objfreelanceservice).subscribe((updatedobjfreelanceservice: FreelanceOnSvc) => {
                 if (updatedobjfreelanceservice.jobId > 0) {
-                  this.alertService.success('Voliation is resolved for the  JobId# ' + jobId + ' on ' + this.indiaTime.toString());
-                  this.spinnerService.hide();
-                  this.dashboardSummaryOfSkilledWorkerSearchService();
+                  updatedobjfreelanceservice.jobId  = null;
+                  updatedobjfreelanceservice.isjobaccepted = true;
+                  updatedobjfreelanceservice.isjobactive = true;
+                  updatedobjfreelanceservice.jobstartedon = this.startdate.toString();
+                  updatedobjfreelanceservice.jobendedon = this.enddatevalue.toString();
+                  updatedobjfreelanceservice.jobaccepteddate = this.indiaTimeFormat.toString();
+                  this.freelanceserviceService.saveFreelancerOnService(updatedobjfreelanceservice).subscribe((obj: any) => {
+                    if (obj.jobId > 0) {
+                      this.spinnerService.hide();
+                      this.spinnerService.hide();
+                      this.dashboardSummaryOfSkilledWorkerSearchService();
+                      this.alertService.success('The Job Id : ' + obj.jobId + ' is created successfully. Go to New Job Tab to activate. ');
+                    }
+                  },
+                    error => {
+                      this.spinnerService.hide();
+                      this.alertService.error(error);
+                    });
                 }
               },
                 error => {
                   this.spinnerService.hide();
                   this.alertService.error(error);
                 });
+              } else {
+                  this.alertService.success('The voliation is resolved for the the Job Id:' +jobId + '.');
+                }
             },
               error => {
                 this.spinnerService.hide();
@@ -362,7 +405,57 @@ export class DashboardofadminComponent implements OnInit {
         })
       });
   }
+  buildnewjobforvoliation(hours: number, index: number , subcat: string){
+    this.allFreelancerUsersList = [];
+    this.iscreatejobflag = true;
+    this.minstartDate.setTime(this.minstartDate.getTime() + (24 * 60 * 60 * 1000));
+    this.maxstartDate.setTime(this.maxstartDate.getTime() + (144 * 60 * 60 * 1000));
+    this.totalhoursofjob = hours;
+    this.volationindex = index;
+    this.userService.getUsersByRole(config.user_rolecode_fu).subscribe((userList: any) => {
+      if (userList != null) {
+        userList.forEach(element => {
+          if (element.isactive && element.freeLanceDetails.bgcurrentstatus == config.bg_code_approved && 
+            element.freeLanceDetails.subCategory == subcat.toString()) {
+            this.allFreelancerUsersList.push(element);
+          }
+        });
+      }
+    },
+      error => {
+        this.spinnerService.hide();
+        this.alertService.error(error);
+      });
+  }
+  buildendateforvoliationcreatenewjob(event: any ){
+    var selectstdate = event.value;
+    this.iscreatejobflag = true;
+    var totalhours = (this.totalhoursofjob + this.bufferhours);
+    var jobEndDate = new Date();
+    jobEndDate.setTime(selectstdate.getTime() + (totalhours * 60 * 60 * 1000));
+    var dd = jobEndDate.getDate();
+    var mm = jobEndDate.getMonth() + 1;
+    var y = jobEndDate.getFullYear();
+    var hr = jobEndDate.getHours();
+    var min = jobEndDate.getMinutes();
+    var month = mm > 10 ? mm : '0' + mm;
+    var day = dd > 10 ? dd : '0' + dd;
+    var mins = min > 10 ? min : '0' + min;
+    var addedhourstodate = y + '-' + month + '-' + day + ' ' + hr + ':' + mins;
+    this.enddatevalue = addedhourstodate;
+    this.startdate = this.setDefaultTimeForStartDate(selectstdate);
+  }
 
+  private setDefaultTimeForStartDate(st: Date) {
+    st.setDate(st.getDate());
+    var dd = st.getDate();
+    var mm = st.getMonth() + 1;
+    var y = st.getFullYear();
+    var startDtFmt = mm + '/' + dd + '/' + y + ' 10:00';
+    st = new Date(startDtFmt);
+    return st;
+  }
+   
   /****
    * Summary  - All Services
    */
