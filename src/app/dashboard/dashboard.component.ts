@@ -174,6 +174,7 @@ export class DashboardComponent implements OnInit {
               });
               this.spinnerService.hide();
             } else {
+              console.log('notifcationlist' , notifcationlist);
               this.notifcationbellList = notifcationlist;
             }
           }

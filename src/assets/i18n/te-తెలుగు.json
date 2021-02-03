@@ -138,6 +138,7 @@
   },
   "DASHOARD_FU_MENU": {
     "SUMMARY":"సారాంశం",
+    "SUBHEADING":"ఈ పేజీ ప్రతి 90 సెకన్లకు ఆటో రిఫ్రెష్ అవుతుంది.",
     "PAYMENTHISTORY":"చెల్లింపు చరిత్ర",
     "REVIEWS":"సమీక్షలు",
     "CURRENTSTAGE":"ప్రస్తుత ఆన్బోర్డ్ స్టేజ్",

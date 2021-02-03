@@ -139,6 +139,7 @@
     },
     "DASHOARD_FU_MENU": {
       "SUMMARY":"Summary",
+      "SUBHEADING":"This page will auto refesh every 90 seconds.",
       "PAYMENTHISTORY":"Payment History",
       "REVIEWS":"Reviews",
       "CURRENTSTAGE":"Current Onboard Stage",

@@ -106,12 +106,11 @@ export class DashboardofadminComponent implements OnInit {
 
   ngOnInit() {
     const sourcerefresh = timer(1000, 90000);
-    // sourcerefresh.subscribe((val: number) => 
-    this.dashboardSummaryOfSkilledWorkerSearchService();
-    this.getAllAvailableFUSkills();
-
-    //});
-    this.getAllNewServiceDetails();
+    sourcerefresh.subscribe((val: number) => {
+      this.dashboardSummaryOfSkilledWorkerSearchService();
+      this.getAllAvailableFUSkills();
+      this.getAllNewServiceDetails();
+    });
   }
 
   dashboardSummaryOfSkilledWorkerSearchService() {
@@ -139,7 +138,7 @@ export class DashboardofadminComponent implements OnInit {
           if (element.isjobvoliation && element.isfreelancerjobattendant) {
             this.totalvoliationResolvedList.push(element);
           }
-          if (element.isjobactive && element.isjobaccepted && element.jobacceptdecisionflag  && this.getDate(element.jobstartedon) == this.indiaTime.toString() && element.jobaccepteddate != null) {
+          if (element.isjobactive && element.isjobaccepted && element.jobacceptdecisionflag && this.getDate(element.jobstartedon) == this.indiaTime.toString() && element.jobaccepteddate != null) {
             this.todaysjobscheduledList.push(element);
           }
           if (element.isjobactive && element.isjobaccepted && element.jobacceptdecisionflag && this.getDate(element.jobstartedon) > this.indiaTime.toString() && element.jobaccepteddate != null && !element.deactivefromupcomingjob) {
@@ -313,7 +312,7 @@ export class DashboardofadminComponent implements OnInit {
       });
   }
 
-  triggervoliationwork(jobId : number , index: number) {
+  triggervoliationwork(jobId: number, index: number) {
     this.iscreatejobflag = false;
     this.allFreelancerUsersList = null;
     this.enddatevalue = null;
@@ -324,22 +323,22 @@ export class DashboardofadminComponent implements OnInit {
     this.freelanceSvc.getAllFreelanceOnServiceDetailsByJobId(jobId).subscribe((objfreelanceservice: FreelanceOnSvc) => {
       objfreelanceservice.associatedadminId = this.userService.currentUserValue.userId;
       this.freelanceSvc.saveOrUpdateFreeLanceOnService(objfreelanceservice).subscribe((updatedobjfreelanceservice: FreelanceOnSvc) => {
-        if(updatedobjfreelanceservice.jobId > 0){
-          this.alertService.success('JobId ' +jobId +' is locked to you to complete the voliation process.');
+        if (updatedobjfreelanceservice.jobId > 0) {
+          this.alertService.success('JobId ' + jobId + ' is locked to you to complete the voliation process.');
           this.spinnerService.hide();
           this.dashboardSummaryOfSkilledWorkerSearchService();
           this.volationindex = index;
         }
       },
+        error => {
+          this.spinnerService.hide();
+          this.alertService.error(error);
+        });
+    },
       error => {
         this.spinnerService.hide();
         this.alertService.error(error);
       });
-    },
-    error => {
-      this.spinnerService.hide();
-      this.alertService.error(error);
-    });
   }
 
   reset() {
@@ -393,7 +392,7 @@ export class DashboardofadminComponent implements OnInit {
                     this.freelanceserviceService.saveFreelancerOnService(updatedobjfreelanceservice).subscribe((obj: any) => {
                       if (obj.jobId > 0) {
                         this.spinnerService.hide();
-                        this.alertService.success('The Voliation is resolved. The New Job Id : ' + obj.jobId + ' is created successfully & activated . it is assigned to '+this.fuFullName);
+                        this.alertService.success('The Voliation is resolved. The New Job Id : ' + obj.jobId + ' is created successfully & activated . it is assigned to ' + this.fuFullName);
                         this.dashboardSummaryOfSkilledWorkerSearchService();
                       }
                     },

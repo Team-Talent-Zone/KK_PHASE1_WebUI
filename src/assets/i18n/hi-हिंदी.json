@@ -138,6 +138,7 @@
   },
   "DASHOARD_FU_MENU": {
     "SUMMARY":"सारांश",
+    "SUBHEADING":"यह पेज हर 90 सेकंड में ऑटो रीफैश करेगा।",
     "PAYMENTHISTORY":"भुगतान इतिहास",
     "REVIEWS":"समीक्षा",
     "CURRENTSTAGE":"करंट ऑनबोर्ड स्टेज",
