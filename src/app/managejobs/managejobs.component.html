@@ -142,6 +142,7 @@
                 <div class="card card-flip h-100 ">
                     <div class="card-header text-white bg-secondary">
                         <p> <b>{{ 'DASHBOARD_FU_BODY.JOB' | translate }}#{{newlyjob.jobId}} </b>
+                            <i class="fa fa-pause" style="color:#FF4949" title="This job is on hold . We will get back to you ." *ngIf="newlyjob.isjobvoliation && !newlyjob.isfreelancerjobattendant"> </i>
                             <button class="bg-warning pull-right"
                                 *ngIf="!newlyjob.isjobactive && newlyjob.deactivefromnewjobs == null && !newlyjob.deactivefromupcomingjob "
                                 (click)="cancelJob(newlyjob.jobId)">Cancel
@@ -212,7 +213,7 @@
                         </div>
                     </div>-->
                     <div class="card-footer"
-                        *ngIf="newlyjob.isjobactive && !newlyjob.isjobaccepted &&  newlyjob.deactivefromnewjobs == null">
+                        *ngIf="newlyjob.isjobactive && !newlyjob.jobacceptdecisionflag &&  newlyjob.deactivefromnewjobs == null">
                         <div class="row">
                             <p class="text-primary text-center"><i class="fa fa-info-circle"></i>
                                 <small class="text-muted ">
@@ -255,12 +256,17 @@
                                 [routerLink]="['/payment',completedjob.txnid]">Payment Info<i
                                     title="Go to payment details" class="fa fa-sitemap"
                                     style="color:#FF4949"></i></button>
-                            <button class="bg-info pull-right" data-toggle="modal" data-target="#rateit"
+                            <button *ngIf="!completedjob.isratedforjob" class="bg-info pull-right" data-toggle="modal" data-target="#rateit"
                                 (click)="feedback(completedjob.jobId)"> Rate <i class="fa fa-meh-o"
                                     title="Please rate to {{completedjob.fullname}}"></i></button>
                         </p>
                         <span class="display-4">
-                            <i class="fa fa-inr">{{completedjob.amount | number}}</i></span>
+                            <i class="fa fa-inr">{{completedjob.amount | number}}</i>
+                            <i class="fa fa-smile-o fa-2x pull-right" style="color:blue"
+                            title="{{'DASHBOARD_FU_BODY.ALTER4' | translate }}"
+                            *ngIf="completedjob.isjobamtpaidtocompany"></i>
+                        </span>
+                        
                         <p>
                             <small class="pull-left">
                                 <b>{{ 'DASHBOARD_FU_BODY.STARTON' | translate }} </b>

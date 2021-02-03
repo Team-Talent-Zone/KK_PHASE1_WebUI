@@ -238,7 +238,7 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'fureviews',
+    path: 'fureviews/:id',
     component: DashboardComponent,
     canActivate: [AuthgaurdService],
     children: [

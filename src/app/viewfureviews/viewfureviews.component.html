@@ -2,6 +2,9 @@
 	<h4>{{'FU_REVIEW.REVIEWS' | translate }}</h4>
 	<hr>
 	<div *ngIf="fureviews.length > 0">
+		<div class="card mb-2 border-0" *ngIf="avgrating > 0 && !fureviewsempty">
+			<span class="pull-left"> <small>overall rating : <b>{{avgrating}} / 5 </b> </small></span>
+		</div>
 		<div class="card" *ngFor="let item of fureviews; index as i" style="margin-top:10px;">
 			<div class="card-body">
 				<div class="row">
@@ -11,7 +14,7 @@
 							<i class="fa fa-star" *ngFor="let i of item.starrate"> </i>
 						</p>
 						<p class="pull-right">
-							<small><i>{{ this.datepipe.transform(item.feedbackon)}}</i></small>
+							<small><i>{{ this.datepipe.transform(item.feedbackon,"dd/MM/yyyy hh:mm:ss")}}</i></small>
 						</p>
 						<div class="clearfix"></div>
 						<p>{{item.feedbackcomment}}</p>

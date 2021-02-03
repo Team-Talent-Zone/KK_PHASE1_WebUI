@@ -62,7 +62,7 @@
         <div class="row mb-4 justify-content-between">
           <div class="col-xl-2 col-sm-6 py-2 ">
             <a class="btn"
-              [ngStyle]="{'background-color': todaysvoliationList == null && todaysvoliationList.length == 0 ? '#28a745':'#dc3545'}"
+              [ngStyle]="{'background-color': todaysvoliationList.length == 0 ? '#28a745':'#dc3545'}"
               data-toggle="collapse" href="#reportedVoliations" role="button" aria-expanded="false"
               aria-controls="reportedVoliations">
               <i class="fa fa-reorder iconCSS"></i>
@@ -76,7 +76,7 @@
           </div>
           <div class="col-xl-2 col-sm-6 py-2">
             <a class="btn"
-              [ngStyle]="{'background-color': newjobsbutnotactiviatedList == null && newjobsbutnotactiviatedList.length == 0 ? '#28a745':'#dc3545'}"
+              [ngStyle]="{'background-color': newjobsbutnotactiviatedList.length == 0 ? '#28a745':'#dc3545'}"
               data-toggle="collapse" href="#newnonactivatedjobs" role="button" aria-expanded="false"
               aria-controls="newnonactivatedjobs">
               <i class="fa fa-reorder iconCSS"></i>
@@ -150,7 +150,7 @@
           </div>
           <div class="col-xl-3 col-sm-6 py-2">
             <a class="btn"
-              [ngStyle]="{'background-color': jobscompletedwithoutpaymentList == null && jobscompletedwithoutpaymentList.length == 0 ? '#28a745':'#dc3545'}"
+              [ngStyle]="{'background-color': jobscompletedwithoutpaymentList.length == 0 ? '#28a745':'#dc3545'}"
               data-toggle="collapse" href="#jobscompletedwithoutpaymentList" role="button" aria-expanded="false"
               aria-controls="jobscompletedwithoutpaymentList">
               <i class="fa fa-reorder iconCSS"></i>
@@ -177,7 +177,7 @@
         <div class="row mb-4 justify-content-center">
           <div class="col-xl-4 col-sm-6 py-2">
               <select  class="btn btn-dark"   (change)="getFUWorkStatus($event);">
-                <option value=''> --Select Category --</option>
+                <option value=''> --Select Skill --</option>
                 <option *ngFor="let item of listofAllFUSkills" value={{item.code}}>
                   {{item.label}}
                 </option>
@@ -326,16 +326,19 @@
                           </td>
                           <td>
                             <p>
-                             <i *ngIf="i != this.volationindex" class="fa fa-eye btn btn-sm btn-primary"
-                                title='Click to work on to resolve this volation.' (click)="triggervoliationwork(i)">
+                             <i *ngIf="i != this.volationindex && job.associatedadminId == null" class="fa fa-unlock btn btn-sm btn-primary"
+                                title='Click to lock to you to resolve this volation.' (click)="triggervoliationwork(job.jobId ,i)">
+                              </i>
+                              <i *ngIf="job.associatedadminId > 0" class="fa fa-lock btn-sm btn-primary"
+                                title='Locked to you to complete the voliation process.'>
                               </i>
                                 <i class="fa fa-plus btn btn-sm btn-info"  (click)="buildnewjobforvoliation(job.totalhoursofjob,i,job.scategory)" 
-                                *ngIf="i == this.volationindex" 
+                                *ngIf="job.associatedadminId > 0" 
                                   title='Click to recreate a new job.'></i> 
-                                <i class="fa fa-floppy-o btn btn-sm btn-warning" *ngIf="i == this.volationindex" 
+                                <i class="fa fa-floppy-o btn btn-sm btn-warning" *ngIf="job.associatedadminId > 0" 
                                   (click)="savevoliationResolvedReason(job.jobId)"
                                   title='Click to save'></i>
-                                  <i class="fa fa-refresh btn btn-sm btn-dark" *ngIf="i == this.volationindex && iscreatejobflag" 
+                                  <i class="fa fa-refresh btn btn-sm btn-dark" *ngIf="job.associatedadminId > 0 && iscreatejobflag" 
                                   (click)="reset()"
                                   title='Refresh'></i>
                             </p>
@@ -536,7 +539,6 @@
                       <th scope="col">Assign</th>
                       <th scope="col" *ngIf="isshowfualluser">Skilled Workers</th>
                       <th scope="col" *ngIf="fuUserId > 0">Actions</th>
-                      <th>Notes</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -575,7 +577,7 @@
                               title='Click to save and notify to the skilled worker'></i></button>
                         </p>
                       </td>
-                      <td>
+                      <td *ngIf="resolvedvoliationreason != null">
                         Support team has created this new job and assigned to <u>{{job.fullname}} </u> on {{job.updatedon}} 
                         as part of voliation job. Next action item <u>{{job.fullname}} </u> to  accept the job.
                         <b><u>Voliation Comments</u></b>

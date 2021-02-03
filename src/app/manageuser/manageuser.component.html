@@ -118,7 +118,6 @@
                                             </i>
                                         </a>
                                     </td>
-
                                 </tr>
                             </tbody>
                             <ng-template #elseNoBGWork>
@@ -316,6 +315,10 @@
                                             *ngIf="!fu.isactive">
                                             <i title="Activate User" class="fa fa-eye" style="color:#0a382b"></i>
                                         </a>
+                                        <a class="btn  btn-sm" [routerLink]="['/fureviews',fu.userId]"
+                                            *ngIf="fu.isactive">
+                                        <i title="Ratings" class="fa fa-commenting-o" style="color:#0a382b"></i>
+                                    </a>
                                     </td>
                                 </tr>
                         </table>

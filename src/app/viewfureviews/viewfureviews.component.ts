@@ -6,6 +6,7 @@ import { ReferenceService } from '../AppRestCall/reference/reference.service';
 import { UserService } from '../AppRestCall/user/user.service';
 import { config } from 'src/app/appconstants/config';
 import { DatePipe } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-viewfureviews',
@@ -16,6 +17,10 @@ export class ViewfureviewsComponent implements OnInit {
 
   fureviews: any;
   fureviewsempty: boolean = false;
+  userId: number;
+  totalratingcount: number = 0;
+  allratingcount: number;
+  avgrating:number;
 
   constructor(
     private freelanceserviceService: FreelanceserviceService,
@@ -24,7 +29,12 @@ export class ViewfureviewsComponent implements OnInit {
     private alertService: AlertsService,
     private referService: ReferenceService,
     public datepipe: DatePipe,
-  ) { }
+    private route: ActivatedRoute,
+  ) {
+    route.params.subscribe(params => {
+      this.userId = params.id;
+    });
+  }
 
   ngOnInit() {
     this.getFUFeebackDetailsByUserId();
@@ -33,7 +43,7 @@ export class ViewfureviewsComponent implements OnInit {
   getFUFeebackDetailsByUserId() {
     this.fureviews = [];
     this.spinnerService.show();
-    this.freelanceserviceService.getFUFeebackDetailsByUserId(this.userService.currentUserValue.userId).subscribe(
+    this.freelanceserviceService.getFUFeebackDetailsByUserId(this.userId).subscribe(
       (reviews: any) => {
         if (reviews != null) {
           reviews.forEach((element: any) => {
@@ -66,6 +76,14 @@ export class ViewfureviewsComponent implements OnInit {
               this.spinnerService.hide();
             }
           });
+          setTimeout(() => {
+            if(this.fureviews !== null){
+              this.fureviews.forEach(element => {
+                this.totalratingcount = element.starrate.length + this.totalratingcount;
+              });
+              this.avgrating = this.totalratingcount / this.fureviews.length;
+            }
+          }, 1000); 
         } else {
           this.fureviewsempty = true;
         }

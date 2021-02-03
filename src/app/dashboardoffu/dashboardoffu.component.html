@@ -382,6 +382,11 @@
                                             title="{{'DASHBOARD_FU_BODY.ALTER1' | translate }}"
                                             *ngIf="element.isjobamtpaidtocompany && !element.isjobamtpaidtofu">
                                         </i>
+
+                                        <i class="fa fa-smile-o fa-2x pull-right" style="color:blue"
+                                        title="{{'DASHBOARD_FU_BODY.ALTER4' | translate }}"
+                                        *ngIf="element.isjobamtpaidtocompany && element.isjobamtpaidtofu">
+                                    </i>
                                     </p>
                                     <span class="display-4">
                                         <i class="fa fa-inr">{{element.tofreelanceamount | number}}</i></span>
@@ -580,6 +585,11 @@
         <dd class="col-sm-9">
             <p style="color:red"><i><b> {{ 'DASHBOARD_FU_BODY.IMPINST_ICON3' | translate }}</b></i></p>
         </dd>
-
+        <dt class="col-sm-3">
+            <i class="fa fa-smile-o fa-2x pull-left" style="color:blue"></i>
+        </dt>
+        <dd class="col-sm-9">
+            {{ 'DASHBOARD_FU_BODY.IMPINST_ICON4' | translate }}
+        </dd>
     </dl>
 </div>

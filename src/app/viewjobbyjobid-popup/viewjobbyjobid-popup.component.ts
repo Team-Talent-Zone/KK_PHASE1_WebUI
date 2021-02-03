@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
@@ -21,6 +22,7 @@ export class ViewjobbyjobidPopupComponent implements OnInit {
     private spinnerService: Ng4LoadingSpinnerService,
     private alertService: AlertsService,
     public modalRef: BsModalRef,
+    public datepipe: DatePipe,
   ) { }
 
   ngOnInit() {

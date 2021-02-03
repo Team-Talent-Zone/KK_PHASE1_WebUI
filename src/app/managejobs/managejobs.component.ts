@@ -221,14 +221,15 @@ export class ManagejobsComponent implements OnInit {
           this.freelanceserviceService.getAllFreelanceOnServiceDetailsByJobId(jobId).subscribe((objfreelanceservice: FreelanceOnSvc) => {
             if (reason == config.voliation.toString()) {
               objfreelanceservice.isjobvoliation = true;
+            } else{
+              objfreelanceservice.isjobactive = false;
             }
-            objfreelanceservice.isjobactive = false;
             this.freelanceserviceService.saveOrUpdateFreelancerOnService(objfreelanceservice).subscribe((bol: boolean) => {
               if (bol) {
                 if (reason != config.voliation.toString()) {
                   this.alertService.success('The JobId: ' + jobId + ' is cancelled successfully.');
                 } else {
-                  this.alertService.success(ConfigMsg.voliation_msg + ' The JobId: ' + jobId + ' is cancelled successfully.');
+                  this.alertService.success(ConfigMsg.voliation_msg + ' The JobId: ' + jobId + ' is on hold till we resolve it.');
                 }
                 this.getUserAllJobDetailsByUserId();
                 this.spinnerService.hide();
@@ -255,10 +256,10 @@ export class ManagejobsComponent implements OnInit {
     this.freelanceserviceService.getUserAllJobDetailsByUserId(this.userService.currentUserValue.userId).subscribe((onserviceList: any) => {
       if (onserviceList != null && onserviceList.length > 0) {
         onserviceList.forEach((element: any) => {
-          if (element.isjobactive && element.isjobaccepted && !element.isjobamtpaidtocompany) {
+          if (element.isjobactive && element.jobacceptdecisionflag && !element.isjobamtpaidtocompany) {
             this.upComingPostedJobs.push(element);
           }
-          if (!element.isjobcancel && !element.isjobcompleted && !element.isjobamtpaidtocompany && !element.isjobaccepted) {
+          if (!element.isjobcancel && !element.isjobcompleted && !element.isjobamtpaidtocompany && !element.jobacceptdecisionflag) {
             this.newlyPostedJobs.push(element);
           }
           if (element.isjobactive && element.isjobcompleted && element.isjobamtpaidtocompany && element.isjobaccepted) {

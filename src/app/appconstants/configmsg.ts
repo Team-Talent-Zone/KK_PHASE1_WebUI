@@ -44,6 +44,6 @@ export const ConfigMsg = {
     biztype_cmp_te: 'సంస్థ',
     biztype_ind_hi: 'व्यक्ति',
     biztype_cmp_hi: 'कंपनी',
-    voliation_msg :'Sorry for the inconvenience caused. We are analzying with the skilled worker on not attending at the work location as per scheduled appointment date. We will get back to you .'
+    voliation_msg :'Sorry for the inconvenience caused. We are analzying with the skilled worker on this issue. We will be contact you soon.'
 
 };

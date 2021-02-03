@@ -36,6 +36,8 @@ export class FreelanceOnSvc {
         public isfreelancerjobattendant: boolean,
         public isjobvoliation: boolean,
         public resolvedvoliationreason: string,
+        public associatedadminId: number,
+        public acceptjobterms: boolean,
     ) {
 
     }

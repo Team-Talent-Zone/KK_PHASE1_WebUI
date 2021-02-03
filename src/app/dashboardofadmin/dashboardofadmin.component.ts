@@ -139,10 +139,10 @@ export class DashboardofadminComponent implements OnInit {
           if (element.isjobvoliation && element.isfreelancerjobattendant) {
             this.totalvoliationResolvedList.push(element);
           }
-          if (element.isjobactive && element.isjobaccepted && this.getDate(element.jobstartedon) == this.indiaTime.toString() && element.jobaccepteddate != null) {
+          if (element.isjobactive && element.isjobaccepted && element.jobacceptdecisionflag  && this.getDate(element.jobstartedon) == this.indiaTime.toString() && element.jobaccepteddate != null) {
             this.todaysjobscheduledList.push(element);
           }
-          if (element.isjobactive && element.isjobaccepted && element.isupcoming && element.jobaccepteddate != null && !element.deactivefromupcomingjob) {
+          if (element.isjobactive && element.isjobaccepted && element.jobacceptdecisionflag && this.getDate(element.jobstartedon) > this.indiaTime.toString() && element.jobaccepteddate != null && !element.deactivefromupcomingjob) {
             this.upcomingjobscheduledList.push(element);
           }
           if (!element.isjobactive && !element.isjobvoliation) {
@@ -164,7 +164,6 @@ export class DashboardofadminComponent implements OnInit {
             this.jobscompletedpayoutpendingList.push(element);
           }
         });
-        console.log('newjobsactiviatedbutnotacceptedList', this.newjobsactiviatedbutnotacceptedList);
       }
     },
       error => {
@@ -263,14 +262,14 @@ export class DashboardofadminComponent implements OnInit {
                   })
                 }
               }
+              if (this.onnotworkfreelancelistsbysubcategory.length == 0 && this.onworkfreelancelistsbysubcategory == 0) {
+                this.isshownofreelancerinsystem = true;
+              }
             },
               error => {
                 this.spinnerService.hide();
                 this.alertService.error(error);
               });
-            if (this.onnotworkfreelancelistsbysubcategory.length == 0 && this.onworkfreelancelistsbysubcategory == 0) {
-              this.isshownofreelancerinsystem = true;
-            }
           }, 500);
         }
       }, error => {
@@ -314,8 +313,7 @@ export class DashboardofadminComponent implements OnInit {
       });
   }
 
-  triggervoliationwork(index: number) {
-    this.volationindex = index;
+  triggervoliationwork(jobId : number , index: number) {
     this.iscreatejobflag = false;
     this.allFreelancerUsersList = null;
     this.enddatevalue = null;
@@ -323,6 +321,25 @@ export class DashboardofadminComponent implements OnInit {
     this.fuFullName = null;
     this.fuUserId = null;
     this.resolvedvoliationreason = null;
+    this.freelanceSvc.getAllFreelanceOnServiceDetailsByJobId(jobId).subscribe((objfreelanceservice: FreelanceOnSvc) => {
+      objfreelanceservice.associatedadminId = this.userService.currentUserValue.userId;
+      this.freelanceSvc.saveOrUpdateFreeLanceOnService(objfreelanceservice).subscribe((updatedobjfreelanceservice: FreelanceOnSvc) => {
+        if(updatedobjfreelanceservice.jobId > 0){
+          this.alertService.success('JobId ' +jobId +' is locked to you to complete the voliation process.');
+          this.spinnerService.hide();
+          this.dashboardSummaryOfSkilledWorkerSearchService();
+          this.volationindex = index;
+        }
+      },
+      error => {
+        this.spinnerService.hide();
+        this.alertService.error(error);
+      });
+    },
+    error => {
+      this.spinnerService.hide();
+      this.alertService.error(error);
+    });
   }
 
   reset() {
@@ -359,6 +376,7 @@ export class DashboardofadminComponent implements OnInit {
             this.freelanceSvc.getAllFreelanceOnServiceDetailsByJobId(jobId).subscribe((objfreelanceservice: FreelanceOnSvc) => {
               objfreelanceservice.isfreelancerjobattendant = true;
               objfreelanceservice.resolvedvoliationreason = this.resolvedvoliationreason;
+              objfreelanceservice.isjobactive = false;
               this.freelanceSvc.saveOrUpdateFreeLanceOnService(objfreelanceservice).subscribe((updatedobjfreelanceservice: FreelanceOnSvc) => {
                 if (this.startdate != null) {
                   if (updatedobjfreelanceservice.jobId > 0) {
@@ -368,12 +386,14 @@ export class DashboardofadminComponent implements OnInit {
                     updatedobjfreelanceservice.jobstartedon = this.startdate.toString();
                     updatedobjfreelanceservice.jobendedon = this.enddatevalue.toString();
                     updatedobjfreelanceservice.freelanceuserId = this.fuUserId;
-                    updatedobjfreelanceservice.jobaccepteddate = null;
+                    updatedobjfreelanceservice.jobaccepteddate = this.indiaTimeFormat.toString();
+                    updatedobjfreelanceservice.associatedadminId = null;
                     updatedobjfreelanceservice.isjobactive = true;
+                    updatedobjfreelanceservice.isjobaccepted = true;
                     this.freelanceserviceService.saveFreelancerOnService(updatedobjfreelanceservice).subscribe((obj: any) => {
                       if (obj.jobId > 0) {
                         this.spinnerService.hide();
-                        this.alertService.success('The Job Id : ' + obj.jobId + ' is created successfully. Go to New Job Tab to activate. ');
+                        this.alertService.success('The Voliation is resolved. The New Job Id : ' + obj.jobId + ' is created successfully & activated . it is assigned to '+this.fuFullName);
                         this.dashboardSummaryOfSkilledWorkerSearchService();
                       }
                     },
@@ -384,7 +404,7 @@ export class DashboardofadminComponent implements OnInit {
                   }
                 } else {
                   this.spinnerService.hide();
-                  this.alertService.success('The voliation is resolved for the the Job Id:' + jobId + '.');
+                  this.alertService.success('The voliation is resolved for the Job Id:' + jobId + '.');
                   this.dashboardSummaryOfSkilledWorkerSearchService();
                 }
               },

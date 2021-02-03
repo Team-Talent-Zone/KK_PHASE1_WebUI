@@ -40,7 +40,9 @@ export class FreelanceOnSvcAdapter implements Adapter<FreelanceOnSvc> {
             item.cbajobattendantdate,
             item.isfreelancerjobattendant,
             item.isjobvoliation,
-            item.resolvedvoliationreason
+            item.resolvedvoliationreason,
+            item.associatedadminId,
+            item.acceptjobterms
         );
     }
 }

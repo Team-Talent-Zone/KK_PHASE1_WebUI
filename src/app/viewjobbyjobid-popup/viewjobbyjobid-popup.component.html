@@ -9,15 +9,15 @@
               <tbody>
                 <tr>
                   <th> Job Started On </th>
-                  <td>{{jobdetails.jobstartedon}}</td>
+                  <td>{{ this.datepipe.transform(jobdetails.jobstartedon,"dd/MM/yyyy hh:mm:ss")}}</td>
                 </tr>
                 <tr>
                     <th> Job Ended On </th>
-                    <td>{{jobdetails.jobendedon}}</td>
+                    <td>{{ this.datepipe.transform(jobdetails.jobendedon,"dd/MM/yyyy hh:mm:ss")}}</td>
                   </tr>
                   <tr>
                     <th> Job Accepted </th>
-                    <td>{{jobdetails.jobaccepteddate}}</td>
+                    <td>{{ this.datepipe.transform(jobdetails.jobaccepteddate,"dd/MM/yyyy hh:mm:ss")}}</td>
                   </tr>
                   <tr>
                     <th> Job Location</th>
@@ -52,11 +52,11 @@
                   </tr>
                   <tr>
                   <th>Client Attendance Submitted Date</th>
-                  <td>{{jobdetails.cbajobattendantdate}}</td>
+                  <td>{{ this.datepipe.transform(jobdetails.cbajobattendantdate,"dd/MM/yyyy hh:mm:ss")}}</td>
                   </tr>
                   <tr>
                   <th>SW Attendance Submitted Date</th>
-                  <td>{{jobdetails.freelancerjobattendantdate}}</td>
+                  <td>{{ this.datepipe.transform(jobdetails.freelancerjobattendantdate,"dd/MM/yyyy hh:mm:ss")}}</td>
                 </tr>
                 <tr>
                   <th>Job Active?</th>

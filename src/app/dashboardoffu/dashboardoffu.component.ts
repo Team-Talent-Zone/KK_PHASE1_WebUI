@@ -123,7 +123,7 @@ export class DashboardoffuComponent implements OnInit {
       objfreelanceservice.freelancerjobattendantdate = this.indiaTime.toString();
       this.freelanceSvc.saveOrUpdateFreeLanceOnService(objfreelanceservice).subscribe((updatedobjfreelanceservice: FreelanceOnSvc) => {
         if (updatedobjfreelanceservice.jobId > 0) {
-          this.alertService.success('We have noted that your at work location at ' + updatedobjfreelanceservice.joblocation + ' on' + this.indiaTime.toString());
+          this.alertService.success('We have noted that your at work location at ' + updatedobjfreelanceservice.joblocation + ' on ' + this.indiaTime.toString());
           this.spinnerService.hide();
           this.getUserAllJobDetailsByUserId();
         }
@@ -144,7 +144,6 @@ export class DashboardoffuComponent implements OnInit {
     this.completedJobList = [];
     this.listOfCompletedJobsWithoutPay = [];
     this.listOfVolidationJobs = [];
-    this.spinnerService.show();
     this.freelanceSvc.getUserAllJobDetails(this.userService.currentUserValue.freeLanceDetails.subCategory).subscribe((responseBody: any) => {
       if (responseBody != null) {
         responseBody.forEach(element => {
@@ -196,7 +195,7 @@ export class DashboardoffuComponent implements OnInit {
             && element.isjobcompleted && !element.isjobamtpaidtocompany) {
             this.listOfCompletedJobsWithoutPay.push(element);
           }
-          if (element.freelanceuserId == this.userService.currentUserValue.userId
+          if (element.isjobactive && element.freelanceuserId == this.userService.currentUserValue.userId
             && element.scategory === this.userService.currentUserValue.freeLanceDetails.subCategory
             && element.deactivefromupcomingjob) {
             this.listOfVolidationJobs.push(element);
