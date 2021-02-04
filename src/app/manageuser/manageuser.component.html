@@ -71,10 +71,8 @@
                     <li class="nav-item"><a href="" data-target="#admintab" data-toggle="tab"
                             class="nav-link medium text-uppercase"><b>Administrators</b></a></li>
                 </ul>
-                <br>
                 <div id="tabsContent" class="tab-content">
                     <div id="myworktab" class="tab-pane active fade show">
-
                         <span>
                             <div class="col-md-12 bg-search">
                                 <input type="text" id="myTaskInputUser" onkeyup="manageUsersTableSearch('mytask')"
@@ -82,8 +80,7 @@
                             </div>
                         </span>
                         <br>
-
-                        <table id="userMYTasktable" class="table table-bordered table-hover table-sm table-striped">
+                        <table id="userMYTasktable" class="table table-striped table-bordered" style="width:100%">
                             <thead *ngIf="usrObjMyWork != ''">
                                 <tr>
                                     <th>Name</th>
@@ -96,7 +93,7 @@
                                 </tr>
                             </thead>
                             <tbody *ngIf="usrObjMyWork != ''; else elseNoBGWork">
-                                <tr class="text-center-row" *ngFor="let mywork of usrObjMyWork">
+                                <tr *ngFor="let mywork of usrObjMyWork">
                                     <td>
                                         <a href="javascript: return false;"
                                             (click)='openViewAccountDetailsModal(mywork.userId)'>
@@ -154,8 +151,8 @@
                                             {{cbu.fullname}}
                                         </a>
                                     </td>
-                                    <td>
-                                        <i class="fa fa-smile-o" style="color:#0a382b; padding: 40px;" *ngIf="cbu.isactive"> </i>
+                                    <td> 
+                                        <i class="fa fa-smile-o center" style="color:#0a382b" *ngIf="cbu.isactive"> </i>
                                         <i class="fa fa-frown-o" style="color:#FF4949" *ngIf="!cbu.isactive"> </i>
                                     </td>
                                     <td>{{cbu.username}}</td>
@@ -164,7 +161,7 @@
                                     <td>
                                         <a href="javascript: return false;"
                                             [routerLink]="['/viewuserservicedetails',cbu.userId]">
-                                            <i class="fa fa-cog" title="View Associated Services"
+                                            <i class="fa fa-cog center" title="View Associated Services"
                                                 style="color:#0a382b"></i>
                                         </a>
                                         <a href="javascript: return false;"
@@ -206,6 +203,8 @@
                                     <th>Pay?</th>
                                     <!-- <th>Current Status</th> -->
                                     <th>BG Status</th>
+                                    <th>Company%</th>
+                                    <th>SW%</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -294,6 +293,8 @@
                                                 class="fa fa-spinner" style="color:blue"></i>
                                         </ng-template>
                                     </td>
+                                    <td>{{fu.freeLanceDetails.companypercentage}}</td>
+                                    <td>{{fu.freeLanceDetails.fupercentage}}</td>
                                     <td>
                                         <a *ngIf="fu.freeLanceDetails.isprofilecompleted && fu.freeLanceDetails.isregfeedone
                                         && !fu.freeLanceDetails.isbgstarted &&

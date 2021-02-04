@@ -59,7 +59,6 @@ export class ProcessbgverificationComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log('this freelancehistoryentity', this.usrdetailsObj);
     this.bgformValidations();
   }
 
@@ -86,7 +85,7 @@ export class ProcessbgverificationComponent implements OnInit {
       this.bgverificationForm.patchValue({ bgstatus: config.bg_code_senttoccsm.toString() });
     }
     if (this.additiondocreturnURL === null) {
-      this.bgverificationForm.patchValue({ docname: '' });
+      this.bgverificationForm.patchValue({ docname: 'No Documents Uploaded' });
     }
     this.issubmit = true;
     if (this.bgverificationForm.invalid) {

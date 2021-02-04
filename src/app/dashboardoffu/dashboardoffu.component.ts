@@ -182,12 +182,12 @@ export class DashboardoffuComponent implements OnInit {
             this.newJobList.push(element);
           }
           if (element.isjobactive && element.freelanceuserId == this.userService.currentUserValue.userId
-            && !element.isjobcompleted && element.isjobaccepted) {
+            && element.isjobaccepted && !element.isjobamtpaidtocompany ) {
             this.upcomingJobList.push(element);
           }
           if (element.isjobactive && element.freelanceuserId == this.userService.currentUserValue.userId
             && element.scategory === this.userService.currentUserValue.freeLanceDetails.subCategory &&
-            element.isjobcompleted) {
+            element.isjobcompleted && element.isjobamtpaidtocompany) {
             this.completedJobList.push(element);
           }
           if (element.isjobactive && element.freelanceuserId == this.userService.currentUserValue.userId

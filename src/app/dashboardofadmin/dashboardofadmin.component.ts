@@ -11,7 +11,6 @@ import { ConfirmationDialogService } from '../AppRestCall/confirmation/confirmat
 import { FreelanceOnSvcService } from '../AppRestCall/freelanceOnSvc/freelance-on-svc.service';
 import { FreelanceOnSvc } from '../appmodels/FreelanceOnSvc';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { DashboardComponent } from '../dashboard/dashboard.component';
 import { ReferenceAdapter } from '../adapters/referenceadapter';
 import { map } from 'rxjs/operators';
 import { UsersrvdetailsService } from '../AppRestCall/userservice/usersrvdetails.service';
@@ -19,6 +18,7 @@ import { timer } from 'rxjs';
 import { NewsvcService } from '../AppRestCall/newsvc/newsvc.service';
 import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import { ViewjobbyjobidPopupComponent } from '../viewjobbyjobid-popup/viewjobbyjobid-popup.component';
+ 
 
 @Component({
   selector: 'app-dashboardofadmin',

@@ -1,7 +1,6 @@
 import { ProcessbgverificationComponent } from './../processbgverification/processbgverification.component';
 import { ViewaccountdetailsComponent } from './../viewaccountdetails/viewaccountdetails.component';
 import { Component, OnInit } from '@angular/core';
-import * as $ from 'jquery';
 import { UserService } from '../AppRestCall/user/user.service';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { UserAdapter } from '../adapters/useradapter';
@@ -14,6 +13,7 @@ import { BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { Toaster, ToastType } from 'ngx-toast-notifications';
 import { timer } from 'rxjs';
+
 
 @Component({
   selector: 'app-manageuser',

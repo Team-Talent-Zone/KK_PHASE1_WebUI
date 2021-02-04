@@ -213,7 +213,9 @@ export class EditprofileComponent implements OnInit {
             lastname: ['', [Validators.required, Validators.maxLength(40)]],
             preferlang: ['', [Validators.required]],
             fulladdress: ['', [Validators.required]],
-            phoneno: ['', [Validators.required, Validators.pattern("[0-9 ]{10}")]]
+            phoneno: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern("[0-9 ]{10}")]],
+            accepteditprofileterms: [false, [Validators.requiredTrue]],
+
           });
         }
   }

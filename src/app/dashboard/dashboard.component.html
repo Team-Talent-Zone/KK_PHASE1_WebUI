@@ -175,8 +175,12 @@
                                 <i class="fa fa-comments-o" style="color:#FF4949">{{notifcationbellList.length}}</i>
                             </a>
                             <a style="cursor:pointer" (click)='openNotifcationWindow()'
-                            *ngIf="notifcationbellList != null && notifcationbellList.length>0 &&
-                                this.userService.currentUserValue.userroles.rolecode =='CORE_SERVICE_SUPPORT_TEAM' || 
+                                *ngIf="notifcationbellList != null && notifcationbellList.length > 0 &&
+                                this.userService.currentUserValue.userroles.rolecode =='CORE_SERVICE_SUPPORT_TEAM'">
+                            <i class="fa fa-comments-o" style="color:#FF4949">{{notifcationbellList.length}}</i>
+                             </a>
+                             <a style="cursor:pointer" (click)='openNotifcationWindow()'
+                                *ngIf="notifcationbellList != null && notifcationbellList.length > 0 &&
                                 this.userService.currentUserValue.userroles.rolecode =='CORE_SERVICE_SUPPORT_MANAGER' ">
                             <i class="fa fa-comments-o" style="color:#FF4949">{{notifcationbellList.length}}</i>
                              </a>

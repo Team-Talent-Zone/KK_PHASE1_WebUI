@@ -77,7 +77,6 @@ export class PaymentComponent implements OnInit {
             jobids: this.jobids,
             userId: this.userService.currentUserValue.userId
           });
-          console.log('this.paymentFormDetails', this.paymentFormDetails);
           this.paymentsvc.savePayments(this.paymentFormDetails.value).subscribe(
             (data: Payment) => {
               this.disablePaymentButton = false;
@@ -93,7 +92,8 @@ export class PaymentComponent implements OnInit {
               this.payuform.amount = data.amount;
               this.payuform.phone = data.phone;
               this.payuform.productInfo = data.productinfo;
-              this.usrobj = this.userAdapter.adapt(this.userService.currentUserValue);
+              this.spinnerService.hide();
+             /* this.usrobj = this.userAdapter.adapt(this.userService.currentUserValue);
               this.usrobj.phoneno = data.phone;
               this.userService.saveorupdate(this.usrobj).subscribe(() => {
                 this.spinnerService.hide();
@@ -101,7 +101,7 @@ export class PaymentComponent implements OnInit {
               }, error => {
                 this.spinnerService.hide();
                 this.alertService.error(error);
-              });
+              });*/
             },
             error => {
               this.spinnerService.hide();
