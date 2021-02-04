@@ -98,11 +98,13 @@ export class ManageuserComponent implements OnInit {
                   this.usrObj.freelancehistoryentity = elementFhistory;
                   this.usrObjFUs.push(this.usrObj);
                 } else
+                console.log('this si test' , elementFhistory.userid);
+                console.log('this si elementFhistory.bgstatus' , elementFhistory.bgstatus);
                   if (!elementFhistory.islocked &&
-                    elementFhistory.bgstatus === config.bg_code_incompleteprofile.toString() ||
-                    elementFhistory.bgstatus === config.bg_code_completedprofile.toString() ||
-                    elementFhistory.bgstatus === config.bg_code_approved.toString() ||
-                    elementFhistory.bgstatus === config.bg_code_rejected.toString()
+                    elementFhistory.bgstatus.toString() == config.bg_code_incompleteprofile.toString() ||
+                    elementFhistory.bgstatus.toString() == config.bg_code_completedprofile.toString() ||
+                    elementFhistory.bgstatus.toString() == config.bg_code_approved.toString() ||
+                    elementFhistory.bgstatus.toString() == config.bg_code_rejected.toString()
                   ) {
                     this.usrObj.freelancehistoryentity = elementFhistory;
                     this.usrObjFUs.push(this.usrObj);
@@ -115,6 +117,7 @@ export class ManageuserComponent implements OnInit {
             }
           });
         }
+        console.log('usrObjFUs' , this.usrObjFUs);
         this.spinnerService.hide();
       },
       error => {

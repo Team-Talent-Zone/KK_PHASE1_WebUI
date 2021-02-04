@@ -196,7 +196,6 @@
                                 <tr>
                                     <th>Name</th>
                                     <th>Active?</th>
-                                    <th>Phone Number</th>
                                     <th>BG Completed?</th>
                                     <th>BG Initated ?</th>
                                     <th>Profile Completed?</th>
@@ -220,7 +219,6 @@
                                         <i class="fa fa-smile-o" style="color:#0a382b" *ngIf="fu.isactive"> </i>
                                         <i class="fa fa-frown-o" style="color:#FF4949" *ngIf="!fu.isactive"> </i>
                                     </td>
-                                    <td> {{fu.phoneno}}</td>
                                     <td *ngIf="fu.freeLanceDetails !=null">
                                         <div *ngIf="fu.freeLanceDetails.isbgstarted">
                                             <div *ngIf="fu.freeLanceDetails.isbgdone">
@@ -337,10 +335,8 @@
                                 <tr>
                                     <th>Name</th>
                                     <th>Active?</th>
-                                    <th>Email Address</th>
                                     <th>Created On</th>
                                     <th>Created By</th>
-                                    <th>Language</th>
                                     <th>Designation</th>
                                     <th>Actions</th>
                                 </tr>
@@ -359,20 +355,8 @@
                                         <i class="fa fa-frown-o" style="color:#FF4949" *ngIf="!platformuser.isactive">
                                         </i>
                                     </td>
-                                    <td>{{platformuser.username}}</td>
                                     <td>{{platformuser.createdon}}</td>
                                     <td>{{platformuser.createdby}}</td>
-                                    <td>
-                                        <div *ngIf="platformuser.preferlang == 'en'">
-                                            English
-                                        </div>
-                                        <div *ngIf="platformuser.preferlang == 'te'">
-                                            తెలుగు
-                                        </div>
-                                        <div *ngIf="platformuser.preferlang == 'hi'">
-                                            हिंदी
-                                        </div>
-                                    </td>
                                     <td>
                                         <div
                                             *ngIf="platformuser.userroles.rolecode == 'CORE_SERVICE_SUPPORT_TEAM'; else elseCBA">
