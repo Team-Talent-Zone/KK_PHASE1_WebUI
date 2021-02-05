@@ -91,38 +91,36 @@
 <div class="modal-body" *ngIf="usrdetailsObj.userroles.rolecode == 'FREELANCER_USER'">
   <h5> Freelancer Details </h5>
   <table style="width:100%">
-
-  
-      <tr *ngFor="let referencelookupmap of signupComponent.referencedetailsmap">
-        <th *ngIf="referencelookupmap.mapId == usrdetailsObj.freeLanceDetails.category">Category</th>
-        <td *ngIf="referencelookupmap.mapId == usrdetailsObj.freeLanceDetails.category">{{referencelookupmap.label}}</td>
-      </tr>
-  
-
-    <tr *ngFor="let referencelookupmap of signupComponent.referencedetailsmapsubcat">
-      
-        <th *ngIf="referencelookupmap.code == usrdetailsObj.freeLanceDetails.subCategory">Sub Category</th>
-        <td *ngIf="referencelookupmap.code == usrdetailsObj.freeLanceDetails.subCategory">{{referencelookupmap.label}}</td>
-    
+    <tr *ngFor="let referencelookupmap of signupComponent.referencedetailsmap">
+      <th *ngIf="referencelookupmap.mapId == usrdetailsObj.freeLanceDetails.category">Skill Under Category</th>
+      <td *ngIf="referencelookupmap.mapId == usrdetailsObj.freeLanceDetails.category">{{referencelookupmap.label}}</td>
     </tr>
     <tr>
-      <th>Experience In Field</th>
+      <th>Skill Name</th>
+      <td> {{usrdetailsObj.freeLanceDetails.subcategorylabel}}</td>
+    </tr>
+    <tr>
+      <th>Experience</th>
       <td> {{usrdetailsObj.freeLanceDetails.experienceInField}}</td>
     </tr>
     <tr>
-      <th>ABT</th>
+      <th>About</th>
       <td> {{usrdetailsObj.freeLanceDetails.abt}}</td>
     </tr>
     <tr>
-      <th>Hourly Rate</th>
+      <th>Hour Rate</th>
       <td> {{usrdetailsObj.freeLanceDetails.hourlyRate}} &#8377;</td>
     </tr>
     <tr>
-      <th>Percentage Deduct</th>
-      <td> {{usrdetailsObj.freeLanceDetails.percentageDeduct}} &#37;</td>
+      <th>Company Percentage%</th>
+      <td> {{usrdetailsObj.freeLanceDetails.companypercentage}} &#37;</td>
     </tr>
     <tr>
-      <th>Is Profile Completed</th>
+      <th>Worker Percentage%</th>
+      <td> {{usrdetailsObj.freeLanceDetails.fupercentage}} &#37;</td>
+    </tr>
+    <tr>
+      <th>Profile Completed?</th>
       <td>
         <div *ngIf="usrdetailsObj.freeLanceDetails.isprofilecompleted">
           <i class="fa fa-check" title="Bg verification is completed" style="color: rgb(37, 165, 37)"></i>
@@ -135,7 +133,7 @@
     </tr>
 
     <tr>
-      <th>Is BG Done</th>
+      <th>Background Verification Completed ?</th>
       <td>
         <div *ngIf="usrdetailsObj.freeLanceDetails.isbgdone">
           <i class="fa fa-check" title="Bg verification is completed" style="color: rgb(37, 165, 37)"></i>
@@ -147,7 +145,7 @@
     </tr>
 
     <tr>
-      <th>Is BG Started</th>
+      <th>Background Verification Initiated</th>
       <td>
         <div *ngIf="usrdetailsObj.freeLanceDetails.isbgstarted">
           <i class="fa fa-check" title="Bg verification is completed" style="color: rgb(37, 165, 37)"></i>
@@ -158,12 +156,10 @@
       </td>
     </tr>
     <tr>
-      <th> Valid National ID </th>
-      <td><a href="{{usrdetailsObj.freeLanceDetails.uploadValidPhotoidImgUrl}}" target="_blank"
-          class="fa fa-image"></a>
+      <th>National ID </th>
+      <td><a href="{{usrdetailsObj.freeLanceDetails.uploadValidPhotoidImgUrl}}" target="_blank" class="fa fa-image"></a>
       </td>
     </tr>
-
   </table>
 </div>
 
@@ -171,14 +167,13 @@
 <div class="modal-body" *ngIf="usrdetailsObj.userroles.rolecode == 'FREELANCER_USER'">
   <h5>Background Verification History Details </h5>
   <table style="width:100%">
-
     <tr>
-      <th>Decision by</th>
+      <th>Decision By</th>
       <th>Decision On</th>
-      <th>Bg Status </th>
-      <th>Bg Comments </th>
-      <th>ManageId </th>
-      <th>CSST ID </th>
+      <th>Background Status </th>
+      <th>Background Comments </th>
+      <th>Manager ID </th>
+      <th>Core Service Support Member ID </th>
     </tr>
     <tr *ngFor="let value of usrdetailsObj.freelancehistoryentity ">
       <td> {{value.decisionby}}</td>
@@ -191,14 +186,9 @@
       <td><a href="javascript: return false;"
           (click)='managerusercomponent.openViewAccountDetailsModalByUserId(value.csstid)'>
           {{value.csstid}}</a></td>
-
     </tr>
-
   </table>
 </div>
-
-
-
 
 <div class="modal-body" *ngIf="usrdetailsObj.userroles.rolecode == 'FREELANCER_USER'">
 
@@ -207,11 +197,10 @@
     <table style="width:100%">
       <tr>
         <th>Document Name</th>
-        <th>Upload Date</th>
+        <th>Uploaded Date</th>
       </tr>
       <tr *ngFor="let value of usrdetailsObj.freelancedocumententity ">
-
-        <td><a href="{{value.docurl}}"  target="_blank">{{value.docname}} </a> </td>
+        <td><a href="{{value.docurl}}" target="_blank">{{value.docname}} </a> </td>
         <td>{{value.uploaddate}}</td>
       </tr>
     </table>

@@ -22,6 +22,10 @@ export class ReferenceService {
     return this.http.get(`${environment.apiUrl}/getLookupTemplateEntityByShortkey/` + shortkey);
   }
 
+  getReferenceLookupMappingSubCategoryByCode(code: string) {
+    return this.http.get(`${environment.apiUrl}/getReferenceLookupMappingSubCategoryByCode/` + code);
+  }
+
   translatetext(targetText: string, langcode: string): Observable<string> {
     return this.http.get(`${environment.apiUrl}/translatetext/` + targetText + '/' + langcode + '/').pipe(
       map((data: any) => data.translateresp));

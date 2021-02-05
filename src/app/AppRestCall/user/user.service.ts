@@ -73,34 +73,36 @@ export class UserService {
     this.currentUserSubject.next(null);
   }
 
-  saveUser(user: any, refCode: string, shortkey: string, userobj: User) {
+  saveUser(user: any, rolecode: string, key: string, userobj: User, codelabel: string) {
     userobj.createdby = user.firstname;
     userobj.updateby = user.firstname;
     userobj.userroles = new UserRole();
-    userobj.userroles.rolecode = refCode;
+    userobj.userroles.rolecode = rolecode;
     userobj.userbizdetails = new UserBiz();
-    if (shortkey === config.shortkey_role_cba) {
+console.log('key', key);
+    if (key === config.shortkey_role_cba.toString()) {
       userobj.userbizdetails.biztype = user.biztype;
-    } else
-      if (shortkey === config.shortkey_role_fu) {
-        userobj.freeLanceDetails = new Freelance();
-        userobj.freeLanceDetails.category = user.category;
-        userobj.freeLanceDetails.subCategory = user.subcategory;
-        userobj.freeLanceDetails.bgcurrentstatus = config.bg_code_incompleteprofile;
-        userobj.freelancehistoryentity = new Array<FreelanceHistory>();
-        this.freelanceobj = new FreelanceHistory();
-        this.freelanceobj.bgstatus = config.bg_code_incompleteprofile;
-        userobj.freelancehistoryentity.push(this.freelanceobj);
-      } else
-        if (shortkey === config.shortkey_role_csst ||
-          shortkey === config.shortkey_role_cssm) {
-          userobj.createdby = this.currentUserValue.firstname + ' ' + this.currentUserValue.lastname;
-          userobj.updateby = this.currentUserValue.firstname + ' ' + this.currentUserValue.lastname;
-          userobj.usermanagerdetailsentity = new UserManagerDetails();
-          userobj.usermanagerdetailsentity.managerid = this.currentUserValue.userId;
-          userobj.password = user.password;
-          userobj.preferlang = user.preferlang;
-        }
+    }
+    if (key === config.shortkey_role_fu.toString()) {
+      userobj.freeLanceDetails = new Freelance();
+      userobj.freeLanceDetails.category = user.category;
+      userobj.freeLanceDetails.subCategory = user.subcategory;
+      userobj.freeLanceDetails.subcategorylabel = codelabel;
+      userobj.freeLanceDetails.bgcurrentstatus = config.bg_code_incompleteprofile;
+      userobj.freelancehistoryentity = new Array<FreelanceHistory>();
+      this.freelanceobj = new FreelanceHistory();
+      this.freelanceobj.bgstatus = config.bg_code_incompleteprofile;
+      userobj.freelancehistoryentity.push(this.freelanceobj);
+    }
+    if (key === config.shortkey_role_csst.toString() ||
+      key === config.shortkey_role_cssm.toString()) {
+      userobj.createdby = this.currentUserValue.firstname + ' ' + this.currentUserValue.lastname;
+      userobj.updateby = this.currentUserValue.firstname + ' ' + this.currentUserValue.lastname;
+      userobj.usermanagerdetailsentity = new UserManagerDetails();
+      userobj.usermanagerdetailsentity.managerid = this.currentUserValue.userId;
+      userobj.password = user.password;
+      userobj.preferlang = user.preferlang;
+    }
     return this.http.post(`${environment.apiUrl}/saveUser/`, userobj);
   }
 

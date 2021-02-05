@@ -18,7 +18,7 @@ import { timer } from 'rxjs';
 import { NewsvcService } from '../AppRestCall/newsvc/newsvc.service';
 import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import { ViewjobbyjobidPopupComponent } from '../viewjobbyjobid-popup/viewjobbyjobid-popup.component';
- 
+
 
 @Component({
   selector: 'app-dashboardofadmin',
@@ -40,6 +40,11 @@ export class DashboardofadminComponent implements OnInit {
   indiaTimeFormat = this.datepipe.transform(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }), "yyyy-MM-dd hh:mm:ss");
   startdateInputDate: Date;
   startdate: string;
+
+  listofallvoliationscount: any = [];
+  listofallvoliationsskilledworkername: any = [];
+  tempplacejobIdholder: number;
+  voliationcount: number = 0
 
   minstartDate = new Date();
   maxstartDate = new Date();
@@ -87,6 +92,7 @@ export class DashboardofadminComponent implements OnInit {
   ispurchasedserviceempty: boolean = false;
   isnotpurchasedserviceempty: boolean = false;
 
+
   constructor(
     private freelanceserviceService: FreelanceserviceService,
     private spinnerService: Ng4LoadingSpinnerService,
@@ -128,6 +134,9 @@ export class DashboardofadminComponent implements OnInit {
     this.totalmoneyearnedbyskilledworkerstilltoday = 0;
     this.totalmoneyyettopaybytheclientstilltoday = 0;
     this.totalcompletedjobswithoutpaymentbyclient = 0;
+    this.listofallvoliationscount = [];
+    this.listofallvoliationsskilledworkername = [];
+    this.tempplacejobIdholder = 0;
 
     this.freelanceserviceService.getUserAllJobDetails().subscribe((jobdetailsList: any) => {
       if (jobdetailsList != null) {
@@ -162,6 +171,7 @@ export class DashboardofadminComponent implements OnInit {
           if (element.isjobactive && element.isjobcompleted && !element.isjobamtpaidtofu && element.jobaccepteddate != null) {
             this.jobscompletedpayoutpendingList.push(element);
           }
+       
         });
       }
     },
@@ -243,9 +253,9 @@ export class DashboardofadminComponent implements OnInit {
                 if (this.onworkfreelancelistsbysubcategory.length > 0) {
                   userList.forEach(element => {
                     var isexist = this.onworkfreelancelistsbysubcategory.filter(e => e.freelanceuserId === element.userId);
-                    if (isexist == null && element.isactive &&
+                    if (isexist.length  == 0 && element.isactive &&
                       element.freeLanceDetails.bgcurrentstatus == config.bg_code_approved &&
-                      selectElementCode == element.freeLanceDetails.subCategory) {
+                      selectElementCode.toString() == element.freeLanceDetails.subCategory.toString()) {
                       this.onnotworkfreelancelistsbysubcategory.push(element);
                       this.isshowswithnojobbycategory = true;
                     }
@@ -269,7 +279,7 @@ export class DashboardofadminComponent implements OnInit {
                 this.spinnerService.hide();
                 this.alertService.error(error);
               });
-          }, 500);
+          }, 800);
         }
       }, error => {
         this.spinnerService.hide();
@@ -568,5 +578,76 @@ export class DashboardofadminComponent implements OnInit {
         initialState
       }
     ));
+  }
+
+  /***
+   * User Summary - Chart Functionality
+   */
+  public SystemName: string = "MF1";
+  firstCopy = false;
+  // data
+  public lineChartData: Array<number> = this.listofallvoliationscount;
+
+  public labelMFL: Array<any> = [
+    {
+      data: this.lineChartData,
+      label: this.SystemName
+    }
+  ];
+  // labels
+  public lineChartLabels: Array<any> = this.listofallvoliationsskilledworkername;
+
+  public lineChartOptions: any = {
+    responsive: true,
+    scales: {
+      yAxes: [{
+        ticks: {
+          max: 60,
+          min: 0,
+        }
+      }],
+      xAxes: [{
+
+
+      }],
+    },
+    plugins: {
+      datalabels: {
+        display: true,
+        align: 'top',
+        anchor: 'end',
+        //color: "#2756B3",
+        color: "#222",
+
+        font: {
+          family: 'FontAwesome',
+          size: 14
+        },
+
+      },
+      deferred: false
+
+    },
+
+  };
+
+  _lineChartColors: Array<any> = [{
+    backgroundColor: 'red',
+    borderColor: 'red',
+    pointBackgroundColor: 'red',
+    pointBorderColor: 'red',
+    pointHoverBackgroundColor: 'red',
+    pointHoverBorderColor: 'red'
+  }];
+
+
+
+  public ChartType = 'bar';
+
+  public chartClicked(e: any): void {
+    console.log(e);
+  }
+  public chartHovered(e: any): void {
+    console.log(e);
   }
 }

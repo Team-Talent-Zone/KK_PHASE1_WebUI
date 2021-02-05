@@ -54,13 +54,15 @@ export class SignupComponent implements OnInit {
   fullReferencedetailsmap = [];
   langcode: string;
   usersrvobj: UserServiceDetails;
-  ourserviceids: any;
+  ourserviceids: any = [];
   termsofservice: string;
   privacypolicy: string;
   shortkeytermsofservices: string;
   shortkeyprivacypolicy: string;
   name: string;
   biztypelist: any;
+  rolecode: string;
+  skilllabel: string;
 
   constructor(
     private spinnerService: Ng4LoadingSpinnerService,
@@ -201,89 +203,103 @@ export class SignupComponent implements OnInit {
     return this.signupForm.controls;
   }
 
-  saveUser() {
+  preparetoSaveUser() {
     this.issubmit = true;
     if (this.signupForm.invalid) {
       return;
     }
     this.spinnerService.show();
+    this.skilllabel = null;
+    this.rolecode = null;
     this.userService.checkusernamenotexist(
       this.signupForm.get('username').value
     ).subscribe(
       (isusernotexist: any) => {
         if (isusernotexist) {
-          this.referService.getReferenceLookupByShortKey(this.key).subscribe(
-            (refCode: any) => {
-              this.userService.saveUser(
-                this.signupForm.value, refCode.toString(), this.key, this.signupForm.value
-              ).pipe(first()).subscribe(
-                (resp) => {
-                  this.usrObj = this.userAdapter.adapt(resp);
-                  if (this.usrObj.userId > 0) {
-                    // tslint:disable-next-line: max-line-length
-                    this.referService.getLookupTemplateEntityByShortkey(config.shortkey_email_verificationemailaddress.toString()).subscribe(
-                      referencetemplate => {
-                        this.templateObj = this.reflookuptemplateAdapter.adapt(referencetemplate);
-                        this.util = new Util();
-                        this.util.preferlang = this.usrObj.preferlang;
-                        this.util.fromuser = ConfigMsg.email_default_fromuser;
-                        this.util.subject = ConfigMsg.email_verficationemailaddress_subj;
-                        this.util.touser = this.usrObj.username;
-                        this.util.templateurl = this.templateObj.url;
-                        this.util.templatedynamicdata = JSON.stringify({
-                          firstname: this.usrObj.firstname,
-                          platformURL: `${environment.uiUrl}` + config.confirmation_fullpathname.toString()
-                            + '/' + this.usrObj.userId
-                        });
-                        this.sendemailService.sendEmail(this.util).subscribe(
-                          (util: any) => {
-                            if (util.lastreturncode === 250) {
-                              this.usernotification = new UserNotification();
-                              this.usernotification.templateid = this.templateObj.templateid;
-                              this.usernotification.sentby = this.usrObj.firstname;
-                              this.usernotification.userid = this.usrObj.userId;
-                              this.usernotification.senton = this.today.toString();
-                              this.userService.saveUserNotification(this.usernotification).subscribe(
-                                (notificationobj: any) => {
-                                  this.spinnerService.hide();
-                                  this.alertService.success(ConfigMsg.signup_successmsg, true);
-                                },
-                                error => {
-                                  this.spinnerService.hide();
-                                  this.alertService.error(error);
-                                });
-                            }
-                          },
-                          error => {
-                            this.spinnerService.hide();
-                            this.alertService.error(error);
-                          });
+          if (this.key === config.shortkey_role_cba.toString()) {
+            this.rolecode = config.user_rolecode_cba.toString();
+            this.saveUser();
+          } else {
+            this.rolecode = config.user_rolecode_fu.toString();
+            this.referService.getReferenceLookupMappingSubCategoryByCode(this.signupForm.get('subcategory').value).subscribe(
+              (codelabel: any) => {
+                this.skilllabel = codelabel.label;
+                this.saveUser();
+              });
+          }
+
+        }
+      },
+      error => {
+        this.modalRef.hide();
+        this.spinnerService.hide();
+        this.alertService.error(error);
+      }
+    );
+  }
+
+  private saveUser() {
+    this.userService.saveUser(
+      this.signupForm.value, this.rolecode, this.key, this.signupForm.value, this.skilllabel
+    ).pipe(first()).subscribe(
+      (resp) => {
+        this.usrObj = this.userAdapter.adapt(resp);
+        if (this.usrObj.userId > 0) {
+          // tslint:disable-next-line: max-line-length
+          this.referService.getLookupTemplateEntityByShortkey(config.shortkey_email_verificationemailaddress.toString()).subscribe(
+            referencetemplate => {
+              this.templateObj = this.reflookuptemplateAdapter.adapt(referencetemplate);
+              this.util = new Util();
+              this.util.preferlang = this.usrObj.preferlang;
+              this.util.fromuser = ConfigMsg.email_default_fromuser;
+              this.util.subject = ConfigMsg.email_verficationemailaddress_subj;
+              this.util.touser = this.usrObj.username;
+              this.util.templateurl = this.templateObj.url;
+              this.util.templatedynamicdata = JSON.stringify({
+                firstname: this.usrObj.firstname,
+                platformURL: `${environment.uiUrl}` + config.confirmation_fullpathname.toString()
+                  + '/' + this.usrObj.userId
+              });
+              this.sendemailService.sendEmail(this.util).subscribe(
+                (util: any) => {
+                  if (util.lastreturncode === 250) {
+                    this.usernotification = new UserNotification();
+                    this.usernotification.templateid = this.templateObj.templateid;
+                    this.usernotification.sentby = this.usrObj.firstname;
+                    this.usernotification.userid = this.usrObj.userId;
+                    this.usernotification.senton = this.today.toString();
+                    this.userService.saveUserNotification(this.usernotification).subscribe(
+                      (notificationobj: any) => {
+                        this.spinnerService.hide();
+                        this.alertService.success(ConfigMsg.signup_successmsg, true);
                       },
                       error => {
                         this.spinnerService.hide();
                         this.alertService.error(error);
                       });
                   }
-                  if (this.ourserviceids !== null && this.ourserviceids.length > 0) {
-                    if (this.ourserviceids[0].packwithotherourserviceid != null) {
-                      this.saveUserServiceDetailsForServicePkg(this.ourserviceids, this.usrObj);
-                    } else {
-                      if (this.ourserviceids[0].ourserviceid != null) {
-                        this.saveUserServiceDetailsForIndividual(this.ourserviceids[0].ourserviceid, this.usrObj);
-                      }
-                    }
-                  }
                 },
                 error => {
                   this.spinnerService.hide();
                   this.alertService.error(error);
-                }
-              );
+                });
+            },
+            error => {
+              this.spinnerService.hide();
+              this.alertService.error(error);
             });
+        }
+        if (this.ourserviceids !== null && this.ourserviceids.length > 0) {
+          if (this.ourserviceids[0].packwithotherourserviceid != null) {
+            this.saveUserServiceDetailsForServicePkg(this.ourserviceids, this.usrObj);
+          } else {
+            if (this.ourserviceids[0].ourserviceid != null) {
+              this.saveUserServiceDetailsForIndividual(this.ourserviceids[0].ourserviceid, this.usrObj);
+            }
+          }
         }
       },
       error => {
-        this.modalRef.hide();
         this.spinnerService.hide();
         this.alertService.error(error);
       }
@@ -301,7 +317,7 @@ export class SignupComponent implements OnInit {
           isservicepack: false,
           amount: this.ourserviceids[0].amount,
           validPeriodLabel: this.ourserviceids[0].validPeriodLabel,
-
+          validPeriodCode: this.ourserviceids[0].validPeriodCode,
           serviceendon: this.ourserviceids[0].serviceendon,
           servicestarton: this.ourserviceids[0].servicestarton,
           userServiceEventHistory: []

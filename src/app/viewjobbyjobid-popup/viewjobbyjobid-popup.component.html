@@ -66,21 +66,12 @@
                   </td>
                 </tr>
                 <tr>
-                  <th>Voliation ?</th>
-                  <td> <i class="fa fa-ban fatab" style="color:#FF4949" *ngIf="jobdetails.isjobvoliation"> </i></td>
-                </tr>
-                <tr>
-                  <th>Voliation Resolved?</th>
+                  <th>Job Completed?</th>
                   <td>
-                    <i class="fa fa-thumbs-up" style="color:#0a382b" *ngIf="jobdetails.isjobvoliation && isfreelancerjobattendant"> </i>
-                    <i class="fa fa-thumbs-down" style="color:#FF4949" *ngIf="jobdetails.isjobvoliation && !isfreelancerjobattendant"> </i>
+                    <i class="fa fa-thumb-up" style="color:#0a382b" *ngIf="jobdetails.isjobcompleted"> </i>
                   </td>
                 </tr>
                 <tr>
-                  <th>Volidation Resolved Comments</th>
-                  <td>{{jobdetails.resolvedvoliationreason}}</td>
-                  </tr>
-                  <tr>
                   <th>Payment Status</th>
                   <td> <span *ngIf="jobdetails.isjobactive && jobdetails.isjobcompleted && !jobdetails.isjobamtpaidtocompany">
                     Pending with Client
@@ -95,6 +86,23 @@
                     Payment Successfully
                   </span></td>
                   </tr>
+
+                <tr>
+                  <th>Voliation ?</th>
+                  <td> <i class="fa fa-ban fatab" style="color:#FF4949" *ngIf="jobdetails.isjobvoliation"> </i></td>
+                </tr>
+                <tr>
+                  <th>Voliation Resolved?</th>
+                  <td>
+                    <i class="fa fa-thumbs-up" style="color:#0a382b" *ngIf="jobdetails.isjobvoliation && isfreelancerjobattendant"> </i>
+                    <i class="fa fa-thumbs-down" style="color:#FF4949" *ngIf="jobdetails.isjobvoliation && !isfreelancerjobattendant"> </i>
+                  </td>
+                </tr>
+                <tr>
+                  <th>Volidation Resolved Comments</th>
+                  <td>{{jobdetails.resolvedvoliationreason}}</td>
+                  </tr>
+                  
                   </tbody>
                 </table>
         </small>

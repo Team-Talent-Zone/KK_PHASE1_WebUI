@@ -9,23 +9,31 @@
         <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true"
           aria-controls="collapseOne">
           <i class="fa fa-caret-right"></i>
-          Summary - Skilled Worker Search Service
+          Jobs Summary - Skilled Worker Search Service
         </a>
       </h4>
       <h4 class="panel-title">
         <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true"
+          aria-controls="collapseOne">
+          <i class="fa fa-caret-right"></i>
+          Users Summary - Skilled Worker Search Service
+        </a>
+      </h4>
+      <h4 class="panel-title">
+        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true"
           aria-controls="collapseTwo">
           <i class="fa fa-caret-right"></i>
           Summary - All Services
         </a>
       </h4>
     </div>
-  
+    <!--  Jobs Summary - Skilled Worker Search Service -->
     <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
       <div class="panel-body">
         <hr>
-        <div class="row mb-4 justify-content-center">
-          <div class="col-xl-3 col-sm-6 py-5">
+        <h4>Monitoring Jobs</h4>
+        <div class="row mb-4 justify-content-end">
+        <div class="col-xl-3 col-sm-6 py-5" *ngIf="this.userService.currentUserValue.userroles.rolecode =='DIRECTORS' ">
             <div class="card bg-success text-white h-100">
               <div class="card-body bg-success">
                 <div class="rotate">
@@ -36,6 +44,7 @@
               </div>
             </div>
           </div>
+        
           <div class="col-xl-3 col-sm-6 py-5">
             <div class="card bg-success text-white h-100">
               <div class="card-body bg-info">
@@ -62,8 +71,7 @@
         </div>
         <div class="row mb-4 justify-content-between">
           <div class="col-xl-2 col-sm-6 py-2 ">
-            <a class="btn"
-              [ngStyle]="{'background-color': todaysvoliationList.length == 0 ? '#28a745':'#dc3545'}"
+            <a class="btn" [ngStyle]="{'background-color': todaysvoliationList.length == 0 ? '#28a745':'#dc3545'}"
               data-toggle="collapse" href="#reportedVoliations" role="button" aria-expanded="false"
               aria-controls="reportedVoliations">
               <i class="fa fa-reorder iconCSS"></i>
@@ -175,682 +183,687 @@
             </a>
           </div>
         </div>
-        <div class="row mb-4 justify-content-center">
-          <div class="col-xl-4 col-sm-6 py-2">
-              <select  class="btn btn-dark"   (change)="getFUWorkStatus($event);">
-                <option value=''> --Select Skill --</option>
-                <option *ngFor="let item of listofAllFUSkills" value={{item.code}}>
-                  {{item.label}}
-                </option>
-              </select>
-          </div>
-        </div> 
-        <!-- Selected Sub Category Results -->
-              <div class="row" *ngIf="isshowswithjobbycategory">
-                <div class="col-12">
-                  <h5>Jobs ON Users</h5>
-                  <table class="table table-bordered">
-                    <thead>
-                      <tr>
-                        <th scope="col">Job Id</th>
-                        <th scope="col">SW Name</th>
-                        <th scope="col">SW Phone No</th>
-                        <th scope="col">Client</th>
-                        <th scope="col">Client Phone No</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr *ngFor="let job of onworkfreelancelistsbysubcategory">
-                        <td><a href="javascript: return false;" (click)="openViewJobDetailsModal(job.jobId)">
-                          {{job.jobId}}
-                        </a>
-                      </td>
-                        <td>
-                          <a href="javascript: return false;"
-                            (click)='manageruser.openViewAccountDetailsModal(job.freelanceuserId)'>
-                            {{job.fullname}}
-                          </a>
-                          <p><i><small>{{job.subcategorylabel}}</small></i></p>
-
-                        </td>
-                        <td>{{job.fuphoneno}}</td>
-                        <td>
-                          <a href="javascript: return false;"
-                            (click)='manageruser.openViewAccountDetailsModal(job.userId)'>
-                            {{job.bizname}}
-                          </a>
-                        </td>
-                        <td>{{job.cbaphoneno}}</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-              <div class="row" *ngIf="isshowswithnojobbycategory">
-                <div class="col-14">
-                  <h5>No Jobs for the below users</h5>
-                  <table class="table table-bordered">
-                    <thead>
-                      <tr>
-                        <th scope="col">Skilled Worker Name</th>
-                        <th scope="col">Skilled Worker Phone Number</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr *ngFor="let worker of onnotworkfreelancelistsbysubcategory">
-                        <td>
-                          <a href="javascript: return false;"
-                            (click)='manageruser.openViewAccountDetailsModal(worker.userId)'>
-                            {{worker.fullname}}
-                          </a>
-                        </td>
-                        <td>{{worker.phoneno}}</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-             </div>
-             <div class="alert alert-success alert-dismissible fade show w-100" role="alert"
-              *ngIf="isshownofreelancerinsystem">
-              <h5 class="display-5">
-                  No skilled workers onboard in the platform under this skill category.
-              </h5>
-          </div>
 
         <!-- Reported Voliations -->
         <div class="collapse" id="reportedVoliations">
-              <div class="row">
-                <div class="col-12">
-                  <h5>Pending Reported Voliations</h5>
-                    <table class="table table-bordered">
-                      <thead>
-                        <tr>
-                          <th scope="col">Job Id</th>
-                          <th scope="col">SW Name</th>
-                          <th scope="col">SW Phone No</th>
-                          <th scope="col">Client</th>
-                          <th scope="col">Client Phone No</th>
-                          <th scope="col">Actions</th>
-                          <th scope="col">Voliation Comments</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr *ngFor="let job of todaysvoliationList; let i = index">
-                          <td> <a href="javascript: return false;" (click)="openViewJobDetailsModal(job.jobId)">
-                            {{job.jobId}}
-                          </a></td>
-                          <td>
-                            <a href="javascript: return false;"
-                              (click)='manageruser.openViewAccountDetailsModal(job.freelanceuserId)'>
-                              <p *ngIf="iscreatejobflag && i == volationindex"><i><small>Previous {{job.fullname}}</small></i></p>
-                              <p *ngIf="!iscreatejobflag && i == volationindex">{{job.fullname}}</p>
-                              <p *ngIf="i != volationindex">{{job.fullname}}</p>
-                            </a>
-                            <i><small>[{{job.subcategorylabel}}]</small></i>
-                            <div *ngIf="iscreatejobflag && i == volationindex">
-                              <hr>
-                              <input [owlDateTime]="dt1" name="startdateInputDate" [min]="minstartDate"
-                              [max]="maxstartDate" [owlDateTimeTrigger]="dt1" class="form-control"
-                              (dateTimeInput)="buildendateforvoliationcreatenewjob($event)"
-                              placeholder="Choose start date">
-                              <owl-date-time [pickerType]="'calendar'" #dt1></owl-date-time>
-                            </div>
-                            <br>
-                            <div *ngIf="iscreatejobflag && enddatevalue != null && i == this.volationindex && allFreelancerUsersList != null">
-                              <select (change)="captureUserDetails($event);">
-                                <option value=null> --Select New {{job.subcategorylabel}} To Assign --</option>
-                                <option *ngFor="let item of allFreelancerUsersList" value={{item.userId}}>{{item.fullname}}
-                                  {{item.label}}
-                                </option>
-                              </select>
-                            </div>
-                          </td>
-                          <td>
-                            <p *ngIf="iscreatejobflag && i == volationindex"><i><small>Previous {{job.fuphoneno}}</small></i></p>
-                            <p *ngIf="!iscreatejobflag && i == volationindex">{{job.fuphoneno}}</p>
-                            <p *ngIf="i != volationindex">{{job.fuphoneno}}</p>
-                          <div *ngIf="iscreatejobflag && i == volationindex && enddatevalue != null">
-                            <hr>
-                            <p><i><small>[New Job End Date]</small></i></p>
-                            {{enddatevalue}}
-                          </div>
-                          </td>
-                          <td>
-                            <a href="javascript: return false;"
-                              (click)='manageruser.openViewAccountDetailsModal(job.userId)'>
-                              {{job.bizname}}
-                            </a>
-                          </td>
-                          <td>{{job.cbaphoneno}}</td>
-                          <td *ngIf="iscreatejobflag && i == this.volationindex && allFreelancerUsersList == null">
-                            <small> No {{job.subcategorylabel}}'s </small>
-                          </td>
-                          <td>
-                            <p>
-                             <i *ngIf="i != this.volationindex && job.associatedadminId == null" class="fa fa-unlock btn btn-sm btn-primary"
-                                title='Click to lock to you to resolve this volation.' (click)="triggervoliationwork(job.jobId ,i)">
-                              </i>
-                              <i *ngIf="job.associatedadminId > 0" class="fa fa-lock btn-sm btn-primary"
-                                title='Locked to you to complete the voliation process.'>
-                              </i>
-                                <i class="fa fa-plus btn btn-sm btn-info"  (click)="buildnewjobforvoliation(job.totalhoursofjob,i,job.scategory)" 
-                                *ngIf="job.associatedadminId > 0" 
-                                  title='Click to recreate a new job.'></i> 
-                                <i class="fa fa-floppy-o btn btn-sm btn-warning" *ngIf="job.associatedadminId > 0" 
-                                  (click)="savevoliationResolvedReason(job.jobId)"
-                                  title='Click to save'></i>
-                                  <i class="fa fa-refresh btn btn-sm btn-dark" *ngIf="job.associatedadminId > 0 && iscreatejobflag" 
-                                  (click)="reset()"
-                                  title='Refresh'></i>
-                            </p>
-                          </td>
-                          <td>
-                            <textarea  *ngIf="i == this.volationindex"  class="form-control" [(ngModel)]="resolvedvoliationreason" rows="2"
-                              id="input5" placeholder="Enter Volidation Detailed Comment"></textarea>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-        <div class="row mb-2"></div>
-        <div class="collapse" id="resolvedVoliations">
-            <div class="row">
-              <div class="col-12">
-                <h5>Resolved Voliations</h5>
-                <table class="table table-bordered">
-                  <thead>
-                    <tr>
-                      <th scope="col">Job Id</th>
-                      <th scope="col">SW Name</th>
-                      <th scope="col">SW Phone No</th>
-                      <th scope="col">Client</th>
-                      <th scope="col">Client Phone No</th>
-                      <th scope="col">Skill Name</th>
-                      <th scope="col">Voliation Comments</th>
-                      <th scope="col">Voliation Status</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr *ngFor="let job of totalvoliationResolvedList">
-                      <td><a href="javascript: return false;" (click)="openViewJobDetailsModal(job.jobId)">
+          <div class="row">
+            <div class="col-12">
+              <h5>Pending Reported Voliations</h5>
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col">Job Id</th>
+                    <th scope="col">SW Name</th>
+                    <th scope="col">SW Phone No</th>
+                    <th scope="col">Client</th>
+                    <th scope="col">Client Phone No</th>
+                    <th scope="col">Actions</th>
+                    <th scope="col">Voliation Comments</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let job of todaysvoliationList; let i = index">
+                    <td> <a href="javascript: return false;" (click)="openViewJobDetailsModal(job.jobId)">
                         {{job.jobId}}
                       </a></td>
-                      <td>
-                        <a href="javascript: return false;"
-                          (click)='manageruser.openViewAccountDetailsModal(job.freelanceuserId)'>
-                          {{job.fullname}}
-                        </a>
-                      </td>
-                      <td>{{job.fuphoneno}}</td>
-                      <td>
-                        <a href="javascript: return false;"
-                          (click)='manageruser.openViewAccountDetailsModal(job.userId)'>
-                          {{job.bizname}}
-                        </a>
-                      </td>
-                      <td>{{job.cbaphoneno}}</td>
-                      <td>{{job.subcategorylabel}}</td>
-                      <td>{{job.resolvedvoliationreason}}</td>
-                      <td>
-                        <p>
-                          <i class="fa fa-check" style="color:green" title='Voliation is Resolved'></i>
+                    <td>
+                      <a href="javascript: return false;"
+                        (click)='manageruser.openViewAccountDetailsModal(job.freelanceuserId)'>
+                        <p *ngIf="iscreatejobflag && i == volationindex"><i><small>Previous {{job.fullname}}</small></i>
                         </p>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-          </div>
-        </div>
-        <div class="row mb-2"></div>
-        <div class="collapse" id="totalscheduledjobs">
-              <div class="row">
-                <div class="col-12">
-                  <h5>Todays Scheduled Jobs</h5>
-                  <table class="table table-bordered">
-                    <thead>
-                      <tr>
-                        <th scope="col">Job Id</th>
-                        <th scope="col">SW Name</th>
-                        <th scope="col">SW Phone No</th>
-                        <th scope="col">Client</th>
-                        <th scope="col">Client Phone No</th>
-                        <th scope="col">Skill Name </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr *ngFor="let job of todaysjobscheduledList">
-                        <td><a href="javascript: return false;" (click)="openViewJobDetailsModal(job.jobId)">
-                          {{job.jobId}}
-                        </a>
-                       </td>
-                        <td>
-                          <a href="javascript: return false;"
-                            (click)='manageruser.openViewAccountDetailsModal(job.freelanceuserId)'>
-                            {{job.fullname}}
-                          </a>
-                        </td>
-                        <td>{{job.fuphoneno}}</td>
-                        <td>
-                          <a href="javascript: return false;"
-                            (click)='manageruser.openViewAccountDetailsModal(job.userId)'>
-                            {{job.bizname}}
-                          </a>
-                        </td>
-                        <td>{{job.cbaphoneno}}</td>
-                        <td>{{job.subcategorylabel}}</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-        </div>
-        <div class="row mb-2"></div>
-        <div class="collapse" id="upcomingscheduledjobs">
-            <div class="row">
-              <div class="col-12">
-                <h5>Upcoming Scheduled Jobs</h5>
-                <table class="table table-bordered">
-                  <thead>
-                    <tr>
-                      <th scope="col">Job Id</th>
-                      <th scope="col">SWorker Name</th>
-                      <th scope="col">SWorker Phone No</th>
-                      <th scope="col">Client</th>
-                      <th scope="col">Client Phone No</th>
-                      <th scope="col">Skill Name</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr *ngFor="let job of upcomingjobscheduledList">
-                      <td><a href="javascript: return false;" (click)="openViewJobDetailsModal(job.jobId)">
-                        {{job.jobId}}
-                      </a></td>
-                      <td>
-                        <a href="javascript: return false;"
-                          (click)='manageruser.openViewAccountDetailsModal(job.freelanceuserId)'>
-                          {{job.fullname}}
-                        </a>
-                        <p><i><small>{{job.subcategorylabel}}</small></i></p>
-
-                      </td>
-                      <td>{{job.fuphoneno}}</td>
-                      <td>
-                        <a href="javascript: return false;"
-                          (click)='manageruser.openViewAccountDetailsModal(job.userId)'>
-                          {{job.bizname}}
-                        </a>
-                      </td>
-                      <td>{{job.cbaphoneno}}</td>
-                      <td>{{job.subcategorylabel}}</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-        </div>
-        <div class="row mb-2"></div>
-        <div class="collapse" id="newnonactivatedjobs">
-            <div class="row">
-              <div class="col-12">
-                <h5>New Jobs - Not Activated</h5>
-                <table class="table table-bordered">
-                  <thead>
-                    <tr>
-                      <th scope="col">Job Id</th>
-                      <th scope="col">Client</th>
-                      <th scope="col">Client Phone No</th>
-                      <th scope="col">Skill Name</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr *ngFor="let job of newjobsbutnotactiviatedList">
-                      <td><a href="javascript: return false;" (click)="openViewJobDetailsModal(job.jobId)">
-                        {{job.jobId}}
+                        <p *ngIf="!iscreatejobflag && i == volationindex">{{job.fullname}}</p>
+                        <p *ngIf="i != volationindex">{{job.fullname}}</p>
                       </a>
-                    </td>
-                      <td>
-                        <a href="javascript: return false;"
-                          (click)='manageruser.openViewAccountDetailsModal(job.userId)'>
-                          {{job.bizname}}
-                        </a>
-                      </td>
-                      <td>{{job.cbaphoneno}}</td>
-                      <td>{{job.subcategorylabel}}</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-        </div>
-        </div>
-        <div class="row mb-2"></div>
-        <div class="collapse" id="newlyactivatedjobs">
-            <div class="row">
-              <div class="col-12">
-                <h5>New Jobs - Just Activiated</h5>
-                <table class="table table-bordered">
-                  <thead>
-                    <tr>
-                      <th scope="col">Job Id</th>
-                      <th scope="col">Client</th>
-                      <th scope="col">Client Phone Number</th>
-                      <th scope="col">Skill Name</th>
-                      <th scope="col">Assign</th>
-                      <th scope="col" *ngIf="isshowfualluser">Skilled Workers</th>
-                      <th scope="col" *ngIf="fuUserId > 0">Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr *ngFor="let job of newjobsactiviatedbutnotacceptedList;let i = index">
-                      <td><a href="javascript: return false;" (click)="openViewJobDetailsModal(job.jobId)">
-                        {{job.jobId}}
-                      </a></td>
-                      <td>
-                        <a href="javascript: return false;"
-                          (click)='manageruser.openViewAccountDetailsModal(job.userId)'>
-                          {{job.bizname}}
-                        </a>
-                      </td>
-                      <td>{{job.cbaphoneno}}</td>
-                      <td> {{job.subcategorylabel}} {{job.fullname}}
-                      </td>
-                      <td><a class="btn btn-warning btn-sm" (click)="getFUUsersByCategory(job.scategory , i )">
-                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                        </a>
-                      </td>
-                      <td *ngIf="isshowfualluser && i == this.index && allFreelancerUsersList != null">
+                      <i><small>[{{job.subcategorylabel}}]</small></i>
+                      <div *ngIf="iscreatejobflag && i == volationindex">
+                        <hr>
+                        <input [owlDateTime]="dt1" name="startdateInputDate" [min]="minstartDate" [max]="maxstartDate"
+                          [owlDateTimeTrigger]="dt1" class="form-control"
+                          (dateTimeInput)="buildendateforvoliationcreatenewjob($event)" placeholder="Choose start date">
+                        <owl-date-time [pickerType]="'calendar'" #dt1></owl-date-time>
+                      </div>
+                      <br>
+                      <div
+                        *ngIf="iscreatejobflag && enddatevalue != null && i == this.volationindex && allFreelancerUsersList != null">
                         <select (change)="captureUserDetails($event);">
-                          <option value=null> --Select {{job.subcategorylabel}} --</option>
+                          <option value=null> --Select New {{job.subcategorylabel}} To Assign --</option>
                           <option *ngFor="let item of allFreelancerUsersList" value={{item.userId}}>{{item.fullname}}
                             {{item.label}}
                           </option>
                         </select>
-                      </td>
-                      <td *ngIf="isshowfualluser && i == this.index && allFreelancerUsersList == null">
-                        <small> No {{job.subcategorylabel}}'s </small>
-                      </td>
-                      <td *ngIf="fuUserId > 0 && i == this.index ">
-                        <p>
-                          <button type="button" class="btn btn-primary btn-sm" (click)='reassign(job.jobId)'><i
-                              class="fa fa-floppy-o"
-                              title='Click to save and notify to the skilled worker'></i></button>
-                        </p>
-                      </td>
-                      <td *ngIf="resolvedvoliationreason != null">
-                        Support team has created this new job and assigned to <u>{{job.fullname}} </u> on {{job.updatedon}} 
-                        as part of voliation job. Next action item <u>{{job.fullname}} </u> to  accept the job.
-                        <b><u>Voliation Comments</u></b>
-                        {{job.resolvedvoliationreason}}
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+                      </div>
+                    </td>
+                    <td>
+                      <p *ngIf="iscreatejobflag && i == volationindex"><i><small>Previous {{job.fuphoneno}}</small></i>
+                      </p>
+                      <p *ngIf="!iscreatejobflag && i == volationindex">{{job.fuphoneno}}</p>
+                      <p *ngIf="i != volationindex">{{job.fuphoneno}}</p>
+                      <div *ngIf="iscreatejobflag && i == volationindex && enddatevalue != null">
+                        <hr>
+                        <p><i><small>[New Job End Date]</small></i></p>
+                        {{enddatevalue}}
+                      </div>
+                    </td>
+                    <td>
+                      <a href="javascript: return false;" (click)='manageruser.openViewAccountDetailsModal(job.userId)'>
+                        {{job.bizname}}
+                      </a>
+                    </td>
+                    <td>{{job.cbaphoneno}}</td>
+                    <td *ngIf="iscreatejobflag && i == this.volationindex && allFreelancerUsersList == null">
+                      <small> No {{job.subcategorylabel}}'s </small>
+                    </td>
+                    <td>
+                      <p>
+                        <i *ngIf="i != this.volationindex && job.associatedadminId == null"
+                          class="fa fa-unlock btn btn-sm btn-primary"
+                          title='Click to lock to you to resolve this volation.'
+                          (click)="triggervoliationwork(job.jobId ,i)">
+                        </i>
+                        <i *ngIf="job.associatedadminId > 0" class="fa fa-lock btn-sm btn-primary"
+                          title='Locked to you to complete the voliation process.'>
+                        </i>
+                        <i class="fa fa-plus btn btn-sm btn-info"
+                          (click)="buildnewjobforvoliation(job.totalhoursofjob,i,job.scategory)"
+                          *ngIf="job.associatedadminId > 0" title='Click to recreate a new job.'></i>
+                        <i class="fa fa-floppy-o btn btn-sm btn-warning" *ngIf="job.associatedadminId > 0"
+                          (click)="savevoliationResolvedReason(job.jobId)" title='Click to save'></i>
+                        <i class="fa fa-refresh btn btn-sm btn-dark"
+                          *ngIf="job.associatedadminId > 0 && iscreatejobflag" (click)="reset()" title='Refresh'></i>
+                      </p>
+                    </td>
+                    <td>
+                      <textarea *ngIf="i == this.volationindex" class="form-control"
+                        [(ngModel)]="resolvedvoliationreason" rows="2" id="input5"
+                        placeholder="Enter Volidation Detailed Comment"></textarea>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
+          </div>
+        </div>
+        <div class="row mb-2"></div>
+        <div class="collapse" id="resolvedVoliations">
+          <div class="row">
+            <div class="col-12">
+              <h5>Resolved Voliations</h5>
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col">Job Id</th>
+                    <th scope="col">SW Name</th>
+                    <th scope="col">SW Phone No</th>
+                    <th scope="col">Client</th>
+                    <th scope="col">Client Phone No</th>
+                    <th scope="col">Skill Name</th>
+                    <th scope="col">Voliation Comments</th>
+                    <th scope="col">Voliation Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let job of totalvoliationResolvedList">
+                    <td><a href="javascript: return false;" (click)="openViewJobDetailsModal(job.jobId)">
+                        {{job.jobId}}
+                      </a></td>
+                    <td>
+                      <a href="javascript: return false;"
+                        (click)='manageruser.openViewAccountDetailsModal(job.freelanceuserId)'>
+                        {{job.fullname}}
+                      </a>
+                    </td>
+                    <td>{{job.fuphoneno}}</td>
+                    <td>
+                      <a href="javascript: return false;" (click)='manageruser.openViewAccountDetailsModal(job.userId)'>
+                        {{job.bizname}}
+                      </a>
+                    </td>
+                    <td>{{job.cbaphoneno}}</td>
+                    <td>{{job.subcategorylabel}}</td>
+                    <td>{{job.resolvedvoliationreason}}</td>
+                    <td>
+                      <p>
+                        <i class="fa fa-check" style="color:green" title='Voliation is Resolved'></i>
+                      </p>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-2"></div>
+        <div class="collapse" id="totalscheduledjobs">
+          <div class="row">
+            <div class="col-12">
+              <h5>Todays Scheduled Jobs</h5>
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col">Job Id</th>
+                    <th scope="col">SW Name</th>
+                    <th scope="col">SW Phone No</th>
+                    <th scope="col">Client</th>
+                    <th scope="col">Client Phone No</th>
+                    <th scope="col">Skill Name </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let job of todaysjobscheduledList">
+                    <td><a href="javascript: return false;" (click)="openViewJobDetailsModal(job.jobId)">
+                        {{job.jobId}}
+                      </a>
+                    </td>
+                    <td>
+                      <a href="javascript: return false;"
+                        (click)='manageruser.openViewAccountDetailsModal(job.freelanceuserId)'>
+                        {{job.fullname}}
+                      </a>
+                    </td>
+                    <td>{{job.fuphoneno}}</td>
+                    <td>
+                      <a href="javascript: return false;" (click)='manageruser.openViewAccountDetailsModal(job.userId)'>
+                        {{job.bizname}}
+                      </a>
+                    </td>
+                    <td>{{job.cbaphoneno}}</td>
+                    <td>{{job.subcategorylabel}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-2"></div>
+        <div class="collapse" id="upcomingscheduledjobs">
+          <div class="row">
+            <div class="col-12">
+              <h5>Upcoming Scheduled Jobs</h5>
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col">Job Id</th>
+                    <th scope="col">SWorker Name</th>
+                    <th scope="col">SWorker Phone No</th>
+                    <th scope="col">Client</th>
+                    <th scope="col">Client Phone No</th>
+                    <th scope="col">Skill Name</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let job of upcomingjobscheduledList">
+                    <td><a href="javascript: return false;" (click)="openViewJobDetailsModal(job.jobId)">
+                        {{job.jobId}}
+                      </a></td>
+                    <td>
+                      <a href="javascript: return false;"
+                        (click)='manageruser.openViewAccountDetailsModal(job.freelanceuserId)'>
+                        {{job.fullname}}
+                      </a>
+                      <p><i><small>{{job.subcategorylabel}}</small></i></p>
+
+                    </td>
+                    <td>{{job.fuphoneno}}</td>
+                    <td>
+                      <a href="javascript: return false;" (click)='manageruser.openViewAccountDetailsModal(job.userId)'>
+                        {{job.bizname}}
+                      </a>
+                    </td>
+                    <td>{{job.cbaphoneno}}</td>
+                    <td>{{job.subcategorylabel}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-2"></div>
+        <div class="collapse" id="newnonactivatedjobs">
+          <div class="row">
+            <div class="col-12">
+              <h5>New Jobs - Not Activated</h5>
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col">Job Id</th>
+                    <th scope="col">Client</th>
+                    <th scope="col">Client Phone No</th>
+                    <th scope="col">Skill Name</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let job of newjobsbutnotactiviatedList">
+                    <td><a href="javascript: return false;" (click)="openViewJobDetailsModal(job.jobId)">
+                        {{job.jobId}}
+                      </a>
+                    </td>
+                    <td>
+                      <a href="javascript: return false;" (click)='manageruser.openViewAccountDetailsModal(job.userId)'>
+                        {{job.bizname}}
+                      </a>
+                    </td>
+                    <td>{{job.cbaphoneno}}</td>
+                    <td>{{job.subcategorylabel}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-2"></div>
+        <div class="collapse" id="newlyactivatedjobs">
+          <div class="row">
+            <div class="col-12">
+              <h5>New Jobs - Just Activiated</h5>
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col">Job Id</th>
+                    <th scope="col">Client</th>
+                    <th scope="col">Client Phone Number</th>
+                    <th scope="col">Skill Name</th>
+                    <th scope="col">Assign</th>
+                    <th scope="col" *ngIf="isshowfualluser">Skilled Workers</th>
+                    <th scope="col" *ngIf="fuUserId > 0">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let job of newjobsactiviatedbutnotacceptedList;let i = index">
+                    <td><a href="javascript: return false;" (click)="openViewJobDetailsModal(job.jobId)">
+                        {{job.jobId}}
+                      </a></td>
+                    <td>
+                      <a href="javascript: return false;" (click)='manageruser.openViewAccountDetailsModal(job.userId)'>
+                        {{job.bizname}}
+                      </a>
+                    </td>
+                    <td>{{job.cbaphoneno}}</td>
+                    <td> {{job.subcategorylabel}} {{job.fullname}}
+                    </td>
+                    <td><a class="btn btn-warning btn-sm" (click)="getFUUsersByCategory(job.scategory , i )">
+                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                      </a>
+                    </td>
+                    <td *ngIf="isshowfualluser && i == this.index && allFreelancerUsersList != null">
+                      <select (change)="captureUserDetails($event);">
+                        <option value=null> --Select {{job.subcategorylabel}} --</option>
+                        <option *ngFor="let item of allFreelancerUsersList" value={{item.userId}}>{{item.fullname}}
+                          {{item.label}}
+                        </option>
+                      </select>
+                    </td>
+                    <td *ngIf="isshowfualluser && i == this.index && allFreelancerUsersList == null">
+                      <small> No {{job.subcategorylabel}}'s </small>
+                    </td>
+                    <td *ngIf="fuUserId > 0 && i == this.index ">
+                      <p>
+                        <button type="button" class="btn btn-primary btn-sm" (click)='reassign(job.jobId)'><i
+                            class="fa fa-floppy-o" title='Click to save and notify to the skilled worker'></i></button>
+                      </p>
+                    </td>
+                    <td *ngIf="resolvedvoliationreason != null">
+                      Support team has created this new job and assigned to <u>{{job.fullname}} </u> on
+                      {{job.updatedon}}
+                      as part of voliation job. Next action item <u>{{job.fullname}} </u> to accept the job.
+                      <b><u>Voliation Comments</u></b>
+                      {{job.resolvedvoliationreason}}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
         <div class="row mb-2"></div>
         <div class="collapse" id="jobscompletedList">
-            <div class="row">
-              <div class="col-12">
-                <h5>Client & Payout Payment Complete</h5>
-                <table class="table table-bordered">
-                  <thead>
-                    <tr>
-                      <th scope="col">Job Id</th>
-                      <th scope="col">SWorker Name</th>
-                      <th scope="col">SWorker Phone No</th>
-                      <th scope="col">Client</th>
-                      <th scope="col">Client Phone No</th>
-                      <th scope="col">Skill Name</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr *ngFor="let job of jobscompletedList">
-                      <td><a href="javascript: return false;" (click)="openViewJobDetailsModal(job.jobId)">
+          <div class="row">
+            <div class="col-12">
+              <h5>Client & Payout Payment Complete</h5>
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col">Job Id</th>
+                    <th scope="col">SWorker Name</th>
+                    <th scope="col">SWorker Phone No</th>
+                    <th scope="col">Client</th>
+                    <th scope="col">Client Phone No</th>
+                    <th scope="col">Skill Name</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let job of jobscompletedList">
+                    <td><a href="javascript: return false;" (click)="openViewJobDetailsModal(job.jobId)">
                         {{job.jobId}}
                       </a></td>
-                      <td>
-                        <a href="javascript: return false;"
-                          (click)='manageruser.openViewAccountDetailsModal(job.freelanceuserId)'>
-                          {{job.fullname}}
-                        </a>
-                      </td>
-                      <td>{{job.fuphoneno}}</td>
-                      <td>
-                        <a href="javascript: return false;"
-                          (click)='manageruser.openViewAccountDetailsModal(job.userId)'>
-                          {{job.bizname}}
-                        </a>
-                      </td>
-                      <td>{{job.cbaphoneno}}</td>
-                      <td>{{job.subcategorylabel}}</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+                    <td>
+                      <a href="javascript: return false;"
+                        (click)='manageruser.openViewAccountDetailsModal(job.freelanceuserId)'>
+                        {{job.fullname}}
+                      </a>
+                    </td>
+                    <td>{{job.fuphoneno}}</td>
+                    <td>
+                      <a href="javascript: return false;" (click)='manageruser.openViewAccountDetailsModal(job.userId)'>
+                        {{job.bizname}}
+                      </a>
+                    </td>
+                    <td>{{job.cbaphoneno}}</td>
+                    <td>{{job.subcategorylabel}}</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
+          </div>
         </div>
         <div class="row mb-2"></div>
         <div class="collapse" id="jobscompletedwithoutpaymentList">
-            <div class="row">
-              <div class="col-12">
-                <h5>Client Payment Pending</h5>
-                <table class="table table-bordered">
-                  <thead>
-                    <tr>
-                      <th scope="col">Job Id</th>
-                      <th scope="col">SWorker Name</th>
-                      <th scope="col">SWorker Phone No</th>
-                      <th scope="col">Client</th>
-                      <th scope="col">Client Phone No</th>
-                      <th scope="col">Skill Name</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr *ngFor="let job of jobscompletedwithoutpaymentList">
-                      <td><a href="javascript: return false;" (click)="openViewJobDetailsModal(job.jobId)">
+          <div class="row">
+            <div class="col-12">
+              <h5>Client Payment Pending</h5>
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col">Job Id</th>
+                    <th scope="col">SWorker Name</th>
+                    <th scope="col">SWorker Phone No</th>
+                    <th scope="col">Client</th>
+                    <th scope="col">Client Phone No</th>
+                    <th scope="col">Skill Name</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let job of jobscompletedwithoutpaymentList">
+                    <td><a href="javascript: return false;" (click)="openViewJobDetailsModal(job.jobId)">
                         {{job.jobId}}
                       </a></td>
-                      <td>
-                        <a href="javascript: return false;"
-                          (click)='manageruser.openViewAccountDetailsModal(job.freelanceuserId)'>
-                          {{job.fullname}}
-                        </a>
-                      </td>
-                      <td>{{job.fuphoneno}}</td>
-                      <td>
-                        <a href="javascript: return false;"
-                          (click)='manageruser.openViewAccountDetailsModal(job.userId)'>
-                          {{job.bizname}}
-                        </a>
-                      </td>
-                      <td>{{job.cbaphoneno}}</td>
-                      <td>{{job.subcategorylabel}}</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+                    <td>
+                      <a href="javascript: return false;"
+                        (click)='manageruser.openViewAccountDetailsModal(job.freelanceuserId)'>
+                        {{job.fullname}}
+                      </a>
+                    </td>
+                    <td>{{job.fuphoneno}}</td>
+                    <td>
+                      <a href="javascript: return false;" (click)='manageruser.openViewAccountDetailsModal(job.userId)'>
+                        {{job.bizname}}
+                      </a>
+                    </td>
+                    <td>{{job.cbaphoneno}}</td>
+                    <td>{{job.subcategorylabel}}</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
+          </div>
         </div>
         <div class="row mb-2"></div>
         <div class="collapse" id="jobscompletedpayoutpendingList">
-            <div class="row">
-              <div class="col-12">
-                <h5>Payout Pending Payments</h5>
-                <table class="table table-bordered">
-                  <thead>
-                    <tr>
-                      <th scope="col">Job Id</th>
-                      <th scope="col">SWorker Name</th>
-                      <th scope="col">SWorker Phone No</th>
-                      <th scope="col">Client</th>
-                      <th scope="col">Client Phone No</th>
-                      <th scope="col">Skill Name</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr *ngFor="let job of jobscompletedpayoutpendingList">
-                      <td><a href="javascript: return false;" (click)="openViewJobDetailsModal(job.jobId)">
+          <div class="row">
+            <div class="col-12">
+              <h5>Payout Pending Payments</h5>
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col">Job Id</th>
+                    <th scope="col">SWorker Name</th>
+                    <th scope="col">SWorker Phone No</th>
+                    <th scope="col">Client</th>
+                    <th scope="col">Client Phone No</th>
+                    <th scope="col">Skill Name</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let job of jobscompletedpayoutpendingList">
+                    <td><a href="javascript: return false;" (click)="openViewJobDetailsModal(job.jobId)">
                         {{job.jobId}}
                       </a></td>
-                      <td>
-                        <a href="javascript: return false;"
-                          (click)='manageruser.openViewAccountDetailsModal(job.freelanceuserId)'>
-                          {{job.fullname}}
-                        </a>
-                      </td>
-                      <td>{{job.fuphoneno}}</td>
-                      <td>
-                        <a href="javascript: return false;"
-                          (click)='manageruser.openViewAccountDetailsModal(job.userId)'>
-                          {{job.bizname}}
-                        </a>
-                      </td>
-                      <td>{{job.cbaphoneno}}</td>
-                      <td>{{job.subcategorylabel}}</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-        
+                    <td>
+                      <a href="javascript: return false;"
+                        (click)='manageruser.openViewAccountDetailsModal(job.freelanceuserId)'>
+                        {{job.fullname}}
+                      </a>
+                    </td>
+                    <td>{{job.fuphoneno}}</td>
+                    <td>
+                      <a href="javascript: return false;" (click)='manageruser.openViewAccountDetailsModal(job.userId)'>
+                        {{job.bizname}}
+                      </a>
+                    </td>
+                    <td>{{job.cbaphoneno}}</td>
+                    <td>{{job.subcategorylabel}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
           </div>
         </div>
+      </div>
     </div>
-  </div>
-    <!-- Summary of All Service Dashboard -->
-
+    <!-- User Summary - Skilled Worker Search Service -->
     <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
       <div class="panel-body">
         <hr>
-          <div class="row">
-            <div class="row mb-4 justify-content-end">
-              <div class="col-xl-3 col-sm-6 py-2">
-              <select  class="btn btn-info" (change)="getServicesDetailsByServiceId($event);">
-                <option value=null> --Select Services --</option>
+        <h4>Users Jobs - Report</h4>
+        <div style="display: block;" class="chart">
+          <canvas baseChart [datasets]="labelMFL" [labels]="lineChartLabels" [options]="lineChartOptions"
+            [chartType]="ChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+        </div>
+        <div class="row mb-4 justify-content-center">
+          <div class="col-xl-4 col-sm-6 py-2">
+            <select class="btn btn-dark" (change)="getFUWorkStatus($event);">
+              <option value=''> --Select Skill --</option>
+              <option *ngFor="let item of listofAllFUSkills" value={{item.code}}>
+                {{item.label}}
+              </option>
+            </select>
+          </div>
+        </div>
+        <!-- Selected Sub Category Results -->
+        <div class="row" *ngIf="isshowswithjobbycategory">
+          <div class="col-12">
+            <h5>Jobs engaged for the below users</h5>
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th scope="col">Job Id</th>
+                  <th scope="col">SW Name</th>
+                  <th scope="col">SW Phone No</th>
+                  <th scope="col">Client</th>
+                  <th scope="col">Client Phone No</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let job of onworkfreelancelistsbysubcategory">
+                  <td><a href="javascript: return false;" (click)="openViewJobDetailsModal(job.jobId)">
+                      {{job.jobId}}
+                    </a>
+                  </td>
+                  <td>
+                    <a href="javascript: return false;"
+                      (click)='manageruser.openViewAccountDetailsModal(job.freelanceuserId)'>
+                      {{job.fullname}}
+                    </a>
+                    <p><i><small>{{job.subcategorylabel}}</small></i></p>
+
+                  </td>
+                  <td>{{job.fuphoneno}}</td>
+                  <td>
+                    <a href="javascript: return false;" (click)='manageruser.openViewAccountDetailsModal(job.userId)'>
+                      {{job.bizname}}
+                    </a>
+                  </td>
+                  <td>{{job.cbaphoneno}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="row" *ngIf="isshowswithnojobbycategory">
+          <div class="col-14">
+            <h5>No Jobs for the below users</h5>
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th scope="col">Skilled Worker Name</th>
+                  <th scope="col">Skilled Worker Phone Number</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let worker of onnotworkfreelancelistsbysubcategory">
+                  <td>
+                    <a href="javascript: return false;"
+                      (click)='manageruser.openViewAccountDetailsModal(worker.userId)'>
+                      {{worker.fullname}}
+                    </a>
+                  </td>
+                  <td>{{worker.phoneno}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="alert alert-success alert-dismissible fade show w-100" role="alert"
+          *ngIf="isshownofreelancerinsystem">
+          <h5 class="display-5">
+            No skilled workers onboard in the platform under this skill category.
+          </h5>
+        </div>
+      </div>
+    </div>
+    <!-- Summary of All Service Dashboard -->
+    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body">
+        <hr>
+        <h4>Monitoring All Services</h4>
+        <div class="row">
+          <div class="row mb-4 justify-content-end">
+            <div class="col-xl-3 col-sm-6 py-2">
+              <select class="btn btn-info" (change)="getServicesDetailsByServiceId($event);">
+                <option value=null> --Select Service --</option>
                 <option *ngFor="let item of onlistofallactivenewservices" value={{item.ourserviceId}}>
                   {{item.name}}
                 </option>
               </select>
             </div>
-            </div>
           </div>
-          <div class="row mb-4 justify-content-end" *ngIf="servicetableenabled">
-            <div class="col-xl-3 col-sm-6 py-5">
-              <div class="card bg-success text-white h-100">
-                <div class="card-body bg-success">
-                  <div class="rotate">
-                    <i class="fa fa-inr fa-4x"></i>
-                  </div>
-                  <h6 class="text-uppercase">Total All Earnings</h6>
-                  <h1>{{this.totalearningallservices | currency:"INR"}}</h1>
+        </div>
+      <div class="row mb-4 justify-content-end" *ngIf="servicetableenabled && this.userService.currentUserValue.userroles.rolecode =='DIRECTORS' ">
+          <div class="col-xl-3 col-sm-6 py-5">
+            <div class="card bg-success text-white h-100">
+              <div class="card-body bg-success">
+                <div class="rotate">
+                  <i class="fa fa-inr fa-4x"></i>
                 </div>
-              </div>
-            </div>
-            <div class="col-xl-3 col-sm-6 py-5">
-              <div class="card bg-success text-white h-100">
-                <div class="card-body bg-info">
-                  <div class="rotate">
-                    <i class="fa fa-inr fa-4x"></i>
-                  </div>
-                  <h6 class="text-uppercase">Earned On This Service</h6>
-                  <h1>{{this.totalearningonservice | currency:"INR"}}</h1>
-                </div>
+                <h6 class="text-uppercase">Total All Earnings</h6>
+                <h1>{{this.totalearningallservices | currency:"INR"}}</h1>
               </div>
             </div>
           </div>
-          <div class="row" *ngIf="servicetableenabled" >
-            <div class="col-12">
-              <h5><u>Client Purchased Service</u></h5>
-              <table class="table table-bordered" *ngIf="!ispurchasedserviceempty">
-                <thead>
-                  <tr>
-                    <th scope="col">Service Name</th>
-                    <th scope="col">Client Name</th>
-                    <th scope="col">Business Name</th>
-                    <th scope="col">Phone No</th>
-                    <th scope="col">Valid Period </th>
-                    <th scope="col">Valid From</th>
-                    <th scope="col">Valid Till</th>
-                    <th scope="col">Amount</th>
-                    <th scope="col">Txn Id</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let srv of listofallpaidservices">
-                    <td>
-                      {{srv.name}}
-                    </td>
-                    <td>
-                      <a href="javascript: return false;" (click)='manageruser.openViewAccountDetailsModal(srv.userid)'>
-                        {{srv.fullname}}
-                      </a>
-                    </td>
-                    <td>{{srv.bizname}}</td>
-                    <td>{{srv.phoneno}}</td>
-                    <td>{{srv.validPeriodLabel}}</td>
-                    <td>{{srv.servicestarton}}</td>
-                    <td>{{srv.serviceendon}}</td>
-                    <td>{{srv.amount | currency:"INR₹"}}</td>
-                    <td>
-                      <a [routerLink]="['/payment',srv.txnid]">{{srv.txnid}}</a></td>
-                  </tr>
-                </tbody>
-              </table>
-              <div class="alert alert-success alert-dismissible fade show w-100" role="alert"
+          <div class="col-xl-3 col-sm-6 py-5">
+            <div class="card bg-success text-white h-100">
+              <div class="card-body bg-info">
+                <div class="rotate">
+                  <i class="fa fa-inr fa-4x"></i>
+                </div>
+                <h6 class="text-uppercase">Earned On This Service</h6>
+                <h1>{{this.totalearningonservice | currency:"INR"}}</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="row" *ngIf="servicetableenabled">
+          <div class="col-12">
+            <h5><u>Client Purchased Service</u></h5>
+            <table class="table table-bordered" *ngIf="!ispurchasedserviceempty">
+              <thead>
+                <tr>
+                  <th scope="col">Service Name</th>
+                  <th scope="col">Client Name</th>
+                  <th scope="col">Business Name</th>
+                  <th scope="col">Phone No</th>
+                  <th scope="col">Valid Period </th>
+                  <th scope="col">Valid From</th>
+                  <th scope="col">Valid Till</th>
+                  <th scope="col">Amount</th>
+                  <th scope="col">Txn Id</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let srv of listofallpaidservices">
+                  <td>
+                    {{srv.name}}
+                  </td>
+                  <td>
+                    <a href="javascript: return false;" (click)='manageruser.openViewAccountDetailsModal(srv.userid)'>
+                      {{srv.fullname}}
+                    </a>
+                  </td>
+                  <td>{{srv.bizname}}</td>
+                  <td>{{srv.phoneno}}</td>
+                  <td>{{srv.validPeriodLabel}}</td>
+                  <td>{{srv.servicestarton}}</td>
+                  <td>{{srv.serviceendon}}</td>
+                  <td>{{srv.amount | currency:"INR₹"}}</td>
+                  <td>
+                    <a [routerLink]="['/payment',srv.txnid]">{{srv.txnid}}</a></td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="alert alert-success alert-dismissible fade show w-100" role="alert"
               *ngIf="ispurchasedserviceempty">
               <h5 class="display-5">
-                  No clients has purchased this service.
+                No clients has purchased this service.
               </h5>
-          </div>
             </div>
           </div>
-          <div class="row mb-3"></div>
-          <div class="row" *ngIf="servicetableenabled"> 
-            <div class="col-12">
-              <h5><u>Client Add Cart & Pending Payment</u></h5>
-              <table class="table table-bordered" *ngIf="!isnotpurchasedserviceempty">
-                <thead>
-                  <tr>
-                    <th scope="col">Service Name</th>
-                    <th scope="col">Client Name</th>
-                    <th scope="col">Business Name</th>
-                    <th scope="col">Phone No</th>
-                    <th scope="col">Valid Period </th>
-                    <th scope="col">Valid From</th>
-                    <th scope="col">Valid Till</th>
-                    <th scope="col">Amount</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let srv of listofallnotpaidservices">
-                    <td>
-                      {{srv.name}}
-                    </td>
-                    <td>
-                      <a href="javascript: return false;" (click)='manageruser.openViewAccountDetailsModal(srv.userid)'>
-                        {{srv.fullname}}
-                      </a>
-                    </td>
-                    <td>{{srv.bizname}}</td>
-                    <td>{{srv.phoneno}}</td>
-                    <td>{{srv.validPeriodLabel}}</td>
-                    <td>{{srv.servicestarton}}</td>
-                    <td>{{srv.serviceendon}}</td>
-                    <td>{{srv.amount | currency:"INR₹"}}</td>
-                  </tr>
-                </tbody>
-              </table>
-              <div class="alert alert-success alert-dismissible fade show w-100" role="alert"
+        </div>
+        <div class="row mb-3"></div>
+        <div class="row" *ngIf="servicetableenabled">
+          <div class="col-12">
+            <h5><u>Client Add Cart & Pending Payment</u></h5>
+            <table class="table table-bordered" *ngIf="!isnotpurchasedserviceempty">
+              <thead>
+                <tr>
+                  <th scope="col">Service Name</th>
+                  <th scope="col">Client Name</th>
+                  <th scope="col">Business Name</th>
+                  <th scope="col">Phone No</th>
+                  <th scope="col">Valid Period </th>
+                  <th scope="col">Valid From</th>
+                  <th scope="col">Valid Till</th>
+                  <th scope="col">Amount</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let srv of listofallnotpaidservices">
+                  <td>
+                    {{srv.name}}
+                  </td>
+                  <td>
+                    <a href="javascript: return false;" (click)='manageruser.openViewAccountDetailsModal(srv.userid)'>
+                      {{srv.fullname}}
+                    </a>
+                  </td>
+                  <td>{{srv.bizname}}</td>
+                  <td>{{srv.phoneno}}</td>
+                  <td>{{srv.validPeriodLabel}}</td>
+                  <td>{{srv.servicestarton}}</td>
+                  <td>{{srv.serviceendon}}</td>
+                  <td>{{srv.amount | currency:"INR₹"}}</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="alert alert-success alert-dismissible fade show w-100" role="alert"
               *ngIf="isnotpurchasedserviceempty">
               <h5 class="display-5">
-                  No clients has added this service on the cart for purchase.
+                No clients has added this service on the cart for purchase.
               </h5>
-          </div>
             </div>
           </div>
+        </div>
       </div>
     </div>
     <!-- Summary of All Service Dashboard -->
-</div>
+  </div>

@@ -6,7 +6,8 @@ export class Freelance {
     public isprofilecompleted: boolean;
     public isbgstarted: boolean;
     public isJobAvailable: boolean;
-    public subCategory: string;
+    public subCategory: string; 
+    public subcategorylabel: string;
     public category: string;
     public experienceInField: number;
     public abt: string;

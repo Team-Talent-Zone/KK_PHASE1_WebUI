@@ -196,6 +196,7 @@
                                 <tr>
                                     <th>Name</th>
                                     <th>Active?</th>
+                                    <th>Skill</th>
                                     <th>BG Completed?</th>
                                     <th>BG Initated ?</th>
                                     <th>Profile Completed?</th>
@@ -203,8 +204,7 @@
                                     <!-- <th>Current Status</th> -->
                                     <th>BG Status</th>
                                     <th>Company%</th>
-                                    <th>SW%</th>
-                                    <th>Actions</th>
+                                   
                                 </tr>
                             </thead>
                             <tbody>
@@ -219,6 +219,7 @@
                                         <i class="fa fa-smile-o" style="color:#0a382b" *ngIf="fu.isactive"> </i>
                                         <i class="fa fa-frown-o" style="color:#FF4949" *ngIf="!fu.isactive"> </i>
                                     </td>
+                                    <td>{{fu.freeLanceDetails.subcategorylabel}}</td>
                                     <td *ngIf="fu.freeLanceDetails !=null">
                                         <div *ngIf="fu.freeLanceDetails.isbgstarted">
                                             <div *ngIf="fu.freeLanceDetails.isbgdone">
@@ -291,8 +292,6 @@
                                                 class="fa fa-spinner" style="color:blue"></i>
                                         </ng-template>
                                     </td>
-                                    <td>{{fu.freeLanceDetails.companypercentage}}</td>
-                                    <td>{{fu.freeLanceDetails.fupercentage}}</td>
                                     <td>
                                         <a *ngIf="fu.freeLanceDetails.isprofilecompleted && fu.freeLanceDetails.isregfeedone
                                         && !fu.freeLanceDetails.isbgstarted &&
@@ -335,6 +334,7 @@
                                 <tr>
                                     <th>Name</th>
                                     <th>Active?</th>
+                                    <th>Email Address</th>
                                     <th>Created On</th>
                                     <th>Created By</th>
                                     <th>Designation</th>
@@ -355,15 +355,16 @@
                                         <i class="fa fa-frown-o" style="color:#FF4949" *ngIf="!platformuser.isactive">
                                         </i>
                                     </td>
+                                    <td>{{platformuser.username}}</td>
                                     <td>{{platformuser.createdon}}</td>
                                     <td>{{platformuser.createdby}}</td>
                                     <td>
                                         <div
                                             *ngIf="platformuser.userroles.rolecode == 'CORE_SERVICE_SUPPORT_TEAM'; else elseCBA">
-                                            Core Service Analyst
+                                            CSST
                                         </div>
                                         <ng-template #elseCBA>
-                                            Core Service Manager
+                                            CSSM
                                         </ng-template>
                                     </td>
                                     <td>

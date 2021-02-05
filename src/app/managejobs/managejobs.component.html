@@ -40,11 +40,11 @@
                         <p> <b>{{ 'DASHBOARD_FU_BODY.JOB' | translate }}#{{element.jobId}} </b>
                             <button class="bg-info pull-right"
                                 *ngIf="!element.isjobcompleted && element.isfreelancerjobattendant"
-                                (click)="jobDone(element.jobId)" style="font-size:14px">Job Done
+                                (click)="jobDone(element.jobId)" style="font-size:14px">Job Completed
                                 <i class="fa fa-check" title="Click when the job is completed."></i></button>
                             <button class="bg-success pull-right" *ngIf="element.isjobcompleted"
                                 (click)="openPaymentComponent(element.amount, element.jobId , element.subcategorylabel)"
-                                style="font-size:14px">Pay
+                                style="font-size:14px">Pay Now
                                 <i class="fa fa-inr" title="Click to pay the job invoice"></i></button>
                             <button class="bg-success pull-right" *ngIf="element.freelancerjobattendant == 'NO'"
                                 (click)="updateFreelancerAttendance(element.jobId)">{{element.fullname | slice:0:10}}..
@@ -399,7 +399,7 @@
     </dt>
     <dd class="col-sm-9"> </dd>
     <dt class="col-sm-3">
-        <button class="bg-info" style="font-size:14px">Job Done
+        <button class="bg-info" style="font-size:14px">Job Completed
             <i class="fa fa-check"></i></button>
     </dt>
     <dd class="col-sm-9">
@@ -426,7 +426,7 @@
         clicking your notifying to managment to take necceasary action.
     </dd>
     <dt class="col-sm-3 ">
-        <button class="bg-success" style="font-size:14px">Pay
+        <button class="bg-success" style="font-size:14px">Pay Now
             <i class="fa fa-inr"></i></button>
     </dt>
     <dd class="col-sm-9">

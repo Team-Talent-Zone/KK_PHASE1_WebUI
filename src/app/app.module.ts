@@ -1,4 +1,3 @@
-import { NgbModalBackdrop } from '@ng-bootstrap/ng-bootstrap/modal/modal-backdrop';
 import { NewServiceAdapter } from './adapters/newserviceadapter';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -23,7 +22,6 @@ import { AlertsService } from './AppRestCall/alerts/alerts.service';
 import { UserService } from './AppRestCall/user/user.service';
 import { ReferenceService } from './AppRestCall/reference/reference.service';
 import { UserAdapter } from './adapters/useradapter';
-import { HttpErrorInterceptor } from './alert/http-error.interceptor';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -68,7 +66,6 @@ import { ViewfureviewsComponent } from './viewfureviews/viewfureviews.component'
 import { Error404pageComponent } from './error404page/error404page.component';
 import { MatomoModule } from 'ngx-matomo';
 import { ReadMoreComponent } from './read-more/read-more.component';
-import { DataTableModule } from 'ng-angular8-datatable';
 import { ReadMorePopupComponent } from './read-more-popup/read-more-popup.component';
 import { DatePipe } from '@angular/common';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
@@ -76,6 +73,7 @@ import { ConfirmationDialogService } from './AppRestCall/confirmation/confirmati
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DashboardofadminanalyticsComponent } from './dashboardofadminanalytics/dashboardofadminanalytics.component';
 import { ViewjobbyjobidPopupComponent } from './viewjobbyjobid-popup/viewjobbyjobid-popup.component';
+import { ChartsModule, ThemeService } from 'ng2-charts';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
@@ -153,7 +151,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     NgbModule,
     Ng4LoadingSpinnerModule.forRoot(),
     MatomoModule,
-    DataTableModule,
+    ChartsModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
@@ -180,7 +178,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
       multi: true
     },
     DatePipe,
-    ConfirmationDialogService
+    ConfirmationDialogService,
+    ThemeService
   ],
   entryComponents: [
     ViewaccountdetailsComponent,
