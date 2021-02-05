@@ -138,8 +138,8 @@
                                     <th>Name</th>
                                     <th>Active?</th>
                                     <th>Email Address</th>
-                                    <th>Created On</th>
                                     <th>Phone Number</th>
+                                    <th>Type</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -156,15 +156,15 @@
                                         <i class="fa fa-frown-o" style="color:#FF4949" *ngIf="!cbu.isactive"> </i>
                                     </td>
                                     <td>{{cbu.username}}</td>
-                                    <td>{{cbu.createdon}}</td>
                                     <td>{{cbu.phoneno}}</td>
+                                    <td>{{cbu.userbizdetails.biztype}}</td>
                                     <td>
-                                        <a href="javascript: return false;"
+                                        <a class="btn  btn-sm"
                                             [routerLink]="['/viewuserservicedetails',cbu.userId]">
-                                            <i class="fa fa-cog center" title="View Associated Services"
+                                            <i class="fa fa-cog" title="View Associated Services"
                                                 style="color:#0a382b"></i>
                                         </a>
-                                        <a href="javascript: return false;"
+                                        <a class="btn  btn-sm"
                                         [routerLink]="['/viewfujobdetails',cbu.userId,'cba']">
                                         <i class="fa fa-briefcase" title="View Associated Jobs"
                                             style="color:#0a382b"></i>
@@ -197,13 +197,14 @@
                                     <th>Name</th>
                                     <th>Active?</th>
                                     <th>Skill</th>
-                                    <th>BG Completed?</th>
-                                    <th>BG Initated ?</th>
-                                    <th>Profile Completed?</th>
+                                    <th>PhoneNo</th>
+                                    <th>Profile Done?</th>
                                     <th>Pay?</th>
+                                    <th>BG Initated ?</th>
+                                    <th>BG Done?</th>
                                     <!-- <th>Current Status</th> -->
                                     <th>BG Status</th>
-                                    <th>Company%</th>
+                                    <th>Actions</th>
                                    
                                 </tr>
                             </thead>
@@ -220,28 +221,7 @@
                                         <i class="fa fa-frown-o" style="color:#FF4949" *ngIf="!fu.isactive"> </i>
                                     </td>
                                     <td>{{fu.freeLanceDetails.subcategorylabel}}</td>
-                                    <td *ngIf="fu.freeLanceDetails !=null">
-                                        <div *ngIf="fu.freeLanceDetails.isbgstarted">
-                                            <div *ngIf="fu.freeLanceDetails.isbgdone">
-                                                <i class="fa fa-check" title="Bg verification is completed"
-                                                    style="color: #0a382b"></i>
-                                            </div>
-                                            <div *ngIf="!fu.freeLanceDetails.isbgdone">
-                                                <i class="fa fa-spinner" title="Bg verification is in-progress"
-                                                    style="color:rgb(16, 0, 238)"></i>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td *ngIf="fu.freeLanceDetails !=null">
-                                        <div *ngIf="fu.freeLanceDetails.isbgstarted; else elseIsBgNotDone">
-                                            <i class="fa fa-check" title="Bg  verification started"
-                                                style="color: #0a382b"></i>
-                                        </div>
-                                        <ng-template #elseIsBgNotDone>
-                                            <i class="fa fa-ban" title="Bg verification not started"
-                                                style="color:rgb(199, 25, 25)"></i>
-                                        </ng-template>
-                                    </td>
+                                    <td>{{fu.phoneno}}</td>
                                     <td *ngIf="fu.freeLanceDetails !=null">
                                         <div
                                             *ngIf="fu.freeLanceDetails.isprofilecompleted; else elseIsProfileNotCompleted">
@@ -262,6 +242,28 @@
                                             <i class="fa fa-inr" title="Registration is not completed"
                                                 style="color:rgb(199, 25, 25)"></i>
                                         </ng-template>
+                                    </td>
+                                    <td *ngIf="fu.freeLanceDetails !=null">
+                                        <div *ngIf="fu.freeLanceDetails.isbgstarted; else elseIsBgNotDone">
+                                            <i class="fa fa-check" title="Bg  verification started"
+                                                style="color: #0a382b"></i>
+                                        </div>
+                                        <ng-template #elseIsBgNotDone>
+                                            <i class="fa fa-ban" title="Bg verification not started"
+                                                style="color:rgb(199, 25, 25)"></i>
+                                        </ng-template>
+                                    </td>
+                                    <td *ngIf="fu.freeLanceDetails !=null">
+                                        <div *ngIf="fu.freeLanceDetails.isbgstarted">
+                                            <div *ngIf="fu.freeLanceDetails.isbgdone">
+                                                <i class="fa fa-check" title="Bg verification is completed"
+                                                    style="color: #0a382b"></i>
+                                            </div>
+                                            <div *ngIf="!fu.freeLanceDetails.isbgdone">
+                                                <i class="fa fa-spinner" title="Bg verification is in-progress"
+                                                    style="color:rgb(16, 0, 238)"></i>
+                                            </div>
+                                        </div>
                                     </td>
                                     <!-- <td *ngIf="fu.freelancehistoryentity !=null">
                                         <div *ngFor="let refdata of refDataObj">

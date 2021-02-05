@@ -74,6 +74,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DashboardofadminanalyticsComponent } from './dashboardofadminanalytics/dashboardofadminanalytics.component';
 import { ViewjobbyjobidPopupComponent } from './viewjobbyjobid-popup/viewjobbyjobid-popup.component';
 import { ChartsModule, ThemeService } from 'ng2-charts';
+import { DbviewsService } from './AppRestCall/dbviews/dbviews.service';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);

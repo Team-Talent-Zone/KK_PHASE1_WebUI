@@ -18,6 +18,9 @@ import { timer } from 'rxjs';
 import { NewsvcService } from '../AppRestCall/newsvc/newsvc.service';
 import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import { ViewjobbyjobidPopupComponent } from '../viewjobbyjobid-popup/viewjobbyjobid-popup.component';
+import { DbviewsService } from '../AppRestCall/dbviews/dbviews.service';
+import { ChartOptions, ChartType } from 'chart.js';
+import { Label, monkeyPatchChartJsLegend, monkeyPatchChartJsTooltip, SingleDataSet } from 'ng2-charts';
 
 
 @Component({
@@ -79,8 +82,22 @@ export class DashboardofadminComponent implements OnInit {
   };
   modalRef: BsModalRef;
 
-  /*
-  All - Service related varaible
+  /**
+   * Chart Data
+   */
+  listofallratingcountgraphdata: any = [];
+  listofallratingnamegraphdata: any = [];
+  listofalluserservicenotpaidcountgraphdata: SingleDataSet = [];
+  listofalluserservicenotpaidnamegraphdata: Label[] = [];
+  listofallinjobsbyskillcountgraphdata: SingleDataSet = [];
+  listofallinjobsbyskillgraphdata: any = [];
+
+  listofallnojobsbyskillgraphdata: Label[] = [];
+  listofallnojobsbyskillcountgraphdata: any = []
+
+  listofallvoliationcountgraphdata: any = [];
+  listofallvoliationamegraphdata: any = [];
+  /*All - Service related varaible
   */
 
   listofallpaidservices: any;
@@ -108,7 +125,11 @@ export class DashboardofadminComponent implements OnInit {
     private usersrvdetailsService: UsersrvdetailsService,
     private newService: NewsvcService,
     private modalService: BsModalService,
-  ) { }
+    public dbviewServic: DbviewsService
+  ) {
+    monkeyPatchChartJsTooltip();
+    monkeyPatchChartJsLegend();
+  }
 
   ngOnInit() {
     const sourcerefresh = timer(1000, 90000);
@@ -116,6 +137,13 @@ export class DashboardofadminComponent implements OnInit {
       this.dashboardSummaryOfSkilledWorkerSearchService();
       this.getAllAvailableFUSkills();
       this.getAllNewServiceDetails();
+      /**
+       * The below methods are to load chart or graph.
+       */
+      this.getGraphFURatingData();
+      this.getGraphUserServiceData();
+      this.getGraphJobsData();
+      this.getGraphSKVoliationData();
     });
   }
 
@@ -171,7 +199,7 @@ export class DashboardofadminComponent implements OnInit {
           if (element.isjobactive && element.isjobcompleted && !element.isjobamtpaidtofu && element.jobaccepteddate != null) {
             this.jobscompletedpayoutpendingList.push(element);
           }
-       
+
         });
       }
     },
@@ -253,7 +281,7 @@ export class DashboardofadminComponent implements OnInit {
                 if (this.onworkfreelancelistsbysubcategory.length > 0) {
                   userList.forEach(element => {
                     var isexist = this.onworkfreelancelistsbysubcategory.filter(e => e.freelanceuserId === element.userId);
-                    if (isexist.length  == 0 && element.isactive &&
+                    if (isexist.length == 0 && element.isactive &&
                       element.freeLanceDetails.bgcurrentstatus == config.bg_code_approved &&
                       selectElementCode.toString() == element.freeLanceDetails.subCategory.toString()) {
                       this.onnotworkfreelancelistsbysubcategory.push(element);
@@ -581,12 +609,86 @@ export class DashboardofadminComponent implements OnInit {
   }
 
   /***
-   * User Summary - Chart Functionality
+   * Chart Functionality
    */
-  public SystemName: string = "MF1";
+
+
+  getGraphFURatingData() {
+    this.dbviewServic.getGraphFURatingData().subscribe((furatingList: any) => {
+      if (furatingList != null) {
+        furatingList.forEach(element => {
+          this.listofallratingcountgraphdata.push(element.starrate);
+          this.listofallratingnamegraphdata.push(element.fullname)
+        });
+      }
+    },
+      error => {
+        this.spinnerService.hide();
+        this.alertService.error(error);
+      });
+  }
+
+  getGraphUserServiceData() {
+    this.dbviewServic.getGraphUserServiceData().subscribe((servicesList: any) => {
+      if (servicesList != null) {
+        servicesList.forEach(element => {
+          if (element.type == 'notpurchased') {
+            this.listofalluserservicenotpaidcountgraphdata.push(Number.parseInt(element.count));
+            this.listofalluserservicenotpaidnamegraphdata.push(element.name);
+          }
+        });
+      }
+    },
+      error => {
+        this.spinnerService.hide();
+        this.alertService.error(error);
+      });
+  }
+
+  getGraphJobsData() {
+    this.dbviewServic.getGraphJobsData().subscribe((jobList: any) => {
+      if (jobList != null) {
+        jobList.forEach(element => {
+          if (element.type == 'injobs') {
+            console.log('element.jobcount', element);
+            this.listofallinjobsbyskillcountgraphdata.push(Number.parseInt(element.count));
+            this.listofallinjobsbyskillgraphdata.push(element.skill);
+          }
+          if (element.type == 'nojobs') {
+            this.listofallnojobsbyskillcountgraphdata.push(Number.parseInt(element.count));
+            this.listofallnojobsbyskillgraphdata.push(element.skill);
+          }
+        });
+      }
+    },
+      error => {
+        this.spinnerService.hide();
+        this.alertService.error(error);
+      });
+  }
+
+  getGraphSKVoliationData() {
+    this.dbviewServic.getGraphSKVoliationData().subscribe((voliationList: any) => {
+      if (voliationList != null) {
+        voliationList.forEach(element => {
+          this.listofallvoliationcountgraphdata.push(Number.parseInt(element.voliationcount));
+          this.listofallvoliationamegraphdata.push(element.fullname);
+        });
+      }
+    },
+      error => {
+        this.spinnerService.hide();
+        this.alertService.error(error);
+      });
+  }
+  /**
+   *  Prepared for getGraphFURatingData
+   */
+  public lineChartData: Array<number> = this.listofallratingcountgraphdata;
+  public lineChartLabels: Array<any> = this.listofallratingnamegraphdata;
+
+  public SystemName: string = "Overall Rating";
   firstCopy = false;
-  // data
-  public lineChartData: Array<number> = this.listofallvoliationscount;
 
   public labelMFL: Array<any> = [
     {
@@ -594,15 +696,13 @@ export class DashboardofadminComponent implements OnInit {
       label: this.SystemName
     }
   ];
-  // labels
-  public lineChartLabels: Array<any> = this.listofallvoliationsskilledworkername;
 
   public lineChartOptions: any = {
     responsive: true,
     scales: {
       yAxes: [{
         ticks: {
-          max: 60,
+          max: 5,
           min: 0,
         }
       }],
@@ -639,15 +739,95 @@ export class DashboardofadminComponent implements OnInit {
     pointHoverBackgroundColor: 'red',
     pointHoverBorderColor: 'red'
   }];
-
-
-
   public ChartType = 'bar';
 
-  public chartClicked(e: any): void {
-    console.log(e);
-  }
-  public chartHovered(e: any): void {
-    console.log(e);
-  }
+  /*
+    Below Chart to prepare getGraphUserServiceData
+   */
+  // Pie
+  public pieChartOptions: ChartOptions = {
+    responsive: true,
+  };
+  public pieChartLabels: Label[] = this.listofalluserservicenotpaidnamegraphdata;
+  public pieChartData: SingleDataSet = this.listofalluserservicenotpaidcountgraphdata;
+  public pieChartType: ChartType = 'pie';
+  public pieChartLegend = true;
+  public pieChartPlugins = [];
+
+  /*
+    Below Chart to prepare getGraphJobsData
+   */
+
+  // Pie skilled enagaged at work 
+  public pieChartOptionsAtWork: ChartOptions = {
+    responsive: true,
+  };
+  public pieChartLabelsAtWork: Label[] = this.listofallinjobsbyskillgraphdata;
+  public pieChartDataAtWork: SingleDataSet = this.listofallinjobsbyskillcountgraphdata;
+  public pieChartTypeAtWork: ChartType = 'pie';
+  public pieChartLegendAtWork = true;
+  public pieChartPluginsAtWork = [];
+
+
+  // Pie skilled notenagaged at work 
+  public pieChartOptionsAtNoWork: ChartOptions = {
+    responsive: true,
+  };
+  public pieChartLabelsAtNoWork: Label[] = this.listofallnojobsbyskillgraphdata;
+  public pieChartDataAtNoWork: SingleDataSet = this.listofallnojobsbyskillcountgraphdata;
+  public pieChartTypeAtNoWork: ChartType = 'pie';
+  public pieChartLegendAtNoWork = true;
+  public pieChartPluginsAtNoWork = [];
+
+
+  /**
+*  Prepared for getGraphFURatingData
+*/
+  public lineChartDataVoliationData: Array<number> = this.listofallvoliationcountgraphdata;
+  public lineChartLabelsVoliationData: Array<any> = this.listofallvoliationamegraphdata;
+
+  public SystemNames: string = "Voliation Count Details";
+  firstCopyVoliationData = false;
+
+  public labelMFLVoliationData: Array<any> = [
+    {
+      data: this.lineChartDataVoliationData,
+      label: this.SystemNames
+    }
+  ];
+
+  public lineChartOptionsVoliationData: any = {
+    responsive: true,
+    scales: {
+      yAxes: [{
+        ticks: {
+          max: 5,
+          min: 0,
+        }
+      }],
+      xAxes: [{
+
+
+      }],
+    },
+    plugins: {
+      datalabels: {
+        display: true,
+        align: 'top',
+        anchor: 'end',
+        //color: "#2756B3",
+        color: "#222",
+
+        font: {
+          family: 'FontAwesome',
+          size: 14
+        },
+
+      },
+      deferred: false
+    },
+  };
+ 
+  public ChartTypeVoliationData = 'bar';
+
 }

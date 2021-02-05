@@ -32,8 +32,10 @@
       <div class="panel-body">
         <hr>
         <h4>Monitoring Jobs</h4>
-        <div class="row mb-4 justify-content-end">
-        <div class="col-xl-3 col-sm-6 py-5" *ngIf="this.userService.currentUserValue.userroles.rolecode =='DIRECTORS' ">
+        <!-- Payment Cards Sections-->
+        <div class="row mb-4 justify-content-center">
+          <div class="col-xl-3 col-sm-6 py-5"
+            *ngIf="this.userService.currentUserValue.userroles.rolecode =='DIRECTORS' ">
             <div class="card bg-success text-white h-100">
               <div class="card-body bg-success">
                 <div class="rotate">
@@ -44,7 +46,7 @@
               </div>
             </div>
           </div>
-        
+
           <div class="col-xl-3 col-sm-6 py-5">
             <div class="card bg-success text-white h-100">
               <div class="card-body bg-info">
@@ -183,7 +185,6 @@
             </a>
           </div>
         </div>
-
         <!-- Reported Voliations -->
         <div class="collapse" id="reportedVoliations">
           <div class="row">
@@ -645,22 +646,19 @@
       <div class="panel-body">
         <hr>
         <h4>Users Jobs - Report</h4>
-        <div style="display: block;" class="chart">
-          <canvas baseChart [datasets]="labelMFL" [labels]="lineChartLabels" [options]="lineChartOptions"
-            [chartType]="ChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
-        </div>
         <div class="row mb-4 justify-content-center">
           <div class="col-xl-4 col-sm-6 py-2">
             <select class="btn btn-dark" (change)="getFUWorkStatus($event);">
-              <option value=''> --Select Skill --</option>
+              <option value=''> -- Select Skill Name --</option>
               <option *ngFor="let item of listofAllFUSkills" value={{item.code}}>
                 {{item.label}}
               </option>
             </select>
           </div>
         </div>
+
         <!-- Selected Sub Category Results -->
-        <div class="row" *ngIf="isshowswithjobbycategory">
+        <div class="row mb-4" *ngIf="isshowswithjobbycategory">
           <div class="col-12">
             <h5>Jobs engaged for the below users</h5>
             <table class="table table-bordered">
@@ -699,8 +697,8 @@
             </table>
           </div>
         </div>
-        <div class="row" *ngIf="isshowswithnojobbycategory">
-          <div class="col-14">
+        <div class="row mb-4" *ngIf="isshowswithnojobbycategory">
+          <div class="col-12">
             <h5>No Jobs for the below users</h5>
             <table class="table table-bordered">
               <thead>
@@ -723,147 +721,217 @@
             </table>
           </div>
         </div>
-        <div class="alert alert-success alert-dismissible fade show w-100" role="alert"
+        <div class="alert alert-success alert-dismissible fade show w-100 mb-4" role="alert"
           *ngIf="isshownofreelancerinsystem">
           <h5 class="display-5">
             No skilled workers onboard in the platform under this skill category.
           </h5>
         </div>
-      </div>
-    </div>
-    <!-- Summary of All Service Dashboard -->
-    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-      <div class="panel-body">
-        <hr>
-        <h4>Monitoring All Services</h4>
-        <div class="row">
-          <div class="row mb-4 justify-content-end">
-            <div class="col-xl-3 col-sm-6 py-2">
-              <select class="btn btn-info" (change)="getServicesDetailsByServiceId($event);">
-                <option value=null> --Select Service --</option>
-                <option *ngFor="let item of onlistofallactivenewservices" value={{item.ourserviceId}}>
-                  {{item.name}}
-                </option>
-              </select>
-            </div>
-          </div>
-        </div>
-      <div class="row mb-4 justify-content-end" *ngIf="servicetableenabled && this.userService.currentUserValue.userroles.rolecode =='DIRECTORS' ">
-          <div class="col-xl-3 col-sm-6 py-5">
-            <div class="card bg-success text-white h-100">
-              <div class="card-body bg-success">
-                <div class="rotate">
-                  <i class="fa fa-inr fa-4x"></i>
-                </div>
-                <h6 class="text-uppercase">Total All Earnings</h6>
-                <h1>{{this.totalearningallservices | currency:"INR"}}</h1>
+        <div class="card">
+          <div class="card-header">
+            <h5 class="h3 mb-0">Overall Rating Of Skilled Workers</h5>
+            <div class="col-10">
+              <div style="display: block;" class="chart">
+                <canvas baseChart [datasets]="labelMFL" [labels]="lineChartLabels" [options]="lineChartOptions"
+                  [chartType]="ChartType"></canvas>
               </div>
-            </div>
-          </div>
-          <div class="col-xl-3 col-sm-6 py-5">
-            <div class="card bg-success text-white h-100">
-              <div class="card-body bg-info">
-                <div class="rotate">
-                  <i class="fa fa-inr fa-4x"></i>
-                </div>
-                <h6 class="text-uppercase">Earned On This Service</h6>
-                <h1>{{this.totalearningonservice | currency:"INR"}}</h1>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="row" *ngIf="servicetableenabled">
-          <div class="col-12">
-            <h5><u>Client Purchased Service</u></h5>
-            <table class="table table-bordered" *ngIf="!ispurchasedserviceempty">
-              <thead>
-                <tr>
-                  <th scope="col">Service Name</th>
-                  <th scope="col">Client Name</th>
-                  <th scope="col">Business Name</th>
-                  <th scope="col">Phone No</th>
-                  <th scope="col">Valid Period </th>
-                  <th scope="col">Valid From</th>
-                  <th scope="col">Valid Till</th>
-                  <th scope="col">Amount</th>
-                  <th scope="col">Txn Id</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let srv of listofallpaidservices">
-                  <td>
-                    {{srv.name}}
-                  </td>
-                  <td>
-                    <a href="javascript: return false;" (click)='manageruser.openViewAccountDetailsModal(srv.userid)'>
-                      {{srv.fullname}}
-                    </a>
-                  </td>
-                  <td>{{srv.bizname}}</td>
-                  <td>{{srv.phoneno}}</td>
-                  <td>{{srv.validPeriodLabel}}</td>
-                  <td>{{srv.servicestarton}}</td>
-                  <td>{{srv.serviceendon}}</td>
-                  <td>{{srv.amount | currency:"INR₹"}}</td>
-                  <td>
-                    <a [routerLink]="['/payment',srv.txnid]">{{srv.txnid}}</a></td>
-                </tr>
-              </tbody>
-            </table>
-            <div class="alert alert-success alert-dismissible fade show w-100" role="alert"
-              *ngIf="ispurchasedserviceempty">
-              <h5 class="display-5">
-                No clients has purchased this service.
-              </h5>
             </div>
           </div>
         </div>
         <div class="row mb-3"></div>
-        <div class="row" *ngIf="servicetableenabled">
-          <div class="col-12">
-            <h5><u>Client Add Cart & Pending Payment</u></h5>
-            <table class="table table-bordered" *ngIf="!isnotpurchasedserviceempty">
-              <thead>
-                <tr>
-                  <th scope="col">Service Name</th>
-                  <th scope="col">Client Name</th>
-                  <th scope="col">Business Name</th>
-                  <th scope="col">Phone No</th>
-                  <th scope="col">Valid Period </th>
-                  <th scope="col">Valid From</th>
-                  <th scope="col">Valid Till</th>
-                  <th scope="col">Amount</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let srv of listofallnotpaidservices">
-                  <td>
-                    {{srv.name}}
-                  </td>
-                  <td>
-                    <a href="javascript: return false;" (click)='manageruser.openViewAccountDetailsModal(srv.userid)'>
-                      {{srv.fullname}}
-                    </a>
-                  </td>
-                  <td>{{srv.bizname}}</td>
-                  <td>{{srv.phoneno}}</td>
-                  <td>{{srv.validPeriodLabel}}</td>
-                  <td>{{srv.servicestarton}}</td>
-                  <td>{{srv.serviceendon}}</td>
-                  <td>{{srv.amount | currency:"INR₹"}}</td>
-                </tr>
-              </tbody>
-            </table>
-            <div class="alert alert-success alert-dismissible fade show w-100" role="alert"
-              *ngIf="isnotpurchasedserviceempty">
-              <h5 class="display-5">
-                No clients has added this service on the cart for purchase.
-              </h5>
+        <div class="row">
+          <div class="col-6">
+            <div class="card">
+              <div class="card-header">
+                <h6 class="h3 mb-0">Skills Enagaged At Jobs</h6>
+                <div style="display: block;">
+                  <canvas baseChart [data]="pieChartDataAtWork" [labels]="pieChartLabelsAtWork"
+                    [chartType]="pieChartTypeAtWork" [options]="pieChartOptionsAtWork" [plugins]="pieChartPluginsAtWork"
+                    [legend]="pieChartLegendAtWork">
+                  </canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="card">
+              <div class="card-header">
+                <h6 class="h3 mb-0">Skills <u>NOT</u> Enagaged At Jobs</h6>
+                <div style="display: block;">
+                  <canvas baseChart [data]="pieChartDataAtNoWork" [labels]="pieChartLabelsAtNoWork"
+                    [chartType]="pieChartTypeAtNoWork" [options]="pieChartOptionsAtNoWork"
+                    [plugins]="pieChartPluginsAtNoWork" [legend]="pieChartLegendAtNoWork">
+                  </canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-3"></div>
+        <div class="card">
+          <div class="card-header">
+            <h5 class="h3 mb-0">Top Voliation Count By Skilled Worker</h5>
+            <div class="col-10">
+              <div style="display: block;" class="chart">
+                <canvas baseChart [datasets]="labelMFLVoliationData" [labels]="lineChartLabelsVoliationData"
+                  [options]="lineChartOptionsVoliationData" [chartType]="ChartTypeVoliationData"></canvas>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <!-- Summary of All Service Dashboard -->
   </div>
+  <!-- Summary of All Service Dashboard -->
+  <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+    <div class="panel-body">
+      <hr>
+      <h4>Services In Cart / Payment Pending</h4>
+      <div class="row">
+        <div class="row mb-4 justify-content-end">
+          <div class="col-xl-3 col-sm-6 py-2">
+            <select class="btn btn-info" (change)="getServicesDetailsByServiceId($event);">
+              <option value=null> --Select Service --</option>
+              <option *ngFor="let item of onlistofallactivenewservices" value={{item.ourserviceId}}>
+                {{item.name}}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mb-4 justify-content-end"
+        *ngIf="servicetableenabled && this.userService.currentUserValue.userroles.rolecode =='DIRECTORS' ">
+        <div class="col-xl-3 col-sm-6 py-5">
+          <div class="card bg-success text-white h-100">
+            <div class="card-body bg-success">
+              <div class="rotate">
+                <i class="fa fa-inr fa-4x"></i>
+              </div>
+              <h6 class="text-uppercase">Total All Earnings</h6>
+              <h1>{{this.totalearningallservices | currency:"INR"}}</h1>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-sm-6 py-5">
+          <div class="card bg-success text-white h-100">
+            <div class="card-body bg-info">
+              <div class="rotate">
+                <i class="fa fa-inr fa-4x"></i>
+              </div>
+              <h6 class="text-uppercase">Earned On This Service</h6>
+              <h1>{{this.totalearningonservice | currency:"INR"}}</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" *ngIf="servicetableenabled">
+        <div class="col-12">
+          <h5><u>Client Purchased Service</u></h5>
+          <table class="table table-bordered" *ngIf="!ispurchasedserviceempty">
+            <thead>
+              <tr>
+                <th scope="col">Service Name</th>
+                <th scope="col">Client Name</th>
+                <th scope="col">Business Name</th>
+                <th scope="col">Phone No</th>
+                <th scope="col">Valid Period </th>
+                <th scope="col">Valid From</th>
+                <th scope="col">Valid Till</th>
+                <th scope="col">Amount</th>
+                <th scope="col">Txn Id</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let srv of listofallpaidservices">
+                <td>
+                  {{srv.name}}
+                </td>
+                <td>
+                  <a href="javascript: return false;" (click)='manageruser.openViewAccountDetailsModal(srv.userid)'>
+                    {{srv.fullname}}
+                  </a>
+                </td>
+                <td>{{srv.bizname}}</td>
+                <td>{{srv.phoneno}}</td>
+                <td>{{srv.validPeriodLabel}}</td>
+                <td>{{srv.servicestarton}}</td>
+                <td>{{srv.serviceendon}}</td>
+                <td>{{srv.amount | currency:"INR₹"}}</td>
+                <td>
+                  <a [routerLink]="['/payment',srv.txnid]">{{srv.txnid}}</a></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="alert alert-success alert-dismissible fade show w-100" role="alert"
+            *ngIf="ispurchasedserviceempty">
+            <h5 class="display-5">
+              No clients has purchased this service.
+            </h5>
+          </div>
+        </div>
+      </div>
+      <div class="row mb-3"></div>
+      <div class="row" *ngIf="servicetableenabled">
+        <div class="col-12">
+          <h5><u>Client Add Cart & Pending Payment</u></h5>
+          <table class="table table-bordered" *ngIf="!isnotpurchasedserviceempty">
+            <thead>
+              <tr>
+                <th scope="col">Service Name</th>
+                <th scope="col">Client Name</th>
+                <th scope="col">Business Name</th>
+                <th scope="col">Phone No</th>
+                <th scope="col">Valid Period </th>
+                <th scope="col">Valid From</th>
+                <th scope="col">Valid Till</th>
+                <th scope="col">Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let srv of listofallnotpaidservices">
+                <td>
+                  {{srv.name}}
+                </td>
+                <td>
+                  <a href="javascript: return false;" (click)='manageruser.openViewAccountDetailsModal(srv.userid)'>
+                    {{srv.fullname}}
+                  </a>
+                </td>
+                <td>{{srv.bizname}}</td>
+                <td>{{srv.phoneno}}</td>
+                <td>{{srv.validPeriodLabel}}</td>
+                <td>{{srv.servicestarton}}</td>
+                <td>{{srv.serviceendon}}</td>
+                <td>{{srv.amount | currency:"INR₹"}}</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="alert alert-success alert-dismissible fade show w-100" role="alert"
+            *ngIf="isnotpurchasedserviceempty">
+            <h5 class="display-5">
+              No clients has added this service on the cart for purchase.
+            </h5>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-2"></div>
+        <div class="col-7">
+          <div class="card">
+            <div class="card-header">
+              <h5 class="h3 mb-0">Pending Payment</h5>
+              <div style="display: block;">
+                <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"
+                  [options]="pieChartOptions" [plugins]="pieChartPlugins" [legend]="pieChartLegend">
+                </canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Summary of All Service Dashboard -->
+</div>
