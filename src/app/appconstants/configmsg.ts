@@ -44,6 +44,6 @@ export const ConfigMsg = {
     biztype_cmp_te: 'సంస్థ',
     biztype_ind_hi: 'व्यक्ति',
     biztype_cmp_hi: 'कंपनी',
-    voliation_msg :'Sorry for the inconvenience caused. We are analzying with the skilled worker on this issue. We will be contact you soon.'
-
+    voliation_msg :'Sorry for the inconvenience caused. We are analzying with the skilled worker on this issue. We will be contact you soon.',
+    assign_job : 'Please confirm ,Do you want to assign the JobId#'
 };

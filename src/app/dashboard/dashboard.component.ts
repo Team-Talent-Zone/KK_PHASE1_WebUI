@@ -174,7 +174,7 @@ export class DashboardComponent implements OnInit {
               });
               this.spinnerService.hide();
             } else {
-              console.log('notifcationlist' , notifcationlist);
+              console.log(config.notifcationlist, notifcationlist);
               this.notifcationbellList = notifcationlist;
             }
           }
@@ -228,9 +228,9 @@ export class DashboardComponent implements OnInit {
       if (paymentobj.paymentsCBATrans != null) {
         if (paymentobj.paymentsCBATrans.status === config.payment_success.toString()) {
           this.ispaysuccess = true;
-          this.alertService.success('Thank you for the payment. Payment is Successfully');
+          this.alertService.success(ConfigMsg.payment_sucesss_alert_en);
         } else {
-          this.alertService.info('Transcation Failed. Please try again.');
+          this.alertService.info(ConfigMsg.payment_fail_alert_en);
         }
       }
       if (paymentobj.paymentsFUTrans != null) {
@@ -312,7 +312,7 @@ export class DashboardComponent implements OnInit {
     ).subscribe(
       data => {
         data.forEach(elementcategory => {
-          if (elementcategory.code !== 'SE_P') {
+          if (elementcategory.code !== config.domain_code_SE_P) {
             elementcategory.referencelookupmapping.forEach(elementlookupmapping => {
               elementlookupmapping.referencelookupmappingsubcategories.forEach(element => {
                 this.list.push(element);
@@ -346,20 +346,20 @@ export class DashboardComponent implements OnInit {
   // navigate through the list of items
   onKeyPress(event) {
     if (!this.listHidden) {
-      if (event.key === 'Escape') {
+      if (event.key === config.escape) {
         this.selectedIndex = -1;
         this.toggleListDisplay(0);
       }
-      if (event.key === 'Enter') {
+      if (event.key === config.enter) {
         this.toggleListDisplay(0);
       }
-      if (event.key === 'ArrowDown') {
+      if (event.key === config.ArrowDown) {
         this.listHidden = false;
         this.selectedIndex = (this.selectedIndex + 1) % this.filteredList.length;
         if (this.filteredList.length > 0 && !this.listHidden) {
           document.getElementsByTagName('list-item')[this.selectedIndex].scrollIntoView();
         }
-      } else if (event.key === 'ArrowUp') {
+      } else if (event.key === config.ArrowUp) {
         this.listHidden = false;
         if (this.selectedIndex <= 0) {
           this.selectedIndex = this.filteredList.length;
