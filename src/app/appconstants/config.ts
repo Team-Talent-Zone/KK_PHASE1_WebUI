@@ -29,6 +29,8 @@ export const config = {
   user_rolecode_csct: 'CORE_SERVICE_SUPPORT_TEAM',
   user_rolecode_cscm: 'CORE_SERVICE_SUPPORT_MANAGER',
   user_rolecode_basicauth: 'W4U_BASIC_AUTHORIZATION',
+  user_rolecode_directors: 'DIRECTORS',
+
   bg_code_approved: 'BG_APPROVED',
   bg_code_rejected: 'BG_REJECTED',
   bg_code_senttoccsm: 'BG_SENTTOCSSM',

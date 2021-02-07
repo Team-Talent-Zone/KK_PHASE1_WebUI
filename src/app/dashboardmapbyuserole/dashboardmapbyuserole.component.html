@@ -2,4 +2,5 @@
 <app-dashboardofcba *ngIf="userService.currentUserValue.userroles.rolecode == 'CLIENT_BUSINESS_ADMINISTRATOR'">
 </app-dashboardofcba>
 <app-dashboardofadmin *ngIf="userService.currentUserValue.userroles.rolecode =='CORE_SERVICE_SUPPORT_TEAM' || 
-userService.currentUserValue.userroles.rolecode =='CORE_SERVICE_SUPPORT_MANAGER' "></app-dashboardofadmin>
+userService.currentUserValue.userroles.rolecode =='CORE_SERVICE_SUPPORT_MANAGER' ||
+this.userService.currentUserValue.userroles.rolecode =='DIRECTORS' "></app-dashboardofadmin>

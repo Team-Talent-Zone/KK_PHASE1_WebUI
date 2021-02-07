@@ -69,7 +69,7 @@ export class ManageuserComponent implements OnInit {
     this.usrObjPlatformAdmins = [];
     this.usrObjMyWork = [];
     this.usrObj = [];
-    
+
     this.getReferenceDataByKey(config.key_bgstatus.toString());
     this.spinnerService.show();
     this.userService.getAllUsers().subscribe(
@@ -98,17 +98,17 @@ export class ManageuserComponent implements OnInit {
                   this.usrObj.freelancehistoryentity = elementFhistory;
                   this.usrObjFUs.push(this.usrObj);
                 } else
-                console.log('this si test' , elementFhistory.userid);
-                console.log('this si elementFhistory.bgstatus' , elementFhistory.bgstatus);
-                  if (!elementFhistory.islocked &&
-                    elementFhistory.bgstatus.toString() == config.bg_code_incompleteprofile.toString() ||
-                    elementFhistory.bgstatus.toString() == config.bg_code_completedprofile.toString() ||
-                    elementFhistory.bgstatus.toString() == config.bg_code_approved.toString() ||
-                    elementFhistory.bgstatus.toString() == config.bg_code_rejected.toString()
-                  ) {
-                    this.usrObj.freelancehistoryentity = elementFhistory;
-                    this.usrObjFUs.push(this.usrObj);
-                  }
+                  console.log('this si test', elementFhistory.userid);
+                console.log('this si elementFhistory.bgstatus', elementFhistory.bgstatus);
+                if (!elementFhistory.islocked &&
+                  elementFhistory.bgstatus.toString() == config.bg_code_incompleteprofile.toString() ||
+                  elementFhistory.bgstatus.toString() == config.bg_code_completedprofile.toString() ||
+                  elementFhistory.bgstatus.toString() == config.bg_code_approved.toString() ||
+                  elementFhistory.bgstatus.toString() == config.bg_code_rejected.toString()
+                ) {
+                  this.usrObj.freelancehistoryentity = elementFhistory;
+                  this.usrObjFUs.push(this.usrObj);
+                }
               });
             }
             if (this.usrObj.userroles.rolecode === config.user_rolecode_csct.toString() ||
@@ -117,7 +117,7 @@ export class ManageuserComponent implements OnInit {
             }
           });
         }
-        console.log('usrObjFUs' , this.usrObjFUs);
+        console.log('usrObjFUs', this.usrObjFUs);
         this.spinnerService.hide();
       },
       error => {
@@ -281,7 +281,7 @@ export class ManageuserComponent implements OnInit {
           (userObj: any) => {
             this.usrObj = this.userAdapter.adapt(userObj);
             if (this.usrObj.userId > 0) {
-            
+
               if (actionName == 'deactive') {
                 this.alertService.success('User successfully deactivaited.');
               } else {

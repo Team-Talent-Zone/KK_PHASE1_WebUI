@@ -53,16 +53,16 @@ export class HomeComponent implements OnInit {
       this.id = params.id;
       this.name = params.name;
     });
+    this.checkConfirmation();
   }
 
   ngOnInit() {
     this.userService.logout();
-    this.checkConfirmation();
   }
 
   checkConfirmation() {
+    this.spinnerService.show();
     if (this.id > 0 && this.name === config.confirmation_shortpathname.toString()) {
-      this.spinnerService.show();
       this.userService.getUserByUserId(this.id).pipe(first()).subscribe(
         (resp) => {
           this.usrObj = this.userAdapter.adapt(resp);

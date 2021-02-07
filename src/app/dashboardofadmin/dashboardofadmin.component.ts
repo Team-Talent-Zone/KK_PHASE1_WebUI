@@ -89,6 +89,10 @@ export class DashboardofadminComponent implements OnInit {
   listofallratingnamegraphdata: any = [];
   listofalluserservicenotpaidcountgraphdata: SingleDataSet = [];
   listofalluserservicenotpaidnamegraphdata: Label[] = [];
+
+  listofalluserservicepaidcountgraphdata: SingleDataSet = [];
+  listofalluserservicepaidnamegraphdata: Label[] = [];
+
   listofallinjobsbyskillcountgraphdata: SingleDataSet = [];
   listofallinjobsbyskillgraphdata: any = [];
 
@@ -97,6 +101,10 @@ export class DashboardofadminComponent implements OnInit {
 
   listofallvoliationcountgraphdata: any = [];
   listofallvoliationamegraphdata: any = [];
+
+  listofallcompanyprofitcountgraphdata: SingleDataSet = [];
+  listofallcompanyskillnamegraphdata: Label[] = [];
+  totalprofilebyskill: number = 0;
   /*All - Service related varaible
   */
 
@@ -133,18 +141,20 @@ export class DashboardofadminComponent implements OnInit {
 
   ngOnInit() {
     const sourcerefresh = timer(1000, 90000);
-    sourcerefresh.subscribe((val: number) => {
-      this.dashboardSummaryOfSkilledWorkerSearchService();
-      this.getAllAvailableFUSkills();
-      this.getAllNewServiceDetails();
-      /**
-       * The below methods are to load chart or graph.
-       */
-      this.getGraphFURatingData();
-      this.getGraphUserServiceData();
-      this.getGraphJobsData();
-      this.getGraphSKVoliationData();
-    });
+    //sourcerefresh.subscribe((val: number) => {
+    this.dashboardSummaryOfSkilledWorkerSearchService();
+    this.getAllAvailableFUSkills();
+    this.getAllNewServiceDetails();
+    this.getTotalEarningsFromServices();
+    /**
+     * The below methods are to load chart or graph.
+     */
+    this.getGraphFURatingData();
+    this.getGraphUserServiceData();
+    this.getGraphJobsData();
+    this.getGraphSKVoliationData();
+    this.getGraphSkillBasedData();
+    //  });
   }
 
   dashboardSummaryOfSkilledWorkerSearchService() {
@@ -549,11 +559,29 @@ export class DashboardofadminComponent implements OnInit {
       });
   }
 
+  getTotalEarningsFromServices() {
+    this.totalearningallservices = 0;
+
+    this.usersrvdetailsService.getAllUserServiceDetailsView().subscribe((allservices: any) => {
+      if (allservices != null) {
+        allservices.forEach(element => {
+          if (element.isservicepurchased) {
+            this.totalearningallservices = element.amount + this.totalearningallservices;
+          }
+        });
+      }
+    },
+      error => {
+        this.spinnerService.hide();
+        this.alertService.error(error);
+      }
+    );
+  }
+
   getServicesDetailsByServiceId(event: Event) {
     this.listofallnotpaidservices = [];
     this.listofallpaidservices = [];
     this.totalearningonservice = 0;
-    this.totalearningallservices = 0;
     this.ispurchasedserviceempty = false;
     this.isnotpurchasedserviceempty = false;
 
@@ -572,9 +600,6 @@ export class DashboardofadminComponent implements OnInit {
             if (!element.isservicepurchased) {
               this.listofallnotpaidservices.push(element);
             }
-          }
-          if (element.isservicepurchased) {
-            this.totalearningallservices = element.amount + this.totalearningallservices;
           }
         });
         this.servicetableenabled = true;
@@ -627,6 +652,9 @@ export class DashboardofadminComponent implements OnInit {
         this.alertService.error(error);
       });
   }
+  
+  public pieChartData: SingleDataSet = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
+  public pieChartDataSrvPaid: SingleDataSet = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
 
   getGraphUserServiceData() {
     this.dbviewServic.getGraphUserServiceData().subscribe((servicesList: any) => {
@@ -636,7 +664,13 @@ export class DashboardofadminComponent implements OnInit {
             this.listofalluserservicenotpaidcountgraphdata.push(Number.parseInt(element.count));
             this.listofalluserservicenotpaidnamegraphdata.push(element.name);
           }
+          if (element.type == 'purchased') {
+            this.listofalluserservicepaidcountgraphdata.push(Number.parseInt(element.count));
+            this.listofalluserservicepaidnamegraphdata.push(element.name);
+          }
         });
+        this.pieChartData = this.listofalluserservicenotpaidcountgraphdata;
+        this.pieChartDataSrvPaid = this.listofalluserservicepaidcountgraphdata;
       }
     },
       error => {
@@ -644,13 +678,14 @@ export class DashboardofadminComponent implements OnInit {
         this.alertService.error(error);
       });
   }
+  public pieChartDataAtNoWork: SingleDataSet =[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
+  public pieChartDataAtWork: SingleDataSet = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
 
   getGraphJobsData() {
     this.dbviewServic.getGraphJobsData().subscribe((jobList: any) => {
       if (jobList != null) {
         jobList.forEach(element => {
           if (element.type == 'injobs') {
-            console.log('element.jobcount', element);
             this.listofallinjobsbyskillcountgraphdata.push(Number.parseInt(element.count));
             this.listofallinjobsbyskillgraphdata.push(element.skill);
           }
@@ -659,6 +694,8 @@ export class DashboardofadminComponent implements OnInit {
             this.listofallnojobsbyskillgraphdata.push(element.skill);
           }
         });
+        this.pieChartDataAtNoWork = this.listofallnojobsbyskillcountgraphdata;
+        this.pieChartDataAtWork = this.listofallinjobsbyskillcountgraphdata;
       }
     },
       error => {
@@ -681,6 +718,25 @@ export class DashboardofadminComponent implements OnInit {
         this.alertService.error(error);
       });
   }
+  public pieChartDataAtWGraphSkillBased: SingleDataSet = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
+  getGraphSkillBasedData() {
+    this.dbviewServic.getGraphSkillBasedData().subscribe((proofilebyskill: any) => {
+      if (proofilebyskill != null) {
+        proofilebyskill.forEach(element => {
+          this.listofallcompanyprofitcountgraphdata.push(Number.parseInt(element.totalcompanyamount));
+          this.listofallcompanyskillnamegraphdata.push(element.subcategorylabel);
+          this.totalprofilebyskill = this.totalprofilebyskill + element.totalcompanyamount;
+        });
+      }
+      this.pieChartDataAtWGraphSkillBased = this.listofallcompanyprofitcountgraphdata;
+    },
+      error => {
+        this.spinnerService.hide();
+        this.alertService.error(error);
+      });
+  }
+  
+
   /**
    *  Prepared for getGraphFURatingData
    */
@@ -749,10 +805,17 @@ export class DashboardofadminComponent implements OnInit {
     responsive: true,
   };
   public pieChartLabels: Label[] = this.listofalluserservicenotpaidnamegraphdata;
-  public pieChartData: SingleDataSet = this.listofalluserservicenotpaidcountgraphdata;
   public pieChartType: ChartType = 'pie';
   public pieChartLegend = true;
   public pieChartPlugins = [];
+
+  public pieChartOptionsSrvPaid: ChartOptions = {
+    responsive: true,
+  };
+  public pieChartLabelsSrvPaid: Label[] = this.listofalluserservicepaidnamegraphdata;
+  public pieChartTypeSrvPaid: ChartType = 'pie';
+  public pieChartLegendSrvPaid = true;
+  public pieChartPluginsSrvPaid = [];
 
   /*
     Below Chart to prepare getGraphJobsData
@@ -763,7 +826,6 @@ export class DashboardofadminComponent implements OnInit {
     responsive: true,
   };
   public pieChartLabelsAtWork: Label[] = this.listofallinjobsbyskillgraphdata;
-  public pieChartDataAtWork: SingleDataSet = this.listofallinjobsbyskillcountgraphdata;
   public pieChartTypeAtWork: ChartType = 'pie';
   public pieChartLegendAtWork = true;
   public pieChartPluginsAtWork = [];
@@ -774,19 +836,18 @@ export class DashboardofadminComponent implements OnInit {
     responsive: true,
   };
   public pieChartLabelsAtNoWork: Label[] = this.listofallnojobsbyskillgraphdata;
-  public pieChartDataAtNoWork: SingleDataSet = this.listofallnojobsbyskillcountgraphdata;
   public pieChartTypeAtNoWork: ChartType = 'pie';
   public pieChartLegendAtNoWork = true;
   public pieChartPluginsAtNoWork = [];
 
 
   /**
-*  Prepared for getGraphFURatingData
+*  Prepared for getGraphSKVoliationData
 */
   public lineChartDataVoliationData: Array<number> = this.listofallvoliationcountgraphdata;
   public lineChartLabelsVoliationData: Array<any> = this.listofallvoliationamegraphdata;
 
-  public SystemNames: string = "Voliation Count Details";
+  public SystemNames: string = "Voliation Count";
   firstCopyVoliationData = false;
 
   public labelMFLVoliationData: Array<any> = [
@@ -827,7 +888,19 @@ export class DashboardofadminComponent implements OnInit {
       deferred: false
     },
   };
- 
+
   public ChartTypeVoliationData = 'bar';
+
+  /*Below Chart to prepare getGraphJobsData
+   */
+
+  // Pie skilled enagaged at work 
+  public pieChartOptionsGraphSkillBased: ChartOptions = {
+    responsive: true,
+  };
+  public pieChartLabelsGraphSkillBased: Label[] = this.listofallcompanyskillnamegraphdata;
+  public pieChartTypeAtGraphSkillBased: ChartType = 'pie';
+  public pieChartLegendAtGraphSkillBased = true;
+  public pieChartPluginsAtGraphSkillBased = [];
 
 }

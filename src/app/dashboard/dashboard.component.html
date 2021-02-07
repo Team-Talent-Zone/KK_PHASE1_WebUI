@@ -15,7 +15,7 @@
         </button>
     </div>
     <div class="navbar-collapse collapse" id="collapsingNavbar"
-        *ngIf="this.userService.currentUserValue.userroles.rolecode !== 'FREELANCER_USER'">
+        *ngIf="this.userService.currentUserValue.userroles.rolecode !== 'FREELANCER_USER' && this.userService.currentUserValue.userroles.rolecode !== 'DIRECTORS'">
         <div class="combobox">
             <input type="search" [(ngModel)]="inputItem" (ngModelChange)="getFilteredList()"
                 (keyup.enter)="search( inputItemCode , inputItem)" class="combobox-input form-control"
@@ -46,8 +46,9 @@
                         </b>
                     </a>
                 </li>
-                <li class="nav-item"
-                    *ngIf="this.userService.currentUserValue.userroles.rolecode =='CORE_SERVICE_SUPPORT_TEAM' || this.userService.currentUserValue.userroles.rolecode =='CORE_SERVICE_SUPPORT_MANAGER'">
+                <li class="nav-item" *ngIf="this.userService.currentUserValue.userroles.rolecode =='CORE_SERVICE_SUPPORT_TEAM' || 
+                    this.userService.currentUserValue.userroles.rolecode =='CORE_SERVICE_SUPPORT_MANAGER' ||
+                    this.userService.currentUserValue.userroles.rolecode =='DIRECTORS'">
                     <a [routerLink]="['/dashboard']" class="list-group-item list-group-item-action bg-light">
                         <i class="fa fa-tachometer" style="color:#FF4949"></i>
                         <b>
@@ -111,7 +112,8 @@
                 </li>
                 <li
                     *ngIf="this.userService.currentUserValue.userroles.rolecode =='FREELANCER_USER' && userService.currentUserValue.freeLanceDetails.bgcurrentstatus == 'BG_APPROVED'">
-                    <a [routerLink]="['/fureviews',this.userService.currentUserValue.userId]" class="list-group-item list-group-item-action bg-light">
+                    <a [routerLink]="['/fureviews',this.userService.currentUserValue.userId]"
+                        class="list-group-item list-group-item-action bg-light">
                         <i class="fa fa-commenting-o" style="color:#FF4949"></i>
                         <b>
                             {{ 'DASHOARD_FU_MENU.REVIEWS' | translate }}
@@ -174,25 +176,25 @@
                                     this.userService.currentUserValue.userroles.rolecode =='CLIENT_BUSINESS_ADMINISTRATOR'">
                                 <i class="fa fa-comments-o" style="color:#FF4949">{{notifcationbellList.length}}</i>
                             </a>
+                            <a style="cursor:pointer" (click)='openNotifcationWindow()' *ngIf="notifcationbellList != null && notifcationbellList.length > 0 &&
+                                this.userService.currentUserValue.userroles.rolecode =='CORE_SERVICE_SUPPORT_TEAM'">
+                                <i class="fa fa-comments-o" style="color:#FF4949">{{notifcationbellList.length}}</i>
+                            </a>
                             <a style="cursor:pointer" (click)='openNotifcationWindow()'
                                 *ngIf="notifcationbellList != null && notifcationbellList.length > 0 &&
-                                this.userService.currentUserValue.userroles.rolecode =='CORE_SERVICE_SUPPORT_TEAM'">
-                            <i class="fa fa-comments-o" style="color:#FF4949">{{notifcationbellList.length}}</i>
-                             </a>
-                             <a style="cursor:pointer" (click)='openNotifcationWindow()'
-                                *ngIf="notifcationbellList != null && notifcationbellList.length > 0 &&
                                 this.userService.currentUserValue.userroles.rolecode =='CORE_SERVICE_SUPPORT_MANAGER' ">
-                            <i class="fa fa-comments-o" style="color:#FF4949">{{notifcationbellList.length}}</i>
-                             </a>
-                            <a *ngIf="notifcationbellList.length==0">
+                                <i class="fa fa-comments-o" style="color:#FF4949">{{notifcationbellList.length}}</i>
+                            </a>
+                            <a *ngIf="notifcationbellList.length==0 && 
+                            this.userService.currentUserValue.userroles.rolecode !='DIRECTORS'">
                                 <i class="fa fa-comments-o">0</i>
                             </a>
                             &nbsp;
                             <a routerLink='/vieworeditprofile/{{userService.currentUserValue.userId}}'>
-                                <img *ngIf="userService.currentUserValue.avtarurl != null" class="avatar"
-                                    src="{{userService.currentUserValue.avtarurl}}">
-                                <img *ngIf="userService.currentUserValue.avtarurl === null" src="{{defaultTxtImg}}"
-                                    class="avatar">
+                                <img *ngIf="userService.currentUserValue.avtarurl != null && this.userService.currentUserValue.userroles.rolecode !='DIRECTORS'"
+                                    class="avatar" src="{{userService.currentUserValue.avtarurl}}">
+                                <img *ngIf="userService.currentUserValue.avtarurl === null && this.userService.currentUserValue.userroles.rolecode !='DIRECTORS'"
+                                    src="{{defaultTxtImg}}" class="avatar">
                             </a>
                         </div>
                     </div>

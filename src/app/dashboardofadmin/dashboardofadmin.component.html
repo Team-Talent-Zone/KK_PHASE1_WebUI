@@ -1,5 +1,12 @@
 <h4>Dashboard</h4>
-<p> <small>This page will auto refesh every 90 seconds.</small></p>
+<!--<p> <small>This page will auto refesh every 90 seconds.</small></p>-->
+<p *ngIf="this.userService.currentUserValue.userroles.rolecode =='DIRECTORS'">
+  <span><b>
+      <h3>
+        {{this.userService.currentUserValue.userbizdetails.bizname}} |
+        {{this.userService.currentUserValue.userbizdetails.designation}}</h3>
+    </b></span>
+</p>
 <hr>
 <div class="row mb-2"></div>
 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
@@ -9,21 +16,21 @@
         <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true"
           aria-controls="collapseOne">
           <i class="fa fa-caret-right"></i>
-          Jobs Summary - Skilled Worker Search Service
+          Jobs Monitoring System - Skilled Worker Search Service
         </a>
       </h4>
       <h4 class="panel-title">
         <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true"
           aria-controls="collapseOne">
           <i class="fa fa-caret-right"></i>
-          Users Summary - Skilled Worker Search Service
+         Jobs Reporting System - Skilled Worker Search Service
         </a>
       </h4>
       <h4 class="panel-title">
         <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true"
           aria-controls="collapseTwo">
           <i class="fa fa-caret-right"></i>
-          Summary - All Services
+          Summary - Platform Services
         </a>
       </h4>
     </div>
@@ -31,11 +38,10 @@
     <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
       <div class="panel-body">
         <hr>
-        <h4>Monitoring Jobs</h4>
+        <h4>Jobs Monitoring</h4>
         <!-- Payment Cards Sections-->
         <div class="row mb-4 justify-content-center">
-          <div class="col-xl-3 col-sm-6 py-5"
-            *ngIf="this.userService.currentUserValue.userroles.rolecode =='DIRECTORS' ">
+          <div class="col-xl-3 col-sm-6 py-5">
             <div class="card bg-success text-white h-100">
               <div class="card-body bg-success">
                 <div class="rotate">
@@ -646,9 +652,10 @@
       <div class="panel-body">
         <hr>
         <h4>Users Jobs - Report</h4>
-        <div class="row mb-4 justify-content-center">
+        <div class="row mb-1 justify-content-center" *ngIf="this.userService.currentUserValue.userroles.rolecode =='CORE_SERVICE_SUPPORT_TEAM' || 
+        this.userService.currentUserValue.userroles.rolecode =='CORE_SERVICE_SUPPORT_MANAGER'">
           <div class="col-xl-4 col-sm-6 py-2">
-            <select class="btn btn-dark" (change)="getFUWorkStatus($event);">
+            <select class="btn btn-info" (change)="getFUWorkStatus($event);">
               <option value=''> -- Select Skill Name --</option>
               <option *ngFor="let item of listofAllFUSkills" value={{item.code}}>
                 {{item.label}}
@@ -743,7 +750,7 @@
           <div class="col-6">
             <div class="card">
               <div class="card-header">
-                <h6 class="h3 mb-0">Skills Enagaged At Jobs</h6>
+                <h6 class="h4 mb-0">Current Workers Enagaged At Jobs</h6>
                 <div style="display: block;">
                   <canvas baseChart [data]="pieChartDataAtWork" [labels]="pieChartLabelsAtWork"
                     [chartType]="pieChartTypeAtWork" [options]="pieChartOptionsAtWork" [plugins]="pieChartPluginsAtWork"
@@ -756,8 +763,8 @@
           <div class="col-6">
             <div class="card">
               <div class="card-header">
-                <h6 class="h3 mb-0">Skills <u>NOT</u> Enagaged At Jobs</h6>
-                <div style="display: block;">
+                <h6 class="h4 mb-0">Current Workers <u>NOT</u> Enagaged At Jobs</h6>
+                <div style="display: block;" *ngIf="pieChartLabelsAtWork != null && pieChartDataAtWork != null">
                   <canvas baseChart [data]="pieChartDataAtNoWork" [labels]="pieChartLabelsAtNoWork"
                     [chartType]="pieChartTypeAtNoWork" [options]="pieChartOptionsAtNoWork"
                     [plugins]="pieChartPluginsAtNoWork" [legend]="pieChartLegendAtNoWork">
@@ -770,11 +777,40 @@
         <div class="row mb-3"></div>
         <div class="card">
           <div class="card-header">
-            <h5 class="h3 mb-0">Top Voliation Count By Skilled Worker</h5>
+            <h5 class="h4 mb-0">Top Voliation Count By Skilled Worker</h5>
             <div class="col-10">
               <div style="display: block;" class="chart">
                 <canvas baseChart [datasets]="labelMFLVoliationData" [labels]="lineChartLabelsVoliationData"
                   [options]="lineChartOptionsVoliationData" [chartType]="ChartTypeVoliationData"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-3"></div>
+        <div class="row">
+          <div class="col-6">
+            <div class="card">
+              <div class="card-header">
+                <h5 class="h3 mb-0">Profit To Company By Skills</h5>
+                <div class="col-10">
+                  <div style="display: block;" class="chart">
+                    <canvas baseChart [data]="pieChartDataAtWGraphSkillBased" [labels]="pieChartLabelsGraphSkillBased"
+                      [chartType]="pieChartTypeAtGraphSkillBased" [options]="pieChartOptionsGraphSkillBased"
+                      [plugins]="pieChartPluginsAtGraphSkillBased" [legend]="pieChartLegendAtGraphSkillBased">
+                    </canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="col-xl-6 col-sm-6 py-1 card bg-success text-white">
+              <div class="card-body bg-success">
+                <div class="rotate">
+                  <i class="fa fa-inr fa-4x"></i>
+                </div>
+                <h6 class="text-uppercase">Total <i class="fa fa-arrow-up fa-3x"></i></h6>
+                <h1> {{this.totalprofilebyskill | currency:"INR"}}</h1>
               </div>
             </div>
           </div>
@@ -786,40 +822,36 @@
   <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
     <div class="panel-body">
       <hr>
-      <h4>Services In Cart / Payment Pending</h4>
-      <div class="row">
-        <div class="row mb-4 justify-content-end">
-          <div class="col-xl-3 col-sm-6 py-2">
-            <select class="btn btn-info" (change)="getServicesDetailsByServiceId($event);">
-              <option value=null> --Select Service --</option>
-              <option *ngFor="let item of onlistofallactivenewservices" value={{item.ourserviceId}}>
-                {{item.name}}
-              </option>
-            </select>
-          </div>
+      <h4>Services Summary</h4>
+      <div class="row mb-4 justify-content-start">
+        <div class="col-xl-3 col-sm-6 py-2">
+          <select class="btn btn-info" (change)="getServicesDetailsByServiceId($event);">
+            <option value=null> --Select Service --</option>
+            <option *ngFor="let item of onlistofallactivenewservices" value={{item.ourserviceId}}>
+              {{item.name}}
+            </option>
+          </select>
         </div>
       </div>
-
-      <div class="row mb-4 justify-content-end"
-        *ngIf="servicetableenabled && this.userService.currentUserValue.userroles.rolecode =='DIRECTORS' ">
+      <div class="row mb-4 justify-content-center">
         <div class="col-xl-3 col-sm-6 py-5">
           <div class="card bg-success text-white h-100">
             <div class="card-body bg-success">
               <div class="rotate">
                 <i class="fa fa-inr fa-4x"></i>
               </div>
-              <h6 class="text-uppercase">Total All Earnings</h6>
+              <h6 class="text-uppercase">Total <i class="fa fa-arrow-up fa-3x"></i></h6>
               <h1>{{this.totalearningallservices | currency:"INR"}}</h1>
             </div>
           </div>
         </div>
-        <div class="col-xl-3 col-sm-6 py-5">
+        <div class="col-xl-3 col-sm-6 py-5" *ngIf="servicetableenabled">
           <div class="card bg-success text-white h-100">
             <div class="card-body bg-info">
               <div class="rotate">
                 <i class="fa fa-inr fa-4x"></i>
               </div>
-              <h6 class="text-uppercase">Earned On This Service</h6>
+              <h6 class="text-uppercase">On Service <i class="fa fa-arrow-up fa-3x"></i></h6>
               <h1>{{this.totalearningonservice | currency:"INR"}}</h1>
             </div>
           </div>
@@ -917,14 +949,26 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-2"></div>
-        <div class="col-7">
+        <div class="col-6">
           <div class="card">
             <div class="card-header">
-              <h5 class="h3 mb-0">Pending Payment</h5>
+              <h5 class="h4 mb-0">Total Pending Payment Count</h5>
               <div style="display: block;">
                 <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"
                   [options]="pieChartOptions" [plugins]="pieChartPlugins" [legend]="pieChartLegend">
+                </canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="card">
+            <div class="card-header">
+              <h5 class="h4 mb-0">Total Purchase Count</h5>
+              <div style="display: block;">
+                <canvas baseChart [data]="pieChartDataSrvPaid" [labels]="pieChartLabelsSrvPaid"
+                  [chartType]="pieChartTypeSrvPaid" [options]="pieChartOptionsSrvPaid"
+                  [plugins]="pieChartPluginsSrvPaid" [legend]="pieChartLegendSrvPaid">
                 </canvas>
               </div>
             </div>
