@@ -228,8 +228,11 @@ Announcement
     the lockdown, which was declared following the coronavirus outbreak.
     Kaam Karega has the ability to raise the economy by engaging our skilled workers by providing job opportunities.
   </p>
-  <p>We welcome, the below skilled workers to onboard into the platform to utilze the job opportunities. It's a FREE
-    Signup.</p>
+  <p>We welcome, the below skilled workers to onboard into the platform to utilze the job opportunities.
+    <a  href="javascript: return false;" (click)="openSignupModal('fu')">
+     <u>It's FREE Signup</u>
+    </a>
+  </p>
   <p *ngIf="list != null">
     <span *ngFor="let item of list; let i = index ">
       {{item.label}}
