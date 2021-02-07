@@ -233,7 +233,7 @@ export class DashboardsearchbyfilterComponent implements OnInit {
           this.createjobform.patchValue({ jobstartedon: this.getDateTimeFormat(this.startdate) });
         }
         if (this.userService.currentUserValue.phoneno === null) {
-          this.alertService.info('Complete the profile before creating a job for ' + this.name + ', Go to Update Profile');
+          this.alertService.info('Complete the profile before creating a job for ' + this.name + ', Go to Edit Profile');
         } else
           if (this.isfreelancerservicesubscribed) {
             this.iscreatejobdiv = true;

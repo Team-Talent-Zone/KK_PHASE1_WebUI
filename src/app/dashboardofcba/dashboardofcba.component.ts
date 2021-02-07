@@ -129,6 +129,10 @@ export class DashboardofcbaComponent implements OnInit {
 
   // tslint:disable-next-line: max-line-length
   prepareSaveUserServiceForServiceId(ourserviceid: number, packwithotherourserviceid: number, amount: number, validPeriodLabel: string, validPeriodCode: string, serviceendon: string, servicestarton: string) {
+    if (this.userService.currentUserValue.phoneno === null) {
+      this.alertService.info('Complete the profile before proceeding.. Go to Edit Profile');
+      return;
+    }
     let isServiceAlreadyExist = false;
     var isInsideCart = this.userservicedetailsAddedList.filter(item => item.ourserviceId === packwithotherourserviceid);
     if (isInsideCart.length > 0) {
