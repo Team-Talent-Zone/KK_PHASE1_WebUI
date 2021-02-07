@@ -1,212 +1,332 @@
-<div class="modal-header">
-  <h4 class="modal-title">
-    View Account Details of {{usrdetailsObj.firstname}}
-  </h4>
+<div class="container">
   <button type="button" class="close" (click)="modalRef.hide()">&times;</button>
-</div>
-<div class="modal-body">
-  <h5> Basic Details </h5>
-  <table style="width:100%">
-    <tr>
-      <th> ID </th>
-      <td>{{usrdetailsObj.userId}}</td>
-    </tr>
-    <tr>
-      <th>Profile Picture</th>
-      <td> <img src="{{usrdetailsObj.avtarurl}}" width="100px" height="80px"></td>
-    </tr>
-    <tr>
-      <th>Email Address </th>
-      <td> {{usrdetailsObj.username}}</td>
-    </tr>
-    <tr>
-      <th>First Name </th>
-      <td>{{usrdetailsObj.firstname}} </td>
-    </tr>
-    <tr>
-      <th>Last Name </th>
-      <td>{{usrdetailsObj.lastname}}</td>
-    </tr>
-    <tr>
-      <th>Phone Number</th>
-      <td>{{usrdetailsObj.phoneno}}</td>
-    </tr>
-    <tr>
-      <th>Prefered Language</th>
-      <td>{{usrdetailsObj.preferlang}}</td>
-    </tr>
-    <tr>
-      <th>Created On </th>
-      <td> {{usrdetailsObj.createdon}}</td>
-    </tr>
-    <tr>
-      <th>Created By </th>
-      <td> {{usrdetailsObj.createdby}}</td>
-    </tr>
-    <tr>
-      <th>Full Address </th>
-      <td>
-        <a href={{mapurl}} target="_blank">
-          {{usrdetailsObj.userbizdetails.fulladdress}}
-        </a>
-      </td>
-    </tr>
-  </table>
-</div>
 
-<p
-  *ngIf="usrdetailsObj.userroles.rolecode == 'CORE_SERVICE_SUPPORT_TEAM'||usrdetailsObj.userroles.rolecode == 'CORE_SERVICE_SUPPORT_MANAGER' ">
 
+<div  *ngIf="usrdetailsObj.userroles.rolecode == 'CORE_SERVICE_SUPPORT_TEAM'||usrdetailsObj.userroles.rolecode == 'CORE_SERVICE_SUPPORT_MANAGER' " >	
+  <div><h3>View Account Details of {{usrdetailsObj.firstname}}</h3></div>
+  <ul  class="nav nav-tabs">
+  <li class="nav-item"><a  class="nav-link medium text-uppercase active" href="#basic1" data-toggle="tab">Basic Details</a></li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active fade show" id="basic1">
+      <table style="width:100%">
+        <tr>
+          <th> ID </th>
+          <td>{{usrdetailsObj.userId}}</td>
+        </tr>
+        <tr>
+          <th>Profile Picture</th>
+          <td> <img src="{{usrdetailsObj.avtarurl}}" width="100px" height="80px"></td>
+        </tr>
+        <tr>
+          <th>Email Address </th>
+          <td> {{usrdetailsObj.username}}</td>
+        </tr>
+        <tr>
+          <th>First Name </th>
+          <td>{{usrdetailsObj.firstname}} </td>
+        </tr>
+        <tr>
+          <th>Last Name </th>
+          <td>{{usrdetailsObj.lastname}}</td>
+        </tr>
+        <tr>
+          <th>Phone Number</th>
+          <td>{{usrdetailsObj.phoneno}}</td>
+        </tr>
+        <tr>
+          <th>Prefered Language</th>
+          <td>{{usrdetailsObj.preferlang}}</td>
+        </tr>
+        <tr>
+          <th>Created On </th>
+          <td> {{usrdetailsObj.createdon}}</td>
+        </tr>
+        <tr>
+          <th>Created By </th>
+          <td> {{usrdetailsObj.createdby}}</td>
+        </tr>
+        <tr>
+          <th>Full Address </th>
+          <td>
+            <a href={{mapurl}} target="_blank">
+              {{usrdetailsObj.userbizdetails.fulladdress}}
+            </a>
+          </td>
+        </tr>
+      </table>
+      </div>
+      </div>
+<p style="margin: 20px;">
   {{usrdetailsObj.firstname}}'s manager is {{edituserobj2?.firstname}} {{edituserobj2?.lastname}}
 </p>
-
-<div class="modal-body" *ngIf="usrdetailsObj.userroles.rolecode == 'CLIENT_BUSINESS_ADMINISTRATOR'">
-  <h5> Business Details</h5>
-  <table style="width:100%">
-
-    <tr>
-      <th>Biz Name </th>
-      <td> {{usrdetailsObj.userbizdetails.bizname}}</td>
-    </tr>
-    <tr>
-      <th>Biz Type </th>
-      <td> {{usrdetailsObj.userbizdetails.biztype}}</td>
-    </tr>
-    <tr>
-      <th>Biz Website </th>
-      <td> {{usrdetailsObj.userbizdetails.bizwebsite}}</td>
-    </tr>
-    <tr>
-      <th>Purpose of signup </th>
-      <td> {{usrdetailsObj.userbizdetails.purposeofsignup}}</td>
-    </tr>
-    <tr>
-      <th>AbtBiz </th>
-      <td> {{usrdetailsObj.userbizdetails.abtbiz}}</td>
-    </tr>
-    <tr>
-      <th>Designation </th>
-      <td> {{usrdetailsObj.userbizdetails.designation}}</td>
-    </tr>
-
-  </table>
 </div>
 
-<div class="modal-body" *ngIf="usrdetailsObj.userroles.rolecode == 'FREELANCER_USER'">
-  <h5> Freelancer Details </h5>
-  <table style="width:100%">
-    <tr *ngFor="let referencelookupmap of signupComponent.referencedetailsmap">
-      <th *ngIf="referencelookupmap.mapId == usrdetailsObj.freeLanceDetails.category">Skill Under Category</th>
-      <td *ngIf="referencelookupmap.mapId == usrdetailsObj.freeLanceDetails.category">{{referencelookupmap.label}}</td>
-    </tr>
-    <tr>
-      <th>Skill Name</th>
-      <td> {{usrdetailsObj.freeLanceDetails.subcategorylabel}}</td>
-    </tr>
-    <tr>
-      <th>Experience</th>
-      <td> {{usrdetailsObj.freeLanceDetails.experienceInField}}</td>
-    </tr>
-    <tr>
-      <th>About</th>
-      <td> {{usrdetailsObj.freeLanceDetails.abt}}</td>
-    </tr>
-    <tr>
-      <th>Hour Rate</th>
-      <td> {{usrdetailsObj.freeLanceDetails.hourlyRate}} &#8377;</td>
-    </tr>
-    <tr>
-      <th>Company Percentage%</th>
-      <td> {{usrdetailsObj.freeLanceDetails.companypercentage}} &#37;</td>
-    </tr>
-    <tr>
-      <th>Worker Percentage%</th>
-      <td> {{usrdetailsObj.freeLanceDetails.fupercentage}} &#37;</td>
-    </tr>
-    <tr>
-      <th>Profile Completed?</th>
-      <td>
-        <div *ngIf="usrdetailsObj.freeLanceDetails.isprofilecompleted">
-          <i class="fa fa-check" title="Bg verification is completed" style="color: rgb(37, 165, 37)"></i>
-        </div>
-
-        <div *ngIf="!usrdetailsObj.freeLanceDetails.isprofilecompleted">
-          <i class="fa fa-spinner" title="Bg verification is in-progress" style="color:rgb(16, 0, 238)"></i>
-        </div>
-      </td>
-    </tr>
-
-    <tr>
-      <th>Background Verification Completed ?</th>
-      <td>
-        <div *ngIf="usrdetailsObj.freeLanceDetails.isbgdone">
-          <i class="fa fa-check" title="Bg verification is completed" style="color: rgb(37, 165, 37)"></i>
-        </div>
-        <div *ngIf="!usrdetailsObj.freeLanceDetails.isbgdone">
-          <i class="fa fa-spinner" title="Bg verification is in-progress" style="color:rgb(16, 0, 238)"></i>
-        </div>
-      </td>
-    </tr>
-
-    <tr>
-      <th>Background Verification Initiated</th>
-      <td>
-        <div *ngIf="usrdetailsObj.freeLanceDetails.isbgstarted">
-          <i class="fa fa-check" title="Bg verification is completed" style="color: rgb(37, 165, 37)"></i>
-        </div>
-        <div *ngIf="!usrdetailsObj.freeLanceDetails.isbgstarted">
-          <i class="fa fa-spinner" title="Bg verification is in-progress" style="color:rgb(16, 0, 238)"></i>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <th>National ID </th>
-      <td><a href="{{usrdetailsObj.freeLanceDetails.uploadValidPhotoidImgUrl}}" target="_blank" class="fa fa-image"></a>
-      </td>
-    </tr>
-  </table>
-</div>
-
-
-<div class="modal-body" *ngIf="usrdetailsObj.userroles.rolecode == 'FREELANCER_USER'">
-  <h5>Background Verification History Details </h5>
-  <table style="width:100%">
-    <tr>
-      <th>Decision By</th>
-      <th>Decision On</th>
-      <th>Background Status </th>
-      <th>Background Comments </th>
-      <th>Manager ID </th>
-      <th>Core Service Support Member ID </th>
-    </tr>
-    <tr *ngFor="let value of usrdetailsObj.freelancehistoryentity ">
-      <td> {{value.decisionby}}</td>
-      <td> {{value.decisionon}}</td>
-      <td> {{value.bgstatus}}</td>
-      <td> {{value.bgcomment}}</td>
-      <td> <a href="javascript: return false;"
-          (click)='managerusercomponent.openViewAccountDetailsModalByUserId(value.managerid)'>
-          {{value.managerid}}</a></td>
-      <td><a href="javascript: return false;"
-          (click)='managerusercomponent.openViewAccountDetailsModalByUserId(value.csstid)'>
-          {{value.csstid}}</a></td>
-    </tr>
-  </table>
-</div>
-
-<div class="modal-body" *ngIf="usrdetailsObj.userroles.rolecode == 'FREELANCER_USER'">
-
-  <h5>BackGround Verification Document History Details</h5>
-  <div>
+<div  *ngIf="usrdetailsObj.userroles.rolecode == 'CLIENT_BUSINESS_ADMINISTRATOR'" >	
+  <div><h3>View Account Details of {{usrdetailsObj.firstname}}</h3></div>
+  <ul  class="nav nav-tabs">
+  <li class="nav-item"><a  class="nav-link medium text-uppercase active" href="#0b" data-toggle="tab">Basic Details</a></li>
+  <li class="nav-item"><a class="nav-link medium text-uppercase"  href="#4b" data-toggle="tab"> Business Details</a>
+  </li>
+  </ul>
+ <div class="tab-content">
+  <div class="tab-pane active fade show" id="0b">
     <table style="width:100%">
       <tr>
-        <th>Document Name</th>
-        <th>Uploaded Date</th>
+        <th> ID </th>
+        <td>{{usrdetailsObj.userId}}</td>
       </tr>
-      <tr *ngFor="let value of usrdetailsObj.freelancedocumententity ">
-        <td><a href="{{value.docurl}}" target="_blank">{{value.docname}} </a> </td>
-        <td>{{value.uploaddate}}</td>
+      <tr>
+        <th>Profile Picture</th>
+        <td> <img src="{{usrdetailsObj.avtarurl}}" width="100px" height="80px"></td>
+      </tr>
+      <tr>
+        <th>Email Address </th>
+        <td> {{usrdetailsObj.username}}</td>
+      </tr>
+      <tr>
+        <th>First Name </th>
+        <td>{{usrdetailsObj.firstname}} </td>
+      </tr>
+      <tr>
+        <th>Last Name </th>
+        <td>{{usrdetailsObj.lastname}}</td>
+      </tr>
+      <tr>
+        <th>Phone Number</th>
+        <td>{{usrdetailsObj.phoneno}}</td>
+      </tr>
+      <tr>
+        <th>Prefered Language</th>
+        <td>{{usrdetailsObj.preferlang}}</td>
+      </tr>
+      <tr>
+        <th>Created On </th>
+        <td> {{usrdetailsObj.createdon}}</td>
+      </tr>
+      <tr>
+        <th>Created By </th>
+        <td> {{usrdetailsObj.createdby}}</td>
+      </tr>
+      <tr>
+        <th>Full Address </th>
+        <td>
+          <a href={{mapurl}} target="_blank">
+            {{usrdetailsObj.userbizdetails.fulladdress}}
+          </a>
+        </td>
       </tr>
     </table>
+    </div>
+
+  <div class="tab-pane active " id="4b">
+    <table style="width:100%">
+
+      <tr>
+        <th>Biz Name </th>
+        <td> {{usrdetailsObj.userbizdetails.bizname}}</td>
+      </tr>
+      <tr>
+        <th>Biz Type </th>
+        <td> {{usrdetailsObj.userbizdetails.biztype}}</td>
+      </tr>
+      <tr>
+        <th>Biz Website </th>
+        <td> {{usrdetailsObj.userbizdetails.bizwebsite}}</td>
+      </tr>
+      <tr>
+        <th>Purpose of signup </th>
+        <td> {{usrdetailsObj.userbizdetails.purposeofsignup}}</td>
+      </tr>
+      <tr>
+        <th>AbtBiz </th>
+        <td> {{usrdetailsObj.userbizdetails.abtbiz}}</td>
+      </tr>
+      <tr>
+        <th>Designation </th>
+        <td> {{usrdetailsObj.userbizdetails.designation}}</td>
+      </tr>
+  
+    </table>
+
   </div>
+
+ </div>
 </div>
+
+
+
+<div id="exTab3" *ngIf="usrdetailsObj.userroles.rolecode == 'FREELANCER_USER'" >	
+  <div><h3>View Account Details of {{usrdetailsObj.firstname}}</h3></div>
+  <ul  class="nav nav-tabs">
+      <li class="nav-item"><a  class="nav-link medium text-uppercase active" href="#basic" data-toggle="tab">Basic Details</a></li>
+      <li class="nav-item"><a  class="nav-link medium text-uppercase" href="#1b" data-toggle="tab">Freelancer Details</a></li>
+      <li class="nav-item"><a class="nav-link medium text-uppercase" href="#2b" data-toggle="tab">Background Verification History Details </a></li>
+      <li class="nav-item"><a class="nav-link medium text-uppercase" href="#3b" data-toggle="tab">BackGround Verification Document History Details</a>
+      </li>
+  </ul>
+
+			<div class="tab-content">
+        <div class="tab-pane active fade show" id="basic">
+        <table style="width:100%">
+          <tr>
+            <th> ID </th>
+            <td>{{usrdetailsObj.userId}}</td>
+          </tr>
+          <tr>
+            <th>Profile Picture</th>
+            <td> <img src="{{usrdetailsObj.avtarurl}}" width="100px" height="80px"></td>
+          </tr>
+          <tr>
+            <th>Email Address </th>
+            <td> {{usrdetailsObj.username}}</td>
+          </tr>
+          <tr>
+            <th>First Name </th>
+            <td>{{usrdetailsObj.firstname}} </td>
+          </tr>
+          <tr>
+            <th>Last Name </th>
+            <td>{{usrdetailsObj.lastname}}</td>
+          </tr>
+          <tr>
+            <th>Phone Number</th>
+            <td>{{usrdetailsObj.phoneno}}</td>
+          </tr>
+          <tr>
+            <th>Prefered Language</th>
+            <td>{{usrdetailsObj.preferlang}}</td>
+          </tr>
+          <tr>
+            <th>Created On </th>
+            <td> {{usrdetailsObj.createdon}}</td>
+          </tr>
+          <tr>
+            <th>Created By </th>
+            <td> {{usrdetailsObj.createdby}}</td>
+          </tr>
+          <tr>
+            <th>Full Address </th>
+            <td>
+              <a href={{mapurl}} target="_blank">
+                {{usrdetailsObj.userbizdetails.fulladdress}}
+              </a>
+            </td>
+          </tr>
+        </table>
+        </div>
+			  <div class="tab-pane fade in active" id="1b">
+          <table style="width:100%">
+            <tr *ngFor="let referencelookupmap of signupComponent.referencedetailsmap">
+              <th *ngIf="referencelookupmap.mapId == usrdetailsObj.freeLanceDetails.category">Skill Under Category</th>
+              <td *ngIf="referencelookupmap.mapId == usrdetailsObj.freeLanceDetails.category">{{referencelookupmap.label}}</td>
+            </tr>
+            <tr>
+              <th>Skill Name</th>
+              <td> {{usrdetailsObj.freeLanceDetails.subcategorylabel}}</td>
+            </tr>
+            <tr>
+              <th>Experience</th>
+              <td> {{usrdetailsObj.freeLanceDetails.experienceInField}}</td>
+            </tr>
+            <tr>
+              <th>About</th>
+              <td> {{usrdetailsObj.freeLanceDetails.abt}}</td>
+            </tr>
+            <tr>
+              <th>Hour Rate</th>
+              <td> {{usrdetailsObj.freeLanceDetails.hourlyRate}} &#8377;</td>
+            </tr>
+            <tr>
+              <th>Company Percentage%</th>
+              <td> {{usrdetailsObj.freeLanceDetails.companypercentage}} &#37;</td>
+            </tr>
+            <tr>
+              <th>Worker Percentage%</th>
+              <td> {{usrdetailsObj.freeLanceDetails.fupercentage}} &#37;</td>
+            </tr>
+            <tr>
+              <th>Profile Completed?</th>
+              <td>
+                <div *ngIf="usrdetailsObj.freeLanceDetails.isprofilecompleted">
+                  <i class="fa fa-check" title="Bg verification is completed" style="color: rgb(37, 165, 37)"></i>
+                </div>
+        
+                <div *ngIf="!usrdetailsObj.freeLanceDetails.isprofilecompleted">
+                  <i class="fa fa-spinner" title="Bg verification is in-progress" style="color:rgb(16, 0, 238)"></i>
+                </div>
+              </td>
+            </tr>
+        
+            <tr>
+              <th>Background Verification Completed ?</th>
+              <td>
+                <div *ngIf="usrdetailsObj.freeLanceDetails.isbgdone">
+                  <i class="fa fa-check" title="Bg verification is completed" style="color: rgb(37, 165, 37)"></i>
+                </div>
+                <div *ngIf="!usrdetailsObj.freeLanceDetails.isbgdone">
+                  <i class="fa fa-spinner" title="Bg verification is in-progress" style="color:rgb(16, 0, 238)"></i>
+                </div>
+              </td>
+            </tr>
+        
+            <tr>
+              <th>Background Verification Initiated</th>
+              <td>
+                <div *ngIf="usrdetailsObj.freeLanceDetails.isbgstarted">
+                  <i class="fa fa-check" title="Bg verification is completed" style="color: rgb(37, 165, 37)"></i>
+                </div>
+                <div *ngIf="!usrdetailsObj.freeLanceDetails.isbgstarted">
+                  <i class="fa fa-spinner" title="Bg verification is in-progress" style="color:rgb(16, 0, 238)"></i>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th>National ID </th>
+              <td><a href="{{usrdetailsObj.freeLanceDetails.uploadValidPhotoidImgUrl}}" target="_blank" class="fa fa-image"></a>
+              </td>
+            </tr>
+          </table>
+          
+				</div>
+				<div class="tab-pane fade in active" id="2b">
+          <table style="width:100%">
+            <tr>
+              <th>Decision By</th>
+              <th>Decision On</th>
+              <th>Background Status </th>
+              <th>Background Comments </th>
+              <th>Manager ID </th>
+              <th>Core Service Support Member ID </th>
+            </tr>
+            <tr *ngFor="let value of usrdetailsObj.freelancehistoryentity ">
+              <td> {{value.decisionby}}</td>
+              <td> {{value.decisionon}}</td>
+              <td> {{value.bgstatus}}</td>
+              <td> {{value.bgcomment}}</td>
+              <td> <a href="javascript: return false;"
+                  (click)='managerusercomponent.openViewAccountDetailsModalByUserId(value.managerid)'>
+                  {{value.managerid}}</a></td>
+              <td><a href="javascript: return false;"
+                  (click)='managerusercomponent.openViewAccountDetailsModalByUserId(value.csstid)'>
+                  {{value.csstid}}</a></td>
+            </tr>
+          </table>
+				</div>
+        <div class="tab-pane fade in active" id="3b">
+          <table style="width:100%">
+            <tr>
+              <th>Document Name</th>
+              <th>Uploaded Date</th>
+            </tr>
+            <tr *ngFor="let value of usrdetailsObj.freelancedocumententity ">
+              <td><a href="{{value.docurl}}" target="_blank">{{value.docname}} </a> </td>
+              <td>{{value.uploaddate}}</td>
+            </tr>
+          </table>
+        </div>
+ 
+      </div>
+      </div>
+    </div>
+

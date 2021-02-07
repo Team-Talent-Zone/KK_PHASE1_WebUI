@@ -1,23 +1,18 @@
-<div class="modal-header">
-    <h5 class="modal-title">
+<div class="container">
+    <h5 style="margin: 15px;">
         Background Verification Form of {{usrdetailsObj.firstname}}&nbsp;{{usrdetailsObj.lastname}}
         &nbsp;-&nbsp;{{usrdetailsObj.userId}}
     </h5>
     <button type="button" class="close" (click)="modalRef.hide()">&times;</button>
-</div>
-<div class="modal-body">
-        <div class="row">
-                <!-- <div class="card"> -->
-                    <!-- <div class="card-header"> -->
-                       
-                    <!-- </div> -->
-                    <!-- <div class="card-body py-md-4"> -->
-                    <div class="col-md-12">
-                        <h5>Workflow Decision</h5>
-                        <hr>
-                        </div>
 
-                        <form [formGroup]="bgverificationForm" (ngSubmit)="preparebgverfiDetailstoSave()">
+    <ul  class="nav nav-tabs">
+        <li class="nav-item"><a  class="nav-link medium text-uppercase active" href="#workflow" data-toggle="tab"><b>Workflow Decision</b></a></li>
+        <li class="nav-item"><a  class="nav-link medium text-uppercase " href="#history" data-toggle="tab"><b>Bg Verification-Workflow History</b></a></li>
+        <li class="nav-item"><a  class="nav-link medium text-uppercase " href="#verify" data-toggle="tab"> <b>Bg Verification-Documents</b></a></li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active fade show" id="workflow">
+                    <form [formGroup]="bgverificationForm" (ngSubmit)="preparebgverfiDetailstoSave()">
                             <div class="form-group col-md-12"
                                 *ngIf="userService.currentUserValue.userroles.rolecode == 'CORE_SERVICE_SUPPORT_MANAGER'">
                                 <select #sel class="form-control" formControlName="bgstatus"
@@ -82,15 +77,9 @@
                         </form>
                     <!-- </div> -->
                 <!-- </div> -->
-           
-
-            <div class="col-md-12" *ngIf="usrdetailsObj.freelancehistoryentity.length > 1">
-                <!-- <div class="card-header"> -->
-                   <h5> Bg Verification - Workflow History </h5>
-                   <hr>
-                <!-- </div> -->
-                <!-- <div class="card-body">
-                    <div class="panel-body"> -->
+        </div>
+   
+        <div class="tab-pane fade in active" id="history">
                     <table class="table table-bordered">
                         <thead>
                             <tr >
@@ -107,16 +96,8 @@
                             </tr>
                         </tbody>
                     </table>
-                    <!-- </div>
-                </div> -->
-                <br>
-            </div>
-            <div class="col-md-12" *ngIf="usrdetailsObj.freelancedocumententity.length >= 1">
-                <!-- <div class="card-header"> -->
-                   <h5> Bg Verification - Documents </h5>
-                   <hr>
-                <!-- </div>
-                <div class="card-body py-md-4"> -->
+    </div>
+        <div class="tab-pane fade in active" id="verify">
                     <table class="table table-bordered">
                         <thead>
                             <tr>
@@ -131,9 +112,7 @@
                             </tr>
                         </tbody>
                     </table>
-                <!-- </div> -->
-
             </div>
-        
     </div>
 </div>
+
