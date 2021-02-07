@@ -29,7 +29,7 @@ export class HeaderComponent implements OnInit {
   ban2videoURL: string;
   shortkeyvideo1: string;
   shortkeyvideo2: string;
-  list : any = [];
+  list: any = [];
 
   Removeclass() {
     // var body = document.body;
@@ -156,7 +156,22 @@ export class HeaderComponent implements OnInit {
           if (element.code !== config.domain_code_SE_P) {
             element.referencelookupmapping.forEach(elementlookupmapping => {
               elementlookupmapping.referencelookupmappingsubcategories.forEach(element => {
-                this.list.push(element);
+                if (localStorage.getItem('langCode') == config.lang_code_hi || localStorage.getItem('langCode') == config.lang_code_te) {
+                  console.log('element' , element);
+                  this.referService.translatetext(element.label, localStorage.getItem('langCode')).subscribe(
+                    (trantxt: any) => {
+                      element.label = trantxt;
+                      this.list.push(element);;
+                    },
+                    error => {
+                      this.spinnerService.hide();
+                      this.alertService.error(error);
+                    }
+                  );
+                }
+                else {
+                  this.list.push(element);
+                }
               });
             })
           }

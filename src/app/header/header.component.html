@@ -225,13 +225,15 @@ Announcement
 <div class="announcement">
   <h2>Latest Update</h2>
   <p>According to our analysis , The economy was expected to lose over ₹32,000 crore (US$4.5 billion) every day during
-    the lockdown, which was declared following the coronavirus outbreak
-    Kaam Karega has the ability to increase the economy by engaging our skilled workers by providing job oppunities.
+    the lockdown, which was declared following the coronavirus outbreak.
+    Kaam Karega has the ability to raise the economy by engaging our skilled workers by providing job opportunities.
   </p>
-  <p>We welcoming, the below skilled workers to onboard into the platform to utilze the job oppunities.</p>
-  <p>
-    <span *ngFor="let item of list;">
-      {{item.label}},
+  <p>We welcome, the below skilled workers to onboard into the platform to utilze the job opportunities. It's a FREE
+    Signup.</p>
+  <p *ngIf="list != null">
+    <span *ngFor="let item of list; let i = index ">
+      {{item.label}}
+      <span *ngIf="i != list.length - 1">,</span>
     </span>
   </p>
 </div>
