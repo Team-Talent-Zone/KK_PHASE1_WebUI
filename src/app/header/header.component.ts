@@ -8,6 +8,8 @@ import { config } from 'src/app/appconstants/config';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { ReferenceService } from '../AppRestCall/reference/reference.service';
 import { AlertsService } from '../AppRestCall/alerts/alerts.service';
+import { ReferenceAdapter } from '../adapters/referenceadapter';
+import { map } from 'rxjs/internal/operators/map';
 
 @Component({
   selector: 'app-header',
@@ -27,6 +29,7 @@ export class HeaderComponent implements OnInit {
   ban2videoURL: string;
   shortkeyvideo1: string;
   shortkeyvideo2: string;
+  list : any = [];
 
   Removeclass() {
     // var body = document.body;
@@ -45,12 +48,14 @@ export class HeaderComponent implements OnInit {
     public translate: TranslateService,
     private spinnerService: Ng4LoadingSpinnerService,
     private referService: ReferenceService,
-    private alertService: AlertsService
+    private alertService: AlertsService,
+    private refAdapter: ReferenceAdapter,
   ) {
     translate.addLangs(['en-English', 'te-తెలుగు', 'hi-हिंदी']);
     translate.setDefaultLang('en-English');
     const browserLang = translate.getBrowserLang();
     translate.use(browserLang.match(/en-English|te-తెలుగు|hi-हिंदी/) ? browserLang : 'en-English');
+    this.getAllAvailableFUSkills();
   }
 
   onWindowScroll(e) {
@@ -139,6 +144,24 @@ export class HeaderComponent implements OnInit {
         initialState
       }
     ));
+  }
+
+  getAllAvailableFUSkills() {
+    this.list = [];
+    this.referService.getReferenceLookupByKey(config.key_domain.toString()).pipe(map((data: any[]) =>
+      data.map(item => this.refAdapter.adapt(item))),
+    ).subscribe(
+      data => {
+        data.forEach(element => {
+          if (element.code !== config.domain_code_SE_P) {
+            element.referencelookupmapping.forEach(elementlookupmapping => {
+              elementlookupmapping.referencelookupmappingsubcategories.forEach(element => {
+                this.list.push(element);
+              });
+            })
+          }
+        })
+      });
   }
 
 }

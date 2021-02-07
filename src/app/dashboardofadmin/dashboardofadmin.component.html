@@ -652,8 +652,7 @@
       <div class="panel-body">
         <hr>
         <h4>Users Jobs - Report</h4>
-        <div class="row mb-1 justify-content-center" *ngIf="this.userService.currentUserValue.userroles.rolecode =='CORE_SERVICE_SUPPORT_TEAM' || 
-        this.userService.currentUserValue.userroles.rolecode =='CORE_SERVICE_SUPPORT_MANAGER'">
+        <div class="row mb-1 justify-content-center">
           <div class="col-xl-4 col-sm-6 py-2">
             <select class="btn btn-info" (change)="getFUWorkStatus($event);">
               <option value=''> -- Select Skill Name --</option>

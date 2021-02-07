@@ -135,4 +135,10 @@ h5 {
 .rounded-circle {
   border-radius:15% !important
 }
- 
+
+.announcement {
+  padding: 10px 15px 0px;
+  border: 1px solid #e1e1e1;
+  background-color: #f9f9f9;
+  box-shadow: 0 0 10px 5px #0a382b;
+}
