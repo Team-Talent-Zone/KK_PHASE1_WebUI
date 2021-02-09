@@ -64,7 +64,8 @@
                     </p>
                     <div class="mt-md-4"> </div>
                     <button (click)="openSignupModal('cba')" type="button" class="btn btn-primary"
-                      style="color:white;border-color: white;">{{ 'HOMENAV.SIGNUP_MODALWINDOW_CLIENT_BUTTON_LABEL' |
+                      style="color:white;border-color: white;">
+                      {{ 'HOMENAV.SIGNUP_MODALWINDOW_CLIENT_BUTTON_LABEL' |
                       translate }}</button>
                   </div>
                 </div>
@@ -146,13 +147,20 @@
         <h5>{{'HOMENAV.BETTERSERVICECAPTION' | translate}}</h5>
         <p> {{'HOMENAV.BETTERSERVICESUBCAPTION' | translate}}
           {{'HOMENAV.BETTERSERVICESUBCAPTION1' | translate}}
+          {{'ONBOARD.GRABTHESERVICE1' | translate}}
+          <a href="javascript: return false;" (click)="openSignupModal('cba')">
+            <u>{{ 'HOMENAV.LATESTUPDATE_LINE3' | translate }}</u>
+          </a>
         </p>
       </div>
       <div class="carousel-caption d-md-block d-lg-none d-sm-none">
         <h5 style="font-size: 40px;">{{'HOMENAV.BETTERSERVICECAPTION' | translate}}</h5>
         <p> {{'HOMENAV.BETTERSERVICESUBCAPTION' | translate}}
           {{'HOMENAV.BETTERSERVICESUBCAPTION1' | translate}}
-        </p>
+          {{'ONBOARD.GRABTHESERVICE1' | translate}}
+          <a href="javascript: return false;" (click)="openSignupModal('cba')">
+            <u>{{ 'HOMENAV.LATESTUPDATE_LINE3' | translate }}</u>
+          </a> </p>
       </div>
     </div>
   </div>
@@ -223,14 +231,12 @@
 Announcement
 -->
 <div class="announcement">
-  <h2>Latest Update</h2>
-  <p>According to our analysis , The economy was expected to lose over ₹32,000 crore (US$4.5 billion) every day during
-    the lockdown, which was declared following the coronavirus outbreak.
+  <h2>{{ 'HOMENAV.LATESTUPADTE' | translate }}</h2>
+  <p>{{ 'HOMENAV.LATESTUPDATE_LINE1' | translate }}
   </p>
-  <p> Kaam Karega has the ability to raise the economy by engaging our skilled workers by providing job opportunities.
-    We welcome, the below skilled workers to onboard into the platform to utilze the job opportunities.
+  <p> {{ 'HOMENAV.LATESTUPDATE_LINE2' | translate }}
     <a href="javascript: return false;" (click)="openSignupModal('fu')">
-      <u>It's FREE Signup</u>
+      <u>{{ 'HOMENAV.LATESTUPDATE_LINE3' | translate }}</u>
     </a>
   </p>
   <p *ngIf="list != null">

@@ -157,7 +157,6 @@ export class HeaderComponent implements OnInit {
             element.referencelookupmapping.forEach(elementlookupmapping => {
               elementlookupmapping.referencelookupmappingsubcategories.forEach(element => {
                 if (localStorage.getItem('langCode') == config.lang_code_hi || localStorage.getItem('langCode') == config.lang_code_te) {
-                  console.log('element' , element);
                   this.referService.translatetext(element.label, localStorage.getItem('langCode')).subscribe(
                     (trantxt: any) => {
                       element.label = trantxt;

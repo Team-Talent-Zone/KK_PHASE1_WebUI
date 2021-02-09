@@ -19,10 +19,12 @@
     /* margin-right: 0px; */
     box-shadow: none;
     box-shadow: 0px 1px 8px 0px #92a4b7;
-    height: 600px;
+    height: 500px;
     /* margin-right: -16px; */
 }
 .col-sm-3{
   padding-left: 8px;
   padding-right: 8px;
 }
+
+.text-initial_css  { text-align: initial !important; }

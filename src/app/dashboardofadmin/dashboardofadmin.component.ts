@@ -179,7 +179,8 @@ export class DashboardofadminComponent implements OnInit {
     this.freelanceserviceService.getUserAllJobDetails().subscribe((jobdetailsList: any) => {
       if (jobdetailsList != null) {
         jobdetailsList.forEach(element => {
-          if (element.isjobvoliation && element.cbajobattendantdate == null && !element.isfreelancerjobattendant && !element.isjobactive) {
+          if (element.isjobvoliation && element.cbajobattendantdate == null && 
+            !element.isfreelancerjobattendant && element.isjobactive) {
             this.todaysvoliationList.push(element);
           }
           if (element.isjobvoliation && element.isfreelancerjobattendant) {

@@ -4,29 +4,30 @@
 <hr>
 <div class="container">
     <div class="row">
-            <ul class="nav nav-tabs background" id="myTab" role="tablist">
-                <li class="nav-item">
-                    <a class="nav-link active" id="collapseFUUpcomingJobs-tab" data-toggle="tab" href="#collapseFUUpcomingJobs"
-                        role="tab" aria-controls="collapseFUUpcomingJobs" aria-selected="true">
-                        <i class="fa fa-map-marker fatab"></i>
-                        <br><b>
-                            {{ 'DASHBOARD_FU_BODY.UPCOMINGJOBS' | translate }}
-                        </b></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="collapseFUNewJobs-tab" data-toggle="tab" href="#collapseFUNewJobs" role="tab"
-                        aria-controls="collapseFUNewJobs" aria-selected="false"> <i class="fa fa-podcast fatab"></i><br><b> {{
+        <ul class="nav nav-tabs background" id="myTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="collapseFUUpcomingJobs-tab" data-toggle="tab"
+                    href="#collapseFUUpcomingJobs" role="tab" aria-controls="collapseFUUpcomingJobs"
+                    aria-selected="true">
+                    <i class="fa fa-map-marker fatab"></i>
+                    <br><b>
+                        {{ 'DASHBOARD_FU_BODY.UPCOMINGJOBS' | translate }}
+                    </b></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="collapseFUNewJobs-tab" data-toggle="tab" href="#collapseFUNewJobs" role="tab"
+                    aria-controls="collapseFUNewJobs" aria-selected="false"> <i class="fa fa-podcast fatab"></i><br><b> {{
                             'DASHBOARD_FU_BODY.NEWJOBS' | translate }}</b></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="collapseFUCompletedJobs-tab" data-toggle="tab" href="#collapseFUCompletedJobs"
-                        role="tab" aria-controls="contact" aria-selected="false"><i class="fa fa-road fatab"></i>
-                        <br><b>{{ 'DASHBOARD_FU_BODY.COMPLETEDJOBS' | translate }}</b></a>
-                </li>
-            </ul>
-    </div>    
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="collapseFUCompletedJobs-tab" data-toggle="tab" href="#collapseFUCompletedJobs"
+                    role="tab" aria-controls="contact" aria-selected="false"><i class="fa fa-road fatab"></i>
+                    <br><b>{{ 'DASHBOARD_FU_BODY.COMPLETEDJOBS' | translate }}</b></a>
+            </li>
+        </ul>
+    </div>
 </div>
-    
+
 
 <div class="tab-content background" id="myTabContent">
     <div class="tab-pane fade show active" id="collapseFUUpcomingJobs" role="tabpanel"
@@ -52,10 +53,15 @@
                                 <i class="fa fa-sign-in"
                                     title="Click when the skilled worker is at the location to provide the service."></i></button>
                             <button class="bg-warning pull-right" *ngIf="element.isjobactive && element.deactivefromupcomingjob 
-                                && element.isjobaccepted && !element.isfreelancerjobattendant"
-                                (click)="deactivateJob(element.jobId,'voliation')">{{element.fullname}} is absent
+                                && element.isjobaccepted && !element.isfreelancerjobattendant && !element.isjobvoliation"
+                                (click)="deactivateJob(element.jobId,'voliation')">{{element.fullname | slice:0:10}}..
+                                is absent
                                 <i class="fa fa-times"
                                     title="Click when the skilled worker is not at job location to provide the service."></i></button>
+                            <i class="fa fa-pause pull-right" style="color:#FF4949"
+                                title="This job is on hold . We will get back to you ."
+                                *ngIf="element.isjobvoliation && !element.isfreelancerjobattendant"> </i>
+
                         </p>
                         <span class="display-4">
                             <i class="fa fa-inr">{{element.amount | number}}</i></span>
@@ -143,7 +149,6 @@
                 <div class="card card-flip h-100 ">
                     <div class="card-header text-white bg-secondary">
                         <p> <b>{{ 'DASHBOARD_FU_BODY.JOB' | translate }}#{{newlyjob.jobId}} </b>
-                            <i class="fa fa-pause" style="color:#FF4949" title="This job is on hold . We will get back to you ." *ngIf="newlyjob.isjobvoliation && !newlyjob.isfreelancerjobattendant"> </i>
                             <button class="bg-warning pull-right"
                                 *ngIf="!newlyjob.isjobactive && newlyjob.deactivefromnewjobs == null && !newlyjob.deactivefromupcomingjob "
                                 (click)="cancelJob(newlyjob.jobId)">Cancel
@@ -257,17 +262,17 @@
                                 [routerLink]="['/payment',completedjob.txnid]">Payment Info<i
                                     title="Go to payment details" class="fa fa-sitemap"
                                     style="color:#FF4949"></i></button>
-                            <button *ngIf="!completedjob.isratedforjob" class="bg-info pull-right" data-toggle="modal" data-target="#rateit"
-                                (click)="feedback(completedjob.jobId)"> Rate <i class="fa fa-meh-o"
-                                    title="Please rate to {{completedjob.fullname}}"></i></button>
+                            <button *ngIf="!completedjob.isratedforjob" class="bg-info pull-right" data-toggle="modal"
+                                data-target="#rateit" (click)="feedback(completedjob.jobId)"> Rate <i
+                                    class="fa fa-meh-o" title="Please rate to {{completedjob.fullname}}"></i></button>
                         </p>
                         <span class="display-4">
                             <i class="fa fa-inr">{{completedjob.amount | number}}</i>
                             <i class="fa fa-smile-o fa-2x pull-right" style="color:blue"
-                            title="{{'DASHBOARD_FU_BODY.ALTER4' | translate }}"
-                            *ngIf="completedjob.isjobamtpaidtocompany"></i>
+                                title="{{'DASHBOARD_FU_BODY.ALTER4' | translate }}"
+                                *ngIf="completedjob.isjobamtpaidtocompany"></i>
                         </span>
-                        
+
                         <p>
                             <small class="pull-left">
                                 <b>{{ 'DASHBOARD_FU_BODY.STARTON' | translate }} </b>
@@ -406,7 +411,7 @@
         Clicking on this BUTTON indicates the job is completed.
     </dd>
     <dt class="col-sm-3">
-        <button class="bg-success pull-left">workername.. is here to work
+        <button class="bg-success pull-left">#workername.. is here to work
             <i class="fa fa-sign-in"></i></button>
     </dt>
     <dd class="col-sm-9">
