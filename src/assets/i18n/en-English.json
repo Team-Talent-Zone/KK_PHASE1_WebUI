@@ -19,9 +19,9 @@
       "SIGNUP_MODALWINDOW_CLIENT_BUTTON_LABEL":"Signup As Client",
       "SIGNUP_MODALWINDOW_SKILLEDWORKER_BUTTON_LABEL":"Signup As Skilled Worker",
       "LATESTUPADTE":"Latest Update",
-      "LATESTUPDATE_LINE1":"According to our analysis , The economy was expected to lose over ₹32,000 crore (US$4.5 billion) every day during the lockdown, which was declared following the coronavirus outbreak.",
-      "LATESTUPDATE_LINE2":"Kaam Karega has the ability to raise the economy by engaging our skilled workers by providing job opportunities.We welcome, the below skilled workers to onboard into the platform to utilze the job opportunities.",
-      "LATESTUPDATE_LINE3":"It's FREE Signup"
+      "LATESTUPDATE_LINE1":"According to our analysis , the economy was expected to lose over ₹32,000 crore (US$4.5 billion) every day during the lockdown, which was declared following the coronavirus outbreak.",
+      "LATESTUPDATE_LINE2":"Kaam Karega has the ability to increase the economy back by onboarding and providing the jobs opportunities to the skill workers. We welcome, the below list of all skill workers to onboard into the platform to utilize this opportunities.",
+      "LATESTUPDATE_LINE3":"Signup is FREE."
     },
     "HOMEWHATWEDO": {
       "ABOUTUS": "ABOUT US",
@@ -100,7 +100,7 @@
       "JOBASSIGNMENT1":"Waiting is paining. To avoid, we have designed an automated system which always connect with you by sending job notification based on your skills. Grab IT, Accept IT, Finish IT."
       },
     "SKILLEDWORKERREVIEW": { 
-      "SWORKER_REVIEW_HEADERLABEL":"Skilled Worker Reviews",
+      "SWORKER_REVIEW_HEADERLABEL":"Skill Worker Reviews",
       "SWORKER_BUTTON_READFULL":"Read More"
     },
     "SERVICE": { 
@@ -111,8 +111,8 @@
     "PRICE": {
       "TITLE" : "Plans & Pricing",
       "DESC1" : "We have a plan for every service.",
-      "DESC2" : "Whether you're a business or an individual, no credit card required for signup.",
-      "INDIVIDUAL":"Individual",
+      "DESC2" : "Whether you're a Company or Individual, no credit card required for signup.",
+      "INDIVIDUAL":"Single",
       "PACKAGE":"Package",
       "SIGNUP":"Signup As Client",
       "CURRENTLYNOPACKAGESERVICES":"Currently No Package Services",
@@ -155,7 +155,7 @@
       "PAYMENTHISTORY":"Payment History",
       "REVIEWS":"Reviews",
       "CURRENTSTAGE":"Current Onboard Stage",
-      "EDIT_PROFILE" : "Update Profile",
+      "EDIT_PROFILE" : "Edit Profile",
       "NOTIFICATIONMEG_HEADER": "Notification Messages"
     },
     "DASHBOARD_FU_BODY":{
@@ -205,7 +205,7 @@
       "IMPINST_ICON4":"This ICON indicates that payment with client and from us is succesfully completed.",
       "NO_NEWJOB_MSG":"We are working hard to get a job for you. Currently you do not have new jobs. Please keep checking..",
       "NO_UPCOMING_MSG":"Please check if you find new jobs in New Jobs Tab.",
-      "NO_VOLIATION_MSG":"Be proud not having any volidation at the job till today. Keep up the good work.",
+      "NO_VOLIATION_MSG":"Be proud of you not having any voliation at this point. Keep up the good work.",
       "NO_COMPLETEDJOBS_MSG":"You have not completed your first job yet .Complete your first job .",
       "TOTAL_HOURSOFWORK":"Total Hours of work :"
     },
@@ -219,16 +219,20 @@
      "PROFILE_FIRSTNAME":"First Name*",
      "PROFILE_FIRSTNAME_REQ":"First Name is required",
      "PROFILE_FIRSTNAME_EXCEED":"First Name cant exceed 40 characters",
+     "PROFILE_FIRSTNAME_INSTRUCTIONS":"This should be your legal first name as it appears on your government ID. ",
      "PROFILE_LASTNAME":"Last Name*",
      "PROFILE_LASTNAME_REQ":"Last Name is required",
      "PROFILE_LASTNAME_EXCEED":"Last Name cant exceed 40 characters",
+     "PROFILE_LASTNAME_INSTRUCTIONS":"This should be your legal last name as it appears on your government ID. ",
      "PROFILE_ADDRESS":"Enter your address",
      "PROFILE_ADDRESS_REQ":"Address is required",
+     "PROFILE_ADDRESS_INSTRUCTIONS":"Your city and state will automatically populate once you've enter the address.",
      "PROFILE_PHONE":"Mobile Number",
      "PROFILE_PHONE_REQ":"Mobile Number is required",
      "PROFILE_PHONE_REQ_MAXLENG":"Mobile Number can not exceed 10 digits",
      "PROFILE_PHONE_REQ_MINLENG":"Mobile Number must be 10 digits",
      "PROFILE_PHONE_INVALID":"Invalid Mobile Number Format",
+     "PROFILE_PHONE_INSTRUCTIONS":"We need to ask for your phone number to verify your information. We'll keep your data secure",
      "PROFILE_PIC_REQ":"Pic is required",
      "PROFILE_PIC":"Upload Profile Pic",
      "PROFILE_PIC_FORMAT":"For best results, use an image at least 128px by 128px in .png,.jpg,.jpeg format",
@@ -245,14 +249,14 @@
      "PROFILE_PHOTOID_REQ":"Photo Id is required",
      "PROFILE_REUPLOAD":"Re-Upload Photo Id",
      "PROFILE_UPLOAD":"Upload Photo Id",
-     "PROFILE_SKILLED_INFO":"Enter hourly rate based on your work experience.",
+     "PROFILE_SKILLED_INFO":"Your hour rate must base on the experience. We will verify this information",
      "PROFILE_SKILLED_INFO_2":"Upload valid govt id either aaadhar or voter card or driving license. You can not undo once it is submit.",
      "PROFILE_BANKDETAILS":"Bank Details",
-     "PROFILE_BANKDETAILS_INFO":"We will deposit the amount to this bank account . Make sure bank account number and IFSC code is valid.",
+     "PROFILE_BANKDETAILS_INFO":"We need to ask for your the bank details to deposit the amount after work completed.",
      "PROFILE_BANKACCT":"Bank Account Number*",
      "PROFILE_BANKACCT_REQ":"Account Number is required",
-     "PROFILE_BANKACCT_VERIFY":"Verify Bank Account Number*",
-     "PROFILE_BANKACCT_VERIFY_REQ":"Verify Bank Account Number is required",
+     "PROFILE_BANKACCT_VERIFY":"Re-type Bank Account Number*",
+     "PROFILE_BANKACCT_VERIFY_REQ":"Re-type Bank Account Number is required",
      "PROFILE_BANKACCT_EXCEED":"Account Number can not exceed 13 digits",
      "PROFILE_BANKACCTNAME":"Bank Account Name*",
      "PROFILE_BANKACCTNAME_REQ":"Account Name is required",

@@ -278,15 +278,15 @@ export class DashboardoffuComponent implements OnInit {
         { name: this.totalearnings, value: this.totalEarnings },
       ];
     }
-    this.spinnerService.hide();
   }
 
   accept(jobId: number) {
+    this.spinnerService.show();
     this.getUserAllJobDetailsByUserId();
     setTimeout(() => {
       this.spinnerService.show();
       this.preparetoacceptjob(jobId);
-    }, 3000);
+    }, 4000);
   }
 
   private preparetoacceptjob(jobId: number) {

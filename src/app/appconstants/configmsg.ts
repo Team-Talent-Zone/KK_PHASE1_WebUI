@@ -1,5 +1,7 @@
 export const ConfigMsg = {
     signup_successmsg: 'Signup is successfully and email sent to register email address',
+    signup_successmsg_alreadyexisit: 'Someone already has that username.Try another',
+    login_notexisit: 'No account found with that email address',
     fwdpassword_successmsg: 'Password sent to registered email address . Thank you for connecting with us',
     email_default_fromuser: 'team.spprt2019@gmail.com',
     email_verficationemailaddress_subj: 'Email Confirmation',

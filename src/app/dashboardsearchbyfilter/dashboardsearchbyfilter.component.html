@@ -268,6 +268,8 @@
                                 <div *ngIf="f.jobdescription.errors.required">Job description is
                                     required
                                 </div>
+                                <div *ngIf="f.jobdescription.errors.pattern">No special character allowed.
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -81,24 +81,44 @@ export class LoginComponent implements OnInit {
       this.loginForm.get('username').value
     ).subscribe(
       (data: any) => {
-        this.userService.loginUserByUsername(
-          this.loginForm.get('username').value,
-          this.loginForm.get('password').value)
-          .subscribe(
-            (resp) => {
-              this.spinnerService.hide();
-              this.router.navigate(['/dashboard']);
-            },
-            error => {
-              this.spinnerService.hide();
-              this.alertService.error(error);
-            }
-          );
+        if (data != null) {
+          this.userService.loginUserByUsername(
+            this.loginForm.get('username').value,
+            this.loginForm.get('password').value)
+            .subscribe(
+              (resp) => {
+                this.spinnerService.hide();
+                this.router.navigate(['/dashboard']);
+              },
+              error => {
+                this.spinnerService.hide();
+                this.alertService.error(error);
+              }
+            );
+        } else {
+          if (localStorage.getItem('langCode') !== config.default_prefer_lang.toString()) {
+            this.referService.translatetext(ConfigMsg.login_notexisit, localStorage.getItem('langCode')).subscribe(
+              (resptranslatetxt: string) => {
+                if (resptranslatetxt != null) {
+                  this.alertService.info(resptranslatetxt, true);
+                  this.spinnerService.hide();
+                }
+              },
+              error => {
+                this.alertService.error(error);
+                this.spinnerService.hide();
+              });
+          } else {
+            this.alertService.info(ConfigMsg.login_notexisit, true);
+            this.spinnerService.hide();
+          }
+        }
       },
       error => {
         this.spinnerService.hide();
         this.alertService.error(error);
       });
+
   }
   get fpwd() {
     return this.fpwdForm.controls;
@@ -115,62 +135,94 @@ export class LoginComponent implements OnInit {
     this.userService.forgetPassword(this.fpwdForm.get('fpwdusername').value)
       .pipe(first()).subscribe(
         (resp) => {
-          this.usrObj = this.userAdapter.adapt(resp);
-          if (this.usrObj.userId > 0) {
-            this.referService.getLookupTemplateEntityByShortkey(config.shortkey_email_forgotpassword.toString()).subscribe(
-              referencetemplate => {
-                this.templateObj = this.reflookuptemplateAdapter.adapt(referencetemplate);
-                this.util = new Util();
-                this.util.preferlang = this.usrObj.preferlang;
-                this.util.fromuser = ConfigMsg.email_default_fromuser;
-                this.util.subject = ConfigMsg.email_forgotpasswordemailaddress_subj;
-                this.util.touser = this.usrObj.username;
-                this.util.templateurl = this.templateObj.url;
-                this.util.templatedynamicdata = JSON.stringify({
-                  firstname: this.usrObj.firstname,
-                  platformURL: `${environment.uiUrl}`,
-                  userName: this.usrObj.username,
-                  tempPassword: this.usrObj.password
-                });
-                this.sendemailService.sendEmail(this.util).subscribe(
-                  (util: any) => {
-                    if (util.lastreturncode === 250) {
-                      this.userService.saveorupdate(this.usrObj)
-                        .pipe(first()).subscribe(
-                          (usrObjRsp) => {
-                            this.usrObj = this.userAdapter.adapt(usrObjRsp);
-                            if (this.usrObj.userId > 0) {
-                              this.usernotification = new UserNotification();
-                              this.usernotification.templateid = this.templateObj.templateid;
-                              this.usernotification.sentby = this.usrObj.firstname;
-                              this.usernotification.userid = this.usrObj.userId;
-                              this.usernotification.senton = this.today.toString();
-                              this.userService.saveUserNotification(this.usernotification).subscribe(
-                                (notificationobj: any) => {
-                                  this.spinnerService.hide();
-                                  this.alertService.success(ConfigMsg.fwdpassword_successmsg, true);
-                                },
-                                error => {
-                                  this.spinnerService.hide();
-                                  this.alertService.error(error);
-                                });
-                            }
-                          },
-                          error => {
-                            this.spinnerService.hide();
-                            this.alertService.error(error);
-                          });
-                    }
-                  },
-                  error => {
-                    this.spinnerService.hide();
-                    this.alertService.error(error);
+          if (resp != null) {
+            this.usrObj = this.userAdapter.adapt(resp);
+            if (this.usrObj.userId > 0) {
+              this.referService.getLookupTemplateEntityByShortkey(config.shortkey_email_forgotpassword.toString()).subscribe(
+                referencetemplate => {
+                  this.templateObj = this.reflookuptemplateAdapter.adapt(referencetemplate);
+                  this.util = new Util();
+                  this.util.preferlang = this.usrObj.preferlang;
+                  this.util.fromuser = ConfigMsg.email_default_fromuser;
+                  this.util.subject = ConfigMsg.email_forgotpasswordemailaddress_subj;
+                  this.util.touser = this.usrObj.username;
+                  this.util.templateurl = this.templateObj.url;
+                  this.util.templatedynamicdata = JSON.stringify({
+                    firstname: this.usrObj.firstname,
+                    platformURL: `${environment.uiUrl}`,
+                    userName: this.usrObj.username,
+                    tempPassword: this.usrObj.password
                   });
-              },
-              error => {
-                this.spinnerService.hide();
-                this.alertService.error(error);
-              });
+                  this.sendemailService.sendEmail(this.util).subscribe(
+                    (util: any) => {
+                      if (util.lastreturncode === 250) {
+                        this.userService.saveorupdate(this.usrObj)
+                          .pipe(first()).subscribe(
+                            (usrObjRsp) => {
+                              this.usrObj = this.userAdapter.adapt(usrObjRsp);
+                              if (this.usrObj.userId > 0) {
+                                this.usernotification = new UserNotification();
+                                this.usernotification.templateid = this.templateObj.templateid;
+                                this.usernotification.sentby = this.usrObj.firstname;
+                                this.usernotification.userid = this.usrObj.userId;
+                                this.usernotification.senton = this.today.toString();
+                                this.userService.saveUserNotification(this.usernotification).subscribe(
+                                  (notificationobj: any) => {
+                                    this.spinnerService.hide();
+                                    if (localStorage.getItem('langCode') !== config.default_prefer_lang.toString()) {
+                                      this.referService.translatetext(ConfigMsg.fwdpassword_successmsg, localStorage.getItem('langCode')).subscribe(
+                                        (resptranslatetxt: string) => {
+                                          if (resptranslatetxt != null) {
+                                            this.alertService.success(resptranslatetxt, true);
+                                          }
+                                        },
+                                        error => {
+                                          this.alertService.error(error);
+                                          this.spinnerService.hide();
+                                        });
+                                    } else {
+                                      this.alertService.success(ConfigMsg.fwdpassword_successmsg, true);
+                                    }
+                                  },
+                                  error => {
+                                    this.spinnerService.hide();
+                                    this.alertService.error(error);
+                                  });
+                              }
+                            },
+                            error => {
+                              this.spinnerService.hide();
+                              this.alertService.error(error);
+                            });
+                      }
+                    },
+                    error => {
+                      this.spinnerService.hide();
+                      this.alertService.error(error);
+                    });
+                },
+                error => {
+                  this.spinnerService.hide();
+                  this.alertService.error(error);
+                });
+            }
+          } else {
+            if (localStorage.getItem('langCode') !== config.default_prefer_lang.toString()) {
+              this.referService.translatetext(ConfigMsg.login_notexisit, localStorage.getItem('langCode')).subscribe(
+                (resptranslatetxt: string) => {
+                  if (resptranslatetxt != null) {
+                    this.alertService.info(resptranslatetxt, true);
+                    this.spinnerService.hide();
+                  }
+                },
+                error => {
+                  this.alertService.error(error);
+                  this.spinnerService.hide();
+                });
+            } else {
+              this.alertService.info(ConfigMsg.login_notexisit, true);
+              this.spinnerService.hide();
+            }
           }
         },
         error => {

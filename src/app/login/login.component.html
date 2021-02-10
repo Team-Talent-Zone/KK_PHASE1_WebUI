@@ -65,12 +65,12 @@
                     <input type="email" id="inputEmail" formControlName="fpwdusername"
                       [ngClass]="{ 'is-invalid': isfpwdsubmit && fpwd.fpwdusername.errors }" class="form-control"
                       placeholder="{{ 'HOMESIGNUP.EMAILADDRESS' | translate }}" autofocus>
-                  </div>
-                  <div *ngIf="isfpwdsubmit && fpwd.fpwdusername.errors" class="invalid-feedback">
-                    <div *ngIf="fpwd.fpwdusername.errors.required || fpwd.fpwdusername.errors.email">{{
+                    <div *ngIf="isfpwdsubmit && fpwd.fpwdusername.errors" class="invalid-feedback">
+                      <div *ngIf="fpwd.fpwdusername.errors.required || fpwd.fpwdusername.errors.email">{{
                       'HOMESIGNUP.GIVEVALIDEMAIL' | translate }}
+                      </div>
+                      <div *ngIf="fpwd.fpwdusername.errors.maxlength">{{ 'HOMESIGNUP.SHOULDNOTBE40' | translate }}</div>
                     </div>
-                    <div *ngIf="fpwd.fpwdusername.errors.maxlength">{{ 'HOMESIGNUP.SHOULDNOTBE40' | translate }}</div>
                   </div>
                 </div>
                 <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">{{ 'HOMESIGNUP.SENDPASSWORD' |

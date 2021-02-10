@@ -1,2 +1,81 @@
-<p>viewnewsevicedetails works!</p>
-{{newserviceobj.name}}
+<div class="modal-header">
+    <h4 class="modal-title">Service Details - {{newserviceobj.name}}</h4>
+    <button type="button" class="btn btn-danger" (click)="modalRef.hide()">&times;</button>
+</div>
+<div class="modal-body" *ngIf="newserviceobj != null">
+    <div class="modal-body">
+        <small>
+            <table class="table table-hover table-borderless">
+                <tbody>
+                    <tr>
+                        <th> Name </th>
+                        <td>{{newserviceobj.name}}</td>
+                    </tr>
+                    <tr>
+                        <th> Features </th>
+                        <td>{{newserviceobj.fullContent}}</td>
+                    </tr>
+                    <tr>
+                        <th> Service Image </th>
+                        <td>{{newserviceobj.imageUrl}}</td>
+                    </tr>
+                    <tr>
+                        <th> Created By</th>
+                        <td>{{newserviceobj.createdBy}}</td>
+                    </tr>
+                    <tr>
+                        <th> Created On</th>
+                        <td>{{newserviceobj.createdOn}}</td>
+                    </tr>
+                    <tr>
+                        <th> Current Status</th>
+                        <td>{{newserviceobj.currentstatus}}</td>
+                    </tr>
+                    <tr>
+                        <th> Valid Period</th>
+                        <td>{{newserviceobj.validPeriod}}</td>
+                    </tr>
+                    <tr>
+                        <th> Is Active?</th>
+                        <td>
+                            <i class="fa fa-smile-o" style="color:#0a382b" *ngIf="newserviceobj.active"> </i>
+                            <i class="fa fa-frown-o" style="color:#FF4949" *ngIf="!newserviceobj.active "> </i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th> Is Upgrade?</th>
+                        <td>
+                            <i class="fa fa-thumb-up" style="color:#0a382b" *ngIf="newserviceobj.isupgrade"> </i>
+                            <i class="fa fa-thumbs-down" style="color:#FF4949" *ngIf="!newserviceobj.isupgrade "> </i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th> Service Description</th>
+                        <td>{{newserviceobj.description}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </small>
+        <small>
+            <table class="table" style="width:100%">
+                <tr>
+                    <th>Status</th>
+                    <th>Current Decision At</th>
+                    <th>Decision On</th>
+                    <th>Decision Email Id</th>
+                    <th>Previous Decision With</th>
+
+                </tr>
+                <tr *ngFor="let value of newserviceobj.serviceHistory ">
+                    <td>
+                        {{value.status}}
+                    </td>
+                    <td> {{value.decisionBy}}</td>
+                    <td> {{value.decisionOn}}</td>
+                    <td> {{value.decisionbyemailid}}</td>
+                    <td> {{value.previousdecisionby}}</td>
+                </tr>
+            </table>
+        </small>
+    </div>
+</div>

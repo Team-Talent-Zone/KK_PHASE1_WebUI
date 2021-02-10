@@ -21,7 +21,7 @@
                 (keyup.enter)="search( inputItemCode , inputItem)" class="combobox-input form-control"
                 (keyup)="onKeyPress($event);" (blur)="toggleListDisplay(0)" (focus)="toggleListDisplay(1)"
                 placeholder="Search By Skilled Worker Skill" [ngClass]="{'error': showError}">
-            <a type="submit" class="nav-link" (click)="search( inputItemCode , inputItem)"
+            <a type="submit"  (click)="search( inputItemCode , inputItem)"
                 class="btn btn-text pull-right" style="margin-top: -38px;"><i class="fa fa-search"></i></a>
             <span *ngIf="showError" class="error-text"><i>Invalid Selection.</i></span>
             <div class="combobox-options" *ngIf="!listHidden">

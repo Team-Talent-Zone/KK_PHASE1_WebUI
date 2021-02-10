@@ -29,15 +29,11 @@
                                     {{ 'DASHBOARD_FU_PROFILE.PROFILE_BASICINFOR' | translate }}
                                 </h4>
                                 <small *ngIf="this.userService.currentUserValue.userroles.rolecode =='FREELANCER_USER'">
-                                    <i class="fa fa-info-circle form-control-icon"></i>
+                                    <i class="fa fa-info-circle form-control-icon">
+                                    </i>
                                     <span style="color:white">
-                                        {{
-                                        'DASHBOARD_FU_PROFILE.PROFILE_BASIC_DETAILS_INFO_1' | translate }} 
+                                        {{'DASHBOARD_FU_PROFILE.PROFILE_BASIC_DETAILS_INFO_2' | translate }}
                                     </span>
-                                    <div style="color:white; padding-left: 15px;">
-                                        {{
-                                        'DASHBOARD_FU_PROFILE.PROFILE_BASIC_DETAILS_INFO_2' | translate }}
-                                        </div>
                                 </small>
                             </div>
                             <div class="card-body">
@@ -67,6 +63,10 @@
                                                     {{ 'DASHBOARD_FU_PROFILE.PROFILE_FIRSTNAME_EXCEED' | translate }}
                                                 </div>
                                             </div>
+                                            <small class="w-100"
+                                                *ngIf="this.userService.currentUserValue.userroles.rolecode =='FREELANCER_USER'">
+                                                {{'DASHBOARD_FU_PROFILE.PROFILE_FIRSTNAME_INSTRUCTIONS' | translate }}
+                                            </small>
                                         </div>
                                         <div class="form-group">
                                             <span>
@@ -84,6 +84,10 @@
                                                     {{ 'DASHBOARD_FU_PROFILE.PROFILE_LASTNAME_EXCEED' | translate }}
                                                 </div>
                                             </div>
+                                            <small class="w-100"
+                                                *ngIf="this.userService.currentUserValue.userroles.rolecode =='FREELANCER_USER'">
+                                                {{'DASHBOARD_FU_PROFILE.PROFILE_LASTNAME_INSTRUCTIONS' | translate }}
+                                            </small>
                                         </div>
                                         <div class="form-group"
                                             *ngIf="this.userService.currentUserValue.userroles.rolecode =='FREELANCER_USER'">
@@ -96,6 +100,9 @@
                                                 <option value="hi">हिंदी</option>
                                                 <option value="te">తెలుగు</option>
                                             </select>
+                                            <small class="w-100">
+                                                {{'DASHBOARD_FU_PROFILE.PROFILE_BASIC_DETAILS_INFO_1' | translate }}
+                                            </small>
                                         </div>
                                         <div class="form-group">
                                             <span>
@@ -112,6 +119,9 @@
                                                     'DASHBOARD_FU_PROFILE.PROFILE_ADDRESS_REQ' | translate }}
                                                 </div>
                                             </div>
+                                            <small
+                                                class="w-100">{{
+                                                'DASHBOARD_FU_PROFILE.PROFILE_ADDRESS_INSTRUCTIONS' | translate }}</small>
                                         </div>
                                         <div class="form-group">
                                             <span>
@@ -135,6 +145,9 @@
                                                     'DASHBOARD_FU_PROFILE.PROFILE_PHONE_REQ_MINLENG' | translate }}
                                                 </div>
                                             </div>
+                                            <small class="w-100"
+                                                *ngIf="this.userService.currentUserValue.userroles.rolecode =='FREELANCER_USER'">{{
+                                                'DASHBOARD_FU_PROFILE.PROFILE_PHONE_INSTRUCTIONS' | translate }}</small>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
@@ -184,8 +197,7 @@
                             </div>
                         </div>
 
-                        <div class="card"
-                            *ngIf="this.userService.currentUserValue.userroles.rolecode =='CLIENT_BUSINESS_ADMINISTRATOR' && 
+                        <div class="card" *ngIf="this.userService.currentUserValue.userroles.rolecode =='CLIENT_BUSINESS_ADMINISTRATOR' && 
                             this.userService.currentUserValue.userbizdetails.biztype == 'Company'">
                             <div class="card-header">
                                 <div class="card-actions float-right">
@@ -279,13 +291,12 @@
                                 </div>
                                 <h4 class="card-title mb-0">{{ 'DASHBOARD_FU_PROFILE.PROFILE_SKILL' | translate }}</h4>
                                 <small>
-                                    <i class="fa fa-info-circle form-control-icon"></i>
+                                    <i class="fa fa-info-circle form-control-icon">
+
+                                    </i>
                                     <span style="color:white">
-                                        {{ 'DASHBOARD_FU_PROFILE.PROFILE_SKILLED_INFO' | translate }} 
-                                    </span>
-                                    <div style="color:white; padding-left: 15px;">
                                         {{ 'DASHBOARD_FU_PROFILE.PROFILE_SKILLED_INFO_2' | translate }}
-                                        </div>
+                                    </span>
                                 </small>
                             </div>
                             <div class="card-body">
@@ -365,6 +376,9 @@
                                                     <div *ngIf="f.hourlyRate.errors.pattern"> {{
                                                         'DASHBOARD_FU_PROFILE.PROFILE_DIGIT' | translate }}</div>
                                                 </div>
+                                                <small class="w-100">
+                                                    {{ 'DASHBOARD_FU_PROFILE.PROFILE_SKILLED_INFO' | translate }}
+                                                </small>
                                             </div>
                                         </div>
                                     </div>
@@ -417,7 +431,8 @@
                                 <h4 class="card-title mb-0">{{ 'DASHBOARD_FU_PROFILE.PROFILE_BANKDETAILS' | translate }}
                                 </h4>
                                 <small>
-                                    <i class="fa fa-info-circle form-control-icon"></i>
+                                    <i class="fa fa-info-circle form-control-icon">
+                                    </i>
                                     <span style="color:white">
                                         {{ 'DASHBOARD_FU_PROFILE.PROFILE_BANKDETAILS_INFO' | translate }}
                                     </span>
@@ -509,14 +524,11 @@
                                     <input type="checkbox" class="form-check-input"
                                         formControlName="accepteditprofileterms"
                                         [ngClass]="{ 'is-invalid': issubmit && f.accepteditprofileterms.errors }">
-                                    <label class="form-check-label"
-                                        for="exampleCheck1">{{'HOMESIGNUP.SIGNUP_TERM_AGREE_LABEL' |
+                                    <label class="form-check-label" for="exampleCheck1">{{'HOMESIGNUP.SIGNUP_TERM_AGREE_LABEL' |
                                         translate}}
-                                        <a href={{signupComponent.termsofservice}}
-                                            target="_blank">{{'HOMESIGNUP.SIGNUP_TERMOFSERVICE' |
+                                        <a href={{signupComponent.termsofservice}} target="_blank">{{'HOMESIGNUP.SIGNUP_TERMOFSERVICE' |
                                             translate}} </a> &
-                                        <a href={{signupComponent.privacypolicy}}
-                                            target="_blank">{{'HOMESIGNUP.SIGNUP_PRIVACYPOLICY' |
+                                        <a href={{signupComponent.privacypolicy}} target="_blank">{{'HOMESIGNUP.SIGNUP_PRIVACYPOLICY' |
                                             translate}}</a></label>
                                     <div *ngIf="issubmit && f.accepteditprofileterms.errors" class="invalid-feedback">
                                         <div *ngIf="f.accepteditprofileterms.errors.required">

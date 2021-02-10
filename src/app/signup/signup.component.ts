@@ -227,7 +227,23 @@ export class SignupComponent implements OnInit {
                 this.saveUser();
               });
           }
-
+        } else {
+          if (this.langcode !== config.default_prefer_lang.toString()) {
+            this.referService.translatetext(ConfigMsg.signup_successmsg_alreadyexisit, this.langcode).subscribe(
+              (resptranslatetxt: string) => {
+                if (resptranslatetxt != null) {
+                  this.alertService.info(resptranslatetxt, true);
+                  this.spinnerService.hide();
+                }
+              },
+              error => {
+                this.alertService.error(error);
+                this.spinnerService.hide();
+              });
+          } else {
+            this.alertService.info(ConfigMsg.signup_successmsg_alreadyexisit, true);
+            this.spinnerService.hide();
+          }
         }
       },
       error => {
@@ -271,7 +287,20 @@ export class SignupComponent implements OnInit {
                     this.userService.saveUserNotification(this.usernotification).subscribe(
                       (notificationobj: any) => {
                         this.spinnerService.hide();
-                        this.alertService.success(ConfigMsg.signup_successmsg, true);
+                        if (this.langcode !== config.default_prefer_lang.toString()) {
+                          this.referService.translatetext(ConfigMsg.signup_successmsg, this.langcode).subscribe(
+                            (resptranslatetxt: string) => {
+                              if (resptranslatetxt != null) {
+                                this.alertService.success(resptranslatetxt, true);
+                              }
+                            },
+                            error => {
+                              this.alertService.error(error);
+                              this.spinnerService.hide();
+                            });
+                        } else {
+                          this.alertService.success(ConfigMsg.signup_successmsg, true);
+                        }
                       },
                       error => {
                         this.spinnerService.hide();
