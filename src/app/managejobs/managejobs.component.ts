@@ -259,7 +259,9 @@ export class ManagejobsComponent implements OnInit {
           if (element.isjobactive && element.jobacceptdecisionflag && !element.isjobamtpaidtocompany) {
             this.upComingPostedJobs.push(element);
           }
-          if (!element.isjobcancel && !element.isjobcompleted && !element.isjobamtpaidtocompany && !element.jobacceptdecisionflag) {
+          if (!element.isjobcancel && !element.isjobcompleted && 
+            !element.isjobamtpaidtocompany && !element.jobacceptdecisionflag && 
+            (element.freelanceuserId == null || element.jobaccepteddate != null)) {
             this.newlyPostedJobs.push(element);
           }
           if (element.isjobactive && element.isjobcompleted && element.isjobamtpaidtocompany && element.isjobaccepted) {

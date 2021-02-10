@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   apiUrl: '/RestAPI',
-  uiUrl: 'http://localhost:4200'
+  uiUrl: 'http://ec2-34-207-156-230.compute-1.amazonaws.com:3005'
 };
  
 /*

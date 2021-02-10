@@ -60,7 +60,7 @@ export class PaymentComponent implements OnInit {
   confirmPayment() {
     var phonenoreg = new RegExp('^[0-9]*$');
     if (this.payuform.phone == null || this.payuform.phone.length === 0) {
-      this.alertService.info('Enter Mobile number');
+      this.alertService.info('Enter Mobile number');  
     } else
       if (this.payuform.phone != null && (this.payuform.phone.length > 10 || this.payuform.phone.length < 10)) {
         this.alertService.info('Mobile number must be 10 digits');
@@ -83,7 +83,7 @@ export class PaymentComponent implements OnInit {
               this.payuform.txnid = data.txnid;
               this.payuform.surl = data.surl;
               this.payuform.furl = data.furl;
-              this.payuform.key = data.key;
+              this.payuform.key = data.key; 
               this.payuform.hash = data.hash;
               this.payuform.txnid = data.txnid;
               this.payuform.service_provider = data.service_provider;

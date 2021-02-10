@@ -50,7 +50,7 @@ export class DashboardoffuComponent implements OnInit {
     keyboard: false
   };
   indiaTime = this.datepipe.transform(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }), "dd/MM/yyyy hh:mm:ss");
-  indiaTimeFormat = this.datepipe.transform(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }), "yyyy-MM-dd hh:mm:ss");
+  indiaTimeFormat = this.datepipe.transform(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }), "yyyy-MM-dd HH:mm:ss");
 
   newjobsempty: boolean = false;
   upcomingjobsempty: boolean = false;
@@ -182,7 +182,7 @@ export class DashboardoffuComponent implements OnInit {
             this.newJobList.push(element);
           }
           if (element.isjobactive && element.freelanceuserId == this.userService.currentUserValue.userId
-            && element.isjobaccepted && !element.isjobamtpaidtocompany ) {
+            && element.isjobaccepted && !element.isjobamtpaidtocompany && !element.deactivefromupcomingjob) {
             this.upcomingJobList.push(element);
           }
           if (element.isjobactive && element.freelanceuserId == this.userService.currentUserValue.userId
@@ -387,6 +387,7 @@ export class DashboardoffuComponent implements OnInit {
                       freelancedetailsbyId.freelanceuserId = null;
                       freelancedetailsbyId.isjobaccepted = false;
                       freelancedetailsbyId.isjobcancel = false;
+                      freelancedetailsbyId.jobaccepteddate = null;
                       this.freelanceSvc.saveOrUpdateFreeLanceOnService(freelancedetailsbyId).subscribe((updatedobjfreelanceservice: FreelanceOnSvc) => {
                         this.referService.translatetext('Hello! The Job is cancelled succesfully.', this.userService.currentUserValue.preferlang).subscribe(
                           (trantxt: any) => {

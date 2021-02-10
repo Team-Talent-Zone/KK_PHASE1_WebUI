@@ -38,9 +38,10 @@ export class DashboardofadminComponent implements OnInit {
   newjobsbutnotactiviatedList: any = [];
   newjobsactiviatedbutnotacceptedList: any = [];
   jobscompletedList: any = [];
+  skilledworkerjustacceptedList: any = [];
   jobscompletedwithoutpaymentList: any = [];
   jobscompletedpayoutpendingList: any = [];
-  indiaTimeFormat = this.datepipe.transform(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }), "yyyy-MM-dd hh:mm:ss");
+  indiaTimeFormat = this.datepipe.transform(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }), "yyyy-MM-dd HH:mm:ss");
   startdateInputDate: Date;
   startdate: string;
 
@@ -163,6 +164,7 @@ export class DashboardofadminComponent implements OnInit {
     this.totalvoliationResolvedList = []
     this.todaysjobscheduledList = [];
     this.upcomingjobscheduledList = [];
+    this.skilledworkerjustacceptedList = [];
     this.newjobsbutnotactiviatedList = [];
     this.newjobsactiviatedbutnotacceptedList = [];
     this.jobscompletedList = [];
@@ -179,7 +181,7 @@ export class DashboardofadminComponent implements OnInit {
     this.freelanceserviceService.getUserAllJobDetails().subscribe((jobdetailsList: any) => {
       if (jobdetailsList != null) {
         jobdetailsList.forEach(element => {
-          if (element.isjobvoliation && element.cbajobattendantdate == null && 
+          if (element.isjobvoliation && element.cbajobattendantdate == null &&
             !element.isfreelancerjobattendant && element.isjobactive) {
             this.todaysvoliationList.push(element);
           }
@@ -192,10 +194,14 @@ export class DashboardofadminComponent implements OnInit {
           if (element.isjobactive && element.isjobaccepted && element.jobacceptdecisionflag && this.getDate(element.jobstartedon) > this.indiaTime.toString() && element.jobaccepteddate != null && !element.deactivefromupcomingjob) {
             this.upcomingjobscheduledList.push(element);
           }
+          if (element.isjobactive && element.isjobaccepted && this.getDate(element.jobstartedon) > this.indiaTime.toString() && element.jobaccepteddate != null
+            && !element.deactivefromupcomingjob && !element.jobacceptdecisionflag) {
+            this.skilledworkerjustacceptedList.push(element);
+          }
           if (!element.isjobactive && !element.isjobvoliation) {
             this.newjobsbutnotactiviatedList.push(element);
           }
-          if (element.isjobactive && !element.isjobaccepted && !element.isjobvoliation && element.jobaccepteddate == null) {
+          if (element.isjobactive && !element.isjobaccepted && !element.isjobvoliation && element.jobaccepteddate == null && element.freelanceuserId == null) {
             this.newjobsactiviatedbutnotacceptedList.push(element);
           }
           if (element.isjobactive && element.isjobcompleted && element.isjobamtpaidtocompany && element.isjobamtpaidtofu && element.jobaccepteddate != null) {
@@ -203,15 +209,15 @@ export class DashboardofadminComponent implements OnInit {
             this.totalmoneyearnedbycompanytilltoday = Number.parseFloat(element.tocompanyamount) + this.totalmoneyearnedbycompanytilltoday;
             this.totalmoneyearnedbyskilledworkerstilltoday = Number.parseFloat(element.tofreelanceamount) + this.totalmoneyearnedbyskilledworkerstilltoday;
           }
-          if (element.isjobactive && element.isjobcompleted && !element.isjobamtpaidtocompany && element.jobaccepteddate != null) {
+          if (element.isjobactive && element.isjobcompleted && !element.isjobamtpaidtocompany && !element.isjobamtpaidtofu && element.jobaccepteddate != null) {
             this.jobscompletedwithoutpaymentList.push(element);
-            this.totalcompletedjobswithoutpaymentbyclient = Number.parseFloat(element.tocompanyamount) + this.totalcompletedjobswithoutpaymentbyclient;
+            this.totalcompletedjobswithoutpaymentbyclient = Number.parseFloat(element.amount) + this.totalcompletedjobswithoutpaymentbyclient;
           }
-          if (element.isjobactive && element.isjobcompleted && !element.isjobamtpaidtofu && element.jobaccepteddate != null) {
+          if (element.isjobactive && element.isjobcompleted && element.isjobamtpaidtocompany && !element.isjobamtpaidtofu && element.jobaccepteddate != null) {
             this.jobscompletedpayoutpendingList.push(element);
           }
-
         });
+        this.spinnerService.hide();
       }
     },
       error => {
@@ -421,51 +427,59 @@ export class DashboardofadminComponent implements OnInit {
         if (confirmed) {
           this.spinnerService.show();
           if (this.resolvedvoliationreason) {
-            this.freelanceSvc.getAllFreelanceOnServiceDetailsByJobId(jobId).subscribe((objfreelanceservice: FreelanceOnSvc) => {
-              objfreelanceservice.isfreelancerjobattendant = true;
-              objfreelanceservice.resolvedvoliationreason = this.resolvedvoliationreason;
-              objfreelanceservice.isjobactive = false;
-              this.freelanceSvc.saveOrUpdateFreeLanceOnService(objfreelanceservice).subscribe((updatedobjfreelanceservice: FreelanceOnSvc) => {
-                if (this.startdate != null) {
-                  if (updatedobjfreelanceservice.jobId > 0) {
-                    updatedobjfreelanceservice.jobId = null;
-                    updatedobjfreelanceservice.isfreelancerjobattendant = false;
-                    updatedobjfreelanceservice.isjobvoliation = false;
-                    updatedobjfreelanceservice.jobstartedon = this.startdate.toString();
-                    updatedobjfreelanceservice.jobendedon = this.enddatevalue.toString();
-                    updatedobjfreelanceservice.freelanceuserId = this.fuUserId;
-                    updatedobjfreelanceservice.jobaccepteddate = this.indiaTimeFormat.toString();
-                    updatedobjfreelanceservice.associatedadminId = null;
-                    updatedobjfreelanceservice.isjobactive = true;
-                    updatedobjfreelanceservice.isjobaccepted = true;
-                    this.freelanceserviceService.saveFreelancerOnService(updatedobjfreelanceservice).subscribe((obj: any) => {
-                      if (obj.jobId > 0) {
-                        this.spinnerService.hide();
-                        this.alertService.success('The Voliation is resolved. The New Job Id : ' + obj.jobId + ' is created successfully & activated . it is assigned to ' + this.fuFullName);
-                        this.dashboardSummaryOfSkilledWorkerSearchService();
-                      }
-                    },
-                      error => {
-                        this.spinnerService.hide();
-                        this.alertService.error(error);
-                      });
+            this.freelanceSvc.getUserAllJobDetailsByJobId(jobId).subscribe((viewdata: any) => {
+              this.freelanceSvc.getAllFreelanceOnServiceDetailsByJobId(jobId).subscribe((objfreelanceservice: FreelanceOnSvc) => {
+                objfreelanceservice.isfreelancerjobattendant = true;
+                objfreelanceservice.resolvedvoliationreason = this.resolvedvoliationreason;
+                objfreelanceservice.isjobactive = false;
+                this.freelanceSvc.saveOrUpdateFreeLanceOnService(objfreelanceservice).subscribe((updatedobjfreelanceservice: FreelanceOnSvc) => {
+                  if (this.startdate != null) {
+                    if (updatedobjfreelanceservice.jobId > 0) {
+                      updatedobjfreelanceservice.jobId = null;
+                      updatedobjfreelanceservice.isfreelancerjobattendant = false;
+                      updatedobjfreelanceservice.isjobvoliation = false;
+                      updatedobjfreelanceservice.jobstartedon = this.startdate.toString();
+                      updatedobjfreelanceservice.jobendedon = this.enddatevalue.toString();
+                      updatedobjfreelanceservice.freelanceuserId = this.fuUserId;
+                      updatedobjfreelanceservice.jobaccepteddate = this.indiaTimeFormat.toString();
+                      updatedobjfreelanceservice.associatedadminId = null;
+                      updatedobjfreelanceservice.isjobactive = true;
+                      updatedobjfreelanceservice.isjobaccepted = true;
+                      updatedobjfreelanceservice.tofreelanceamount = viewdata.tofreelanceamount;
+                      updatedobjfreelanceservice.tocompanyamount = viewdata.tocompanyamount;
+                      this.freelanceserviceService.saveFreelancerOnService(updatedobjfreelanceservice).subscribe((obj: any) => {
+                        if (obj.jobId > 0) {
+                          this.spinnerService.hide();
+                          this.alertService.success('The Voliation is resolved. The New Job Id : ' + obj.jobId + ' is created successfully & activated . it is assigned to ' + this.fuFullName);
+                          this.dashboardSummaryOfSkilledWorkerSearchService();
+                        }
+                      },
+                        error => {
+                          this.spinnerService.hide();
+                          this.alertService.error(error);
+                        });
+                    }
+                  } else {
+                    this.spinnerService.hide();
+                    this.alertService.success('The voliation is resolved for the Job Id:' + jobId + '.');
+                    this.dashboardSummaryOfSkilledWorkerSearchService();
                   }
-                } else {
-                  this.spinnerService.hide();
-                  this.alertService.success('The voliation is resolved for the Job Id:' + jobId + '.');
-                  this.dashboardSummaryOfSkilledWorkerSearchService();
-                }
+                },
+                  error => {
+                    this.spinnerService.hide();
+                    this.alertService.error(error);
+                  });
+
               },
                 error => {
                   this.spinnerService.hide();
                   this.alertService.error(error);
-                });
-
+                })
             },
               error => {
                 this.spinnerService.hide();
                 this.alertService.error(error);
-              })
+              });
           }
         }
       });
@@ -653,9 +667,9 @@ export class DashboardofadminComponent implements OnInit {
         this.alertService.error(error);
       });
   }
-  
-  public pieChartData: SingleDataSet = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
-  public pieChartDataSrvPaid: SingleDataSet = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
+
+  public pieChartData: SingleDataSet = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+  public pieChartDataSrvPaid: SingleDataSet = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
 
   getGraphUserServiceData() {
     this.dbviewServic.getGraphUserServiceData().subscribe((servicesList: any) => {
@@ -679,8 +693,8 @@ export class DashboardofadminComponent implements OnInit {
         this.alertService.error(error);
       });
   }
-  public pieChartDataAtNoWork: SingleDataSet =[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
-  public pieChartDataAtWork: SingleDataSet = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
+  public pieChartDataAtNoWork: SingleDataSet = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+  public pieChartDataAtWork: SingleDataSet = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
 
   getGraphJobsData() {
     this.dbviewServic.getGraphJobsData().subscribe((jobList: any) => {
@@ -719,7 +733,7 @@ export class DashboardofadminComponent implements OnInit {
         this.alertService.error(error);
       });
   }
-  public pieChartDataAtWGraphSkillBased: SingleDataSet = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
+  public pieChartDataAtWGraphSkillBased: SingleDataSet = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
   getGraphSkillBasedData() {
     this.dbviewServic.getGraphSkillBasedData().subscribe((proofilebyskill: any) => {
       if (proofilebyskill != null) {
@@ -736,7 +750,7 @@ export class DashboardofadminComponent implements OnInit {
         this.alertService.error(error);
       });
   }
-  
+
 
   /**
    *  Prepared for getGraphFURatingData

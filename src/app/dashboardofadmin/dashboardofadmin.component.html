@@ -47,7 +47,7 @@
                 <div class="rotate">
                   <i class="fa fa-inr fa-4x"></i>
                 </div>
-                <h6 class="text-uppercase">Company Earns</h6>
+                <h6 class="text-uppercase">Company Earnings</h6>
                 <h1>{{this.totalmoneyearnedbycompanytilltoday | currency:"INR"}}</h1>
               </div>
             </div>
@@ -59,7 +59,7 @@
                 <div class="rotate">
                   <i class="fa fa-inr fa-4x"></i>
                 </div>
-                <h6 class="text-uppercase">Workers Earns</h6>
+                <h6 class="text-uppercase">Workers Earnings</h6>
                 <h1> {{this.totalmoneyearnedbyskilledworkerstilltoday | currency:"INR"}}
                 </h1>
               </div>
@@ -71,7 +71,7 @@
                 <div class="rotate">
                   <i class="fa fa-inr fa-4x"></i>
                 </div>
-                <h6 class="text-uppercase">Pending Payments</h6>
+                <h6 class="text-uppercase">Pending With Clients</h6>
                 <h1> {{this.totalcompletedjobswithoutpaymentbyclient | currency:"INR"}}</h1>
               </div>
             </div>
@@ -147,6 +147,18 @@
               <span *ngIf="upcomingjobscheduledList != null">
                 <b>
                   [{{upcomingjobscheduledList.length}}]
+                </b>
+              </span>
+            </a>
+          </div>
+
+          <div class="col-xl-3 col-sm-6 py-2">
+            <a class="btn btn-success" data-toggle="collapse" href="#justacceptedscheduledjobs" role="button"
+              aria-expanded="false" aria-controls="justacceptedscheduledjobs">
+              <i class="fa fa-reorder"></i> New Jobs - Just Accepted By Worker
+              <span *ngIf="skilledworkerjustacceptedList != null">
+                <b>
+                  [{{skilledworkerjustacceptedList.length}}]
                 </b>
               </span>
             </a>
@@ -399,6 +411,49 @@
                 </thead>
                 <tbody>
                   <tr *ngFor="let job of upcomingjobscheduledList">
+                    <td><a href="javascript: return false;" (click)="openViewJobDetailsModal(job.jobId)">
+                        {{job.jobId}}
+                      </a></td>
+                    <td>
+                      <a href="javascript: return false;"
+                        (click)='manageruser.openViewAccountDetailsModal(job.freelanceuserId)'>
+                        {{job.fullname}}
+                      </a>
+                      <p><i><small>{{job.subcategorylabel}}</small></i></p>
+
+                    </td>
+                    <td>{{job.fuphoneno}}</td>
+                    <td>
+                      <a href="javascript: return false;" (click)='manageruser.openViewAccountDetailsModal(job.userId)'>
+                        {{job.bizname}}
+                      </a>
+                    </td>
+                    <td>{{job.cbaphoneno}}</td>
+                    <td>{{job.subcategorylabel}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-2"></div>
+        <div class="collapse" id="justacceptedscheduledjobs">
+          <div class="row">
+            <div class="col-12">
+              <h5>New Jobs - Just Accepted By Worker</h5>
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col">Job Id</th>
+                    <th scope="col">SWorker Name</th>
+                    <th scope="col">SWorker Phone No</th>
+                    <th scope="col">Client</th>
+                    <th scope="col">Client Phone No</th>
+                    <th scope="col">Skill Name</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let job of skilledworkerjustacceptedList">
                     <td><a href="javascript: return false;" (click)="openViewJobDetailsModal(job.jobId)">
                         {{job.jobId}}
                       </a></td>

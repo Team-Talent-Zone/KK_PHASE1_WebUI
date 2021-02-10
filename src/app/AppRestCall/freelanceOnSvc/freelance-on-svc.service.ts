@@ -21,4 +21,8 @@ export class FreelanceOnSvcService {
     return this.http.get(`${environment.apiUrl}/getAllFreelanceOnServiceDetailsByJobId/` + jobID + '/');
   }
 
+  getUserAllJobDetailsByJobId(jobID: number) {
+    return this.http.get(`${environment.apiUrl}/getUserAllJobDetailsByJobId/` + jobID + '/');
+  }
+
 }
