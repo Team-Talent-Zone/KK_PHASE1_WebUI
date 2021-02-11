@@ -434,10 +434,12 @@ export class EditprofileComponent implements OnInit {
                   this.alertService.error(error);
                 }
               );
-
             }
-          }
-        );
+          },
+          error => {
+            this.spinnerService.hide();
+            this.alertService.error(error);
+          })
       }
     if (this.typenationalid === config.profiletype_nationalid.toString()) {
       this.utilService.uploadBgDocsInS3(this.nationalIDURL, this.editprofileuserId, this.filename).subscribe(
@@ -461,7 +463,6 @@ export class EditprofileComponent implements OnInit {
                 this.alertService.error(error);
               }
             );
-
           }
           if (this.msgflagboth) {
             this.referService.translatetext(this.edituserobj.firstname + ' your account details is updated', this.userService.currentUserValue.preferlang).subscribe(
@@ -478,8 +479,11 @@ export class EditprofileComponent implements OnInit {
               }
             );
           }
-        }
-      );
+        },
+        error => {
+          this.spinnerService.hide();
+          this.alertService.error(error);
+        });
     }
   }
   private saveorupdateedituser(edituserobj: User) {

@@ -55,9 +55,12 @@ export class AlertComponent implements OnInit {
   }
 
   openModal(template: TemplateRef<any>) {
+    console.log('Inside AlertComponent :', this.message);
     if (this.message.type === 'error') {
       // tslint:disable-next-line: radix
-      if (Number.parseInt(this.message.text.status) === 504) {
+      if (Number.parseInt(this.message.text.status) !== 200 ||
+        Number.parseInt(this.message.text.status) !== 404 ||
+        Number.parseInt(this.message.text.status) == 0) {
         this.router.navigate(['504error']);
       } else {
         // tslint:disable-next-line: radix
