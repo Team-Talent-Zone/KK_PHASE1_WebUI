@@ -1,16 +1,17 @@
 <h4>Our Services</h4>
 <hr>
-<i class="fa fa-shopping-cart pull-right" aria-hidden="true" style="cursor:pointer; font-size: 22px;" (click)="openUserServiceCart()"
-  *ngIf="userservicedetailsAddedList.length > 0 ">
+<div class="pull-right" (click)="openUserServiceCart()" *ngIf="userservicedetailsAddedList.length > 0 ">  
+  <i class="fa" style="cursor:pointer;font-size:31px">&#xf07a;</i>
   <span *ngIf="userservicedetailsAddedList.length == 1 ; else morethenOne">
-    {{userservicedetailsAddedList.length}}
+    <span class='badge badge-warning' id='lblCartCount'> {{userservicedetailsAddedList.length}} </span> 
   </span>
   <ng-template #morethenOne>
     <span>
-      {{userservicedetailsAddedList.length}}
+      <span class='badge badge-warning' id='lblCartCount'> {{userservicedetailsAddedList.length}} </span> 
     </span>
-  </ng-template>
-</i>
+  </ng-template>  
+</div>
+
 <ul class="nav nav-tabs" id="myTab" role="tablist">
   <li class="nav-item">
     <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
