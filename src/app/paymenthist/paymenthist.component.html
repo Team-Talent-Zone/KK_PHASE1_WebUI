@@ -2,7 +2,7 @@
 <hr>
 <div class="container-fluid">
     <div class="mt-md-4"></div>
-    <div style="background-color: lightgray; padding: 5px">
+    <div style="background-color: aliceblue; padding: 5px">
         <input type="text" id="myInput" onkeyup="paymentHistoryTableSearch()"
             placeholder="{{ 'PAYMENTHIST.PAYMENTHIST_SEARCH' | translate }}">
     </div>
@@ -31,7 +31,7 @@
                             {{paymentdetails.paymentsCBATrans.status}}</td>
                         <td *ngIf="userService.currentUserValue.userroles.rolecode === 'FREELANCER_USER'">
                             {{paymentdetails.paymentsFUTrans.status}}</td>
-                        <td>{{paymentdetails.amount}}</td>
+                        <td>{{paymentdetails.amount | currency:"INR₹"}}</td>
                         <td>{{paymentdetails.productinfo}}</td>
                     </tr>
                 </tbody>
@@ -57,7 +57,7 @@
                         <td>{{fupayments.name}}</td>
                         <td>{{fupayments.createdon}}</td>
                         <td>{{fupayments.status}}</td>
-                        <td>{{fupayments.amount}}</td>
+                        <td>{{fupayments.amount | currency:"INR₹"}}</td>
                         <td>{{fupayments.productinfo}}</td>
                     </tr>
                 </tbody>
@@ -90,7 +90,7 @@
                         <td>{{cbupayments.name}}</td>
                         <td>{{cbupayments.createdon}}</td>
                         <td>{{cbupayments.status}}</td>
-                        <td>{{cbupayments.amount}}</td>
+                        <td>{{cbupayments.amount | currency:"INR₹"}}</td>
                         <td>{{cbupayments.productinfo}}</td>
                     </tr>
                 </tbody>

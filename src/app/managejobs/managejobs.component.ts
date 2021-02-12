@@ -44,7 +44,8 @@ export class ManagejobsComponent implements OnInit {
   };
   indiaTime = this.datepipe.transform(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }), "dd/MM/yyyy hh:mm:ss");
   indiaTimeFormat = this.datepipe.transform(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }), "yyyy-MM-dd hh:mm:ss");
-
+  mapurl = 'http://maps.google.com/?z=16&q=';
+  comma =',';
   newjobsempty: boolean = false;
   upcomingjobsempty: boolean = false;
   completedjobsempty: boolean = false;
@@ -321,7 +322,7 @@ export class ManagejobsComponent implements OnInit {
   feedbackformvalidation() {
     this.feedbackform = this.fb.group({
       starrate: ['', Validators.required],
-      feedbackcomment: ['', Validators.required]
+      feedbackcomment: ['', [Validators.required,Validators.pattern('[a-zA-Z0-9.]+[a-zA-Z0-9. ]+')]]
     });
   }
 

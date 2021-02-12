@@ -258,7 +258,9 @@
                                     <p>
                                         <small class="pull-left">
                                             <b> {{ 'DASHBOARD_FU_BODY.JOBLOCATION' | translate }} </b>
-                                            {{element.joblocation}}
+                                            <a href={{mapurl+element.lat+comma+element.lng}} target="_blank">
+                                                {{element.joblocation}}
+                                            </a>
                                         </small>
                                     </p>
                                     <p>
@@ -283,8 +285,8 @@
                                     <div class="row">
                                         <small class="text-muted ">
                                             <p class="text-danger">
-                                                {{ 'DASHBOARD_FU_BODY.CANCELNOTE1' | translate }} <b><u>
-                                                        {{ 'DASHBOARD_FU_BODY.CANCELNOTE2' | translate }} </u></b>
+                                                {{ 'DASHBOARD_FU_BODY.CANCELNOTE1' | translate }}
+                                            <b><u> {{ 'DASHBOARD_FU_BODY.CANCELNOTE2' | translate }} </u></b>
                                             </p>
                                         </small>
                                     </div>
@@ -336,7 +338,9 @@
                                     <p>
                                         <small class="pull-left">
                                             <b> {{ 'DASHBOARD_FU_BODY.JOBLOCATION' | translate }} </b>
-                                            {{element.joblocation}}
+                                            <a href={{mapurl+element.lat+comma+element.lng}} target="_blank">
+                                                {{element.joblocation}}
+                                            </a>
                                         </small>
                                     </p>
                                     <p>
@@ -415,7 +419,9 @@
                                     <p>
                                         <small class="pull-left">
                                             <b> {{ 'DASHBOARD_FU_BODY.JOBLOCATION' | translate }} </b>
-                                            {{element.joblocation}}
+                                            <a href={{mapurl+element.lat+comma+element.lng}} target="_blank">
+                                                {{element.joblocation}}
+                                            </a>
                                         </small>
                                     </p>
                                     <p>
@@ -488,7 +494,9 @@
                                     <p>
                                         <small class="pull-left">
                                             <b> {{ 'DASHBOARD_FU_BODY.JOBLOCATION' | translate }} </b>
-                                            {{element.joblocation}}
+                                            <a href={{mapurl+element.lat+comma+element.lng}} target="_blank">
+                                                {{element.joblocation}}
+                                            </a>
                                         </small>
                                     </p>
                                     <p>
@@ -547,7 +555,7 @@
                 <i class="fa fa-sign-in"></i></button>
         </dt>
         <dd class="col-sm-9 mb-3">
-            {{ 'DASHBOARD_FU_BODY.IMPINST_IAMHERE' | translate }}
+            <p class="btn-warning"><i><b> {{ 'DASHBOARD_FU_BODY.IMPINST_IAMHERE' | translate }}</b></i></p>
         </dd>
         <dt class="col-sm-3 mb-3">
             <button class="pull-left" style="font-size:14px">{{ 'DASHBOARD_FU_BODY.CANCELJOBBUTTON' | translate }}
@@ -563,13 +571,14 @@
         </dt>
         <dd class="col-sm-9">
             <p>{{ 'DASHBOARD_FU_BODY.IMPINST_NEWJOBS_ACCEPTBUTTON' | translate }}</p>
-            <p style="color:red"><i><b>{{ 'DASHBOARD_FU_BODY.IMPINST_HEADER_NOACCEPTBUTTON' | translate }}</b></i></p>
+            <p style="color:red">
+                <i><small>{{ 'DASHBOARD_FU_BODY.IMPINST_HEADER_NOACCEPTBUTTON' | translate }}</small></i></p>
         </dd>
         <dt class="col-sm-3">
             <i class="fa fa-minus-circle fa-2x pull-left" style="color:red"></i>
         </dt>
         <dd class="col-sm-9">
-            {{ 'DASHBOARD_FU_BODY.IMPINST_ICON1' | translate }}
+            <p class="btn-warning"><i><b> {{ 'DASHBOARD_FU_BODY.IMPINST_ICON1' | translate }}</b></i>
         </dd>
         <dt class="col-sm-3">
             <i class="fa fa-bullhorn fa-2x pull-left" style="color:black"></i>
@@ -581,7 +590,7 @@
             <i class="fa fa-ban fa-2x pull-left" style="color:red"></i>
         </dt>
         <dd class="col-sm-9">
-            <p style="color:red"><i><b> {{ 'DASHBOARD_FU_BODY.IMPINST_ICON3' | translate }}</b></i></p>
+            <p class="btn-info"><i><b> {{ 'DASHBOARD_FU_BODY.IMPINST_ICON3' | translate }}</b></i></p>
         </dd>
         <dt class="col-sm-3">
             <i class="fa fa-smile-o fa-2x pull-left" style="color:blue"></i>

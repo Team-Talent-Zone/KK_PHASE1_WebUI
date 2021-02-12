@@ -117,7 +117,7 @@ export class DashboardsearchbyfilterComponent implements OnInit {
       jobendedon: [''],
       jobstartedon: [''],
       amount: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
-      jobdescription: ['', [Validators.required , Validators.pattern('[a-zA-Z0-9]+[a-zA-Z0-9 ]+')]],
+      jobdescription: ['', [Validators.required , Validators.pattern('[a-zA-Z0-9.]+[a-zA-Z0-9. ]+')]],
       joblocation: ['', [Validators.required]],
       userId: this.userService.currentUserValue.userId,
       subcategory: this.code,

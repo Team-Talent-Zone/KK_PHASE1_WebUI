@@ -52,7 +52,8 @@
                                 is here to work
                                 <i class="fa fa-sign-in"
                                     title="Click when the skilled worker is at the location to provide the service."></i></button>
-                            <button class="bg-warning pull-right" *ngIf="element.isjobactive && element.deactivefromupcomingjob 
+                            <button class="bg-warning pull-right"
+                                *ngIf="element.isjobactive && element.deactivefromupcomingjob 
                                 && element.isjobaccepted && !element.isfreelancerjobattendant && !element.isjobvoliation"
                                 (click)="deactivateJob(element.jobId,'voliation')">{{element.fullname | slice:0:10}}..
                                 is absent
@@ -107,11 +108,12 @@
                     <div class="card-body">
                         <i class="fa fa-briefcase fa-3x float-right"></i>
                         <h3> <b>{{'DASHBOARD_FU_BODY.JOBDETAILS' | translate }} </b> </h3>
-
                         <div>
                             <small class="pull-left">
                                 <b> {{'DASHBOARD_FU_BODY.JOBLOCATION' | translate }} </b>
-                                {{element.joblocation}}
+                                <a href={{mapurl+element.lat+comma+element.lng}} target="_blank">
+                                    {{element.joblocation}}
+                                </a>
                             </small>
                         </div>
                         <div>
@@ -188,7 +190,9 @@
                         <p>
                             <small class="pull-left">
                                 <b> {{ 'DASHBOARD_FU_BODY.JOBLOCATION' | translate }} </b>
-                                {{newlyjob.joblocation}}
+                                <a href={{mapurl+newlyjob.lat+comma+newlyjob.lng}} target="_blank">
+                                    {{newlyjob.joblocation}}
+                                </a>
                             </small>
                         </p>
                         <p>
@@ -316,7 +320,9 @@
                         <p>
                             <small class="pull-left">
                                 <b> {{ 'DASHBOARD_FU_BODY.JOBLOCATION' | translate }} </b>
-                                {{completedjob.joblocation}}
+                                <a href={{mapurl+completedjob.lat+comma+completedjob.lng}} target="_blank">
+                                    {{completedjob.joblocation}}
+                                </a>
                             </small>
                         </p>
                         <p>
@@ -388,6 +394,8 @@
                             <div *ngIf="f.feedbackcomment.errors.required">Comment is required
                             </div>
                         </div>
+                        <div *ngIf="f.feedbackcomment.errors.pattern">No special character allowed.
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">Save Changes</button>
@@ -404,20 +412,14 @@
     </dt>
     <dd class="col-sm-9"> </dd>
     <dt class="col-sm-3">
-        <button class="bg-info" style="font-size:14px">Job Completed
-            <i class="fa fa-check"></i></button>
-    </dt>
-    <dd class="col-sm-9">
-        Clicking on this BUTTON indicates the job is completed.
-    </dd>
-    <dt class="col-sm-3">
         <button class="bg-success pull-left">#workername.. is here to work
             <i class="fa fa-sign-in"></i></button>
     </dt>
     <dd class="col-sm-9">
-        <p style="color:red"><i><b>Clicking on this BUTTON indicates the skilled worker is at job location and ready to
-                    work . Always provide
-                    attendance to the skilled worker.
+        <p class="btn-warning"><i><b>Clicking on this BUTTON indicates the skilled worker is at job location and ready
+                    to
+                    work . <p>Always provide
+                        attendance to the skilled worker.</p>
                 </b>
             </i>
         </p>
@@ -427,8 +429,20 @@
             <i class="fa fa-times"></i></button>
     </dt>
     <dd class="col-sm-9">
-        Clicking on this BUTTON indicates the skilled worker is not at job location before job end date and time. By
-        clicking your notifying to managment to take necceasary action.
+        <p class="btn-info"><i><b>
+                    Clicking on this BUTTON indicates the skilled worker is not at job location before job end date and
+                    time.
+                    <p>By clicking your notifying to managment to take necceasary action.</p>
+                </b>
+            </i>
+        </p>
+    </dd>
+    <dt class="col-sm-3">
+        <button class="bg-info" style="font-size:14px">Job Completed
+            <i class="fa fa-check"></i></button>
+    </dt>
+    <dd class="col-sm-9">
+        Clicking on this BUTTON indicates the job is completed.
     </dd>
     <dt class="col-sm-3 ">
         <button class="bg-success" style="font-size:14px">Pay Now
@@ -439,6 +453,20 @@
         process.
     </dd>
     <dt class="col-sm-3">
+        <button class="bg-info">Activiate
+            <i class=" fa fa-check"></i>
+        </button>
+    </dt>
+    <dd class="col-sm-9">
+        <p class="btn-info"><i><b>Clicking on this BUTTON indicates to activiate the job. <p>Until this button is not
+                        click the skilled worker is not
+                        able to see the created job.
+                    </p>
+                </b>
+            </i>
+        </p>
+    </dd>
+    <dt class="col-sm-3">
         <button class="bg-warning ">Cancel
             <i class="fa fa-times"></i></button>
     </dt>
@@ -446,21 +474,12 @@
         Clicking on this BUTTON indicates to cancel the job before activatation.
     </dd>
     <dt class="col-sm-3">
-        <button class="bg-info">Activiate
-            <i class=" fa fa-check"></i>
-        </button>
-    </dt>
-    <dd class="col-sm-9">
-        Clicking on this BUTTON indicates to activiate the job. Until this button is not click the skilled worker is not
-        able to see the created job.
-    </dd>
-    <dt class="col-sm-3">
         <button class="bg-danger">No One Accepted
             <i class="fa fa-times"></i></button>
     </dt>
     <dd class="col-sm-9">
-        Clicking on this BUTTON indicates to cancel the job because no skilled worker has accepted the job.So please
-        proceed to remove this job & create new job again.
+        Clicking on this BUTTON indicates to cancel the job because no skilled worker has accepted the job.Proceed to
+        remove this job & create new job.
     </dd>
     <dt class="col-sm-3">
         <button class="bg-warning ">Remove
@@ -468,13 +487,13 @@
     </dt>
     <dd class="col-sm-9">
         Clicking on this BUTTON indicates to cancel the job because you have not activiated the job on time and the job
-        start date has crossed current date.So please proceed to remove this job & create new job again.
+        start date has crossed current date.Proceed to remove this job & create new job.
     </dd>
     <dt class="col-sm-3">
         <button class="bg-warning">PayInfo<i class="fa fa-sitemap" style="color:#FF4949"></i></button>
     </dt>
     <dd class="col-sm-9">
-        Clicking on this BUTTON indicates to view the payment details for the respective Job Id.
+        Clicking on this BUTTON indicates to view the payment details for the respective job.
     </dd>
     <dt class="col-sm-3">
         <button class="bg-info"> Rate <i class="fa fa-meh-o"></i></button>
