@@ -49,3 +49,7 @@ a {
   /*font-size: 40px;*/
 }
 
+#footer {
+  position: initial;
+  z-index:-9999
+}
