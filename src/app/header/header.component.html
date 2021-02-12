@@ -107,6 +107,7 @@
     </li>
     <li data-target="#carouselExampleCaptions" data-slide-to="1" class=""></li>
     <li data-target="#carouselExampleCaptions" data-slide-to="2" class=""></li>
+    <li data-target="#carouselExampleCaptions" data-slide-to="3" class=""></li>
   </ol>
   <div class="carousel-inner">
     <div class="carousel-item active">
@@ -143,14 +144,13 @@
     </div>
     <div class="carousel-item">
       <img class="d-block w-100" src="assets/img/backgrounds/ban3.jpg" data-holder-rendered="true">
-      <div class="carousel-caption-mob d-block d-sm-none">
-        <h5>{{'HOMENAV.BETTERSERVICECAPTION' | translate}}</h5>
-        <p> {{'HOMENAV.BETTERSERVICESUBCAPTION' | translate}}
-          {{'HOMENAV.BETTERSERVICESUBCAPTION1' | translate}}
+      <div class="carousel-caption d-block d-sm-none">
+        <h5 style="font-size: 15px;">{{'HOMENAV.BETTERSERVICECAPTION' | translate}}</h5>
+        <p>
           {{'ONBOARD.GRABTHESERVICE1' | translate}}
-          {{ 'HOMENAV.LATESTUPDATE_LINE3' | translate }}
-          <a href="javascript: return false;" (click)="openSignupModal('cba')">
-            <u>{{ 'PRICE.SIGNUP' | translate }}</u>
+          <a href="javascript: return false;" href="/home#section-4">
+            <u>{{ 'PRICE.TITLE' |
+              translate }}</u>
           </a>
         </p>
       </div>
@@ -159,12 +159,39 @@
         <p> {{'HOMENAV.BETTERSERVICESUBCAPTION' | translate}}
           {{'HOMENAV.BETTERSERVICESUBCAPTION1' | translate}}
           {{'ONBOARD.GRABTHESERVICE1' | translate}}
-          {{ 'HOMENAV.LATESTUPDATE_LINE3' | translate }}
-          <a href="javascript: return false;" (click)="openSignupModal('cba')">
-            <u>{{ 'PRICE.SIGNUP' | translate }}</u>
+          <a href="javascript: return false;" href="/home#section-4">
+            <u>{{ 'PRICE.TITLE' |
+              translate }}</u>
           </a> </p>
       </div>
     </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" src="assets/img/backgrounds/ban4.jpg" data-holder-rendered="true">
+      <div class="carousel-caption-mob-ban4 d-block d-sm-none">
+        <h5 style="font-size: 25px;">{{'HOMENAV.BANNER_4_LABEL_HEADER' | translate}}</h5>
+        <p>
+          {{'HOMENAV.BANNER_4_LABEL_HEADER_PARA' | translate}}
+          <a style="color:black"  href="javascript: return false;" href="/home#section-3">
+            <u>{{ 'HOMENAV.BANNER_4_LABEL_HEADER_PARA_3' |
+              translate }}</u>
+          </a>
+        </p>
+      </div>
+      <div class="carousel-caption-ban4 d-md-block d-lg-none d-sm-none">
+        <h5 style="font-size: 40px;">{{'HOMENAV.BANNER_4_LABEL_HEADER' | translate}}</h5>
+        <p> {{'HOMENAV.BANNER_4_LABEL_HEADER_PARA' | translate}}
+          {{'HOMENAV.BANNER_4_LABEL_HEADER_PARA_2' | translate}}
+        </p>
+        <p><b>
+            <a style="color:black" href="javascript: return false;" href="/home#section-3">
+              <u>{{ 'HOMENAV.BANNER_4_LABEL_HEADER_PARA_3' |
+                translate }}</u>
+            </a>
+          </b>
+        </p>
+      </div>
+    </div>
+    
   </div>
   <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -246,7 +273,7 @@ Announcement
   </p>
   <p *ngIf="list != null">
     <span *ngFor="let item of list; let i = index ">
-     <small>{{item.label}}</small>
+      <small>{{item.label}}</small>
       <span *ngIf="i != list.length - 1">,</span>
     </span>
   </p>
