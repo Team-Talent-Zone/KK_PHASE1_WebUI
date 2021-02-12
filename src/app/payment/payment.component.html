@@ -3,8 +3,8 @@
         <h6>One step for the payment process...<button type="button" class="close pull-right" (click)="modalRef.hide()">&times;</button></h6>
     </div> -->
     <div class="modal-header">
-        <h5 class="modal-title">One step for the payment process...</h5>
-        <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close">
+        <h5 class="modal-title">{{'PAYMENT_POPUP.ONESTEP' | translate}}</h5>
+        <button type="button" class="btn btn-danger" (click)="modalRef.hide()" aria-label="Close">
           <span aria-hidden="true" (click)="modalRef.hide()">&times;</span>
         </button>
       </div>
@@ -12,7 +12,7 @@
         onsubmit="window.open('about:blank','_self');">
         <div class="card-body">
             <!-- <h4 class="card-title"> -->
-                <p><b>This phone number gets OTP for the transcation</b></p>
+                <p><b>{{'PAYMENT_POPUP.OTP_LABEL' | translate}}</b></p>
              <!-- </h4> -->
             <span id="reauth-email" class="reauth-email"></span>
             <div class="form-row">
@@ -54,10 +54,10 @@
         <div class="modal-footer">
             <div class="row">
                 <div class="col-md-5" *ngIf="disablePaymentButton">
-                    <button type="button" (click)="confirmPayment()" class="btn btn-warning">Confirm </button>
+                    <button type="button" (click)="confirmPayment()" class="btn btn-warning">{{'PAYMENT_POPUP.CONFIRM' | translate}} </button>
                 </div>
                 <div class="col-md-5" *ngIf="!disablePaymentButton">
-                    <button type="submit" class="btn btn-primary">Checkout</button>
+                    <button type="submit" class="btn btn-primary">{{'PAYMENT_POPUP.CHECKOUT' | translate}}</button>
                 </div>
             </div>
         </div>

@@ -1,4 +1,3 @@
-import { ConfirmationDialogService } from './../AppRestCall/confirmation/confirmation-dialog.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { UsersrvdetailsService } from './../AppRestCall/userservice/usersrvdetails.service';
 import { ReferenceAdapter } from './../adapters/referenceadapter';
@@ -18,7 +17,7 @@ import { timer } from 'rxjs';
 import { ModalOptions } from 'ngx-bootstrap';
 import { ReadMorePopupComponent } from '../read-more-popup/read-more-popup.component';
 import { ConfigMsg } from '../appconstants/configmsg';
-import { Inject } from '@angular/core';
+import { MatomoInjector, MatomoTracker } from 'ngx-matomo';
 
 @Component({
   selector: 'app-dashboard',
@@ -59,7 +58,7 @@ export class DashboardComponent implements OnInit {
   constructor(
     public userService: UserService,
     private router: Router,
-    private route: ActivatedRoute,
+    route: ActivatedRoute,
     private spinnerService: Ng4LoadingSpinnerService,
     private alertService: AlertsService,
     private refAdapter: ReferenceAdapter,
@@ -69,6 +68,8 @@ export class DashboardComponent implements OnInit {
     public datepipe: DatePipe,
     public usersrvdetails: UsersrvdetailsService,
     private modalService: BsModalService,
+    private matomoTracker: MatomoTracker,
+    private matomoInjector: MatomoInjector
   ) {
     route.params.subscribe(params => {
       this.txtid = params.txtid;
@@ -76,6 +77,9 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.matomoTracker.setUserId(this.userService.currentUserValue.userId.toString());
+    this.matomoInjector.init("http://ec2-34-207-156-230.compute-1.amazonaws.com:3002/", 1);
+
     if (this.txtid != null) {
       this.getPaymentDetailsByTxnId(this.txtid);
     }
@@ -86,7 +90,7 @@ export class DashboardComponent implements OnInit {
       this.getAllAvailableFUSkills();
     }
     const source = timer(1000, 90000);
-    source.subscribe((val: number) => {
+    source.subscribe(() => {
       this.isbellenable = false;
       this.getAllBellNotifications();
     });
@@ -133,7 +137,7 @@ export class DashboardComponent implements OnInit {
             });
           } else {
             notifcationlist.forEach((element: any) => {
-                this.notifcationbellList.push(element);
+              this.notifcationbellList.push(element);
             });
           }
         }
@@ -289,12 +293,12 @@ export class DashboardComponent implements OnInit {
     this.router.navigate(['/home']);
   }
 
-  search(inputItemCode: string, inputItem: string) {
+  search(inputItem: string) {
     this.templist = [];
-    this.templist = this.list.filter((item) => item.label.toLowerCase().startsWith(this.inputItem.toLowerCase()));
     if (inputItem == null) {
       this.alertService.info('Search keyword cannot be empty');
-    } else
+    } else {
+      this.templist = this.list.filter((item) => item.label.toLowerCase().startsWith(this.inputItem.toLowerCase()));
       if (this.templist.length == 0) {
         this.alertService.info('Keyword ' + inputItem + ' is a invalid skill to search.');
       } else {
@@ -303,6 +307,7 @@ export class DashboardComponent implements OnInit {
             this.router.navigate(['dashboard/' + this.templist[0].code + '/' + this.templist[0].label]);
           });
       }
+    }
   }
 
   getAllAvailableFUSkills() {

@@ -138,6 +138,7 @@
   z-index: 1;
   cursor: pointer;
 }
+
 .selected {
   color: cornsilk;
   background-color: rgb(165, 112, 112);
@@ -145,6 +146,7 @@
 
 input:placeholder-shown {
   font-style: italic;
+  font-size: small;
 }
 
 .background {

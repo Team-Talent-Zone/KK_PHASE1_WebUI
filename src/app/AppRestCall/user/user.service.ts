@@ -79,7 +79,6 @@ export class UserService {
     userobj.userroles = new UserRole();
     userobj.userroles.rolecode = rolecode;
     userobj.userbizdetails = new UserBiz();
-console.log('key', key);
     if (key === config.shortkey_role_cba.toString()) {
       userobj.userbizdetails.biztype = user.biztype;
     }
@@ -103,6 +102,7 @@ console.log('key', key);
       userobj.password = user.password;
       userobj.preferlang = user.preferlang;
     }
+    console.log('userobj : ', userobj);
     return this.http.post(`${environment.apiUrl}/saveUser/`, userobj);
   }
 

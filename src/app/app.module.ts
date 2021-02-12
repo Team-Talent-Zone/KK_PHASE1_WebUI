@@ -63,7 +63,6 @@ import { ToastNotificationsModule } from 'ngx-toast-notifications';
 import { HometestimonialsComponent } from './hometestimonials/hometestimonials.component';
 import { HomeclienttestimonalsComponent } from './homeclienttestimonals/homeclienttestimonals.component';
 import { ViewfureviewsComponent } from './viewfureviews/viewfureviews.component';
-import { Error404pageComponent } from './error404page/error404page.component';
 import { MatomoModule } from 'ngx-matomo';
 import { ReadMoreComponent } from './read-more/read-more.component';
 import { ReadMorePopupComponent } from './read-more-popup/read-more-popup.component';
@@ -120,7 +119,6 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     HometestimonialsComponent,
     HomeclienttestimonalsComponent,
     ViewfureviewsComponent,
-    Error404pageComponent,
     CustomToastComponent,
     ReadMoreComponent,
     ReadMorePopupComponent,

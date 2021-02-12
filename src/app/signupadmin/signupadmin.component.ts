@@ -77,55 +77,61 @@ export class SignupadminComponent implements OnInit {
     this.userService.prepareAdminToSignUp(this.signupAdminForm.get('username').value)
       .pipe(first()).subscribe(
         (resp: any) => {
-          this.signupAdminForm.patchValue({ password: resp.password });
-          this.signupAdminForm.patchValue({ preferlang: config.default_prefer_lang.toString() });
-          this.userService.saveUser(
-            this.signupAdminForm.value, this.signupAdminForm.get('rolecode').value,
-            this.key, this.signupAdminForm.value,null
-          ).pipe(first()).subscribe(
-            (respobj) => {
-              this.usrObj = this.userAdapter.adapt(respobj);
-              this.referService.getLookupTemplateEntityByShortkey(config.shortkey_email_welcometocsstorcssm.toString()).subscribe(
-                referencetemplate => {
-                  this.templateObj = this.reflookuptemplateAdapter.adapt(referencetemplate);
-                  this.util = new Util();
-                  this.util.preferlang = config.default_prefer_lang.toString();
-                  this.util.fromuser = this.userService.currentUserValue.username;
-                  this.util.subject = ConfigMsg.email_welcomeemailaddress_subj;
-                  this.util.touser = this.usrObj.username;
-                  this.util.templateurl = this.templateObj.url;
-                  this.util.templatedynamicdata = JSON.stringify({
-                    firstName: this.usrObj.firstname,
-                    platformURL: `${environment.uiUrl}`,
-                    userName: this.usrObj.username,
-                    tempPassword: resp.password
-                  });
-                  this.sendemailService.sendEmail(this.util).subscribe(
-                    (util: any) => {
-                      if (util.lastreturncode === 250) {
-                        this.spinnerService.hide();
-                        this.alertService.success(ConfigMsg.signup_successmsg, true);
-                      }
-                    },
-                    error => {
-                      this.spinnerService.hide();
-                      this.alertService.error(error);
+          if (resp != null) {
+            this.signupAdminForm.patchValue({ password: resp.password });
+            this.signupAdminForm.patchValue({ preferlang: config.default_prefer_lang.toString() });
+            this.userService.saveUser(
+              this.signupAdminForm.value, this.signupAdminForm.get('rolecode').value,
+              this.key, this.signupAdminForm.value, null
+            ).pipe(first()).subscribe(
+              (respobj) => {
+                this.usrObj = this.userAdapter.adapt(respobj);
+                this.referService.getLookupTemplateEntityByShortkey(config.shortkey_email_welcometocsstorcssm.toString()).subscribe(
+                  referencetemplate => {
+                    this.templateObj = this.reflookuptemplateAdapter.adapt(referencetemplate);
+                    this.util = new Util();
+                    this.util.preferlang = config.default_prefer_lang.toString();
+                    this.util.fromuser = this.userService.currentUserValue.username;
+                    this.util.subject = ConfigMsg.email_welcomeemailaddress_subj;
+                    this.util.touser = this.usrObj.username;
+                    this.util.templateurl = this.templateObj.url;
+                    this.util.templatedynamicdata = JSON.stringify({
+                      firstName: this.usrObj.firstname,
+                      platformURL: `${environment.uiUrl}`,
+                      userName: this.usrObj.username,
+                      tempPassword: resp.password
                     });
-                },
-                error => {
-                  this.spinnerService.hide();
-                  this.alertService.error(error);
-                }
-              );
-            },
-            error => {
-              this.spinnerService.hide();
-              this.alertService.error(error);
-            });
+                    this.sendemailService.sendEmail(this.util).subscribe(
+                      (util: any) => {
+                        if (util.lastreturncode === 250) {
+                          this.spinnerService.hide();
+                          this.alertService.success(ConfigMsg.signup_successmsg, true);
+                        }
+                      },
+                      error => {
+                        this.spinnerService.hide();
+                        this.alertService.error(error);
+                      });
+                  },
+                  error => {
+                    this.spinnerService.hide();
+                    this.alertService.error(error);
+                  }
+                );
+              },
+              error => {
+                this.spinnerService.hide();
+                this.alertService.error(error);
+              });
+          } else {
+            this.alertService.info(ConfigMsg.signup_successmsg_alreadyexisit, true);
+            this.spinnerService.hide();
+          }
         },
         error => {
           this.spinnerService.hide();
           this.alertService.error(error);
         });
+
   }
 }

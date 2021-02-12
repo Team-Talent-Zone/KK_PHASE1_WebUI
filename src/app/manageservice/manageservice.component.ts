@@ -121,7 +121,7 @@ export class ManageserviceComponent implements OnInit {
   }
 
   viewnewservicedetails(ourserviceId: number) {
-    this.listOfAllNewServices.forEach((element: any) => {
+    this.myNewServiceForReviewAllCommentHistory.forEach((element: any) => {
       if (element.ourserviceId === ourserviceId) {
         const initialState = { newserviceobj: element };
         this.modalRef = this.modalService.show(ViewnewsevicedetailsComponent, Object.assign(

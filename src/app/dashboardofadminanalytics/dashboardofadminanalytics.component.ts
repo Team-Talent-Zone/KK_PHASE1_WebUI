@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatomoTracker } from 'ngx-matomo';
+import { UserService } from '../AppRestCall/user/user.service';
 
 @Component({
   selector: 'app-dashboardofadminanalytics',
@@ -7,7 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardofadminanalyticsComponent implements OnInit {
 
-  constructor() { }
+  constructor(    
+    private userService: UserService
+    ) { }
 
   ngOnInit() {
   }

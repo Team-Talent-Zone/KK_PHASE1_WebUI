@@ -57,32 +57,21 @@ export class AlertComponent implements OnInit {
   openModal(template: TemplateRef<any>) {
     console.log('Inside AlertComponent :', this.message);
     if (this.message.type === 'error') {
-      // tslint:disable-next-line: radix
-      if (Number.parseInt(this.message.text.status) !== 200 ||
-        Number.parseInt(this.message.text.status) !== 404 ||
-        Number.parseInt(this.message.text.status) == 0) {
-        this.router.navigate(['504error']);
+      if (Number.parseInt(this.message.text.status) != 401) {
+        this.router.navigate(['error', this.message.text.status]);
       } else {
-        // tslint:disable-next-line: radix
-        if (Number.parseInt(this.message.text.status) === 404) {
-          // tslint:disable-next-line: max-line-length
-          this.router.navigate(['404error']);
-        } else { // tslint:disable-next-line: radix
-          if (Number.parseInt(this.message.text.status) === 401) {
-            if (localStorage.getItem('langCode') === config.lang_code_hi) {
-              this.loginfailedmsg = ConfigMsg.invalid_username_password_hi;
-            } else
-              if (localStorage.getItem('langCode') === config.lang_code_te) {
-                this.loginfailedmsg = ConfigMsg.invalid_username_password_te;
-              } else {
-                this.loginfailedmsg = ConfigMsg.invalid_username_password;
-              }
-            this.errormsg = this.loginfailedmsg;
+        if (Number.parseInt(this.message.text.status) === 401) {
+          if (localStorage.getItem('langCode') === config.lang_code_hi) {
+            this.loginfailedmsg = ConfigMsg.invalid_username_password_hi;
           } else
-            // tslint:disable-next-line: radix
-            if (Number.parseInt(this.message.text.status) !== 404 && Number.parseInt(this.message.text.status) !== 504) {
-              this.errormsg = this.message.text.error.errormessage;
+            if (localStorage.getItem('langCode') === config.lang_code_te) {
+              this.loginfailedmsg = ConfigMsg.invalid_username_password_te;
+            } else {
+              this.loginfailedmsg = ConfigMsg.invalid_username_password;
             }
+          this.errormsg = this.loginfailedmsg;
+          this.modalRef = this.modalService.show(template, this.config);
+        } else {
           if (this.errorCallCount === 0 && this.errormsg != null) {
             this.modalRef = this.modalService.show(template, this.config);
             this.errorCallCount = this.errorCallCount + 1;

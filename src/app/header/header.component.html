@@ -237,13 +237,16 @@ Announcement
   <p>{{ 'HOMENAV.LATESTUPDATE_LINE1' | translate }}
   </p>
   <p> {{ 'HOMENAV.LATESTUPDATE_LINE2' | translate }}
+  </p>
+  <p>
+    {{ 'HOMENAV.LATESTUPDATE_LINE3' | translate }}
     <a href="javascript: return false;" (click)="openSignupModal('fu')">
-      <u>{{ 'HOMENAV.LATESTUPDATE_LINE3' | translate }}</u>
+      <u>{{ 'HOMENAV.LATESTUPDATE_LINE4' | translate }}</u>
     </a>
   </p>
   <p *ngIf="list != null">
     <span *ngFor="let item of list; let i = index ">
-      {{item.label}}
+     <small>{{item.label}}</small>
       <span *ngIf="i != list.length - 1">,</span>
     </span>
   </p>

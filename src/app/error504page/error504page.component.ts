@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-error504page',
@@ -6,8 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./error504page.component.css']
 })
 export class Error504pageComponent implements OnInit {
-  constructor() {
+  id: number;
 
+  constructor(
+    private route: ActivatedRoute,
+    ) {
+    route.params.subscribe(params => {
+      this.id = params.id;
+    });
   }
 
   ngOnInit() {

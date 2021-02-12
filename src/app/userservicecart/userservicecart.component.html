@@ -48,11 +48,11 @@
                 </div>
                 <div class="p-2 d-flex" *ngFor="let prod of displayUserServicesForCheckOut">
                     <div class="col-8">{{prod.name}}</div>
-                    <div class="ml-auto">{{prod.amount}}</div>
+                    <div class="ml-auto">{{prod.amount}} </div>
                 </div>
                 <div class="p-2 d-flex pt-3">
-                    <div class="col-8"><b>Total</b></div>
-                    <div class="ml-auto"><b class="green">{{totalAmountToPay }} </b></div>
+                    <div class="col-3"><b>Total</b></div>
+                    <div class="ml-auto"><b class="green">{{totalAmountToPay | currency:"INR₹"}}</b></div>
                 </div>
             </div>
         </div>

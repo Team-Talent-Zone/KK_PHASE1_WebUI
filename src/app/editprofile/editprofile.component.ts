@@ -345,8 +345,7 @@ export class EditprofileComponent implements OnInit {
         );
         return;
       }
-
-      if (this.editprofileForm.get('accountno').value.toString() !== null && this.editprofileForm.get('ifsc').value.toString() != null &&
+     if (this.editprofileForm.get('accountno').value.toString() !== null && this.editprofileForm.get('ifsc').value.toString() != null &&
         this.editprofileForm.get('verfiyaccountno').value.toString() !== null) {
         this.paymentService.verifyAccountPayout(this.editprofileForm.get('accountno').value.toString(), this.editprofileForm.get('ifsc').value.toString()).subscribe(
           (beneficiaryName: string) => {

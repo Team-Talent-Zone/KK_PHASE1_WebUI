@@ -83,7 +83,7 @@
 							<div class="address">
 								<h2>{{ 'FOOTER.USEFULLINKS' | translate }}</h2>
 								<!-- <hr> -->
-								<ul style="list-style: circle; ">
+								<ul style="list-style: circle;">
 									<li><a [routerLink]="['/dashboard']">Our Services</a>
 									</li>
 									<li><a routerLink='/vieworeditprofile/{{userService.currentUserValue.userId}}'>
@@ -133,6 +133,7 @@
 			</div>
 		</section>
 		<section class="contact bg-light-copy" id="contact">
+			<small>
 			<div class="row">
 				<div class="col-md-4 text-center">
 					<span>
@@ -146,9 +147,10 @@
 							translate }}</a></span>
 				</div>
 				<div class="col-md-4 text-center">
-					<span><small><i class="fa fa-copyright" aria-hidden="true"></i>2021 Kaam Karega IT Services Private Limited</small></span>
+					<span><i class="fa fa-copyright" aria-hidden="true"></i>2021 Kaam Karega IT Services Private Limited</span>
 				</div>
 			</div>
+		</small>
 		</section>
 	</div>
 </div>
