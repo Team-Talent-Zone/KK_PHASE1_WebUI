@@ -262,7 +262,7 @@
                 <div class="card card-flip h-100 ">
                     <div class="card-header text-white bg-secondary">
                         <p> <b>{{ 'DASHBOARD_FU_BODY.JOB' | translate }}#{{completedjob.jobId}} </b>
-                            <button class="bg-warnin  pull-right" *ngIf="completedjob.isjobamtpaidtocompany"
+                            <button class="bg-white  pull-right" *ngIf="completedjob.isjobamtpaidtocompany"
                                 [routerLink]="['/payment',completedjob.txnid]">Payment Info<i
                                     title="Go to payment details" class="fa fa-sitemap"
                                     style="color:#FF4949"></i></button>
@@ -272,7 +272,7 @@
                         </p>
                         <span class="display-4">
                             <i class="fa fa-inr">{{completedjob.amount | number}}</i>
-                            <i class="fa fa-smile-o fa-2x pull-right" style="color:blue"
+                            <i class="fa fa-smile-o fa-1x pull-right" style="color:blue"
                                 title="{{'DASHBOARD_FU_BODY.ALTER4' | translate }}"
                                 *ngIf="completedjob.isjobamtpaidtocompany"></i>
                         </span>
@@ -418,8 +418,7 @@
     <dd class="col-sm-9">
         <p class="btn-warning"><i><b>Clicking on this BUTTON indicates the skilled worker is at job location and ready
                     to
-                    work . <p>Always provide
-                        attendance to the skilled worker.</p>
+                    work . <p>Always provide the attendance to the skilled worker before job starts.</p>
                 </b>
             </i>
         </p>
@@ -490,7 +489,7 @@
         start date has crossed current date.Proceed to remove this job & create new job.
     </dd>
     <dt class="col-sm-3">
-        <button class="bg-warning">PayInfo<i class="fa fa-sitemap" style="color:#FF4949"></i></button>
+        <button class="bg-white">Payment Info<i class="fa fa-sitemap" style="color:#FF4949"></i></button>
     </dt>
     <dd class="col-sm-9">
         Clicking on this BUTTON indicates to view the payment details for the respective job.
@@ -500,5 +499,11 @@
     </dt>
     <dd class="col-sm-9">
         Clicking on this BUTTON indicates to provide star rating to the skilled worker after the job is completed.
+    </dd>
+    <dt class="col-sm-3">
+        <i class="fa fa-smile-o fa-2x pull-left" style="color:blue"></i>
+    </dt>
+    <dd class="col-sm-9">
+        This ICON indicates you have paid for the job & payment is successful.
     </dd>
 </dl>

@@ -252,6 +252,7 @@
     "PROFILE_HOURLYRATE_REQ":"గంట రేటు అవసరం",
     "PROFILE_HOURLYRATE_EXCEED":"గంట రేటు 5 అంకెలు మించదు",
     "PROFILE_PHOTOID_REQ":"ఫోటో ఐడి అవసరం",
+    "PROFULE_NATION_ID_REQ":"ప్రభుత్వ ఐడి అవసరం",
     "PROFILE_REUPLOAD":"ఫోటో ఐడిని తిరిగి అప్‌లోడ్",
     "PROFILE_UPLOAD":"ఫోటో ఐడిని అప్‌లోడ్ చేయండి",
     "PROFILE_SKILLED_INFO":"మీ గంట రేటు అనుభవంపై ఆధారపడి ఉండాలి.మేము ఈ సమాచారాన్ని ధృవీకరిస్తాము",
