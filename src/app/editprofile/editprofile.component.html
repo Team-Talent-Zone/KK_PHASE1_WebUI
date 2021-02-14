@@ -174,7 +174,6 @@
                                                             class="mx-auto img-fluid rounded-circle" style="
                                                             height: 142px;
                                                         ">
-
                                                     </div>
                                                 </div>
                                                 <button type="button" class="btn btn-danger btn-sm btn-block" *ngIf="this.userService.currentUserValue.userroles.rolecode
@@ -182,9 +181,9 @@
                                                     'DASHBOARD_FU_PROFILE.PROFILE_PIC'
                                                     |
                                                     translate }}</button>
-                                                <button type="button" class="btn btn-danger btn-sm btn-block"
-                                                    *ngIf="this.userService.currentUserValue.userroles.rolecode==='FREELANCER_USER' && 
-                                                    !this.userService.currentUserValue.freeLanceDetails.isprofilecompleted" (click)=" fileInput.click()"> {{
+                                                <button type="button" class="btn btn-danger btn-sm btn-block" *ngIf="this.userService.currentUserValue.userroles.rolecode==='FREELANCER_USER' && 
+                                                    !this.userService.currentUserValue.freeLanceDetails.isbgstarted"
+                                                    (click)=" fileInput.click()"> {{
                                                     'DASHBOARD_FU_PROFILE.PROFILE_PIC'
                                                     |
                                                     translate }}</button>
@@ -387,7 +386,7 @@
                                             <div *ngIf="roleCode =='FREELANCER_USER'">
                                                 <div *ngIf="nationalIDURL == null">
                                                     <span style="font-size:13px;color:rgb(255, 30, 0)">
-                                                        {{ 'DASHBOARD_FU_PROFILE.PROFULE_NATION_ID_REQ' | translate }} 
+                                                        {{ 'DASHBOARD_FU_PROFILE.PROFULE_NATION_ID_REQ' | translate }}
                                                     </span>
                                                 </div>
                                                 <div class="avatar-upload">
@@ -403,14 +402,14 @@
                                                 </div>
                                                 <button type="button" class="btn btn-info btn-sm"
                                                     (click)="fileInput.click()" *ngIf="nationalIDURL == null && 
-                                                !this.userService.currentUserValue.freeLanceDetails.isprofilecompleted
+                                                !this.userService.currentUserValue.freeLanceDetails.isbgstarted
                                                  ">
                                                     <span>
                                                         {{ 'DASHBOARD_FU_PROFILE.PROFILE_UPLOAD' | translate }}</span>
                                                 </button>
                                                 <button type="button" class="btn btn-info btn-sm"
                                                     (click)="fileInput.click()" *ngIf="nationalIDURL != null && 
-                                                !this.userService.currentUserValue.freeLanceDetails.isprofilecompleted
+                                                !this.userService.currentUserValue.freeLanceDetails.isbgstarted
                                                  ">
                                                     <span>
                                                         {{ 'DASHBOARD_FU_PROFILE.PROFILE_REUPLOAD' | translate }}</span>
@@ -514,8 +513,8 @@
                                                 </div>
                                             </div>
                                             <small class="w-100">
-                                            {{'DASHBOARD_FU_PROFILE.PROFILE_BANKDETAILS_INSTRUCTIONS' | translate }}
-                                        </small>
+                                                {{'DASHBOARD_FU_PROFILE.PROFILE_BANKDETAILS_INSTRUCTIONS' | translate }}
+                                            </small>
                                         </div>
                                     </div>
                                 </div>

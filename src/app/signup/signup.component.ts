@@ -292,14 +292,17 @@ export class SignupComponent implements OnInit {
                             (resptranslatetxt: string) => {
                               if (resptranslatetxt != null) {
                                 this.alertService.success(resptranslatetxt, true);
+                                this.modalRef.hide();
                               }
                             },
                             error => {
                               this.alertService.error(error);
                               this.spinnerService.hide();
+                              
                             });
                         } else {
                           this.alertService.success(ConfigMsg.signup_successmsg, true);
+                          this.modalRef.hide();
                         }
                       },
                       error => {
@@ -311,6 +314,7 @@ export class SignupComponent implements OnInit {
                 error => {
                   this.spinnerService.hide();
                   this.alertService.error(error);
+                  this.modalRef.hide();
                 });
             },
             error => {

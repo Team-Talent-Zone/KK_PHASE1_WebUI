@@ -1,10 +1,3 @@
-/* .section-6-container{
-    text-align: left;
-} */
-
-/* #contact{
-    background-image: url();
-} */
 
 h1,
 h2 {
@@ -47,9 +40,4 @@ a {
   color: #ff4949;
   font-weight: 500;
   /*font-size: 40px;*/
-}
-
-#footer {
-  position: initial;
-  z-index:-9999
 }
