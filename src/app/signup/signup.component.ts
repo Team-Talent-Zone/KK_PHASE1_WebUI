@@ -298,7 +298,6 @@ export class SignupComponent implements OnInit {
                             error => {
                               this.alertService.error(error);
                               this.spinnerService.hide();
-                              
                             });
                         } else {
                           this.alertService.success(ConfigMsg.signup_successmsg, true);

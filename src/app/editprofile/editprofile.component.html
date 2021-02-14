@@ -566,7 +566,23 @@
                                         </div>
                                         <div *ngIf="p.newpassword.errors.minlength">{{
                                             'DASHBOARD_FU_PROFILE.PROFILE_NEWPWD_EXCEED' | translate }}</div>
+                                        <div *ngIf="p.newpassword.errors.pattern">{{
+                                                'DASHBOARD_FU_PROFILE.PROFILE_PASSWORD_INVALID' | translate }}
+                                        </div>
                                     </div>
+                                    <small class="text-muted">
+                                       Your password needs to :
+                                            <ul class="square">
+                                                <li>{{ 'DASHBOARD_FU_PROFILE.PROILE_PASSWORD_POLICY_1' |
+                                                    translate }}</li>
+                                                <li>{{ 'DASHBOARD_FU_PROFILE.PROILE_PASSWORD_POLICY_2' |
+                                                    translate }}</li>
+                                                <li>{{ 'DASHBOARD_FU_PROFILE.PROILE_PASSWORD_POLICY_3' |
+                                                    translate }}</li>
+                                                <li>{{ 'DASHBOARD_FU_PROFILE.PROILE_PASSWORD_POLICY_4' |
+                                                    translate }}</li>
+                                              </ul>
+                                    </small>
                                 </div>
                                 <div class="form-group">
                                     <label for="inputPasswordNew2">{{ 'DASHBOARD_FU_PROFILE.PROFILE_VERFIYPWD' |
@@ -579,6 +595,9 @@
                                         </div>
                                         <div *ngIf="p.verifypassword.errors.minlength">{{
                                             'DASHBOARD_FU_PROFILE.PROFILE_VERIFYPWD_EXCEED' | translate }}</div>
+                                        <div *ngIf="p.verifypassword.errors.pattern">{{
+                                                'DASHBOARD_FU_PROFILE.PROFILE_PASSWORD_INVALID' | translate }}
+                                        </div>
                                     </div>
                                 </div>
                             </div>

@@ -27,7 +27,7 @@
                     <small>
                         <b>
                             {{ 'DASHBOARD_FU_BODY.PAYMENT' | translate }}
-                          <i class="fa fa-inr"></i> {{referenceobj[0].label}}
+                            <i class="fa fa-inr"></i> {{referenceobj[0].label}}
                         </b>
                     </small>
                 </a>
@@ -258,14 +258,19 @@
                                     <p>
                                         <small class="pull-left">
                                             <b> {{ 'DASHBOARD_FU_BODY.JOBLOCATION' | translate }} </b>
-                                            <a href={{mapurl+element.lat+comma+element.lng}} target="_blank">
-                                                {{element.joblocation}}
-                                            </a>
+                                            {{element.joblocation}}
+                                            <p>
+                                                <a href={{mapurl+element.lat+comma+element.lng}} target="_blank">
+                                                    (Map View)
+                                                </a>
+                                            </p>
                                         </small>
                                     </p>
                                     <p>
                                         <small class="pull-left">
-                                            <b>{{ 'DASHBOARD_FU_BODY.PHONENO' | translate }} </b> {{element.cbaphoneno}}
+                                            <b>{{ 'DASHBOARD_FU_BODY.PHONENO' | translate }} </b>
+                                            <i class="fa fa-mobile ml-2" aria-hidden="true"></i>
+                                            {{element.cbaphoneno}}
                                         </small>
                                     </p>
                                     <p>
@@ -286,7 +291,7 @@
                                         <small class="text-muted ">
                                             <p class="text-danger">
                                                 {{ 'DASHBOARD_FU_BODY.CANCELNOTE1' | translate }}
-                                            <b><u> {{ 'DASHBOARD_FU_BODY.CANCELNOTE2' | translate }} </u></b>
+                                                <b><u> {{ 'DASHBOARD_FU_BODY.CANCELNOTE2' | translate }} </u></b>
                                             </p>
                                         </small>
                                     </div>
@@ -338,14 +343,19 @@
                                     <p>
                                         <small class="pull-left">
                                             <b> {{ 'DASHBOARD_FU_BODY.JOBLOCATION' | translate }} </b>
-                                            <a href={{mapurl+element.lat+comma+element.lng}} target="_blank">
-                                                {{element.joblocation}}
-                                            </a>
+                                            {{element.joblocation}}
+                                            <p>
+                                                <a href={{mapurl+element.lat+comma+element.lng}} target="_blank">
+                                                    (Map View)
+                                                </a>
+                                            </p>
                                         </small>
                                     </p>
                                     <p>
                                         <small class="pull-left">
-                                            <b>{{ 'DASHBOARD_FU_BODY.PHONENO' | translate }} </b> {{element.cbaphoneno}}
+                                            <b>{{ 'DASHBOARD_FU_BODY.PHONENO' | translate }} </b>
+                                            <i class="fa fa-mobile ml-2" aria-hidden="true"></i>
+                                            {{element.cbaphoneno}}
                                         </small>
                                     </p>
                                     <p>
@@ -419,8 +429,9 @@
                                     <p>
                                         <small class="pull-left">
                                             <b> {{ 'DASHBOARD_FU_BODY.JOBLOCATION' | translate }} </b>
+                                            {{element.joblocation}}
                                             <a href={{mapurl+element.lat+comma+element.lng}} target="_blank">
-                                                {{element.joblocation}}
+                                                (Map View)
                                             </a>
                                         </small>
                                     </p>
@@ -432,7 +443,9 @@
                                     </p>
                                     <p>
                                         <small class="pull-left">
-                                            <b>{{ 'DASHBOARD_FU_BODY.PHONENO' | translate }} </b> {{element.cbaphoneno}}
+                                            <b>{{ 'DASHBOARD_FU_BODY.PHONENO' | translate }} </b>
+                                            <i class="fa fa-mobile ml-2" aria-hidden="true"></i>
+                                            {{element.cbaphoneno}}
                                         </small>
                                     </p>
 
@@ -494,14 +507,17 @@
                                     <p>
                                         <small class="pull-left">
                                             <b> {{ 'DASHBOARD_FU_BODY.JOBLOCATION' | translate }} </b>
+                                            {{element.joblocation}}
                                             <a href={{mapurl+element.lat+comma+element.lng}} target="_blank">
-                                                {{element.joblocation}}
+                                                (Map View)
                                             </a>
                                         </small>
                                     </p>
                                     <p>
                                         <small class="pull-left">
-                                            <b>{{ 'DASHBOARD_FU_BODY.PHONENO' | translate }} </b> {{element.cbaphoneno}}
+                                            <b>{{ 'DASHBOARD_FU_BODY.PHONENO' | translate }} </b>
+                                            <i class="fa fa-mobile ml-2" aria-hidden="true"></i>
+                                            {{element.cbaphoneno}}
                                         </small>
                                     </p>
                                     <p>

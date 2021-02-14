@@ -1,15 +1,14 @@
 export const ConfigMsg = {
-    signup_successmsg: 'Signup is successfully and email sent to register email address',
+    signup_successmsg: 'Signup is successfully and verification email is sent to register email address',
     signup_successmsg_alreadyexisit: 'Someone already has that username.Try another',
     login_notexisit: 'No account found with that email address',
     fwdpassword_successmsg: 'Password sent to registered email address . Thank you for connecting with us',
-    email_default_fromuser: 'team.spprt2019@gmail.com',
-    email_verficationemailaddress_subj: 'Email Confirmation',
+    email_verficationemailaddress_subj: 'Verify Email - Kaam Karega',
     email_forgotpasswordemailaddress_subj: 'Forgot Password',
-    email_welcomeemailaddress_subj: 'Welcome To Kaam Karega',
-    email_verficationemailaddress_successmsg: 'Your email verfiication is completed. Please Login',
-    email_verficationemailaddress_alreadydone: 'Your email verfiication is already completed. \n Please login with your username.',
-    login_invalid_password: 'You entered invalid password',
+    email_welcomeemailaddress_subj: 'Welcome OnBoard To Kaam Karega',
+    email_verficationemailaddress_successmsg: 'Your email verfiication is completed. Please login now.',
+    email_verficationemailaddress_alreadydone: 'Your email verfiication is already completed. \n Please login with your email address.',
+    login_invalid_password: 'You have entered invalid password',
     email_bgverification_subj: 'Background verification of ',
     email_newserviceverification_subj: 'NewService verification of ',
     email_existingserviceverification_subj: 'Existing Service verification of upgrade ',
@@ -24,14 +23,13 @@ export const ConfigMsg = {
     upgradeservice_txt_cssm_comment: 'Please review the upgraded existing service and approve it',
     toast_notification_fu_isregfeenotcompelted: 'Please complete your registation fee  and start job employment with us after background vertification approves.',
     toast_notification_fu_isprofilenotcompelted: 'Please complete your profile for futher actions to complete',
-    toast_notification_fu_acceptjobmsg: 'You can have 3 jobs in upcoming list. Please accept the job from new jobs list',
     payment_sucesss_alert_hi: 'भुगतान के लिए धन्यवाद। भुगतान सफलतापूर्वक है',
     payment_sucesss_alert_te: 'చెల్లింపుకు ధన్యవాదాలు. చెల్లింపు విజయవంతంగా ఉంది',
-    payment_sucesss_alert_en: 'Thank you for the payment. Payment is Successfully',
+    payment_sucesss_alert_en: 'Thank you for the payment. Payment is successfully.',
     payment_fail_alert_hi: 'ट्रांसकेशन फेल हो गया। कृपया पुन: प्रयास करें।',
     payment_fail_alert_te: 'ట్రాన్స్‌కేషన్ విఫలమైంది. దయచేసి మళ్ళీ ప్రయత్నించండి.',
-    payment_fail_alert_en: 'Transcation Failed. Please try again.',
-    invalid_username_password: 'That email address or password combination isnt in our records.',
+    payment_fail_alert_en: 'Transaction is failed. Please try again.',
+    invalid_username_password: 'The email address or password combination isnt in our records.',
     invalid_username_password_te: 'ఆ ఇమెయిల్ చిరునామా లేదా పాస్‌వర్డ్ కలయిక మా రికార్డుల్లో లేదు.',
     invalid_username_password_hi: 'वह ईमेल पता या पासवर्ड संयोजन हमारे रिकॉर्ड में नहीं है।',
     upcomingpay_te: 'అంచనా చెల్లింపు',
@@ -47,5 +45,11 @@ export const ConfigMsg = {
     biztype_ind_hi: 'व्यक्ति',
     biztype_cmp_hi: 'कंपनी',
     voliation_msg :'Sorry for the inconvenience caused. We are analzying with the skilled worker on this issue. We will be contact you soon.',
-    assign_job : 'Please confirm ,Do you want to assign the JobId#'
+    assign_job : 'Please confirm ,Do you want to assign the JobId#',
+
+    /***
+     * Pre Production Change
+     */
+
+    email_default_fromuser: 'team.spprt2019@gmail.com',
 };

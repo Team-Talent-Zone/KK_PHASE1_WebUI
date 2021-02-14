@@ -567,8 +567,8 @@ export class EditprofileComponent implements OnInit {
   }
   pwdFormValidation() {
     this.pwdForm = this.formBuilder.group({
-      newpassword: ['', [Validators.required, Validators.minLength(8)]],
-      verifypassword: ['', [Validators.required, Validators.minLength(8)]],
+      newpassword: ['', [Validators.required, Validators.minLength(8), Validators.pattern(/^(?=\D*\d)(?=[^a-z]*[a-z])(?=[^A-Z]*[A-Z]).{8,30}$/)]],
+      verifypassword: ['', [Validators.required, Validators.minLength(8), Validators.pattern(/^(?=\D*\d)(?=[^a-z]*[a-z])(?=[^A-Z]*[A-Z]).{8,30}$/)]],
     });
   }
   savePwdDetails() {

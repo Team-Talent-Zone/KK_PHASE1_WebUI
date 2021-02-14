@@ -93,7 +93,9 @@
                         </p>
                         <p>
                             <small class="pull-left">
-                                <b>{{ 'DASHBOARD_FU_BODY.PHONENO' | translate }} </b> {{element.fuphoneno}}
+                                <b>{{ 'DASHBOARD_FU_BODY.PHONENO' | translate }} </b>
+                                <i class="fa fa-mobile ml-2" aria-hidden="true"></i>
+                                {{element.fuphoneno}}
                             </small>
                         </p>
                         <p *ngIf="element.freelanceuserId > 0">
@@ -109,25 +111,25 @@
                         <i class="fa fa-briefcase fa-3x float-right"></i>
                         <h3> <b>{{'DASHBOARD_FU_BODY.JOBDETAILS' | translate }} </b> </h3>
                         <div>
-                            <small class="pull-left">
+                            <small>
                                 <b> {{'DASHBOARD_FU_BODY.JOBLOCATION' | translate }} </b>
-                                <a href={{mapurl+element.lat+comma+element.lng}} target="_blank">
-                                    {{element.joblocation}}
-                                </a>
+                                {{element.joblocation}}
+                                    <a href={{mapurl+element.lat+comma+element.lng}} target="_blank">
+                                        (Map View)
+                                    </a>
                             </small>
                         </div>
                         <div>
-                            <small class="pull-left">
+                            <small>
                                 <b> Skill As: </b> {{element.subcategorylabel}}
                             </small>
                         </div>
-
-                        <div>
+                        <p>
                             <small class="pull-left">
                                 <b>{{ 'DASHBOARD_FU_BODY.TOTAL_HOURSOFWORK' | translate }} </b>
                                 {{element.totalhoursofjob}}
                             </small>
-                        </div>
+                        </p>
                         <div class="tooltips">
                             <a style="cursor:pointer" (click)="openReadMorePopup(element.jobdescription)"><i>
                                     {{ 'DASHBOARD_FU_BODY.JOBDESCPTION' | translate }}</i></a>
@@ -187,22 +189,23 @@
                     <div class="card-body">
                         <i class="fa fa-briefcase fa-3x float-right"></i>
                         <h3> <b>{{ 'DASHBOARD_FU_BODY.JOBDETAILS' | translate }} </b> </h3>
-                        <p>
-                            <small class="pull-left">
+                        <div>
+                            <small>
                                 <b> {{ 'DASHBOARD_FU_BODY.JOBLOCATION' | translate }} </b>
-                                <a href={{mapurl+newlyjob.lat+comma+newlyjob.lng}} target="_blank">
-                                    {{newlyjob.joblocation}}
-                                </a>
+                                {{newlyjob.joblocation}}
+                                    <a href={{mapurl+newlyjob.lat+comma+newlyjob.lng}} target="_blank">
+                                        (Map View)
+                                    </a>
                             </small>
-                        </p>
-                        <p>
-                            <small class="pull-left">
+                        </div>
+                        <div>
+                            <small>
                                 <b>{{ 'DASHBOARD_FU_BODY.TOTAL_HOURSOFWORK' | translate }} </b>
                                 {{newlyjob.totalhoursofjob}}
                             </small>
-                        </p>
+                        </div>
                         <p>
-                            <small class="pull-left">
+                            <small>
                                 <b>Skill As: </b> {{newlyjob.subcategorylabel}}
                             </small>
                         </p>
@@ -276,7 +279,6 @@
                                 title="{{'DASHBOARD_FU_BODY.ALTER4' | translate }}"
                                 *ngIf="completedjob.isjobamtpaidtocompany"></i>
                         </span>
-
                         <p>
                             <small class="pull-left">
                                 <b>{{ 'DASHBOARD_FU_BODY.STARTON' | translate }} </b>
@@ -304,7 +306,9 @@
                         </p>
                         <p>
                             <small class="pull-left">
-                                <b>{{ 'DASHBOARD_FU_BODY.PHONENO' | translate }}: </b> {{completedjob.fuphoneno}}
+                                <b>{{ 'DASHBOARD_FU_BODY.PHONENO' | translate }}: </b> 
+                                <i class="fa fa-mobile ml-2" aria-hidden="true"></i>
+                                {{completedjob.fuphoneno}}
                             </small>
                         </p>
                         <p *ngIf="completedjob.freelanceuserId > 0">
@@ -317,22 +321,23 @@
                     <div class="card-body">
                         <i class="fa fa-briefcase fa-3x float-right"></i>
                         <h3> <b>{{ 'DASHBOARD_FU_BODY.JOBDETAILS' | translate }} </b> </h3>
-                        <p>
-                            <small class="pull-left">
+                        <div>
+                            <small>
                                 <b> {{ 'DASHBOARD_FU_BODY.JOBLOCATION' | translate }} </b>
-                                <a href={{mapurl+completedjob.lat+comma+completedjob.lng}} target="_blank">
                                     {{completedjob.joblocation}}
-                                </a>
+                                    <a href={{mapurl+completedjob.lat+comma+completedjob.lng}} target="_blank">
+                                        (Map View)
+                                    </a>
                             </small>
-                        </p>
-                        <p>
-                            <small class="pull-left">
+                        </div>
+                        <div>
+                            <small>
                                 <b>{{ 'DASHBOARD_FU_BODY.TOTAL_HOURSOFWORK' | translate }} </b>
                                 {{completedjob.totalhoursofjob}}
                             </small>
-                        </p>
+                        </div>
                         <p>
-                            <small class="pull-left">
+                            <small>
                                 <b>Skill As: </b> {{completedjob.subcategorylabel}}
                             </small>
                         </p>
