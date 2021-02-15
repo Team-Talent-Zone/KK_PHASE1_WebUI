@@ -728,7 +728,6 @@ export class DashboardofadminComponent implements OnInit {
         this.alertService.error(error);
       });
   }
-
   getGraphSKVoliationData() {
     this.dbviewServic.getGraphSKVoliationData().subscribe((voliationList: any) => {
       if (voliationList != null) {
