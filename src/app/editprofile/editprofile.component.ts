@@ -345,7 +345,7 @@ export class EditprofileComponent implements OnInit {
         );
         return;
       }
-     if (this.editprofileForm.get('accountno').value.toString() !== null && this.editprofileForm.get('ifsc').value.toString() != null &&
+      if (this.editprofileForm.get('accountno').value.toString() !== null && this.editprofileForm.get('ifsc').value.toString() != null &&
         this.editprofileForm.get('verfiyaccountno').value.toString() !== null) {
         this.paymentService.verifyAccountPayout(this.editprofileForm.get('accountno').value.toString(), this.editprofileForm.get('ifsc').value.toString()).subscribe(
           (beneficiaryName: string) => {
@@ -513,31 +513,43 @@ export class EditprofileComponent implements OnInit {
   uploadFile(event, type) {
     let reader = new FileReader(); // HTML5 FileReader API
     let file = event.target.files[0];
-    if (file.type === config.imgtype_png.toString() ||
-      file.type === config.imgtype_jpeg.toString() ||
-      file.type === config.imgtype_jpg.toString()) {
-      if (event.target.files && event.target.files[0]) {
-        reader.readAsDataURL(file);
-
-        // When file uploads set it to file formcontrol
-        reader.onload = () => {
-          this.filename = file.name;
-          if (type === config.profiletype_avatar.toString()) {
-            this.typeavt = type;
-            this.avatarURL = reader.result;
+    let fileSize = event.target.files[0].size;
+    if (fileSize < 2000000) {
+      if (file.type === config.imgtype_png.toString() ||
+        file.type === config.imgtype_jpeg.toString() ||
+        file.type === config.imgtype_jpg.toString()) {
+        if (event.target.files && event.target.files[0]) {
+          reader.readAsDataURL(file);
+          // When file uploads set it to file formcontrol
+          reader.onload = () => {
+            this.filename = file.name;
+            if (type === config.profiletype_avatar.toString()) {
+              this.typeavt = type;
+              this.avatarURL = reader.result;
+            }
+            if (type === config.profiletype_nationalid.toString()) {
+              this.typenationalid = type;
+              this.nationalIDURL = reader.result;
+            }
+            this.spinnerService.show();
+            this.spinnerService.hide();
+          };
+          // ChangeDetectorRef since file is loading outside the zone
+          this.cd.markForCheck();
+        }
+      } else {
+        this.referService.translatetext('Invalid file format. it should be .png,.jpg,.jpeg', this.userService.currentUserValue.preferlang).subscribe(
+          (trantxt: any) => {
+            this.alertService.info(trantxt);
+          },
+          error => {
+            this.spinnerService.hide();
+            this.alertService.error(error);
           }
-          if (type === config.profiletype_nationalid.toString()) {
-            this.typenationalid = type;
-            this.nationalIDURL = reader.result;
-          }
-          this.spinnerService.show();
-          this.spinnerService.hide();
-        };
-        // ChangeDetectorRef since file is loading outside the zone
-        this.cd.markForCheck();
+        );
       }
     } else {
-      this.referService.translatetext('Invalid file format. it should be .png,.jpg,.jpeg', this.userService.currentUserValue.preferlang).subscribe(
+      this.referService.translatetext('Image size must be less than 2 Mega Bytes', this.userService.currentUserValue.preferlang).subscribe(
         (trantxt: any) => {
           this.alertService.info(trantxt);
         },

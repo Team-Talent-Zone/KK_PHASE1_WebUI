@@ -9,6 +9,7 @@ import { User } from '../appmodels/User';
 import { SignupComponent } from './../signup/signup.component';
 import { ManageuserComponent } from '../manageuser/manageuser.component';
 import { config } from 'src/app/appconstants/config';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-viewaccountdetails',
@@ -29,6 +30,7 @@ export class ViewaccountdetailsComponent implements OnInit {
     private userAdapter: UserAdapter,
     public signupComponent: SignupComponent,
     public managerusercomponent: ManageuserComponent,
+    public datepipe: DatePipe,
   ) { }
 
   ngOnInit() {
@@ -53,6 +55,16 @@ export class ViewaccountdetailsComponent implements OnInit {
         }
       );
     }
+  }
+
+  formatPhoneNumber(phoneNumberString) {
+    var cleaned = ('' + phoneNumberString).replace(/\D/g, '')
+    var match = cleaned.match(/^(1|)?(\d{3})(\d{3})(\d{4})$/)
+    if (match) {
+      var intlCode = (match[1] ? '+1 ' : '')
+      return [intlCode, '(', match[2], ') ', match[3], '-', match[4]].join('')
+    }
+    return null
   }
 
 

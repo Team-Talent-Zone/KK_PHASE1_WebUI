@@ -86,8 +86,7 @@
                                     <th>Name</th>
                                     <th>Active?</th>
                                     <th>Email Address</th>
-                                    <th>Created On</th>
-                                    <th>Last Updated On</th>
+                                    <th>Skill</th>
                                     <th>Phone Number</th>
                                     <th>Actions</th>
                                 </tr>
@@ -105,9 +104,8 @@
                                         <i class="fa fa-frown-o" style="color:#FF4949" *ngIf="!mywork.isactive"> </i>
                                     </td>
                                     <td>{{mywork.username}}</td>
-                                    <td>{{mywork.createdon}}</td>
-                                    <td>{{mywork.updatedon}}</td>
-                                    <td>{{mywork.phoneno}}</td>
+                                    <td>{{mywork.freeLanceDetails.subcategorylabel}}</td>
+                                    <td>{{this.formatPhoneNumber(mywork.phoneno)}}</td>
                                     <td>
                                         <a *ngIf="mywork.freelancehistoryentity.islocked" class="btn  btn-sm"
                                             (click)='processbgverficiationopenmodal(mywork.userId)'>
@@ -156,7 +154,7 @@
                                         <i class="fa fa-frown-o" style="color:#FF4949" *ngIf="!cbu.isactive"> </i>
                                     </td>
                                     <td>{{cbu.username}}</td>
-                                    <td>{{cbu.phoneno}}</td>
+                                    <td>{{this.formatPhoneNumber(cbu.phoneno)}}</td>
                                     <td>{{cbu.userbizdetails.biztype}}</td>
                                     <td>
                                         <a class="btn  btn-sm"
@@ -196,15 +194,15 @@
                                 <tr>
                                     <th>Name</th>
                                     <th>Active?</th>
-                                    <th>Skill</th>
-                                    <th>PhoneNo</th>
-                                    <th>Profile Done?</th>
-                                    <th>Pay?</th>
-                                    <th>BG Initated ?</th>
-                                    <th>BG Done?</th>
+                                    <th>Skill Name</th>
+                                    <th style="width:15%">Phone No</th>
+                                    <th>Profile?</th>
+                                    <th style="width:12%">Pay Done?</th>
+                                    <th style="width:12%">BG Started ?</th>
+                                    <th style="width:12%">BG Done?</th>
                                     <!-- <th>Current Status</th> -->
-                                    <th>BG Status</th>
-                                    <th>Actions</th>
+                                    <th style="width:12%">BG Status</th>
+                                    <th style="width:12%">Actions</th>
                                    
                                 </tr>
                             </thead>
@@ -221,7 +219,7 @@
                                         <i class="fa fa-frown-o" style="color:#FF4949" *ngIf="!fu.isactive"> </i>
                                     </td>
                                     <td>{{fu.freeLanceDetails.subcategorylabel}}</td>
-                                    <td>{{fu.phoneno}}</td>
+                                    <td>{{this.formatPhoneNumber(fu.phoneno)}}</td>
                                     <td *ngIf="fu.freeLanceDetails !=null">
                                         <div
                                             *ngIf="fu.freeLanceDetails.isprofilecompleted; else elseIsProfileNotCompleted">
@@ -245,22 +243,22 @@
                                     </td>
                                     <td *ngIf="fu.freeLanceDetails !=null">
                                         <div *ngIf="fu.freeLanceDetails.isbgstarted; else elseIsBgNotDone">
-                                            <i class="fa fa-check" title="Bg  verification started"
+                                            <i class="fa fa-check" title="Background  verification started"
                                                 style="color: #0a382b"></i>
                                         </div>
                                         <ng-template #elseIsBgNotDone>
-                                            <i class="fa fa-ban" title="Bg verification not started"
+                                            <i class="fa fa-ban" title="Background verification not started"
                                                 style="color:rgb(199, 25, 25)"></i>
                                         </ng-template>
                                     </td>
                                     <td *ngIf="fu.freeLanceDetails !=null">
                                         <div *ngIf="fu.freeLanceDetails.isbgstarted">
                                             <div *ngIf="fu.freeLanceDetails.isbgdone">
-                                                <i class="fa fa-check" title="Bg verification is completed"
+                                                <i class="fa fa-check" title="Background verification is completed"
                                                     style="color: #0a382b"></i>
                                             </div>
                                             <div *ngIf="!fu.freeLanceDetails.isbgdone">
-                                                <i class="fa fa-spinner" title="Bg verification is in-progress"
+                                                <i class="fa fa-spinner" title="Background verification is in-progress"
                                                     style="color:rgb(16, 0, 238)"></i>
                                             </div>
                                         </div>
@@ -337,7 +335,7 @@
                                     <th>Name</th>
                                     <th>Active?</th>
                                     <th>Email Address</th>
-                                    <th>Created On</th>
+                                    <th>Phone No</th>
                                     <th>Created By</th>
                                     <th>Designation</th>
                                     <th>Actions</th>
@@ -358,7 +356,7 @@
                                         </i>
                                     </td>
                                     <td>{{platformuser.username}}</td>
-                                    <td>{{platformuser.createdon}}</td>
+                                    <td>{{this.formatPhoneNumber(platformuser.phoneno)}}</td>
                                     <td>{{platformuser.createdby}}</td>
                                     <td>
                                         <div

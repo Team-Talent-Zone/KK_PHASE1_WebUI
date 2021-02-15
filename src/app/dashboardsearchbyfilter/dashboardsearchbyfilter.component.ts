@@ -59,8 +59,12 @@ export class DashboardsearchbyfilterComponent implements OnInit {
   lng: number;
   cityElementOne: string;
   cityElementTwo: string;
-  bufferhours: number = 4;
+
   maxHourlyRateCal: number;
+
+  bufferhours: number = 1;
+  increaseminpercentage: number = 0.2;
+  increasemaxpercentage: number = 0.2;
 
   constructor(
     private routeA: ActivatedRoute,
@@ -99,7 +103,7 @@ export class DashboardsearchbyfilterComponent implements OnInit {
 
   ngOnInit() {
     this.minstartDate.setTime(this.minstartDate.getTime() + (24 * 60 * 60 * 1000));
-    this.maxstartDate.setTime(this.maxstartDate.getTime() + (144 * 60 * 60 * 1000));
+    this.maxstartDate.setTime(this.maxstartDate.getTime() + (288 * 60 * 60 * 1000));
     this.isfreelancerservicesubscribed = false;
     this.searchResults(null);
     this.createFormValidation();
@@ -117,7 +121,7 @@ export class DashboardsearchbyfilterComponent implements OnInit {
       jobendedon: [''],
       jobstartedon: [''],
       amount: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
-      jobdescription: ['', [Validators.required , Validators.pattern('[a-zA-Z0-9.]+[a-zA-Z0-9. ]+')]],
+      jobdescription: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9.]+[a-zA-Z0-9. ]+')]],
       joblocation: ['', [Validators.required]],
       userId: this.userService.currentUserValue.userId,
       subcategory: this.code,
@@ -130,7 +134,7 @@ export class DashboardsearchbyfilterComponent implements OnInit {
       country: [''],
       lat: [''],
       lng: [''],
-      acceptjobterms : [false, [Validators.requiredTrue]]
+      acceptjobterms: [false, [Validators.requiredTrue]]
     });
   }
 
@@ -308,10 +312,21 @@ export class DashboardsearchbyfilterComponent implements OnInit {
       var minAmt = Math.min.apply(null, this.listofhourlyRateDetailsoffus);
       var maxHourlyRate = maxAmt * hours;
       var minHourlyRate = minAmt * hours;
-      //   var addpercentage = 1.5; /* Add 15% more to avghourly to built the rate */
-      //   this.avgHourlyRate = (maxHourlyRate / minHourlyRate) * (addpercentage);
-      this.avgHourlyRate = minHourlyRate;
-      this.maxHourlyRateCal = maxHourlyRate;
+      
+      /**
+       * Increasing 20% more to avghourly to built the min rate
+       */
+
+      let increasedminrate = (minHourlyRate) * (this.increaseminpercentage);
+      this.avgHourlyRate = (minHourlyRate) + increasedminrate;
+      //this.avgHourlyRate = minHourlyRate;
+
+      /**
+       * Increasing 20% more to avghourly to built the max rate
+       */
+      let increasedmaxrate = (maxHourlyRate) * (this.increasemaxpercentage);
+      this.maxHourlyRateCal = (maxHourlyRate) + increasedmaxrate;
+
       this.createjobform.patchValue({ jobendedon: this.enddatevalue });
     }
   }

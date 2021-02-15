@@ -76,7 +76,8 @@ export class ManageuserComponent implements OnInit {
       (usrObjRsp: any) => {
         if (usrObjRsp != null) {
           usrObjRsp.forEach((element: any) => {
-            if (element.userroles.rolecode !== config.user_rolecode_basicauth.toString()) {
+            if (element.userroles.rolecode !== config.user_rolecode_basicauth.toString() &&
+              element.userroles.rolecode !== config.user_rolecode_directors.toString()) {
               this.usrObjTotalUsers.push(element);
             }
           });
@@ -98,17 +99,15 @@ export class ManageuserComponent implements OnInit {
                   this.usrObj.freelancehistoryentity = elementFhistory;
                   this.usrObjFUs.push(this.usrObj);
                 } else
-                  console.log('this si test', elementFhistory.userid);
-                console.log('this si elementFhistory.bgstatus', elementFhistory.bgstatus);
-                if (!elementFhistory.islocked &&
-                  elementFhistory.bgstatus.toString() == config.bg_code_incompleteprofile.toString() ||
-                  elementFhistory.bgstatus.toString() == config.bg_code_completedprofile.toString() ||
-                  elementFhistory.bgstatus.toString() == config.bg_code_approved.toString() ||
-                  elementFhistory.bgstatus.toString() == config.bg_code_rejected.toString()
-                ) {
-                  this.usrObj.freelancehistoryentity = elementFhistory;
-                  this.usrObjFUs.push(this.usrObj);
-                }
+                  if (!elementFhistory.islocked &&
+                    elementFhistory.bgstatus.toString() == config.bg_code_incompleteprofile.toString() ||
+                    elementFhistory.bgstatus.toString() == config.bg_code_completedprofile.toString() ||
+                    elementFhistory.bgstatus.toString() == config.bg_code_approved.toString() ||
+                    elementFhistory.bgstatus.toString() == config.bg_code_rejected.toString()
+                  ) {
+                    this.usrObj.freelancehistoryentity = elementFhistory;
+                    this.usrObjFUs.push(this.usrObj);
+                  }
               });
             }
             if (this.usrObj.userroles.rolecode === config.user_rolecode_csct.toString() ||
@@ -299,5 +298,15 @@ export class ManageuserComponent implements OnInit {
         this.spinnerService.hide();
         this.alertService.error(error);
       });
+  }
+
+  formatPhoneNumber(phoneNumberString) {
+    var cleaned = ('' + phoneNumberString).replace(/\D/g, '')
+    var match = cleaned.match(/^(1|)?(\d{3})(\d{3})(\d{4})$/)
+    if (match) {
+      var intlCode = (match[1] ? '+1 ' : '')
+      return [intlCode, '(', match[2], ') ', match[3], '-', match[4]].join('')
+    }
+    return null
   }
 }

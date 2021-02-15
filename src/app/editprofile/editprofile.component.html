@@ -106,7 +106,7 @@
                                         </div>
                                         <div class="form-group">
                                             <span>
-                                                <i class="fa fa-address-book form-control-icon"></i>
+                                                <i class="fa fa-map-marker form-control-icon"></i>
                                             </span>
                                             <input
                                                 placeholder="{{ 'DASHBOARD_FU_PROFILE.PROFILE_ADDRESS' | translate }}"
@@ -526,12 +526,14 @@
                                     <input type="checkbox" class="form-check-input"
                                         formControlName="accepteditprofileterms"
                                         [ngClass]="{ 'is-invalid': issubmit && f.accepteditprofileterms.errors }">
-                                    <label class="form-check-label" for="exampleCheck1">{{'HOMESIGNUP.SIGNUP_TERM_AGREE_LABEL' |
+                                    <small> <label class="form-check-label" for="exampleCheck1">
+                                            {{'HOMESIGNUP.SIGNUP_TERM_AGREE_LABEL' |
                                         translate}}
-                                        <a href={{signupComponent.termsofservice}} target="_blank">{{'HOMESIGNUP.SIGNUP_TERMOFSERVICE' |
+                                            <a href={{signupComponent.termsofservice}} target="_blank">{{'HOMESIGNUP.SIGNUP_TERMOFSERVICE' |
                                             translate}} </a> &
-                                        <a href={{signupComponent.privacypolicy}} target="_blank">{{'HOMESIGNUP.SIGNUP_PRIVACYPOLICY' |
+                                            <a href={{signupComponent.privacypolicy}} target="_blank">{{'HOMESIGNUP.SIGNUP_PRIVACYPOLICY' |
                                             translate}}</a></label>
+                                    </small>
                                     <div *ngIf="issubmit && f.accepteditprofileterms.errors" class="invalid-feedback">
                                         <div *ngIf="f.accepteditprofileterms.errors.required">
                                             {{'HOMESIGNUP.SIGNUP_VALIDATION_TERMS_POLICYCHECKBOX_REQ' | translate}}
@@ -569,19 +571,22 @@
                                         <div *ngIf="p.newpassword.errors.pattern">{{
                                                 'DASHBOARD_FU_PROFILE.PROFILE_PASSWORD_INVALID' | translate }}
                                         </div>
+                                        <div *ngIf="p.newpassword.errors.minlength">
+                                            {{'HOMESIGNUP.SIGNUP_VALIDATION_8_MAX_PWD' | translate}}</div>
                                     </div>
                                     <small class="text-muted">
-                                       Your password needs to :
-                                            <ul class="square">
-                                                <li>{{ 'DASHBOARD_FU_PROFILE.PROILE_PASSWORD_POLICY_1' |
+                                        {{ 'DASHBOARD_FU_PROFILE.PROILE_PASSWORD_POLICY_5' |
+                                        translate }}
+                                        <ul class="square">
+                                            <li>{{ 'DASHBOARD_FU_PROFILE.PROILE_PASSWORD_POLICY_1' |
                                                     translate }}</li>
-                                                <li>{{ 'DASHBOARD_FU_PROFILE.PROILE_PASSWORD_POLICY_2' |
+                                            <li>{{ 'DASHBOARD_FU_PROFILE.PROILE_PASSWORD_POLICY_2' |
                                                     translate }}</li>
-                                                <li>{{ 'DASHBOARD_FU_PROFILE.PROILE_PASSWORD_POLICY_3' |
+                                            <li>{{ 'DASHBOARD_FU_PROFILE.PROILE_PASSWORD_POLICY_3' |
                                                     translate }}</li>
-                                                <li>{{ 'DASHBOARD_FU_PROFILE.PROILE_PASSWORD_POLICY_4' |
+                                            <li>{{ 'DASHBOARD_FU_PROFILE.PROILE_PASSWORD_POLICY_4' |
                                                     translate }}</li>
-                                              </ul>
+                                        </ul>
                                     </small>
                                 </div>
                                 <div class="form-group">

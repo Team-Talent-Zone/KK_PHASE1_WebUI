@@ -1,25 +1,25 @@
 <div class="modal-body" *ngIf="content != null && headerlabel==null">
-  <button type="button" class="close" (click)="modalRef.hide()">&times;</button>
+  <button type="button" class="btn btn-sm btn-danger pull-right" (click)="modalRef.hide()">&times;</button>
   <small>
-    <p>{{content}}</p>
+    <p text-align="start">{{content}}</p>
   </small>
 </div>
 
 <div *ngIf="content != null && headerlabel != null">
   <div class="modal-header">
     <h4 class="modal-title">{{headerlabel}}</h4>
-    <button type="button" class="close" (click)="modalRef.hide()">&times;</button>
+    <button type="button" class="btn btn-sm btn-danger pull-right" (click)="modalRef.hide()">&times;</button>
   </div>
   <div class="modal-body">
     <small>
-      <p>{{content}}</p>
+      <p text-align="start">{{content}}</p>
     </small>
   </div>
 </div>
 
 <div *ngIf="contentList != null && !notificationEnable">
   <div class="modal-body">
-    <button type="button" class="close" (click)="modalRef.hide()">&times;</button>
+    <button type="button" class="btn btn-sm btn-danger pull-right" (click)="modalRef.hide()">&times;</button>
     <small *ngFor="let features of contentList">
       <p class="text-center">{{features}}</p>
     </small>
@@ -30,7 +30,7 @@
 <div *ngIf="notificationEnable">
   <div class="modal-header">
     <h4 class="modal-title">{{ 'DASHOARD_FU_MENU.NOTIFICATIONMEG_HEADER' | translate }}</h4>
-    <button type="button" class="close" (click)="modalRef.hide()">&times;</button>
+    <button type="button" class="btn btn-sm btn-danger pull-right" (click)="modalRef.hide()">&times;</button>
   </div>
   <div class="modal-body">
     <div class="alert alert-info alert-dismissible fade show w-100" role="alert" *ngFor="let bell of contentList">

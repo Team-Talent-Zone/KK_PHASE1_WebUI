@@ -15,8 +15,12 @@
           <small>
             <table class="table">
               <tr>
-                <th> ID </th>
+                <th> Employee ID </th>
                 <td>{{usrdetailsObj.userId}}</td>
+              </tr>
+              <tr>
+                <th>Full Name </th>
+                <td>{{usrdetailsObj.fullname}} </td>
               </tr>
               <tr>
                 <th>Profile Picture</th>
@@ -47,15 +51,25 @@
               </tr>
               <tr>
                 <th>Phone Number</th>
-                <td>{{usrdetailsObj.phoneno}}</td>
+                <td>{{this.formatPhoneNumber(usrdetailsObj.phoneno)}}</td>
               </tr>
               <tr>
                 <th>Prefered Language</th>
-                <td>{{usrdetailsObj.preferlang}}</td>
+                <td>
+                  <span *ngIf="usrdetailsObj.preferlang == 'en'">
+                    English
+                  </span>
+                  <span *ngIf="usrdetailsObj.preferlang == 'te'">
+                    Telugu
+                  </span>
+                  <span *ngIf="usrdetailsObj.preferlang == 'hi'">
+                    Hindi
+                  </span>
+                </td>
               </tr>
               <tr>
                 <th>Created On </th>
-                <td> {{usrdetailsObj.createdon}}</td>
+                <td>{{this.datepipe.transform(usrdetailsObj.createdon,"dd/MM/yyyy hh:mm:ss")}}</td>
               </tr>
               <tr>
                 <th>Created By </th>
@@ -73,7 +87,6 @@
           </small>
         </div>
       </div>
-
     </div>
     <div *ngIf="usrdetailsObj.userroles.rolecode == 'CLIENT_BUSINESS_ADMINISTRATOR'">
       <ul class="nav nav-tabs">
@@ -86,8 +99,12 @@
           <small>
             <table class="table">
               <tr>
-                <th> ID </th>
+                <th> Client ID </th>
                 <td>{{usrdetailsObj.userId}}</td>
+              </tr>
+              <tr>
+                <th>Full Name </th>
+                <td>{{usrdetailsObj.fullname}} </td>
               </tr>
               <tr>
                 <th>Profile Picture</th>
@@ -110,15 +127,25 @@
               </tr>
               <tr>
                 <th>Phone Number</th>
-                <td>{{usrdetailsObj.phoneno}}</td>
+                <td>{{this.formatPhoneNumber(usrdetailsObj.phoneno)}}</td>
               </tr>
               <tr>
                 <th>Prefered Language</th>
-                <td>{{usrdetailsObj.preferlang}}</td>
+                <td>
+                  <span *ngIf="usrdetailsObj.preferlang == 'en'">
+                    English
+                  </span>
+                  <span *ngIf="usrdetailsObj.preferlang == 'te'">
+                    Telugu
+                  </span>
+                  <span *ngIf="usrdetailsObj.preferlang == 'hi'">
+                    Hindi
+                  </span>
+                </td>
               </tr>
               <tr>
                 <th>Created On </th>
-                <td> {{usrdetailsObj.createdon}}</td>
+                <td>{{this.datepipe.transform(usrdetailsObj.createdon,"dd/MM/yyyy hh:mm:ss")}}</td>
               </tr>
               <tr>
                 <th>Created By </th>
@@ -135,19 +162,19 @@
             </table>
           </small>
         </div>
-        <div class="tab-pane active " id="4b">
+        <div class="tab-pane " id="4b">
           <small>
             <table class="table">
               <tr>
-                <th>Biz Name </th>
+                <th>Business Name </th>
                 <td> {{usrdetailsObj.userbizdetails.bizname}}</td>
               </tr>
               <tr>
-                <th>Biz Type </th>
+                <th>Business Type </th>
                 <td> {{usrdetailsObj.userbizdetails.biztype}}</td>
               </tr>
               <tr>
-                <th>Biz Website </th>
+                <th>Business Website </th>
                 <td> {{usrdetailsObj.userbizdetails.bizwebsite}}</td>
               </tr>
               <tr>
@@ -155,18 +182,17 @@
                 <td> {{usrdetailsObj.userbizdetails.purposeofsignup}}</td>
               </tr>
               <tr>
-                <th>AbtBiz </th>
+                <th>About Business </th>
                 <td> {{usrdetailsObj.userbizdetails.abtbiz}}</td>
               </tr>
               <tr>
-                <th>Designation </th>
+                <th>Designation</th>
                 <td> {{usrdetailsObj.userbizdetails.designation}}</td>
               </tr>
 
             </table>
           </small>
         </div>
-
       </div>
     </div>
     <div id="exTab3" *ngIf="usrdetailsObj.userroles.rolecode == 'FREELANCER_USER'">
@@ -176,7 +202,8 @@
         <li class="nav-item"><a class="nav-link small" href="#1b" data-toggle="tab">More
             Details</a>
         </li>
-        <li class="nav-item"><a class="nav-link small" href="#2b" data-toggle="tab">Background Check Chat History </a>
+        <li class="nav-item"><a class="nav-link small" href="#2b" data-toggle="tab">Background Check Comments History
+          </a>
         </li>
         <li class="nav-item"><a class="nav-link small" href="#3b" data-toggle="tab">Background Check Documents</a>
         </li>
@@ -186,13 +213,17 @@
           <small>
             <table class='table'>
               <tr>
-                <th> ID </th>
+                <th>Skilled Worker ID </th>
                 <td>{{usrdetailsObj.userId}}</td>
+              </tr>
+              <tr>
+                <th>Full Name </th>
+                <td>{{usrdetailsObj.fullname}} </td>
               </tr>
               <tr>
                 <th>Profile Picture</th>
                 <td>
-                  <a href="{{usrdetailsObj.avtarurl}}" target="_blank">
+                  <a *ngIf="usrdetailsObj.avtarurl != null" href="{{usrdetailsObj.avtarurl}}" target="_blank">
                     <img src="{{usrdetailsObj.avtarurl}}" width="100px" height="80px">
                   </a>
                 </td>
@@ -211,15 +242,25 @@
               </tr>
               <tr>
                 <th>Phone Number</th>
-                <td>{{usrdetailsObj.phoneno}}</td>
+                <td>{{this.formatPhoneNumber(usrdetailsObj.phoneno)}}</td>
               </tr>
               <tr>
                 <th>Prefered Language</th>
-                <td>{{usrdetailsObj.preferlang}}</td>
+                <td>
+                  <span *ngIf="usrdetailsObj.preferlang == 'en'">
+                    English
+                  </span>
+                  <span *ngIf="usrdetailsObj.preferlang == 'te'">
+                    Telugu
+                  </span>
+                  <span *ngIf="usrdetailsObj.preferlang == 'hi'">
+                    Hindi
+                  </span>
+                </td>
               </tr>
               <tr>
                 <th>Created On </th>
-                <td> {{usrdetailsObj.createdon}}</td>
+                <td> {{this.datepipe.transform(usrdetailsObj.createdon,"dd/MM/yyyy hh:mm:ss")}}</td>
               </tr>
               <tr>
                 <th>Created By </th>
@@ -274,42 +315,68 @@
                 <th>Profile Completed?</th>
                 <td>
                   <div *ngIf="usrdetailsObj.freeLanceDetails.isprofilecompleted">
-                    <i class="fa fa-check" title="Bg verification is completed" style="color: rgb(37, 165, 37)"></i>
+                    <i class="fa fa-check" title="Profile data is available" style="color: rgb(37, 165, 37)"></i>
                   </div>
 
                   <div *ngIf="!usrdetailsObj.freeLanceDetails.isprofilecompleted">
-                    <i class="fa fa-spinner" title="Bg verification is in-progress" style="color:rgb(16, 0, 238)"></i>
+                    <i class="fa fa-ban" title="Profile data not available" style="color:rgb(16, 0, 238)"></i>
                   </div>
                 </td>
               </tr>
-
               <tr>
-                <th>Background Verification Completed ?</th>
+                <th>Registration Fee Paid?</th>
                 <td>
-                  <div *ngIf="usrdetailsObj.freeLanceDetails.isbgdone">
-                    <i class="fa fa-check" title="Bg verification is completed" style="color: rgb(37, 165, 37)"></i>
+                  <div *ngIf="usrdetailsObj.freeLanceDetails.isregfeedone">
+                    <i class="fa fa-check" title="Registration fee paid" style="color: rgb(37, 165, 37)"></i>
                   </div>
-                  <div *ngIf="!usrdetailsObj.freeLanceDetails.isbgdone">
-                    <i class="fa fa-spinner" title="Bg verification is in-progress" style="color:rgb(16, 0, 238)"></i>
+
+                  <div *ngIf="!usrdetailsObj.freeLanceDetails.isregfeedone">
+                    <i class="fa fa-ban" title="Registration not paid" style="color:rgb(16, 0, 238)"></i>
                   </div>
                 </td>
               </tr>
-
               <tr>
                 <th>Background Verification Initiated</th>
                 <td>
                   <div *ngIf="usrdetailsObj.freeLanceDetails.isbgstarted">
-                    <i class="fa fa-check" title="Bg verification is completed" style="color: rgb(37, 165, 37)"></i>
+                    <i class="fa fa-check" title="Background verification started" style="color: rgb(37, 165, 37)"></i>
                   </div>
                   <div *ngIf="!usrdetailsObj.freeLanceDetails.isbgstarted">
-                    <i class="fa fa-spinner" title="Bg verification is in-progress" style="color:rgb(16, 0, 238)"></i>
+                    <i class="fa fa-ban" title="Bg verification is not started" style="color:rgb(16, 0, 238)"></i>
                   </div>
                 </td>
               </tr>
               <tr>
-                <th>National ID </th>
+                <th>Background Verification Completed ?</th>
                 <td>
-                  <a href="{{usrdetailsObj.freeLanceDetails.uploadValidPhotoidImgUrl}}" target="_blank">
+                  <div *ngIf="usrdetailsObj.freeLanceDetails.isbgdone">
+                    <i class="fa fa-check" title="Registration is completed" style="color: rgb(37, 165, 37)"></i>
+                  </div>
+                  <div *ngIf="!usrdetailsObj.freeLanceDetails.isbgdone">
+                    <i class="fa fa-ban" title="Registration is not completed" style="color:rgb(16, 0, 238)"></i>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <th>Background Verification Result</th>
+                <td>
+                  <i title="{{usrdetailsObj.fullname}} background verification is rejected"
+                    class="fa fa-thumbs-down - Decision by {{usrdetailsObj.freelancehistoryentity[0].decisionby}} "
+                    style="color:rgb(241, 18, 18)"
+                    *ngIf="usrdetailsObj.freeLanceDetails.bgcurrentstatus == 'BG_REJECTED'; else elseApproved ">
+                  </i>
+                  <ng-template #elseApproved>
+                    <i *ngIf="usrdetailsObj.freeLanceDetails.bgcurrentstatus == 'BG_APPROVED'; else elseInProgress"
+                      title="{{usrdetailsObj.fullname}} background verification is approved - Decision by {{usrdetailsObj.freelancehistoryentity[0].decisionby}}"
+                      class="fa fa-thumbs-up" style="color:#0a382b"></i>
+                  </ng-template>
+                </td>
+              </tr>
+              <tr>
+                <th>Government ID </th>
+                <td>
+                  <a *ngIf="usrdetailsObj.freeLanceDetails.uploadValidPhotoidImgUrl != null"
+                    href="{{usrdetailsObj.freeLanceDetails.uploadValidPhotoidImgUrl}}" target="_blank">
                     <img src="{{usrdetailsObj.freeLanceDetails.uploadValidPhotoidImgUrl}}" width="100px" height="80px">
                   </a>
                 </td>
@@ -319,19 +386,26 @@
         </div>
         <div class="tab-pane" id="2b">
           <small>
-            <table class="table">
+            <table class="table" *ngIf="usrdetailsObj.freelancehistoryentity.length > 0">
               <tr>
                 <th>Decision By</th>
                 <th>Decision On</th>
                 <th>Background Status </th>
-                <th>Background Comments </th>
+                <th>Comments</th>
                 <th>Manager ID </th>
                 <th>Core Service Support Member ID </th>
               </tr>
               <tr *ngFor="let value of usrdetailsObj.freelancehistoryentity ">
                 <td> {{value.decisionby}}</td>
-                <td> {{value.decisionon}}</td>
-                <td> {{value.bgstatus}}</td>
+                <td> {{this.datepipe.transform(value.decisionon,"dd/MM/yyyy hh:mm:ss")}}</td>
+                <td>
+                  <div *ngIf="value.bgstatus != 'BG_INCOMPLETEPROFILE'">
+                    <span *ngIf="value.bgstatus == 'BG_SENTTOCSST'"> Sent To CSST Member </span>
+                    <span *ngIf="value.bgstatus == 'BG_SENTTOCSSM'"> Sent To CSSM Manager </span>
+                    <span *ngIf="value.bgstatus == 'BG_APPROVED'"> Approved </span>
+                    <span *ngIf="value.bgstatus == 'BG_REJECTED'"> Rejected </span>
+                  </div>
+                </td>
                 <td> {{value.bgcomment}}</td>
                 <td> <a href="javascript: return false;"
                     (click)='managerusercomponent.openViewAccountDetailsModalByUserId(value.managerid)'>
@@ -352,7 +426,7 @@
               </tr>
               <tr *ngFor="let value of usrdetailsObj.freelancedocumententity ">
                 <td><a href="{{value.docurl}}" target="_blank">{{value.docname}} </a> </td>
-                <td>{{value.uploaddate}}</td>
+                <td>{{this.datepipe.transform(value.uploaddate,"dd/MM/yyyy hh:mm:ss")}}</td>
               </tr>
             </table>
           </small>

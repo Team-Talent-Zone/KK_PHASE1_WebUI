@@ -45,7 +45,7 @@ export class ManagejobsComponent implements OnInit {
   indiaTime = this.datepipe.transform(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }), "dd/MM/yyyy hh:mm:ss");
   indiaTimeFormat = this.datepipe.transform(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }), "yyyy-MM-dd hh:mm:ss");
   mapurl = 'http://maps.google.com/?z=16&q=';
-  comma =',';
+  comma = ',';
   newjobsempty: boolean = false;
   upcomingjobsempty: boolean = false;
   completedjobsempty: boolean = false;
@@ -222,7 +222,7 @@ export class ManagejobsComponent implements OnInit {
           this.freelanceserviceService.getAllFreelanceOnServiceDetailsByJobId(jobId).subscribe((objfreelanceservice: FreelanceOnSvc) => {
             if (reason == config.voliation.toString()) {
               objfreelanceservice.isjobvoliation = true;
-            } else{
+            } else {
               objfreelanceservice.isjobactive = false;
             }
             this.freelanceserviceService.saveOrUpdateFreelancerOnService(objfreelanceservice).subscribe((bol: boolean) => {
@@ -260,8 +260,8 @@ export class ManagejobsComponent implements OnInit {
           if (element.isjobactive && element.jobacceptdecisionflag && !element.isjobamtpaidtocompany) {
             this.upComingPostedJobs.push(element);
           }
-          if (!element.isjobcancel && !element.isjobcompleted && 
-            !element.isjobamtpaidtocompany && !element.jobacceptdecisionflag && 
+          if (!element.isjobcancel && !element.isjobcompleted &&
+            !element.isjobamtpaidtocompany && !element.jobacceptdecisionflag &&
             (element.freelanceuserId == null || element.jobaccepteddate != null)) {
             this.newlyPostedJobs.push(element);
           }
@@ -322,7 +322,7 @@ export class ManagejobsComponent implements OnInit {
   feedbackformvalidation() {
     this.feedbackform = this.fb.group({
       starrate: ['', Validators.required],
-      feedbackcomment: ['', [Validators.required,Validators.pattern('[a-zA-Z0-9.]+[a-zA-Z0-9. ]+')]]
+      feedbackcomment: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9.]+[a-zA-Z0-9. ]+')]]
     });
   }
 
@@ -366,5 +366,15 @@ export class ManagejobsComponent implements OnInit {
         initialState
       }
     ));
+  }
+
+  formatPhoneNumber(phoneNumberString) {
+    var cleaned = ('' + phoneNumberString).replace(/\D/g, '')
+    var match = cleaned.match(/^(1|)?(\d{3})(\d{3})(\d{4})$/)
+    if (match) {
+      var intlCode = (match[1] ? '+1 ' : '')
+      return [intlCode, '(', match[2], ') ', match[3], '-', match[4]].join('')
+    }
+    return null
   }
 }

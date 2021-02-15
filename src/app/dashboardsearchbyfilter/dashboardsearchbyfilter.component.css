@@ -15,6 +15,7 @@
 
 input:placeholder-shown {
   font-style: italic;
+  font-size: small;
 }
 
 .btn-primary {

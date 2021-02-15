@@ -246,7 +246,7 @@
     "PROFILE_PHONE_INVALID": "अमान्य मोबाइल नंबर प्रारूप",
     "PROFILE_PIC_REQ": "चित्र आवश्यक है",
     "PROFILE_PIC": "प्रोफ़ाइल चित्र अपलोड करें",
-    "PROFILE_PIC_FORMAT": "सर्वोत्तम परिणामों के लिए, .png, .jpg, .jpeg प्रारूप में कम से कम 128px द्वारा छवि का उपयोग करें",
+    "PROFILE_PIC_FORMAT": "सर्वोत्तम परिणामों के लिए, 2 मेगा बाइट और .png, .jpg, .jpeg प्रारूप से कम आकार की छवि का उपयोग करें।",
     "PROFILE_SKILL": "कौशल जानकारी",
     "PROFILE_ABTU": "आपके बारे में",
     "PROFILE_TOTALEXP": "कुल अनुभव*",
@@ -290,7 +290,9 @@
     "PROILE_PASSWORD_POLICY_1": "1 अंक होना चाहिए",
     "PROILE_PASSWORD_POLICY_2": "1 लोअरकेस ASCII पत्र होना चाहिए",
     "PROILE_PASSWORD_POLICY_3": "1 अपरकेस ASCII पत्र होना चाहिए",
-    "PROILE_PASSWORD_POLICY_4": "न्यूनतम 8 चार लंबाई"
+    "PROILE_PASSWORD_POLICY_4": "न्यूनतम 8 चार लंबाई",
+    "PROILE_PASSWORD_POLICY_5": "पासवर्ड नीति:",
+    "MAP_VIEW": "(नक्शा देखें)"
   },
   "PAYMENTHIST": {
     "PAYMENTHIST_HEADER": "भुगतान विवरण",

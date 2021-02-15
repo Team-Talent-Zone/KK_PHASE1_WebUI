@@ -17,10 +17,10 @@
     <div class="navbar-collapse collapse" id="collapsingNavbar"
         *ngIf="this.userService.currentUserValue.userroles.rolecode !== 'FREELANCER_USER' && this.userService.currentUserValue.userroles.rolecode !== 'DIRECTORS'">
         <div class="combobox">
-            <a type="submit" (click)="search( inputItemCode , inputItem)" class="btn btn-sm btn-warning pull-right"><i
+            <a type="submit" (click)="search( inputItem)" class="btn btn-sm btn-warning pull-right"><i
                     class="fa fa-search"></i></a>
             <input type="search" [(ngModel)]="inputItem" (ngModelChange)="getFilteredList()"
-                (keyup.enter)="search( inputItemCode , inputItem)" class="combobox-input form-control"
+                (keyup.enter)="search(inputItem)" class="combobox-input form-control"
                 (keyup)="onKeyPress($event);" (blur)="toggleListDisplay(0)" (focus)="toggleListDisplay(1)"
                 placeholder="Search By Skilled Worker Skill & Hit Enter" [ngClass]="{'error': showError}">
 
@@ -161,12 +161,14 @@
                             <span><b>{{ 'DASHOARD_HEADER.WELCOMEBACK' | translate }}
                                     {{this.userService.currentUserValue.fullname}}</b></span>
                         </div>
-                        <div class="col-xl-4 col-lg-6">
+                        <div class="col-xl-5 col-lg-6">
                             <span class="float-right">
-                                <small><i>{{indiaTime}}</i></small>
+                                <small>
+                                    <i class="fa fa-clock-o" aria-hidden="true"></i>
+                                    {{indiaTime}}</small>
                             </span>
                         </div>
-                        <div class="col-xl-2 col-lg-6 float-right">
+                        <div class="pull-right">
                             <a style="cursor:pointer" (click)='openNotifcationWindow()' *ngIf="notifcationbellList != null && notifcationbellList.length>0 && 
                              this.userService.currentUserValue.userroles.rolecode =='FREELANCER_USER' && 
                              this.userService.currentUserValue.freeLanceDetails.bgcurrentstatus == 'BG_APPROVED'">

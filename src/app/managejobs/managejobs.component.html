@@ -95,7 +95,7 @@
                             <small class="pull-left">
                                 <b>{{ 'DASHBOARD_FU_BODY.PHONENO' | translate }} </b>
                                 <i class="fa fa-mobile ml-2" aria-hidden="true"></i>
-                                {{element.fuphoneno}}
+                                {{this.formatPhoneNumber(element.fuphoneno)}}
                             </small>
                         </p>
                         <p *ngIf="element.freelanceuserId > 0">
@@ -114,9 +114,9 @@
                             <small>
                                 <b> {{'DASHBOARD_FU_BODY.JOBLOCATION' | translate }} </b>
                                 {{element.joblocation}}
-                                    <a href={{mapurl+element.lat+comma+element.lng}} target="_blank">
-                                        (Map View)
-                                    </a>
+                                <a href={{mapurl+element.lat+comma+element.lng}} target="_blank">
+                                    (Map View)
+                                </a>
                             </small>
                         </div>
                         <div>
@@ -193,9 +193,9 @@
                             <small>
                                 <b> {{ 'DASHBOARD_FU_BODY.JOBLOCATION' | translate }} </b>
                                 {{newlyjob.joblocation}}
-                                    <a href={{mapurl+newlyjob.lat+comma+newlyjob.lng}} target="_blank">
-                                        (Map View)
-                                    </a>
+                                <a href={{mapurl+newlyjob.lat+comma+newlyjob.lng}} target="_blank">
+                                    (Map View)
+                                </a>
                             </small>
                         </div>
                         <div>
@@ -228,11 +228,13 @@
                     <div class="card-footer"
                         *ngIf="newlyjob.isjobactive && !newlyjob.jobacceptdecisionflag &&  newlyjob.deactivefromnewjobs == null">
                         <div class="row">
-                            <p class="text-primary text-center"><i class="fa fa-info-circle"></i>
+                            <p class="text-primary"><i class="fa fa-info-circle"></i>
                                 <small class="text-muted ">
-                                    Thank you for activating the job . Our pool of skilled workers
-                                    will be available to accept this job shortly.
-                                    We will notify on message notification.
+                                    Thank you for activating the job.
+                                    <p>Our pool of skilled workers
+                                        will be available to accept this job shortly.
+                                        We will notify with popup message.
+                                    </p>
                                 </small>
                             </p>
                         </div>
@@ -270,8 +272,8 @@
                                     title="Go to payment details" class="fa fa-sitemap"
                                     style="color:#FF4949"></i></button>
                             <button *ngIf="!completedjob.isratedforjob" class="bg-info pull-right" data-toggle="modal"
-                                data-target="#rateit" (click)="feedback(completedjob.jobId)"> Rate <i
-                                    class="fa fa-meh-o" title="Please rate to {{completedjob.fullname}}"></i></button>
+                                data-target="#rateit" (click)="feedback(completedjob.jobId)"> Rating <i
+                                    class="fa fa-star" title="Please rate to {{completedjob.fullname}}"></i></button>
                         </p>
                         <span class="display-4">
                             <i class="fa fa-inr">{{completedjob.amount | number}}</i>
@@ -306,9 +308,9 @@
                         </p>
                         <p>
                             <small class="pull-left">
-                                <b>{{ 'DASHBOARD_FU_BODY.PHONENO' | translate }}: </b> 
+                                <b>{{ 'DASHBOARD_FU_BODY.PHONENO' | translate }}: </b>
                                 <i class="fa fa-mobile ml-2" aria-hidden="true"></i>
-                                {{completedjob.fuphoneno}}
+                                {{this.formatPhoneNumber(completedjob.fuphoneno)}}   
                             </small>
                         </p>
                         <p *ngIf="completedjob.freelanceuserId > 0">
@@ -324,10 +326,10 @@
                         <div>
                             <small>
                                 <b> {{ 'DASHBOARD_FU_BODY.JOBLOCATION' | translate }} </b>
-                                    {{completedjob.joblocation}}
-                                    <a href={{mapurl+completedjob.lat+comma+completedjob.lng}} target="_blank">
-                                        (Map View)
-                                    </a>
+                                {{completedjob.joblocation}}
+                                <a href={{mapurl+completedjob.lat+comma+completedjob.lng}} target="_blank">
+                                    (Map View)
+                                </a>
                             </small>
                         </div>
                         <div>
@@ -398,8 +400,8 @@
                         <div *ngIf="issubmit && f.feedbackcomment.errors" class="invalid-feedback">
                             <div *ngIf="f.feedbackcomment.errors.required">Comment is required
                             </div>
-                        </div>
-                        <div *ngIf="f.feedbackcomment.errors.pattern">No special character allowed.
+                            <div *ngIf="f.feedbackcomment.errors.pattern">No special character allowed.
+                            </div>
                         </div>
                     </div>
                     <div class="modal-footer">

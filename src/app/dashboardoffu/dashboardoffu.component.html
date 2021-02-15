@@ -261,7 +261,7 @@
                                             {{element.joblocation}}
                                             <p>
                                                 <a href={{mapurl+element.lat+comma+element.lng}} target="_blank">
-                                                    (Map View)
+                                                    {{ 'DASHBOARD_FU_PROFILE.MAP_VIEW' | translate }}
                                                 </a>
                                             </p>
                                         </small>
@@ -270,7 +270,7 @@
                                         <small class="pull-left">
                                             <b>{{ 'DASHBOARD_FU_BODY.PHONENO' | translate }} </b>
                                             <i class="fa fa-mobile ml-2" aria-hidden="true"></i>
-                                            {{element.cbaphoneno}}
+                                            {{this.formatPhoneNumber(element.cbaphoneno)}}
                                         </small>
                                     </p>
                                     <p>
@@ -346,7 +346,7 @@
                                             {{element.joblocation}}
                                             <p>
                                                 <a href={{mapurl+element.lat+comma+element.lng}} target="_blank">
-                                                    (Map View)
+                                                    {{ 'DASHBOARD_FU_PROFILE.MAP_VIEW' | translate }}
                                                 </a>
                                             </p>
                                         </small>
@@ -355,7 +355,7 @@
                                         <small class="pull-left">
                                             <b>{{ 'DASHBOARD_FU_BODY.PHONENO' | translate }} </b>
                                             <i class="fa fa-mobile ml-2" aria-hidden="true"></i>
-                                            {{element.cbaphoneno}}
+                                            {{this.formatPhoneNumber(element.cbaphoneno)}}
                                         </small>
                                     </p>
                                     <p>
@@ -431,7 +431,7 @@
                                             <b> {{ 'DASHBOARD_FU_BODY.JOBLOCATION' | translate }} </b>
                                             {{element.joblocation}}
                                             <a href={{mapurl+element.lat+comma+element.lng}} target="_blank">
-                                                (Map View)
+                                                {{ 'DASHBOARD_FU_PROFILE.MAP_VIEW' | translate }}
                                             </a>
                                         </small>
                                     </p>
@@ -445,7 +445,7 @@
                                         <small class="pull-left">
                                             <b>{{ 'DASHBOARD_FU_BODY.PHONENO' | translate }} </b>
                                             <i class="fa fa-mobile ml-2" aria-hidden="true"></i>
-                                            {{element.cbaphoneno}}
+                                            {{this.formatPhoneNumber(element.cbaphoneno)}}
                                         </small>
                                     </p>
 
@@ -509,7 +509,7 @@
                                             <b> {{ 'DASHBOARD_FU_BODY.JOBLOCATION' | translate }} </b>
                                             {{element.joblocation}}
                                             <a href={{mapurl+element.lat+comma+element.lng}} target="_blank">
-                                                (Map View)
+                                                {{ 'DASHBOARD_FU_PROFILE.MAP_VIEW' | translate }}
                                             </a>
                                         </small>
                                     </p>
@@ -517,7 +517,7 @@
                                         <small class="pull-left">
                                             <b>{{ 'DASHBOARD_FU_BODY.PHONENO' | translate }} </b>
                                             <i class="fa fa-mobile ml-2" aria-hidden="true"></i>
-                                            {{element.cbaphoneno}}
+                                            {{this.formatPhoneNumber(element.cbaphoneno)}}
                                         </small>
                                     </p>
                                     <p>

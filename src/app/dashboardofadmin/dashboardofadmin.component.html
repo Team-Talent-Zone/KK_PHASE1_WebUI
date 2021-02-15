@@ -23,7 +23,7 @@
         <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true"
           aria-controls="collapseOne">
           <i class="fa fa-caret-right"></i>
-         Jobs Reporting System - Skilled Worker Search Service
+          Jobs Reporting System - Skilled Worker Search Service
         </a>
       </h4>
       <h4 class="panel-title">
@@ -253,10 +253,16 @@
                       </div>
                     </td>
                     <td>
-                      <p *ngIf="iscreatejobflag && i == volationindex"><i><small>Previous {{job.fuphoneno}}</small></i>
+                      <p *ngIf="iscreatejobflag && i == volationindex"><i><small>Previous
+                            {{this.formatPhoneNumber(job.fuphoneno)}}
+                          </small></i>
                       </p>
-                      <p *ngIf="!iscreatejobflag && i == volationindex">{{job.fuphoneno}}</p>
-                      <p *ngIf="i != volationindex">{{job.fuphoneno}}</p>
+                      <p *ngIf="!iscreatejobflag && i == volationindex">
+                        {{this.formatPhoneNumber(job.fuphoneno)}}
+                      </p>
+                      <p *ngIf="i != volationindex">
+                        {{this.formatPhoneNumber(job.fuphoneno)}}
+                      </p>
                       <div *ngIf="iscreatejobflag && i == volationindex && enddatevalue != null">
                         <hr>
                         <p><i><small>[New Job End Date]</small></i></p>
@@ -331,13 +337,13 @@
                         {{job.fullname}}
                       </a>
                     </td>
-                    <td>{{job.fuphoneno}}</td>
+                    <td>{{this.formatPhoneNumber(job.fuphoneno)}}</td>
                     <td>
                       <a href="javascript: return false;" (click)='manageruser.openViewAccountDetailsModal(job.userId)'>
                         {{job.bizname}}
                       </a>
                     </td>
-                    <td>{{job.cbaphoneno}}</td>
+                    <td>{{this.formatPhoneNumber(job.cbaphoneno)}}</td>
                     <td>{{job.subcategorylabel}}</td>
                     <td>{{job.resolvedvoliationreason}}</td>
                     <td>
@@ -379,13 +385,13 @@
                         {{job.fullname}}
                       </a>
                     </td>
-                    <td>{{job.fuphoneno}}</td>
+                    <td>{{this.formatPhoneNumber(job.fuphoneno)}}</td>
                     <td>
                       <a href="javascript: return false;" (click)='manageruser.openViewAccountDetailsModal(job.userId)'>
                         {{job.bizname}}
                       </a>
                     </td>
-                    <td>{{job.cbaphoneno}}</td>
+                    <td>{{this.formatPhoneNumber(job.cbaphoneno)}}</td>
                     <td>{{job.subcategorylabel}}</td>
                   </tr>
                 </tbody>
@@ -422,13 +428,13 @@
                       <p><i><small>{{job.subcategorylabel}}</small></i></p>
 
                     </td>
-                    <td>{{job.fuphoneno}}</td>
+                    <td>{{this.formatPhoneNumber(job.fuphoneno)}}</td>
                     <td>
                       <a href="javascript: return false;" (click)='manageruser.openViewAccountDetailsModal(job.userId)'>
                         {{job.bizname}}
                       </a>
                     </td>
-                    <td>{{job.cbaphoneno}}</td>
+                    <td>{{this.formatPhoneNumber(job.cbaphoneno)}}</td>
                     <td>{{job.subcategorylabel}}</td>
                   </tr>
                 </tbody>
@@ -465,13 +471,13 @@
                       <p><i><small>{{job.subcategorylabel}}</small></i></p>
 
                     </td>
-                    <td>{{job.fuphoneno}}</td>
+                    <td>{{this.formatPhoneNumber(job.fuphoneno)}}</td>
                     <td>
                       <a href="javascript: return false;" (click)='manageruser.openViewAccountDetailsModal(job.userId)'>
                         {{job.bizname}}
                       </a>
                     </td>
-                    <td>{{job.cbaphoneno}}</td>
+                    <td>{{this.formatPhoneNumber(job.cbaphoneno)}}</td>
                     <td>{{job.subcategorylabel}}</td>
                   </tr>
                 </tbody>
@@ -504,7 +510,7 @@
                         {{job.bizname}}
                       </a>
                     </td>
-                    <td>{{job.cbaphoneno}}</td>
+                    <td>{{this.formatPhoneNumber(job.cbaphoneno)}}</td>
                     <td>{{job.subcategorylabel}}</td>
                   </tr>
                 </tbody>
@@ -539,7 +545,7 @@
                         {{job.bizname}}
                       </a>
                     </td>
-                    <td>{{job.cbaphoneno}}</td>
+                    <td>{{this.formatPhoneNumber(job.cbaphoneno)}}</td>
                     <td> {{job.subcategorylabel}} {{job.fullname}}
                     </td>
                     <td><a class="btn btn-warning btn-sm" (click)="getFUUsersByCategory(job.scategory , i )">
@@ -603,13 +609,13 @@
                         {{job.fullname}}
                       </a>
                     </td>
-                    <td>{{job.fuphoneno}}</td>
+                    <td>{{this.formatPhoneNumber(job.fuphoneno)}}</td>
                     <td>
                       <a href="javascript: return false;" (click)='manageruser.openViewAccountDetailsModal(job.userId)'>
                         {{job.bizname}}
                       </a>
                     </td>
-                    <td>{{job.cbaphoneno}}</td>
+                    <td>{{this.formatPhoneNumber(job.cbaphoneno)}}</td>
                     <td>{{job.subcategorylabel}}</td>
                   </tr>
                 </tbody>
@@ -644,13 +650,13 @@
                         {{job.fullname}}
                       </a>
                     </td>
-                    <td>{{job.fuphoneno}}</td>
+                    <td>{{this.formatPhoneNumber(job.fuphoneno)}}</td>
                     <td>
                       <a href="javascript: return false;" (click)='manageruser.openViewAccountDetailsModal(job.userId)'>
                         {{job.bizname}}
                       </a>
                     </td>
-                    <td>{{job.cbaphoneno}}</td>
+                    <td>{{this.formatPhoneNumber(job.cbaphoneno)}}</td>
                     <td>{{job.subcategorylabel}}</td>
                   </tr>
                 </tbody>
@@ -685,13 +691,13 @@
                         {{job.fullname}}
                       </a>
                     </td>
-                    <td>{{job.fuphoneno}}</td>
+                    <td>{{this.formatPhoneNumber(job.fuphoneno)}}</td>
                     <td>
                       <a href="javascript: return false;" (click)='manageruser.openViewAccountDetailsModal(job.userId)'>
                         {{job.bizname}}
                       </a>
                     </td>
-                    <td>{{job.cbaphoneno}}</td>
+                    <td>{{this.formatPhoneNumber(job.cbaphoneno)}}</td>
                     <td>{{job.subcategorylabel}}</td>
                   </tr>
                 </tbody>
@@ -746,13 +752,13 @@
                     <p><i><small>{{job.subcategorylabel}}</small></i></p>
 
                   </td>
-                  <td>{{job.fuphoneno}}</td>
+                  <td>{{this.formatPhoneNumber(job.fuphoneno)}}</td>
                   <td>
                     <a href="javascript: return false;" (click)='manageruser.openViewAccountDetailsModal(job.userId)'>
                       {{job.bizname}}
                     </a>
                   </td>
-                  <td>{{job.cbaphoneno}}</td>
+                  <td>{{this.formatPhoneNumber(job.cbaphoneno)}}</td>
                 </tr>
               </tbody>
             </table>
@@ -776,7 +782,7 @@
                       {{worker.fullname}}
                     </a>
                   </td>
-                  <td>{{worker.phoneno}}</td>
+                  <td>{{this.formatPhoneNumber(worker.phoneno)}} </td>
                 </tr>
               </tbody>
             </table>
@@ -940,7 +946,7 @@
                   </a>
                 </td>
                 <td>{{srv.biztype}}</td>
-                <td>{{srv.phoneno}}</td>
+                <td>{{this.formatPhoneNumber(srv.phoneno)}}</td>
                 <td>{{srv.validPeriodLabel}}</td>
                 <td>{{srv.servicestarton}}</td>
                 <td>{{srv.serviceendon}}</td>
@@ -986,7 +992,7 @@
                   </a>
                 </td>
                 <td>{{srv.biztype}}</td>
-                <td>{{srv.phoneno}}</td>
+                <td>{{this.formatPhoneNumber(srv.phoneno)}}</td>
                 <td>{{srv.validPeriodLabel}}</td>
                 <td>{{srv.servicestarton}}</td>
                 <td>{{srv.serviceendon}}</td>

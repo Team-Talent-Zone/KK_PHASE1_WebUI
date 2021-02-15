@@ -103,7 +103,7 @@ export class SignupComponent implements OnInit {
   formValidations() {
     if (this.key === config.shortkey_role_cba.toString()) {
       this.signupForm = this.formBuilder.group({
-        password: ['', [Validators.required, Validators.minLength(8)]],
+        password: ['', [Validators.required, Validators.minLength(8),Validators.pattern(/^(?=\D*\d)(?=[^a-z]*[a-z])(?=[^A-Z]*[A-Z]).{8,30}$/)]],
         username: ['', [Validators.required, Validators.email, Validators.maxLength(40)]],
         firstname: ['', [Validators.required, Validators.maxLength(40)]],
         lastname: ['', [Validators.required, Validators.maxLength(40)]],
@@ -113,7 +113,7 @@ export class SignupComponent implements OnInit {
       });
     } else {
       this.signupForm = this.formBuilder.group({
-        password: ['', [Validators.required, Validators.minLength(8)]],
+        password: ['', [Validators.required, Validators.minLength(8),Validators.pattern(/^(?=\D*\d)(?=[^a-z]*[a-z])(?=[^A-Z]*[A-Z]).{8,30}$/)]],
         username: ['', [Validators.required, Validators.email, Validators.maxLength(40)]],
         firstname: ['', [Validators.required, Validators.maxLength(40)]],
         lastname: ['', [Validators.required, Validators.maxLength(40)]],

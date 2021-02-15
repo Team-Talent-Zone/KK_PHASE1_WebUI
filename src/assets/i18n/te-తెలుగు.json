@@ -246,7 +246,7 @@
     "PROFILE_PHONE_INSTRUCTIONS": "మీ సమాచారాన్ని ధృవీకరించడానికి మేము మీ ఫోన్ నంబర్‌ను అడగాలి. మేము మీ డేటాను సురక్షితంగా ఉంచుతాము",
     "PROFILE_PIC_REQ": "పిక్ అవసరం",
     "PROFILE_PIC": "ప్రొఫైల్ పిక్ అప్‌లోడ్ చేయండి",
-    "PROFILE_PIC_FORMAT": "ఉత్తమ ఫలితాల కోసం, .png, .jpg, .jpeg ఆకృతిలో కనీసం 128px ద్వారా 128px చిత్రాన్ని ",
+    "PROFILE_PIC_FORMAT": "ఉత్తమ ఫలితాల కోసం, 2 మెగా బైట్ల కంటే తక్కువ పరిమాణంలోని చిత్రాన్ని ఉపయోగించండి & .png, .jpg, .jpeg ఆకృతిలో",
     "PROFILE_SKILL": "నైపుణ్య సమాచారం",
     "PROFILE_ABTU": "నీ గురించి",
     "PROFILE_TOTALEXP": "మొత్తం అనుభవం *",
@@ -290,7 +290,9 @@
     "PROILE_PASSWORD_POLICY_1": "1 అంకె ఉండాలి",
     "PROILE_PASSWORD_POLICY_2": "1 చిన్న ASCII అక్షరం ఉండాలి",
     "PROILE_PASSWORD_POLICY_3": "తప్పనిసరిగా 1 పెద్ద ASCII అక్షరం ఉండాలి",
-    "PROILE_PASSWORD_POLICY_4": "కనిష్ట 8 చార్ పొడవు"
+    "PROILE_PASSWORD_POLICY_4": "కనిష్ట 8 చార్ పొడవు",
+    "PROILE_PASSWORD_POLICY_5": "పాస్వర్డ్ విధానం:",
+    "MAP_VIEW": "(మ్యాప్ వీక్షణ)"
   },
   "PAYMENTHIST": {
     "PAYMENTHIST_HEADER": "చెల్లింపు వివరాలు",

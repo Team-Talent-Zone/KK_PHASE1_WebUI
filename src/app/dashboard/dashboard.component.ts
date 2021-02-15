@@ -293,8 +293,9 @@ export class DashboardComponent implements OnInit {
     this.router.navigate(['/home']);
   }
 
-  search(inputItem: string) {
+  search(inputItem: string, inputCode: string) {
     this.templist = [];
+    console.log('inputItem', inputItem);
     if (inputItem == null) {
       this.alertService.info('Search keyword cannot be empty');
     } else {

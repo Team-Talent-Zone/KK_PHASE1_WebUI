@@ -204,20 +204,20 @@
 
     <div class="carousel-item">
       <img class="d-block w-100" src="assets/img/backgrounds/ban5.jpg" data-holder-rendered="true">
-      <div class="carousel-caption d-block d-sm-none">
-        <h5 style="font-size: 15px;">
+      <div class="carousel-caption d-block d-md-none">
+        <h5 style="font-size:20px;">
           {{ 'HOMENAV.BANNER_5_HEADER_LABEL' |
           translate }}
         </h5>
         <p>
           {{ 'HOMENAV.BANNER_5_LABELS_MOB' |
               translate }}
-          <a class="btn-warning" href="javascript: return false;" (click)="openSignupModal('fu')">
-            <u>{{ 'HOMENAV.SIGNUP_MODALWINDOW_SKILLEDWORKER_BUTTON_LABEL' |
-              translate }}</u>
-            <i class="fa fa-forward ml-2" aria-hidden="true"></i>
-          </a>
         </p>
+        <a class="btn-warning" href="javascript: return false;" (click)="openSignupModal('fu')">
+          <small>{{ 'HOMENAV.SIGNUP_MODALWINDOW_SKILLEDWORKER_BUTTON_LABEL' |
+              translate }}</small>
+          <i class="fa fa-forward ml-2" aria-hidden="true"></i>
+        </a>
       </div>
       <div class="carousel-caption d-md-block d-lg-none d-sm-none">
         <h5 style="font-size: 40px;">
@@ -246,11 +246,6 @@
         <p>
           {{ 'HOMENAV.BANNER_6_LABELS_MOB' |
               translate }}
-          <a  class="bg-dark" href="javascript: return false;" href="/home#section-3">
-            <u>{{ 'HOMENAV.BANNER_4_LABEL_HEADER_PARA_3' |
-                  translate }}</u>
-            <i class="fa fa-forward ml-2" aria-hidden="true"></i>
-          </a>
         </p>
       </div>
       <div class="carousel-caption d-md-block d-lg-none d-sm-none">
@@ -260,12 +255,6 @@
         </h5>
         {{ 'HOMENAV.BANNER_6_LABELS_WEB' |
         translate }}
-        <p>
-          <a class="bg-dark" href="javascript: return false;" href="/home#section-3">
-            <u>{{ 'HOMENAV.BANNER_4_LABEL_HEADER_PARA_3' |
-              translate }}</u>
-            <i class="fa fa-forward ml-2" aria-hidden="true"></i>
-          </a> </p>
       </div>
     </div>
   </div>
@@ -333,15 +322,13 @@
 </div>
 
 <!--
-Announcement
+Announcement Section 
 -->
 <div class="announcement">
   <h2>{{ 'HOMENAV.LATESTUPADTE' | translate }}</h2>
   <p>{{ 'HOMENAV.LATESTUPDATE_LINE1' | translate }}
   </p>
   <p> {{ 'HOMENAV.LATESTUPDATE_LINE2' | translate }}
-  </p>
-  <p>
     {{ 'HOMENAV.LATESTUPDATE_LINE3' | translate }}
     <a href="javascript: return false;" (click)="openSignupModal('fu')">
       <u>{{ 'HOMENAV.LATESTUPDATE_LINE4' | translate }}</u>

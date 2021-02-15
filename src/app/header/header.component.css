@@ -24,7 +24,6 @@ select {
   padding-top: 0px;
   color: #fff;
   text-align: inherit;
-  /* line-height: 19px; */
   text-shadow: 1px 1px 11px #000000;
 }
 
@@ -36,20 +35,17 @@ select {
   padding-top: 0px;
   color: #fff;
   text-align: right;
-  /* line-height: 19px; */
   text-shadow: 1px 1px 11px #000000;
 }
-
 .carousel-caption-mob-ban4 {
   position: absolute;
-  top: 6%;
+  top: 10%;
   font-size: smaller;
   right: 43%;
   z-index: 10;
   padding-top: 0px;
   color: #fff;
   text-align: right;
-  /* line-height: 19px; */
   text-shadow: 1px 1px 11px #000000;
 }
 .scroll .navbar-toggler-icon {

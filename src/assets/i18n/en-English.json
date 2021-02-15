@@ -19,18 +19,18 @@
     "BANNER_4_LABEL_HEADER_PARA_2": "This service connects your business to a nationwide community of skilled workers who thrive nothing more than to help your business succeed.",
     "BANNER_4_LABEL_HEADER_PARA_3": "Learn more",
     "BANNER_5_HEADER_LABEL": "Be Your Own Boss Earn anytime, anywhere",
-    "BANNER_5_LABELS_MOB": "We always support skilled wokers to make the most of the time on the job location on the platform with the largest network of active job opportunities.Make money when you want, wherever you are.Opportunity is everywhere.",
-    "BANNER_5_LABELS_WEB": "Opportunity is everywhere. We always support skilled wokers to make the most of the time on the job location on the platform with the largest network of active job opportunities.Get ready to drive with KK. Make money when you want, wherever you are.",
-    "BANNER_6_HEADER_LABEL": "Announcing KK New Maakan Service For Owners",
-    "BANNER_6_LABELS_MOB": "We're coming india's first online customized cloud base software solution for all realestate and housing owners to maintaince and manage their bussiness IT needs. The New Maakan (Apartment) service is available in mid of this summer.",
-    "BANNER_6_LABELS_WEB": "We're coming india's first online customized cloud base software solution for all realestate and housing owners to maintaince and manage their bussiness IT needs. Setup payment, operate and manage. The New Maakan (Apartment) service is available in mid of this summer.",
+    "BANNER_5_LABELS_MOB": "We always support skilled wokers to make the most of the time at the job location on the platform with the largest network of active job opportunities.Make money when you want, wherever you are.",
+    "BANNER_5_LABELS_WEB": "Opportunity is everywhere. We always support skilled wokers to make the most of the time at the job location on the platform with the largest network of active job opportunities.Get ready to drive with KK. Make money when you want, wherever you are.",
+    "BANNER_6_HEADER_LABEL": "Announcing KK New Maakan Anywhere Service",
+    "BANNER_6_LABELS_MOB": "We're coming as india's first online customized cloud base software solution for the realestate and housing business owners to maintain and create their IT needs. The New Maakan (Apartment) Anywhere service is available in mid of this summer 2021.",
+    "BANNER_6_LABELS_WEB": "We're coming as india's first online customized cloud base software solution for the realestate and housing business owners to maintain and create their IT needs. Setup payments, operate and manage. The New Maakan (Apartment) Anywhere service is available in mid of this summer 2021.",
     "SIGNUP_MODALWINDOW_CLIENT_DESC": "We provide you with complete Automated Software Solutions on the Cloud",
     "SIGNUP_MODALWINDOW_SKILLEDWORKER_DESC": "One Stop for all your Skilled Worker Opportunities",
     "SIGNUP_MODALWINDOW_CLIENT_BUTTON_LABEL": "Signup As Client",
     "SIGNUP_MODALWINDOW_SKILLEDWORKER_BUTTON_LABEL": "Signup As Skilled Worker",
     "LATESTUPADTE": "Latest Update",
     "LATESTUPDATE_LINE1": "According to our analysis , the economy was expected to lose over ₹32,000 crore (US$4.5 billion) every day during the lockdown, which was declared following the coronavirus outbreak.",
-    "LATESTUPDATE_LINE2": "Kaam Karega has the ability to increase the economy back by onboarding and providing the jobs opportunities to the skill workers.",
+    "LATESTUPDATE_LINE2": "Kaam Karega has the ability to increase the economy  by onboarding and providing the job opportunities to the skill workers.",
     "LATESTUPDATE_LINE3": "We welcome, the below list of all skill workers to onboard into the platform to utilize this opportunities.",
     "LATESTUPDATE_LINE4": "Signup is FREE."
   },
@@ -81,7 +81,7 @@
     "SIGNUP_VALIDATION_BIZTYPE_REQ": "Type is required",
     "SIGNUP_VALIDATION_NOSKILL": "No Skills for the Category",
     "SIGNUP_VALIDATION_SKILL_REQ": "Skill is required",
-    "SIGNUP_VALIDATION_TERMS_POLICYCHECKBOX_REQ": "You must accept our terms of service and privacy policy before proceed.",
+    "SIGNUP_VALIDATION_TERMS_POLICYCHECKBOX_REQ": "You must accept our terms of service and privacy policy before you proceed further.",
     "SIGNUP_VALIDATION_INDUSTRY_REQ": "Industry is required",
     "SIGNUP_SUBMIT_BUTTON": "Submit",
     "SIGNUP_CLOSE_BUTTON": "Cancel",
@@ -106,12 +106,12 @@
     "BACKGROUNDCHECK": "Background Check",
     "BACKGROUNDCHECK1": "Every profile is verified by our team of experts. Within a time period of 7 days the authentication of your documents and the proofs submitted is recorded and maintained for future needs.",
     "PAYFOROPPORTUNITY": "Pay For Opportunity",
-    "PAYFOROPPORTUNITY1": "You can now proceed with our secured payment process to get connected with the nationwide Job opportunities. We requires the registration fee before we start the background check process.",
+    "PAYFOROPPORTUNITY1": "You can now proceed with our secured payment process to get connected with the nationwide Job opportunities. We require minimal registration fee before we start the background check process.",
     "JOBASSIGNMENT": "Job Assignment",
-    "JOBASSIGNMENT1": "Waiting is paining. To avoid, we have designed an automated system which always connect with you by sending job notification based on your skills. Grab IT, Accept IT, Finish IT."
+    "JOBASSIGNMENT1": "Waiting is painful. To avoid, we have designed an automated system which always connect with you by sending job notification based on your skills. Grab IT, Accept IT, Finish IT."
   },
   "SKILLEDWORKERREVIEW": {
-    "SWORKER_REVIEW_HEADERLABEL": "Skill Worker Reviews",
+    "SWORKER_REVIEW_HEADERLABEL": "Skilled Worker Reviews",
     "SWORKER_BUTTON_READFULL": "Read More"
   },
   "SERVICE": {
@@ -167,7 +167,7 @@
     "REVIEWS": "Reviews",
     "CURRENTSTAGE": "Current Onboard Stage",
     "EDIT_PROFILE": "Edit Profile",
-    "NOTIFICATIONMEG_HEADER": "Notification Messages"
+    "NOTIFICATIONMEG_HEADER": "Notifications"
   },
   "DASHBOARD_FU_BODY": {
     "PROFILEEUPDATE": "Profile Updated",
@@ -237,7 +237,7 @@
     "PROFILE_LASTNAME_INSTRUCTIONS": "This should be your legal last name as it appears on your government ID. ",
     "PROFILE_ADDRESS": "Enter your address",
     "PROFILE_ADDRESS_REQ": "Address is required",
-    "PROFILE_ADDRESS_INSTRUCTIONS": "Your city and state will automatically populate once you've enter the address.",
+    "PROFILE_ADDRESS_INSTRUCTIONS": "Your city and state will automatically populate once you've entered the address.",
     "PROFILE_PHONE": "Mobile Number",
     "PROFILE_PHONE_REQ": "Mobile Number is required",
     "PROFILE_PHONE_REQ_MAXLENG": "Mobile Number can not exceed 10 digits",
@@ -246,7 +246,7 @@
     "PROFILE_PHONE_INSTRUCTIONS": "We need to ask for your phone number to verify your information. We'll keep your data secure.",
     "PROFILE_PIC_REQ": "Profile Photo is required",
     "PROFILE_PIC": "Upload Profile Photo",
-    "PROFILE_PIC_FORMAT": "For best results, use an image at least 128px by 128px in .png,.jpg,.jpeg format",
+    "PROFILE_PIC_FORMAT": "For best results, use an image of size less than 2 mega bytes & in .png,.jpg,.jpeg format",
     "PROFILE_SKILL": "Skill Information",
     "PROFILE_ABTU": "About You",
     "PROFILE_TOTALEXP": "Total Experience*",
@@ -288,10 +288,12 @@
     "PROFILE_VERIFYPWD_EXCEED": "Verify Password must be at least 8 characters",
     "PROFILE_SAVEPASSWEDCHANGE": "Save Password Changes",
     "PROFILE_PASSWORD_INVALID": "Password is not matching to the requested format.",
-    "PROILE_PASSWORD_POLICY_1": "there must be 1 digit",
-    "PROILE_PASSWORD_POLICY_2": "there must be 1 lowercase ASCII letter",
-    "PROILE_PASSWORD_POLICY_3": "there must be 1 uppercase ASCII letter",
-    "PROILE_PASSWORD_POLICY_4": "Min 8 char length"
+    "PROILE_PASSWORD_POLICY_1": "it must be 1 digit",
+    "PROILE_PASSWORD_POLICY_2": "it must be 1 lowercase alphabet letter",
+    "PROILE_PASSWORD_POLICY_3": "it must be 1 uppercase alphabet letter",
+    "PROILE_PASSWORD_POLICY_4": "Min 8 char length",
+    "PROILE_PASSWORD_POLICY_5": "Password Policy :",
+    "MAP_VIEW": "(Map View)"
   },
   "PAYMENTHIST": {
     "PAYMENTHIST_HEADER": "Payment Details",

@@ -16,17 +16,13 @@
                     translate}}
                 </div>
             </h4>
-            <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <button type="button" class="btn btn-danger btn-sm pull-right" aria-label="Close" (click)="modalRef.hide()">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
         <div class="modal-body">
             <p *ngIf="errormsg != null "> {{errormsg}}</p>
             <p *ngIf="errormsg == null"> {{message.text}}</p>
-        </div>
-        <!-- Modal footer -->
-        <div class="modal-footer">
-            <button type="button" class="btn btn-danger" (click)="modalRef.hide()">Close</button>
         </div>
     </div>
 </ng-template>

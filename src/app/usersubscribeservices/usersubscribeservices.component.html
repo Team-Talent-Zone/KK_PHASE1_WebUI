@@ -53,8 +53,8 @@
                         <small class="text-left pull-left"><b> Start Date: </b> {{svc.servicestarton}} </small>
                     </p>
                     <p>
-                        <small class="pull-left"><b>Expire Date:</b> {{svc.serviceendon}} [{{svc.validdays}} days
-                            remains] </small>
+                        <small class="pull-left"><b>Expiry date:</b> {{svc.serviceendon}} [{{svc.validdays}} days
+                            left] </small>
                     </p>
                 </div>
             </div>
@@ -66,6 +66,6 @@
 <div class="alert alert-success alert-dismissible fade show w-100" role="alert"
     *ngIf="listOfSubscribedServicesByUser.length == 0 && istimelap">
     <h5 class="display-5">
-        You have not purchased our services at this point . <a [routerLink]="['/dashboard']">Go to Available Services</a>
+        You have not purchased our services at this point . <a [routerLink]="['/dashboard']">Go to Our Services</a>
     </h5>
 </div>

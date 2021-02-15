@@ -7,6 +7,7 @@ import { UsersrvdetailsService } from '../AppRestCall/userservice/usersrvdetails
 import { ReferenceService } from '../AppRestCall/reference/reference.service';
 import { AlertsService } from '../AppRestCall/alerts/alerts.service';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import { ConfirmationDialogService } from '../AppRestCall/confirmation/confirmation-dialog.service';
 
 @Component({
   selector: 'app-userservicecart',
@@ -30,6 +31,7 @@ export class UserservicecartComponent implements OnInit {
     private referService: ReferenceService,
     private alertService: AlertsService,
     private modalService: BsModalService,
+    public confirmationDialogService: ConfirmationDialogService
   ) {
   }
 
@@ -47,15 +49,20 @@ export class UserservicecartComponent implements OnInit {
   }
 
   removeItemFromCart(serviceId: number, packwithotherourserviceid: number) {
-    if (serviceId > 0) {
-      this.displayUserServicesForCheckOut = this.displayUserServicesForCheckOut.filter(item => item.serviceId !== serviceId);
-      this.deleteUserSVCDetails(serviceId);
-    }
-    if (packwithotherourserviceid > 0) {
-      // tslint:disable-next-line: max-line-length
-      this.displayUserServicesForCheckOut = this.displayUserServicesForCheckOut.filter(item => item.serviceId !== packwithotherourserviceid);
-      this.deleteUserSVCDetails(packwithotherourserviceid);
-    }
+    this.confirmationDialogService.confirm('Please confirm', 'Do you want to remove this item ?', 'Yes', 'No')
+      .then((confirmed) => {
+        if (confirmed) {
+          if (serviceId > 0) {
+            this.displayUserServicesForCheckOut = this.displayUserServicesForCheckOut.filter(item => item.serviceId !== serviceId);
+            this.deleteUserSVCDetails(serviceId);
+          }
+          if (packwithotherourserviceid > 0) {
+            // tslint:disable-next-line: max-line-length
+            this.displayUserServicesForCheckOut = this.displayUserServicesForCheckOut.filter(item => item.serviceId !== packwithotherourserviceid);
+            this.deleteUserSVCDetails(packwithotherourserviceid);
+          }
+        }
+      });
   }
 
   private deleteUserSVCDetails(serviceId: number) {

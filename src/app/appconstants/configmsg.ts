@@ -4,7 +4,7 @@ export const ConfigMsg = {
     login_notexisit: 'No account found with that email address',
     fwdpassword_successmsg: 'Password sent to registered email address . Thank you for connecting with us',
     email_verficationemailaddress_subj: 'Verify Email - Kaam Karega',
-    email_forgotpasswordemailaddress_subj: 'Forgot Password',
+    email_forgotpasswordemailaddress_subj: 'Password change for your Kaam Karega account',
     email_welcomeemailaddress_subj: 'Welcome OnBoard To Kaam Karega',
     email_verficationemailaddress_successmsg: 'Your email verfiication is completed. Please login now.',
     email_verficationemailaddress_alreadydone: 'Your email verfiication is already completed. \n Please login with your email address.',

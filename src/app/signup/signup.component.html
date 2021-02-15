@@ -1,14 +1,15 @@
 <!-- Modal Header -->
 <div class="modal-header">
-  <h4 class="modal-title">
-    <div *ngIf="key =='cba'; else elseFU">
+  <h4 class="modal-title mt-3">
+    <p *ngIf="key =='cba'; else elseFU">
       {{'HOMESIGNUP.SIGNUP' | translate}}
-    </div>
+    </p>
     <ng-template #elseFU>
       {{'HOMESIGNUP.SIGNUPFU' | translate}}
     </ng-template>
   </h4>
-  <button type="button" class="btn btn-sm btn-danger" (click)="modalRef.hide()">&times;</button>
+  <img src="assets/img/logo-transparent.png" width="70" height="60" class="rounded-circle d-inline-block align-top"
+    alt="Kaam Karega">
 </div>
 <form [formGroup]="signupForm" (ngSubmit)="preparetoSaveUser()">
   <!-- Modal body -->
@@ -36,8 +37,24 @@
       <div *ngIf="issubmit && f.password.errors" class="invalid-feedback">
         <div *ngIf="f.password.errors.required">{{'HOMESIGNUP.SIGNUP_VALIDATION_PASSWORD_REQ' | translate}}
         </div>
-        <div *ngIf="f.password.errors.minlength">{{'HOMESIGNUP.SIGNUP_VALIDATION_8_MAX_PWD' | translate}}</div>
+        <div *ngIf="f.password.errors.pattern">{{
+          'DASHBOARD_FU_PROFILE.PROFILE_PASSWORD_INVALID' | translate }}
+        </div>
       </div>
+      <small class="text-muted">
+        {{ 'DASHBOARD_FU_PROFILE.PROILE_PASSWORD_POLICY_5' |
+                     translate }}
+        <ul class="square">
+          <li>{{ 'DASHBOARD_FU_PROFILE.PROILE_PASSWORD_POLICY_1' |
+                     translate }}</li>
+          <li>{{ 'DASHBOARD_FU_PROFILE.PROILE_PASSWORD_POLICY_2' |
+                     translate }}</li>
+          <li>{{ 'DASHBOARD_FU_PROFILE.PROILE_PASSWORD_POLICY_3' |
+                     translate }}</li>
+          <li>{{ 'DASHBOARD_FU_PROFILE.PROILE_PASSWORD_POLICY_4' |
+                     translate }}</li>
+        </ul>
+      </small>
     </div>
     <div class="form-group">
       <span>

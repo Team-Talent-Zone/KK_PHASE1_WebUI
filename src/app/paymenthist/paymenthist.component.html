@@ -2,10 +2,8 @@
 <hr>
 <div class="container-fluid">
     <div class="mt-md-4"></div>
-    <div style="background-color: aliceblue; padding: 5px">
-        <input type="text" id="myInput" onkeyup="paymentHistoryTableSearch()"
-            placeholder="{{ 'PAYMENTHIST.PAYMENTHIST_SEARCH' | translate }}">
-    </div>
+    <input type="text" id="myInput" onkeyup="paymentHistoryTableSearch()"
+        placeholder="{{ 'PAYMENTHIST.PAYMENTHIST_SEARCH' | translate }}">
     <div class="mt-md-4"></div>
     <div class="row ">
         <div class="col-md-12 col-sm-12 table-responsive " *ngIf="paymentdetails != null">
@@ -16,12 +14,12 @@
                         <th>{{ 'PAYMENTHIST.PAYMENTHIST_FIRSTNAME' | translate }}</th>
                         <th>{{ 'PAYMENTHIST.PAYMENTHIST_TRAN_DATE' | translate }}</th>
                         <th *ngIf="userService.currentUserValue.userroles.rolecode === 'CLIENT_BUSINESS_ADMINISTRATOR' ||
-                        userService.currentUserValue.userroles.rolecode === 'FREELANCER_USER'"
-                        >{{ 'PAYMENTHIST.PAYMENTHIST_STATUS' | translate }}</th>
+                        userService.currentUserValue.userroles.rolecode === 'FREELANCER_USER'">
+                            {{ 'PAYMENTHIST.PAYMENTHIST_STATUS' | translate }}</th>
                         <th>{{ 'PAYMENTHIST.PAYMENTHIST_AMOUNT' | translate }}</th>
                         <th>{{ 'PAYMENTHIST.PAYMENTHIST_NOTES' | translate }}</th>
                     </tr>
-                </thead> 
+                </thead>
                 <tbody>
                     <tr>
                         <td>{{paymentdetails.txnid}}</td>
@@ -32,7 +30,10 @@
                         <td *ngIf="userService.currentUserValue.userroles.rolecode === 'FREELANCER_USER'">
                             {{paymentdetails.paymentsFUTrans.status}}</td>
                         <td>{{paymentdetails.amount | currency:"INR₹"}}</td>
-                        <td>{{paymentdetails.productinfo}}</td>
+                        <td>
+                            {{paymentdetails.productinfo | slice:0:25}}
+                            <i class="fa fa-quote-right" *ngIf="paymentdetails.productinfo.length > 25 " title="{{paymentdetails.productinfo}}"> </i>
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -58,7 +59,10 @@
                         <td>{{fupayments.createdon}}</td>
                         <td>{{fupayments.status}}</td>
                         <td>{{fupayments.amount | currency:"INR₹"}}</td>
-                        <td>{{fupayments.productinfo}}</td>
+                        <td>
+                            {{fupayments.productinfo | slice:0:25}}
+                            <i class="fa fa-quote-right" *ngIf="fupayments.productinfo.length > 25 " title="{{fupayments.productinfo}}"> </i>
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -91,7 +95,10 @@
                         <td>{{cbupayments.createdon}}</td>
                         <td>{{cbupayments.status}}</td>
                         <td>{{cbupayments.amount | currency:"INR₹"}}</td>
-                        <td>{{cbupayments.productinfo}}</td>
+                        <td>
+                            {{cbupayments.productinfo | slice:0:25}}
+                            <i class="fa fa-quote-right" *ngIf="cbupayments.productinfo.length > 25 " title="{{cbupayments.productinfo}}"> </i>
+                        </td>
                     </tr>
                 </tbody>
             </table>

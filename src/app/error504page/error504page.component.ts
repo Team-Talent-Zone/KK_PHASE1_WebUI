@@ -8,7 +8,6 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class Error504pageComponent implements OnInit {
   id: number;
-
   constructor(
     private route: ActivatedRoute,
     ) {

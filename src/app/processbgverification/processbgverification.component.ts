@@ -324,7 +324,6 @@ export class ProcessbgverificationComponent implements OnInit {
     if (file.type === config.imgtype_pdf.toString() || file.type === config.imgtype_zip.toString()) {
       if (event.target.files && event.target.files[0]) {
         reader.readAsDataURL(file);
-
         // When file uploads set it to file formcontrol
         reader.onload = () => {
           this.spinnerService.show();
