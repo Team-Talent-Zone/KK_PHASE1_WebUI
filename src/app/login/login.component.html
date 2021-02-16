@@ -6,7 +6,7 @@
         <div class="col-md-5 center" style="margin-top:68px;">
           <div *ngIf="!isfwd; else elseFwd">
             <div class="card card-container">
-              <h4 style="text-align: left;"> {{ 'HOMESIGNUP.ACCOUNTLOGIN' | translate }}</h4>
+              <h3 style="text-align: center;"> {{ 'HOMESIGNUP.ACCOUNTLOGIN' | translate }}</h3>
               <p id="profile-name" class="profile-name-card"> </p>
               <form [formGroup]="loginForm" (ngSubmit)="loginUserByUsername()">
                 <span id="reauth-email" class="reauth-email"></span>
@@ -44,7 +44,7 @@
                     </div>
                   </div>
                 </div>
-                <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">{{ 'HOMESIGNUP.LOGIN' |
+                <button class="btn btn-md btn-primary btn-block rounded-pill" type="submit">{{ 'HOMESIGNUP.LOGIN' |
                   translate }}</button>
               </form>
               <a (click)="disFwd(true)" class="btn btn-sm">
@@ -54,7 +54,7 @@
           </div>
           <ng-template #elseFwd>
             <div class="card card-container">
-              <h4 class="card-title"> {{ 'HOMESIGNUP.FORGOTYOURPASSWORD' | translate }}</h4>
+              <h3 class="card-title text-center"> {{ 'HOMESIGNUP.FORGOTYOURPASSWORD' | translate }}</h3>
               <form [formGroup]="fpwdForm" (ngSubmit)="forgotPassword()">
                 <span id="reauth-email" class="reauth-email"></span>
                 <div class="form-group">
@@ -73,7 +73,7 @@
                     </div>
                   </div>
                 </div>
-                <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">{{ 'HOMESIGNUP.SENDPASSWORD' |
+                <button class="btn btn-md btn-primary btn-block rounded-pill" type="submit">{{ 'HOMESIGNUP.SENDPASSWORD' |
                   translate }}</button>
                 <a (click)="disFwd(false)" class="btn  btn-sm">{{ 'HOMESIGNUP.BACKTOLOGIN' | translate }}</a>
               </form>

@@ -26,13 +26,13 @@
     "BANNER_6_LABELS_WEB": "We're coming as india's first online customized cloud base software solution for the realestate and housing business owners to maintain and create their IT needs. Setup payments, operate and manage. The New Maakan (Apartment) Anywhere service is available in mid of this summer 2021.",
     "SIGNUP_MODALWINDOW_CLIENT_DESC": "We provide you with complete Automated Software Solutions on the Cloud",
     "SIGNUP_MODALWINDOW_SKILLEDWORKER_DESC": "One Stop for all your Skilled Worker Opportunities",
-    "SIGNUP_MODALWINDOW_CLIENT_BUTTON_LABEL": "Signup As Client",
-    "SIGNUP_MODALWINDOW_SKILLEDWORKER_BUTTON_LABEL": "Signup As Skilled Worker",
+    "SIGNUP_MODALWINDOW_CLIENT_BUTTON_LABEL": "SignUp As Client",
+    "SIGNUP_MODALWINDOW_SKILLEDWORKER_BUTTON_LABEL": "SignUp As Skilled Worker",
     "LATESTUPADTE": "Latest Update",
     "LATESTUPDATE_LINE1": "According to our analysis , the economy was expected to lose over ₹32,000 crore (US$4.5 billion) every day during the lockdown, which was declared following the coronavirus outbreak.",
     "LATESTUPDATE_LINE2": "Kaam Karega has the ability to increase the economy  by onboarding and providing the job opportunities to the skill workers.",
     "LATESTUPDATE_LINE3": "We welcome, the below list of all skill workers to onboard into the platform to utilize this opportunities.",
-    "LATESTUPDATE_LINE4": "Signup is FREE."
+    "LATESTUPDATE_LINE4": "SignUp is FREE."
   },
   "HOMEWHATWEDO": {
     "ABOUTUS": "ABOUT US",
@@ -60,14 +60,14 @@
     "SHOULDNOTBE40": "Username cant exceed 40.",
     "SIGNIN": "Sign in",
     "LOGIN": "Login",
-    "FORGOTYOURPASSWORD": "Forgot the password?",
+    "FORGOTYOURPASSWORD": "Forgot Password?",
     "SENDPASSWORD": "Reset Password",
     "BACKTOLOGIN": "Back to Login?",
     "PASSWORDISREQUIRED": "Password is required.",
     "PASSWORDMUSTBE8CHAR": "Password must be at least 8 characters.",
-    "SIGNUP_TERM_AGREE_LABEL": "I agree to ",
+    "SIGNUP_TERM_AGREE_LABEL": "By completing this form, I agree to the ",
     "SIGNUP_TERMOFSERVICE": "Terms of Service",
-    "SIGNUP_PRIVACYPOLICY": "Privacy Policy",
+    "SIGNUP_PRIVACYPOLICY": "Privacy Policy.",
     "SIGNUP_TERM_AGREE_LABEL_END": " of Kaam Karega IT Services Private Ltd.",
     "SIGNUP_VALIDATION_USERNAME": "Email must be a valid email address",
     "SIGNUP_VALIDATION_40_MAX_USERNAME": "Email cannot exceed 40 characters",
@@ -83,9 +83,9 @@
     "SIGNUP_VALIDATION_SKILL_REQ": "Skill is required",
     "SIGNUP_VALIDATION_TERMS_POLICYCHECKBOX_REQ": "You must accept our terms of service and privacy policy before you proceed further.",
     "SIGNUP_VALIDATION_INDUSTRY_REQ": "Industry is required",
-    "SIGNUP_SUBMIT_BUTTON": "Submit",
+    "SIGNUP_SUBMIT_BUTTON": "SignUp - It's Free",
     "SIGNUP_CLOSE_BUTTON": "Cancel",
-    "ACCOUNTLOGIN": "Sign In"
+    "ACCOUNTLOGIN": "Welcome Back"
   },
   "ONBOARD": {
     "OURCUSTOMERS": "Our Customers",
@@ -125,7 +125,7 @@
     "DESC2": "Whether you're a Company or Individual, no credit card required for signup.",
     "INDIVIDUAL": "Single",
     "PACKAGE": "Package",
-    "SIGNUP": "Signup As Client",
+    "SIGNUP": "SignUp As Client",
     "CURRENTLYNOPACKAGESERVICES": "Currently No Package Services",
     "BUTTON_VIEWLESS": "View Less",
     "BUTTON_VIEWMORE": "View More..."

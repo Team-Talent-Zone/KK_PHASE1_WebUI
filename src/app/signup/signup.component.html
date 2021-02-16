@@ -169,8 +169,6 @@
             translate}}</small> </a> & <a href={{privacypolicy}} target="_blank">
           <small>{{'HOMESIGNUP.SIGNUP_PRIVACYPOLICY' |
             translate}}</small></a>
-        <small>{{'HOMESIGNUP.SIGNUP_TERM_AGREE_LABEL_END' |
-          translate}}</small>
       </label>
       <div *ngIf="issubmit && f.acceptsignupterms.errors" class="invalid-feedback">
         <div *ngIf="f.acceptsignupterms.errors.required">
@@ -181,8 +179,8 @@
   </div>
   <!-- Modal footer -->
   <div class="modal-footer">
-    <button class="btn  btn-primary" type="submit">{{'HOMESIGNUP.SIGNUP_SUBMIT_BUTTON' | translate}}</button>
-    <button type="button" class="btn btn-danger" (click)="modalRef.hide()">{{'HOMESIGNUP.SIGNUP_CLOSE_BUTTON' |
+    <button class="btn btn-sm btn-block btn-primary rounded-pill" type="submit">{{'HOMESIGNUP.SIGNUP_SUBMIT_BUTTON' | translate}}</button>
+    <button type="button" class="btn btn-sm btn-danger rounded-right" (click)="modalRef.hide()">{{'HOMESIGNUP.SIGNUP_CLOSE_BUTTON' |
       translate}}</button>
   </div>
 </form>
