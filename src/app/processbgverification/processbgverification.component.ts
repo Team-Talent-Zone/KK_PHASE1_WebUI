@@ -321,28 +321,33 @@ export class ProcessbgverificationComponent implements OnInit {
   uploadFile(event) {
     let reader = new FileReader(); // HTML5 FileReader API
     let file = event.target.files[0];
-    if (file.type === config.imgtype_pdf.toString() || file.type === config.imgtype_zip.toString()) {
-      if (event.target.files && event.target.files[0]) {
-        reader.readAsDataURL(file);
-        // When file uploads set it to file formcontrol
-        reader.onload = () => {
-          this.spinnerService.show();
-          this.utilService.uploadBgDocsInS3(reader.result, this.usrObjMyWork.userId, file.name).subscribe(
-            (returnURL: string) => {
-              this.additiondocreturnURL = returnURL;
-              this.spinnerService.hide();
-            },
-            error => {
-              this.spinnerService.hide();
-              this.alertService.error(error);
-            }
-          );
-        };
-        // ChangeDetectorRef since file is loading outside the zone
-        this.cd.markForCheck();
+    let fileSize = event.target.files[0].size;
+    if (fileSize < 2000000) {
+      if (file.type === config.imgtype_pdf.toString() || file.type === config.imgtype_zip.toString()) {
+        if (event.target.files && event.target.files[0]) {
+          reader.readAsDataURL(file);
+          // When file uploads set it to file formcontrol
+          reader.onload = () => {
+            this.spinnerService.show();
+            this.utilService.uploadBgDocsInS3(reader.result, this.usrObjMyWork.userId, file.name).subscribe(
+              (returnURL: string) => {
+                this.additiondocreturnURL = returnURL;
+                this.spinnerService.hide();
+              },
+              error => {
+                this.spinnerService.hide();
+                this.alertService.error(error);
+              }
+            );
+          };
+          // ChangeDetectorRef since file is loading outside the zone
+          this.cd.markForCheck();
+        }
+      } else {
+        this.alertService.info('Invalid file format. it should be .pdf,.zip');
       }
     } else {
-      this.alertService.info('Invalid file format. it should be .pdf,.zip');
+      this.alertService.info('File size must be less than 2 Mega Bytes');
     }
   }
 }

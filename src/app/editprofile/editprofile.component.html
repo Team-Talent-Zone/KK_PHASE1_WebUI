@@ -177,13 +177,17 @@
                                                     </div>
                                                 </div>
                                                 <button type="button" class="btn btn-danger btn-sm btn-block" *ngIf="this.userService.currentUserValue.userroles.rolecode
-                                                    !=='FREELANCER_USER'" (click)=" fileInput.click()"> {{
+                                                    !=='FREELANCER_USER'" (click)=" fileInput.click()">
+                                                    <i class="fa fa-cloud-upload" aria-hidden="true"></i>
+                                                    {{
                                                     'DASHBOARD_FU_PROFILE.PROFILE_PIC'
                                                     |
                                                     translate }}</button>
                                                 <button type="button" class="btn btn-danger btn-sm btn-block" *ngIf="this.userService.currentUserValue.userroles.rolecode==='FREELANCER_USER' && 
                                                     !this.userService.currentUserValue.freeLanceDetails.isbgstarted"
-                                                    (click)=" fileInput.click()"> {{
+                                                    (click)=" fileInput.click()">
+                                                    <i class="fa fa-cloud-upload" aria-hidden="true"></i>
+                                                    {{
                                                     'DASHBOARD_FU_PROFILE.PROFILE_PIC'
                                                     |
                                                     translate }}</button>
@@ -405,6 +409,7 @@
                                                 !this.userService.currentUserValue.freeLanceDetails.isbgstarted
                                                  ">
                                                     <span>
+                                                        <i class="fa fa-cloud-upload" aria-hidden="true"></i>
                                                         {{ 'DASHBOARD_FU_PROFILE.PROFILE_UPLOAD' | translate }}</span>
                                                 </button>
                                                 <button type="button" class="btn btn-info btn-sm"
@@ -412,6 +417,7 @@
                                                 !this.userService.currentUserValue.freeLanceDetails.isbgstarted
                                                  ">
                                                     <span>
+                                                        <i class="fa fa-cloud-upload" aria-hidden="true"></i>
                                                         {{ 'DASHBOARD_FU_PROFILE.PROFILE_REUPLOAD' | translate }}</span>
                                                 </button>
                                             </div>
