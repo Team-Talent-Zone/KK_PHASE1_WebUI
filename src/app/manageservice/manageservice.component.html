@@ -130,7 +130,7 @@
                                     <td *ngFor="let newserviceobj of mywork.serviceHistory">
                                         <a *ngIf="newserviceobj.islocked" class="btn  btn-sm"
                                             (click)='processnewserviceopenmodal(newserviceobj.ourserviceId)'>
-                                            <i title="You can start working.." class="fa fa-eye"
+                                            <i title="You can start working.." class="fa fa-eye ml-3"
                                                 style="color: rgb(37, 165, 37)">
                                             </i>
                                         </a>
@@ -140,7 +140,7 @@
                                         <div *ngFor="let newserviceobj of mywork.serviceHistory">
                                             <a *ngIf="newserviceobj.islocked"
                                                 routerLink='/editorviewnewservice/{{mywork.ourserviceId}}'>
-                                                <i class="fa fa-edit" title="Edit Service Now "></i>
+                                                <i class="fa fa-edit ml-3" title="Edit Service Now "></i>
                                             </a>
                                         </div>
                                     </td>
@@ -203,16 +203,16 @@
                                         {{newservicehisobj.decisionBy}}
                                     </td>
                                     <td *ngFor="let newservicehisobj of newserviceobj.serviceHistory">
-                                        <i class="fa fa-check" title="Approved by {{newservicehisobj.decisionBy}} "
+                                        <i class="fa fa-check ml-3" title="Approved by {{newservicehisobj.decisionBy}} "
                                             *ngIf="newservicehisobj.status == 'APPROVED'; else elseRejected"
                                             style="color: rgb(37, 165, 37)"></i>
                                         <ng-template #elseRejected>
-                                            <i class="fa fa-ban" title="Rejected by {{newservicehisobj.decisionBy}} "
+                                            <i class="fa fa-ban ml-3" title="Rejected by {{newservicehisobj.decisionBy}} "
                                                 *ngIf="newservicehisobj.status == 'REJECTED'; else elseOther"
                                                 style="color: rgb(165, 37, 37)"></i>
                                         </ng-template>
                                         <ng-template #elseOther>
-                                            <i class="fa fa-spinner"
+                                            <i class="fa fa-spinner ml-3"
                                                 title="In-Progress with {{newservicehisobj.decisionBy}} "
                                                 style="color: rgb(26, 9, 255)"></i>
                                         </ng-template>
@@ -281,16 +281,16 @@
                                         {{newservicehisobj.decisionBy}}
                                     </td>
                                     <td *ngFor="let newservicehisobj of newserviceobj.serviceHistory">
-                                        <i class="fa fa-check" title="Approved by {{newservicehisobj.decisionBy}} "
+                                        <i class="fa fa-check ml-3" title="Approved by {{newservicehisobj.decisionBy}} "
                                             *ngIf="newservicehisobj.status == 'APPROVED'; else elseRejected"
                                             style="color: rgb(37, 165, 37)"></i>
                                         <ng-template #elseRejected>
-                                            <i class="fa fa-ban" title="Rejected by {{newservicehisobj.decisionBy}} "
+                                            <i class="fa fa-ban ml-3" title="Rejected by {{newservicehisobj.decisionBy}} "
                                                 *ngIf="newservicehisobj.status == 'REJECTED'; else elseOther"
                                                 style="color: rgb(165, 37, 37)"></i>
                                         </ng-template>
                                         <ng-template #elseOther>
-                                            <i class="fa fa-spinner"
+                                            <i class="fa fa-spinner ml-3"
                                                 title="In-Progress with {{newservicehisobj.decisionBy}} "
                                                 style="color: rgb(26, 9, 255)"></i>
                                         </ng-template>
@@ -298,7 +298,7 @@
                                     <td
                                         *ngIf="newserviceobj.active && userService.currentUserValue.userroles.rolecode =='CORE_SERVICE_SUPPORT_TEAM'">
                                         <a routerLink='/editorviewnewservice/{{newserviceobj.ourserviceId}}'>
-                                            <i class="fa fa-edit" title="Upgrade Service Now "> </i>
+                                            <i class="fa fa-edit ml-3" title="Upgrade Service Now "> </i>
                                         </a>
                                     </td>
                                 </tr>
