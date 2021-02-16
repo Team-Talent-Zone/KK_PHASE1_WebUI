@@ -136,8 +136,8 @@ export class NewserviceComponent implements OnInit {
   newServiceValidationForm() {
     this.newServiceForm = this.formBuilder.group({
       name: ['', [Validators.required, Validators.maxLength(40)]],
-      description: ['', [Validators.required]],
-      fullContent: ['', [Validators.required]],
+      description: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9.]+[a-zA-Z0-9. ]+')]],
+      fullContent: ['', [Validators.required, Validators.pattern('[a-zA-Z,]+[a-zA-Z, ]+')]],
       validPeriod: ['', [Validators.required]],
       category: ['', [Validators.required]],
       domain: ['', [Validators.required]],
@@ -470,32 +470,37 @@ export class NewserviceComponent implements OnInit {
     this.spinnerService.show();
     this.referService.getReferenceLookupByKey(config.key_service_term.toString()).
       pipe(map((data: any[]) => data.map(item => this.refAdapter.adapt(item))),
-      ).subscribe(
-        data => {
-          this.serviceterms = data;
-        });
+    ).subscribe(
+      data => {
+        this.serviceterms = data;
+      });
   }
 
   uploadFile(event: { target: { files: any[]; }; }) {
     let reader = new FileReader(); // HTML5 FileReader API
     let file = event.target.files[0];
-    if (file.type === config.imgtype_png.toString() || file.type === config.imgtype_jpeg.toString()
-      || file.type === config.imgtype_jpg.toString()) {
-      if (event.target.files && event.target.files[0]) {
-        reader.readAsDataURL(file);
-        // When file uploads set it to file formcontrol
-        reader.onload = () => {
-          this.filename = file.name;
-          this.serviceImgURL = reader.result;
-          this.spinnerService.show();
-          this.spinnerService.hide();
-        };
-        // ChangeDetectorRef since file is loading outside the zone
-        this.cd.markForCheck();
+    let fileSize = event.target.files[0].size;
+ //   if (fileSize < 2000000) {
+      if (file.type === config.imgtype_png.toString() || file.type === config.imgtype_jpeg.toString()
+        || file.type === config.imgtype_jpg.toString()) {
+        if (event.target.files && event.target.files[0]) {
+          reader.readAsDataURL(file);
+          // When file uploads set it to file formcontrol
+          reader.onload = () => {
+            this.filename = file.name;
+            this.serviceImgURL = reader.result;
+            this.spinnerService.show();
+            this.spinnerService.hide();
+          };
+          // ChangeDetectorRef since file is loading outside the zone
+          this.cd.markForCheck();
+        }
+      } else {
+        this.alertService.info('Invalid file format. it should be .png,.jpg,.jpeg');
       }
-    } else {
-      this.alertService.error('Invalid file format. it should be .png,.jpg,.jpeg');
-    }
+  //  } else {
+  //    this.alertService.info('Image size must be less than 2 Mega Bytes');
+   // }
   }
 
 }
