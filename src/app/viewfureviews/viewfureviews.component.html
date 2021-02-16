@@ -3,7 +3,7 @@
 	<div class="row" *ngIf="fureviews.length > 0">
 			<div class="col-md-3 col-sm-12">
 				<div class="card mb-2 border-0" *ngIf="avgrating > 0 && !fureviewsempty">
-				<span class="pull-left"> <small>overall rating : <b style="background-color:cyan">{{avgrating}} / 5 </b> </small></span>
+				<span class="pull-left"> <small>{{'FU_REVIEW.OVERALLRATING' | translate }} <b style="background-color:cyan">{{avgrating}} / 5 </b> </small></span>
 				</div>
 			</div>
 		<div class="card col-md-12" *ngFor="let item of fureviews; index as i" style="margin-top:10px;">

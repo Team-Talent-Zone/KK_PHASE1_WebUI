@@ -290,7 +290,6 @@ export class ManagejobsComponent implements OnInit {
         this.upcomingjobsempty = true;
         this.completedjobsempty = true;
       }
-      console.log('this.upComingPostedJobs', this.upComingPostedJobs);
     },
       error => {
         this.spinnerService.hide();

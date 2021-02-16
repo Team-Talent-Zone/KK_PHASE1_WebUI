@@ -307,7 +307,8 @@
   },
   "FU_REVIEW": {
     "REVIEWS": "Reviews",
-    "NOREVIEWS": "There are no reviews. Engage to the client to provide the good rating reviews on your work."
+    "NOREVIEWS": "There are no reviews. Engage to the client to provide the good rating reviews on your work.",
+    "OVERALLRATING":"overall rating :"
   },
   "ALERT_POPUP": {
     "SUCCESS": "Well Done !",
