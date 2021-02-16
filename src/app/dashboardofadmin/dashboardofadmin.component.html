@@ -40,7 +40,7 @@
         <hr>
         <h4>Jobs Monitoring</h4>
         <!-- Payment Cards Sections-->
-        <div class="row mb-4 justify-content-center">
+        <div class="row mb-4 justify-content-between">
           <div class="col-xl-3 col-sm-6 py-5">
             <div class="card bg-success text-white h-100">
               <div class="card-body bg-success">
@@ -78,7 +78,7 @@
           </div>
         </div>
         <div class="row mb-4 justify-content-between">
-          <div class="col-xl-2 col-sm-6 py-2 ">
+          <div class="col-xl-3 col-sm-6 py-2 ">
             <a class="btn" [ngStyle]="{'background-color': todaysvoliationList.length == 0 ? '#28a745':'#dc3545'}"
               data-toggle="collapse" href="#reportedVoliations" role="button" aria-expanded="false"
               aria-controls="reportedVoliations">
@@ -91,7 +91,7 @@
               </span>
             </a>
           </div>
-          <div class="col-xl-2 col-sm-6 py-2">
+          <div class="col-xl-3 col-sm-6 py-2">
             <a class="btn"
               [ngStyle]="{'background-color': newjobsbutnotactiviatedList.length == 0 ? '#28a745':'#dc3545'}"
               data-toggle="collapse" href="#newnonactivatedjobs" role="button" aria-expanded="false"
@@ -105,7 +105,7 @@
               </span>
             </a>
           </div>
-          <div class="col-xl-2 col-sm-6 py-2">
+          <div class="col-xl-3 col-sm-6 py-2">
             <a class="btn btn-warning" data-toggle="collapse" href="#newlyactivatedjobs" role="button"
               aria-expanded="false" aria-controls="newlyactivatedjobs">
               <i class="fa fa-reorder"></i> New Jobs - Just Activated
@@ -128,7 +128,7 @@
             </a>
           </div>
         </div>
-        <div class="row mb-4 justify-content-center">
+        <div class="row mb-4 justify-content-between">
           <div class="col-xl-3 col-sm-6 py-2">
             <a class="btn btn-success" data-toggle="collapse" href="#totalscheduledjobs" role="button"
               aria-expanded="false" aria-controls="totalscheduledjobs">
@@ -151,28 +151,13 @@
               </span>
             </a>
           </div>
-
           <div class="col-xl-3 col-sm-6 py-2">
             <a class="btn btn-success" data-toggle="collapse" href="#justacceptedscheduledjobs" role="button"
               aria-expanded="false" aria-controls="justacceptedscheduledjobs">
-              <i class="fa fa-reorder"></i> New Jobs - Just Accepted By Worker
+              <i class="fa fa-reorder"></i> New Jobs - Just Accepted
               <span *ngIf="skilledworkerjustacceptedList != null">
                 <b>
                   [{{skilledworkerjustacceptedList.length}}]
-                </b>
-              </span>
-            </a>
-          </div>
-
-        </div>
-        <div class="row mb-4 justify-content-center">
-          <div class="col-xl-4 col-sm-6 py-2">
-            <a class="btn btn-success" data-toggle="collapse" href="#jobscompletedList" role="button"
-              aria-expanded="false" aria-controls="jobscompletedList">
-              <i class="fa fa-reorder"></i> Client & Payout Payment Complete
-              <span *ngIf="jobscompletedList != null">
-                <b>
-                  [{{jobscompletedList.length}}]
                 </b>
               </span>
             </a>
@@ -187,6 +172,19 @@
                 Client Payment Pending
                 <b>
                   [{{jobscompletedwithoutpaymentList.length}}]
+                </b>
+              </span>
+            </a>
+          </div>
+        </div>
+        <div class="row mb-4 justify-content-start">
+          <div class="col-xl-3 col-sm-6 py-2">
+            <a class="btn btn-success" data-toggle="collapse" href="#jobscompletedList" role="button"
+              aria-expanded="false" aria-controls="jobscompletedList">
+              <i class="fa fa-reorder"></i> Full Payment Completed
+              <span *ngIf="jobscompletedList != null">
+                <b>
+                  [{{jobscompletedList.length}}]
                 </b>
               </span>
             </a>
@@ -316,14 +314,12 @@
               <table class="table table-bordered">
                 <thead>
                   <tr>
-                    <th scope="col">Job Id</th>
+                    <th style="width:8%" scope="col">Job Id</th>
                     <th scope="col">SW Name</th>
-                    <th scope="col">SW Phone No</th>
+                    <th style="width:10%" scope="col">Skill Name</th>
                     <th scope="col">Client</th>
-                    <th scope="col">Client Phone No</th>
-                    <th scope="col">Skill Name</th>
-                    <th scope="col">Voliation Comments</th>
-                    <th scope="col">Voliation Status</th>
+                    <th scope="col">Comment</th>
+                    <th scope="col">Status</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -337,14 +333,12 @@
                         {{job.fullname}}
                       </a>
                     </td>
-                    <td>{{this.formatPhoneNumber(job.fuphoneno)}}</td>
+                    <td>{{job.subcategorylabel}}</td>
                     <td>
                       <a href="javascript: return false;" (click)='manageruser.openViewAccountDetailsModal(job.userId)'>
                         {{job.bizname}}
                       </a>
                     </td>
-                    <td>{{this.formatPhoneNumber(job.cbaphoneno)}}</td>
-                    <td>{{job.subcategorylabel}}</td>
                     <td>{{job.resolvedvoliationreason}}</td>
                     <td>
                       <p>
@@ -586,7 +580,7 @@
         <div class="collapse" id="jobscompletedList">
           <div class="row">
             <div class="col-12">
-              <h5>Client & Payout Payment Complete</h5>
+              <h5>Client & Payout Payment Complete( Full Payment Completed)</h5>
               <table class="table table-bordered">
                 <thead>
                   <tr>
@@ -727,7 +721,7 @@
         <!-- Selected Sub Category Results -->
         <div class="row mb-4" *ngIf="isshowswithjobbycategory">
           <div class="col-12">
-            <h5>Jobs engaged for the below users</h5>
+            <h5>Jobs engaged for the below skilled workers</h5>
             <table class="table table-bordered">
               <thead>
                 <tr>
@@ -766,7 +760,7 @@
         </div>
         <div class="row mb-4" *ngIf="isshowswithnojobbycategory">
           <div class="col-12">
-            <h5>No Jobs for the below users</h5>
+            <h5>No jobs for the below skilled workers</h5>
             <table class="table table-bordered">
               <thead>
                 <tr>
@@ -810,7 +804,7 @@
           <div class="col-6">
             <div class="card">
               <div class="card-header">
-                <h6 class="h4 mb-0">Current Workers Enagaged At Jobs</h6>
+                <h6 class="h4 mb-0">Current Jobs Enagaged</h6>
                 <div style="display: block;">
                   <canvas baseChart [data]="pieChartDataAtWork" [labels]="pieChartLabelsAtWork"
                     [chartType]="pieChartTypeAtWork" [options]="pieChartOptionsAtWork" [plugins]="pieChartPluginsAtWork"
@@ -823,7 +817,7 @@
           <div class="col-6">
             <div class="card">
               <div class="card-header">
-                <h6 class="h4 mb-0">Current Workers <u>NOT</u> Enagaged At Jobs</h6>
+                <h6 class="h4 mb-0">Jobs <u>NOT</u> Enagaged</h6>
                 <div style="display: block;" *ngIf="pieChartLabelsAtWork != null && pieChartDataAtWork != null">
                   <canvas baseChart [data]="pieChartDataAtNoWork" [labels]="pieChartLabelsAtNoWork"
                     [chartType]="pieChartTypeAtNoWork" [options]="pieChartOptionsAtNoWork"
