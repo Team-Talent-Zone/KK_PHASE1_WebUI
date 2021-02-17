@@ -69,10 +69,12 @@
                         <p>
                             <small class="pull-left">
                                 <b>{{ 'DASHBOARD_FU_BODY.STARTON' | translate }} </b>
-                                {{element.jobstartedon}}
+                                {{this.datepipe.transform(element.jobstartedon,"dd/MM/yyyy hh:mm:ss")}}
                             </small>
                             <small class="pull-left">
-                                <b>{{ 'DASHBOARD_FU_BODY.ENDON' | translate }} </b> {{element.jobendedon}}
+                                <b>{{ 'DASHBOARD_FU_BODY.ENDON' | translate }} </b>
+                                <span class="ml-2">{{this.datepipe.transform(element.jobendedon,"dd/MM/yyyy hh:mm:ss")}}
+                                </span>
                             </small>
                         </p>
 
@@ -101,7 +103,8 @@
                         <p *ngIf="element.freelanceuserId > 0">
                             <small class="pull-left">
                                 <b>{{ 'DASHBOARD_FU_BODY.ACCEPTEDON' | translate }}
-                                </b>{{element.jobaccepteddate}}
+                                </b>
+                                {{this.datepipe.transform(element.jobaccepteddate,"dd/MM/yyyy hh:mm:ss")}}
                             </small>
                         </p>
 
@@ -179,10 +182,13 @@
                         <p>
                             <small class="pull-left">
                                 <b>{{ 'DASHBOARD_FU_BODY.STARTON' | translate }} </b>
-                                {{newlyjob.jobstartedon}}
+                                {{this.datepipe.transform(newlyjob.jobstartedon,"dd/MM/yyyy hh:mm:ss")}}
                             </small>
                             <small class="pull-left">
-                                <b>{{ 'DASHBOARD_FU_BODY.ENDON' | translate }} </b> {{newlyjob.jobendedon}}
+                                <b>{{ 'DASHBOARD_FU_BODY.ENDON' | translate }} </b>
+                                <span class="ml-2">
+                                    {{this.datepipe.transform(newlyjob.jobendedon,"dd/MM/yyyy hh:mm:ss")}}
+                                </span>
                             </small>
                         </p>
                     </div>
@@ -284,10 +290,13 @@
                         <p>
                             <small class="pull-left">
                                 <b>{{ 'DASHBOARD_FU_BODY.STARTON' | translate }} </b>
-                                {{completedjob.jobstartedon}}
+                                {{this.datepipe.transform(completedjob.jobstartedon,"dd/MM/yyyy hh:mm:ss")}}
                             </small>
                             <small class="pull-left">
-                                <b>{{ 'DASHBOARD_FU_BODY.ENDON' | translate }} </b> {{completedjob.jobendedon}}
+                                <b>{{ 'DASHBOARD_FU_BODY.ENDON' | translate }} </b>
+                                <span class="ml-2">
+                                    {{this.datepipe.transform(completedjob.jobendedon,"dd/MM/yyyy hh:mm:ss")}}
+                                </span>
                             </small>
                         </p>
 
@@ -310,13 +319,14 @@
                             <small class="pull-left">
                                 <b>{{ 'DASHBOARD_FU_BODY.PHONENO' | translate }}: </b>
                                 <i class="fa fa-mobile ml-2" aria-hidden="true"></i>
-                                {{this.formatPhoneNumber(completedjob.fuphoneno)}}   
+                                {{this.formatPhoneNumber(completedjob.fuphoneno)}}
                             </small>
                         </p>
                         <p *ngIf="completedjob.freelanceuserId > 0">
                             <small class="pull-left">
                                 <b>{{ 'DASHBOARD_FU_BODY.ACCEPTEDON' | translate }}
-                                </b>{{completedjob.jobaccepteddate}}
+                                </b>
+                                {{this.datepipe.transform(completedjob.jobaccepteddate,"dd/MM/yyyy hh:mm:ss")}}
                             </small>
                         </p>
                     </div>

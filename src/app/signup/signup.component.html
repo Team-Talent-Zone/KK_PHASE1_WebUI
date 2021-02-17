@@ -165,10 +165,10 @@
       <label class="form-check-label" for="exampleCheck1">
         <small>{{'HOMESIGNUP.SIGNUP_TERM_AGREE_LABEL' |
           translate}}</small>
-        <a href={{termsofservice}} target="_blank"><small>{{'HOMESIGNUP.SIGNUP_TERMOFSERVICE' |
-            translate}}</small> </a> & <a href={{privacypolicy}} target="_blank">
-          <small>{{'HOMESIGNUP.SIGNUP_PRIVACYPOLICY' |
-            translate}}</small></a>
+        <a href={{termsofservice}} target="_blank"><small><u>{{'HOMESIGNUP.SIGNUP_TERMOFSERVICE' |
+            translate}}</u></small> </a> & <a href={{privacypolicy}} target="_blank">
+          <small><u>{{'HOMESIGNUP.SIGNUP_PRIVACYPOLICY' |
+            translate}}</u></small></a>
       </label>
       <div *ngIf="issubmit && f.acceptsignupterms.errors" class="invalid-feedback">
         <div *ngIf="f.acceptsignupterms.errors.required">
@@ -179,7 +179,8 @@
   </div>
   <!-- Modal footer -->
   <div class="modal-footer">
-    <button class="btn btn-sm btn-block btn-primary rounded-pill" type="submit">{{'HOMESIGNUP.SIGNUP_SUBMIT_BUTTON' | translate}}</button>
+    <a href="/home#section-6" (click)="this.modalRef.hide()" class="nav-link scroll-link float-left">{{'HOMESIGNUP.ALREADY_GOTACCOUNT' | translate}}</a>
+    <button class="btn btn-sm btn-success rounded-pill" type="submit">{{'HOMESIGNUP.SIGNUP_SUBMIT_BUTTON' | translate}}</button>
     <button type="button" class="btn btn-sm btn-danger rounded-right" (click)="modalRef.hide()">{{'HOMESIGNUP.SIGNUP_CLOSE_BUTTON' |
       translate}}</button>
   </div>

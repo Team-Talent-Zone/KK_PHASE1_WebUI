@@ -14,23 +14,26 @@
             <span class="navbar-toggler-icon"></span>
         </button>
     </div>
+    <div class="col-6"></div>
     <div class="navbar-collapse collapse" id="collapsingNavbar"
         *ngIf="this.userService.currentUserValue.userroles.rolecode !== 'FREELANCER_USER' && this.userService.currentUserValue.userroles.rolecode !== 'DIRECTORS'">
-        <div class="combobox">
-            <a type="submit" (click)="search( inputItem)" class="btn btn-sm btn-warning pull-right"><i
-                    class="fa fa-search"></i></a>
+        <div class="col-10">
             <input type="search" [(ngModel)]="inputItem" (ngModelChange)="getFilteredList()"
-                (keyup.enter)="search(inputItem)" class="combobox-input form-control"
-                (keyup)="onKeyPress($event);" (blur)="toggleListDisplay(0)" (focus)="toggleListDisplay(1)"
+                (keyup.enter)="search(inputItem)" class="form-control" (keyup)="onKeyPress($event);"
+                (blur)="toggleListDisplay(0)" (focus)="toggleListDisplay(1)"
                 placeholder="Search By Skilled Worker Skill & Hit Enter" [ngClass]="{'error': showError}">
-
-            <span *ngIf="showError" class="error-text"><i>Invalid Selection.</i></span>
+            <!--<span *ngIf="showError" class="error-text"><i>Invalid Selection.</i></span>-->
             <div class="combobox-options" *ngIf="!listHidden">
-                <list-item class="nav-link" style="cursor:pointer" *ngFor="let item of filteredList;let i = index"
-                    (click)="selectItem(i)" [ngClass]="{'selected': i===selectedIndex}">
-                    <div class="row mb-1"></div>{{item.label}}
+                <list-item class="nav-link" *ngFor="let item of filteredList;let i = index" (click)="selectItem(i)"
+                    [ngClass]="{'selected': i===selectedIndex}">
+                    <small>{{item.label}}</small>
                 </list-item>
             </div>
+        </div>
+        <div>
+            <a type="submit" (click)="search(inputItem)" class="btn btn-sm btn-warning pull-right">
+                <i class="fa fa-search"></i>
+            </a>
         </div>
     </div>
 </nav>

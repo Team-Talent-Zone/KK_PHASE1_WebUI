@@ -24,7 +24,10 @@
                     <tr>
                         <td>{{paymentdetails.txnid}}</td>
                         <td>{{paymentdetails.name}}</td>
-                        <td>{{paymentdetails.createdon}}</td>
+                        <td>
+                            {{this.datepipe.transform(paymentdetails.createdon,"dd/MM/yyyy hh:mm:ss")}}
+
+                        </td>
                         <td *ngIf="userService.currentUserValue.userroles.rolecode === 'CLIENT_BUSINESS_ADMINISTRATOR'">
                             {{paymentdetails.paymentsCBATrans.status}}</td>
                         <td *ngIf="userService.currentUserValue.userroles.rolecode === 'FREELANCER_USER'">
@@ -32,7 +35,8 @@
                         <td>{{paymentdetails.amount | currency:"INR₹"}}</td>
                         <td>
                             {{paymentdetails.productinfo | slice:0:25}}
-                            <i class="fa fa-quote-right" *ngIf="paymentdetails.productinfo.length > 25 " title="{{paymentdetails.productinfo}}"> </i>
+                            <i class="fa fa-quote-right" *ngIf="paymentdetails.productinfo.length > 25 "
+                                title="{{paymentdetails.productinfo}}"> </i>
                         </td>
                     </tr>
                 </tbody>
@@ -56,12 +60,15 @@
                     <tr>
                         <td>{{fupayments.txnid}}</td>
                         <td>{{fupayments.name}}</td>
-                        <td>{{fupayments.createdon}}</td>
+                        <td>
+                            {{this.datepipe.transform(fupayments.createdon,"dd/MM/yyyy hh:mm:ss")}}
+                        </td>
                         <td>{{fupayments.status}}</td>
                         <td>{{fupayments.amount | currency:"INR₹"}}</td>
                         <td>
                             {{fupayments.productinfo | slice:0:25}}
-                            <i class="fa fa-quote-right" *ngIf="fupayments.productinfo.length > 25 " title="{{fupayments.productinfo}}"> </i>
+                            <i class="fa fa-quote-right" *ngIf="fupayments.productinfo.length > 25 "
+                                title="{{fupayments.productinfo}}"> </i>
                         </td>
                     </tr>
                 </tbody>
@@ -92,12 +99,15 @@
                     <tr>
                         <td>{{cbupayments.txnid}}</td>
                         <td>{{cbupayments.name}}</td>
-                        <td>{{cbupayments.createdon}}</td>
+                        <td>
+                            {{this.datepipe.transform(cbupayments.createdon,"dd/MM/yyyy hh:mm:ss")}}
+                        </td>
                         <td>{{cbupayments.status}}</td>
                         <td>{{cbupayments.amount | currency:"INR₹"}}</td>
                         <td>
                             {{cbupayments.productinfo | slice:0:25}}
-                            <i class="fa fa-quote-right" *ngIf="cbupayments.productinfo.length > 25 " title="{{cbupayments.productinfo}}"> </i>
+                            <i class="fa fa-quote-right" *ngIf="cbupayments.productinfo.length > 25 "
+                                title="{{cbupayments.productinfo}}"> </i>
                         </td>
                     </tr>
                 </tbody>

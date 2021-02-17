@@ -1,5 +1,4 @@
 <div id="section-6">
-
   <div class="section-4-container">
     <div class="container">
       <div class="row">
@@ -15,7 +14,7 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="fa fa-user-circle form-control-icon"></i></span>
                     </div>
-                    <input type="email" formControlName="username"
+                    <input type="email" formControlName="username" title="Please fill out this field"
                       [ngClass]="{ 'is-invalid': issubmit && f.username.errors }" class="form-control"
                       placeholder="{{ 'HOMESIGNUP.EMAILADDRESS' | translate }}">
                     <div *ngIf="issubmit && f.username.errors" class="invalid-feedback">
@@ -34,7 +33,7 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="fa fa-lock form-control-icon"></i></span>
                     </div>
-                    <input type="password" id="inputPassword" class="form-control"
+                    <input type="password" id="inputPassword" class="form-control" title="Please fill out this field"
                       placeholder="{{ 'HOMESIGNUP.PASSWORD' | translate }}" formControlName="password"
                       [ngClass]="{ 'is-invalid': issubmit && f.password.errors }">
                     <div *ngIf="issubmit && f.password.errors" class="invalid-feedback">
@@ -55,6 +54,9 @@
           <ng-template #elseFwd>
             <div class="card card-container">
               <h3 class="card-title text-center"> {{ 'HOMESIGNUP.FORGOTYOURPASSWORD' | translate }}</h3>
+              <small>
+                {{ 'HOMESIGNUP.LOGIN_FWD_LABEL' | translate }}
+              </small>
               <form [formGroup]="fpwdForm" (ngSubmit)="forgotPassword()">
                 <span id="reauth-email" class="reauth-email"></span>
                 <div class="form-group">
@@ -62,7 +64,7 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="fa fa-user-circle form-control-icon"></i></span>
                     </div>
-                    <input type="email" id="inputEmail" formControlName="fpwdusername"
+                    <input type="email" id="inputEmail" formControlName="fpwdusername" title="Please fill out this field"
                       [ngClass]="{ 'is-invalid': isfpwdsubmit && fpwd.fpwdusername.errors }" class="form-control"
                       placeholder="{{ 'HOMESIGNUP.EMAILADDRESS' | translate }}" autofocus>
                     <div *ngIf="isfpwdsubmit && fpwd.fpwdusername.errors" class="invalid-feedback">

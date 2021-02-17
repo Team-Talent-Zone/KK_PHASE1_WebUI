@@ -914,11 +914,10 @@
 
       <div class="row" *ngIf="servicetableenabled">
         <div class="col-12">
-          <h5><u>Client Purchased Service</u></h5>
+          <h5>Client Purchased Service : {{this.selectElementTextForService}}</h5>
           <table class="table table-bordered" *ngIf="!ispurchasedserviceempty">
             <thead>
               <tr>
-                <th scope="col">Service Name</th>
                 <th scope="col">Client Name</th>
                 <th scope="col">Type</th>
                 <th scope="col">Phone No</th>
@@ -931,9 +930,6 @@
             </thead>
             <tbody>
               <tr *ngFor="let srv of listofallpaidservices">
-                <td>
-                  {{srv.name}}
-                </td>
                 <td>
                   <a href="javascript: return false;" (click)='manageruser.openViewAccountDetailsModal(srv.userid)'>
                     {{srv.fullname}}
@@ -961,12 +957,11 @@
       <div class="row mb-3"></div>
       <div class="row" *ngIf="servicetableenabled">
         <div class="col-12">
-          <h5><u>Client Add Cart & Pending Payment</u></h5>
+          <h5>Client Add Cart & Pending Payment : {{this.selectElementTextForService}}</h5>
           <table class="table table-bordered" *ngIf="!isnotpurchasedserviceempty">
             <thead>
               <tr>
-                <th scope="col">Service Name</th>
-                <th scope="col">Client Name</th>
+                 <th scope="col">Client Name</th>
                 <th scope="col">Type</th>
                 <th scope="col">Phone No</th>
                 <th scope="col">Valid Period </th>
@@ -977,9 +972,6 @@
             </thead>
             <tbody>
               <tr *ngFor="let srv of listofallnotpaidservices">
-                <td>
-                  {{srv.name}}
-                </td>
                 <td>
                   <a href="javascript: return false;" (click)='manageruser.openViewAccountDetailsModal(srv.userid)'>
                     {{srv.fullname}}

@@ -7,6 +7,7 @@ import { AlertsService } from '../AppRestCall/alerts/alerts.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { config } from 'src/app/appconstants/config';
 import { ReferenceService } from '../AppRestCall/reference/reference.service';
+import { DatePipe } from '@angular/common';
 
 
 @Component({
@@ -29,6 +30,7 @@ export class UsersubscribeservicesComponent implements OnInit {
     private spinnerService: Ng4LoadingSpinnerService,
     private usersrvDetails: UsersrvdetailsService,
     private referService: ReferenceService,
+    public datepipe: DatePipe,
   ) {
 
   }

@@ -37,26 +37,36 @@
                         <hr>
                         <span style="font-size: 46px; font-weight: bolder;">
                             <i class="fa fa-inr"> {{svc.amount}} </i></span>
-                        <span class="mb-4">/{{svc.validPeriodLabel}}
-                        </span>
+                        <small><span class="mb-4">/{{svc.validPeriodLabel}}
+                            </span>
+                        </small>
                     </div>
                     <div class="card-text text-center">
-                        <ul class="list-unstyled">
-                            <li class="mb-1" *ngFor="let features of svc.fullcontent">
-                                {{features}}
-                            </li>
-                        </ul>
+                        <small>
+                            <ul class="list-unstyled">
+                                <li class="mb-1" *ngFor="let features of svc.fullcontent">
+                                    {{features}}
+                                </li>
+                            </ul>
+                        </small>
                     </div>
                 </div>
                 <div class="card-footer">
                     <p>
-                        <small class="text-left pull-left"><b> Start Date: </b> {{svc.servicestarton}} </small>
+                        <small class="text-left pull-left"><b> Valid From: </b>
+                            {{this.datepipe.transform(svc.servicestarton,"dd/MM/yyyy hh:mm:ss")}} </small>
                     </p>
                     <p>
-                        <small class="pull-left"><b>Expiry date:</b> {{svc.serviceendon}} [{{svc.validdays}} days
-                            left] </small>
+                        <small class="pull-left"><b>Valid Till:</b> <span
+                                class="ml-3">{{this.datepipe.transform(svc.serviceendon,"dd/MM/yyyy hh:mm:ss")}}
+                            </span> </small>
                     </p>
                 </div>
+                <p>
+                    <small class="pull-right">
+                        [{{svc.validdays}} days left]
+                    </small>
+                </p>
             </div>
         </div>
         <!-- </div> -->

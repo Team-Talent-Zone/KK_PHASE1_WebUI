@@ -117,6 +117,7 @@ export class DashboardofadminComponent implements OnInit {
   totalearningallservices: number = 0;
   ispurchasedserviceempty: boolean = false;
   isnotpurchasedserviceempty: boolean = false;
+  selectElementTextForService: string;
 
 
   constructor(
@@ -594,6 +595,7 @@ export class DashboardofadminComponent implements OnInit {
   }
 
   getServicesDetailsByServiceId(event: Event) {
+    this.selectElementTextForService = null;
     this.listofallnotpaidservices = [];
     this.listofallpaidservices = [];
     this.totalearningonservice = 0;
@@ -602,7 +604,7 @@ export class DashboardofadminComponent implements OnInit {
 
     let selectedOptions = event.target['options'];
     let selectedIndex = selectedOptions.selectedIndex;
-    let selectElementText = selectedOptions[selectedIndex].text;
+    this.selectElementTextForService = selectedOptions[selectedIndex].text;
     let selectElementCode = selectedOptions[selectedIndex].value;
     this.usersrvdetailsService.getAllUserServiceDetailsView().subscribe((allservices: any) => {
       if (allservices != null) {

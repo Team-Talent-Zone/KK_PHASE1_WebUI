@@ -234,16 +234,20 @@
                                     <p>
                                         <small class="pull-left">
                                             <b>{{ 'DASHBOARD_FU_BODY.STARTON' | translate }} </b>
-                                            {{element.jobstartedon}}
+                                            {{this.datepipe.transform(element.jobstartedon,"dd/MM/yyyy hh:mm:ss")}}
                                         </small>
                                         <small class="pull-left">
-                                            <b>{{ 'DASHBOARD_FU_BODY.ENDON' | translate }} </b> {{element.jobendedon}}
+                                            <b>{{ 'DASHBOARD_FU_BODY.ENDON' | translate }} </b>
+                                            <span class="ml-2">
+                                                {{this.datepipe.transform(element.jobendedon,"dd/MM/yyyy hh:mm:ss")}}
+                                            </span>
                                         </small>
                                     </p>
                                     <p *ngIf="element.freelanceuserId > 0">
                                         <small class="pull-left">
                                             <b>{{ 'DASHBOARD_FU_BODY.ACCEPTEDON' | translate }}
-                                            </b>{{element.jobaccepteddate}}
+                                            </b>
+                                            {{this.datepipe.transform(element.jobaccepteddate,"dd/MM/yyyy hh:mm:ss")}}
                                         </small>
                                     </p>
                                 </div>
@@ -325,10 +329,13 @@
                                     <p>
                                         <small class="pull-left">
                                             <b>{{ 'DASHBOARD_FU_BODY.STARTON' | translate }} </b>
-                                            {{element.jobstartedon}}
+                                            {{this.datepipe.transform(element.jobstartedon,"dd/MM/yyyy hh:mm:ss")}}
                                         </small>
                                         <small class="pull-left">
-                                            <b>{{ 'DASHBOARD_FU_BODY.ENDON' | translate }} </b> {{element.jobendedon}}
+                                            <b>{{ 'DASHBOARD_FU_BODY.ENDON' | translate }} </b>
+                                            <span class="ml-2">
+                                                {{this.datepipe.transform(element.jobendedon,"dd/MM/yyyy hh:mm:ss")}}
+                                            </span>
                                         </small>
                                     </p>
                                 </div>
@@ -405,16 +412,20 @@
                                     <p>
                                         <small class="pull-left">
                                             <b>{{ 'DASHBOARD_FU_BODY.STARTON' | translate }} </b>
-                                            {{element.jobstartedon}}
+                                            {{this.datepipe.transform(element.jobstartedon,"dd/MM/yyyy hh:mm:ss")}}
                                         </small>
                                         <small class="pull-left">
-                                            <b>{{ 'DASHBOARD_FU_BODY.ENDON' | translate }} </b> {{element.jobendedon}}
+                                            <b>{{ 'DASHBOARD_FU_BODY.ENDON' | translate }} </b>
+                                            <span class="ml-2">
+                                                {{this.datepipe.transform(element.jobendedon,"dd/MM/yyyy hh:mm:ss")}}
+                                            </span>
                                         </small>
                                     </p>
                                     <p *ngIf="element.freelanceuserId > 0">
                                         <small class="pull-left">
                                             <b>{{ 'DASHBOARD_FU_BODY.ACCEPTEDON' | translate }}
-                                            </b>{{element.jobaccepteddate}}
+                                            </b>
+                                            {{this.datepipe.transform(element.jobaccepteddate,"dd/MM/yyyy hh:mm:ss")}}
                                         </small>
                                     </p>
                                 </div>
@@ -483,16 +494,20 @@
                                     <p>
                                         <small class="pull-left">
                                             <b>{{ 'DASHBOARD_FU_BODY.STARTON' | translate }} </b>
-                                            {{element.jobstartedon}}
+                                            {{this.datepipe.transform(element.jobstartedon,"dd/MM/yyyy hh:mm:ss")}}
                                         </small>
                                         <small class="pull-left">
-                                            <b>{{ 'DASHBOARD_FU_BODY.ENDON' | translate }} </b> {{element.jobendedon}}
+                                            <b>{{ 'DASHBOARD_FU_BODY.ENDON' | translate }} </b>
+                                            <span class="ml-2">
+                                                {{this.datepipe.transform(element.jobendedon,"dd/MM/yyyy hh:mm:ss")}}
+                                            </span>
                                         </small>
                                     </p>
                                     <p *ngIf="element.freelanceuserId > 0">
                                         <small class="pull-left">
                                             <b>{{ 'DASHBOARD_FU_BODY.ACCEPTEDON' | translate }}
-                                            </b>{{element.jobaccepteddate}}
+                                            </b>
+                                            {{this.datepipe.transform(element.jobaccepteddate,"dd/MM/yyyy hh:mm:ss")}}
                                         </small>
                                     </p>
                                 </div>

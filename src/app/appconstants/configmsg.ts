@@ -51,5 +51,5 @@ export const ConfigMsg = {
      * Pre Production Change
      */
 
-    email_default_fromuser: 'team.spprt2019@gmail.com',
+    email_default_fromuser: 'support@kaamkarega.in',
 };

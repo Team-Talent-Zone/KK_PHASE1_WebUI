@@ -5,6 +5,7 @@ import { AlertsService } from '../AppRestCall/alerts/alerts.service';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { UserService } from '../AppRestCall/user/user.service';
 import { config } from '../appconstants/config';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-paymenthist',
@@ -26,7 +27,7 @@ export class PaymenthistComponent implements OnInit {
     public paymentService: PaymentService,
     public alertService: AlertsService,
     public spinnerService: Ng4LoadingSpinnerService,
-
+    public datepipe: DatePipe,
   ) {
     route.params.subscribe(params => {
       this.txnid = params.txnid;

@@ -60,14 +60,14 @@
     "SHOULDNOTBE40": "Username cant exceed 40.",
     "SIGNIN": "Sign in",
     "LOGIN": "Login",
-    "FORGOTYOURPASSWORD": "Forgot Password?",
-    "SENDPASSWORD": "Reset Password",
+    "FORGOTYOURPASSWORD": "Reset your password",
+    "SENDPASSWORD": "Request Reset",
     "BACKTOLOGIN": "Back to Login?",
     "PASSWORDISREQUIRED": "Password is required.",
     "PASSWORDMUSTBE8CHAR": "Password must be at least 8 characters.",
     "SIGNUP_TERM_AGREE_LABEL": "By completing this form, I agree to the ",
     "SIGNUP_TERMOFSERVICE": "Terms of Service",
-    "SIGNUP_PRIVACYPOLICY": "Privacy Policy.",
+    "SIGNUP_PRIVACYPOLICY": "Privacy Policy",
     "SIGNUP_TERM_AGREE_LABEL_END": " of Kaam Karega IT Services Private Ltd.",
     "SIGNUP_VALIDATION_USERNAME": "Email must be a valid email address",
     "SIGNUP_VALIDATION_40_MAX_USERNAME": "Email cannot exceed 40 characters",
@@ -83,9 +83,11 @@
     "SIGNUP_VALIDATION_SKILL_REQ": "Skill is required",
     "SIGNUP_VALIDATION_TERMS_POLICYCHECKBOX_REQ": "You must accept our terms of service and privacy policy before you proceed further.",
     "SIGNUP_VALIDATION_INDUSTRY_REQ": "Industry is required",
-    "SIGNUP_SUBMIT_BUTTON": "SignUp - It's Free",
+    "SIGNUP_SUBMIT_BUTTON": "Join Now",
     "SIGNUP_CLOSE_BUTTON": "Cancel",
-    "ACCOUNTLOGIN": "Welcome Back"
+    "ACCOUNTLOGIN": "Welcome Back",
+    "ALREADY_GOTACCOUNT":"Already have an account? Login",
+    "LOGIN_FWD_LABEL":"We will send you an email with temporary password that will allow you to login."
   },
   "ONBOARD": {
     "OURCUSTOMERS": "Our Customers",
@@ -111,7 +113,7 @@
     "JOBASSIGNMENT1": "Waiting is painful. To avoid, we have designed an automated system which always connect with you by sending job notification based on your skills. Grab IT, Accept IT, Finish IT."
   },
   "SKILLEDWORKERREVIEW": {
-    "SWORKER_REVIEW_HEADERLABEL": "Skilled Worker Reviews",
+    "SWORKER_REVIEW_HEADERLABEL": "See what our customers say about skilled workers",
     "SWORKER_BUTTON_READFULL": "Read More"
   },
   "SERVICE": {
@@ -166,7 +168,7 @@
     "PAYMENTHISTORY": "Payment History",
     "REVIEWS": "Reviews",
     "CURRENTSTAGE": "Current Onboard Stage",
-    "EDIT_PROFILE": "Edit Profile",
+    "EDIT_PROFILE": "Profile Settings",
     "NOTIFICATIONMEG_HEADER": "Notifications"
   },
   "DASHBOARD_FU_BODY": {

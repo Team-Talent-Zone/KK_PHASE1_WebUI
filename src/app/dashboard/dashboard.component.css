@@ -120,22 +120,16 @@
 .rounded-circle {
   border-radius: 15% !important;
 }
-.combobox {
-  margin-left: auto;
-}
-.combobox-input {
-  width: 350px;
-}
+ 
 .combobox-input:focus {
   outline-style: none;
 }
 .combobox-options {
   position: absolute;
   text-align: center;
-  background-color: white;
-  width: 350px;
-  max-height: 200px;
-  overflow-y: auto;
+  background-color: rgb(202, 198, 198);
+  width: 343px;
+  overflow-y: scroll;
   z-index: 1;
   cursor: pointer;
 }
