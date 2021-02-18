@@ -214,7 +214,7 @@
                                 <div class="card-header text-white bg-secondary">
                                     <p> <b>{{ 'DASHBOARD_FU_BODY.JOB' | translate }}#{{element.jobId}} </b>
                                         <button class="pull-right" (click)="cancel(element.jobId)"
-                                            *ngIf="element.livelocationtracking == null" style="font-size:14px">{{
+                                            *ngIf="element.freelancerjobattendant == 'NO'" style="font-size:14px">{{
                                             'DASHBOARD_FU_BODY.CANCELJOBBUTTON' | translate }}
                                             <i class="fa fa-remove"></i></button>
                                        <!--<a class="btn btn-md btn-primary pull-right" style="cursor:pointer"

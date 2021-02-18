@@ -20,7 +20,7 @@ export class ViewfureviewsComponent implements OnInit {
   userId: number;
   totalratingcount: number = 0;
   allratingcount: number;
-  avgrating:string;
+  avgrating: string;
 
   constructor(
     private freelanceserviceService: FreelanceserviceService,
@@ -77,13 +77,18 @@ export class ViewfureviewsComponent implements OnInit {
             }
           });
           setTimeout(() => {
-            if(this.fureviews !== null){
+            if (this.fureviews !== null) {
               this.fureviews.forEach(element => {
                 this.totalratingcount = element.starrate.length + this.totalratingcount;
               });
-              this.avgrating = (this.totalratingcount / this.fureviews.length).toFixed(2);
+              var avg = (this.totalratingcount / this.fureviews.length);
+              if (!Number.isInteger(avg)) {
+                this.avgrating = avg.toFixed(1);;
+              } else{
+                this.avgrating = avg.toString();
+              }
             }
-          }, 1000); 
+          }, 1000);
         } else {
           this.fureviewsempty = true;
         }
