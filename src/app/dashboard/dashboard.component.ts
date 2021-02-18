@@ -78,8 +78,6 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.matomoTracker.setUserId(this.userService.currentUserValue.userId.toString());
-    this.matomoInjector.init("http://ec2-34-207-156-230.compute-1.amazonaws.com:3002/", 1);
-
     if (this.txtid != null) {
       this.getPaymentDetailsByTxnId(this.txtid);
     }
@@ -178,7 +176,6 @@ export class DashboardComponent implements OnInit {
               });
               this.spinnerService.hide();
             } else {
-              console.log(config.notifcationlist, notifcationlist);
               this.notifcationbellList = notifcationlist;
             }
           }
@@ -295,7 +292,6 @@ export class DashboardComponent implements OnInit {
 
   search(inputItem: string, inputCode: string) {
     this.templist = [];
-    console.log('inputItem', inputItem);
     if (inputItem == null) {
       this.alertService.info('Search keyword cannot be empty');
     } else {

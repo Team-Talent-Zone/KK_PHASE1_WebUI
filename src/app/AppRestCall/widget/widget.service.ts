@@ -13,7 +13,6 @@ export class WidgetService {
   ) { }
 
   saveWidgetService(widgetsrv: WidgetForService) {
-    console.log('widgetsrv', widgetsrv);
     return this.http.post(`${environment.apiUrl}/saveWidgetService/`, widgetsrv);
   }
 

@@ -164,15 +164,10 @@ export class CreateoreditwidgetComponent implements OnInit {
     });
     this.widigetsvc.widgetLayoutEntity = this.widgetlayout;
     this.widigetsvc.userId = this.userService.currentUserValue.userId;
-    console.log(this.logoflag);
-    console.log(this.companyimgflag);
-    console.log(this.bgflag);
+
     this.spinnerService.show();
     setTimeout(() => {
       if (this.logoflag && this.companyimgflag && this.bgflag && this.widgetId == null) {
-        console.log(this.logoflag);
-        console.log(this.companyimgflag);
-        console.log(this.bgflag);
         this.widgetService.saveWidgetService(this.widigetsvc).subscribe((obj: WidgetForService) => {
           if (obj.widgetId > 0) {
             this.alertService.success('Customized Widget is saved');

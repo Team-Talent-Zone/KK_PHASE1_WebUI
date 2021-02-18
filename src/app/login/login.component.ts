@@ -11,7 +11,7 @@ import { UserAdapter } from '../adapters/useradapter';
 import { User } from '../appmodels/User';
 import { first } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { ReferenceService } from '../AppRestCall/reference/reference.service';
 import { ReferenceLookUpTemplate } from '../appmodels/ReferenceLookUpTemplate';
@@ -50,12 +50,12 @@ export class LoginComponent implements OnInit {
     private referService: ReferenceService,
     private reflookuptemplateAdapter: ReferenceLookUpTemplateAdapter,
     private sendemailService: SendemailService,
+    public modalRef: BsModalRef,
   ) {
   }
 
   ngOnInit() {
     this.formValidations();
-    console.log('this is test');
   }
 
   formValidations() {
@@ -89,11 +89,13 @@ export class LoginComponent implements OnInit {
             .subscribe(
               (resp) => {
                 this.spinnerService.hide();
+                this.modalRef.hide();
                 this.router.navigate(['/dashboard']);
               },
               error => {
                 this.spinnerService.hide();
                 this.alertService.error(error);
+                this.modalRef.hide();
               }
             );
         } else {
@@ -102,22 +104,26 @@ export class LoginComponent implements OnInit {
               (resptranslatetxt: string) => {
                 if (resptranslatetxt != null) {
                   this.alertService.info(resptranslatetxt, true);
+                  this.modalRef.hide();
                   this.spinnerService.hide();
                 }
               },
               error => {
                 this.alertService.error(error);
                 this.spinnerService.hide();
+                this.modalRef.hide();
               });
           } else {
             this.alertService.info(ConfigMsg.login_notexisit, true);
             this.spinnerService.hide();
+            this.modalRef.hide();
           }
         }
       },
       error => {
         this.spinnerService.hide();
         this.alertService.error(error);
+        this.modalRef.hide();
       });
 
   }
@@ -175,36 +181,43 @@ export class LoginComponent implements OnInit {
                                         (resptranslatetxt: string) => {
                                           if (resptranslatetxt != null) {
                                             this.alertService.success(resptranslatetxt, true);
+                                            this.modalRef.hide();
                                           }
                                         },
                                         error => {
                                           this.alertService.error(error);
                                           this.spinnerService.hide();
+                                          this.modalRef.hide();
                                         });
                                     } else {
                                       this.alertService.success(ConfigMsg.fwdpassword_successmsg, true);
+                                      this.modalRef.hide();
                                     }
                                   },
                                   error => {
                                     this.spinnerService.hide();
                                     this.alertService.error(error);
+                                    this.modalRef.hide();
                                   });
                               }
                             },
                             error => {
                               this.spinnerService.hide();
                               this.alertService.error(error);
+                              this.modalRef.hide();
                             });
                       }
                     },
                     error => {
                       this.spinnerService.hide();
                       this.alertService.error(error);
+                      this.modalRef.hide()
                     });
                 },
                 error => {
                   this.spinnerService.hide();
                   this.alertService.error(error);
+                  this.modalRef.hide();
                 });
             }
           } else {
@@ -214,21 +227,25 @@ export class LoginComponent implements OnInit {
                   if (resptranslatetxt != null) {
                     this.alertService.info(resptranslatetxt, true);
                     this.spinnerService.hide();
+                    this.modalRef.hide();
                   }
                 },
                 error => {
                   this.alertService.error(error);
                   this.spinnerService.hide();
+                  this.modalRef.hide();
                 });
             } else {
               this.alertService.info(ConfigMsg.login_notexisit, true);
               this.spinnerService.hide();
+              this.modalRef.hide();
             }
           }
         },
         error => {
           this.spinnerService.hide();
           this.alertService.error(error);
+          this.modalRef.hide();
         });
   }
 }

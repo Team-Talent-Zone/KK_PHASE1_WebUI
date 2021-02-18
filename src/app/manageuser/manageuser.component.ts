@@ -116,7 +116,6 @@ export class ManageuserComponent implements OnInit {
             }
           });
         }
-        console.log('usrObjFUs', this.usrObjFUs);
         this.spinnerService.hide();
       },
       error => {

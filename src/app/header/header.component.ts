@@ -10,6 +10,7 @@ import { ReferenceService } from '../AppRestCall/reference/reference.service';
 import { AlertsService } from '../AppRestCall/alerts/alerts.service';
 import { ReferenceAdapter } from '../adapters/referenceadapter';
 import { map } from 'rxjs/internal/operators/map';
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-header',
@@ -22,8 +23,11 @@ export class HeaderComponent implements OnInit {
   modalRef: BsModalRef;
   shortkey: string;
   config: ModalOptions = {
-    class: 'modal-md', backdrop: 'static',
-    keyboard: false
+    class: 'modal-md', 
+    backdrop: false,
+    keyboard: false,
+    animated: true,
+    ignoreBackdropClick: true,
   };
   ban1videoURL: string;
   ban2videoURL: string;
@@ -131,6 +135,7 @@ export class HeaderComponent implements OnInit {
   openSignupModalButton() {
     document.getElementById('clickModal').click();
   }
+
   openSignupModal(shortkey: string) {
     document.getElementById('clickModalClose').click();
     const initialState = {
@@ -138,6 +143,17 @@ export class HeaderComponent implements OnInit {
       langcode: localStorage.getItem('langCode')
     };
     this.modalRef = this.modalService.show(SignupComponent, Object.assign(
+      {},
+      this.config,
+      {
+        initialState
+      }
+    ));
+  }
+
+  openLoginModal() {
+    const initialState = null;
+    this.modalRef = this.modalService.show(LoginComponent, Object.assign(
       {},
       this.config,
       {

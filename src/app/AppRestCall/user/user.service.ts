@@ -44,7 +44,6 @@ export class UserService {
     });
     // tslint:disable-next-line: max-line-length
     return this.http.get(`${environment.apiUrl}/findByUsername/` + username + '/' ,  { headers }).pipe(map(result => {
-      console.log('this is this.userobj', result);
       this.usrObj = this.userAdapter.adapt(result);
       // store user details and jwt token in local storage to keep user logged in between page refreshes
       localStorage.setItem('currentUser', JSON.stringify(this.usrObj));
@@ -103,7 +102,6 @@ export class UserService {
       userobj.password = user.password;
       userobj.preferlang = user.preferlang;
     }
-    console.log('userobj : ', userobj);
     return this.http.post(`${environment.apiUrl}/saveUser/`, userobj);
   }
 

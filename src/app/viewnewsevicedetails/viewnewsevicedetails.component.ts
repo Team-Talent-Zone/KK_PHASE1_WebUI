@@ -14,7 +14,6 @@ export class ViewnewsevicedetailsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log('newserviceobj', this.newserviceobj);
   }
 
 }

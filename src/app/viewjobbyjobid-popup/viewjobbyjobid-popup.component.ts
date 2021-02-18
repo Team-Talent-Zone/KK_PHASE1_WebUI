@@ -34,7 +34,6 @@ export class ViewjobbyjobidPopupComponent implements OnInit {
     {
     if(jobdata != null){
       this.jobdetails = jobdata;
-      console.log('this.jobdetails', this.jobdetails);
     }
     },
     error => {

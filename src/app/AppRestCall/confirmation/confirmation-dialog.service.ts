@@ -11,10 +11,6 @@ export class ConfirmationDialogService {
     private modalService: NgbModal
   ) { }
 
-  getUserAllJobDetails() {
-    console.log('this is test');
-  }
-
   public confirm(
     title: string,
     message: string,

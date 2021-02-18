@@ -192,7 +192,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     CustomToastComponent,
     ReadMorePopupComponent,
     ConfirmationDialogComponent,
-    ViewjobbyjobidPopupComponent
+    ViewjobbyjobidPopupComponent,
+    LoginComponent
   ],
   bootstrap: [AppComponent]
 })

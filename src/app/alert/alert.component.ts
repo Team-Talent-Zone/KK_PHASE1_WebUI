@@ -55,7 +55,7 @@ export class AlertComponent implements OnInit {
   }
 
   openModal(template: TemplateRef<any>) {
-    console.log('Inside AlertComponent :', this.message);
+    console.log('Alert Generated :', this.message);
     if (this.message.type === 'error') {
       if (Number.parseInt(this.message.text.status) != 401) {
         this.router.navigate(['error', this.message.text.status]);

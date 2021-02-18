@@ -50,11 +50,9 @@ export class LiveTrackingComponent implements OnInit {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         function (position) {
-          console.log('show position');
           this.showPosition(position);
         },
         function errorCallback(error) {
-          console.log('show position error', error);
         },
         { timeout: 90000, enableHighAccuracy: true, maximumAge: 75000 });
     } else {
@@ -65,7 +63,6 @@ export class LiveTrackingComponent implements OnInit {
   showPosition(position) {
     this.currentLat = position.coords.latitude;
     this.currentLong = position.coords.longitude;
-    console.log('show position', this.currentLat);
     let location = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
     this.map.panTo(location);
 
