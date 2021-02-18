@@ -1,5 +1,5 @@
 export const ConfigMsg = {
-    signup_successmsg: 'Signup is successfully and verification email is sent to register email address',
+    signup_successmsg: 'Signup successful! Verification email sent to registered email address.',
     signup_successmsg_alreadyexisit: 'Someone already has that username.Try another',
     login_notexisit: 'No account found with that email address',
     fwdpassword_successmsg: 'Password sent to registered email address . Thank you for connecting with us',

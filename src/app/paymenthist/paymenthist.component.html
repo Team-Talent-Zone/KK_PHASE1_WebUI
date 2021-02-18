@@ -103,7 +103,7 @@
                             {{cbupayments.createdon}}
                         </td>
                         <td>{{cbupayments.status}}</td>
-                        <td>{{cbupayments.amount | currency:"INR₹"}}</td>
+                        <td>{{cbupayments.amount | currency:"₹"}}</td>
                         <td>
                             {{cbupayments.productinfo | slice:0:25}}
                             <i class="fa fa-forward" *ngIf="cbupayments.productinfo.length > 25 "

@@ -4,7 +4,7 @@ import { User } from 'src/app/appmodels/User';
 import { ReferenceAdapter } from '../adapters/referenceadapter';
 import { map, first } from 'rxjs/operators';
 import { Component, OnInit, Inject } from '@angular/core';
-import { BsModalRef } from 'ngx-bootstrap/modal';
+import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import {
   FormBuilder,
   FormGroup,
@@ -24,6 +24,7 @@ import { UserNotification } from 'src/app/appmodels/UserNotification';
 import { UserServiceDetails } from '../appmodels/UserServiceDetails';
 import { UsersrvdetailsService } from '../AppRestCall/userservice/usersrvdetails.service';
 import { ActivatedRoute } from '@angular/router';
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-signup',
@@ -63,10 +64,18 @@ export class SignupComponent implements OnInit {
   biztypelist: any;
   rolecode: string;
   skilllabel: string;
+  config: ModalOptions = {
+    class: 'modal-md', 
+    backdrop: 'static',
+    keyboard: false,
+    animated: true,
+    ignoreBackdropClick: true,
+  };
 
   constructor(
     private spinnerService: Ng4LoadingSpinnerService,
     public modalRef: BsModalRef,
+    public modalRefLogin: BsModalRef,
     private formBuilder: FormBuilder,
     private refAdapter: ReferenceAdapter,
     private userAdapter: UserAdapter,
@@ -77,8 +86,8 @@ export class SignupComponent implements OnInit {
     private reflookuptemplateAdapter: ReferenceLookUpTemplateAdapter,
     private usersrvDetails: UsersrvdetailsService,
     private route: ActivatedRoute,
+    private modalService: BsModalService,
   ) {
-
   }
 
   ngOnInit() {
@@ -319,6 +328,7 @@ export class SignupComponent implements OnInit {
             error => {
               this.spinnerService.hide();
               this.alertService.error(error);
+              this.modalRef.hide();
             });
         }
         if (this.ourserviceids !== null && this.ourserviceids.length > 0) {
@@ -436,7 +446,7 @@ export class SignupComponent implements OnInit {
       (returnURL: any) => {
         this.termsofservice = returnURL.url
       },
-      error => {
+      error => { 
         this.spinnerService.hide();
         this.alertService.error(error);
       });
@@ -448,5 +458,17 @@ export class SignupComponent implements OnInit {
         this.spinnerService.hide();
         this.alertService.error(error);
       });
+  }
+
+  openLoginModal() {
+    const initialState = null;
+    this.modalRefLogin = this.modalService.show(LoginComponent, Object.assign(
+      {},
+      this.config,
+      {
+        initialState
+      }
+    ));
+    this.modalRef.hide();
   }
 }

@@ -20,6 +20,7 @@ export class PaymenthistComponent implements OnInit {
   paymentdetails: any;
   ispaymentdetailCBUempty: boolean = false;
   ispaymentdetailFUempty: boolean = false;
+  hidetd: true;
 
   constructor(
     public userService: UserService,

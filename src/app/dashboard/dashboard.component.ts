@@ -297,7 +297,7 @@ export class DashboardComponent implements OnInit {
     } else {
       this.templist = this.list.filter((item) => item.label.toLowerCase().startsWith(this.inputItem.toLowerCase()));
       if (this.templist.length == 0) {
-        this.alertService.info('Keyword ' + inputItem + ' is a invalid skill to search.');
+        this.alertService.info('No skilled workers or services available for your searched keyword - ' + inputItem + '.');
       } else {
         this.router.navigateByUrl('fusearch/', { skipLocationChange: true }).
           then(() => {

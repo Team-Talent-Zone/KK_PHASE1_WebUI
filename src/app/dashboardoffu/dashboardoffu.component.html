@@ -217,10 +217,10 @@
                                             *ngIf="element.freelancerjobattendant == 'NO'" style="font-size:14px">{{
                                             'DASHBOARD_FU_BODY.CANCELJOBBUTTON' | translate }}
                                             <i class="fa fa-remove"></i></button>
-                                       <!--<a class="btn btn-md btn-primary pull-right" style="cursor:pointer"
+                                        <!--<a class="btn btn-md btn-primary pull-right" style="cursor:pointer"
                                             *ngIf="element.livelocationtracking == 'ON'" [routerLink]="['/_livelocation',element.jobId]"><i
                                                 class="fa fa-map-marker mr-2">
-                                            </i>{{'DASHBOARD_FU_BODY.LIVE_TRACKING_ON' | translate }}</a>--> 
+                                            </i>{{'DASHBOARD_FU_BODY.LIVE_TRACKING_ON' | translate }}</a>-->
                                         <button class="bg-info pull-right" *ngIf="element.freelancerjobattendant == 'YES'
                                             && element.freelancerjobattendantdate == null"
                                             (click)="updateFreelancerAttendance(element.jobId)" style="font-size:14px">{{
@@ -446,22 +446,26 @@
                                         <small class="pull-left">
                                             <b> {{ 'DASHBOARD_FU_BODY.JOBLOCATION' | translate }} </b>
                                             {{element.joblocation}}
-                                            <a href={{mapurl+element.lat+comma+element.lng}} target="_blank">
-                                                {{ 'DASHBOARD_FU_PROFILE.MAP_VIEW' | translate }}
-                                            </a>
+                                            <p>
+                                                <a href={{mapurl+element.lat+comma+element.lng}} target="_blank">
+                                                    {{ 'DASHBOARD_FU_PROFILE.MAP_VIEW' | translate }}
+                                                </a>
+                                            </p>
                                         </small>
                                     </p>
-                                    <p>
-                                        <small class="pull-left">
-                                            <b>{{ 'DASHBOARD_FU_BODY.TOTAL_HOURSOFWORK' | translate }}</b>
-                                            {{element.totalhoursofjob}}
-                                        </small>
-                                    </p>
+
                                     <p>
                                         <small class="pull-left">
                                             <b>{{ 'DASHBOARD_FU_BODY.PHONENO' | translate }} </b>
                                             <i class="fa fa-mobile ml-2" aria-hidden="true"></i>
                                             {{this.formatPhoneNumber(element.cbaphoneno)}}
+                                        </small>
+                                    </p>
+
+                                    <p>
+                                        <small class="pull-left">
+                                            <b>{{ 'DASHBOARD_FU_BODY.TOTAL_HOURSOFWORK' | translate }}</b>
+                                            {{element.totalhoursofjob}}
                                         </small>
                                     </p>
 
@@ -528,9 +532,11 @@
                                         <small class="pull-left">
                                             <b> {{ 'DASHBOARD_FU_BODY.JOBLOCATION' | translate }} </b>
                                             {{element.joblocation}}
-                                            <a href={{mapurl+element.lat+comma+element.lng}} target="_blank">
-                                                {{ 'DASHBOARD_FU_PROFILE.MAP_VIEW' | translate }}
-                                            </a>
+                                            <p>
+                                                <a href={{mapurl+element.lat+comma+element.lng}} target="_blank">
+                                                    {{ 'DASHBOARD_FU_PROFILE.MAP_VIEW' | translate }}
+                                                </a>
+                                            </p>
                                         </small>
                                     </p>
                                     <p>
