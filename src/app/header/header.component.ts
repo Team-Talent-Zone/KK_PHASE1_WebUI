@@ -87,7 +87,7 @@ export class HeaderComponent implements OnInit {
       }
     this.router.navigateByUrl('home', { skipLocationChange: true }).
       then(() => {
-        this.router.navigate(['region', { hash: langSelect }]);
+        this.router.navigate(['_region', { hash: langSelect }]);
       });
   }
 

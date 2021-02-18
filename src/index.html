@@ -226,8 +226,6 @@
     $(".row-offcanvas").toggleClass("active");
   }
 
-</script>
-<script>
   $(document).ready(function () {
     $('#carouselExampleCaptions').carousel({
       interval: 3000
@@ -237,6 +235,7 @@
       document.getElementById('video3').pause();
       document.getElementById('video4').pause();
     });
+    
     $('.panel-collapse').on('show.bs.collapse', function () {
       $(this).siblings('.panel-heading').addClass('active');
     });
