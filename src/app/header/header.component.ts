@@ -85,7 +85,7 @@ export class HeaderComponent implements OnInit {
         localStorage.setItem('langCode', config.default_prefer_lang);
         localStorage.setItem('langLabel', langSelect);
       }
-    this.router.navigateByUrl('home', { skipLocationChange: true }).
+    this.router.navigateByUrl('home', { skipLocationChange: false }).
       then(() => {
         this.router.navigate(['_region', { hash: langSelect }]);
       });
