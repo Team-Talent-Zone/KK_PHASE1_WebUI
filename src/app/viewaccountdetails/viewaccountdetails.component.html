@@ -13,7 +13,7 @@
       <div class="tab-content">
         <div class="tab-pane active fade show" id="basic1">
           <small>
-            <table class="table">
+            <table style="font-size: 15px;">
               <tr>
                 <th> Employee ID </th>
                 <td>{{usrdetailsObj.userId}}</td>
@@ -25,7 +25,7 @@
               <tr>
                 <th>Profile Picture</th>
                 <td>
-                  <a href="{{usrdetailsObj.avtarurl}}" target="_blank">
+                  <a href="{{usrdetailsObj.avtarurl}}" target="_blank" class="avatar">
                     <img src="{{usrdetailsObj.avtarurl}}" width="100px" height="80px">
                   </a>
                 </td>
@@ -97,7 +97,7 @@
       <div class="tab-content">
         <div class="tab-pane active fade show" id="0b">
           <small>
-            <table class="table">
+            <table style="font-size: 15px;">
               <tr>
                 <th> Client ID </th>
                 <td>{{usrdetailsObj.userId}}</td>
@@ -164,7 +164,7 @@
         </div>
         <div class="tab-pane " id="4b">
           <small>
-            <table class="table">
+            <table style="font-size: 15px;" >
               <tr>
                 <th>Business Name </th>
                 <td> {{usrdetailsObj.userbizdetails.bizname}}</td>
@@ -208,10 +208,10 @@
         <li class="nav-item"><a class="nav-link small" href="#3b" data-toggle="tab">Background Check Documents</a>
         </li>
       </ul>
-      <div class="tab-content">
+      <div class="tab-content col-md-12">
         <div class="tab-pane active" id="basic">
           <small>
-            <table class='table'>
+            <table style="font-size: 15px;">
               <tr>
                 <th>Skilled Worker ID </th>
                 <td>{{usrdetailsObj.userId}}</td>
@@ -279,7 +279,7 @@
         </div>
         <div class="tab-pane" id="1b">
           <small>
-            <table class="table">
+            <table style="font-size: 15px;">
               <tr *ngFor="let referencelookupmap of signupComponent.referencedetailsmap">
                 <th *ngIf="referencelookupmap.mapId == usrdetailsObj.freeLanceDetails.category">Skill Under Category
                 </th>
@@ -384,9 +384,9 @@
             </table>
           </small>
         </div>
-        <div class="tab-pane" id="2b">
+        <div class="tab-pane " id="2b">
           <small>
-            <table class="table" *ngIf="usrdetailsObj.freelancehistoryentity.length > 0">
+            <table  class="table-responsive" style="font-size: 15px;" *ngIf="usrdetailsObj.freelancehistoryentity.length > 0">
               <tr>
                 <th>Decision By</th>
                 <th>Decision On</th>
@@ -419,7 +419,7 @@
         </div>
         <div class="tab-pane" id="3b">
           <small>
-            <table class="table">
+            <table style="font-size: 15px;">
               <tr>
                 <th>Document Name</th>
                 <th>Uploaded Date</th>

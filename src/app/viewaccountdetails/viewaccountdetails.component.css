@@ -1,5 +1,4 @@
-
-/* table, th, td {
+ /* table, th, td {
   border: 1px solid grey;
   border-collapse: collapse;
   
@@ -7,21 +6,22 @@
 th, td {
   padding: 10px;
   text-align: left;
-} */
+} 
 
-/* body {
+ body {
   padding : 10px ;
 }
 .nav-tab {
   border-radius: 4px 4px 0 0 ;
-}
-
-#exTab3 .tab-content {
-  color : white;
-  background-color: #428bca;
-  padding : 5px 15px;
 } */
 
+
+ td {
+  padding-left: 20px;
+}
+th{
+  padding-left: 10px;
+}
 
 
 
