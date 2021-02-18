@@ -217,10 +217,10 @@
                                             *ngIf="element.livelocationtracking == null" style="font-size:14px">{{
                                             'DASHBOARD_FU_BODY.CANCELJOBBUTTON' | translate }}
                                             <i class="fa fa-remove"></i></button>
-                                        <a class="btn btn-md btn-primary pull-right" style="cursor:pointer"
+                                       <!--<a class="btn btn-md btn-primary pull-right" style="cursor:pointer"
                                             *ngIf="element.livelocationtracking == 'ON'" [routerLink]="['/_livelocation',element.jobId]"><i
                                                 class="fa fa-map-marker mr-2">
-                                            </i>{{'DASHBOARD_FU_BODY.LIVE_TRACKING_ON' | translate }}</a>
+                                            </i>{{'DASHBOARD_FU_BODY.LIVE_TRACKING_ON' | translate }}</a>--> 
                                         <button class="bg-info pull-right" *ngIf="element.freelancerjobattendant == 'YES'
                                             && element.freelancerjobattendantdate == null"
                                             (click)="updateFreelancerAttendance(element.jobId)" style="font-size:14px">{{
