@@ -33,14 +33,14 @@ const routes: Routes = [
     component: HomeComponent
   },
   {
-    path: 'region',
+    path: '_region',
     component: HomeComponent,
     children: [
       {
-        path: '',
+        path: '.',
         component: HomepriceComponent
       }
-    ],
+    ]
   },
   {
     path: 'signup/:id',
