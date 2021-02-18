@@ -24,7 +24,7 @@ export class HeaderComponent implements OnInit {
   shortkey: string;
   config: ModalOptions = {
     class: 'modal-md', 
-    backdrop: false,
+    backdrop: 'static',
     keyboard: false,
     animated: true,
     ignoreBackdropClick: true,

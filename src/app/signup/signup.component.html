@@ -1,15 +1,13 @@
 <!-- Modal Header -->
-<div class="modal-header">
-  <h4 class="modal-title mt-3">
-    <p *ngIf="key =='cba'; else elseFU">
-      {{'HOMESIGNUP.SIGNUP' | translate}}
-    </p>
-    <ng-template #elseFU>
-      {{'HOMESIGNUP.SIGNUPFU' | translate}}
-    </ng-template>
-  </h4>
-  <img src="assets/img/logo-transparent.png" width="70" height="60" class="rounded-circle d-inline-block align-top"
-    alt="Kaam Karega">
+<div class="modal-header animated bounceIn ">
+  <span class="modal-title pull-left">
+    <h4 *ngIf="key =='cba'; else elseFU"> {{'HOMESIGNUP.SIGNUP' | translate}}</h4>
+    <h4 *ngIf="key =='fu'; else elseFU"> {{'HOMESIGNUP.SIGNUPFU' | translate}}</h4>
+  </span>
+  <button data-dismiss="alert" data-target="#closeablecard" (click)="modalRef.hide()" type="button" class="close"
+    aria-label="Close">
+    <span aria-hidden="true" style="color:red">&times;</span>
+  </button>
 </div>
 <form [formGroup]="signupForm" (ngSubmit)="preparetoSaveUser()">
   <!-- Modal body -->
@@ -179,8 +177,10 @@
   </div>
   <!-- Modal footer -->
   <div class="modal-footer">
-    <a href="/home#section-6" (click)="this.modalRef.hide()" class="nav-link scroll-link float-left">{{'HOMESIGNUP.ALREADY_GOTACCOUNT' | translate}}</a>
-    <button class="btn btn-sm btn-success rounded-pill" type="submit">{{'HOMESIGNUP.SIGNUP_SUBMIT_BUTTON' | translate}}</button>
+    <a href="/home#section-6" (click)="this.modalRef.hide()"
+      class="nav-link scroll-link float-left">{{'HOMESIGNUP.ALREADY_GOTACCOUNT' | translate}}</a>
+    <button class="btn btn-sm btn-success rounded-pill"
+      type="submit">{{'HOMESIGNUP.SIGNUP_SUBMIT_BUTTON' | translate}}</button>
     <button type="button" class="btn btn-sm btn-danger rounded-right" (click)="modalRef.hide()">{{'HOMESIGNUP.SIGNUP_CLOSE_BUTTON' |
       translate}}</button>
   </div>
