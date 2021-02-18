@@ -1,76 +1,77 @@
-<h4>Our Services</h4>
-<hr>
-<div class="pull-right" (click)="openUserServiceCart()" *ngIf="userservicedetailsAddedList.length > 0 ">  
-  <i class="fa" style="cursor:pointer;font-size:31px">&#xf07a;</i>
-  <span *ngIf="userservicedetailsAddedList.length == 1 ; else morethenOne">
-    <span class='badge badge-warning' id='lblCartCount'> {{userservicedetailsAddedList.length}} </span> 
-  </span>
-  <ng-template #morethenOne>
-    <span>
-      <span class='badge badge-warning' id='lblCartCount'> {{userservicedetailsAddedList.length}} </span> 
+<div class="container-fluid">
+  <h4>Our Services</h4>
+  <hr>
+  <div class="pull-right" (click)="openUserServiceCart()" *ngIf="userservicedetailsAddedList.length > 0 ">
+    <i class="fa" style="cursor:pointer;font-size:31px">&#xf07a;</i>
+    <span *ngIf="userservicedetailsAddedList.length == 1 ; else morethenOne">
+      <span class='badge badge-warning' id='lblCartCount'> {{userservicedetailsAddedList.length}} </span>
     </span>
-  </ng-template>  
-</div>
-
-<ul class="nav nav-tabs" id="myTab" role="tablist">
-  <li class="nav-item">
-    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
-      aria-selected="true">
-      <i class="fa fa-cogs fatab" style="color:#FF4949"></i>
+    <ng-template #morethenOne>
+      <span>
+        <span class='badge badge-warning' id='lblCartCount'> {{userservicedetailsAddedList.length}} </span>
+      </span>
+    </ng-template>
+  </div>
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+        aria-selected="true">
+        <i class="fa fa-cogs fatab" style="color:#FF4949"></i>
+        <br>
+        <b>{{ 'DASHOARD_CBA_MAIN_BODY.SERVICEPROVIDER' | translate }}</b>
+      </a>
+    </li>
+  </ul>
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
       <br>
-      <b>{{ 'DASHOARD_CBA_MAIN_BODY.SERVICEPROVIDER' | translate }}</b>
-    </a>
-  </li>
-</ul>
-<div class="tab-content" id="myTabContent">
-  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-    <br>
-    <div class="row">
-      <div class="col-sm-3 mb-3 mb-md-0" style="margin-bottom:8px !important"
-        *ngFor="let svc of listOfAllApprovedNewServices">
-        <div class="card text-center"> 
-          <div class="card-header header-bg">
-            <img class="img-rounded pull-left" src={{svc.imgurl}} width="90" height="65 ">
-            <div *ngIf="userservicedetailsExistingIds.includes(svc.ourserviceId) ; else addToCart">
+      <div class="row">
+        <div class="col-sm-3 mb-3 mb-md-0" style="margin-bottom:8px !important"
+          *ngFor="let svc of listOfAllApprovedNewServices">
+          <div class="card text-center">
+            <div class="card-header header-bg">
+              <img class="img-rounded pull-left" src={{svc.imgurl}} width="90" height="65 ">
+              <div *ngIf="userservicedetailsExistingIds.includes(svc.ourserviceId) ; else addToCart">
+              </div>
+              <ng-template #addToCart>
+                <a class="btn btn-info btn-sm pull-right"
+                  (click)="prepareSaveUserServiceForServiceId(svc.ourserviceId , svc.packwithotherourserviceid , svc.amount , svc.validPeriodLabel , svc.validPeriodCode ,svc.serviceendon, svc.servicestarton)">
+                  <i class="fa fa-plus"> Add To Cart </i></a>
+              </ng-template>
             </div>
-            <ng-template #addToCart>
-              <a class="btn btn-info btn-sm pull-right"
-                (click)="prepareSaveUserServiceForServiceId(svc.ourserviceId , svc.packwithotherourserviceid , svc.amount , svc.validPeriodLabel , svc.validPeriodCode ,svc.serviceendon, svc.servicestarton)">
-                <i class="fa fa-plus"> Add To Cart </i></a>
-            </ng-template>
-          </div>
-          <div class="card-body d-flex flex-column">
-            <div class="card-title">
-              <h6 class="text-center hover1"><b>
-                  <a style="cursor:pointer;border-bottom: 0px dotted black;" title="{{svc.name}}"
-                    (click)="openReadMorePopup(svc.description , svc.name, null)">
-                    <span>{{svc.name | slice:0:20}}</span>
-                    <span *ngIf="svc.name.length > 20">..</span>
-                  </a>
-                </b>
-              </h6>
-              <hr>
-              <span class="display-4"><i class="fa fa-inr">{{svc.amount}}</i></span>
-              <span class="mb-4">/{{svc.validPeriodLabel}}
-              </span>
-            </div>
-            <div class="card-text">
-              <ul class="list-unstyled">
-                <li class="mb-1" *ngFor="let features of svc.fullcontent; index as i">
-                  <div *ngIf="i<=1">
-                    {{features}}
+            <div class="card-body d-flex flex-column">
+              <div class="card-title">
+                <h6 class="text-center hover1"><b>
+                    <a style="cursor:pointer;border-bottom: 0px dotted black;" title="{{svc.name}}"
+                      (click)="openReadMorePopup(svc.description , svc.name, null)">
+                      <span>{{svc.name | slice:0:20}}</span>
+                      <span *ngIf="svc.name.length > 20">..</span>
+                    </a>
+                  </b>
+                </h6>
+                <hr>
+                <span class="display-4"><i class="fa fa-inr">{{svc.amount}}</i></span>
+                <span class="mb-4">/{{svc.validPeriodLabel}}
+                </span>
+              </div>
+              <div class="card-text">
+                <ul class="list-unstyled">
+                  <li class="mb-1" *ngFor="let features of svc.fullcontent; index as i">
+                    <div *ngIf="i<=1">
+                      {{features}}
+                    </div>
+                  </li>
+                  <div *ngIf="svc.fullcontent.length>1">
+                    <a style=" cursor:pointer;border-bottom: 2px dotted black;"
+                      (click)="openReadMorePopup(null , null,svc.fullcontent )">
+                      <i>See all features</i>
+                    </a>
                   </div>
-                </li>
-                <div *ngIf="svc.fullcontent.length>1">
-                  <a style=" cursor:pointer;border-bottom: 2px dotted black;"
-                    (click)="openReadMorePopup(null , null,svc.fullcontent )">
-                    <i>See all features</i>
-                  </a>
-                </div>
-              </ul>
+                </ul>
+              </div>
             </div>
-          </div>
 
+          </div>
         </div>
       </div>
     </div>

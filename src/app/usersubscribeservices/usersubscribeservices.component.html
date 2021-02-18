@@ -1,11 +1,9 @@
-<div style="margin-top:8px !important" *ngIf="listOfSubscribedServicesByUser.length > 0">
-    <div class="row">
-        <div class="col-sm-12">
-            <h4>
-                {{ 'DASHOARD_CBA_MAIN_BODY.SUBSCRIBEDSERVICES' | translate }}
-            </h4>
-            <hr>
-        </div>
+<div class="container-fluid">
+    <h4>
+        {{ 'DASHOARD_CBA_MAIN_BODY.SUBSCRIBEDSERVICES' | translate }}
+    </h4>
+    <hr>
+    <div class="row" *ngIf="listOfSubscribedServicesByUser.length > 0">
         <div class="col-md-3 mb-3 mb-md-0" style="margin-bottom:8px !important"
             *ngFor="let svc of listOfSubscribedServicesByUser">
             <div class="card h-100">
@@ -57,8 +55,7 @@
                             {{svc.servicestarton}} </small>
                     </p>
                     <p>
-                        <small class="pull-left"><b>Valid Till:</b> <span
-                                class="ml-3">{{svc.serviceendon}}
+                        <small class="pull-left"><b>Valid Till:</b> <span class="ml-3">{{svc.serviceendon}}
                             </span> </small>
                     </p>
                 </div>

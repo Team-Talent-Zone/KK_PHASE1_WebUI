@@ -340,7 +340,8 @@ export class ManagejobsComponent implements OnInit {
     this.spinnerService.show();
     this.freelanceserviceService.saveFreeLanceStarReviewFB(this.freelancestarobj).subscribe((response: FreelanceStarReview) => {
       if (response.id > 0) {
-        this.alertService.success('Thank you for the feedback');
+        this.alertService.success('Thank you for the feedback.');
+        this.getUserAllJobDetailsByUserId();
         this.spinnerService.hide();
       }
     },

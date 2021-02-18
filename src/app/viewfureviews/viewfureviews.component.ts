@@ -20,7 +20,7 @@ export class ViewfureviewsComponent implements OnInit {
   userId: number;
   totalratingcount: number = 0;
   allratingcount: number;
-  avgrating:number;
+  avgrating:string;
 
   constructor(
     private freelanceserviceService: FreelanceserviceService,
@@ -81,7 +81,7 @@ export class ViewfureviewsComponent implements OnInit {
               this.fureviews.forEach(element => {
                 this.totalratingcount = element.starrate.length + this.totalratingcount;
               });
-              this.avgrating = this.totalratingcount / this.fureviews.length;
+              this.avgrating = (this.totalratingcount / this.fureviews.length).toFixed(2);
             }
           }, 1000); 
         } else {
