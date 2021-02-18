@@ -1,4 +1,4 @@
-  {
+{
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "newProjectRoot": "projects",
@@ -125,5 +125,8 @@
       }
     }
   },
-  "defaultProject": "APPMAINUIv1"
+  "defaultProject": "APPMAINUIv1",
+  "cli": {
+    "analytics": "79bce3ce-3fe0-4b97-9fc4-048e8944cb32"
+  }
 }
