@@ -44,8 +44,8 @@
           </a>
         </li>
         <li class="nav-item mr-4">
-          <a class="nav-link scroll-link" (click)="openLoginModal()"><i
-              class="fas fa-sign-in-alt"></i> {{ 'HOMENAV.LOGIN' | translate }}</a>
+          <a class="nav-link scroll-link" (click)="openLoginModal()"><i class="fas fa-sign-in-alt"></i>
+            {{ 'HOMENAV.LOGIN' | translate }}</a>
         </li>
         <li class="nav-item dropdown  d-md-block d-lg-none d-sm-none mr-4">
           <a class="dropdown-toggle nav-link scroll-link" type="button" id="dropdownMenuButton" data-toggle="dropdown"
@@ -91,12 +91,12 @@
           </div>
         </li>
         <li class="nav-item dropdown">
-          <a><i class="fa fa-globe" style="color:#FF4949;"></i>
-            <select #langSelect (change)="translateToLanguage(langSelect.value);Removeclass();">
-              <option *ngFor="let lang of translate.getLangs()" [value]="lang"
-                [selected]="lang === translate.currentLang">{{ lang }}</option>
-            </select>
-          </a>
+          <i class="fa fa-globe" style="color:#FF4949;">
+          </i>
+          <select #langSelect (change)="translateToLanguage(langSelect.value);Removeclass();">
+            <option *ngFor="let lang of translate.getLangs()" [value]="lang"
+              [selected]="lang === translate.currentLang">{{ lang }}</option>
+          </select>
         </li>
       </ul>
     </div>
@@ -117,7 +117,6 @@
       <img class="d-block w-100" src="assets/img/backgrounds/ban1.jpg" data-holder-rendered="true">
       <div class="carousel-caption1  d-md-block" id="myCarousel">
         <p class="d-block d-sm-none">
-
           <video id="video1" width="140" height="80" class="wrapper_video" loop controls muted>
             <source src={{ban1videoURL}} type="video/mp4">
           </video>
