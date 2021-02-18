@@ -18,8 +18,11 @@ export class HometestimonialsComponent implements OnInit {
 
   listofTestimonals: any;
   startindex: number = 0;
-  endindex: number = 3;
+  endindex: number =3;
   modalRef: BsModalRef;
+  isNext=true;
+  isPrevious=true;
+  count:any;
   config: ModalOptions = {
     class: 'modal-md', backdrop: 'static',
     keyboard: false
@@ -79,18 +82,24 @@ export class HometestimonialsComponent implements OnInit {
   }
   onTogglePrev() {
     if (this.startindex == 0) {
-      this.onToggleNext();
+      this.isPrevious=false;
     } else {
+      this.isPrevious=true;
+      this.isNext=true;
       this.endindex = this.startindex;
       this.startindex = this.endindex - 3;
+      
     }
   }
   onToggleNext() {
-    if (this.listofTestimonals.length == this.endindex) {
-      this.onTogglePrev();
+    if (this.endindex == this.listofTestimonals.length || this.endindex > this.listofTestimonals.length) {
+        this.isNext=false;
     } else {
+      this.count=this.listofTestimonals.length
+      this.isNext=true;
+      this.isPrevious=true
       this.startindex = this.endindex;
-      this.endindex = this.endindex + 2
+      this.endindex = this.endindex + 3;     
     }
   }
   openReadMorePopup(fullcontent: string) {

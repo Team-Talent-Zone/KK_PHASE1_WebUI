@@ -24,7 +24,7 @@
                     <!--Grid column-->
                     <div class="col-md-4 col-sm-8"  *ngFor="let item of listofTestimonals; index as i">
                         <div class="testimonial" *ngIf="i >= startindex && i < endindex">
-                            <!--Avatar-->                          
+                            <!--Avatar-->    
                             <div class="avatar mx-auto">
                                 <img src={{item.avtarurl}} class="rounded-circle img-fluid">
                                 <span class="pull-right"><i class="fa fa-star" style="color: #ff4949;"
@@ -45,7 +45,7 @@
                                 (click)="openReadMorePopup(item.feedbackcomment)">
                                     <b>{{'SKILLEDWORKERREVIEW.SWORKER_BUTTON_READFULL'
                                     | translate}}</b></a>
-                        </div>
+                        </div> 
                     </div>
                 </div>
             </div>
@@ -55,10 +55,10 @@
         <!-- Left and right controls -->
         <div class="mt-md-4"></div>
         <div class="row">
-            <a class="carousel-control-prev" href="#multi-item-example" (click)="onTogglePrev()" data-slide="prev">
-                <span class="carousel-control-prev-icon"></span>
+            <a  *ngIf="isPrevious" class="carousel-control-prev" href="#multi-item-example" (click)="onTogglePrev()" data-slide="prev">
+                <span class="carousel-control-prev-icon" ></span>
             </a>
-            <a class="carousel-control-next" href="#multi-item-example" (click)="onToggleNext()" data-slide="next">
+            <a *ngIf=" isNext" class="carousel-control-next" href="#multi-item-example"  (click)="onToggleNext()" data-slide="next">
                 <span class="carousel-control-next-icon"></span>
             </a>
         </div>
