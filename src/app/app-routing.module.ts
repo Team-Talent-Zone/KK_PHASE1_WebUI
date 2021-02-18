@@ -21,6 +21,7 @@ import { ManageserviceComponent } from './manageservice/manageservice.component'
 import { Error504pageComponent } from './error504page/error504page.component';
 import { ViewfujobdetailsComponent } from './viewfujobdetails/viewfujobdetails.component';
 import { ManagejobsComponent } from './managejobs/managejobs.component';
+import { LiveTrackingComponent } from './live-tracking/live-tracking.component';
 
 const routes: Routes = [
   {
@@ -250,6 +251,17 @@ const routes: Routes = [
       {
         path: '',
         component: PaymenthistComponent
+      }
+    ]
+  },
+  {
+    path: '_livelocation/:jobid',
+    component: DashboardComponent,
+    canActivate: [AuthgaurdService],
+    children: [
+      {
+        path: '',
+        component: LiveTrackingComponent
       }
     ]
   },

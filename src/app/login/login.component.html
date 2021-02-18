@@ -33,7 +33,7 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="fa fa-lock form-control-icon"></i></span>
                     </div>
-                    <input type="password" id="inputPassword" class="form-control" title="Please fill out this field"
+                    <input type="password" id="inputPassword" class="form-control" 
                       placeholder="{{ 'HOMESIGNUP.PASSWORD' | translate }}" formControlName="password"
                       [ngClass]="{ 'is-invalid': issubmit && f.password.errors }">
                     <div *ngIf="issubmit && f.password.errors" class="invalid-feedback">
@@ -54,9 +54,6 @@
           <ng-template #elseFwd>
             <div class="card card-container">
               <h3 class="card-title text-center"> {{ 'HOMESIGNUP.FORGOTYOURPASSWORD' | translate }}</h3>
-              <small>
-                {{ 'HOMESIGNUP.LOGIN_FWD_LABEL' | translate }}
-              </small>
               <form [formGroup]="fpwdForm" (ngSubmit)="forgotPassword()">
                 <span id="reauth-email" class="reauth-email"></span>
                 <div class="form-group">
@@ -73,6 +70,9 @@
                       </div>
                       <div *ngIf="fpwd.fpwdusername.errors.maxlength">{{ 'HOMESIGNUP.SHOULDNOTBE40' | translate }}</div>
                     </div>
+                    <small>
+                      We will send you an email with temporary password that will allow you to login.
+                    </small>
                   </div>
                 </div>
                 <button class="btn btn-md btn-primary btn-block rounded-pill" type="submit">{{ 'HOMESIGNUP.SENDPASSWORD' |

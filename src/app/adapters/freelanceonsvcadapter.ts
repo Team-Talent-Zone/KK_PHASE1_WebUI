@@ -42,7 +42,8 @@ export class FreelanceOnSvcAdapter implements Adapter<FreelanceOnSvc> {
             item.isjobvoliation,
             item.resolvedvoliationreason,
             item.associatedadminId,
-            item.acceptjobterms
+            item.acceptjobterms,
+            item.islivelocationtracking
         );
     }
 }

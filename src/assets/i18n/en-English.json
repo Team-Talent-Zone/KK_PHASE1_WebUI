@@ -220,7 +220,8 @@
     "NO_UPCOMING_MSG": "Please check if you find new jobs in New Jobs Tab.",
     "NO_VOLIATION_MSG": "Be proud of yourself not having any voliation jobs at this point. Keep up the good service with the clients.",
     "NO_COMPLETEDJOBS_MSG": "You have not completed your first job yet .Complete your first job .",
-    "TOTAL_HOURSOFWORK": "Total Hours of work :"
+    "TOTAL_HOURSOFWORK": "Total Hours of work :",
+    "LIVE_TRACKING_ON":"Location On"
   },
   "DASHBOARD_FU_PROFILE": {
     "PROFILESETTINGS": "Profile Settings",

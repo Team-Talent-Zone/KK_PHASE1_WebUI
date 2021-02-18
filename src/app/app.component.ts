@@ -1,7 +1,9 @@
+/// <reference types="googlemaps" />
 import { Component, Input, OnInit } from '@angular/core';
 import { MatomoInjector } from 'ngx-matomo';
 import { MatomoTracker } from 'ngx-matomo';
 import { Toast } from 'ngx-toast-notifications';
+declare let google: any;
 
 @Component({
   template:

@@ -18,6 +18,7 @@ import { Router } from '@angular/router';
 import { ModalOptions } from 'ngx-bootstrap/modal';
 import { ReadMorePopupComponent } from '../read-more-popup/read-more-popup.component';
 import { DatePipe } from '@angular/common';
+
 @Component({
   selector: 'app-dashboardoffu',
   templateUrl: './dashboardoffu.component.html',
@@ -52,13 +53,13 @@ export class DashboardoffuComponent implements OnInit {
   indiaTime = this.datepipe.transform(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }), "dd/MM/yyyy hh:mm:ss");
   indiaTimeFormat = this.datepipe.transform(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }), "yyyy-MM-dd HH:mm:ss");
   mapurl = 'http://maps.google.com/?z=16&q=';
-  comma =',';
-  
+  comma = ',';
+
   newjobsempty: boolean = false;
   upcomingjobsempty: boolean = false;
   completedjobsempty: boolean = false;
   voliationjobsempty: boolean = false;
-
+  date = new Date();
   constructor(
     public userService: UserService,
     private referService: ReferenceService,
@@ -76,6 +77,7 @@ export class DashboardoffuComponent implements OnInit {
   }
 
   ngOnInit() {
+
     const source = timer(1000, 60000);
     const sourcerefresh = timer(1000, 90000);
     source.subscribe((val: number) => {
@@ -413,7 +415,7 @@ export class DashboardoffuComponent implements OnInit {
                       this.alertService.error(error);
                     });
                 } else {
-                  this.referService.translatetext("Cancellation only possible before 15 mins of accepting the job. Any concerns, please call support@kaamkarega.com or read terms of services.", this.userService.currentUserValue.preferlang).subscribe(
+                  this.referService.translatetext("Cancellation only possible before 15 minutes of accepting the job.", this.userService.currentUserValue.preferlang).subscribe(
                     (trantxt: any) => {
                       this.alertService.info(trantxt);
                       this.spinnerService.hide();
@@ -478,5 +480,6 @@ export class DashboardoffuComponent implements OnInit {
     }
     return null
   }
+
 }
 

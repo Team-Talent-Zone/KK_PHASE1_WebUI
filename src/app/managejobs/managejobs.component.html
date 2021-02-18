@@ -69,11 +69,11 @@
                         <p>
                             <small class="pull-left">
                                 <b>{{ 'DASHBOARD_FU_BODY.STARTON' | translate }} </b>
-                                {{this.datepipe.transform(element.jobstartedon,"dd/MM/yyyy hh:mm:ss")}}
+                                {{element.jobstartedon}}
                             </small>
                             <small class="pull-left">
                                 <b>{{ 'DASHBOARD_FU_BODY.ENDON' | translate }} </b>
-                                <span class="ml-2">{{this.datepipe.transform(element.jobendedon,"dd/MM/yyyy hh:mm:ss")}}
+                                <span class="ml-2">{{element.jobendedon}}
                                 </span>
                             </small>
                         </p>
@@ -104,7 +104,7 @@
                             <small class="pull-left">
                                 <b>{{ 'DASHBOARD_FU_BODY.ACCEPTEDON' | translate }}
                                 </b>
-                                {{this.datepipe.transform(element.jobaccepteddate,"dd/MM/yyyy hh:mm:ss")}}
+                                {{element.jobaccepteddate}}
                             </small>
                         </p>
 
@@ -182,12 +182,12 @@
                         <p>
                             <small class="pull-left">
                                 <b>{{ 'DASHBOARD_FU_BODY.STARTON' | translate }} </b>
-                                {{this.datepipe.transform(newlyjob.jobstartedon,"dd/MM/yyyy hh:mm:ss")}}
+                                {{newlyjob.jobstartedon}}
                             </small>
                             <small class="pull-left">
                                 <b>{{ 'DASHBOARD_FU_BODY.ENDON' | translate }} </b>
                                 <span class="ml-2">
-                                    {{this.datepipe.transform(newlyjob.jobendedon,"dd/MM/yyyy hh:mm:ss")}}
+                                    {{newlyjob.jobendedon}}
                                 </span>
                             </small>
                         </p>
@@ -290,12 +290,12 @@
                         <p>
                             <small class="pull-left">
                                 <b>{{ 'DASHBOARD_FU_BODY.STARTON' | translate }} </b>
-                                {{this.datepipe.transform(completedjob.jobstartedon,"dd/MM/yyyy hh:mm:ss")}}
+                                {{completedjob.jobstartedon}}
                             </small>
                             <small class="pull-left">
                                 <b>{{ 'DASHBOARD_FU_BODY.ENDON' | translate }} </b>
                                 <span class="ml-2">
-                                    {{this.datepipe.transform(completedjob.jobendedon,"dd/MM/yyyy hh:mm:ss")}}
+                                    {{completedjob.jobendedon}}
                                 </span>
                             </small>
                         </p>
@@ -326,7 +326,7 @@
                             <small class="pull-left">
                                 <b>{{ 'DASHBOARD_FU_BODY.ACCEPTEDON' | translate }}
                                 </b>
-                                {{this.datepipe.transform(completedjob.jobaccepteddate,"dd/MM/yyyy hh:mm:ss")}}
+                                {{completedjob.jobaccepteddate}}
                             </small>
                         </p>
                     </div>

@@ -25,7 +25,7 @@
                         <td>{{paymentdetails.txnid}}</td>
                         <td>{{paymentdetails.name}}</td>
                         <td>
-                            {{this.datepipe.transform(paymentdetails.createdon,"dd/MM/yyyy hh:mm:ss")}}
+                            {{paymentdetails.createdon}}
 
                         </td>
                         <td *ngIf="userService.currentUserValue.userroles.rolecode === 'CLIENT_BUSINESS_ADMINISTRATOR'">
@@ -61,7 +61,7 @@
                         <td>{{fupayments.txnid}}</td>
                         <td>{{fupayments.name}}</td>
                         <td>
-                            {{this.datepipe.transform(fupayments.createdon,"dd/MM/yyyy hh:mm:ss")}}
+                            {{fupayments.createdon}}
                         </td>
                         <td>{{fupayments.status}}</td>
                         <td>{{fupayments.amount | currency:"INR₹"}}</td>
@@ -100,7 +100,7 @@
                         <td>{{cbupayments.txnid}}</td>
                         <td>{{cbupayments.name}}</td>
                         <td>
-                            {{this.datepipe.transform(cbupayments.createdon,"dd/MM/yyyy hh:mm:ss")}}
+                            {{cbupayments.createdon}}
                         </td>
                         <td>{{cbupayments.status}}</td>
                         <td>{{cbupayments.amount | currency:"INR₹"}}</td>

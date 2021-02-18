@@ -38,6 +38,7 @@ export class FreelanceOnSvc {
         public resolvedvoliationreason: string,
         public associatedadminId: number,
         public acceptjobterms: boolean,
+        public islivelocationtracking: boolean
     ) {
 
     }

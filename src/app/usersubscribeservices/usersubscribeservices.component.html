@@ -54,11 +54,11 @@
                 <div class="card-footer">
                     <p>
                         <small class="text-left pull-left"><b> Valid From: </b>
-                            {{this.datepipe.transform(svc.servicestarton,"dd/MM/yyyy hh:mm:ss")}} </small>
+                            {{svc.servicestarton}} </small>
                     </p>
                     <p>
                         <small class="pull-left"><b>Valid Till:</b> <span
-                                class="ml-3">{{this.datepipe.transform(svc.serviceendon,"dd/MM/yyyy hh:mm:ss")}}
+                                class="ml-3">{{svc.serviceendon}}
                             </span> </small>
                     </p>
                 </div>
