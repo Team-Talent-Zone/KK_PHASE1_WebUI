@@ -3,16 +3,10 @@
   width: 16% !important;
   height: 54px !important;
 }
-/* .testimonial{
-        /* border: 1px solid gainsboro; */
-/* box-shadow: 0px 0px 10px 1px white; 
-    border-radius: 4px;
-    padding: 16px;
-    box-shadow: none;
-    box-shadow: 0px 1px 8px 0px #92a4b7;
-    /* height: 573px; 
-    margin-right: -16px;
-} */
+
+.bgcontainer {
+  background-color: lightcyan;
+}
 
 .testimonial {
   /* width: 327px; */
