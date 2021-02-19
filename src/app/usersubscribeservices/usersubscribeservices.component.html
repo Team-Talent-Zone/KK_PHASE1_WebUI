@@ -60,7 +60,10 @@
                     </p>
                 </div>
                 <p>
-                    <small class="pull-right">
+                    <small class="pull-right btn-danger" *ngIf="svc.validdays ==0 ">
+                        [{{svc.validdays}} days left]
+                    </small>
+                    <small class="pull-right btn-success" *ngIf="svc.validdays > 0 ">
                         [{{svc.validdays}} days left]
                     </small>
                 </p>

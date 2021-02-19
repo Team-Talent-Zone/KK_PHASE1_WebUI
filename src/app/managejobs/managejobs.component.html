@@ -204,15 +204,15 @@
                         </div>
                         <div>
                             <small>
+                                <b>Skill As: </b> {{newlyjob.subcategorylabel}}
+                            </small>
+                        </div>
+                        <div>
+                            <small>
                                 <b>{{ 'DASHBOARD_FU_BODY.TOTAL_HOURSOFWORK' | translate }} </b>
                                 {{newlyjob.totalhoursofjob}}
                             </small>
                         </div>
-                        <p>
-                            <small>
-                                <b>Skill As: </b> {{newlyjob.subcategorylabel}}
-                            </small>
-                        </p>
                         <div class="tooltips">
                             <a style="cursor:pointer" (click)="openReadMorePopup(newlyjob.jobdescription)"><i>
                                     {{ 'DASHBOARD_FU_BODY.JOBDESCPTION' | translate }}</i></a>
@@ -342,15 +342,15 @@
                         </div>
                         <div>
                             <small>
+                                <b>Skill As: </b> {{completedjob.subcategorylabel}}
+                            </small>
+                        </div>
+                        <div>
+                            <small>
                                 <b>{{ 'DASHBOARD_FU_BODY.TOTAL_HOURSOFWORK' | translate }} </b>
                                 {{completedjob.totalhoursofjob}}
                             </small>
                         </div>
-                        <p>
-                            <small>
-                                <b>Skill As: </b> {{completedjob.subcategorylabel}}
-                            </small>
-                        </p>
                         <div class="tooltips">
                             <a style="cursor:pointer" (click)="openReadMorePopup(completedjob.jobdescription)"><i>
                                     {{ 'DASHBOARD_FU_BODY.JOBDESCPTION' | translate }}</i></a>
