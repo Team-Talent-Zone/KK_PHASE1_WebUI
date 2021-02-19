@@ -316,7 +316,7 @@
   "ALERT_POPUP": {
     "SUCCESS": "Well Done !",
     "ERROR": "Sorry, something doesn't seem right!",
-    "INFO": "Information is incorrect"
+    "INFO": "Something need to check again!"
   },
   "DASHOARD_CBA_MAIN_BODY": {
     "SUBSCRIBEDSERVICES": "My Services",

@@ -1,40 +1,40 @@
 <nav class="navbar navbar-fixed-top navbar-toggleable-sm navbar-expand-md navbar-dark mb-3">
-    
-    <div class=" d-flex justify-content-center ">
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
         data-target="#collapsingNavbar"
         *ngIf="this.userService.currentUserValue.userroles.rolecode !== 'FREELANCER_USER'">
+        <span>
+            <i class="fa fa-search" aria-hidden="true" style="color:#FF4949"></i>
+        </span>
+    </button>
+    <a class="scroll-link" [routerLink]="['/dashboard']">
+        <img src="assets/img/logo-transparent.png" width="70" height="60"
+            class="rounded-circle d-inline-block align-top" alt="Kaam Karega Dashboard"></a>
+    <span class="logo-title mr-3">{{ 'HOMENAV.COMPANYNAMEPART1' | translate }}<span class="logo-u">{{
+                'HOMENAV.COMPANYNAMEPART2' | translate }}</span></span>
+    <button type="button" onclick="offcanvas()" class="hidden-sm-up navbar-toggler" data-toggle="offcanvas">
         <span class="navbar-toggler-icon"></span>
     </button>
-        <a class="scroll-link" style="border: 0;">
-            <img src="assets/img/logo-transparent.png" width="70" height="60"
-                class="rounded-circle d-inline-block align-top" alt="Kaam Karega Dashboard"></a>&nbsp;
-        <span class="logo-title">{{ 'HOMENAV.COMPANYNAMEPART1' | translate }}<span class="logo-u">{{
-                'HOMENAV.COMPANYNAMEPART2' | translate }}</span></span>
-        <button type="button" onclick="offcanvas()" class="hidden-sm-up navbar-toggler" data-toggle="offcanvas">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-    </div>
-    <div class="col-6"></div>
-    <div class="navbar-collapse collapse  justify-content-center" id="collapsingNavbar" style="padding: 10px;"
+    <div class="col-lg-6"></div>
+    <div class="navbar-collapse collapse" id="collapsingNavbar" style="padding:10px;"
         *ngIf="this.userService.currentUserValue.userroles.rolecode !== 'FREELANCER_USER' && this.userService.currentUserValue.userroles.rolecode !== 'DIRECTORS'">
-        <div class="col-md-10">
-            <input type="search" [(ngModel)]="inputItem" (ngModelChange)="getFilteredList()"
-                (keyup.enter)="search(inputItem)" class="form-control" (keyup)="onKeyPress($event);"
-                (blur)="toggleListDisplay(0)" (focus)="toggleListDisplay(1)"
-                placeholder="Search By Skilled Worker Skill & Hit Enter" [ngClass]="{'error': showError}">
-            <!--<span *ngIf="showError" class="error-text"><i>Invalid Selection.</i></span>-->
-            <div class="combobox-options" *ngIf="!listHidden">
-                <list-item class="nav-link" *ngFor="let item of filteredList;let i = index" (click)="selectItem(i)"
-                    [ngClass]="{'selected': i===selectedIndex}">
-                    <small>{{item.label}}</small>
-                </list-item>
+        <div class="row col-12">
+            <div class="col-10 col-lg-10 col-md-5">
+                <input type="search" [(ngModel)]="inputItem" (ngModelChange)="getFilteredList()"
+                    (keyup.enter)="search(inputItem)" class="form-control" (keyup)="onKeyPress($event);"
+                    (blur)="toggleListDisplay(0)" (focus)="toggleListDisplay(1)" placeholder="Search by skill name"
+                    [ngClass]="{'error': showError}">
+                <div class="col-11 combobox-options" *ngIf="!listHidden">
+                    <list-item class="nav-link rounded-pill" *ngFor="let item of filteredList;let i = index"
+                        (click)="selectItem(i)" [ngClass]="{'selected': i===selectedIndex}">
+                        <small>{{item.label}}</small>
+                    </list-item>
+                </div>
             </div>
-        </div>
-        <div class=" d-flex justify-content-center " >
-            <a type="submit" (click)="search(inputItem)" class="btn btn-sm btn-warning pull-right">
-                <i class="fa fa-search"></i>
-            </a>
+            <div class="col-2 col-lg-2 col-md-5">
+                <a type="submit" (click)="search(inputItem)" class="btn btn-md btn-warning pull-right">
+                    <i class="fa fa-search"></i>
+                </a>
+            </div>
         </div>
     </div>
 </nav>
@@ -161,18 +161,20 @@
             <div class="container">
                 <div class="bread-cumb">
                     <div class="row">
-                        <div class="col-xl-5 col-lg-5 col-md-5">
+                        <div class="col-12 col-lg-9 col-md-5">
                             <span><b>{{ 'DASHOARD_HEADER.WELCOMEBACK' | translate }}
                                     {{this.userService.currentUserValue.fullname}}</b></span>
                         </div>
-                        <div class="col-xl-6 col-lg-5 col-md-5">
+                        <div class="col-6 col-lg-2 col-md-5">
                             <span class="float-right">
                                 <small>
                                     <i class="fa fa-clock-o" aria-hidden="true"></i>
                                     {{indiaTime}}</small>
                             </span>
                         </div>
-                        <div class=" col-xl-1 col-lg-2 col-md-2 pull-right" style="padding: 7px;">
+                        <div class="col-3 d-block d-sm-none">
+                        </div>
+                        <div class=" col-3 col-lg-1 col-md-2 pull-right">
                             <a style="cursor:pointer" (click)='openNotifcationWindow()' *ngIf="notifcationbellList != null && notifcationbellList.length>0 && 
                              this.userService.currentUserValue.userroles.rolecode =='FREELANCER_USER' && 
                              this.userService.currentUserValue.freeLanceDetails.bgcurrentstatus == 'BG_APPROVED'">
@@ -196,7 +198,6 @@
                             this.userService.currentUserValue.userroles.rolecode !='DIRECTORS'">
                                 <i class="fa fa-comments-o">0</i>
                             </a>
-                            &nbsp;
                             <a routerLink='/vieworeditprofile/{{userService.currentUserValue.userId}}'>
                                 <img *ngIf="userService.currentUserValue.avtarurl != null && this.userService.currentUserValue.userroles.rolecode !='DIRECTORS'"
                                     class="avatar" src="{{userService.currentUserValue.avtarurl}}">

@@ -13,9 +13,9 @@
       <div class="tab-content">
         <div class="tab-pane active fade show" id="basic1">
           <small>
-            <table style="font-size: 15px;">
+            <table class="table table-hover table-borderless"> 
               <tr>
-                <th> Employee ID </th>
+                <th>Employee ID</th>
                 <td>{{usrdetailsObj.userId}}</td>
               </tr>
               <tr>
@@ -91,13 +91,13 @@
     <div *ngIf="usrdetailsObj.userroles.rolecode == 'CLIENT_BUSINESS_ADMINISTRATOR'">
       <ul class="nav nav-tabs">
         <li class="nav-item"><a class="nav-link small  active" href="#0b" data-toggle="tab">Basic</a></li>
-        <li class="nav-item"><a class="nav-link small " href="#4b" data-toggle="tab"> Business</a>
+        <li class="nav-item"><a class="nav-link small " href="#4b" data-toggle="tab">Business</a>
         </li>
       </ul>
       <div class="tab-content">
         <div class="tab-pane active fade show" id="0b">
           <small>
-            <table style="font-size: 15px;">
+            <table class="table table-hover table-borderless">
               <tr>
                 <th> Client ID </th>
                 <td>{{usrdetailsObj.userId}}</td>
@@ -164,7 +164,7 @@
         </div>
         <div class="tab-pane " id="4b">
           <small>
-            <table style="font-size: 15px;" >
+            <table class="table table-hover table-borderless">
               <tr>
                 <th>Business Name </th>
                 <td> {{usrdetailsObj.userbizdetails.bizname}}</td>
@@ -211,7 +211,7 @@
       <div class="tab-content col-md-12">
         <div class="tab-pane active" id="basic">
           <small>
-            <table style="font-size: 15px;">
+            <table class="table table-hover table-borderless">
               <tr>
                 <th>Skilled Worker ID </th>
                 <td>{{usrdetailsObj.userId}}</td>
@@ -279,7 +279,7 @@
         </div>
         <div class="tab-pane" id="1b">
           <small>
-            <table style="font-size: 15px;">
+            <table class="table table-hover table-borderless"> 
               <tr *ngFor="let referencelookupmap of signupComponent.referencedetailsmap">
                 <th *ngIf="referencelookupmap.mapId == usrdetailsObj.freeLanceDetails.category">Skill Under Category
                 </th>
@@ -386,7 +386,7 @@
         </div>
         <div class="tab-pane " id="2b">
           <small>
-            <table  class="table table-bordered table-hover table-sm table-striped table-responsive" style="font-size: 15px;" *ngIf="usrdetailsObj.freelancehistoryentity.length > 0">
+            <table  class="table table-hover table-sm table-striped" *ngIf="usrdetailsObj.freelancehistoryentity.length > 0">
               <tr>
                 <th>Decision By</th>
                 <th>Decision On</th>
@@ -419,7 +419,7 @@
         </div>
         <div class="tab-pane" id="3b">
           <small>
-            <table class="table table-bordered table-hover table-sm table-striped table-responsive" style="font-size: 15px;">
+            <table class="table table-hover table-sm table-striped">
               <tr>
                 <th>Document Name</th>
                 <th>Uploaded Date</th>

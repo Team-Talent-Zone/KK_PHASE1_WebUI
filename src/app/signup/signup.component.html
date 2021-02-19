@@ -177,8 +177,8 @@
   </div>
   <!-- Modal footer -->
   <div class="modal-footer">
-    <a (click)="openLoginModal()" 
-      class="btn float-left"><u>{{'HOMESIGNUP.ALREADY_GOTACCOUNT' | translate}}</u></a>
+    <a (click)="openLoginModal()"  href="javascript: return false;"
+      class="text-wrap"><u>{{'HOMESIGNUP.ALREADY_GOTACCOUNT' | translate}}</u></a>
     <button class="btn btn-sm btn-success rounded-pill"
       type="submit">{{'HOMESIGNUP.SIGNUP_SUBMIT_BUTTON' | translate}}</button>
     <button type="button" class="btn btn-sm btn-danger rounded-right" (click)="modalRef.hide()">{{'HOMESIGNUP.SIGNUP_CLOSE_BUTTON' |

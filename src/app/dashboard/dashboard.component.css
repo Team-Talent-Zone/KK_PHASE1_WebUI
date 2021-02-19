@@ -1,4 +1,5 @@
 
+
 /*
  * Off Canvas at medium breakpoint
  * --------------------------------------------------
@@ -128,8 +129,6 @@
   position: absolute;
   text-align: center;
   background-color: rgb(202, 198, 198);
-  width: 310px;
-  overflow-y: scroll;
   z-index: 1;
   cursor: pointer;
 }
@@ -137,11 +136,6 @@
 .selected {
   color: cornsilk;
   background-color: rgb(165, 112, 112);
-}
-
-input:placeholder-shown {
-  font-style: italic;
-  font-size: small;
 }
 
 .background {

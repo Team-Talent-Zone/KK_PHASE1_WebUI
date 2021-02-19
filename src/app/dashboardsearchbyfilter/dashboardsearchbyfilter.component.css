@@ -13,10 +13,6 @@
   outline: none;
 }
 
-input:placeholder-shown {
-  font-style: italic;
-  font-size: small;
-}
 
 .btn-primary {
   color: #fff;
@@ -216,3 +212,8 @@ section .section-title {
   display: flex;
   align-items: center;
 }
+/*
+input:placeholder-shown {
+  font-style: italic;
+  font-size: small;
+}*/
