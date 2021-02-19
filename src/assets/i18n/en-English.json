@@ -2,7 +2,7 @@
   "HOMENAV": {
     "COMPANYNAMEPART1": "Kaam",
     "COMPANYNAMEPART2": "Karega",
-    "ABOUTUS": "About Us",
+    "ABOUTUS": "About KK",
     "ONBOARD": "OnBoarding",
     "SERVICE": "Our Services",
     "PRICING": "Pricing",
@@ -35,15 +35,15 @@
     "LATESTUPDATE_LINE4": "SignUp is FREE."
   },
   "HOMEWHATWEDO": {
-    "ABOUTUS": "ABOUT US",
+    "ABOUTUS": "ABOUT KK",
     "WHOWEARE": "Who Are We",
     "WHOWEARE_DETAILS": "Kaam Karega is the prime web based software offering organization in the market today.By improving collaboration & interaction we change the way you require or render service.Providing a scalable and robust platform for your all services, we help organizations and users succeed hand in hand. We also help Skilled Workers to obtain satisfying jobs which help create a reputation in the market and also pay well.",
     "WHATWEDO": "What We Do",
     "WHATWEDO_DETAILS": "Kaam Karega provides an excellent platform for your business to acquire premium exposure to larger markets by increasing operational efficiency and solving complex business problems with ease. Kaam Karega provides a fully hosted cloud based software solution incorporating the latest market trends and efficient workforce. By collaborating & interacting upfront with our customers we change the way you require or render service. In simple words, Kaam Karega is a one-stop solution for all your service needs, working as a fully personalized web hosting software solution.",
     "HOWDOWEGETITDONE": "How We Get It Done",
     "HOWDOWEGETITDONE_DETAILS": "Organize all customers and users with enhanced CRM (Customer Relationship Management). Actively updating the repository of verified users and reliable customers. Matchup users with projects to pitch in ideas, submit work and instantly receive payment – All in one place.",
-    "WHOITHELPS": "Who It Helps",
-    "WHOITHELPS_DETAILS": "We help organizations,small and medium scale businesses to maintain,manage and organize their business feature or capabilities in a proper channel with personalized cloud based web software solution.It efficiently saves Time,Effort and Money. We help skilled workers the opportunity to work with top-brands and high quality projects.Delivering compelling & personalized experience in every interaction with us.We support English,Telugu and Hindi language skilled worker dashboard flexibility."
+    "WHOITHELPS": "Who We Serve",
+    "WHOITHELPS_DETAILS": "We help small, midsized and large scale businesses to maintain, manage and organize their business feature or capabilities in a proper channel with personalized cloud based web software solution. It efficiently saves time,effort and money. We help skilled workers by providing the opportunity to work with top-brands and high quality projects. Delivering compelling & personalized experience in every interaction with us. We support skilled worker dashboard in english,telugu and hindi languages."
   },
   "HOMESIGNUP": {
     "SIGNUP": "Create a Client account",
@@ -315,8 +315,8 @@
   },
   "ALERT_POPUP": {
     "SUCCESS": "Well Done !",
-    "ERROR": "Oh Snap !",
-    "INFO": "Something went wrong.."
+    "ERROR": "Sorry, something doesn't seem right!",
+    "INFO": "Information is incorrect"
   },
   "DASHOARD_CBA_MAIN_BODY": {
     "SUBSCRIBEDSERVICES": "My Services",
