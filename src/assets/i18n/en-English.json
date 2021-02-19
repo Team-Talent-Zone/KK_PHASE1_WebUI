@@ -90,8 +90,8 @@
     "LOGIN_FWD_LABEL":"We will send you an email with temporary password that will allow you to login."
   },
   "ONBOARD": {
-    "OURCUSTOMERS": "Our Customers",
-    "CLIENTONBOARD": "Client On Board",
+    "OURCUSTOMERS": "On Boarding",
+    "CLIENTONBOARD": "Client",
     "CLIENT": "At Kaam Karega our first step is spent creating the best software infrastructure for your project. That is outlining the goals and assembling the best technology team possible to help you accomplish those goals. The solid planning will be the foundation upon which our entire customer onboarding program will depend. For the success of our customer, we also train the client to use our product. This would give customers a sense of confidence in collaborating with us. We guide our customers as frictionless as possible to their success. Our Subject matter experts (SME’s) get involved with the clients from the very early stages of onboarding, which will help in establishing a strong relationship, and pave our way in creating the content & selecting the right framework which would be very fruitful for the client. The team goes under a lot of research in developing the best software.",
     "CLIENT1": "COMPANY NAME also connects your business to a nationwide community of freelancers who thrive nothing more than to help your business succeed. Discover top rated and reviewed experts for every skill imaginable - this discovery could change your business forever. Explore different payment features, giving you the freedom to test ideas cost effectively. Once you're happy with the results, we carefully verify every freelancer before allowing them onto our platform. This guarantees you'll be working with an expert in their field of work. Above all, every freelancer is highly-rated and reviewed by expert community. Outsource your tasks risk-free with us and collaborate with freelancers around.",
     "CLIENT2": " If there's ever an issue, we'll help you fix it.",
@@ -113,7 +113,7 @@
     "JOBASSIGNMENT1": "Waiting is painful. To avoid, we have designed an automated system which always connect with you by sending job notification based on your skills. Grab IT, Accept IT, Finish IT."
   },
   "SKILLEDWORKERREVIEW": {
-    "SWORKER_REVIEW_HEADERLABEL": "See what our customers say about skilled workers",
+    "SWORKER_REVIEW_HEADERLABEL": "See what our clients say about skilled workers",
     "SWORKER_BUTTON_READFULL": "Read More"
   },
   "SERVICE": {

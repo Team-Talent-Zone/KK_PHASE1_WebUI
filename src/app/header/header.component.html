@@ -44,7 +44,8 @@
           </a>
         </li>
         <li class="nav-item mr-4">
-          <a class="nav-link scroll-link" (click)="openLoginModal()"><i class="fas fa-sign-in-alt"></i>
+          <a class="nav-link scroll-link" href="javascript: return false;" (click)="openLoginModal();Removeclass()"><i
+              class="fas fa-sign-in-alt"></i>
             {{ 'HOMENAV.LOGIN' | translate }}</a>
         </li>
         <li class="nav-item dropdown  d-md-block d-lg-none d-sm-none mr-4">
@@ -67,7 +68,7 @@
                     <div class="mt-md-4"> </div>
                     <button (click)="openSignupModal('cba')" type="button" class="btn btn-primary"
                       style="color:white;border-color: white;">
-                     <i class="fa fa-user-plus">{{ 'HOMENAV.SIGNUP_MODALWINDOW_CLIENT_BUTTON_LABEL' |
+                      <i class="fa fa-user-plus">{{ 'HOMENAV.SIGNUP_MODALWINDOW_CLIENT_BUTTON_LABEL' |
                       translate }} </i> </button>
                   </div>
                 </div>
@@ -238,7 +239,6 @@
       </div>
     </div>
 
-
     <div class="carousel-item">
       <img class="d-block w-100" src="assets/img/backgrounds/ban6.jpg" data-holder-rendered="true">
       <div class="carousel-caption d-block d-sm-none">
@@ -337,10 +337,10 @@ Announcement Section
       <u>{{ 'HOMENAV.LATESTUPDATE_LINE4' | translate }}</u>
     </a>
   </p>
-  <p *ngIf="list != null">
+  <p *ngIf="list != null" class="btn-info">
     <span *ngFor="let item of list; let i = index ">
       <small>{{item.label}}</small>
-      <span *ngIf="i != list.length - 1">,</span>
+      <span *ngIf="i != list.length - 1">, </span>
     </span>
   </p>
 </div>
