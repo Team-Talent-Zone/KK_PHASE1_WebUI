@@ -1,6 +1,6 @@
 <h4>Manage Users</h4>
 <hr>
-<div class="row mb-4  justify-content-between">
+<div class="row mb-3  justify-content-between">
     <div class="col-xl-2 col-sm-6 py-2">
         <div class="card bg-success text-white h-100">
             <div class="card-body bg-warning">
@@ -61,7 +61,7 @@
     <section class="container py-4">
         <div class="row">
             <div class="col-md-12">
-                <ul id="tabs" class="nav nav-tabs">
+                <ul id="tabs" class="nav nav-tabs mb-2">
                     <li class="nav-item"><a href="" data-target="#myworktab" data-toggle="tab"
                             class="nav-link medium text-uppercase active"><b>My Work</b></a></li>
                     <li class="nav-item"><a href="" data-target="#cbatab" data-toggle="tab"
@@ -71,7 +71,7 @@
                     <li class="nav-item"><a href="" data-target="#admintab" data-toggle="tab"
                             class="nav-link medium text-uppercase"><b>Administrators</b></a></li>
                 </ul>
-                <div id="tabsContent" class="tab-content">
+                <div id="tabsContent " class="tab-content">
                     <div id="myworktab" class="tab-pane active fade show">
                         <span>
                             <div class="col-md-12 bg-search">
@@ -79,8 +79,7 @@
                                     class="form-control col-md-3" placeholder="Search by name">
                             </div>
                         </span>
-                        <br>
-                        <table id="userMYTasktable" class="table table-hover table-sm table-striped">
+                         <table id="userMYTasktable" class="table table-hover table-sm table-striped">
                             <thead *ngIf="usrObjMyWork != ''">
                                 <tr>
                                     <th>Name</th>
@@ -129,7 +128,6 @@
                                     class="form-control col-md-3" placeholder="Search by name">
                             </div>
                         </span>
-                        <br>
                         <table id="userCBAtable" class="table table-hover table-sm table-striped">
                             <thead>
                                 <tr>
@@ -327,7 +325,6 @@
                                     class="form-control col-md-3" placeholder="Search by name">
                             </div>
                         </span>
-                        <br>
                         <table id="userAdmintable" class="table table-hover table-sm table-striped">
                             <thead>
                                 <tr>

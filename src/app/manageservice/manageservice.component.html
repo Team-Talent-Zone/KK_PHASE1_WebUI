@@ -1,6 +1,6 @@
 <h4>Manage New Services</h4>
 <hr>
-<div class="row mb-4  justify-content-between">
+<div class="row mb-3  justify-content-between">
     <div class="col-xl-2 col-sm-6 py-2">
         <div class="card bg-success text-white h-100">
             <div class="card-body bg-warning">
@@ -50,7 +50,7 @@
     <section class="container py-4">
         <div class="row">
             <div class="col-md-12">
-                <ul id="tabs" class="nav nav-tabs">
+                <ul id="tabs" class="nav nav-tabs mb-2" >
                     <li class="nav-item"><a href="" data-target="#myworktab" data-toggle="tab"
                             class="nav-link medium text-uppercase active"><b>My Task</b></a></li>
                     <li class="nav-item"><a href="" data-target="#underprogresstab" data-toggle="tab"
@@ -63,16 +63,14 @@
                 <br>
                 <div id="tabsContent" class="tab-content">
                     <div id="myworktab" class="tab-pane active fade show">
-
                         <span>
                             <div class="col-md-12 bg-search">
                                 <input type="text" class="form-control col-md-3" id="myTaskServiceReview"
                                     onkeyup="manageServicesTableSearch('review')" placeholder="Search by service name">
                             </div>
                         </span>
-                        <br>
                         <table id="myNewServiceReviewTable"
-                            class="table table-bordered table-hover table-sm table-striped">
+                            class="table table-hover table-sm table-striped">
                             <thead *ngIf="myNewServiceForReview.length > 0">
                                 <tr>
                                     <th>Name</th>
@@ -160,9 +158,8 @@
                                     placeholder="Search by service name">
                             </div>
                         </span>
-                        <br>
                         <table id="mypendingserviceTable"
-                            class="table table-bordered table-hover table-sm table-striped">
+                            class="table table-hover table-sm table-striped">
                             <thead *ngIf="listOfAllPendingNewServices.length > 0;">
                                 <tr>
                                     <th>Name</th>
@@ -234,9 +231,8 @@
                                     placeholder="Search by service name">
                             </div>
                         </span>
-                        <br>
                         <table id="approvedServiceTable"
-                            class="table table-bordered table-hover table-sm table-striped">
+                            class="table table-hover table-sm table-striped">
                             <thead *ngIf="listOfAllApprovedNewServices.length > 0">
                                 <tr>
                                     <th>Name</th>
@@ -311,7 +307,6 @@
                         </table>
                     </div>
                     <div id="rejectedtab" class="tab-pane fade ">
-
                         <span>
                             <div class="col-md-12 bg-search">
 
@@ -320,7 +315,6 @@
                                     placeholder="Search by service name">
                             </div>
                         </span>
-                        <br>
                         <table id="rejectedServicesTable"
                             class="table table-bordered table-hover table-sm table-striped">
                             <thead *ngIf="listOfAllRejectedNewServices.length > 0">

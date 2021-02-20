@@ -1,79 +1,87 @@
-<div class="container">
-    <h5 style="margin: 15px;">
+<div class="modal-header">
+    <h5 class="modal-title">
         Background Verification Form of {{usrdetailsObj.firstname}}&nbsp;{{usrdetailsObj.lastname}}
         &nbsp;-&nbsp;{{usrdetailsObj.userId}}
     </h5>
-    <button type="button" class="close" (click)="modalRef.hide()">&times;</button>
+    <button type="button" class="btn btn-sm btn-danger" (click)="modalRef.hide()">&times;</button>
+</div>
+<div class="modal-body">
     <small>
         <ul class="nav nav-tabs">
-            <li class="nav-item"><a class="nav-link medium active" href="#workflow" data-toggle="tab"><b>Workflow
+            <li class="nav-item"><a class="nav-link small active" href="#workflow" data-toggle="tab"><b>Workflow
                         Decision</b></a></li>
-            <li class="nav-item"><a class="nav-link medium" href="#history" data-toggle="tab"><b>Background Check
+            <li class="nav-item"><a class="nav-link small" href="#history" data-toggle="tab"><b>Background Check
                         Comments History</b></a></li>
-            <li class="nav-item"><a class="nav-link medium" href="#verify" data-toggle="tab"> <b>Background Check
+            <li class="nav-item"><a class="nav-link small" href="#verify" data-toggle="tab"> <b>Background Check
                         Documents</b></a></li>
         </ul>
     </small>
     <div class="tab-content">
         <div class="tab-pane active fade show" id="workflow">
-            <form [formGroup]="bgverificationForm" (ngSubmit)="preparebgverfiDetailstoSave()">
-                <div class="form-group col-md-12"
-                    *ngIf="userService.currentUserValue.userroles.rolecode == 'CORE_SERVICE_SUPPORT_MANAGER'">
-                    <select #sel class="form-control" formControlName="bgstatus"
-                        [ngClass]="{ 'is-invalid': issubmit && f.bgstatus.errors }">
-                        <option value="">--Select Decision --</option>
-                        <option value="BG_APPROVED"> Approved</option>
-                        <option value="BG_REJECTED"> Rejected</option>
-                        <option value="BG_SENTTOCSST">Sent Back to CSST</option>
-                    </select>
-                    <div *ngIf="issubmit && f.bgstatus.errors" class="invalid-feedback">
-                        <div *ngIf="f.bgstatus.errors.required">Decision is required
+            <div class="card-body py-md-4">
+                <small>
+                    <form [formGroup]="bgverificationForm" (ngSubmit)="preparebgverfiDetailstoSave()">
+                        <div class="form-group col-md-12"
+                            *ngIf="userService.currentUserValue.userroles.rolecode == 'CORE_SERVICE_SUPPORT_MANAGER'">
+                            <select #sel class="form-control" formControlName="bgstatus"
+                                [ngClass]="{ 'is-invalid': issubmit && f.bgstatus.errors }">
+                                <option value="">--Select Decision --</option>
+                                <option value="BG_APPROVED"> Approved</option>
+                                <option value="BG_REJECTED"> Rejected</option>
+                                <option value="BG_SENTTOCSST">Sent Back to CSST</option>
+                            </select>
+                            <div *ngIf="issubmit && f.bgstatus.errors" class="invalid-feedback">
+                                <div *ngIf="f.bgstatus.errors.required">Decision is required
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>Comment*</label>
-                    <textarea class="form-control" cols="120" formControlName="bgcomment"
-                        [ngClass]="{ 'is-invalid': issubmit && f.bgcomment.errors }"></textarea>
-                    <div *ngIf="issubmit && f.bgcomment.errors" class="invalid-feedback">
-                        <div *ngIf="f.bgcomment.errors.required">Comment is required
+                        <div class="form-group">
+                            <label>Comment*</label>
+                            <textarea class="form-control" cols="120" formControlName="bgcomment"
+                                [ngClass]="{ 'is-invalid': issubmit && f.bgcomment.errors }"></textarea>
+                            <div *ngIf="issubmit && f.bgcomment.errors" class="invalid-feedback">
+                                <div *ngIf="f.bgcomment.errors.required">Comment is required
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="form-group"
-                    *ngIf="additiondocreturnURL != null && userService.currentUserValue.userroles.rolecode == 'CORE_SERVICE_SUPPORT_TEAM'">
-                    <label>Document Name*</label>
-                    <input type="text" formControlName="docname" class="form-control"
-                        [ngClass]="{ 'is-invalid': issubmit && f.docname.errors }">
-                    <div *ngIf="issubmit && f.docname.errors" class="invalid-feedback">
-                        <div *ngIf="f.docname.errors.required">Document name is required
+                        <div class="form-group"
+                            *ngIf="additiondocreturnURL != null && userService.currentUserValue.userroles.rolecode == 'CORE_SERVICE_SUPPORT_TEAM'">
+                            <label>Document Name*</label>
+                            <input type="text" formControlName="docname" class="form-control"
+                                [ngClass]="{ 'is-invalid': issubmit && f.docname.errors }">
+                            <div *ngIf="issubmit && f.docname.errors" class="invalid-feedback">
+                                <div *ngIf="f.docname.errors.required">Document name is required
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="avatar-upload">
-                    <div class="avatar-edit">
-                        <input type='file' accept=".pdf, .zip" #fileInput (change)="uploadFile($event)" />
-                    </div>
-                    <a style="color:blue" href="{{additiondocreturnURL}}" target="_blank" download
-                        *ngIf="additiondocreturnURL != null"> <small><i class="fa fa-file"> Download File </i> </small></a>
-                </div>
-                
-                <div class="row col-10">
-                    <button type="button"
-                        *ngIf="userService.currentUserValue.userroles.rolecode == 'CORE_SERVICE_SUPPORT_TEAM'"
-                        class="btn btn-info btn-sm" (click)="fileInput.click()">
-                        <i class="fa fa-cloud-upload" aria-hidden="true"></i> Upload Document
-                    </button>
-                    <p>
-                        <small class="text-muted">File must be smaller than 2 MB size. it accept one file as *.pdf
-                            and
-                            multiple files as *.zip</small>
-                    </p>
-                </div>
-                <div class="row col-10">
-                    <button class="btn btn-primary" type="submit">Save</button>
-                </div>
-            </form>
+                        <div class="avatar-upload">
+                            <div class="avatar-edit">
+                                <input type='file' accept=".pdf, .zip" #fileInput (change)="uploadFile($event)" />
+                            </div>
+                            <a style="color:blue" href="{{additiondocreturnURL}}" target="_blank" download
+                                *ngIf="additiondocreturnURL != null"> <small><i class="fa fa-file"> Download File </i>
+                                </small></a>
+                        </div>
+
+                        <div class="row col-10">
+                            <button type="button"
+                                *ngIf="userService.currentUserValue.userroles.rolecode == 'CORE_SERVICE_SUPPORT_TEAM'"
+                                class="btn btn-info btn-sm" (click)="fileInput.click()">
+                                <i class="fa fa-cloud-upload" aria-hidden="true"></i> Upload Document
+                            </button>
+                            <p>
+                                <small class="text-muted">File must be smaller than 2 MB size. it accept one file as
+                                    *.pdf
+                                    and
+                                    multiple files as *.zip</small>
+                            </p>
+                        </div>
+                        <div class="pull-right">
+                            <button class="btn btn-sm btn-primary pull-right" type="submit">Save Changes</button>
+                        </div>
+                    </form>
+                </small>
+            </div>
         </div>
 
         <div class="tab-pane fade in active" id="history">
