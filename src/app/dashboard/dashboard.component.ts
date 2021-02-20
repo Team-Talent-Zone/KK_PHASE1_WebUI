@@ -12,12 +12,10 @@ import { PaymentService } from '../AppRestCall/payment/payment.service';
 import { ReferenceService } from '../AppRestCall/reference/reference.service';
 import { map } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
-import { DatePipe } from '@angular/common';
 import { timer } from 'rxjs';
-import { ModalOptions } from 'ngx-bootstrap';
 import { ReadMorePopupComponent } from '../read-more-popup/read-more-popup.component';
 import { ConfigMsg } from '../appconstants/configmsg';
-import { MatomoInjector, MatomoTracker } from 'ngx-matomo';
+import { MatomoTracker } from 'ngx-matomo';
 import { CommonUtility } from '../adapters/commonutility';
 
 @Component({
@@ -280,7 +278,7 @@ export class DashboardComponent implements OnInit {
     this.router.navigate(['/home']);
   }
 
-  search(inputItem: string, inputCode: string) {
+  search(inputItem: string) {
     this.templist = [];
     if (inputItem == null) {
       this.alertService.info(ConfigMsg.searh_empty);
