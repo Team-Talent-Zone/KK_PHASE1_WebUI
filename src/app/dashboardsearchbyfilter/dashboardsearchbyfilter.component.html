@@ -179,9 +179,6 @@
                     <div class="form-row">
                         <div class="col-md-3">
                             <label><b>Total Hours Of Work</b>&nbsp;
-                                <i class="fa fa-info-circle"
-                                    title="Enter hours of work will calcuate the job end date automatically"
-                                    style="color:rgb(76, 0, 255)"></i>
                             </label>
                             <span>
                                 <i class="fa fa-clock-o form-control-icon"></i>
@@ -203,6 +200,9 @@
                                 <div *ngIf="f.totalhoursofjob.errors.pattern">Must be digit only
                                 </div>
                             </div>
+                            <small>
+                                By entering this value will estimate job end date.
+                            </small>
                         </div>
                     </div>
                 </div>
@@ -210,36 +210,34 @@
                     <div class="form-row">
                         <div class="col-md-3">
                             <label><b>Job Start Date</b>&nbsp;
-                                <i class="fa fa-info-circle" title="We setup the time at 10:00 AM"
-                                    style="color:rgb(76, 0, 255)"></i>
                             </label>
                             <span>
                                 <i class="fa fa-calendar   form-control-icon"></i>
                             </span>
                             <input formControlName="jobstartedon" class="form-control" readonly>
+                            <small>
+                                Default setup time is at 10:00 AM
+                            </small>
                         </div>
                         <div class="col-md-5">
                             <label><b>Job End Date</b>&nbsp;
-                                <i class="fa fa-info-circle"
-                                    title="The end date auto generated based on the hours of work "
-                                    style="color:rgb(76, 0, 255)"></i>
                             </label>
                             <span>
                                 <i class="fa fa-calendar   form-control-icon"></i>
                             </span>
                             <input readonly formControlName="jobendedon" class="form-control">
-                            <p *ngIf="enddatevalue != null">
-                                <i class="fa fa-info-circle"></i>
-                                <small>
-                                    Our auto estimated end date & time : {{enddatevalue}}
-                                </small>
-                            </p>
+                            <small *ngIf="enddatevalue != null">
+                                Our auto estimated end date & time : {{enddatevalue}}.
+                                <p>
+                                        We add an additional one hour buffer time to the end data and time.
+                                </p>
+                            </small>
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="form-row">
-                        <div class="col-md-3">
+                        <div class="col-md-8">
                             <label> <b> Enter price your estimating </b></label>&nbsp;
                             <span>
                                 <i class="fa fa-clock-o form-control-icon"></i>
@@ -255,11 +253,12 @@
                                 </div>
                             </div>
                             <p *ngIf=" avgHourlyRate != null">
-                                <small>Our auto estimated quote of amount between {{avgHourlyRate}} and
-                                    {{maxHourlyRateCal}}
-                                    <i class="fa fa-info-circle"
-                                        title="We calcuate estimated rates based on the hours of the work entered"
-                                        style="color:rgb(76, 0, 255)"></i>
+                                <small>As per our auto estimator system, the amount must in between [{{avgHourlyRate}} and
+                                    {{maxHourlyRateCal}}]
+                                    <p>
+                                        Estimate rates is based on the total hours entered. (i.e for {{totalhoursofjob}}
+                                        hours only).
+                                    </p>
                                 </small>
                             </p>
                         </div>

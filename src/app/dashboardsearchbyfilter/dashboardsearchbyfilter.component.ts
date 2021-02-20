@@ -60,6 +60,7 @@ export class DashboardsearchbyfilterComponent implements OnInit {
   lng: number;
   cityElementOne: string;
   cityElementTwo: string;
+  totalhoursofjob : number;
 
   maxHourlyRateCal: number;
 
@@ -291,6 +292,7 @@ export class DashboardsearchbyfilterComponent implements OnInit {
 
   addHoursToJobStartDateAndMinMaxAmount(event: any) {
     var hours = event.target.value;
+    this.totalhoursofjob = hours;
     var totalhours = (Number.parseInt(hours) + this.bufferhours);
     var jobEndDate = new Date();
     jobEndDate.setTime(this.startdate.getTime() + (totalhours * 60 * 60 * 1000));

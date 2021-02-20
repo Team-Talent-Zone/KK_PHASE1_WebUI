@@ -95,7 +95,7 @@ export const ConfigMsg = {
     saveservice_msg_4: " is a part of this package . We have found ",
     saveservice_msg_5: " as individual service already been subscribed.",
     search_job_msg_1: " is created successfully. Go to New Job Tab to activate. ",
-    search_job_msg_2: "The amount must greater than ",
+    search_job_msg_2: "The amount must greater than or equal to  ",
     search_job_msg_3: "Complete the profile before creating a job for ",
     search_job_msg_4: ", Go to Edit Profile",
     search_job_msg_5: "Purchase the skilled worker search service before creating a job for ",
