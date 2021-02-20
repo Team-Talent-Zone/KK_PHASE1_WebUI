@@ -162,3 +162,10 @@ h5 {
   background-color: #f9f9f9;
   box-shadow: 0 0 10px 5px #0a382b;
 }
+
+.box-shadow-small {
+  border: 1.9px solid #ff4949;
+  height: 250px;
+  background-color: #0a382b;
+  color: white;
+}
