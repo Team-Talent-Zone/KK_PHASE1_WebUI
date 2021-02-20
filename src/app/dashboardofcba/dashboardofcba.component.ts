@@ -13,6 +13,8 @@ import { UsersrvdetailsService } from '../AppRestCall/userservice/usersrvdetails
 import { BsModalService, ModalOptions, BsModalRef } from 'ngx-bootstrap/modal';
 import { Router } from '@angular/router';
 import { ReadMorePopupComponent } from '../read-more-popup/read-more-popup.component';
+import { CommonUtility } from '../adapters/commonutility';
+import { ConfigMsg } from '../appconstants/configmsg';
 
 @Component({
   selector: 'app-dashboardofcba',
@@ -30,11 +32,8 @@ export class DashboardofcbaComponent implements OnInit {
   userservicedetailsAddedList: any = [];
   userservicedetailsExistingIds: any = [];
   domainServiceProviderObj: any = [];
-  configsmall: ModalOptions = {
-    class: 'modal-sm', backdrop: 'static',
-    keyboard: false
-  };
-  configlarge: ModalOptions = {
+
+  configlarge1: ModalOptions = {
     class: 'modal-lg', backdrop: 'static',
     keyboard: false
   };
@@ -44,7 +43,7 @@ export class DashboardofcbaComponent implements OnInit {
   listOfServicesForCheckOut: any = [];
   fullContent: any[];
   configuration: any;
-  
+
   constructor(
     private referService: ReferenceService,
     public userService: UserService,
@@ -56,6 +55,7 @@ export class DashboardofcbaComponent implements OnInit {
     private usersrvDetails: UsersrvdetailsService,
     private router: Router,
     private modalService: BsModalService,
+    public commonlogic: CommonUtility
   ) {
   }
 
@@ -102,7 +102,6 @@ export class DashboardofcbaComponent implements OnInit {
             var array = element.fullcontent.split(',');
             element.fullcontent = array;
             this.listOfAllApprovedNewServices.push(element);
-            //this.mapByDomain(element);
           });
         }
         this.spinnerService.hide();
@@ -127,30 +126,25 @@ export class DashboardofcbaComponent implements OnInit {
     }
   }
 
-  // tslint:disable-next-line: max-line-length
   prepareSaveUserServiceForServiceId(ourserviceid: number, packwithotherourserviceid: number, amount: number, validPeriodLabel: string, validPeriodCode: string, serviceendon: string, servicestarton: string) {
     if (this.userService.currentUserValue.phoneno === null) {
-      this.alertService.info('Complete the profile before proceeding.. Go to Edit Profile');
+      this.alertService.info(ConfigMsg.editprofile_msg);
       return;
     }
     let isServiceAlreadyExist = false;
     var isInsideCart = this.userservicedetailsAddedList.filter(item => item.ourserviceId === packwithotherourserviceid);
     if (isInsideCart.length > 0) {
-      // tslint:disable-next-line: max-line-length
-      this.alertService.info(isInsideCart[0].name + ' is a part of this package . We have found ' + isInsideCart[0].name + ' as individual service in the cart.Please remove the ' + isInsideCart[0].name + ' from the cart before adding this package');
+      this.alertService.info(isInsideCart[0].name + ConfigMsg.saveservice_msg_1 + isInsideCart[0].name + ConfigMsg.saveservice_msg2 + isInsideCart[0].name + ConfigMsg.saveservice_msg_3);
       isServiceAlreadyExist = true;
     } else {
       var isAlreadySubService = this.userservicedetailsList.filter(item => item.ourserviceId === packwithotherourserviceid);
       if (isAlreadySubService.length > 0) {
-        // tslint:disable-next-line: max-line-length
-        this.alertService.info(isAlreadySubService[0].name + ' is a part of this package . We have found ' + isAlreadySubService[0].name + ' as individual service already been subscribed.');
+        this.alertService.info(isAlreadySubService[0].name + ConfigMsg.saveservice_msg_4 + isAlreadySubService[0].name + ConfigMsg.saveservice_msg_5);
         isServiceAlreadyExist = true;
       }
     }
     if (!isServiceAlreadyExist) {
-
       if (packwithotherourserviceid != null) {
-        // tslint:disable-next-line: max-line-length
         this.saveUserServiceDetailsForServicePkg(packwithotherourserviceid, ourserviceid, amount, validPeriodLabel, validPeriodCode, serviceendon, servicestarton);
       } else {
         this.saveUserServiceDetailsForIndividual(ourserviceid, amount, validPeriodLabel, validPeriodCode, serviceendon, servicestarton);
@@ -158,7 +152,6 @@ export class DashboardofcbaComponent implements OnInit {
     }
   }
 
-  // tslint:disable-next-line: max-line-length
   private saveUserServiceDetailsForIndividual(ourserviceid: number, amountval: number, validPeriodLabelVal: string, validPeriodCodeVal: string, serviceendonval: string, servicestartonval: string) {
     this.spinnerService.show();
     this.referService.getReferenceLookupByShortKey(config.user_service_status_paymentpending_shortkey.toString()).subscribe(
@@ -190,7 +183,6 @@ export class DashboardofcbaComponent implements OnInit {
           });
       });
   }
-  // tslint:disable-next-line: max-line-length
   private saveUserServiceDetailsForServicePkg(packwithotherourserviceid: number, ourserviceid: number, amountval: number, validPeriodLabelVal: string, validPeriodCodeVal: string, serviceendonval: string, servicestartonval: string) {
     this.spinnerService.show();
     this.referService.getReferenceLookupByShortKey(config.user_service_status_paymentpending_shortkey.toString()).subscribe(
@@ -269,7 +261,7 @@ export class DashboardofcbaComponent implements OnInit {
     };
     this.modalRef = this.modalService.show(UserservicecartComponent, Object.assign(
       {},
-      this.configlarge,
+      this.commonlogic.configlg,
       {
         initialState
       }
@@ -284,9 +276,9 @@ export class DashboardofcbaComponent implements OnInit {
       contentList: contentListFeatures,
     };
     if (fullcontent == null) {
-      this.configuration = this.configsmall
+      this.configuration = this.commonlogic.configsmall
     } else {
-      this.configuration = this.configlarge
+      this.configuration = this.commonlogic.configlg
     };
     this.modalRef = this.modalService.show(ReadMorePopupComponent, Object.assign(
       {},

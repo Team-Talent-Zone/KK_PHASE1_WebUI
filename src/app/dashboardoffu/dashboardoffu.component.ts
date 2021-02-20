@@ -1,23 +1,20 @@
 import { ConfirmationDialogService } from './../AppRestCall/confirmation/confirmation-dialog.service';
-import { CustomToastComponent } from './../app.component';
 import { UserService } from './../AppRestCall/user/user.service';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { config } from '../appconstants/config';
 import { ReferenceService } from '../AppRestCall/reference/reference.service';
-import { ReferenceAdapter } from '../adapters/referenceadapter';
 import { PaymentComponent } from '../payment/payment.component';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalService } from 'ngx-bootstrap/modal';
 import { AlertsService } from '../AppRestCall/alerts/alerts.service';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { FreelanceOnSvcService } from '../AppRestCall/freelanceOnSvc/freelance-on-svc.service';
 import { FreelanceOnSvc } from '../appmodels/FreelanceOnSvc';
-import { Toaster, ToastType } from 'ngx-toast-notifications';
 import { ConfigMsg } from '../appconstants/configmsg';
 import { timer } from 'rxjs';
 import { Router } from '@angular/router';
-import { ModalOptions } from 'ngx-bootstrap/modal';
 import { ReadMorePopupComponent } from '../read-more-popup/read-more-popup.component';
 import { DatePipe } from '@angular/common';
+import { CommonUtility } from '../adapters/commonutility';
 
 @Component({
   selector: 'app-dashboardoffu',
@@ -43,16 +40,8 @@ export class DashboardoffuComponent implements OnInit {
   totalupcomingEarnings = 0;
   infoCards = [];
   cancelminsdiff: number;
-  private types: Array<ToastType> = ['success', 'danger', 'warning', 'info', 'primary', 'secondary', 'dark', 'light'];
   upcomingpaytext: string;
   totalearnings: string;
-  config: ModalOptions = {
-    class: 'modal-md', backdrop: 'static',
-    keyboard: false
-  };
-  indiaTime = this.datepipe.transform(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }), "dd/MM/yyyy hh:mm:ss");
-  indiaTimeFormat = this.datepipe.transform(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }), "yyyy-MM-dd HH:mm:ss");
-  mapurl = 'http://maps.google.com/?z=16&q=';
   comma = ',';
 
   newjobsempty: boolean = false;
@@ -60,30 +49,24 @@ export class DashboardoffuComponent implements OnInit {
   completedjobsempty: boolean = false;
   voliationjobsempty: boolean = false;
   date = new Date();
+  modalRef: any;
   constructor(
     public userService: UserService,
     private referService: ReferenceService,
-    private referenceadapter: ReferenceAdapter,
-    private modalRef: BsModalRef,
     private modalService: BsModalService,
     private spinnerService: Ng4LoadingSpinnerService,
     private alertService: AlertsService,
     private freelanceSvc: FreelanceOnSvcService,
-    private toaster: Toaster,
     private router: Router,
     public datepipe: DatePipe,
-    public confirmationDialogService: ConfirmationDialogService
+    public confirmationDialogService: ConfirmationDialogService,
+    public commonlogic: CommonUtility
   ) {
   }
 
   ngOnInit() {
-
-    const source = timer(1000, 60000);
     const sourcerefresh = timer(1000, 90000);
-    source.subscribe((val: number) => {
-      //this.autoToastNotificationsForFU();
-    });
-    sourcerefresh.subscribe((val: number) => {
+    sourcerefresh.subscribe(() => {
       if (this.router.url === '/dashboard') {
         if (this.userService.currentUserValue.freeLanceDetails.isregfeedone) {
           this.getUserAllJobDetailsByUserId();
@@ -116,7 +99,7 @@ export class DashboardoffuComponent implements OnInit {
       initialState: {
         totalAmountToPay: this.referenceobj[0].code,
         displayUserServicesForCheckOut: null,
-        productinfoParam: 'Registration Fee'
+        productinfoParam: ConfigMsg.reg_fee_msg
       }
     });
   }
@@ -124,10 +107,10 @@ export class DashboardoffuComponent implements OnInit {
   updateFreelancerAttendance(jobId: number) {
     this.spinnerService.show();
     this.freelanceSvc.getAllFreelanceOnServiceDetailsByJobId(jobId).subscribe((objfreelanceservice: FreelanceOnSvc) => {
-      objfreelanceservice.freelancerjobattendantdate = this.indiaTime.toString();
+      objfreelanceservice.freelancerjobattendantdate = this.commonlogic.indiaTime.toString();
       this.freelanceSvc.saveOrUpdateFreeLanceOnService(objfreelanceservice).subscribe((updatedobjfreelanceservice: FreelanceOnSvc) => {
         if (updatedobjfreelanceservice.jobId > 0) {
-          this.alertService.success('We have noted that your at work location at ' + updatedobjfreelanceservice.joblocation + ' on ' + this.indiaTime.toString());
+          this.alertService.success(ConfigMsg.update_attendance_msg + updatedobjfreelanceservice.joblocation + ConfigMsg.on_msg + this.commonlogic.indiaTime.toString());
           this.spinnerService.hide();
           this.getUserAllJobDetailsByUserId();
         }
@@ -151,7 +134,7 @@ export class DashboardoffuComponent implements OnInit {
     this.freelanceSvc.getUserAllJobDetails(this.userService.currentUserValue.freeLanceDetails.subCategory).subscribe((responseBody: any) => {
       if (responseBody != null) {
         responseBody.forEach(element => {
-          if (this.userService.currentUserValue.preferlang !== config.default_prefer_lang) {
+          if (this.userService.currentUserValue.preferlang !== config.lang_code_en) {
             this.referService.translatetext(element.bizname, this.userService.currentUserValue.preferlang).subscribe(
               (trantxt: any) => {
                 element.bizname = trantxt;
@@ -295,7 +278,7 @@ export class DashboardoffuComponent implements OnInit {
 
   private preparetoacceptjob(jobId: number) {
     if (this.listOfVolidationJobs != null && this.listOfVolidationJobs.length > 0) {
-      this.referService.translatetext('You can not accept this job as there are voliation jobs in upcoming list. Please call us as soon as possible. Util this violation issue not resolved you can not accept new jobs. ', this.userService.currentUserValue.preferlang).subscribe(
+      this.referService.translatetext(ConfigMsg.accept_job_msg_1, this.userService.currentUserValue.preferlang).subscribe(
         (trantxt: any) => {
           this.alertService.info(trantxt);
           this.spinnerService.hide();
@@ -307,7 +290,7 @@ export class DashboardoffuComponent implements OnInit {
       );
     } else
       if (this.listOfCompletedJobsWithoutPay != null && this.listOfCompletedJobsWithoutPay.length > 0) {
-        this.referService.translatetext('You can not accept this job until the previous completed job payment with the client is paid fully. Please arrange the payment with the client to accept new jobs.', this.userService.currentUserValue.preferlang).subscribe(
+        this.referService.translatetext(ConfigMsg.accept_job_msg_2, this.userService.currentUserValue.preferlang).subscribe(
           (trantxt: any) => {
             this.alertService.info(trantxt);
             this.spinnerService.hide();
@@ -318,7 +301,7 @@ export class DashboardoffuComponent implements OnInit {
           }
         );
       } else if (this.upcomingJobList != null && this.upcomingJobList.length == 3) {
-        this.referService.translatetext('You can not accept this job until atleast one job is completed among 3 in the upcoming jobs.', this.userService.currentUserValue.preferlang).subscribe(
+        this.referService.translatetext(ConfigMsg.accept_job_msg_3, this.userService.currentUserValue.preferlang).subscribe(
           (trantxt: any) => {
             this.alertService.info(trantxt);
             this.spinnerService.hide();
@@ -336,9 +319,9 @@ export class DashboardoffuComponent implements OnInit {
           if (!freelancedetailsbyId.isjobaccepted) {
             freelancedetailsbyId.freelanceuserId = this.userService.currentUserValue.userId;
             freelancedetailsbyId.isjobaccepted = true;
-            freelancedetailsbyId.jobaccepteddate = this.indiaTimeFormat.toString();
-            this.freelanceSvc.saveOrUpdateFreeLanceOnService(freelancedetailsbyId).subscribe((updatedobjfreelanceservice: FreelanceOnSvc) => {
-              this.referService.translatetext('Thank you for accepting the Job. Go to upcoming job tab to view', this.userService.currentUserValue.preferlang).subscribe(
+            freelancedetailsbyId.jobaccepteddate = this.commonlogic.indiaTimeFormat.toString();
+            this.freelanceSvc.saveOrUpdateFreeLanceOnService(freelancedetailsbyId).subscribe(() => {
+              this.referService.translatetext(ConfigMsg.accept_job_msg_4, this.userService.currentUserValue.preferlang).subscribe(
                 (trantxt: any) => {
                   this.getUserAllJobDetailsByUserId();
                   this.spinnerService.hide();
@@ -355,7 +338,7 @@ export class DashboardoffuComponent implements OnInit {
                 this.alertService.error(error);
               });
           } else {
-            this.referService.translatetext('Sorry! This job is accepted by another skilled worker.', this.userService.currentUserValue.preferlang).subscribe(
+            this.referService.translatetext(ConfigMsg.accept_job_msg_5, this.userService.currentUserValue.preferlang).subscribe(
               (trantxt: any) => {
                 this.spinnerService.hide();
                 this.alertService.info(trantxt);
@@ -375,7 +358,8 @@ export class DashboardoffuComponent implements OnInit {
   }
 
   cancel(jobId: number) {
-    this.confirmationDialogService.confirm('Please confirm', 'Do you really want to cancel the Job Id#' + jobId + ' ?', 'Ok', 'Cancel')
+    this.confirmationDialogService.confirm(ConfigMsg.confirmation_header_msg, ConfigMsg.confirmation_job_cancel_msg + jobId + ConfigMsg.confirmation_questionmark,
+      ConfigMsg.confirmation_button_ok, ConfigMsg.confirmation_button_cancel)
       .then((confirmed) => {
         if (confirmed) {
           this.spinnerService.show();
@@ -392,8 +376,8 @@ export class DashboardoffuComponent implements OnInit {
                       freelancedetailsbyId.isjobaccepted = false;
                       freelancedetailsbyId.isjobcancel = false;
                       freelancedetailsbyId.jobaccepteddate = null;
-                      this.freelanceSvc.saveOrUpdateFreeLanceOnService(freelancedetailsbyId).subscribe((updatedobjfreelanceservice: FreelanceOnSvc) => {
-                        this.referService.translatetext('Hello! The Job is cancelled succesfully.', this.userService.currentUserValue.preferlang).subscribe(
+                      this.freelanceSvc.saveOrUpdateFreeLanceOnService(freelancedetailsbyId).subscribe(() => {
+                        this.referService.translatetext(ConfigMsg.job_cancelled_msg, this.userService.currentUserValue.preferlang).subscribe(
                           (trantxt: any) => {
                             this.getUserAllJobDetailsByUserId();
                             this.spinnerService.hide();
@@ -415,7 +399,7 @@ export class DashboardoffuComponent implements OnInit {
                       this.alertService.error(error);
                     });
                 } else {
-                  this.referService.translatetext("Cancellation only possible before 15 minutes of accepting the job.", this.userService.currentUserValue.preferlang).subscribe(
+                  this.referService.translatetext(ConfigMsg.job_cannot_cancel_msg, this.userService.currentUserValue.preferlang).subscribe(
                     (trantxt: any) => {
                       this.alertService.info(trantxt);
                       this.spinnerService.hide();
@@ -437,49 +421,19 @@ export class DashboardoffuComponent implements OnInit {
       })
   }
 
-  autoToastNotificationsForFU() {
-    if (this.userService.currentUserValue.userroles.rolecode === config.user_rolecode_fu.toString()) {
-      if (!this.userService.currentUserValue.freeLanceDetails.isprofilecompleted) {
-        let msg = 'Hi ' + this.userService.currentUserValue.fullname + ', ' + ConfigMsg.toast_notification_fu_isprofilenotcompelted;
-        this.showToastNotificationForFU(msg, this.types[3], 'Profile');
-      } else
-        if (!this.userService.currentUserValue.freeLanceDetails.isregfeedone) {
-          let msg = 'Hi ' + this.userService.currentUserValue.fullname + ', ' + ConfigMsg.toast_notification_fu_isregfeenotcompelted;
-          this.showToastNotificationForFU(msg, this.types[2], 'Payment');
-        }
-    }
-  }
-
-  showToastNotificationForFU(txtmsg: string, typeName: any, toastheader: string) {
-    this.toaster.open({
-      text: txtmsg,
-      caption: toastheader + ' Notification',
-      type: typeName,
-      component: CustomToastComponent
-    });
-  }
-
   openReadMorePopup(fullcontent: string) {
     const initialState = {
       content: fullcontent
     };
     this.modalRef = this.modalService.show(ReadMorePopupComponent, Object.assign(
       {},
-      this.config,
+      this.commonlogic.configmd,
       {
         initialState
       }
     ));
   }
-  formatPhoneNumber(phoneNumberString) {
-    var cleaned = ('' + phoneNumberString).replace(/\D/g, '')
-    var match = cleaned.match(/^(1|)?(\d{3})(\d{3})(\d{4})$/)
-    if (match) {
-      var intlCode = (match[1] ? '+1 ' : '')
-      return [intlCode, '(', match[2], ') ', match[3], '-', match[4]].join('')
-    }
-    return null
-  }
+
 
 }
 

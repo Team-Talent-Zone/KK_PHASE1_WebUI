@@ -11,6 +11,7 @@ import { AlertsService } from '../AppRestCall/alerts/alerts.service';
 import { ReferenceAdapter } from '../adapters/referenceadapter';
 import { map } from 'rxjs/internal/operators/map';
 import { LoginComponent } from '../login/login.component';
+import { CommonUtility } from '../adapters/commonutility';
 
 @Component({
   selector: 'app-header',
@@ -22,13 +23,7 @@ export class HeaderComponent implements OnInit {
 
   modalRef: BsModalRef;
   shortkey: string;
-  config: ModalOptions = {
-    class: 'modal-md', 
-    backdrop: 'static',
-    keyboard: false,
-    animated: true,
-    ignoreBackdropClick: true,
-  };
+
   ban1videoURL: string;
   ban2videoURL: string;
   shortkeyvideo1: string;
@@ -36,8 +31,6 @@ export class HeaderComponent implements OnInit {
   list: any = [];
 
   Removeclass() {
-    // var body = document.body;
-    // body.classList.remove("sidebar-open");
     var element = document.getElementById("navBtn");
     element.classList.add("collapsed");
     var element12 = document.getElementById("navbarNav");
@@ -54,6 +47,7 @@ export class HeaderComponent implements OnInit {
     private referService: ReferenceService,
     private alertService: AlertsService,
     private refAdapter: ReferenceAdapter,
+    public commonlogic: CommonUtility
   ) {
     translate.addLangs(['en-English', 'te-తెలుగు', 'hi-हिंदी']);
     translate.setDefaultLang('en-English');
@@ -78,28 +72,14 @@ export class HeaderComponent implements OnInit {
 
   translateToLanguage(langSelect: string) {
     this.translate.use(langSelect);
-    if (langSelect === config.lang_hindi_word.toString()) {
-      localStorage.setItem('langCode', config.lang_code_hi);
-      localStorage.setItem('langLabel', langSelect);
-    } else
-      if (langSelect === config.lang_telugu_word.toString()) {
-        localStorage.setItem('langCode', config.lang_code_te);
-        localStorage.setItem('langLabel', langSelect);
-      } else {
-        localStorage.setItem('langCode', config.default_prefer_lang);
-        localStorage.setItem('langLabel', langSelect);
-      }
+    this.commonlogic.setLangCode(langSelect);
     this.router.navigateByUrl('home', { skipLocationChange: false }).
       then(() => {
         this.router.navigate(['_region', { hash: langSelect }]);
       });
   }
 
-  loadBannerVideoByLangSelected() {
-    this.shortkeyvideo1 = null;
-    this.shortkeyvideo2 = null;
-    this.ban1videoURL = null;
-    this.ban2videoURL = null;
+  setBannerVideoByLang() {
     if (localStorage.getItem('langCode') == config.lang_code_te) {
       this.shortkeyvideo1 = config.banner_video1_te;
       this.shortkeyvideo2 = config.banner_video2_te;
@@ -110,6 +90,13 @@ export class HeaderComponent implements OnInit {
       this.shortkeyvideo1 = config.banner_video1_en;
       this.shortkeyvideo2 = config.banner_video2_en;
     }
+  }
+  loadBannerVideoByLangSelected() {
+    this.shortkeyvideo1 = null;
+    this.shortkeyvideo2 = null;
+    this.ban1videoURL = null;
+    this.ban2videoURL = null;
+    this.setBannerVideoByLang();
     this.spinnerService.show();
     setTimeout(() => {
       this.referService.getLookupTemplateEntityByShortkey(this.shortkeyvideo1).subscribe(
@@ -144,7 +131,7 @@ export class HeaderComponent implements OnInit {
     };
     this.modalRef = this.modalService.show(SignupComponent, Object.assign(
       {},
-      this.config,
+      this.commonlogic.configmd,
       {
         initialState
       }
@@ -155,7 +142,7 @@ export class HeaderComponent implements OnInit {
     const initialState = null;
     this.modalRef = this.modalService.show(LoginComponent, Object.assign(
       {},
-      this.config,
+      this.commonlogic.configmd,
       {
         initialState
       }

@@ -104,7 +104,7 @@
                                     </td>
                                     <td>{{mywork.username}}</td>
                                     <td>{{mywork.freeLanceDetails.subcategorylabel}}</td>
-                                    <td>{{this.formatPhoneNumber(mywork.phoneno)}}</td>
+                                    <td>{{this.commonlogic.formatPhoneNumber(mywork.phoneno)}}</td>
                                     <td>
                                         <a *ngIf="mywork.freelancehistoryentity.islocked" class="btn  btn-sm"
                                             (click)='processbgverficiationopenmodal(mywork.userId)'>
@@ -153,7 +153,7 @@
                                     </td>
                                     <td>{{cbu.username}}</td>
                                     <td>{{cbu.userbizdetails.biztype}}</td>
-                                    <td>{{this.formatPhoneNumber(cbu.phoneno)}}</td>
+                                    <td>{{this.commonlogic.formatPhoneNumber(cbu.phoneno)}}</td>
                                     <td>
                                         <a class="btn  btn-sm"
                                             [routerLink]="['/viewuserservicedetails',cbu.userId]">
@@ -216,7 +216,7 @@
                                     <td>
                                         {{fu.freeLanceDetails.subcategorylabel}}
                                     </td>
-                                    <td>{{this.formatPhoneNumber(fu.phoneno)}}</td>
+                                    <td>{{this.commonlogic.formatPhoneNumber(fu.phoneno)}}</td>
                                     <td *ngIf="fu.freeLanceDetails !=null">
                                         <div
                                             *ngIf="fu.freeLanceDetails.isprofilecompleted; else elseIsProfileNotCompleted">
@@ -359,7 +359,7 @@
                                             Core Support Service Manager
                                         </ng-template>
                                     </td>
-                                    <td>{{this.formatPhoneNumber(platformuser.phoneno)}}</td>
+                                    <td>{{this.commonlogic.formatPhoneNumber(platformuser.phoneno)}}</td>
                                     <td>{{platformuser.createdby}}</td>
                                   
                                     <td>

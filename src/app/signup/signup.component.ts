@@ -25,6 +25,7 @@ import { UserServiceDetails } from '../appmodels/UserServiceDetails';
 import { UsersrvdetailsService } from '../AppRestCall/userservice/usersrvdetails.service';
 import { ActivatedRoute } from '@angular/router';
 import { LoginComponent } from '../login/login.component';
+import { CommonUtility } from '../adapters/commonutility';
 
 @Component({
   selector: 'app-signup',
@@ -64,13 +65,6 @@ export class SignupComponent implements OnInit {
   biztypelist: any;
   rolecode: string;
   skilllabel: string;
-  config: ModalOptions = {
-    class: 'modal-md', 
-    backdrop: 'static',
-    keyboard: false,
-    animated: true,
-    ignoreBackdropClick: true,
-  };
 
   constructor(
     private spinnerService: Ng4LoadingSpinnerService,
@@ -85,8 +79,8 @@ export class SignupComponent implements OnInit {
     private sendemailService: SendemailService,
     private reflookuptemplateAdapter: ReferenceLookUpTemplateAdapter,
     private usersrvDetails: UsersrvdetailsService,
-    private route: ActivatedRoute,
     private modalService: BsModalService,
+    public commonlogic: CommonUtility
   ) {
   }
 
@@ -96,11 +90,15 @@ export class SignupComponent implements OnInit {
       this.getAllCategories(this.langcode);
     }
     this.getTermsofServicesAndPrivacyPolicyURLByLang(this.langcode);
+    this.prepareListBuzzTypes();
+  }
+
+  prepareListBuzzTypes() {
     if (this.key === config.shortkey_role_cba.toString()) {
-      if (localStorage.getItem('langCode') == config.default_prefer_lang.toString()) {
+      if (localStorage.getItem(config.keylangCode) == config.lang_code_en.toString()) {
         this.biztypelist = [ConfigMsg.biztype_ind_en, ConfigMsg.biztype_cmp_en];
       } else {
-        if (localStorage.getItem('langCode') == config.lang_code_hi.toString()) {
+        if (localStorage.getItem(config.keylangCode) == config.lang_code_hi.toString()) {
           this.biztypelist = [ConfigMsg.biztype_ind_hi, ConfigMsg.biztype_cmp_hi];
         } else {
           this.biztypelist = [ConfigMsg.biztype_ind_te, ConfigMsg.biztype_cmp_te];
@@ -112,17 +110,17 @@ export class SignupComponent implements OnInit {
   formValidations() {
     if (this.key === config.shortkey_role_cba.toString()) {
       this.signupForm = this.formBuilder.group({
-        password: ['', [Validators.required, Validators.minLength(8),Validators.pattern(/^(?=\D*\d)(?=[^a-z]*[a-z])(?=[^A-Z]*[A-Z]).{8,30}$/)]],
+        password: ['', [Validators.required, Validators.minLength(8), Validators.pattern(/^(?=\D*\d)(?=[^a-z]*[a-z])(?=[^A-Z]*[A-Z]).{8,30}$/)]],
         username: ['', [Validators.required, Validators.email, Validators.maxLength(40)]],
         firstname: ['', [Validators.required, Validators.maxLength(40)]],
         lastname: ['', [Validators.required, Validators.maxLength(40)]],
-        preferlang: config.default_prefer_lang,
+        preferlang: config.lang_code_en,
         acceptsignupterms: [false, [Validators.requiredTrue]],
         biztype: ['', [Validators.required]]
       });
     } else {
       this.signupForm = this.formBuilder.group({
-        password: ['', [Validators.required, Validators.minLength(8),Validators.pattern(/^(?=\D*\d)(?=[^a-z]*[a-z])(?=[^A-Z]*[A-Z]).{8,30}$/)]],
+        password: ['', [Validators.required, Validators.minLength(8), Validators.pattern(/^(?=\D*\d)(?=[^a-z]*[a-z])(?=[^A-Z]*[A-Z]).{8,30}$/)]],
         username: ['', [Validators.required, Validators.email, Validators.maxLength(40)]],
         firstname: ['', [Validators.required, Validators.maxLength(40)]],
         lastname: ['', [Validators.required, Validators.maxLength(40)]],
@@ -153,7 +151,7 @@ export class SignupComponent implements OnInit {
           this.fullRefLookupDetails.push(reflookup);
           for (const reflookupmap of reflookup.referencelookupmapping) {
             if (reflookupmap.code !== config.category_code_FS_S.toString()) {
-              if (langcode !== config.default_prefer_lang.toString()) {
+              if (langcode !== config.lang_code_en.toString()) {
                 this.referService.translatetext(reflookupmap.label, langcode).subscribe(
                   (resptranslatetxt: string) => {
                     if (resptranslatetxt != null) {
@@ -171,7 +169,7 @@ export class SignupComponent implements OnInit {
             }
             this.fullReferencedetailsmap.push(reflookupmap);
             for (const reflookupmapsubcat of reflookupmap.referencelookupmappingsubcategories) {
-              if (langcode !== config.default_prefer_lang.toString()) {
+              if (langcode !== config.lang_code_en.toString()) {
                 this.referService.translatetext(reflookupmapsubcat.label, langcode).subscribe(
                   (resptranslatetxt: string) => {
                     if (resptranslatetxt != null) {
@@ -237,7 +235,7 @@ export class SignupComponent implements OnInit {
               });
           }
         } else {
-          if (this.langcode !== config.default_prefer_lang.toString()) {
+          if (this.langcode !== config.lang_code_en.toString()) {
             this.referService.translatetext(ConfigMsg.signup_successmsg_alreadyexisit, this.langcode).subscribe(
               (resptranslatetxt: string) => {
                 if (resptranslatetxt != null) {
@@ -270,7 +268,6 @@ export class SignupComponent implements OnInit {
       (resp) => {
         this.usrObj = this.userAdapter.adapt(resp);
         if (this.usrObj.userId > 0) {
-          // tslint:disable-next-line: max-line-length
           this.referService.getLookupTemplateEntityByShortkey(config.shortkey_email_verificationemailaddress.toString()).subscribe(
             referencetemplate => {
               this.templateObj = this.reflookuptemplateAdapter.adapt(referencetemplate);
@@ -296,7 +293,7 @@ export class SignupComponent implements OnInit {
                     this.userService.saveUserNotification(this.usernotification).subscribe(
                       (notificationobj: any) => {
                         this.spinnerService.hide();
-                        if (this.langcode !== config.default_prefer_lang.toString()) {
+                        if (this.langcode !== config.lang_code_en.toString()) {
                           this.referService.translatetext(ConfigMsg.signup_successmsg, this.langcode).subscribe(
                             (resptranslatetxt: string) => {
                               if (resptranslatetxt != null) {
@@ -438,7 +435,7 @@ export class SignupComponent implements OnInit {
       this.shortkeytermsofservices = config.shortkey_termsofservice_telugu;
       this.shortkeyprivacypolicy = config.shortkey_privacypolicy_telugu;
     }
-    if (langcode === config.default_prefer_lang.toString()) {
+    if (langcode === config.lang_code_en.toString()) {
       this.shortkeytermsofservices = config.shortkey_termsofservice_english;
       this.shortkeyprivacypolicy = config.shortkey_privacypolicy_english
     }
@@ -446,7 +443,7 @@ export class SignupComponent implements OnInit {
       (returnURL: any) => {
         this.termsofservice = returnURL.url
       },
-      error => { 
+      error => {
         this.spinnerService.hide();
         this.alertService.error(error);
       });
@@ -464,7 +461,7 @@ export class SignupComponent implements OnInit {
     const initialState = null;
     this.modalRefLogin = this.modalService.show(LoginComponent, Object.assign(
       {},
-      this.config,
+      this.commonlogic.configmd,
       {
         initialState
       }

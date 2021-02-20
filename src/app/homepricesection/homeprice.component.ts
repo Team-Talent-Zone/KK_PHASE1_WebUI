@@ -31,7 +31,7 @@ export class HomepriceComponent implements OnInit {
   contentMore = false;
   priceMore = false;
   priceMore1 = false;
-  countoffullcontent : number ;
+  countoffullcontent: number;
   constructor(
     private newsvcservice: NewsvcService,
     private route: ActivatedRoute,
@@ -44,44 +44,18 @@ export class HomepriceComponent implements OnInit {
     private referService: ReferenceService,
   ) {
   }
-
-  viewMore() {
-    this.contentMore = true;
-  }
-
-  viewLess() {
-    this.contentMore = false;
-  }
-
-  pricemore() {
-    this.priceMore = true;
-  }
-
-  priceless() {
-    this.priceMore = false;
-  }
-
-  pricemore1() {
-    this.priceMore1 = true;
-  }
-
-  priceless1() {
-    this.priceMore1 = false;
-  }
-
   ngOnInit() {
     setTimeout(() => {
       this.getAllNewServiceDetails();
     }, 2000);
   }
-
   getAllNewServiceDetails() {
     this.listOfAllApprovedNewServices = [];
     this.newsvcservice.getAllNewServiceDetails().subscribe(
       (allNewServiceObjs: any) => {
         if (allNewServiceObjs != null) {
           allNewServiceObjs.forEach(element => {
-            if (localStorage.getItem('langCode') === config.lang_code_hi || localStorage.getItem('langCode') === config.lang_code_te) {
+            if (localStorage.getItem('langCode') !== config.lang_code_en) {
               this.referService.translatetext(element.name, localStorage.getItem('langCode')).subscribe(
                 (txt: string) => {
                   element.name = txt;
@@ -136,14 +110,12 @@ export class HomepriceComponent implements OnInit {
       }
     });
   }
-  // tslint:disable-next-line: max-line-length
   openSignupModal(ourserviceid: number, packwithotherourserviceid: number, amount: string, validPeriodLabel: string, validPeriodCode: string, serviceendon: string, servicestarton: string) {
-    // tslint:disable-next-line: max-line-length
     var ourserviceidList = [{ ourserviceid, packwithotherourserviceid, amount, validPeriodLabel, validPeriodCode, serviceendon, servicestarton }];
     const initialState = {
       key: config.shortkey_role_cba,
       ourserviceids: ourserviceidList,
-      langcode: localStorage.getItem('langCode')
+      langcode: localStorage.getItem(config.keylangCode)
     };
     this.modalRef = this.modalService.show(SignupComponent, Object.assign(
       {},

@@ -8,6 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { config } from 'src/app/appconstants/config';
 import { ReferenceService } from '../AppRestCall/reference/reference.service';
 import { DatePipe } from '@angular/common';
+import { ConfigMsg } from '../appconstants/configmsg';
 
 
 @Component({
@@ -42,7 +43,7 @@ export class UsersubscribeservicesComponent implements OnInit {
   publishNow(serviceId: number) {
     let objstatus = false;
     if (this.userService.currentUserValue.userbizdetails.bizname === null) {
-      this.alertService.error('To Publish , Please Complete The Profile . Go To Edit Profile');
+      this.alertService.error(ConfigMsg.publish_msg_1);
     } else {
       if (this.listOfSubscribedServicesByUser != null) {
         this.spinnerService.show();
@@ -52,7 +53,7 @@ export class UsersubscribeservicesComponent implements OnInit {
             // tslint:disable-next-line: max-line-length
             this.usersrvDetails.saveOrUpdateUserSVCDetails(usrserviceobj).subscribe((obj: any) => {
               if (obj.status === config.user_service_status_published.toString()) {
-                this.alertService.success('Published Succesfully. Your site Is Activated');
+                this.alertService.success(ConfigMsg.publish_msg_2);
                 this.getAllUserServiceDetailsByUserId();
                 this.spinnerService.hide();
               }

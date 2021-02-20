@@ -10,6 +10,7 @@ import { SignupComponent } from './../signup/signup.component';
 import { ManageuserComponent } from '../manageuser/manageuser.component';
 import { config } from 'src/app/appconstants/config';
 import { DatePipe } from '@angular/common';
+import { CommonUtility } from '../adapters/commonutility';
 
 @Component({
   selector: 'app-viewaccountdetails',
@@ -31,20 +32,21 @@ export class ViewaccountdetailsComponent implements OnInit {
     public signupComponent: SignupComponent,
     public managerusercomponent: ManageuserComponent,
     public datepipe: DatePipe,
+    public commonlogic: CommonUtility
   ) { }
 
   ngOnInit() {
     // tslint:disable-next-line: max-line-length
     this.mapurl = 'http://maps.google.com/?q=' + this.usrdetailsObj.userbizdetails.lat + ',' + this.usrdetailsObj.userbizdetails.lng + '&z=16';
     this.findManager();
-    this.signupComponent.getAllCategories(config.default_prefer_lang.toString());
+    this.signupComponent.getAllCategories(config.lang_code_en.toString());
 
   }
 
   findManager() {
     // tslint:disable-next-line: max-line-length
-    if (this.usrdetailsObj.userroles.rolecode === 'CORE_SERVICE_SUPPORT_TEAM' ||
-      this.usrdetailsObj.userroles.rolecode === 'CORE_SERVICE_SUPPORT_MANAGER') {
+    if (this.usrdetailsObj.userroles.rolecode === config.user_rolecode_csct ||
+      this.usrdetailsObj.userroles.rolecode === config.user_rolecode_cscm) {
       this.userService.getUserByUserId(this.usrdetailsObj.usermanagerdetailsentity.managerid).pipe(first()).subscribe(
         (respuser: any) => {
           this.edituserobj2 = respuser;
@@ -56,17 +58,5 @@ export class ViewaccountdetailsComponent implements OnInit {
       );
     }
   }
-
-  formatPhoneNumber(phoneNumberString) {
-    var cleaned = ('' + phoneNumberString).replace(/\D/g, '')
-    var match = cleaned.match(/^(1|)?(\d{3})(\d{3})(\d{4})$/)
-    if (match) {
-      var intlCode = (match[1] ? '+1 ' : '')
-      return [intlCode, '(', match[2], ') ', match[3], '-', match[4]].join('')
-    }
-    return null
-  }
-
-
 }
 

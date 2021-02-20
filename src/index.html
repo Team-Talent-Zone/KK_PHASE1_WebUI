@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
   <title>Kaam Karega - A Service Company</title>
@@ -13,7 +12,6 @@
     id="bootstrap-css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,600">
-  <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.6/css/all.css"> -->
   <link rel="stylesheet" href="./assets/css/animate.css">
   <link rel="stylesheet" href="./assets/css/media-queries.css">
   <link rel="stylesheet" href="./assets/css/style.css">
@@ -28,18 +26,10 @@
   <!-- Javascript -->
   <script src="./assets/js/jquery-3.2.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.2.0/js/tether.min.js"></script>
-  <!-- <script src="./assets/js/jquery-migrate-3.0.0.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-    crossorigin="anonymous"></script> -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"></script>
-  <!-- <script src="./assets/js/jquery.backstretch.min.js"></script>
-  <script src="./assets/js/wow.min.js"></script>
-  <script src="./assets/js/retina-1.1.0.min.js"></script>
-  <script src="./assets/js/waypoints.min.js"></script>
-  <script src="./assets/js/scripts.js"></script> -->
+
   <style>
     #myBtn {
       display: none;
@@ -57,8 +47,6 @@
       border-radius: 4px;
     }
     body { padding-right: 0 !important }
-
-
     #myBtn:hover {
       background-color: #FF4949;
     }
@@ -71,12 +59,7 @@
         if (this.scrollY <= 10) {
           nav.className = 'navbar-dark navbar navbar-dark fixed-top navbar-expand-md';
         } else {
-          // nav.className='navbar-dark';
-          //  nav.className = 'scroll';
-          // document.getElementById("navbar").style.background = "lightblue !important";
-
           nav.className = 'scroll navbar  fixed-top navbar-expand-md';
-          // mybutton.style.display = "block";
         };
       }
     }
@@ -86,15 +69,12 @@
 <body>
   <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fa fa-chevron-circle-up"></i></button>
   <app-root></app-root>
-  <!-- <script src="./assets/js/dark.js"></script>
-  <script src="./assets/js/darkmode.js"></script> -->
 </body>
 <script>
   //Get the button
   var mybutton = document.getElementById("myBtn");
   // When the user scrolls down 20px from the top of the document, show the button
   // window.onscroll = function() {scrollFunction()};
-
   function scrollFunction() {
     if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
       mybutton.style.display = "block";
@@ -102,8 +82,6 @@
       mybutton.style.display = "none";
     }
   }
-
-
   // When the user clicks on the button, scroll to the top of the document
   function topFunction() {
     document.body.scrollTop = 0;
@@ -236,5 +214,3 @@
     });
   });
 </script>
-
-</html>

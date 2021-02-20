@@ -252,14 +252,14 @@
                     </td>
                     <td>
                       <p *ngIf="iscreatejobflag && i == volationindex"><i><small>Previous
-                            {{this.formatPhoneNumber(job.fuphoneno)}}
+                            {{this.commonlogic.formatPhoneNumber(job.fuphoneno)}}
                           </small></i>
                       </p>
                       <p *ngIf="!iscreatejobflag && i == volationindex">
-                        {{this.formatPhoneNumber(job.fuphoneno)}}
+                        {{this.commonlogic.formatPhoneNumber(job.fuphoneno)}}
                       </p>
                       <p *ngIf="i != volationindex">
-                        {{this.formatPhoneNumber(job.fuphoneno)}}
+                        {{this.commonlogic.formatPhoneNumber(job.fuphoneno)}}
                       </p>
                       <div *ngIf="iscreatejobflag && i == volationindex && enddatevalue != null">
                         <hr>
@@ -379,13 +379,13 @@
                         {{job.fullname}}
                       </a>
                     </td>
-                    <td>{{this.formatPhoneNumber(job.fuphoneno)}}</td>
+                    <td>{{this.commonlogic.formatPhoneNumber(job.fuphoneno)}}</td>
                     <td>
                       <a href="javascript: return false;" (click)='manageruser.openViewAccountDetailsModal(job.userId)'>
                         {{job.bizname}}
                       </a>
                     </td>
-                    <td>{{this.formatPhoneNumber(job.cbaphoneno)}}</td>
+                    <td>{{this.commonlogic.formatPhoneNumber(job.cbaphoneno)}}</td>
                     <td>{{job.subcategorylabel}}</td>
                   </tr>
                 </tbody>
@@ -422,13 +422,13 @@
                       <p><i><small>{{job.subcategorylabel}}</small></i></p>
 
                     </td>
-                    <td>{{this.formatPhoneNumber(job.fuphoneno)}}</td>
+                    <td>{{this.commonlogic.formatPhoneNumber(job.fuphoneno)}}</td>
                     <td>
                       <a href="javascript: return false;" (click)='manageruser.openViewAccountDetailsModal(job.userId)'>
                         {{job.bizname}}
                       </a>
                     </td>
-                    <td>{{this.formatPhoneNumber(job.cbaphoneno)}}</td>
+                    <td>{{this.commonlogic.formatPhoneNumber(job.cbaphoneno)}}</td>
                     <td>{{job.subcategorylabel}}</td>
                   </tr>
                 </tbody>
@@ -465,13 +465,13 @@
                       <p><i><small>{{job.subcategorylabel}}</small></i></p>
 
                     </td>
-                    <td>{{this.formatPhoneNumber(job.fuphoneno)}}</td>
+                    <td>{{this.commonlogic.formatPhoneNumber(job.fuphoneno)}}</td>
                     <td>
                       <a href="javascript: return false;" (click)='manageruser.openViewAccountDetailsModal(job.userId)'>
                         {{job.bizname}}
                       </a>
                     </td>
-                    <td>{{this.formatPhoneNumber(job.cbaphoneno)}}</td>
+                    <td>{{this.commonlogic.formatPhoneNumber(job.cbaphoneno)}}</td>
                     <td>{{job.subcategorylabel}}</td>
                   </tr>
                 </tbody>
@@ -504,7 +504,7 @@
                         {{job.bizname}}
                       </a>
                     </td>
-                    <td>{{this.formatPhoneNumber(job.cbaphoneno)}}</td>
+                    <td>{{this.commonlogic.formatPhoneNumber(job.cbaphoneno)}}</td>
                     <td>{{job.subcategorylabel}}</td>
                   </tr>
                 </tbody>
@@ -539,7 +539,7 @@
                         {{job.bizname}}
                       </a>
                     </td>
-                    <td>{{this.formatPhoneNumber(job.cbaphoneno)}}</td>
+                    <td>{{this.commonlogic.formatPhoneNumber(job.cbaphoneno)}}</td>
                     <td> {{job.subcategorylabel}} {{job.fullname}}
                     </td>
                     <td><a class="btn btn-warning btn-sm" (click)="getFUUsersByCategory(job.scategory , i )">
@@ -603,13 +603,13 @@
                         {{job.fullname}}
                       </a>
                     </td>
-                    <td>{{this.formatPhoneNumber(job.fuphoneno)}}</td>
+                    <td>{{this.commonlogic.formatPhoneNumber(job.fuphoneno)}}</td>
                     <td>
                       <a href="javascript: return false;" (click)='manageruser.openViewAccountDetailsModal(job.userId)'>
                         {{job.bizname}}
                       </a>
                     </td>
-                    <td>{{this.formatPhoneNumber(job.cbaphoneno)}}</td>
+                    <td>{{this.commonlogic.formatPhoneNumber(job.cbaphoneno)}}</td>
                     <td>{{job.subcategorylabel}}</td>
                   </tr>
                 </tbody>
@@ -644,13 +644,13 @@
                         {{job.fullname}}
                       </a>
                     </td>
-                    <td>{{this.formatPhoneNumber(job.fuphoneno)}}</td>
+                    <td>{{this.commonlogic.formatPhoneNumber(job.fuphoneno)}}</td>
                     <td>
                       <a href="javascript: return false;" (click)='manageruser.openViewAccountDetailsModal(job.userId)'>
                         {{job.bizname}}
                       </a>
                     </td>
-                    <td>{{this.formatPhoneNumber(job.cbaphoneno)}}</td>
+                    <td>{{this.commonlogic.formatPhoneNumber(job.cbaphoneno)}}</td>
                     <td>{{job.subcategorylabel}}</td>
                   </tr>
                 </tbody>
@@ -685,13 +685,13 @@
                         {{job.fullname}}
                       </a>
                     </td>
-                    <td>{{this.formatPhoneNumber(job.fuphoneno)}}</td>
+                    <td>{{this.commonlogic.formatPhoneNumber(job.fuphoneno)}}</td>
                     <td>
                       <a href="javascript: return false;" (click)='manageruser.openViewAccountDetailsModal(job.userId)'>
                         {{job.bizname}}
                       </a>
                     </td>
-                    <td>{{this.formatPhoneNumber(job.cbaphoneno)}}</td>
+                    <td>{{this.commonlogic.formatPhoneNumber(job.cbaphoneno)}}</td>
                     <td>{{job.subcategorylabel}}</td>
                   </tr>
                 </tbody>
@@ -746,13 +746,13 @@
                     <p><i><small>{{job.subcategorylabel}}</small></i></p>
 
                   </td>
-                  <td>{{this.formatPhoneNumber(job.fuphoneno)}}</td>
+                  <td>{{this.commonlogic.formatPhoneNumber(job.fuphoneno)}}</td>
                   <td>
                     <a href="javascript: return false;" (click)='manageruser.openViewAccountDetailsModal(job.userId)'>
                       {{job.bizname}}
                     </a>
                   </td>
-                  <td>{{this.formatPhoneNumber(job.cbaphoneno)}}</td>
+                  <td>{{this.commonlogic.formatPhoneNumber(job.cbaphoneno)}}</td>
                 </tr>
               </tbody>
             </table>
@@ -776,7 +776,7 @@
                       {{worker.fullname}}
                     </a>
                   </td>
-                  <td>{{this.formatPhoneNumber(worker.phoneno)}} </td>
+                  <td>{{this.commonlogic.formatPhoneNumber(worker.phoneno)}} </td>
                 </tr>
               </tbody>
             </table>
@@ -936,7 +936,7 @@
                   </a>
                 </td>
                 <td>{{srv.biztype}}</td>
-                <td>{{this.formatPhoneNumber(srv.phoneno)}}</td>
+                <td>{{this.commonlogic.formatPhoneNumber(srv.phoneno)}}</td>
                 <td>{{srv.validPeriodLabel}}</td>
                 <td>{{srv.servicestarton}}</td>
                 <td>{{srv.serviceendon}}</td>
@@ -978,7 +978,7 @@
                   </a>
                 </td>
                 <td>{{srv.biztype}}</td>
-                <td>{{this.formatPhoneNumber(srv.phoneno)}}</td>
+                <td>{{this.commonlogic.formatPhoneNumber(srv.phoneno)}}</td>
                 <td>{{srv.validPeriodLabel}}</td>
                 <td>{{srv.servicestarton}}</td>
                 <td>{{srv.serviceendon}}</td>

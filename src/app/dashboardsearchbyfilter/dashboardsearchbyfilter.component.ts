@@ -13,6 +13,7 @@ import { ReferenceService } from '../AppRestCall/reference/reference.service';
 import { ApiService, Maps } from '../adapters/api.service';
 import { ManageuserComponent } from '../manageuser/manageuser.component';
 import { SignupComponent } from '../signup/signup.component';
+import { ConfigMsg } from '../appconstants/configmsg';
 
 @Component({
   selector: 'app-dashboardsearchbyfilter',
@@ -140,7 +141,7 @@ export class DashboardsearchbyfilterComponent implements OnInit {
 
   initAutocomplete(maps: Maps) {
     let autocomplete = new maps.places.Autocomplete(this.searchElementRef.nativeElement);
-    autocomplete.addListener('place_changed', () => {
+    autocomplete.addListener(config.keygmap_1, () => {
       this.ngZone.run(() => {
         this.route = null;
         this.city = null;
@@ -153,19 +154,19 @@ export class DashboardsearchbyfilterComponent implements OnInit {
         this.lat = place.geometry.location.lat();
         this.lng = place.geometry.location.lng();
         autocomplete.getPlace().address_components.forEach(element => {
-          if (element.types[0] === 'route') {
+          if (element.types[0] === config.keygmap_2) {
             this.route = element.long_name;
           }
-          if (element.types[0] === 'locality') {
+          if (element.types[0] === config.keygmap_3) {
             this.cityElementOne = element.long_name;
           } else
-            if (element.types[0] === 'administrative_area_level_2') {
+            if (element.types[0] === config.keygmap_4) {
               this.cityElementTwo = element.long_name;
             }
-          if (element.types[0] === 'administrative_area_level_1') {
+          if (element.types[0] === config.keygmap_5) {
             this.state = element.long_name;
           }
-          if (element.types[0] === 'country') {
+          if (element.types[0] === config.keygmap_6) {
             this.country = element.short_name;
           }
         });
@@ -201,7 +202,7 @@ export class DashboardsearchbyfilterComponent implements OnInit {
             if (obj.jobId > 0) {
               this.spinnerService.hide();
               this.router.navigate(['/job']);
-              this.alertService.success('The Job Id : ' + obj.jobId + ' is created successfully. Go to New Job Tab to activate. ');
+              this.alertService.success(ConfigMsg.job_assign_msg_1 + obj.jobId + ConfigMsg.search_job_msg_1);
             }
           },
             error => {
@@ -214,7 +215,7 @@ export class DashboardsearchbyfilterComponent implements OnInit {
           this.alertService.error(error);
         });
     } else {
-      this.alertService.info('The amount ' + this.createjobform.get('amount').value + ' must be greater than ' + this.avgHourlyRate);
+      this.alertService.info(ConfigMsg.search_job_msg_2 + this.avgHourlyRate);
     }
 
   }
@@ -237,14 +238,14 @@ export class DashboardsearchbyfilterComponent implements OnInit {
           this.createjobform.patchValue({ jobstartedon: this.getDateTimeFormat(this.startdate) });
         }
         if (this.userService.currentUserValue.phoneno === null) {
-          this.alertService.info('Complete the profile before creating a job for ' + this.name + ', Go to Edit Profile');
+          this.alertService.info(ConfigMsg.search_job_msg_3 + this.name + ConfigMsg.search_job_msg_4);
         } else
           if (this.isfreelancerservicesubscribed) {
             this.iscreatejobdiv = true;
           }
           else {
             if (!this.isfreelancerservicesubscribed) {
-              let errorMsg = 'Purchase the skilled worker search service before creating a job for ' + this.name + '. Go to Our Services & Add to Cart';
+              let errorMsg = ConfigMsg.search_job_msg_5 + this.name + ConfigMsg.search_job_msg_6;
               this.alertService.info(errorMsg);
             }
           }
@@ -312,7 +313,7 @@ export class DashboardsearchbyfilterComponent implements OnInit {
       var minAmt = Math.min.apply(null, this.listofhourlyRateDetailsoffus);
       var maxHourlyRate = maxAmt * hours;
       var minHourlyRate = minAmt * hours;
-      
+
       /**
        * Increasing 20% more to avghourly to built the min rate
        */

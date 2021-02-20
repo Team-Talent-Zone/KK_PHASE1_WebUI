@@ -87,7 +87,7 @@ export class NewserviceComponent implements OnInit {
     this.newServiceValidationForm();
     this.manageserviceComponent.getAllNewServices();
     setTimeout(() => {
-      this.signupcomponent.getAllCategories(config.default_prefer_lang.toString());
+      this.signupcomponent.getAllCategories(config.lang_code_en.toString());
       this.getServiceTerms();
     }, 1000);
     if (this.id > 0) {
@@ -223,7 +223,7 @@ export class NewserviceComponent implements OnInit {
                                     if (util.lastreturncode === 250) {
                                       this.newservice = this.newserviceAdapter.adapt(newserviceObj);
                                       this.spinnerService.hide();
-                                      this.alertService.success(' Sent for review to your manager ' + this.serviceHistory.decisionBy);
+                                      this.alertService.success(ConfigMsg.bg_msg_csst + this.serviceHistory.decisionBy);
                                     }
                                   },
                                   error => {
@@ -296,7 +296,7 @@ export class NewserviceComponent implements OnInit {
     ).pipe(first()).subscribe(
       (newserviceObj) => {
         this.spinnerService.hide();
-        this.alertService.success(' Changes updated successfully ');
+        this.alertService.success(ConfigMsg.bg_msg_updated);
       },
       error => {
         this.spinnerService.hide();
@@ -343,22 +343,22 @@ export class NewserviceComponent implements OnInit {
       this.newvalsvrprice = newserviceForm.amount.toString();
     } else {
       this.oldvalsvrprice = newservicecurrentObj.amount.toString();
-      this.newvalsvrprice = 'No New Changes Made';
+      this.newvalsvrprice = ConfigMsg.newservice_msg_2;
     }
     if (newserviceForm.description !== newservicecurrentObj.description) {
       this.oldvalsvrdesc = newservicecurrentObj.description;
       this.newvalsvrdesc = newserviceForm.description;
     } else {
-      this.oldvalsvrdesc = 'Due to huge old existing context.( We avoid display) .';
-      this.newvalsvrdesc = 'No New Changes Made';
+      this.oldvalsvrdesc = ConfigMsg.newservice_msg_3;
+      this.newvalsvrdesc = ConfigMsg.newservice_msg_2;
     }
 
     if (newserviceForm.fullContent !== newservicecurrentObj.fullContent) {
       this.oldvalsvrfeatures = newservicecurrentObj.fullContent;
       this.newvalsvrfeatures = newserviceForm.fullContent;
     } else {
-      this.oldvalsvrfeatures = 'Due to huge old existing context.( We avoid display) .';
-      this.newvalsvrfeatures = 'No New Changes Made';
+      this.oldvalsvrfeatures = ConfigMsg.newservice_msg_3;
+      this.newvalsvrfeatures = ConfigMsg.newservice_msg_2;
     }
 
     if (newserviceForm.validPeriod !== newservicecurrentObj.validPeriod) {
@@ -366,15 +366,15 @@ export class NewserviceComponent implements OnInit {
       this.newvalsvrterm = newserviceForm.validPeriod;
     } else {
       this.oldvalsvrterm = newservicecurrentObj.validPeriod;
-      this.newvalsvrterm = 'No New Changes Made';
+      this.newvalsvrterm = ConfigMsg.newservice_msg_2;
     }
 
     if (this.serviceImgURL !== newservicecurrentObj.imageUrl) {
       this.oldvalsvrimgurl = newservicecurrentObj.imageUrl;
-      this.newvalsvrimgurl = 'New Image Uploaded . Please go to platform to check';
+      this.newvalsvrimgurl = ConfigMsg.newservice_msg_1;
     } else {
       this.oldvalsvrimgurl = newservicecurrentObj.imageUrl;
-      this.newvalsvrimgurl = 'No New Changes Made';
+      this.newvalsvrimgurl = ConfigMsg.newservice_msg_2;
     }
   }
 
@@ -430,8 +430,7 @@ export class NewserviceComponent implements OnInit {
                           if (util.lastreturncode === 250) {
                             this.router.navigate(['/dashboard']);
                             this.spinnerService.hide();
-                            this.alertService.success(' Sent for review to your manager ' + this.serviceHistory.decisionBy);
-
+                            this.alertService.success(ConfigMsg.bg_msg_csst + this.serviceHistory.decisionBy);
                           }
                         },
                         error => {
@@ -480,27 +479,27 @@ export class NewserviceComponent implements OnInit {
     let reader = new FileReader(); // HTML5 FileReader API
     let file = event.target.files[0];
     let fileSize = event.target.files[0].size;
- //   if (fileSize < 2000000) {
-      if (file.type === config.imgtype_png.toString() || file.type === config.imgtype_jpeg.toString()
-        || file.type === config.imgtype_jpg.toString()) {
-        if (event.target.files && event.target.files[0]) {
-          reader.readAsDataURL(file);
-          // When file uploads set it to file formcontrol
-          reader.onload = () => {
-            this.filename = file.name;
-            this.serviceImgURL = reader.result;
-            this.spinnerService.show();
-            this.spinnerService.hide();
-          };
-          // ChangeDetectorRef since file is loading outside the zone
-          this.cd.markForCheck();
-        }
-      } else {
-        this.alertService.info('Invalid file format. it should be .png,.jpg,.jpeg');
+    //   if (fileSize < 2000000) {
+    if (file.type === config.imgtype_png.toString() || file.type === config.imgtype_jpeg.toString()
+      || file.type === config.imgtype_jpg.toString()) {
+      if (event.target.files && event.target.files[0]) {
+        reader.readAsDataURL(file);
+        // When file uploads set it to file formcontrol
+        reader.onload = () => {
+          this.filename = file.name;
+          this.serviceImgURL = reader.result;
+          this.spinnerService.show();
+          this.spinnerService.hide();
+        };
+        // ChangeDetectorRef since file is loading outside the zone
+        this.cd.markForCheck();
       }
-  //  } else {
-  //    this.alertService.info('Image size must be less than 2 Mega Bytes');
-   // }
+    } else {
+      this.alertService.info(ConfigMsg.profile_msg_3);
+    }
+    //  } else {
+    //    this.alertService.info('Image size must be less than 2 Mega Bytes');
+    // }
   }
 
 }

@@ -51,7 +51,7 @@ export class ManageserviceComponent implements OnInit {
   ngOnInit() {
     this.getAllNewServices();
     setTimeout(() => {
-      this.signupComponent.getAllCategories(config.default_prefer_lang.toString());
+      this.signupComponent.getAllCategories(config.lang_code_en.toString());
       this.getServiceTerms();
     }, 1000);
   }

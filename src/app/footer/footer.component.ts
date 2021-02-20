@@ -21,7 +21,7 @@ export class FooterComponent implements OnInit {
       this.signupComponent.getTermsofServicesAndPrivacyPolicyURLByLang(this.userService.currentUserValue.preferlang);
      } else {
       if (localStorage.getItem('langCode') === null) {
-        localStorage.setItem('langCode', config.default_prefer_lang);
+        localStorage.setItem('langCode', config.lang_code_en);
         localStorage.setItem('langLabel', config.lang_english_word);
       }
       this.signupComponent.getTermsofServicesAndPrivacyPolicyURLByLang(localStorage.getItem('langCode'));

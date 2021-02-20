@@ -40,7 +40,6 @@ export class LoginComponent implements OnInit {
   today = new Date();
 
   constructor(
-    private modalService: BsModalService,
     private formBuilder: FormBuilder,
     private userService: UserService,
     private alertService: AlertsService,
@@ -99,7 +98,7 @@ export class LoginComponent implements OnInit {
               }
             );
         } else {
-          if (localStorage.getItem('langCode') !== config.default_prefer_lang.toString()) {
+          if (localStorage.getItem('langCode') !== config.lang_code_en.toString()) {
             this.referService.translatetext(ConfigMsg.login_notexisit, localStorage.getItem('langCode')).subscribe(
               (resptranslatetxt: string) => {
                 if (resptranslatetxt != null) {
@@ -176,7 +175,7 @@ export class LoginComponent implements OnInit {
                                 this.userService.saveUserNotification(this.usernotification).subscribe(
                                   (notificationobj: any) => {
                                     this.spinnerService.hide();
-                                    if (localStorage.getItem('langCode') !== config.default_prefer_lang.toString()) {
+                                    if (localStorage.getItem('langCode') !== config.lang_code_en.toString()) {
                                       this.referService.translatetext(ConfigMsg.fwdpassword_successmsg, localStorage.getItem('langCode')).subscribe(
                                         (resptranslatetxt: string) => {
                                           if (resptranslatetxt != null) {
@@ -221,7 +220,7 @@ export class LoginComponent implements OnInit {
                 });
             }
           } else {
-            if (localStorage.getItem('langCode') !== config.default_prefer_lang.toString()) {
+            if (localStorage.getItem('langCode') !== config.lang_code_en.toString()) {
               this.referService.translatetext(ConfigMsg.login_notexisit, localStorage.getItem('langCode')).subscribe(
                 (resptranslatetxt: string) => {
                   if (resptranslatetxt != null) {

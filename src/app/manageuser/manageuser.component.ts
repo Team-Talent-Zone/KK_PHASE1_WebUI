@@ -11,8 +11,9 @@ import { ReferenceService } from '../AppRestCall/reference/reference.service';
 import { config } from 'src/app/appconstants/config';
 import { BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
-import { Toaster, ToastType } from 'ngx-toast-notifications';
 import { timer } from 'rxjs';
+import { ConfigMsg } from '../appconstants/configmsg';
+import { CommonUtility } from '../adapters/commonutility';
 
 
 @Component({
@@ -31,9 +32,7 @@ export class ManageuserComponent implements OnInit {
   usrobjById: User;
   refDataObj: any = [];
   modalRef: BsModalRef;
-  config: ModalOptions = { class: 'modal-lg' };
   mapusrObj: User[];
-  private types: Array<ToastType> = ['success', 'danger', 'warning', 'info', 'primary', 'secondary', 'dark', 'light'];
 
   constructor(
     private modalService: BsModalService,
@@ -42,7 +41,7 @@ export class ManageuserComponent implements OnInit {
     private userAdapter: UserAdapter,
     private alertService: AlertsService,
     private referService: ReferenceService,
-    private toaster: Toaster,
+    public commonlogic: CommonUtility,
   ) { }
 
   ngOnInit() {
@@ -152,7 +151,7 @@ export class ManageuserComponent implements OnInit {
                   this.usrObjCBAs = [];
                   this.usrObjPlatformAdmins = [];
                   this.usrObjMyWork = [];
-                  this.alertService.success(this.usrObj.firstname + ' background verification started');
+                  this.alertService.success(this.usrObj.firstname + ConfigMsg.bg_started_msg);
                   this.spinnerService.hide();
                   this.getAllUser();
                 },
@@ -179,7 +178,7 @@ export class ManageuserComponent implements OnInit {
         const initialState = { usrdetailsObj: respuser };
         this.modalRef = this.modalService.show(ViewaccountdetailsComponent, Object.assign(
           {},
-          this.config,
+          this.commonlogic.configlg,
           {
             initialState
           }
@@ -196,7 +195,7 @@ export class ManageuserComponent implements OnInit {
       if (element.userId === userId) {
         this.modalRef = this.modalService.show(ViewaccountdetailsComponent, Object.assign(
           {},
-          this.config,
+          this.commonlogic.configlg,
           {
             initialState
           }
@@ -213,7 +212,7 @@ export class ManageuserComponent implements OnInit {
             const initialState = { usrdetailsObj: element, usrObjMyWork: myworkusrobj };
             this.modalRef = this.modalService.show(ProcessbgverificationComponent, Object.assign(
               {},
-              this.config,
+              this.commonlogic.configlg,
               {
                 initialState
               }
@@ -222,37 +221,6 @@ export class ManageuserComponent implements OnInit {
           }
         });
       }
-    });
-  }
-
-  getlistOfNewUsersToastNofications() {
-    this.usrObjFUs.forEach((element: any) => {
-      if (element.freeLanceDetails.isprofilecompleted && !element.freeLanceDetails.isregfeedone) {
-        let msg = 'Skilled Worker ' + element.fullname + ' has not registrated yet to the platform';
-        this.showToastNotification(msg, this.types[3], 'On Boarding Skilled User');
-      }
-      if (element.freeLanceDetails.bgcurrentstatus === config.bg_code_approved) {
-        let msg = 'Skilled Worker ' + element.fullname + ' the  background check is approved  .';
-        this.showToastNotification(msg, this.types[0], 'On Boarding Skilled User');
-      }
-      if (element.freeLanceDetails.bgcurrentstatus === config.bg_code_rejected) {
-        let msg = 'Skilled Worker ' + element.fullname + ' has  background check is  rejected .';
-        this.showToastNotification(msg, this.types[1], 'On Boarding Skilled User');
-      }
-    });
-    this.usrObjCBAs.forEach((element: any) => {
-      if (element.isactive) {
-        let msg = 'New CBA  ' + element.fullname + ' has signedup';
-        this.showToastNotification(msg, this.types[3], 'CBA User Notification');
-      }
-    })
-  }
-
-  showToastNotification(txtmsg: string, typeName: any, toastheader: string) {
-    this.toaster.open({
-      text: txtmsg,
-      caption: toastheader + ' Notification',
-      type: typeName
     });
   }
 
@@ -270,7 +238,7 @@ export class ManageuserComponent implements OnInit {
     this.spinnerService.show();
     this.userService.getUserByUserId(userId).pipe(first()).subscribe(
       (respuser: any) => {
-        if (actionName == 'deactive') {
+        if (actionName == config.keydeactive) {
           respuser.isactive = false;
         } else {
           respuser.isactive = true;
@@ -280,10 +248,10 @@ export class ManageuserComponent implements OnInit {
             this.usrObj = this.userAdapter.adapt(userObj);
             if (this.usrObj.userId > 0) {
 
-              if (actionName == 'deactive') {
-                this.alertService.success('User successfully deactivaited.');
+              if (actionName == config.keydeactive) {
+                this.alertService.success(ConfigMsg.user_deactive);
               } else {
-                this.alertService.success('User successfully activiated again.');
+                this.alertService.success(ConfigMsg.user_active);
               }
               this.getAllUser();
             }
@@ -297,15 +265,5 @@ export class ManageuserComponent implements OnInit {
         this.spinnerService.hide();
         this.alertService.error(error);
       });
-  }
-
-  formatPhoneNumber(phoneNumberString) {
-    var cleaned = ('' + phoneNumberString).replace(/\D/g, '')
-    var match = cleaned.match(/^(1|)?(\d{3})(\d{3})(\d{4})$/)
-    if (match) {
-      var intlCode = (match[1] ? '+1 ' : '')
-      return [intlCode, '(', match[2], ') ', match[3], '-', match[4]].join('')
-    }
-    return null
   }
 }

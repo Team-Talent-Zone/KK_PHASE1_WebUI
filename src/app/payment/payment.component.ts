@@ -8,6 +8,7 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { AlertsService } from '../AppRestCall/alerts/alerts.service';
 import { ActivatedRoute } from '@angular/router';
 import { UserAdapter } from '../adapters/useradapter';
+import { ConfigMsg } from '../appconstants/configmsg';
 
 @Component({
   selector: 'app-payment',
@@ -28,7 +29,7 @@ export class PaymentComponent implements OnInit {
   productinfo = '';
   serviceids = '';
   usrobj: any;
-  isphvalid : boolean = false;
+  isphvalid: boolean = false;
 
   constructor(
     private userAdapter: UserAdapter,
@@ -60,10 +61,10 @@ export class PaymentComponent implements OnInit {
   confirmPayment() {
     var phonenoreg = new RegExp('^[0-9]*$');
     if (this.payuform.phone == null || this.payuform.phone.length === 0) {
-      this.alertService.info('Enter Mobile number');  
+      this.alertService.info(ConfigMsg.mobile_msg);
     } else
       if (this.payuform.phone != null && (this.payuform.phone.length > 10 || this.payuform.phone.length < 10)) {
-        this.alertService.info('Mobile number must be 10 digits');
+        this.alertService.info(ConfigMsg.mobile_msg_1);
       } else {
         if (phonenoreg.test(this.payuform.phone)) {
           this.spinnerService.show();
@@ -83,7 +84,7 @@ export class PaymentComponent implements OnInit {
               this.payuform.txnid = data.txnid;
               this.payuform.surl = data.surl;
               this.payuform.furl = data.furl;
-              this.payuform.key = data.key; 
+              this.payuform.key = data.key;
               this.payuform.hash = data.hash;
               this.payuform.txnid = data.txnid;
               this.payuform.service_provider = data.service_provider;
@@ -93,22 +94,22 @@ export class PaymentComponent implements OnInit {
               this.payuform.phone = data.phone;
               this.payuform.productInfo = data.productinfo;
               this.spinnerService.hide();
-             /* this.usrobj = this.userAdapter.adapt(this.userService.currentUserValue);
-              this.usrobj.phoneno = data.phone;
-              this.userService.saveorupdate(this.usrobj).subscribe(() => {
-                this.spinnerService.hide();
-                this.isphvalid = true;
-              }, error => {
-                this.spinnerService.hide();
-                this.alertService.error(error);
-              });*/
+              /* this.usrobj = this.userAdapter.adapt(this.userService.currentUserValue);
+               this.usrobj.phoneno = data.phone;
+               this.userService.saveorupdate(this.usrobj).subscribe(() => {
+                 this.spinnerService.hide();
+                 this.isphvalid = true;
+               }, error => {
+                 this.spinnerService.hide();
+                 this.alertService.error(error);
+               });*/
             },
             error => {
               this.spinnerService.hide();
               this.alertService.error(error);
             });
         } else {
-          this.alertService.info('Enter only digits');
+          this.alertService.info(ConfigMsg.mobile_msg_2);
         }
       }
   }

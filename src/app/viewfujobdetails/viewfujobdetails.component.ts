@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap';
+import { CommonUtility } from '../adapters/commonutility';
 import { config } from '../appconstants/config';
 import { AlertsService } from '../AppRestCall/alerts/alerts.service';
 import { FreelanceserviceService } from '../AppRestCall/freelanceservice/freelanceservice.service';
@@ -18,10 +19,6 @@ export class ViewfujobdetailsComponent implements OnInit {
   listofalljobs: any;
   role: string;
   isemptyjobs : boolean = false;
-  config: ModalOptions = {
-    class: 'modal-lg', backdrop: 'static',
-    keyboard: false
-  };
   modalRef: BsModalRef;
   
   constructor(
@@ -30,7 +27,7 @@ export class ViewfujobdetailsComponent implements OnInit {
     private spinnerService: Ng4LoadingSpinnerService,
     private alertService: AlertsService,
     private modalService: BsModalService,
-   
+    public commonlogic: CommonUtility
   ) { 
     route.params.subscribe(params => {
       this.userId = params.id;
@@ -83,7 +80,7 @@ export class ViewfujobdetailsComponent implements OnInit {
     };
     this.modalRef = this.modalService.show(ViewjobbyjobidPopupComponent, Object.assign(
       {},
-      this.config,
+      this.commonlogic.configlg,
       {
         initialState
       }

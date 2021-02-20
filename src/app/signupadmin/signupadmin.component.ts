@@ -79,7 +79,7 @@ export class SignupadminComponent implements OnInit {
         (resp: any) => {
           if (resp != null) {
             this.signupAdminForm.patchValue({ password: resp.password });
-            this.signupAdminForm.patchValue({ preferlang: config.default_prefer_lang.toString() });
+            this.signupAdminForm.patchValue({ preferlang: config.lang_code_en.toString() });
             this.userService.saveUser(
               this.signupAdminForm.value, this.signupAdminForm.get('rolecode').value,
               this.key, this.signupAdminForm.value, null
@@ -90,7 +90,7 @@ export class SignupadminComponent implements OnInit {
                   referencetemplate => {
                     this.templateObj = this.reflookuptemplateAdapter.adapt(referencetemplate);
                     this.util = new Util();
-                    this.util.preferlang = config.default_prefer_lang.toString();
+                    this.util.preferlang = config.lang_code_en.toString();
                     this.util.fromuser = this.userService.currentUserValue.username;
                     this.util.subject = ConfigMsg.email_welcomeemailaddress_subj;
                     this.util.touser = this.usrObj.username;

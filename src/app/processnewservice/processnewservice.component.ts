@@ -133,7 +133,7 @@ export class ProcessnewserviceComponent implements OnInit {
                           if (util.lastreturncode === 250) {
                             this.router.navigate(['/dashboard']);
                             this.modalRef.hide();
-                            this.alertService.success('Changes done succcesfully with status ' + this.message);
+                            this.alertService.success(ConfigMsg.new_serivce_review_msg_1 + this.message);
                             this.spinnerService.hide();
                           }
                         },
@@ -211,7 +211,7 @@ export class ProcessnewserviceComponent implements OnInit {
                               this.spinnerService.hide();
                               this.router.navigate(['/dashboard']);
                               this.modalRef.hide();
-                              this.alertService.success('Changes done succcesfully');
+                              this.alertService.success(ConfigMsg.new_serivce_review_msg_2);
                             }
                           },
                         );
@@ -242,7 +242,7 @@ export class ProcessnewserviceComponent implements OnInit {
                             if (util.lastreturncode === 250) {
                               this.router.navigate(['/dashboard']);
                               this.modalRef.hide();
-                              this.alertService.success('Changes done succcesfully');
+                              this.alertService.success(ConfigMsg.new_serivce_review_msg_2);
                               this.spinnerService.hide();
                             }
                           },

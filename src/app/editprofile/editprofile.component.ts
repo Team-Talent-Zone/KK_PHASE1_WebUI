@@ -43,7 +43,6 @@ export class EditprofileComponent implements OnInit {
   editprofileForm: FormGroup;
   pwdForm: FormGroup;
   usrObj: User;
-  langSelected = config.default_prefer_lang.toString();
   filename: string;
   typeavt: string;
   typenationalid: string;
@@ -129,19 +128,19 @@ export class EditprofileComponent implements OnInit {
         this.lat = place.geometry.location.lat();
         this.lng = place.geometry.location.lng();
         autocomplete.getPlace().address_components.forEach(element => {
-          if (element.types[0] === 'route') {
+          if (element.types[0] === config.keygmap_2) {
             this.route = element.long_name;
           }
-          if (element.types[0] === 'locality') {
+          if (element.types[0] === config.keygmap_3) {
             this.cityElementOne = element.long_name;
           } else
-            if (element.types[0] === 'administrative_area_level_2') {
+            if (element.types[0] === config.keygmap_4) {
               this.cityElementTwo = element.long_name;
             }
-          if (element.types[0] === 'administrative_area_level_1') {
+          if (element.types[0] === config.keygmap_5) {
             this.state = element.long_name;
           }
-          if (element.types[0] === 'country') {
+          if (element.types[0] === config.keygmap_6) {
             this.country = element.short_name;
           }
         });
@@ -333,7 +332,7 @@ export class EditprofileComponent implements OnInit {
         this.edituserobj.freelancehistoryentity[0].bgstatus = config.bg_code_completedprofile;
       }
       if (this.editprofileForm.get('verfiyaccountno').value.toString() !== this.editprofileForm.get('accountno').value.toString()) {
-        this.referService.translatetext("Account Number and Verfication Account Number is mismatch", this.userService.currentUserValue.preferlang).subscribe(
+        this.referService.translatetext(ConfigMsg.profile_msg_7, this.userService.currentUserValue.preferlang).subscribe(
           (trantxt: any) => {
             this.alertService.info(trantxt);
             this.spinnerService.hide();
@@ -350,7 +349,7 @@ export class EditprofileComponent implements OnInit {
         this.paymentService.verifyAccountPayout(this.editprofileForm.get('accountno').value.toString(), this.editprofileForm.get('ifsc').value.toString()).subscribe(
           (beneficiaryName: string) => {
             if (beneficiaryName.length == 0) {
-              this.referService.translatetext("Incorrect Bank Account Number or IFSC Code . Please check again", this.userService.currentUserValue.preferlang).subscribe(
+              this.referService.translatetext(ConfigMsg.profile_msg_1, this.userService.currentUserValue.preferlang).subscribe(
                 (trantxt: any) => {
                   this.alertService.info(trantxt);
                   this.spinnerService.hide();
@@ -402,7 +401,7 @@ export class EditprofileComponent implements OnInit {
     if (this.typenationalid !== config.profiletype_nationalid.toString() && this.typeavt !== config.profiletype_avatar.toString()) {
       this.saveorupdateedituser(this.edituserobj);
       if (this.msgflag) {
-        this.referService.translatetext(this.edituserobj.firstname + ' your account details is updated', this.userService.currentUserValue.preferlang).subscribe(
+        this.referService.translatetext(this.edituserobj.firstname + ConfigMsg.profile_msg_2, this.userService.currentUserValue.preferlang).subscribe(
           (trantxt: any) => {
             this.alertService.success(trantxt);
             this.msgflag = false;
@@ -421,7 +420,7 @@ export class EditprofileComponent implements OnInit {
             this.edituserobj.avtarurl = returnURL;
             this.saveorupdateedituser(this.edituserobj);
             if (this.msgflag) {
-              this.referService.translatetext(this.edituserobj.firstname + ' your account details is updated with profile pic', this.userService.currentUserValue.preferlang).subscribe(
+              this.referService.translatetext(this.edituserobj.firstname + ConfigMsg.profile_msg_2, this.userService.currentUserValue.preferlang).subscribe(
                 (trantxt: any) => {
                   this.alertService.success(trantxt);
                   this.msgflag = false;
@@ -450,7 +449,7 @@ export class EditprofileComponent implements OnInit {
           this.edituserobj.freeLanceDetails.uploadValidPhotoidImgUrl = returnURL;
           this.saveorupdateedituser(this.edituserobj);
           if (this.msgflag) {
-            this.referService.translatetext(this.edituserobj.firstname + ' your account details is updated with photo id', this.userService.currentUserValue.preferlang).subscribe(
+            this.referService.translatetext(this.edituserobj.firstname + ConfigMsg.profile_msg_2, this.userService.currentUserValue.preferlang).subscribe(
               (trantxt: any) => {
                 this.alertService.success(trantxt);
                 this.msgflag = false;
@@ -464,7 +463,7 @@ export class EditprofileComponent implements OnInit {
             );
           }
           if (this.msgflagboth) {
-            this.referService.translatetext(this.edituserobj.firstname + ' your account details is updated', this.userService.currentUserValue.preferlang).subscribe(
+            this.referService.translatetext(this.edituserobj.firstname + ConfigMsg.profile_msg_2, this.userService.currentUserValue.preferlang).subscribe(
               (trantxt: any) => {
                 this.alertService.success(trantxt);
                 this.msgflagboth = false;
@@ -538,7 +537,7 @@ export class EditprofileComponent implements OnInit {
           this.cd.markForCheck();
         }
       } else {
-        this.referService.translatetext('Invalid file format. it should be .png,.jpg,.jpeg', this.userService.currentUserValue.preferlang).subscribe(
+        this.referService.translatetext(ConfigMsg.profile_msg_3, this.userService.currentUserValue.preferlang).subscribe(
           (trantxt: any) => {
             this.alertService.info(trantxt);
           },
@@ -549,7 +548,7 @@ export class EditprofileComponent implements OnInit {
         );
       }
     } else {
-      this.referService.translatetext('Image size must be less than 2 Mega Bytes', this.userService.currentUserValue.preferlang).subscribe(
+      this.referService.translatetext(ConfigMsg.profile_msg_4, this.userService.currentUserValue.preferlang).subscribe(
         (trantxt: any) => {
           this.alertService.info(trantxt);
         },
@@ -567,7 +566,7 @@ export class EditprofileComponent implements OnInit {
       this.allUserCBAList.forEach(element => {
         if (element.userbizdetails.bizname === bizname &&
           element.userId !== this.userService.currentUserValue.userId) {
-          this.alertService.info('Business name ' + bizname + ' is already exist. Please change & submit.');
+          this.alertService.info(ConfigMsg.profile_cba_msg_1);
           this.isbiznamexist = true;
         }
       });
@@ -589,7 +588,7 @@ export class EditprofileComponent implements OnInit {
       return;
     }
     if (this.pwdForm.get('newpassword').value !== this.pwdForm.get('verifypassword').value) {
-      this.referService.translatetext('Verify Password is not matching', this.userService.currentUserValue.preferlang).subscribe(
+      this.referService.translatetext(ConfigMsg.profile_msg_5, this.userService.currentUserValue.preferlang).subscribe(
         (trantxt: any) => {
           this.alertService.info(trantxt);
           this.spinnerService.hide();
@@ -606,7 +605,7 @@ export class EditprofileComponent implements OnInit {
       this.usrObj.isrecoverypwd = true;
       this.userService.saveorupdate(this.usrObj).subscribe(
         (userObj: any) => {
-          this.referService.translatetext(this.edituserobj.fullname + ' your password is updated', this.userService.currentUserValue.preferlang).subscribe(
+          this.referService.translatetext(ConfigMsg.profile_msg_6, this.userService.currentUserValue.preferlang).subscribe(
             (trantxt: any) => {
               this.alertService.success(trantxt);
               this.spinnerService.hide();

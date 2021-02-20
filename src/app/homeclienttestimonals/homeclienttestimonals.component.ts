@@ -38,7 +38,7 @@ export class HomeclienttestimonalsComponent implements OnInit {
         this.getFUFeebackDetails(config.lang_code_te);
 
       } else {
-        this.getFUFeebackDetails(config.default_prefer_lang);
+        this.getFUFeebackDetails(config.lang_code_en);
       }
   }
   getFUFeebackDetails(langcode: string) {

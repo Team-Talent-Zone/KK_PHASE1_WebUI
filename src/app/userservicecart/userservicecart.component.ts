@@ -8,6 +8,7 @@ import { ReferenceService } from '../AppRestCall/reference/reference.service';
 import { AlertsService } from '../AppRestCall/alerts/alerts.service';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { ConfirmationDialogService } from '../AppRestCall/confirmation/confirmation-dialog.service';
+import { ConfigMsg } from '../appconstants/configmsg';
 
 @Component({
   selector: 'app-userservicecart',
@@ -49,7 +50,7 @@ export class UserservicecartComponent implements OnInit {
   }
 
   removeItemFromCart(serviceId: number, packwithotherourserviceid: number) {
-    this.confirmationDialogService.confirm('Please confirm', 'Do you want to remove this item ?', 'Yes', 'No')
+    this.confirmationDialogService.confirm(ConfigMsg.confirmation_header_msg, ConfigMsg.remove_cart_msg, ConfigMsg.confirmation_button_yes, ConfigMsg.confirmation_button_no)
       .then((confirmed) => {
         if (confirmed) {
           if (serviceId > 0) {

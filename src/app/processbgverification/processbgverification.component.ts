@@ -85,7 +85,7 @@ export class ProcessbgverificationComponent implements OnInit {
       this.bgverificationForm.patchValue({ bgstatus: config.bg_code_senttoccsm.toString() });
     }
     if (this.additiondocreturnURL === null) {
-      this.bgverificationForm.patchValue({ docname: 'No Documents Uploaded' });
+      this.bgverificationForm.patchValue({ docname: ConfigMsg.no_document_msg });
     }
     this.issubmit = true;
     if (this.bgverificationForm.invalid) {
@@ -141,8 +141,7 @@ export class ProcessbgverificationComponent implements OnInit {
                                 (freedocObj: any) => {
                                   this.modalRef.hide();
                                   this.spinnerService.hide();
-                                  // tslint:disable-next-line: max-line-length
-                                  this.alertService.success('Additional Doc Uploaded and Sent background verification to ' + freehisObj.decisionby);
+                                  this.alertService.success(ConfigMsg.document_msg_1 + freehisObj.decisionby);
                                 },
                                 error => {
                                   this.alertService.error(error);
@@ -150,7 +149,7 @@ export class ProcessbgverificationComponent implements OnInit {
                                 });
                             } else {
                               this.spinnerService.hide();
-                              this.alertService.success(' Sent BG verification to your manager ' + freehisObj.decisionby);
+                              this.alertService.success(ConfigMsg.bg_sent_manager_msg_1 + freehisObj.decisionby);
                               this.modalRef.hide();
                             }
                           },
@@ -220,7 +219,7 @@ export class ProcessbgverificationComponent implements OnInit {
                       this.userService.saveorupdate(this.usrObjMyWork).subscribe(
                         (userObj: any) => {
                           this.router.navigate(['/dashboard']);
-                          this.alertService.success(' Bg verification is completed ');
+                          this.alertService.success(ConfigMsg.bg_completed);
                           this.spinnerService.hide();
                           this.modalRef.hide();
                         },
@@ -285,7 +284,7 @@ export class ProcessbgverificationComponent implements OnInit {
                           this.userService.saveFreeLanceHistory(this.freehistObj).subscribe(
                             (freehisObj: any) => {
                               this.router.navigate(['/dashboard']);
-                              this.alertService.success('Background verification sent back to ' + respuser.fullname);
+                              this.alertService.success(ConfigMsg.bg_verificaton_back + respuser.fullname);
                               this.spinnerService.hide();
                               this.modalRef.hide();
                             },
@@ -344,10 +343,10 @@ export class ProcessbgverificationComponent implements OnInit {
           this.cd.markForCheck();
         }
       } else {
-        this.alertService.info('Invalid file format. it should be .pdf,.zip');
+        this.alertService.info(ConfigMsg.invalid_format_pdf);
       }
     } else {
-      this.alertService.info('File size must be less than 2 Mega Bytes');
+      this.alertService.info(ConfigMsg.file_size_msg);
     }
   }
 }

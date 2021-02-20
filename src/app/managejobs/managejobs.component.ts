@@ -19,6 +19,7 @@ import { UsersrvdetailsService } from '../AppRestCall/userservice/usersrvdetails
 import { DatePipe } from '@angular/common';
 import { ConfigMsg } from '../appconstants/configmsg';
 import { ConfirmationDialogService } from '../AppRestCall/confirmation/confirmation-dialog.service';
+import { CommonUtility } from '../adapters/commonutility';
 
 @Component({
   selector: 'app-managejobs',
@@ -38,12 +39,6 @@ export class ManagejobsComponent implements OnInit {
   isratingdisplay = false;
   private types: Array<ToastType> = ['success', 'danger', 'warning', 'info', 'primary', 'secondary', 'dark', 'light'];
   notifcationbellList: any = [];
-  config: ModalOptions = {
-    class: 'modal-md', backdrop: 'static',
-    keyboard: false
-  };
-  indiaTime = this.datepipe.transform(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }), "dd/MM/yyyy hh:mm:ss");
-  indiaTimeFormat = this.datepipe.transform(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }), "yyyy-MM-dd hh:mm:ss");
   mapurl = 'http://maps.google.com/?z=16&q=';
   comma = ',';
   newjobsempty: boolean = false;
@@ -64,7 +59,8 @@ export class ManagejobsComponent implements OnInit {
     private dashboard: DashboardComponent,
     public usersrvdetails: UsersrvdetailsService,
     public datepipe: DatePipe,
-    public confirmationDialogService: ConfirmationDialogService
+    public confirmationDialogService: ConfirmationDialogService,
+    public commonlogic : CommonUtility
   ) {
   }
 
@@ -87,7 +83,7 @@ export class ManagejobsComponent implements OnInit {
       (notifcationlist: any) => {
         if (notifcationlist != null) {
           notifcationlist.forEach(element => {
-            this.showToastNotificationForFCBA(element.msg, this.types[3], 'Friendly');
+            this.showToastNotificationForFCBA(element.msg, this.types[3], ConfigMsg.keytoaster);
           });
         }
       },
@@ -102,7 +98,7 @@ export class ManagejobsComponent implements OnInit {
     const type = typeName;
     this.toaster.open({
       text: txtmsg,
-      caption: toastheader + ' Notification',
+      caption: toastheader + ConfigMsg.keytoaster_1,
       type: type,
     });
   }
@@ -113,7 +109,7 @@ export class ManagejobsComponent implements OnInit {
       objfreelanceservice.isjobcompleted = true;
       this.freelanceserviceService.saveOrUpdateFreelancerOnService(objfreelanceservice).subscribe((updatedobjfreelanceservice: FreelanceOnSvc) => {
         if (updatedobjfreelanceservice.jobId > 0) {
-          this.alertService.success('The Job is completed successfully. Please click on the Pay. ');
+          this.alertService.success(ConfigMsg.job_msg_1);
           this.spinnerService.hide();
           this.getUserAllJobDetailsByUserId();
         }
@@ -130,16 +126,16 @@ export class ManagejobsComponent implements OnInit {
   }
 
   updateFreelancerAttendance(jobId: number) {
-    this.confirmationDialogService.confirm('Please confirm', 'Your confirming that our skilled worker at the job location?', 'Present', 'Cancel')
+    this.confirmationDialogService.confirm(ConfigMsg.confirmation_header_msg, ConfigMsg.confirmation_msg_jobattendance, ConfigMsg.confirmation_button_present, ConfigMsg.confirmation_button_cancel)
       .then((confirmed) => {
         if (confirmed) {
           this.spinnerService.show();
           this.freelanceserviceService.getAllFreelanceOnServiceDetailsByJobId(jobId).subscribe((objfreelanceservice: FreelanceOnSvc) => {
             objfreelanceservice.isfreelancerjobattendant = true;
-            objfreelanceservice.cbajobattendantdate = this.indiaTimeFormat.toString();
+            objfreelanceservice.cbajobattendantdate = this.commonlogic.indiaTimeFormat.toString();
             this.freelanceserviceService.saveOrUpdateFreelancerOnService(objfreelanceservice).subscribe((updatedobjfreelanceservice: FreelanceOnSvc) => {
               if (updatedobjfreelanceservice.jobId > 0) {
-                this.alertService.success('We have noted that our skilled worker is at your work location ' + updatedobjfreelanceservice.joblocation + ' on' + this.indiaTime.toString());
+                this.alertService.success(ConfigMsg.job_sw_atlocation + updatedobjfreelanceservice.joblocation + ConfigMsg.on_msg + this.commonlogic.indiaTime.toString());
                 this.spinnerService.hide();
                 this.getUserAllJobDetailsByUserId();
               }
@@ -169,7 +165,7 @@ export class ManagejobsComponent implements OnInit {
             objfreelanceservice.isjobvoliation = false;
             this.freelanceserviceService.saveOrUpdateFreelancerOnService(objfreelanceservice).subscribe((updatedobjfreelanceservice: FreelanceOnSvc) => {
               if (updatedobjfreelanceservice.jobId > 0) {
-                this.alertService.success('The JobId: ' + jobId + ' is activiated succesfully . We will notify once the skilled worker accepts the job. ');
+                this.alertService.success(ConfigMsg.job_assign_msg_1 + jobId + ConfigMsg.job_success_msg);
                 this.spinnerService.hide();
                 this.getUserAllJobDetailsByUserId();
               }
@@ -189,14 +185,15 @@ export class ManagejobsComponent implements OnInit {
   }
 
   cancelJob(jobId: number) {
-    this.confirmationDialogService.confirm('Please confirm', 'Do you want to cancel this jobId#' + jobId + ' ?', 'Ok', 'Cancel')
+    this.confirmationDialogService.confirm(ConfigMsg.confirmation_header_msg, ConfigMsg.confirmation_job_cancel_msg + jobId + ConfigMsg.confirmation_questionmark,
+      ConfigMsg.confirmation_button_ok, ConfigMsg.confirmation_button_cancel)
       .then((confirmed) => {
         if (confirmed) {
           this.spinnerService.show();
           this.freelanceserviceService.getAllFreelanceOnServiceDetailsByJobId(jobId).subscribe((objfreelanceservice: FreelanceOnSvc) => {
             this.freelanceserviceService.deleteFreelanceSVCDetails(objfreelanceservice).subscribe((bol: boolean) => {
               if (bol) {
-                this.alertService.success('The JobId: ' + jobId + ' is cancelled successfully.');
+                this.alertService.success(ConfigMsg.job_assign_msg_1 + jobId + ConfigMsg.job_canclled_msg);
                 this.spinnerService.hide();
                 this.getUserAllJobDetailsByUserId();
               }
@@ -215,7 +212,7 @@ export class ManagejobsComponent implements OnInit {
   }
 
   deactivateJob(jobId: number, reason: string) {
-    this.confirmationDialogService.confirm('Please confirm', 'Are you sure on the decision ?', 'Yes', 'No')
+    this.confirmationDialogService.confirm(ConfigMsg.confirmation_header_msg, ConfigMsg.job_decision_msg_1, ConfigMsg.confirmation_button_yes, ConfigMsg.confirmation_button_no)
       .then((confirmed) => {
         if (confirmed) {
           this.spinnerService.show();
@@ -228,9 +225,9 @@ export class ManagejobsComponent implements OnInit {
             this.freelanceserviceService.saveOrUpdateFreelancerOnService(objfreelanceservice).subscribe((bol: boolean) => {
               if (bol) {
                 if (reason != config.voliation.toString()) {
-                  this.alertService.success('The JobId: ' + jobId + ' is cancelled successfully.');
+                  this.alertService.success(ConfigMsg.job_assign_msg_1 + jobId + ConfigMsg.job_canclled_msg);
                 } else {
-                  this.alertService.success(ConfigMsg.voliation_msg + ' The JobId: ' + jobId + ' is on hold till we resolve it.');
+                  this.alertService.success(ConfigMsg.voliation_msg + ConfigMsg.job_assign_msg_1 + jobId + ConfigMsg.job_hold_msg);
                 }
                 this.getUserAllJobDetailsByUserId();
                 this.spinnerService.hide();
@@ -302,7 +299,7 @@ export class ManagejobsComponent implements OnInit {
       initialState: {
         totalAmountToPay: amount,
         jobids: jobId,
-        productinfoParam: subcategorylabel + 'JobId#' + jobId
+        productinfoParam: subcategorylabel + ConfigMsg.job_assign_msg_1 + jobId
       }
     });
   }
@@ -340,7 +337,7 @@ export class ManagejobsComponent implements OnInit {
     this.spinnerService.show();
     this.freelanceserviceService.saveFreeLanceStarReviewFB(this.freelancestarobj).subscribe((response: FreelanceStarReview) => {
       if (response.id > 0) {
-        this.alertService.success('Thank you for the feedback.');
+        this.alertService.success(ConfigMsg.feedback_msg);
         this.getUserAllJobDetailsByUserId();
         this.spinnerService.hide();
       }
@@ -361,20 +358,11 @@ export class ManagejobsComponent implements OnInit {
     };
     this.modalRef = this.modalService.show(ReadMorePopupComponent, Object.assign(
       {},
-      this.config,
+      this.commonlogic.configmdwithoutanimation,
       {
         initialState
       }
     ));
   }
 
-  formatPhoneNumber(phoneNumberString) {
-    var cleaned = ('' + phoneNumberString).replace(/\D/g, '')
-    var match = cleaned.match(/^(1|)?(\d{3})(\d{3})(\d{4})$/)
-    if (match) {
-      var intlCode = (match[1] ? '+1 ' : '')
-      return [intlCode, '(', match[2], ') ', match[3], '-', match[4]].join('')
-    }
-    return null
-  }
 }

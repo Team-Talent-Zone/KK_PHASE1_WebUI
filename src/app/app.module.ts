@@ -75,6 +75,7 @@ import { ViewjobbyjobidPopupComponent } from './viewjobbyjobid-popup/viewjobbyjo
 import { ChartsModule, ThemeService } from 'ng2-charts';
 import { DbviewsService } from './AppRestCall/dbviews/dbviews.service';
 import { LiveTrackingComponent } from './live-tracking/live-tracking.component';
+import { CommonUtility } from './adapters/commonutility';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
@@ -126,7 +127,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     ConfirmationDialogComponent,
     DashboardofadminanalyticsComponent,
     ViewjobbyjobidPopupComponent,
-    LiveTrackingComponent
+    LiveTrackingComponent,
   ],
   imports: [
     ToastNotificationsModule,
@@ -180,7 +181,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     },
     DatePipe,
     ConfirmationDialogService,
-    ThemeService
+    ThemeService,
+    CommonUtility
   ],
   entryComponents: [
     ViewaccountdetailsComponent,

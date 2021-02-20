@@ -95,7 +95,7 @@
                             <small class="pull-left">
                                 <b>{{ 'DASHBOARD_FU_BODY.PHONENO' | translate }} </b>
                                 <i class="fa fa-mobile ml-2" aria-hidden="true"></i>
-                                {{this.formatPhoneNumber(element.fuphoneno)}}
+                                {{this.commonlogic.formatPhoneNumber(element.fuphoneno)}}
                             </small>
                         </p>
                         <p *ngIf="element.freelanceuserId > 0">
@@ -317,7 +317,7 @@
                             <small class="pull-left">
                                 <b>{{ 'DASHBOARD_FU_BODY.PHONENO' | translate }}: </b>
                                 <i class="fa fa-mobile ml-2" aria-hidden="true"></i>
-                                {{this.formatPhoneNumber(completedjob.fuphoneno)}}
+                                {{this.commonlogic.formatPhoneNumber(completedjob.fuphoneno)}}
                             </small>
                         </p>
                         <p *ngIf="completedjob.freelanceuserId > 0">

@@ -18,6 +18,7 @@ import { ModalOptions } from 'ngx-bootstrap';
 import { ReadMorePopupComponent } from '../read-more-popup/read-more-popup.component';
 import { ConfigMsg } from '../appconstants/configmsg';
 import { MatomoInjector, MatomoTracker } from 'ngx-matomo';
+import { CommonUtility } from '../adapters/commonutility';
 
 @Component({
   selector: 'app-dashboard',
@@ -39,17 +40,13 @@ export class DashboardComponent implements OnInit {
   selectedIndex = -1;
   // the list to be shown after filtering
   modalRef: BsModalRef;
-  config: ModalOptions = {
-    class: 'modal-lg', backdrop: 'static',
-    keyboard: false
-  };
+
   filterOn = '0';
   inputItemCode: string;
   txtid: string;
   ispaysuccess = false;
 
   fullname: string;
-  indiaTime = this.datepipe.transform(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }), "dd/MM/yyyy hh:mm:ss");
   defaultTxtImg: string = '//placehold.it/200/dddddd/fff?text=' + this.getNameInitials();
   notifcationbellList: any = [];
   notificationCount: number;
@@ -65,11 +62,10 @@ export class DashboardComponent implements OnInit {
     private paymentsvc: PaymentService,
     private referService: ReferenceService,
     public translate: TranslateService,
-    public datepipe: DatePipe,
     public usersrvdetails: UsersrvdetailsService,
     private modalService: BsModalService,
     private matomoTracker: MatomoTracker,
-    private matomoInjector: MatomoInjector
+    private commonlogic: CommonUtility,
   ) {
     route.params.subscribe(params => {
       this.txtid = params.txtid;
@@ -99,11 +95,6 @@ export class DashboardComponent implements OnInit {
     if (this.userService.currentUserValue != null) {
       if (this.userService.currentUserValue.userroles.rolecode == config.user_rolecode_fu.toString()) {
         this.getNotificationUserByUserId();
-        /* setTimeout(() => {
-           this.spinnerService.show();
-           this.getNotificationUserByRole(config.rolecode_notification);
-           this.spinnerService.hide();
-         }, 3000);*/
       } else {
         if (this.userService.currentUserValue.userroles.rolecode == config.user_rolecode_cba.toString()) {
           this.getNotificationUserByUserId();
@@ -118,7 +109,7 @@ export class DashboardComponent implements OnInit {
     this.usersrvdetails.getAllBellNotifications(this.userService.currentUserValue.userId, this.userService.currentUserValue.userroles.rolecode).subscribe(
       (notifcationlist: any) => {
         if (notifcationlist != null) {
-          if (this.userService.currentUserValue.preferlang !== config.default_prefer_lang) {
+          if (this.userService.currentUserValue.preferlang !== config.lang_code_en) {
             notifcationlist.forEach((element: any) => {
               if (element.subcategory.toString() == this.userService.currentUserValue.freeLanceDetails.subCategory) {
                 this.referService.translatetext(element.msg.toString(), this.userService.currentUserValue.preferlang).subscribe(
@@ -151,7 +142,7 @@ export class DashboardComponent implements OnInit {
     this.usersrvdetails.getAllBellNotificationsByRoleCode(roleCode).subscribe(
       (notifcationlist: any) => {
         if (notifcationlist != null) {
-          if (this.userService.currentUserValue.preferlang !== config.default_prefer_lang && this.userService.currentUserValue.userroles.rolecode == config.user_rolecode_fu.toString()) {
+          if (this.userService.currentUserValue.preferlang !== config.lang_code_en && this.userService.currentUserValue.userroles.rolecode == config.user_rolecode_fu.toString()) {
             notifcationlist.forEach((element: any) => {
               if (element.subcategory.toString() == this.userService.currentUserValue.freeLanceDetails.subCategory.toString()) {
                 this.referService.translatetext(element.msg.toString(), this.userService.currentUserValue.preferlang).subscribe(
@@ -192,10 +183,10 @@ export class DashboardComponent implements OnInit {
     const initialState = {
       notificationEnable: true,
       contentList: this.notifcationbellList
-    };
+    }; 
     this.modalRef = this.modalService.show(ReadMorePopupComponent, Object.assign(
       {},
-      this.config,
+      this.commonlogic.configlg,
       {
         initialState
       }
@@ -205,8 +196,7 @@ export class DashboardComponent implements OnInit {
   getFullNameByPreferLang() {
     this.fullname = null;
     if (this.userService.currentUserValue.userroles.rolecode === config.user_rolecode_fu.toString()) {
-      if (this.userService.currentUserValue.preferlang !== config.default_prefer_lang) {
-        // tslint:disable-next-line: max-line-length
+      if (this.userService.currentUserValue.preferlang !== config.lang_code_en) {
         this.referService.translatetext(this.userService.currentUserValue.fullname, this.userService.currentUserValue.preferlang).subscribe(
           (trantxt: any) => {
             this.fullname = trantxt;
@@ -239,7 +229,7 @@ export class DashboardComponent implements OnInit {
         var paymentsucess;
         var paymentfailed;
         if (paymentobj.paymentsFUTrans.status === config.payment_success.toString()) {
-          if (this.userService.currentUserValue.preferlang == config.default_prefer_lang) {
+          if (this.userService.currentUserValue.preferlang == config.lang_code_en) {
             paymentsucess = ConfigMsg.payment_sucesss_alert_en.toString();
           } else {
             if (this.userService.currentUserValue.preferlang == config.lang_code_hi) {
@@ -250,7 +240,7 @@ export class DashboardComponent implements OnInit {
           }
           this.alertService.success(paymentsucess);
         } else {
-          if (this.userService.currentUserValue.preferlang == config.default_prefer_lang) {
+          if (this.userService.currentUserValue.preferlang == config.lang_code_en) {
             paymentfailed = ConfigMsg.payment_fail_alert_en.toString();
           } else {
             if (this.userService.currentUserValue.preferlang == config.lang_code_hi) {
@@ -285,19 +275,19 @@ export class DashboardComponent implements OnInit {
 
   logout() {
     this.userService.logout();
-    localStorage.setItem('langCode', config.default_prefer_lang);
-    localStorage.setItem('langLabel', config.lang_english_word);
+    localStorage.setItem(config.keylangCode, config.lang_code_en);
+    localStorage.setItem(config.keylangLabel, config.lang_english_word);
     this.router.navigate(['/home']);
   }
 
   search(inputItem: string, inputCode: string) {
     this.templist = [];
     if (inputItem == null) {
-      this.alertService.info('Search keyword cannot be empty');
+      this.alertService.info(ConfigMsg.searh_empty);
     } else {
       this.templist = this.list.filter((item) => item.label.toLowerCase().startsWith(this.inputItem.toLowerCase()));
       if (this.templist.length == 0) {
-        this.alertService.info('No skilled workers or services available for your searched keyword - ' + inputItem + '.');
+        this.alertService.info(ConfigMsg.nosearch_keyword + inputItem);
       } else {
         this.router.navigateByUrl('fusearch/', { skipLocationChange: true }).
           then(() => {
@@ -325,16 +315,13 @@ export class DashboardComponent implements OnInit {
       });
   }
 
-  // modifies the filtered list as per input
   getFilteredList() {
     this.listHidden = false;
-    // this.selectedIndex = 0;
     if (!this.listHidden && this.inputItem !== undefined) {
       this.filteredList = this.list.filter((item) => item.label.toLowerCase().startsWith(this.inputItem.toLowerCase()));
     }
   }
 
-  // select highlighted item when enter is pressed or any item that is clicked
   selectItem(ind) {
     if (ind > -1) {
       const obj = this.refAdapter.adapt(this.filteredList[ind]);
@@ -345,7 +332,6 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  // navigate through the list of items
   onKeyPress(event) {
     if (!this.listHidden) {
       if (event.key === config.escape) {
@@ -374,14 +360,11 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  // show or hide the dropdown list when input is focused or moves out of focus
   toggleListDisplay(sender: number) {
     if (sender === 1) {
-      // this.selectedIndex = -1;
       this.listHidden = false;
       this.getFilteredList();
     } else {
-      // helps to select item by clicking
       setTimeout(() => {
         this.selectItem(this.selectedIndex);
         this.listHidden = true;
@@ -404,17 +387,10 @@ export class DashboardComponent implements OnInit {
       }
     }
   }
+
   translateToLanguage(preferedLang: string) {
-    if (preferedLang === config.lang_code_hi.toString()) {
-      preferedLang = config.lang_hindi_word.toString();
-    }
-    if (preferedLang === config.lang_code_te.toString()) {
-      preferedLang = config.lang_telugu_word.toString();
-    }
-    if (preferedLang === config.default_prefer_lang.toString()) {
-      preferedLang = config.lang_english_word.toString();
-    }
-    this.translate.use(preferedLang);
+    var lang = this.commonlogic.getLangLabel(preferedLang);
+    this.translate.use(lang);
   }
 
 }

@@ -10,17 +10,18 @@ import { config } from '../appconstants/config';
 import { ConfirmationDialogService } from '../AppRestCall/confirmation/confirmation-dialog.service';
 import { FreelanceOnSvcService } from '../AppRestCall/freelanceOnSvc/freelance-on-svc.service';
 import { FreelanceOnSvc } from '../appmodels/FreelanceOnSvc';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { ReferenceAdapter } from '../adapters/referenceadapter';
 import { map } from 'rxjs/operators';
 import { UsersrvdetailsService } from '../AppRestCall/userservice/usersrvdetails.service';
-import { timer } from 'rxjs';
 import { NewsvcService } from '../AppRestCall/newsvc/newsvc.service';
-import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ViewjobbyjobidPopupComponent } from '../viewjobbyjobid-popup/viewjobbyjobid-popup.component';
 import { DbviewsService } from '../AppRestCall/dbviews/dbviews.service';
 import { ChartOptions, ChartType } from 'chart.js';
 import { Label, monkeyPatchChartJsLegend, monkeyPatchChartJsTooltip, SingleDataSet } from 'ng2-charts';
+import { CommonUtility } from '../adapters/commonutility';
+import { ConfigMsg } from '../appconstants/configmsg';
 
 
 @Component({
@@ -30,7 +31,6 @@ import { Label, monkeyPatchChartJsLegend, monkeyPatchChartJsTooltip, SingleDataS
 })
 export class DashboardofadminComponent implements OnInit {
 
-  indiaTime = this.datepipe.transform(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }), "yyyy-MM-dd");
   todaysvoliationList: any = [];
   totalvoliationResolvedList: any = []
   todaysjobscheduledList: any = [];
@@ -41,7 +41,6 @@ export class DashboardofadminComponent implements OnInit {
   skilledworkerjustacceptedList: any = [];
   jobscompletedwithoutpaymentList: any = [];
   jobscompletedpayoutpendingList: any = [];
-  indiaTimeFormat = this.datepipe.transform(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }), "yyyy-MM-dd HH:mm:ss");
   startdateInputDate: Date;
   startdate: string;
 
@@ -76,15 +75,10 @@ export class DashboardofadminComponent implements OnInit {
   isshownofreelancerinsystem: boolean = false;
   enddatevalue: string;
   resolvedvoliationreason: string;
-
-  config: ModalOptions = {
-    class: 'modal-lg', backdrop: 'static',
-    keyboard: false
-  };
   modalRef: BsModalRef;
 
   /**
-   * Chart Data
+   * Chart Data Identifiers 
    */
   listofallratingcountgraphdata: any = [];
   listofallratingnamegraphdata: any = [];
@@ -106,9 +100,8 @@ export class DashboardofadminComponent implements OnInit {
   listofallcompanyprofitcountgraphdata: SingleDataSet = [];
   listofallcompanyskillnamegraphdata: Label[] = [];
   totalprofilebyskill: number = 0;
-  /*All - Service related varaible
-  */
 
+  /*All - Service related varaible*/
   listofallpaidservices: any;
   listofallnotpaidservices: any;
   onlistofallactivenewservices: any;
@@ -129,21 +122,19 @@ export class DashboardofadminComponent implements OnInit {
     public userService: UserService,
     public confirmationDialogService: ConfirmationDialogService,
     private freelanceSvc: FreelanceOnSvcService,
-    private formBuilder: FormBuilder,
     private refAdapter: ReferenceAdapter,
     private referService: ReferenceService,
     private usersrvdetailsService: UsersrvdetailsService,
     private newService: NewsvcService,
     private modalService: BsModalService,
-    public dbviewServic: DbviewsService
+    public dbviewServic: DbviewsService,
+    public commonlogic: CommonUtility
   ) {
     monkeyPatchChartJsTooltip();
     monkeyPatchChartJsLegend();
   }
 
   ngOnInit() {
-    const sourcerefresh = timer(1000, 90000);
-    //sourcerefresh.subscribe((val: number) => {
     this.dashboardSummaryOfSkilledWorkerSearchService();
     this.getAllAvailableFUSkills();
     this.getAllNewServiceDetails();
@@ -156,7 +147,6 @@ export class DashboardofadminComponent implements OnInit {
     this.getGraphJobsData();
     this.getGraphSKVoliationData();
     this.getGraphSkillBasedData();
-    //  });
   }
 
   dashboardSummaryOfSkilledWorkerSearchService() {
@@ -189,13 +179,13 @@ export class DashboardofadminComponent implements OnInit {
           if (element.isjobvoliation && element.isfreelancerjobattendant) {
             this.totalvoliationResolvedList.push(element);
           }
-          if (element.isjobactive && element.isjobaccepted && element.jobacceptdecisionflag && this.getDate(element.jobstartedon) == this.indiaTime.toString() && element.jobaccepteddate != null) {
+          if (element.isjobactive && element.isjobaccepted && element.jobacceptdecisionflag && this.getDate(element.jobstartedon) == this.commonlogic.indiaTime.toString() && element.jobaccepteddate != null) {
             this.todaysjobscheduledList.push(element);
           }
-          if (element.isjobactive && element.isjobaccepted && element.jobacceptdecisionflag && this.getDate(element.jobstartedon) > this.indiaTime.toString() && element.jobaccepteddate != null && !element.deactivefromupcomingjob) {
+          if (element.isjobactive && element.isjobaccepted && element.jobacceptdecisionflag && this.getDate(element.jobstartedon) > this.commonlogic.indiaTime.toString() && element.jobaccepteddate != null && !element.deactivefromupcomingjob) {
             this.upcomingjobscheduledList.push(element);
           }
-          if (element.isjobactive && element.isjobaccepted && this.getDate(element.jobstartedon) > this.indiaTime.toString() && element.jobaccepteddate != null
+          if (element.isjobactive && element.isjobaccepted && this.getDate(element.jobstartedon) > this.commonlogic.indiaTime.toString() && element.jobaccepteddate != null
             && !element.deactivefromupcomingjob && !element.jobacceptdecisionflag) {
             this.skilledworkerjustacceptedList.push(element);
           }
@@ -232,7 +222,6 @@ export class DashboardofadminComponent implements OnInit {
     var year = date.getFullYear();
     var tempmonth = date.getMonth() + 1;
     var tempday = date.getDate();
-    var tempmin = date.getMinutes();
     var month = tempmonth > 10 ? tempmonth : '0' + tempmonth;
     var day = tempday > 10 ? tempday : '0' + tempday;
     var formatted = year + '-' + month + '-' + day;
@@ -277,7 +266,6 @@ export class DashboardofadminComponent implements OnInit {
     this.onnotworkfreelancelistsbysubcategory = [];
     let selectedOptions = event.target['options'];
     let selectedIndex = selectedOptions.selectedIndex;
-    let selectElementText = selectedOptions[selectedIndex].text;
     let selectElementCode = selectedOptions[selectedIndex].value;
     this.isshowswithjobbycategory = false;
     this.isshowswithnojobbycategory = false;
@@ -335,7 +323,7 @@ export class DashboardofadminComponent implements OnInit {
   }
 
   reassign(jobId: number) {
-    this.confirmationDialogService.confirm('Please confirm', 'Do you want to assign the JobId#' + jobId + ' to ' + this.fuFullName + '?', 'Assign', 'Cancel')
+    this.confirmationDialogService.confirm(ConfigMsg.confirmation_header_msg, ConfigMsg.confirmation_msg_1 + jobId + ' to ' + this.fuFullName + ConfigMsg.confirmation_questionmark, ConfigMsg.confirmation_button_assign, ConfigMsg.confirmation_button_cancel)
       .then((confirmed) => {
         if (confirmed) {
           if (this.fuUserId > 0 && this.fuFullName != null) {
@@ -344,10 +332,10 @@ export class DashboardofadminComponent implements OnInit {
               if (!objfreelanceservice.isjobaccepted) {
                 objfreelanceservice.freelanceuserId = this.fuUserId;
                 objfreelanceservice.isjobaccepted = true;
-                objfreelanceservice.jobaccepteddate = this.indiaTimeFormat.toString();
+                objfreelanceservice.jobaccepteddate = this.commonlogic.indiaTimeFormat.toString();
                 this.freelanceSvc.saveOrUpdateFreeLanceOnService(objfreelanceservice).subscribe((updatedobjfreelanceservice: FreelanceOnSvc) => {
                   if (updatedobjfreelanceservice.jobId > 0) {
-                    this.alertService.success('The JobId# ' + jobId + ' is successfully assigned to ' + this.fuFullName + ' on ' + this.indiaTime.toString());
+                    this.alertService.success(ConfigMsg.job_assign_msg_1 + jobId + ConfigMsg.job_assign_msg_2 + this.fuFullName + ' on ' + this.commonlogic.indiaTime.toString());
                     this.spinnerService.hide();
                     this.isshowfualluser = false;
                     this.dashboardSummaryOfSkilledWorkerSearchService();
@@ -380,7 +368,7 @@ export class DashboardofadminComponent implements OnInit {
       objfreelanceservice.associatedadminId = this.userService.currentUserValue.userId;
       this.freelanceSvc.saveOrUpdateFreeLanceOnService(objfreelanceservice).subscribe((updatedobjfreelanceservice: FreelanceOnSvc) => {
         if (updatedobjfreelanceservice.jobId > 0) {
-          this.alertService.success('JobId ' + jobId + ' is locked to you to complete the voliation process.');
+          this.alertService.success(ConfigMsg.job_assign_msg_1 + jobId + ConfigMsg.trigger_voliation_msg_1);
           this.spinnerService.hide();
           this.dashboardSummaryOfSkilledWorkerSearchService();
           this.volationindex = index;
@@ -410,20 +398,20 @@ export class DashboardofadminComponent implements OnInit {
 
   savevoliationResolvedReason(jobId: number) {
     if (this.resolvedvoliationreason == null) {
-      this.alertService.info('Voliation Comment is required');
+      this.alertService.info(ConfigMsg.voliation_resolve_required_msg_1);
       return;
     }
     if (this.allFreelancerUsersList != null) {
       if (this.startdate == null) {
-        this.alertService.info('Start Date is required');
+        this.alertService.info(ConfigMsg.voliation_resolve_required_msg_2);
         return;
       }
       if (this.fuFullName == null) {
-        this.alertService.info('Select Assignee is required');
+        this.alertService.info(ConfigMsg.voliation_resolve_required_msg_3);
         return;
       }
     }
-    this.confirmationDialogService.confirm('Please confirm', 'Do you want to voliation get resolved for the JobId#' + jobId + ' ?', 'Ok', 'Cancel')
+    this.confirmationDialogService.confirm(ConfigMsg.confirmation_header_msg, ConfigMsg.confirmation_msg_2 + jobId + ConfigMsg.confirmation_questionmark, ConfigMsg.confirmation_button_ok, ConfigMsg.confirmation_button_cancel)
       .then((confirmed) => {
         if (confirmed) {
           this.spinnerService.show();
@@ -442,7 +430,7 @@ export class DashboardofadminComponent implements OnInit {
                       updatedobjfreelanceservice.jobstartedon = this.startdate.toString();
                       updatedobjfreelanceservice.jobendedon = this.enddatevalue.toString();
                       updatedobjfreelanceservice.freelanceuserId = this.fuUserId;
-                      updatedobjfreelanceservice.jobaccepteddate = this.indiaTimeFormat.toString();
+                      updatedobjfreelanceservice.jobaccepteddate = this.commonlogic.indiaTimeFormat.toString();
                       updatedobjfreelanceservice.associatedadminId = null;
                       updatedobjfreelanceservice.isjobactive = true;
                       updatedobjfreelanceservice.isjobaccepted = true;
@@ -451,7 +439,7 @@ export class DashboardofadminComponent implements OnInit {
                       this.freelanceserviceService.saveFreelancerOnService(updatedobjfreelanceservice).subscribe((obj: any) => {
                         if (obj.jobId > 0) {
                           this.spinnerService.hide();
-                          this.alertService.success('The Voliation is resolved. The New Job Id : ' + obj.jobId + ' is created successfully & activated . it is assigned to ' + this.fuFullName);
+                          this.alertService.success(ConfigMsg.resolved_voliation_msg_1 + obj.jobId + ConfigMsg.resolved_voliation_msg_2 + this.fuFullName);
                           this.dashboardSummaryOfSkilledWorkerSearchService();
                         }
                       },
@@ -462,7 +450,7 @@ export class DashboardofadminComponent implements OnInit {
                     }
                   } else {
                     this.spinnerService.hide();
-                    this.alertService.success('The voliation is resolved for the Job Id:' + jobId + '.');
+                    this.alertService.success(ConfigMsg.resolved_voliation_msg_3 + jobId);
                     this.dashboardSummaryOfSkilledWorkerSearchService();
                   }
                 },
@@ -493,7 +481,7 @@ export class DashboardofadminComponent implements OnInit {
     ).subscribe(
       data => {
         data.forEach(elementcategory => {
-          if (elementcategory.code !== 'SE_P') {
+          if (elementcategory.code !== config.domain_code_SE_P) {
             elementcategory.referencelookupmapping.forEach(elementlookupmapping => {
               elementlookupmapping.referencelookupmappingsubcategories.forEach(element => {
                 this.listofAllFUSkills.push(element);
@@ -643,28 +631,16 @@ export class DashboardofadminComponent implements OnInit {
     };
     this.modalRef = this.modalService.show(ViewjobbyjobidPopupComponent, Object.assign(
       {},
-      this.config,
+      this.commonlogic.configlg,
       {
         initialState
       }
     ));
   }
 
-  formatPhoneNumber(phoneNumberString) {
-    var cleaned = ('' + phoneNumberString).replace(/\D/g, '')
-    var match = cleaned.match(/^(1|)?(\d{3})(\d{3})(\d{4})$/)
-    if (match) {
-      var intlCode = (match[1] ? '+1 ' : '')
-      return [intlCode, '(', match[2], ') ', match[3], '-', match[4]].join('')
-    }
-    return null
-  }
-
   /***
    * Chart Functionality
    */
-
-
   getGraphFURatingData() {
     this.dbviewServic.getGraphFURatingData().subscribe((furatingList: any) => {
       if (furatingList != null) {
@@ -679,7 +655,6 @@ export class DashboardofadminComponent implements OnInit {
         this.alertService.error(error);
       });
   }
-
   public pieChartData: SingleDataSet = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
   public pieChartDataSrvPaid: SingleDataSet = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
 
@@ -687,11 +662,11 @@ export class DashboardofadminComponent implements OnInit {
     this.dbviewServic.getGraphUserServiceData().subscribe((servicesList: any) => {
       if (servicesList != null) {
         servicesList.forEach(element => {
-          if (element.type == 'notpurchased') {
+          if (element.type == config.keynotpurchased) {
             this.listofalluserservicenotpaidcountgraphdata.push(Number.parseInt(element.count));
             this.listofalluserservicenotpaidnamegraphdata.push(element.name);
           }
-          if (element.type == 'purchased') {
+          if (element.type == config.keypurchased) {
             this.listofalluserservicepaidcountgraphdata.push(Number.parseInt(element.count));
             this.listofalluserservicepaidnamegraphdata.push(element.name);
           }
@@ -712,11 +687,11 @@ export class DashboardofadminComponent implements OnInit {
     this.dbviewServic.getGraphJobsData().subscribe((jobList: any) => {
       if (jobList != null) {
         jobList.forEach(element => {
-          if (element.type == 'injobs') {
+          if (element.type == config.keyinjobs) {
             this.listofallinjobsbyskillcountgraphdata.push(Number.parseInt(element.count));
             this.listofallinjobsbyskillgraphdata.push(element.skill);
           }
-          if (element.type == 'nojobs') {
+          if (element.type == config.keynojobs) {
             this.listofallnojobsbyskillcountgraphdata.push(Number.parseInt(element.count));
             this.listofallnojobsbyskillgraphdata.push(element.skill);
           }
@@ -769,7 +744,7 @@ export class DashboardofadminComponent implements OnInit {
   public lineChartData: Array<number> = this.listofallratingcountgraphdata;
   public lineChartLabels: Array<any> = this.listofallratingnamegraphdata;
 
-  public SystemName: string = "Overall Rating";
+  public SystemName: string = ConfigMsg.overallrating;
   firstCopy = false;
 
   public labelMFL: Array<any> = [
@@ -873,7 +848,7 @@ export class DashboardofadminComponent implements OnInit {
   public lineChartDataVoliationData: Array<number> = this.listofallvoliationcountgraphdata;
   public lineChartLabelsVoliationData: Array<any> = this.listofallvoliationamegraphdata;
 
-  public SystemNames: string = "Voliation Count";
+  public SystemNames: string = ConfigMsg.voliationcount;
   firstCopyVoliationData = false;
 
   public labelMFLVoliationData: Array<any> = [
