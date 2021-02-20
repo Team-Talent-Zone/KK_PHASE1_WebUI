@@ -22,6 +22,7 @@
         </div>
         <div class="modal-body">
             <p *ngIf="errormsg != null "> {{errormsg}}</p>
+            <p *ngIf="errormsg != null && activateLink"> Go to <a (click)="callOurService()" [routerLink]="[]"> Our Services</a></p>
             <p *ngIf="errormsg == null"> {{message.text}}</p>
         </div>
     </div>

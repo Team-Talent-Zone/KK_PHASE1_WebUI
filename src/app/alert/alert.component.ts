@@ -24,6 +24,7 @@ export class AlertComponent implements OnInit {
   errorCallCount: number = 0;
   errormsg: string;
   loginfailedmsg: string;
+  activateLink=false;
 
   constructor(
     private alertService: AlertsService,
@@ -81,13 +82,22 @@ export class AlertComponent implements OnInit {
         }
       }
     } else {
-      this.errormsg = this.message.text;
+      this.errormsg = this.message.text;      
+      if(this.errormsg.indexOf("Our Services")!=-1)
+      {
+        this.activateLink=true;
+      }
       this.modalRef = this.modalService.show(template, this.config);
     }
+
   }
   // tslint:disable-next-line: use-lifecycle-interface
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
-
+  callOurService()
+  {
+    this.modalRef.hide();
+    this.router.navigate(['/dashboard']);
+  }
 }
