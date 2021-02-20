@@ -3,7 +3,7 @@
         <div class="col-md-12">
             <div class="error-template">
                 <img src="assets/img/logo.png" width="50" height="50" class="rounded-circle d-inline-block align-top"
-                    alt="Kaam Karega 504 Error Page">
+                    alt="Kaam Karega IT Sevices">
                 <p>
                     <span class="logo-title">Kaam<span class="logo-u">Karega</span></span>
                 </p>
@@ -31,7 +31,7 @@
         <div class="col-md-12">
             <div class="error-template">
                 <img src="assets/img/logo.png" width="50" height="50" class="rounded-circle d-inline-block align-top"
-                    alt="Kaam Karega 404 Error Page">
+                    alt="Kaam Karega IT Services">
                 <p>
                     <span class="logo-title">Kaam<span class="logo-u">Karega</span></span>
                 </p>
@@ -51,7 +51,7 @@
             </div>
         </div>
     </div>
-    <div class="row" *ngIf="id != 404 && id != 504">
+    <div class="row" *ngIf="id != 404 && id != 504 && id != 0">
         <div class="col-md-12">
             <div class="error-template">
                 <img src="assets/img/logo.png" width="50" height="50" class="rounded-circle d-inline-block align-top"
@@ -73,6 +73,32 @@
                         again.
                     </p>
                     You may want to head back to the <a routerLink="['/home']">Home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" *ngIf="id == 0">
+        <div class="col-md-12">
+            <div class="error-template">
+                <img src="assets/img/logo.png" width="50" height="50" class="rounded-circle d-inline-block align-top"
+                    alt="Kaam Karega IT Services">
+                <p>
+                    <span class="logo-title">Kaam<span class="logo-u">Karega</span></span>
+                </p>
+                <hr>
+                <h1>
+                    Oops!</h1>
+                <h2>
+                    Sorry for the inconvenience</h2>
+                <div class="error-details">
+                    <h1>Your Session Has Expired</h1>
+                </div>
+                <div class="error-actions">
+                    <p>
+                        For your protection , your session has automatically expired.
+                    </p>
+                    You may want to head back to the <a routerLink="['/home']">Home to login again</a>
                 </div>
             </div>
         </div>
