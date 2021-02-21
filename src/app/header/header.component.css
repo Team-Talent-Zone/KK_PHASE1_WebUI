@@ -57,7 +57,7 @@ select {
 }
 .carousel-caption1 {
   position: absolute;
-  left: 53%;
+  left: 52%;
   top: 25%;
   z-index: 10;
   padding-top: 0px;
@@ -165,7 +165,7 @@ h5 {
 
 .box-shadow-small {
   border: 1.9px solid #ff4949;
-  height: 250px;
+  height: 25myCarousel0px;
   background-color: #0a382b;
   color: white;
 }
