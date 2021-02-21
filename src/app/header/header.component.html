@@ -5,8 +5,10 @@
       <img src="assets/img/logo-transparent.png" width="70" height="60" class="rounded-circle d-inline-block align-top"
         alt="Kaam Karega">
     </a>
-    <span class="logo-title" >{{ 'HOMENAV.COMPANYNAMEPART1' | translate }}<span class="logo-u">{{
-        'HOMENAV.COMPANYNAMEPART2' | translate }}</span></span>
+    <span class="logo-title btn" onclick="topFunction()" >
+        {{ 'HOMENAV.COMPANYNAMEPART1' | translate }}<span class="logo-u">{{
+        'HOMENAV.COMPANYNAMEPART2' | translate }}</span>
+    </span>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
       aria-controls="navbarNav" aria-expanded="true" aria-label="Toggle navigation" id="navBtn">
       <span class="navbar-toggler-icon"></span>
@@ -64,8 +66,10 @@
                     <div class="mt-md-4"> </div>
                     <button (click)="openSignupModal('cba')" type="button" class="btn btn-primary"
                       style="color:white;border-color: white;">
-                      <i class="fa fa-user-plus">{{ 'HOMENAV.SIGNUP_MODALWINDOW_CLIENT_BUTTON_LABEL' |
-                      translate }} </i> </button>
+                      <i class="fa fa-user-plus"> </i>
+                      {{ 'HOMENAV.SIGNUP_MODALWINDOW_CLIENT_BUTTON_LABEL' |
+                      translate }}
+                    </button>
                   </div>
                 </div>
                 <div class="col-md-5" style="padding: 0px;">
@@ -79,9 +83,10 @@
                     <div class="mt-md-5"> </div>
                     <button (click)="openSignupModal('fu')" type="button" class="btn btn-primary"
                       style="color:white;border-color: white;">
-                      <i class="fa fa-user-plus">{{
-                      'HOMENAV.SIGNUP_MODALWINDOW_SKILLEDWORKER_BUTTON_LABEL' | translate }}
+                      <i class="fa fa-user-plus">
                       </i>
+                      {{
+                        'HOMENAV.SIGNUP_MODALWINDOW_SKILLEDWORKER_BUTTON_LABEL' | translate }}
                     </button>
                   </div>
                 </div>
@@ -284,21 +289,22 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body" style=" padding: 0px; padding-left: 16px;padding-right: 17px;padding-top: 1px;padding-bottom: 1px;">
+      <div class="modal-body"
+        style=" padding: 0px; padding-left: 16px;padding-right: 17px;padding-top: 1px;padding-bottom: 1px;">
         <div class="row">
           <div class="col-sm-6" style="padding: 0px;">
             <div class="box-shadow-small text-center box-big">
               <div class="mt-4"> </div>
               <img alt="Kaam Karega" class="rounded-circle d-inline-block align-top" height="50"
                 src="assets/img/logo.png" width="50">
-                <div class="mt-4"> </div>
+              <div class="mt-4"> </div>
               <p>{{ 'HOMENAV.SIGNUP_MODALWINDOW_CLIENT_DESC' | translate }}
               </p>
               <div class="mt-4"> </div>
               <button (click)="openSignupModal('cba')" type="button" class="btn btn-primary"
                 style="color:white;border-color: white;">{{ 'HOMENAV.SIGNUP_MODALWINDOW_CLIENT_BUTTON_LABEL' |
                 translate }}</button>
-            </div> 
+            </div>
           </div>
           <div class="mt-4"> </div>
           <div class="col-sm-6" style="padding: 0px;">
@@ -306,7 +312,7 @@
               <div class="mt-4"> </div>
               <img alt="Kaam Karega" class="rounded-circle d-inline-block align-top" height="50"
                 src="assets/img/logo.png" width="50">
-                <div class="mt-4"> </div>
+              <div class="mt-4"> </div>
               <p>{{ 'HOMENAV.SIGNUP_MODALWINDOW_SKILLEDWORKER_DESC' | translate }}
               </p>
               <div class="mt-4"> </div>

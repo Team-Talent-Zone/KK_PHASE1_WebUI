@@ -72,4 +72,18 @@ export class CommonUtility {
         }
         return null
     }
+
+    getIndianDateFormat(dt: Date) {
+        var date = new Date(dt);
+        var year = date.getFullYear();
+        var tempmonth = date.getMonth() + 1; //getMonth is zero based;
+        var tempday = date.getDate();
+        var hr = date.getHours();
+        var tempmin = date.getMinutes();
+        var month = tempmonth > 10 ? tempmonth : '0' + tempmonth;
+        var day = tempday > 10 ? tempday : '0' + tempday;
+        var min = tempmin > 10 ? tempmin : '0' + tempmin;
+        var formatted = day + '-' + month + '-' + year + ' ' + hr + ':' + min;
+        return formatted;
+      }
 }

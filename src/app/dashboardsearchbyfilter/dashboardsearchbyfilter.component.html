@@ -177,7 +177,7 @@
                 </div>
                 <div class="form-group">
                     <div class="form-row">
-                        <div class="col-md-3">
+                        <div class="col-md-8">
                             <label><b>Total Hours Of Work</b>&nbsp;
                             </label>
                             <span>
@@ -216,20 +216,26 @@
                             </span>
                             <input formControlName="jobstartedon" class="form-control" readonly>
                             <small>
-                                Default setup time is at 10:00 AM
+                                <i>(yyyy-mm-dd hh:mm)</i>
+                                <p>
+                                    Default job start time is at 10:00 AM
+                                </p>
                             </small>
                         </div>
                         <div class="col-md-5">
                             <label><b>Job End Date</b>&nbsp;
                             </label>
                             <span>
-                                <i class="fa fa-calendar   form-control-icon"></i>
+                                <i class="fa fa-calendar form-control-icon"></i>
                             </span>
                             <input readonly formControlName="jobendedon" class="form-control">
                             <small *ngIf="enddatevalue != null">
-                                Our auto estimated end date & time : {{enddatevalue}}.
+                                <i>(yyyy-mm-dd hh:mm)</i>
                                 <p>
-                                        We add an additional one hour buffer time to the end data and time.
+                                    Our auto estimated end date & time : {{this.commonlogic.getIndianDateFormat(enddatevalue)}}
+                                </p>
+                                <p>
+                                    We add an additional one hour buffer time to the end data and time.
                                 </p>
                             </small>
                         </div>
@@ -238,12 +244,12 @@
                 <div class="form-group">
                     <div class="form-row">
                         <div class="col-md-8">
-                            <label> <b> Enter price your estimating </b></label>&nbsp;
+                            <label> <b> Enter amount </b></label>&nbsp;
                             <span>
-                                <i class="fa fa-clock-o form-control-icon"></i>
+                                <i class="fa fa-inr form-control-icon"></i>
                             </span>
                             <input formControlName="amount" type="url" class="form-control" id="input3"
-                                placeholder="Enter price for the work "
+                                placeholder="Enter amount for the work"
                                 [ngClass]="{ 'is-invalid': issubmit && f.amount.errors }" />
                             <div *ngIf="issubmit && f.amount.errors" class="invalid-feedback">
                                 <div *ngIf="f.amount.errors.required">Amount is
@@ -253,10 +259,20 @@
                                 </div>
                             </div>
                             <p *ngIf=" avgHourlyRate != null">
-                                <small>As per our auto estimator system, the amount must in between [{{avgHourlyRate}} and
-                                    {{maxHourlyRateCal}}]
+                                <small *ngIf="avgHourlyRate != maxHourlyRateCal">As per our auto estimator system, the
+                                    amount must in between [{{avgHourlyRate | currency:"INR₹"}} and
+                                    {{maxHourlyRateCal | currency:"INR₹"}}]
                                     <p>
                                         Estimate rates is based on the total hours entered. (i.e for {{totalhoursofjob}}
+                                        hours only).
+                                    </p>
+                                </small>
+                                <small *ngIf="avgHourlyRate == maxHourlyRateCal">
+                                    As per our auto estimator system, the amount can be or more than
+                                    [{{avgHourlyRate | currency:"INR₹"}}]
+                                    <p>
+                                        Estimate rates is based on the total hours entered. (i.e for
+                                        {{totalhoursofjob }}
                                         hours only).
                                     </p>
                                 </small>

@@ -49,6 +49,31 @@ export class HomepriceComponent implements OnInit {
       this.getAllNewServiceDetails();
     }, 2000);
   }
+
+  viewMore() {
+    this.contentMore = true;
+  }
+
+  viewLess() {
+    this.contentMore = false;
+  }
+
+  pricemore() {
+    this.priceMore = true;
+  }
+
+  priceless() {
+    this.priceMore = false;
+  }
+
+  pricemore1() {
+    this.priceMore1 = true;
+  }
+
+  priceless1() {
+    this.priceMore1 = false;
+  }
+  
   getAllNewServiceDetails() {
     this.listOfAllApprovedNewServices = [];
     this.newsvcservice.getAllNewServiceDetails().subscribe(

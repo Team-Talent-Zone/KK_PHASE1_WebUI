@@ -14,6 +14,7 @@ import { ApiService, Maps } from '../adapters/api.service';
 import { ManageuserComponent } from '../manageuser/manageuser.component';
 import { SignupComponent } from '../signup/signup.component';
 import { ConfigMsg } from '../appconstants/configmsg';
+import { CommonUtility } from '../adapters/commonutility';
 
 @Component({
   selector: 'app-dashboardsearchbyfilter',
@@ -60,7 +61,7 @@ export class DashboardsearchbyfilterComponent implements OnInit {
   lng: number;
   cityElementOne: string;
   cityElementTwo: string;
-  totalhoursofjob : number;
+  totalhoursofjob: number;
 
   maxHourlyRateCal: number;
 
@@ -83,6 +84,7 @@ export class DashboardsearchbyfilterComponent implements OnInit {
     public apiService: ApiService,
     public manageuserComponent: ManageuserComponent,
     public signupComponent: SignupComponent,
+    public commonlogic: CommonUtility
   ) {
     setTimeout(() => {
       this.apiService.api.then(maps => {
@@ -104,8 +106,8 @@ export class DashboardsearchbyfilterComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.minstartDate.setTime(this.minstartDate.getTime() + (24 * 60 * 60 * 1000));
-    this.maxstartDate.setTime(this.maxstartDate.getTime() + (288 * 60 * 60 * 1000));
+    this.minstartDate.setTime(this.minstartDate.getTime() + (0 * 60 * 60 * 1000));
+    this.maxstartDate.setTime(this.maxstartDate.getTime() + (240 * 60 * 60 * 1000));
     this.isfreelancerservicesubscribed = false;
     this.searchResults(null);
     this.createFormValidation();

@@ -42,6 +42,7 @@ export class DashboardoffuComponent implements OnInit {
   cancelminsdiff: number;
   upcomingpaytext: string;
   totalearnings: string;
+  mapurl = 'http://maps.google.com/?z=16&q=';
   comma = ',';
 
   newjobsempty: boolean = false;
