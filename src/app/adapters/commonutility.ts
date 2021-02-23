@@ -31,10 +31,10 @@ export class CommonUtility {
     configmdwithoutanimation: ModalOptions = {
         class: 'modal-md', backdrop: 'static',
         keyboard: false
-      };
-    constructor(public datepipe: DatePipe,
+    };
+    constructor(
+        public datepipe: DatePipe,
     ) {
-
     }
     setLangCode(langLabel: string) {
         if (langLabel === config.lang_hindi_word.toString()) {
@@ -86,6 +86,6 @@ export class CommonUtility {
         var min = tempmin > 10 ? tempmin : '0' + tempmin;
         var formatted = day + '-' + month + '-' + year + ' ' + hr + ':' + min;
         return formatted;
-      }
+    }
 
 }

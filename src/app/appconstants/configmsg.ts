@@ -1,4 +1,15 @@
 export const ConfigMsg = {
+
+    /**
+     * Home page
+     */
+    covid_alert_header_en:"COVID ALERT:",
+    covid_alert_en:"We follow covid rules and encourage our Clients & Workers to follow the Goverment Rules. Stay Home, Stay Safe",
+    covid_alert_header_te:"కోవిడ్ హెచ్చరిక:",
+    covid_alert_te:"మేము కోవిడ్ నిబంధనలను అనుసరిస్తాము మరియు మీ క్లయింట్లు మరియు కార్మికులను ప్రభుత్వ నియమాలను పాటించమని ప్రోత్సహిస్తాము. ఇంటి వద్దే ఉండండి, సురక్షితంగా ఉండండి",
+    covid_alert_header_hi:"कोविड चेतावनी:",
+    covid_alert_hi:"हम कोविद नियमों का पालन करते हैं और अपने ग्राहकों और श्रमिकों को सरकारी नियमों का पालन करने के लिए प्रोत्साहित करते हैं। घर रहें, सुरक्षित रहें",
+
     /**
      * Signup Section Messages
      */

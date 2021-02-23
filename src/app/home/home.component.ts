@@ -18,6 +18,8 @@ import { ReferenceService } from '../AppRestCall/reference/reference.service';
 import { ConfigMsg } from '../appconstants/configmsg';
 import { environment } from 'src/environments/environment';
 import { UserNotification } from 'src/app/appmodels/UserNotification';
+import { ReadMorePopupComponent } from '../read-more-popup/read-more-popup.component';
+import { CommonUtility } from '../adapters/commonutility';
 
 
 @Component({
@@ -36,6 +38,8 @@ export class HomeComponent implements OnInit {
   shortkeybyrolecode: string;
   usernotification: UserNotification;
   today = new Date();
+  covidalertcontentbylang: string;
+  covidalertheaderbylang: string
 
   constructor(
     private userService: UserService,
@@ -48,6 +52,7 @@ export class HomeComponent implements OnInit {
     private router: Router,
     private sendemailService: SendemailService,
     private reflookuptemplateAdapter: ReferenceLookUpTemplateAdapter,
+    public commonlogic: CommonUtility
   ) {
     route.params.subscribe(params => {
       this.id = params.id;
@@ -58,8 +63,34 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.userService.logout();
+    this.popupalertsonhomepage();
   }
 
+  popupalertsonhomepage() {
+    if (localStorage.getItem('langCode') == config.lang_code_hi) {
+      this.covidalertcontentbylang = ConfigMsg.covid_alert_hi;
+      this.covidalertheaderbylang = ConfigMsg.covid_alert_header_hi;
+    }
+    else
+      if (localStorage.getItem('langCode') == config.lang_code_te) {
+        this.covidalertcontentbylang = ConfigMsg.covid_alert_te;
+        this.covidalertheaderbylang = ConfigMsg.covid_alert_header_te;
+      } else {
+        this.covidalertcontentbylang = ConfigMsg.covid_alert_en;
+        this.covidalertheaderbylang = ConfigMsg.covid_alert_header_en;
+      }
+    const initialState = {
+      content: this.covidalertcontentbylang,
+      headerlabel: this.covidalertheaderbylang
+    };
+    this.modalRef = this.modalService.show(ReadMorePopupComponent, Object.assign(
+      {},
+      this.commonlogic.configmd,
+      {
+        initialState
+      }
+    ));
+  }
   checkConfirmation() {
     this.spinnerService.show();
     if (this.id > 0 && this.name === config.confirmation_shortpathname.toString()) {
