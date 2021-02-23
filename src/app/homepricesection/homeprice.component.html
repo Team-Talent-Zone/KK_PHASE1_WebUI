@@ -62,11 +62,11 @@
           <div class="tab-content" style="padding: 18px;">
             <div class="tab-pane fade show active" id="monthly">
               <div class="card-body Card-Body-1" *ngIf="listofAllIndividualServices != null" role="tabpanel"
-                aria-labelledby="headingOne" data-parent="#accordion">
+                aria-labelledby="headingOne" data-parent="#accordion" >
                 <div class="card-deck">
                   <div class="col-md-3" style="margin-bottom:8px !important"
                     *ngFor="let svc of listofAllIndividualServices;index as i">
-                    <div class="card text-center h-80" *ngIf="i<=3">
+                    <div class="card text-center h-100" *ngIf="i<=3">
                       <div class="card-header header-bg mt-10">
                         <a style="cursor:pointer;border-bottom: 0px dotted red;color: white;" title="{{svc.name}}"
                           (click)="openReadMorePopup(svc.description , svc.name, null)">
@@ -147,7 +147,7 @@
                 <div class="card-deck">
                   <div class="col-md-3 mb-3 mb-md-0" style="margin-bottom:8px !important"
                     *ngFor="let svc of listofAllPackageServices;index as i">
-                    <div class="card text-center h-80" *ngIf="i<=3">
+                    <div class="card text-center h-100" *ngIf="i<=3">
                       <div class="card-header header-bg">
                         <a style="cursor:pointer;border-bottom: 0px dotted red;color: white;" title="{{svc.name}}"
                         (click)="openReadMorePopup(svc.description , svc.name, null)">
@@ -181,7 +181,7 @@
                 <div class="card-deck" *ngIf="priceMore1">
                   <div class="col-md-4 mb-3 mb-md-0" style="margin-bottom:8px !important"
                     *ngFor="let svc of listofAllPackageServices;index as i">
-                    <div class="card text-center h-80" *ngIf="i>2">
+                    <div class="card text-center h-100" *ngIf="i>2">
                       <div class="card-header header-bg">
                         <a style="cursor:pointer;border-bottom: 0px dotted red;color: white;" title="{{svc.name}}"
                         (click)="openReadMorePopup(svc.description , svc.name, null)">
