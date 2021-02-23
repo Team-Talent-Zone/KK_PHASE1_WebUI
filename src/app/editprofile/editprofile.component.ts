@@ -61,6 +61,7 @@ export class EditprofileComponent implements OnInit {
   allUserCBAList: any;
   ispwdsubmit = false;
   isbankenabled = false;
+  isdisabled = false;
 
   constructor(
     public fb: FormBuilder,
@@ -94,6 +95,10 @@ export class EditprofileComponent implements OnInit {
     if (this.roleCode === config.user_rolecode_fu.toString()) {
       this.signupComponent.getAllCategories(this.userService.currentUserValue.preferlang);
       this.signupComponent.getTermsofServicesAndPrivacyPolicyURLByLang(this.userService.currentUserValue.preferlang);
+      if (this.userService.currentUserValue.userroles.rolecode === 'FREELANCER_USER' &&
+        this.userService.currentUserValue.freeLanceDetails.isbgstarted) {
+        this.isdisabled = true;
+      }
     }
     if (this.userService.currentUserValue.userroles.rolecode === config.user_rolecode_cba.toString()) {
       this.signupComponent.getTermsofServicesAndPrivacyPolicyURLByLang(this.userService.currentUserValue.preferlang);

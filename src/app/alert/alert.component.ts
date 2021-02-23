@@ -24,7 +24,7 @@ export class AlertComponent implements OnInit {
   errorCallCount: number = 0;
   errormsg: string;
   loginfailedmsg: string;
-  activateLink=false;
+  activateLink = false;
 
   constructor(
     private alertService: AlertsService,
@@ -34,7 +34,6 @@ export class AlertComponent implements OnInit {
   }
 
   ngOnInit() {
-
     this.subscription = this.alertService.getMessage()
       .subscribe(message => {
         switch (message && message.type) {
@@ -45,7 +44,10 @@ export class AlertComponent implements OnInit {
             message.cssClass = 'alert alert-danger';
             break;
           case 'info':
-            message.cssClass = 'alert alert-danger';
+            message.cssClass = 'alert alert-info';
+            break;
+          case 'warning':
+            message.cssClass = 'alert alert-warning';
             break;
         }
         this.message = message;
@@ -56,38 +58,38 @@ export class AlertComponent implements OnInit {
   }
 
   openModal(template: TemplateRef<any>) {
-    console.log('Alert Generated :', this.message);
-    if (this.message.type === 'error') {
-      if (Number.parseInt(this.message.text.status) != 401) {
-        this.router.navigate(['error', this.message.text.status]);
-      } else {
-        if (Number.parseInt(this.message.text.status) === 401) {
-          if (localStorage.getItem('langCode') === config.lang_code_hi) {
-            this.loginfailedmsg = ConfigMsg.invalid_username_password_hi;
-          } else
-            if (localStorage.getItem('langCode') === config.lang_code_te) {
-              this.loginfailedmsg = ConfigMsg.invalid_username_password_te;
-            } else {
-              this.loginfailedmsg = ConfigMsg.invalid_username_password;
-            }
-          this.errormsg = this.loginfailedmsg;
-          this.modalRef = this.modalService.show(template, this.config);
+    if (this.message.type == 'warning') {
+      document.getElementById('demo').innerHTML = 'hello';
+      this.modalRef = this.modalService.show(template, this.config);
+    } else {
+      if (this.message.type === 'error') {
+        if (Number.parseInt(this.message.text.status) != 401) {
+          this.router.navigate(['error', this.message.text.status]);
         } else {
-          if (this.errorCallCount === 0 && this.errormsg != null) {
+          if (Number.parseInt(this.message.text.status) === 401) {
+            if (localStorage.getItem('langCode') === config.lang_code_hi) {
+              this.loginfailedmsg = ConfigMsg.invalid_username_password_hi;
+            } else
+              if (localStorage.getItem('langCode') === config.lang_code_te) {
+                this.loginfailedmsg = ConfigMsg.invalid_username_password_te;
+              } else {
+                this.loginfailedmsg = ConfigMsg.invalid_username_password;
+              }
+            this.errormsg = this.loginfailedmsg;
             this.modalRef = this.modalService.show(template, this.config);
-            this.errorCallCount = this.errorCallCount + 1;
           } else {
-            this.modalRef = this.modalService.show(template, this.config);
+            if (this.errorCallCount === 0 && this.errormsg != null) {
+              this.modalRef = this.modalService.show(template, this.config);
+              this.errorCallCount = this.errorCallCount + 1;
+            } else {
+              this.modalRef = this.modalService.show(template, this.config);
+            }
           }
         }
+      } else {
+        this.errormsg = this.message.text;
+        this.modalRef = this.modalService.show(template, this.config);
       }
-    } else {
-      this.errormsg = this.message.text;      
-      if(this.errormsg.indexOf("Our Services")!=-1)
-      {
-        this.activateLink=true;
-      }
-      this.modalRef = this.modalService.show(template, this.config);
     }
 
   }
@@ -95,8 +97,7 @@ export class AlertComponent implements OnInit {
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
-  callOurService()
-  {
+  callOurService() {
     this.modalRef.hide();
     this.router.navigate(['/dashboard']);
   }

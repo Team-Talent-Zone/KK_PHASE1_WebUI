@@ -238,11 +238,11 @@
                                     <p>
                                         <small class="pull-left">
                                             <b>{{ 'DASHBOARD_FU_BODY.STARTON' | translate }} </b>
-                                            {{element.jobstartedon}}
+                                            <span class="ml-3"> {{element.jobstartedon}}</span>
                                         </small>
                                         <small class="pull-left">
                                             <b>{{ 'DASHBOARD_FU_BODY.ENDON' | translate }} </b>
-                                            <span class="ml-2">
+                                            <span class="ml-4">
                                                 {{element.jobendedon}}
                                             </span>
                                         </small>
@@ -334,11 +334,11 @@
                                     <p>
                                         <small class="pull-left">
                                             <b>{{ 'DASHBOARD_FU_BODY.STARTON' | translate }} </b>
-                                            {{element.jobstartedon}}
+                                            <span class="ml-3"> {{element.jobstartedon}}</span>
                                         </small>
                                         <small class="pull-left">
                                             <b>{{ 'DASHBOARD_FU_BODY.ENDON' | translate }} </b>
-                                            <span class="ml-2">
+                                            <span class="ml-4">
                                                 {{element.jobendedon}}
                                             </span>
                                         </small>
@@ -406,22 +406,26 @@
                                             title="{{'DASHBOARD_FU_BODY.ALTER1' | translate }}"
                                             *ngIf="element.isjobamtpaidtocompany && !element.isjobamtpaidtofu">
                                         </i>
-
                                         <i class="fa fa-smile-o fa-2x pull-right" style="color:blue"
                                             title="{{'DASHBOARD_FU_BODY.ALTER4' | translate }}"
                                             *ngIf="element.isjobamtpaidtocompany && element.isjobamtpaidtofu">
                                         </i>
+                                        <a class="btn btn-sm btn-warning pull-right"
+                                            [routerLink]="['/_reviewjid',element.jobId,'jid']"
+                                            *ngIf="element.isratedforjob">
+                                            <i title="Ratings" class="fa fa-star fa-1x" style="color:blue"></i>
+                                        </a>
                                     </p>
                                     <span class="display-4">
                                         <i class="fa fa-inr">{{element.tofreelanceamount | number}}</i></span>
                                     <p>
                                         <small class="pull-left">
                                             <b>{{ 'DASHBOARD_FU_BODY.STARTON' | translate }} </b>
-                                            {{element.jobstartedon}}
+                                            <span class="ml-3"> {{element.jobstartedon}}</span>
                                         </small>
                                         <small class="pull-left">
                                             <b>{{ 'DASHBOARD_FU_BODY.ENDON' | translate }} </b>
-                                            <span class="ml-2">
+                                            <span class="ml-4">
                                                 {{element.jobendedon}}
                                             </span>
                                         </small>
@@ -503,11 +507,11 @@
                                     <p>
                                         <small class="pull-left">
                                             <b>{{ 'DASHBOARD_FU_BODY.STARTON' | translate }} </b>
-                                            {{element.jobstartedon}}
+                                            <span class="ml-4"> {{element.jobstartedon}}</span>
                                         </small>
                                         <small class="pull-left">
                                             <b>{{ 'DASHBOARD_FU_BODY.ENDON' | translate }} </b>
-                                            <span class="ml-2">
+                                            <span class="ml-4">
                                                 {{element.jobendedon}}
                                             </span>
                                         </small>
@@ -633,6 +637,14 @@
         </dt>
         <dd class="col-sm-9">
             <p class="btn-info"><i><b> {{ 'DASHBOARD_FU_BODY.IMPINST_ICON3' | translate }}</b></i></p>
+        </dd>
+        <dt class="col-sm-3">
+            <a class="btn btn-sm btn-warning pull-left">
+                <i title="Ratings" class="fa fa-star fa-1x" style="color:blue"></i>
+            </a>
+        </dt>
+        <dd class="col-sm-9">
+            <p>{{ 'DASHBOARD_FU_BODY.IMPINST_ICON6' | translate }}</p>
         </dd>
         <dt class="col-sm-3">
             <i class="fa fa-smile-o fa-2x pull-left" style="color:blue"></i>

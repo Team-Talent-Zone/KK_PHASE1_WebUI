@@ -56,4 +56,8 @@ export class FreelanceserviceService {
   getFUFeebackDetailsByUserId(userId: number) {
     return this.http.get(`${environment.apiUrl}/getFUFeebackDetailsByUserId/` + userId + '/');
   }
+
+  getFUFeebackDetailsByJobId(jobId: number) {
+    return this.http.get(`${environment.apiUrl}/getFUFeebackDetailsByJobId/` + jobId + '/');
+  }
 }

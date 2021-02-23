@@ -233,7 +233,18 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'fureviews/:id',
+    path: '_review/:id/:key',
+    component: DashboardComponent,
+    canActivate: [AuthgaurdService],
+    children: [
+      {
+        path: '',
+        component: ViewfureviewsComponent
+      }
+    ]
+  },
+  {
+    path: '_reviewjid/:id/:key',
     component: DashboardComponent,
     canActivate: [AuthgaurdService],
     children: [

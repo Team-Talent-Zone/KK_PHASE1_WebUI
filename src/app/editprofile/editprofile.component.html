@@ -50,7 +50,7 @@
                                             <span>
                                                 <i class="fa fa-user-circle form-control-icon"></i>
                                             </span>
-                                            <input type="text"
+                                            <input type="text" [readonly]=isdisabled
                                                 placeholder=" {{ 'DASHBOARD_FU_PROFILE.PROFILE_FIRSTNAME' | translate }}"
                                                 class="form-control" id="inputFirstName"
                                                 [ngClass]="{ 'is-invalid': issubmit && f.firstname.errors }"
@@ -72,7 +72,7 @@
                                             <span>
                                                 <i class="fa fa-user-circle form-control-icon"></i>
                                             </span>
-                                            <input type="text"
+                                            <input type="text" [readonly]=isdisabled
                                                 placeholder="{{ 'DASHBOARD_FU_PROFILE.PROFILE_LASTNAME' | translate }}"
                                                 class="form-control" id="inputLastName" formControlName="lastname"
                                                 [ngClass]="{ 'is-invalid': issubmit && f.lastname.errors }">
@@ -530,7 +530,8 @@
                             <div class="row">
                                 <div class="form-check">
                                     <input type="checkbox" class="form-check-input"
-                                        formControlName="accepteditprofileterms"
+                                        formControlName="accepteditprofileterms" 
+                                        [ngStyle]="{'outline':'issubmit && f.accepteditprofileterms.errors' ? 'red auto 1px' : '' }"
                                         [ngClass]="{ 'is-invalid': issubmit && f.accepteditprofileterms.errors }">
                                     <small> <label class="form-check-label" for="exampleCheck1">
                                             {{'HOMESIGNUP.SIGNUP_TERM_AGREE_LABEL' |
@@ -546,6 +547,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                
                             </div>
                         </div>
                         <div class="modal-footer ">

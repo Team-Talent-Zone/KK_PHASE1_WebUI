@@ -40,9 +40,9 @@ export const config = {
   lang_code_en: 'en',
   lang_code_hi: 'hi',
   lang_code_te: 'te',
-  lang_english_word: 'en-English',
-  lang_hindi_word: 'hi-हिंदी',
-  lang_telugu_word: 'te-తెలుగు',
+  lang_english_word: 'English',
+  lang_hindi_word: 'हिंदी',
+  lang_telugu_word: 'తెలుగు',
   profiletype_avatar: 'avatar',
   profiletype_nationalid: 'nationalid',
   imgtype_png: 'image/png',
@@ -100,7 +100,8 @@ export const config = {
   keygmap_4: "administrative_area_level_2",
   keygmap_5: "administrative_area_level_1",
   keygmap_6: "country",
- keydeactive:"deactive",
+  keydeactive: "deactive",
+  keyjobid: "jid",
 
 };
 

@@ -1,3 +1,7 @@
+.form-item input[type="checkbox"].error, .form-item input[type="radio"].error{
+  outline: 2px solid red;
+  -moz-appearance: none;
+}
 .avatar-upload {
   position: relative;
   max-width: 205px;

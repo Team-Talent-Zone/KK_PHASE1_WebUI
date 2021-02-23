@@ -1,5 +1,5 @@
 import { AlertsService } from './../AppRestCall/alerts/alerts.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../AppRestCall/user/user.service';
 import { FreelanceserviceService } from '../AppRestCall/freelanceservice/freelanceservice.service';
@@ -9,7 +9,7 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { timer } from 'rxjs';
 import { FreelanceStarReview } from '../appmodels/FreelanceStarReview';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Toaster, ToastType } from 'ngx-toast-notifications';
 import { ModalOptions } from 'ngx-bootstrap/modal';
 import { ReadMorePopupComponent } from '../read-more-popup/read-more-popup.component';
@@ -29,6 +29,7 @@ import { CommonUtility } from '../adapters/commonutility';
 
 export class ManagejobsComponent implements OnInit {
 
+  @ViewChild('closeBtn', null) closeBtn: ElementRef;
   newlyPostedJobs: any = [];
   completedJobs: any = [];
   upComingPostedJobs: any = [];
@@ -60,13 +61,13 @@ export class ManagejobsComponent implements OnInit {
     public usersrvdetails: UsersrvdetailsService,
     public datepipe: DatePipe,
     public confirmationDialogService: ConfirmationDialogService,
-    public commonlogic : CommonUtility
+    public commonlogic: CommonUtility
   ) {
   }
 
   ngOnInit() {
     this.spinnerService.show();
-    if (this.router.url.toString() === '/job'.toString()) {
+    if (this.router.url.toString() === '/job'.toString() && this.userService.currentUserValue != null) {
       const source = timer(1000, 60000);
       const sourcerefresh = timer(1000, 90000);
       sourcerefresh.subscribe((val: number) => {
@@ -286,6 +287,7 @@ export class ManagejobsComponent implements OnInit {
         this.newjobsempty = true;
         this.upcomingjobsempty = true;
         this.completedjobsempty = true;
+        this.spinnerService.hide();
       }
     },
       error => {
@@ -306,19 +308,15 @@ export class ManagejobsComponent implements OnInit {
 
   feedback(jobId: number) {
     this.record = [];
-    this.feedbackformvalidation();
-    this.isratingdisplay = true;
     for (let element of this.completedJobs) {
       if (element.jobId == jobId) {
         this.record = element;
       }
     }
-  }
-
-  feedbackformvalidation() {
-    this.feedbackform = this.fb.group({
-      starrate: ['', Validators.required],
-      feedbackcomment: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9.]+[a-zA-Z0-9. ]+')]]
+    this.isratingdisplay = true;
+    this.feedbackform = new FormGroup({
+      starrate: new FormControl('', Validators.required),
+      feedbackcomment: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z0-9.]+[a-zA-Z0-9. ]+')])
     });
   }
 
@@ -338,14 +336,19 @@ export class ManagejobsComponent implements OnInit {
     this.freelanceserviceService.saveFreeLanceStarReviewFB(this.freelancestarobj).subscribe((response: FreelanceStarReview) => {
       if (response.id > 0) {
         this.alertService.success(ConfigMsg.feedback_msg);
-        this.getUserAllJobDetailsByUserId();
         this.spinnerService.hide();
+        this.closeModal();
+        this.getUserAllJobDetailsByUserId();
       }
     },
       error => {
         this.spinnerService.hide();
         this.alertService.error(error);
       });
+  }
+
+  private closeModal(): void {
+    this.closeBtn.nativeElement.click();
   }
 
   get f() {

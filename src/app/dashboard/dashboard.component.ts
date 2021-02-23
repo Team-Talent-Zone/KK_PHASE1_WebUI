@@ -71,21 +71,23 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.matomoTracker.setUserId(this.userService.currentUserValue.userId.toString());
-    if (this.txtid != null) {
-      this.getPaymentDetailsByTxnId(this.txtid);
+    if (this.userService.currentUserValue != null) {
+      this.matomoTracker.setUserId(this.userService.currentUserValue.userId.toString());
+      if (this.txtid != null) {
+        this.getPaymentDetailsByTxnId(this.txtid);
+      }
+      setTimeout(() => {
+        this.resetLoggedInUser();
+      }, 1000);
+      if (this.userService.currentUserValue.userroles.rolecode !== config.user_rolecode_fu.toString()) {
+        this.getAllAvailableFUSkills();
+      }
+      const source = timer(1000, 90000);
+      source.subscribe(() => {
+        this.isbellenable = false;
+        this.getAllBellNotifications();
+      });
     }
-    setTimeout(() => {
-      this.resetLoggedInUser();
-    }, 1000);
-    if (this.userService.currentUserValue.userroles.rolecode !== config.user_rolecode_fu.toString()) {
-      this.getAllAvailableFUSkills();
-    }
-    const source = timer(1000, 90000);
-    source.subscribe(() => {
-      this.isbellenable = false;
-      this.getAllBellNotifications();
-    });
   }
 
   getAllBellNotifications() {
@@ -181,7 +183,7 @@ export class DashboardComponent implements OnInit {
     const initialState = {
       notificationEnable: true,
       contentList: this.notifcationbellList
-    }; 
+    };
     this.modalRef = this.modalService.show(ReadMorePopupComponent, Object.assign(
       {},
       this.commonlogic.configlg,

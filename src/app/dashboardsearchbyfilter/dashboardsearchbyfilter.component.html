@@ -151,7 +151,7 @@
     <h5> No {{name}} found near this address {{this.searchform.get('fulladdress').value}}.</h5>
 </div>
 <div *ngIf="userFUObjList.length == 0 && !timelaps && this.searchform.get('fulladdress').value.length === 0">
-    <h5> All {{name}}'s are busy at work this time.We working hard to get a {{name | lowercase}} for you.Please try
+    <h5> All {{name}}'s are currently busy at work.We are working hard to get a {{name | lowercase}} for you.Please try
         again after some time.</h5>
 </div>
 
@@ -299,6 +299,7 @@
                 </div>
                 <div class="form-check">
                     <input type="checkbox" class="form-check-input" formControlName="acceptjobterms"
+                    [ngStyle]="{'outline':'issubmit && f.acceptjobterms.errors' ? 'red auto 1px' : '' }"
                         [ngClass]="{ 'is-invalid': issubmit && f.acceptjobterms.errors }">
                     <small>
                         <label class="form-check-label" for="exampleCheck1">{{'HOMESIGNUP.SIGNUP_TERM_AGREE_LABEL' |

@@ -117,7 +117,7 @@
                 </li>
                 <li
                     *ngIf="this.userService.currentUserValue.userroles.rolecode =='FREELANCER_USER' && userService.currentUserValue.freeLanceDetails.bgcurrentstatus == 'BG_APPROVED'">
-                    <a [routerLink]="['/fureviews',this.userService.currentUserValue.userId]"
+                    <a [routerLink]="['/_review',this.userService.currentUserValue.userId,'usr']"
                         class="list-group-item list-group-item-action bg-light">
                         <i class="fa fa-commenting-o" style="color:#FF4949"></i>
                         <b>
@@ -161,20 +161,19 @@
             <div class="container">
                 <div class="bread-cumb">
                     <div class="row">
-                        <div class="col-12 col-lg-9 col-md-5">
+                        <div class="col-12 col-lg-8 col-md-5">
                             <span><b>{{ 'DASHOARD_HEADER.WELCOMEBACK' | translate }}
                                     {{this.userService.currentUserValue.fullname}}</b></span>
                         </div>
-                        <div class="col-6 col-lg-2 col-md-5">
+                        <div class="col-7 col-lg-2 col-md-5">
                             <span class="float-right">
                                 <small>
                                     <i class="fa fa-clock-o" aria-hidden="true"></i>
                                     {{commonlogic.indiaTime}}</small>
                             </span>
                         </div>
-                        <div class="col-3 d-block d-sm-none">
-                        </div>
-                        <div class=" col-3 col-lg-1 col-md-2 pull-right">
+                  
+                        <div class=" col-4 col-lg-2 col-md-2 pull-right">
                             <a style="cursor:pointer" (click)='openNotifcationWindow()' *ngIf="notifcationbellList != null && notifcationbellList.length>0 && 
                              this.userService.currentUserValue.userroles.rolecode =='FREELANCER_USER' && 
                              this.userService.currentUserValue.freeLanceDetails.bgcurrentstatus == 'BG_APPROVED'">
@@ -198,6 +197,7 @@
                             this.userService.currentUserValue.userroles.rolecode !='DIRECTORS'">
                                 <i class="fa fa-comments-o">0</i>
                             </a>
+                            &nbsp;
                             <a routerLink='/vieworeditprofile/{{userService.currentUserValue.userId}}'>
                                 <img *ngIf="userService.currentUserValue.avtarurl != null && this.userService.currentUserValue.userroles.rolecode !='DIRECTORS'"
                                     class="avatar" src="{{userService.currentUserValue.avtarurl}}">
@@ -205,6 +205,10 @@
                                     src="{{defaultTxtImg}}" class="avatar">
                             </a>
                         </div>
+                        <div class=" col-3 col-lg-1 col-md-2 pull-right">
+
+                        </div>
+
                     </div>
                 </div>
                 <!--Alert-->

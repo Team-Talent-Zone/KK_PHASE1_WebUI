@@ -158,16 +158,18 @@
       -->
     </div>
     <div class="form-check">
-      <input type="checkbox" class="form-check-input" formControlName="acceptsignupterms"
-        [ngClass]="{ 'is-invalid': issubmit && f.acceptsignupterms.errors }">
-      <label class="form-check-label" for="exampleCheck1">
-        <small>{{'HOMESIGNUP.SIGNUP_TERM_AGREE_LABEL' |
-          translate}}</small>
-        <a href={{termsofservice}} target="_blank"><small><u>{{'HOMESIGNUP.SIGNUP_TERMOFSERVICE' |
-            translate}}</u></small> </a> & <a href={{privacypolicy}} target="_blank">
-          <small><u>{{'HOMESIGNUP.SIGNUP_PRIVACYPOLICY' |
-            translate}}</u></small></a>
-      </label>
+      <input type="checkbox" class="form-check-input"
+        [ngStyle]="{'outline':'issubmit && f.acceptsignupterms.errors' ? 'red auto 1px' : '' }"
+        formControlName="acceptsignupterms" [ngClass]="{ 'is-invalid': issubmit && f.acceptsignupterms.errors }">
+      <small> <label class="form-check-label" for="exampleCheck1">
+          {{'HOMESIGNUP.SIGNUP_TERM_AGREE_LABEL' |
+          translate}}
+          <a href={{termsofservice}} target="_blank"><u>{{'HOMESIGNUP.SIGNUP_TERMOFSERVICE' |
+            translate}}</u> </a> & <a href={{privacypolicy}} target="_blank">
+            <u>{{'HOMESIGNUP.SIGNUP_PRIVACYPOLICY' |
+            translate}}</u></a>
+        </label>
+      </small>
       <div *ngIf="issubmit && f.acceptsignupterms.errors" class="invalid-feedback">
         <div *ngIf="f.acceptsignupterms.errors.required">
           {{'HOMESIGNUP.SIGNUP_VALIDATION_TERMS_POLICYCHECKBOX_REQ' | translate}}
@@ -177,7 +179,7 @@
   </div>
   <!-- Modal footer -->
   <div class="modal-footer">
-    <a (click)="openLoginModal()"  href="javascript: return false;"
+    <a (click)="openLoginModal()" href="javascript: return false;"
       class="text-wrap"><u>{{'HOMESIGNUP.ALREADY_GOTACCOUNT' | translate}}</u></a>
     <button class="btn btn-sm btn-success rounded-pill"
       type="submit">{{'HOMESIGNUP.SIGNUP_SUBMIT_BUTTON' | translate}}</button>

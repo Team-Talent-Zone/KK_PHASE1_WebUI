@@ -4,6 +4,7 @@ import { config } from '../appconstants/config';
 import { DatePipe } from '@angular/common';
 import { Component, Injectable } from '@angular/core';
 import { ModalOptions } from 'ngx-bootstrap';
+import { timer } from 'rxjs';
 
 @Injectable()
 export class CommonUtility {
@@ -86,4 +87,5 @@ export class CommonUtility {
         var formatted = day + '-' + month + '-' + year + ' ' + hr + ':' + min;
         return formatted;
       }
+
 }

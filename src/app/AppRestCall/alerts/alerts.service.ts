@@ -40,6 +40,11 @@ export class AlertsService {
         this.subject.next({ type: 'info', text: message });
     }
 
+    warning(message: HTMLAnchorElement, keepAfterNavigationChange = false) {
+        this.keepAfterNavigationChange = keepAfterNavigationChange;
+        this.subject.next({ type: 'warning', text: message });
+    }
+
     getMessage(): Observable<any> {
         return this.subject.asObservable();
     }

@@ -17,10 +17,11 @@ export class ViewfureviewsComponent implements OnInit {
 
   fureviews: any;
   fureviewsempty: boolean = false;
-  userId: number;
+  id: number;
   totalratingcount: number = 0;
   allratingcount: number;
   avgrating: string;
+  key: string;
 
   constructor(
     private freelanceserviceService: FreelanceserviceService,
@@ -29,26 +30,73 @@ export class ViewfureviewsComponent implements OnInit {
     private alertService: AlertsService,
     private referService: ReferenceService,
     public datepipe: DatePipe,
-    private route: ActivatedRoute,
+    route: ActivatedRoute,
   ) {
     route.params.subscribe(params => {
-      this.userId = params.id;
+      this.id = params.id;
+      this.key = params.key;
     });
   }
 
   ngOnInit() {
-    this.getFUFeebackDetailsByUserId();
+    if (this.key == config.keyjobid) {
+      this.getFUFeebackDetailsByJobId();
+
+    } else {
+      this.getFUFeebackDetailsByUserId();
+    }
   }
 
-  getFUFeebackDetailsByUserId() {
+  private getFUFeebackDetailsByJobId() {
     this.fureviews = [];
     this.spinnerService.show();
-    this.freelanceserviceService.getFUFeebackDetailsByUserId(this.userId).subscribe(
+    this.freelanceserviceService.getFUFeebackDetailsByJobId(this.id).subscribe(
+      (element: any) => {
+        if (element != null) {
+            element.starrate = Array(element.starrate);
+            if (this.userService.currentUserValue.preferlang != config.lang_code_en) {
+              this.referService.translatetext(element.feedbackcomment, this.userService.currentUserValue.preferlang).subscribe(
+                (txt: string) => {
+                  element.feedbackcomment = txt;
+                }
+              );
+              this.referService.translatetext(element.fullname, this.userService.currentUserValue.preferlang).subscribe(
+                (txt: string) => {
+                  element.fullname = txt;
+                }
+              );
+              this.referService.translatetext(element.feedbackby, this.userService.currentUserValue.preferlang).subscribe(
+                (txt: string) => {
+                  element.feedbackby = txt;
+                }
+              );
+              this.referService.translatetext(element.label, this.userService.currentUserValue.preferlang).subscribe(
+                (txt: string) => {
+                  element.label = txt;
+                }
+              );
+              this.fureviews.push(element);
+              this.spinnerService.hide();
+            } else {
+              this.fureviews.push(element);
+              this.spinnerService.hide();
+            }
+        }
+      },
+      error => {
+        this.spinnerService.hide();
+        this.alertService.error(error);
+      });
+  }
+  private getFUFeebackDetailsByUserId() {
+    this.fureviews = [];
+    this.spinnerService.show();
+    this.freelanceserviceService.getFUFeebackDetailsByUserId(this.id).subscribe(
       (reviews: any) => {
         if (reviews != null) {
           reviews.forEach((element: any) => {
             element.starrate = Array(element.starrate);
-            if (this.userService.currentUserValue.preferlang === config.lang_code_te || this.userService.currentUserValue.preferlang === config.lang_code_hi) {
+            if (this.userService.currentUserValue.preferlang !== config.lang_code_en) {
               this.referService.translatetext(element.feedbackcomment, this.userService.currentUserValue.preferlang).subscribe(
                 (txt: string) => {
                   element.feedbackcomment = txt;
@@ -84,7 +132,7 @@ export class ViewfureviewsComponent implements OnInit {
               var avg = (this.totalratingcount / this.fureviews.length);
               if (!Number.isInteger(avg)) {
                 this.avgrating = avg.toFixed(1);;
-              } else{
+              } else {
                 this.avgrating = avg.toString();
               }
             }

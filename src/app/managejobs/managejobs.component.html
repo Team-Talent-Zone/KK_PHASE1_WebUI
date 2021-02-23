@@ -46,14 +46,14 @@
                                 style="font-size:14px">Pay Now
                                 <i class="fa fa-inr" title="Click to pay the job invoice"></i></button>
                             <button class="bg-success pull-right" *ngIf="element.freelancerjobattendant == 'NO'"
-                                (click)="updateFreelancerAttendance(element.jobId)">{{element.fullname | slice:0:10}}..
+                                (click)="updateFreelancerAttendance(element.jobId)">{{element.firstname}}
                                 is here to work
                                 <i class="fa fa-sign-in"
                                     title="Click when the skilled worker is at the location to provide the service."></i></button>
                             <button class="bg-warning pull-right"
                                 *ngIf="element.isjobactive && element.deactivefromupcomingjob 
                                 && element.isjobaccepted && !element.isfreelancerjobattendant && !element.isjobvoliation"
-                                (click)="deactivateJob(element.jobId,'voliation')">{{element.fullname | slice:0:10}}..
+                                (click)="deactivateJob(element.jobId,'voliation')">{{element.firstname}}
                                 is absent
                                 <i class="fa fa-times"
                                     title="Click when the skilled worker is not at job location to provide the service."></i></button>
@@ -67,11 +67,11 @@
                         <p>
                             <small class="pull-left">
                                 <b>{{ 'DASHBOARD_FU_BODY.STARTON' | translate }} </b>
-                                {{element.jobstartedon}}
+                                <span class="ml-3"> {{element.jobstartedon}}</span>
                             </small>
                             <small class="pull-left">
                                 <b>{{ 'DASHBOARD_FU_BODY.ENDON' | translate }} </b>
-                                <span class="ml-2">{{element.jobendedon}}
+                                <span class="ml-4">{{element.jobendedon}}
                                 </span>
                             </small>
                         </p>
@@ -180,13 +180,11 @@
                         <p>
                             <small class="pull-left">
                                 <b>{{ 'DASHBOARD_FU_BODY.STARTON' | translate }} </b>
-                                {{newlyjob.jobstartedon}}
+                                <span class="ml-3"> {{newlyjob.jobstartedon}}</span>
                             </small>
                             <small class="pull-left">
                                 <b>{{ 'DASHBOARD_FU_BODY.ENDON' | translate }} </b>
-                                <span class="ml-2">
-                                    {{newlyjob.jobendedon}}
-                                </span>
+                                    <span class="ml-4"> {{newlyjob.jobendedon}}</span>
                             </small>
                         </p>
                     </div>
@@ -272,9 +270,9 @@
                     <div class="card-header text-white bg-secondary">
                         <p> <b>{{ 'DASHBOARD_FU_BODY.JOB' | translate }}#{{completedjob.jobId}} </b>
                             <button class="bg-white  pull-right" *ngIf="completedjob.isjobamtpaidtocompany"
-                                [routerLink]="['/payment',completedjob.txnid]">Payment Info<i
-                                    title="Go to payment details" class="fa fa-sitemap"
-                                    style="color:#FF4949"></i></button>
+                                [routerLink]="['/payment',completedjob.txnid]"><i
+                                title="Go to payment details" class="fa fa-sitemap"
+                                style="color:#FF4949"></i> Payment Info</button>
                             <button *ngIf="!completedjob.isratedforjob" class="bg-info pull-right" data-toggle="modal"
                                 data-target="#rateit" (click)="feedback(completedjob.jobId)"> Rating <i
                                     class="fa fa-star" title="Please rate to {{completedjob.fullname}}"></i></button>
@@ -288,11 +286,11 @@
                         <p>
                             <small class="pull-left">
                                 <b>{{ 'DASHBOARD_FU_BODY.STARTON' | translate }} </b>
-                                {{completedjob.jobstartedon}}
+                                <span class="ml-3"> {{completedjob.jobstartedon}}</span>
                             </small>
                             <small class="pull-left">
                                 <b>{{ 'DASHBOARD_FU_BODY.ENDON' | translate }} </b>
-                                <span class="ml-2">
+                                <span class="ml-4">
                                     {{completedjob.jobendedon}}
                                 </span>
                             </small>
@@ -367,12 +365,12 @@
         </div>
     </div>
 </div>
-<div class="modal fade" id="rateit" *ngIf="isratingdisplay">
+<div class="modal fade" id="rateit" *ngIf="isratingdisplay" #closeBtn>
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Provide your feedback !</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
