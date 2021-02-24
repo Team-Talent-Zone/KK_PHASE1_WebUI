@@ -212,28 +212,30 @@
                 <!--Alert-->
                 <div class="alert alert-success alert-dismissible fade show w-100" role="alert"
                     *ngIf="txtid != null && ispaysuccess">
-                    <h4 class="display-5"
+                    <h5 class="display-5"
                         *ngIf="this.userService.currentUserValue.userroles.rolecode ==='FREELANCER_USER'">
                         We have recieved your payment and here is the transcation Id
                         <a [routerLink]="['/payment',txtid]">
                             {{txtid}}
                         </a>
-                    </h4>
-                    <h4 class="display-5"
+                    </h5>
+                    <h5 class="display-5"
                         *ngIf="this.userService.currentUserValue.userroles.rolecode ==='CLIENT_BUSINESS_ADMINISTRATOR'">
                         We have recieved your payment and here is the transcation Id
                         <a [routerLink]="['/payment',txtid]">
                             {{txtid}}
                         </a>
-                        <a [routerLink]="['/myservices']">
-                            <b>
-                                <small> Go to my service</small>
-                            </b>
-                        </a>
-                    </h4>
+                        <p>
+                            <a [routerLink]="['/myservices']">
+                                <b>
+                                    <small> Go to My Service</small>
+                                </b>
+                            </a>
+                        </p>
+                    </h5>
                     <!--Close Icon-->
-                    <button type="button" class="btn close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">×</span>
+                    <button type="button" class="btn close"  data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true" style="color:red">×</span>
                     </button>
                 </div>
                 <router-outlet></router-outlet>

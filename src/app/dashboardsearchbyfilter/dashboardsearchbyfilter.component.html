@@ -260,6 +260,8 @@
                                 </div>
                             </div>
                             <p *ngIf=" avgHourlyRate != null">
+                                {{avgHourlyRate}}
+                                {{maxHourlyRateCal}}
                                 <small *ngIf="avgHourlyRate != maxHourlyRateCal">As per our auto estimator system, the
                                     amount must in between [{{avgHourlyRate | currency:"INR₹"}} and
                                     {{maxHourlyRateCal | currency:"INR₹"}}]

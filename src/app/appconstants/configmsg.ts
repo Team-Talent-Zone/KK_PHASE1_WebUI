@@ -4,11 +4,11 @@ export const ConfigMsg = {
      * Home page
      */
     covid_alert_header_en:"COVID ALERT",
-    covid_alert_en:"We strictly follow the COVID rules & regulations. We encourage our clients & skilled workers to follow the goverment rules. Stay Home, Stay Safe.",
+    covid_alert_en:"We strictly follow the COVID rules & regulations. We encourage our clients & skilled workers to follow the goverment rules.",
     covid_alert_header_te:"కోవిడ్ హెచ్చరిక",
-    covid_alert_te:"మేము కోవిడ్ నిబంధనలను అనుసరిస్తాము మరియు మీ క్లయింట్లు మరియు కార్మికులను ప్రభుత్వ నియమాలను పాటించమని ప్రోత్సహిస్తాము. ఇంటి వద్దే ఉండండి, సురక్షితంగా ఉండండి",
+    covid_alert_te:"మేము కోవిడ్ నిబంధనలను అనుసరిస్తాము మరియు మీ క్లయింట్లు మరియు కార్మికులను ప్రభుత్వ నియమాలను పాటించమని ప్రోత్సహిస్తాము.",
     covid_alert_header_hi:"कोविड चेतावनी",
-    covid_alert_hi:"हम कोविद नियमों का पालन करते हैं और अपने ग्राहकों और श्रमिकों को सरकारी नियमों का पालन करने के लिए प्रोत्साहित करते हैं। घर रहें, सुरक्षित रहें",
+    covid_alert_hi:"हम कोविद नियमों का पालन करते हैं और अपने ग्राहकों और श्रमिकों को सरकारी नियमों का पालन करने के लिए प्रोत्साहित करते हैं।",
 
     /**
      * Signup Section Messages
@@ -53,9 +53,10 @@ export const ConfigMsg = {
      *  Payment Messages
      */
 
-    payment_sucesss_alert_hi: 'भुगतान के लिए धन्यवाद। भुगतान सफलतापूर्वक है',
-    payment_sucesss_alert_te: 'చెల్లింపుకు ధన్యవాదాలు. చెల్లింపు విజయవంతంగా ఉంది',
-    payment_sucesss_alert_en: 'Thank you for the payment. Please share your experience by rating our skilled worker.',
+    payment_sucesss_alert_hi: 'भुगतान के लिए धन्यवाद। कृपया हमारे कुशल कार्यकर्ता को रेटिंग देकर अपना अनुभव साझा करें।',
+    payment_sucesss_alert_te: 'చెల్లింపుకు ధన్యవాదాలు. దయచేసి మా నైపుణ్యం కలిగిన కార్మికుడిని రేటింగ్ చేయడం ద్వారా మీ అనుభవాన్ని పంచుకోండి.',
+    payment_sucesss_alert_en: 'Thank you for the payment. Payment is successful.',
+
     payment_fail_alert_hi: 'ट्रांसकेशन फेल हो गया। कृपया पुन: प्रयास करें।',
     payment_fail_alert_te: 'ట్రాన్స్‌కేషన్ విఫలమైంది. దయచేసి మళ్ళీ ప్రయత్నించండి.',
     payment_fail_alert_en: 'Transaction is failed. Please try again.',
