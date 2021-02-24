@@ -245,11 +245,12 @@ export class DashboardsearchbyfilterComponent implements OnInit {
           else {
             if (!this.isfreelancerservicesubscribed) {
               var atag = document.createElement('a');
-              atag.href = "raj";
+              atag.href = "/dashboard";
               atag.innerText = ConfigMsg.search_job_msg_6;
               let errorMsg = ConfigMsg.search_job_msg_5 + this.name + atag;
               var str = (<HTMLAnchorElement>atag);
-              this.alertService.warning(str);
+              //this.alertService.warning(str);
+              this.alertService.info(ConfigMsg.search_job_msg_5 + this.name + ConfigMsg.search_job_msg_6);
             }
           }
       },

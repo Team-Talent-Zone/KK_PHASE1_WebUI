@@ -165,50 +165,48 @@
                             <span><b>{{ 'DASHOARD_HEADER.WELCOMEBACK' | translate }}
                                     {{this.userService.currentUserValue.fullname}}</b></span>
                         </div>
-                        <div class="col-7 col-lg-2 col-md-5">
+                        <div class="col-7 col-lg-3 col-md-5">
                             <span class="float-right">
                                 <small>
                                     <i class="fa fa-clock-o" aria-hidden="true"></i>
                                     {{commonlogic.indiaTime}}</small>
                             </span>
                         </div>
-                  
-                        <div class=" col-4 col-lg-2 col-md-2 pull-right">
-                            <a style="cursor:pointer" (click)='openNotifcationWindow()' *ngIf="notifcationbellList != null && notifcationbellList.length>0 && 
-                             this.userService.currentUserValue.userroles.rolecode =='FREELANCER_USER' && 
-                             this.userService.currentUserValue.freeLanceDetails.bgcurrentstatus == 'BG_APPROVED'">
-                                <i class="fa fa-comments-o" style="color:#FF4949">{{notifcationbellList.length}}</i>
-                            </a>
-                            <a style="cursor:pointer" (click)='openNotifcationWindow()'
-                                *ngIf="notifcationbellList != null && notifcationbellList.length>0 &&
-                                    this.userService.currentUserValue.userroles.rolecode =='CLIENT_BUSINESS_ADMINISTRATOR'">
-                                <i class="fa fa-comments-o" style="color:#FF4949">{{notifcationbellList.length}}</i>
-                            </a>
-                            <a style="cursor:pointer" (click)='openNotifcationWindow()' *ngIf="notifcationbellList != null && notifcationbellList.length > 0 &&
-                                this.userService.currentUserValue.userroles.rolecode =='CORE_SERVICE_SUPPORT_TEAM'">
-                                <i class="fa fa-comments-o" style="color:#FF4949">{{notifcationbellList.length}}</i>
-                            </a>
-                            <a style="cursor:pointer" (click)='openNotifcationWindow()'
-                                *ngIf="notifcationbellList != null && notifcationbellList.length > 0 &&
-                                this.userService.currentUserValue.userroles.rolecode =='CORE_SERVICE_SUPPORT_MANAGER' ">
-                                <i class="fa fa-comments-o" style="color:#FF4949">{{notifcationbellList.length}}</i>
-                            </a>
-                            <a *ngIf="notifcationbellList.length==0 && 
-                            this.userService.currentUserValue.userroles.rolecode !='DIRECTORS'">
-                                <i class="fa fa-comments-o">0</i>
-                            </a>
-                            &nbsp;
-                            <a routerLink='/vieworeditprofile/{{userService.currentUserValue.userId}}'>
+
+                        <div class=" col-4 col-lg-1 col-md-2">
+                            <a class="pull-right"
+                                routerLink='/vieworeditprofile/{{userService.currentUserValue.userId}}'>
                                 <img *ngIf="userService.currentUserValue.avtarurl != null && this.userService.currentUserValue.userroles.rolecode !='DIRECTORS'"
                                     class="avatar" src="{{userService.currentUserValue.avtarurl}}">
                                 <img *ngIf="userService.currentUserValue.avtarurl === null && this.userService.currentUserValue.userroles.rolecode !='DIRECTORS'"
                                     src="{{defaultTxtImg}}" class="avatar">
                             </a>
+                            <div class="pull-right mr-2">
+                                <a style="cursor:pointer" (click)='openNotifcationWindow()' *ngIf="notifcationbellList != null && notifcationbellList.length>0 && 
+                             this.userService.currentUserValue.userroles.rolecode =='FREELANCER_USER' && 
+                             this.userService.currentUserValue.freeLanceDetails.bgcurrentstatus == 'BG_APPROVED'">
+                                    <i class="fa fa-comments-o" style="color:#FF4949">{{notifcationbellList.length}}</i>
+                                </a>
+                                <a style="cursor:pointer" (click)='openNotifcationWindow()'
+                                    *ngIf="notifcationbellList != null && notifcationbellList.length>0 &&
+                                    this.userService.currentUserValue.userroles.rolecode =='CLIENT_BUSINESS_ADMINISTRATOR'">
+                                    <i class="fa fa-comments-o" style="color:#FF4949">{{notifcationbellList.length}}</i>
+                                </a>
+                                <a style="cursor:pointer" (click)='openNotifcationWindow()' *ngIf="notifcationbellList != null && notifcationbellList.length > 0 &&
+                                this.userService.currentUserValue.userroles.rolecode =='CORE_SERVICE_SUPPORT_TEAM'">
+                                    <i class="fa fa-comments-o" style="color:#FF4949">{{notifcationbellList.length}}</i>
+                                </a>
+                                <a style="cursor:pointer" (click)='openNotifcationWindow()'
+                                    *ngIf="notifcationbellList != null && notifcationbellList.length > 0 &&
+                                this.userService.currentUserValue.userroles.rolecode =='CORE_SERVICE_SUPPORT_MANAGER' ">
+                                    <i class="fa fa-comments-o" style="color:#FF4949">{{notifcationbellList.length}}</i>
+                                </a>
+                                <a *ngIf="notifcationbellList.length==0 && 
+                            this.userService.currentUserValue.userroles.rolecode !='DIRECTORS'">
+                                    <i class="fa fa-comments-o">0</i>
+                                </a>
+                            </div>
                         </div>
-                        <div class=" col-3 col-lg-1 col-md-2 pull-right">
-
-                        </div>
-
                     </div>
                 </div>
                 <!--Alert-->

@@ -51,22 +51,23 @@
                 </div>
                 <div class="card-footer">
                     <p>
-                        <small class="text-left pull-left"><b>From: </b>
-                            {{svc.servicestarton}} </small>
+                        <small class="text-left pull-left"><b>Valid From </b>
+                            <p>{{svc.servicestarton}} </p>
+                        </small>
+                   
+                        <small class="pull-left"><b>Valid Till</b>
+                            <p>{{svc.serviceendon}}</p>
+                        </small>
                     </p>
                     <p>
-                        <small class="pull-left"><b>Till:</b> <span class="ml-3">{{svc.serviceendon}}
-                            </span> </small>
+                        <small class="pull-right btn-danger" *ngIf="svc.validdays ==0 ">
+                            [{{svc.validdays}} days left]
+                        </small>
+                        <small class="pull-right btn-success" *ngIf="svc.validdays > 0 ">
+                            [{{svc.validdays}} days left]
+                        </small>
                     </p>
                 </div>
-                <p>
-                    <small class="pull-right btn-danger" *ngIf="svc.validdays ==0 ">
-                        [{{svc.validdays}} days left]
-                    </small>
-                    <small class="pull-right btn-success" *ngIf="svc.validdays > 0 ">
-                        [{{svc.validdays}} days left]
-                    </small>
-                </p>
             </div>
         </div>
         <!-- </div> -->

@@ -80,11 +80,14 @@ export class CommonUtility {
         var tempmonth = date.getMonth() + 1; //getMonth is zero based;
         var tempday = date.getDate();
         var hr = date.getHours();
+        hr = hr % 12;
+        hr = hr ? hr : 12; // the hour '0' should be '12'
+        var ampm = hr >= 12 ? 'am' : 'pm';
         var tempmin = date.getMinutes();
         var month = tempmonth > 10 ? tempmonth : '0' + tempmonth;
         var day = tempday > 10 ? tempday : '0' + tempday;
         var min = tempmin > 10 ? tempmin : '0' + tempmin;
-        var formatted = day + '-' + month + '-' + year + ' ' + hr + ':' + min;
+        var formatted = day + '-' + month + '-' + year + ' ' + hr + ':' + min + ' ' + ampm;
         return formatted;
     }
 
