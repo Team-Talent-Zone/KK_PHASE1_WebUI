@@ -12,13 +12,13 @@ declare let google: any;
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit, OnDestroy {
+export class AppComponent implements OnInit{
   title = 'APPMAINUIv1';
 
-  @HostListener('window:beforeunload')
-  unloadHandler(event) {
-    this.userService.logout();
-  }
+
+  @HostListener("window:unload", ["$event"])
+  unloadHandler(event) { sessionStorage.clear(); }
+
   constructor(
     private matomoInjector: MatomoInjector,
     private matomoTracker: MatomoTracker,
@@ -30,9 +30,5 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.matomoTracker.setUserId('UserId');
     this.matomoTracker.setDocumentTitle('ngx-Matomo Test');
-  }
-
-  ngOnDestroy(): void {
-    this.userService.logout();
   }
 }

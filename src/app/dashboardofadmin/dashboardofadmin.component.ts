@@ -43,6 +43,7 @@ export class DashboardofadminComponent implements OnInit {
   jobscompletedpayoutpendingList: any = [];
   startdateInputDate: Date;
   startdate: string;
+  
 
   listofallvoliationscount: any = [];
   listofallvoliationsskilledworkername: any = [];
@@ -67,7 +68,7 @@ export class DashboardofadminComponent implements OnInit {
   volationindex: number;
   issubmit = false;
   iscreatejobflag: boolean = false;
-  bufferhours: number = 4;
+  bufferhours: number = 1;
   onworkfreelancelistsbysubcategory: any;
   onnotworkfreelancelistsbysubcategory: any;
   isshowswithjobbycategory: boolean = false;
@@ -189,7 +190,7 @@ export class DashboardofadminComponent implements OnInit {
             && !element.deactivefromupcomingjob && !element.jobacceptdecisionflag) {
             this.skilledworkerjustacceptedList.push(element);
           }
-          if (!element.isjobactive && !element.isjobvoliation) {
+          if (!element.isjobactive && !element.isjobvoliation && !element.deactivefromnewjobs) {
             this.newjobsbutnotactiviatedList.push(element);
           }
           if (element.isjobactive && !element.isjobaccepted && !element.isjobvoliation && element.jobaccepteddate == null && element.freelanceuserId == null) {
@@ -514,11 +515,11 @@ export class DashboardofadminComponent implements OnInit {
       });
   }
   buildendateforvoliationcreatenewjob(event: any) {
-    var selectstdate = event.value;
+    var selectstdate= event.value;
     this.iscreatejobflag = true;
     var totalhours = (this.totalhoursofjob + this.bufferhours);
     var jobEndDate = new Date();
-    jobEndDate.setTime(selectstdate.getTime() + (totalhours * 60 * 60 * 1000));
+    jobEndDate.setTime(this.setDefaultTimeForStartDate(new Date(selectstdate)).getTime() + (totalhours * 60 * 60 * 1000));
     var dd = jobEndDate.getDate();
     var mm = jobEndDate.getMonth() + 1;
     var y = jobEndDate.getFullYear();
@@ -529,17 +530,29 @@ export class DashboardofadminComponent implements OnInit {
     var mins = min > 10 ? min : '0' + min;
     var addedhourstodate = y + '-' + month + '-' + day + ' ' + hr + ':' + mins;
     this.enddatevalue = addedhourstodate;
-    this.startdate = this.setDefaultTimeForStartDate(new Date(event.value));
+    this.startdate = this.setDefaultTimeForStartDateFormat(event.value);
   }
 
-  private setDefaultTimeForStartDate(st: Date) {
+  setDefaultTimeForStartDate(st: Date) {
     st.setDate(st.getDate());
     var dd = st.getDate();
     var mm = st.getMonth() + 1;
+    var y = st.getFullYear();
     var month = mm > 10 ? mm : '0' + mm;
     var day = dd > 10 ? dd : '0' + dd;
-    var yyyy = st.getFullYear();
-    var startDtFmt = yyyy + '-' + month + '-' + day + ' 10:00';
+    var startDtFmt = y + '-' + month + '-' + day + ' 10:00';
+    st = new Date(startDtFmt);
+    return st;
+  }
+
+  setDefaultTimeForStartDateFormat(st: Date) {
+    st.setDate(st.getDate());
+    var dd = st.getDate();
+    var mm = st.getMonth() + 1;
+    var y = st.getFullYear();
+    var month = mm > 10 ? mm : '0' + mm;
+    var day = dd > 10 ? dd : '0' + dd;
+    var startDtFmt = y + '-' + month + '-' + day + ' 10:00';
     return startDtFmt;
   }
 

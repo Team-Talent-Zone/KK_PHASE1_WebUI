@@ -72,16 +72,17 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
+
     if (this.userService.currentUserValue != null) {
       this.matomoTracker.setUserId(this.userService.currentUserValue.userId.toString());
-      if (this.txtid != null) {
-        this.getPaymentDetailsByTxnId(this.txtid);
-      }
       setTimeout(() => {
-        this.resetLoggedInUser();
+        this.resetLoggedInUser(this.userService.currentUserValue.userId);
       }, 1000);
       if (this.userService.currentUserValue.userroles.rolecode !== config.user_rolecode_fu.toString()) {
         this.getAllAvailableFUSkills();
+      }
+      if (this.txtid != null) {
+        this.getPaymentDetailsByTxnId(this.txtid);
       }
       const source = timer(1000, 90000);
       source.subscribe(() => {
@@ -217,9 +218,11 @@ export class DashboardComponent implements OnInit {
 
   getPaymentDetailsByTxnId(txnid: string) {
     this.paymentsvc.getPaymentDetailsByTxnId(txnid).subscribe((paymentobj: any) => {
+      console.log('paymentobj.paymentsCBATrans', paymentobj.paymentsCBATrans.userId);
       if (paymentobj.paymentsCBATrans != null) {
         if (paymentobj.paymentsCBATrans.status === config.payment_success.toString()) {
           this.ispaysuccess = true;
+          this.resetLoggedInUser(paymentobj.paymentsCBATrans.userId);
           this.alertService.success(ConfigMsg.payment_sucesss_alert_en);
         } else {
           this.alertService.info(ConfigMsg.payment_fail_alert_en);
@@ -230,6 +233,7 @@ export class DashboardComponent implements OnInit {
         var paymentsucess;
         var paymentfailed;
         if (paymentobj.paymentsFUTrans.status === config.payment_success.toString()) {
+          this.resetLoggedInUser(paymentobj.paymentsFUTrans.userId);
           if (this.userService.currentUserValue.preferlang == config.lang_code_en) {
             paymentsucess = ConfigMsg.payment_sucesss_alert_en.toString();
           } else {
@@ -260,8 +264,9 @@ export class DashboardComponent implements OnInit {
       });
   }
 
-  private resetLoggedInUser() {
-    this.userService.getUserByUserId(this.userService.currentUserValue.userId).subscribe(
+  private resetLoggedInUser(userId: number) {
+    this.spinnerService.show();
+    this.userService.getUserByUserId(userId).subscribe(
       (userresp: any) => {
         this.userService.setCurrentUserValue(userresp);
         this.translateToLanguage(userresp.preferlang.toString());

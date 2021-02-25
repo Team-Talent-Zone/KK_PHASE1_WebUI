@@ -238,6 +238,8 @@
                           [owlDateTimeTrigger]="dt1" class="form-control"
                           (dateTimeInput)="buildendateforvoliationcreatenewjob($event)" placeholder="Choose start date">
                         <owl-date-time [pickerType]="'calendar'" #dt1></owl-date-time>
+                        <p> <small>Default job start time: <span class="btn-warning">10:00 am</span></small>
+                        </p>
                       </div>
                       <br>
                       <div
@@ -252,7 +254,7 @@
                     </td>
                     <td>
                       <p *ngIf="iscreatejobflag && i == volationindex"><i><small>Previous
-                            {{this.commonlogic.formatPhoneNumber(job.fuphoneno)}}
+                            <p> {{this.commonlogic.formatPhoneNumber(job.fuphoneno)}}</p>
                           </small></i>
                       </p>
                       <p *ngIf="!iscreatejobflag && i == volationindex">
@@ -263,8 +265,10 @@
                       </p>
                       <div *ngIf="iscreatejobflag && i == volationindex && enddatevalue != null">
                         <hr>
-                        <p><i><small>[New Job End Date]</small></i></p>
-                        {{enddatevalue}}
+                        <p><i><small>[New Job End Date]</small></i>
+                        </p>
+                        <small><span
+                            class="btn-warning">{{this.commonlogic.getIndianDateFormat(enddatevalue)}}</span></small>
                       </div>
                     </td>
                     <td>
@@ -961,7 +965,7 @@
           <table class="table table-bordered" *ngIf="!isnotpurchasedserviceempty">
             <thead>
               <tr>
-                 <th scope="col">Client Name</th>
+                <th scope="col">Client Name</th>
                 <th scope="col">Type</th>
                 <th scope="col">Phone No</th>
                 <th scope="col">Valid Period </th>

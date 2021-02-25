@@ -311,7 +311,6 @@ export class DashboardsearchbyfilterComponent implements OnInit {
     var addedhourstodate = y + '-' + month + '-' + day + ' ' + hr + ':' + mins;
     this.enddatevalue = addedhourstodate;
     this.listofhourlyRateDetailsoffus = [];
-    console.log('userFUObjList', this.userFUObjList);
     if (this.userFUObjList != null) {
       this.userFUObjList.forEach(element => {
         this.listofhourlyRateDetailsoffus.push(element.hourlyRate);

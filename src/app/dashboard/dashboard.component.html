@@ -212,27 +212,25 @@
                 <!--Alert-->
                 <div class="alert alert-success alert-dismissible fade show w-100" role="alert"
                     *ngIf="txtid != null && ispaysuccess">
-                    <h5 class="display-5"
+                    <h6 class="display-5"
                         *ngIf="this.userService.currentUserValue.userroles.rolecode ==='FREELANCER_USER'">
-                        We have recieved your payment and here is the transcation Id
+                        {{ 'DASHOARD_HEADER.PAYMENT_SUCCESS' | translate }}
                         <a [routerLink]="['/_payment',txtid]">
                             {{txtid}}
                         </a>
-                    </h5>
-                    <h5 class="display-5"
+                    </h6>
+                    <h6 class="display-5"
                         *ngIf="this.userService.currentUserValue.userroles.rolecode ==='CLIENT_BUSINESS_ADMINISTRATOR'">
-                        We have recieved your payment and here is the transcation Id
+                        We have recieved your payment. Click to view transaction details
                         <a [routerLink]="['/_payment',txtid]">
-                            {{txtid}}
-                        </a>
-                        <p>
+                            {{txtid}} 
+                        </a>Or
                             <a [routerLink]="['/_myservices']">
                                 <b>
-                                    <small> Go to My Service</small>
+                                      [Go to My Service]
                                 </b>
                             </a>
-                        </p>
-                    </h5>
+                    </h6>
                     <!--Close Icon-->
                     <button type="button" class="btn close"  data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true" style="color:red">×</span>

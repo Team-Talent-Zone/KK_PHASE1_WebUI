@@ -86,8 +86,8 @@
     "SIGNUP_SUBMIT_BUTTON": "Join Now",
     "SIGNUP_CLOSE_BUTTON": "Cancel",
     "ACCOUNTLOGIN": "Welcome Back",
-    "ALREADY_GOTACCOUNT":"Already have an account? Login",
-    "LOGIN_FWD_LABEL":"We will send you an email with temporary password that will allow you to login."
+    "ALREADY_GOTACCOUNT": "Already have an account? Login",
+    "LOGIN_FWD_LABEL": "We will send you an email with temporary password that will allow you to login."
   },
   "ONBOARD": {
     "OURCUSTOMERS": "On Boarding",
@@ -222,7 +222,8 @@
     "NO_VOLIATION_MSG": "Be proud of yourself not having any voliation jobs at this point. Keep up the good service with the clients.",
     "NO_COMPLETEDJOBS_MSG": "You have not completed your first job yet .Complete your first job .",
     "TOTAL_HOURSOFWORK": "Total Hours of work :",
-    "LIVE_TRACKING_ON":"Location On"
+    "LIVE_TRACKING_ON": "Location On",
+    "PAYMENT_SUCCESS": "We have recieved your payment.Click to view transaction details"
   },
   "DASHBOARD_FU_PROFILE": {
     "PROFILESETTINGS": "Profile Settings",
@@ -312,7 +313,7 @@
   "FU_REVIEW": {
     "REVIEWS": "Reviews",
     "NOREVIEWS": "There are no reviews. Engage to the client to provide the good rating reviews on your work.",
-    "OVERALLRATING":"overall rating :"
+    "OVERALLRATING": "overall rating :"
   },
   "ALERT_POPUP": {
     "SUCCESS": "Well Done !",
@@ -332,5 +333,4 @@
     "CHECKOUT": "Checkout",
     "CONFIRM": "Confirm"
   }
- 
 }
