@@ -64,13 +64,13 @@
 								<h2>{{ 'FOOTER.USEFULLINKS' | translate }}</h2>
 								<!-- <hr> -->
 								<ul style="list-style: circle;">
-									<li><a [routerLink]="['/dashboard']">{{
+									<li><a [routerLink]="['/_dashboard']" onclick="topFunction()">{{
 											'DASHOARD_FU_MENU.SUMMARY' | translate }}</a>
 									</li>
-									<li><a routerLink='/vieworeditprofile/{{userService.currentUserValue.userId}}'>
+									<li><a routerLink='/_profilesettings/{{userService.currentUserValue.userId}}' onclick="topFunction()">
 											{{ 'DASHOARD_FU_MENU.EDIT_PROFILE' | translate }}</a></li>
 									<li *ngIf="this.userService.currentUserValue.freeLanceDetails.isregfeedone">
-										<a [routerLink]="['/paymenthistory']">
+										<a [routerLink]="['/_payments']" onclick="topFunction()">
 											{{ 'DASHOARD_FU_MENU.PAYMENTHISTORY' | translate }}
 										</a>
 									</li>
@@ -84,17 +84,17 @@
 								<h2>{{ 'FOOTER.USEFULLINKS' | translate }}</h2>
 								<!-- <hr> -->
 								<ul style="list-style: circle;">
-									<li><a [routerLink]="['/dashboard']">Our Services</a>
+									<li><a [routerLink]="['/_dashboard']" onclick="topFunction()">Our Services</a>
 									</li>
-									<li><a routerLink='/vieworeditprofile/{{userService.currentUserValue.userId}}'>
+									<li><a routerLink='/_profilesettings/{{userService.currentUserValue.userId}}'  onclick="topFunction()">
 											{{ 'DASHOARD_FU_MENU.EDIT_PROFILE' | translate }}</a></li>
 									<li>
-										<a [routerLink]="['/job']">
+										<a [routerLink]="['/_job']" onclick="topFunction()">
 											Manage Jobs
 										</a>
 									</li>
 									<li>
-										<a [routerLink]="['/paymenthistory']">
+										<a [routerLink]="['/_payments']" onclick="topFunction()">
 											Payment History
 										</a>
 									</li>
@@ -109,11 +109,11 @@
 								<h2>{{ 'FOOTER.USEFULLINKS' | translate }}</h2>
 								<!-- <hr> -->
 								<ul style="list-style: circle;">
-									<li><a [routerLink]="['/dashboard']">Dashboard</a>
+									<li><a [routerLink]="['/_dashboard']" onclick="topFunction()">Dashboard</a>
 									</li>
-									<li><a [routerLink]="['/manageuser']"> Manage Users</a>
+									<li><a [routerLink]="['/_manageuser']" onclick="topFunction()"> Manage Users</a>
 									</li>
-									<li><a [routerLink]="['/manageservice']"> Manage
+									<li><a [routerLink]="['/_manageservice']" onclick="topFunction()"> Manage
 											Services</a>
 									</li>
 								</ul>

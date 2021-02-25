@@ -40,7 +40,6 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private route: ActivatedRoute,
     private modalService: BsModalService,
     public translate: TranslateService,
     private spinnerService: Ng4LoadingSpinnerService,

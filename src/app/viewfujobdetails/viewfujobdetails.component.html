@@ -1,13 +1,13 @@
 <div class="container">
   <h4> View Full Job Details</h4>
-  <hr class="my-4">
-  <span>
+  <hr>
+  <span *ngIf="listofalljobs.length > 0">
     <div class="col-md-12 bg-search">
       <input type="text" id="myInput" onkeyup="viewFullJobTableSearch()" class="form-control col-md-3"
         placeholder="Search by JobId">
     </div>
   </span>
-  <small>
+  <small *ngIf="listofalljobs.length > 0">
     <table id="myTable" class="container table table-striped table-md">
       <thead>
         <tr>
@@ -39,7 +39,7 @@
         </tr>
     </table>
   </small>
-  <div *ngIf="isemptyjobs">
+  <div *ngIf="listofalljobs.length == 0 && isemptyjobs">
     <div class="alert alert-success alert-dismissible fade show w-100" role="alert">
       <h5 class="display-5">
         No Assoicated Jobs.

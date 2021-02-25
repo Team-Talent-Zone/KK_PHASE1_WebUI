@@ -292,7 +292,7 @@ export class DashboardComponent implements OnInit {
       } else {
         this.router.navigateByUrl('fusearch/', { skipLocationChange: true }).
           then(() => {
-            this.router.navigate(['dashboard/' + this.templist[0].code + '/' + this.templist[0].label]);
+            this.router.navigate(['_dashboard/' + this.templist[0].code + '/' + this.templist[0].label]);
           });
       }
     }

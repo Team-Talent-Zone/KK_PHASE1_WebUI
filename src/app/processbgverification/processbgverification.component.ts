@@ -218,7 +218,7 @@ export class ProcessbgverificationComponent implements OnInit {
                     if (util.lastreturncode === 250) {
                       this.userService.saveorupdate(this.usrObjMyWork).subscribe(
                         (userObj: any) => {
-                          this.router.navigate(['/dashboard']);
+                          this.router.navigate(['/_dashboard']);
                           this.alertService.success(ConfigMsg.bg_completed);
                           this.spinnerService.hide();
                           this.modalRef.hide();
@@ -283,7 +283,7 @@ export class ProcessbgverificationComponent implements OnInit {
                           this.freehistObj.csstid = respuser.userId;
                           this.userService.saveFreeLanceHistory(this.freehistObj).subscribe(
                             (freehisObj: any) => {
-                              this.router.navigate(['/dashboard']);
+                              this.router.navigate(['/_dashboard']);
                               this.alertService.success(ConfigMsg.bg_verificaton_back + respuser.fullname);
                               this.spinnerService.hide();
                               this.modalRef.hide();

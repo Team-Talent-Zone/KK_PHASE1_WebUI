@@ -9,11 +9,11 @@
             <div class="card h-100">
                 <div class="card-header header-bg">
                     <img src={{svc.imgurl}} class="img-rounded" width="90" height="70" style="padding-bottom: 5px;">
-                    <a *ngIf="svc.txnid !== null" [routerLink]="['/payment',svc.txnid]">
+                    <a *ngIf="svc.txnid !== null" [routerLink]="['/_payment',svc.txnid]">
                         <i class="fa fa-sitemap pull-right" title="Go to payment details" style="color:#FF4949"> </i>
                     </a>
                     <span *ngIf="svc.category !=='FS_S'" class="pull-right">
-                        <a [routerLink]="['/createoreditwidget',svc.ourserviceId]">
+                        <a [routerLink]="['/_createoreditwidget',svc.ourserviceId]">
                             <i class="fa fa-window-restore" title="Go to edit widget" style="color:azure"></i></a>
                     </span>
                     <span *ngIf="istimelap" class="pull-right" style="padding-right:10px">
@@ -77,6 +77,6 @@
 <div class="alert alert-success alert-dismissible fade show w-100" role="alert"
     *ngIf="listOfSubscribedServicesByUser.length == 0 && istimelap">
     <h5 class="display-5">
-        You have not purchased our services at this point . <a [routerLink]="['/dashboard']">Go to Our Services</a>
+        You have not purchased our services at this point . <a [routerLink]="['/_dashboard']">Go to Our Services</a>
     </h5>
 </div>

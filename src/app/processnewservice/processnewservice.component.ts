@@ -131,7 +131,7 @@ export class ProcessnewserviceComponent implements OnInit {
                       this.sendemailService.sendEmail(this.util).subscribe(
                         (util: any) => {
                           if (util.lastreturncode === 250) {
-                            this.router.navigate(['/dashboard']);
+                            this.router.navigate(['/_dashboard']);
                             this.modalRef.hide();
                             this.alertService.success(ConfigMsg.new_serivce_review_msg_1 + this.message);
                             this.spinnerService.hide();
@@ -209,7 +209,7 @@ export class ProcessnewserviceComponent implements OnInit {
                           (util: any) => {
                             if (util.lastreturncode === 250) {
                               this.spinnerService.hide();
-                              this.router.navigate(['/dashboard']);
+                              this.router.navigate(['/_dashboard']);
                               this.modalRef.hide();
                               this.alertService.success(ConfigMsg.new_serivce_review_msg_2);
                             }
@@ -240,7 +240,7 @@ export class ProcessnewserviceComponent implements OnInit {
                         this.sendemailService.sendEmail(this.util).subscribe(
                           (util: any) => {
                             if (util.lastreturncode === 250) {
-                              this.router.navigate(['/dashboard']);
+                              this.router.navigate(['/_dashboard']);
                               this.modalRef.hide();
                               this.alertService.success(ConfigMsg.new_serivce_review_msg_2);
                               this.spinnerService.hide();

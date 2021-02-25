@@ -89,7 +89,7 @@ export class LoginComponent implements OnInit {
               (resp) => {
                 this.spinnerService.hide();
                 this.modalRef.hide();
-                this.router.navigate(['/dashboard']);
+                this.router.navigate(['/_dashboard']);
               },
               error => {
                 this.spinnerService.hide();

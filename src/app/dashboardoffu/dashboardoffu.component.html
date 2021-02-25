@@ -11,7 +11,7 @@
         <div class="col-12 col-sm-2 placeholder text-center d-lg-none">
             <p *ngIf="!userService.currentUserValue.freeLanceDetails.isprofilecompleted;">
                 <i class="fa fa-address-card-o  rounded-circle" [ngStyle]="{'background':'white'}"></i>
-                <a routerLink='/vieworeditprofile/{{userService.currentUserValue.userId}}'>
+                <a routerLink='/_profilesettings/{{userService.currentUserValue.userId}}'>
                     <p class='text-center'><small><b>
                                 <u>
                                     {{ 'DASHBOARD_FU_BODY.FILLOUTPROFILE' | translate }}
@@ -60,7 +60,7 @@
         <div class="col-6 col-sm-2 placeholder text-center d-none d-lg-block">
             <i class="fa fa-address-card-o  rounded-circle"
                 [ngStyle]="{'background': userService.currentUserValue.freeLanceDetails.isprofilecompleted ? 'cornflowerblue':'white'}"></i>
-            <a routerLink='/vieworeditprofile/{{userService.currentUserValue.userId}}'
+            <a routerLink='/_profilesettings/{{userService.currentUserValue.userId}}'
                 *ngIf="!userService.currentUserValue.freeLanceDetails.isprofilecompleted; else elseFU">
                 <p class='text-center'><small><b>
                             <u>
@@ -77,7 +77,7 @@
 
         </div>
         <i class="fa fa-arrow-right d-none d-lg-block" style="font-size:36px;"
-            [ngStyle]="{'color': userService.currentUserValue.freeLanceDetails.isprofilecompleted ? 'green':'lightgrey'}"></i>
+            [ngStyle]="{'color': userService.currentUserValue.freeLanceDetails.isprofilecompleted ? 'brown':'lightgrey'}"></i>
         <div class="col-6 col-sm-2 placeholder text-center d-none d-lg-block">
             <i class="fa fa-credit-card-alt rounded-circle"
                 [ngStyle]="{'background': userService.currentUserValue.freeLanceDetails.isregfeedone ? 'cornflowerblue':'white'}"></i>
@@ -105,14 +105,14 @@
             </p>
         </div>
         <i class="fa fa-arrow-right d-none d-lg-block" style="font-size:36px;"
-            [ngStyle]="{'color': userService.currentUserValue.freeLanceDetails.isregfeedone ? 'green':'lightgrey'}"></i>
+            [ngStyle]="{'color': userService.currentUserValue.freeLanceDetails.isregfeedone ? 'brown':'lightgrey'}"></i>
         <div class="col-6 col-sm-2 placeholder text-center d-none d-lg-block">
             <i class="fa fa-street-view rounded-circle"
                 [ngStyle]="{'background': userService.currentUserValue.freeLanceDetails.isbgstarted ? 'cornflowerblue':'white'}"></i>
             <p><small><b>{{ 'DASHBOARD_FU_BODY.BGVERIFICATIONINITIATED' | translate }}</b></small></p>
         </div>
         <i class="fa fa-arrow-right d-none d-lg-block" style="font-size:36px;"
-            [ngStyle]="{'color': userService.currentUserValue.freeLanceDetails.isbgstarted ? 'green':'lightgrey'}"></i>
+            [ngStyle]="{'color': userService.currentUserValue.freeLanceDetails.isbgstarted ? 'brown':'lightgrey'}"></i>
         <div class="col-6 col-sm-2 placeholder text-center d-none d-lg-block">
             <i class="fa fa-hourglass-start rounded-circle"
                 [ngStyle]="{'background': userService.currentUserValue.freeLanceDetails.isbgdone ? 'cornflowerblue':'white'}">
@@ -120,7 +120,7 @@
             <p><small><b>{{ 'DASHBOARD_FU_BODY.BGVERFIFICATIONINPROGRESS' | translate }}</b></small></p>
         </div>
         <i class="fa fa-arrow-right d-none d-lg-block" style="font-size:36px;"
-            [ngStyle]="{'color': userService.currentUserValue.freeLanceDetails.isbgdone ? 'green':'lightgrey'}"></i>
+            [ngStyle]="{'color': userService.currentUserValue.freeLanceDetails.isbgdone ? 'brown':'lightgrey'}"></i>
         <div class="col-6 col-sm-2 placeholder text-center d-none d-lg-block">
             <i class="fa fa fa-hand-paper-o rounded-circle"
                 *ngIf='!userService.currentUserValue.freeLanceDetails.isbgdone'></i>
@@ -149,9 +149,6 @@
                     style="padding-left: 27px;padding-top: 27px;color: white;">
                     <span style="color: white;">
                         <p class="pull-center"><b>{{ card.name }}</b>
-                            &nbsp;
-                            <i class="fa fa-info-circle" *ngIf="i==0"
-                                title="{{ 'DASHBOARD_FU_BODY.UPCOMINGTOOLTIP' | translate }}" style="color:blue"></i>
                         </p>
                         <span class="pull-center">
                             <h3 style="color: white;"><i class="fa fa-inr" *ngIf="card.value > 0"
@@ -297,10 +294,10 @@
                                 <div class="card-footer"
                                     *ngIf="!element.deactivefromupcomingjob && element.cbajobattendantdate == null">
                                     <div class="row">
-                                        <small class="text-muted ">
+                                        <small class="text-muted text-center ">
                                             <p class="text-danger">
                                                 {{ 'DASHBOARD_FU_BODY.CANCELNOTE1' | translate }}
-                                                <b><u> {{ 'DASHBOARD_FU_BODY.CANCELNOTE2' | translate }} </u></b>
+                                                <b class="pl-1"><u> {{ 'DASHBOARD_FU_BODY.CANCELNOTE2' | translate }} </u></b>
                                             </p>
                                         </small>
                                     </div>
@@ -595,6 +592,11 @@
             <h4>{{ 'DASHBOARD_FU_BODY.IMPINST_HEADER' | translate }}</h4>
         </dt>
         <dd class="col-sm-9"> </dd>
+        <dt class="col-sm-3 mb-3"></dt>
+        <dd class="col-sm-9 mb-3">
+            <p>
+                {{ 'DASHBOARD_FU_BODY.UPCOMINGTOOLTIP' | translate }}
+            </p>
         <dt class="col-sm-3 mb-3">
             <button class="bg-info pull-left" style="font-size:14px">{{
                 'DASHBOARD_FU_BODY.IAMATLOCATION' | translate }}
@@ -644,7 +646,7 @@
             </a>
         </dt>
         <dd class="col-sm-9">
-            <p>{{ 'DASHBOARD_FU_BODY.IMPINST_ICON6' | translate }}</p>
+            <p>{{ 'DASHBOARD_FU_BODY.IMPINST_ICON5' | translate }}</p>
         </dd>
         <dt class="col-sm-3">
             <i class="fa fa-smile-o fa-2x pull-left" style="color:blue"></i>

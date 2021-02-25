@@ -64,7 +64,7 @@ export class AlertComponent implements OnInit {
     } else {
       if (this.message.type === 'error') {
         if (Number.parseInt(this.message.text.status) != 401) {
-          this.router.navigate(['error', this.message.text.status]);
+          this.router.navigate(['_error', this.message.text.status]);
         } else {
           if (Number.parseInt(this.message.text.status) === 401) {
             if (localStorage.getItem('langCode') === config.lang_code_hi) {
@@ -97,8 +97,5 @@ export class AlertComponent implements OnInit {
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
-  callOurService() {
-    this.modalRef.hide();
-    this.router.navigate(['/dashboard']);
-  }
+ 
 }

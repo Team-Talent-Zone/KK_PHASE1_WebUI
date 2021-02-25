@@ -156,12 +156,12 @@
                                     <td>{{this.commonlogic.formatPhoneNumber(cbu.phoneno)}}</td>
                                     <td>
                                         <a class="btn  btn-sm"
-                                            [routerLink]="['/viewuserservicedetails',cbu.userId]">
+                                            [routerLink]="['/_viewclientservices',cbu.userId]">
                                             <i class="fa fa-cog" title="View Associated Services"
                                                 style="color:#0a382b"></i>
                                         </a>
                                         <a class="btn  btn-sm"
-                                        [routerLink]="['/viewfujobdetails',cbu.userId,'cba']">
+                                        [routerLink]="['/_viewfujobdetails',cbu.userId,'cba']">
                                         <i class="fa fa-briefcase" title="View Associated Jobs"
                                             style="color:#0a382b"></i>
                                          </a>
@@ -299,7 +299,7 @@
                                         </a>
                                         <a class="btn  btn-sm"
                                         *ngIf="fu.freeLanceDetails.bgcurrentstatus == 'BG_APPROVED'"
-                                         [routerLink]="['/viewfujobdetails',fu.userId,'fu']">
+                                         [routerLink]="['/_viewfujobdetails',fu.userId,'fu']">
                                             <i title="View Assoicated Jobs" class="fa fa-briefcase" style="color:#0a382b"></i>
                                         </a>
                                         <a class="btn  btn-sm" (click)='userAction(fu.userId,"deactive");'

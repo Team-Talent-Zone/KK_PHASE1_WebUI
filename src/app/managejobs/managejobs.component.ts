@@ -67,7 +67,7 @@ export class ManagejobsComponent implements OnInit {
 
   ngOnInit() {
     this.spinnerService.show();
-    if (this.router.url.toString() === '/job'.toString() && this.userService.currentUserValue != null) {
+    if (this.router.url.toString() === '/_job'.toString() && this.userService.currentUserValue != null) {
       const source = timer(1000, 60000);
       const sourcerefresh = timer(1000, 90000);
       sourcerefresh.subscribe((val: number) => {
@@ -316,7 +316,7 @@ export class ManagejobsComponent implements OnInit {
     this.isratingdisplay = true;
     this.feedbackform = new FormGroup({
       starrate: new FormControl('', Validators.required),
-      feedbackcomment: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z0-9.]+[a-zA-Z0-9. ]+')])
+      feedbackcomment: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z0-9.,/\n]+[a-zA-Z0-9.,/\n ]+')])
     });
   }
 

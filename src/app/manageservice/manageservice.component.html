@@ -137,7 +137,7 @@
                                         *ngIf=" userService.currentUserValue.userroles.rolecode =='CORE_SERVICE_SUPPORT_TEAM'; ">
                                         <div *ngFor="let newserviceobj of mywork.serviceHistory">
                                             <a *ngIf="newserviceobj.islocked"
-                                                routerLink='/editorviewnewservice/{{mywork.ourserviceId}}'>
+                                                routerLink='/_editorviewnewservice/{{mywork.ourserviceId}}'>
                                                 <i class="fa fa-edit ml-3" title="Edit Service Now "></i>
                                             </a>
                                         </div>
@@ -293,7 +293,7 @@
                                     </td>
                                     <td
                                         *ngIf="newserviceobj.active && userService.currentUserValue.userroles.rolecode =='CORE_SERVICE_SUPPORT_TEAM'">
-                                        <a routerLink='/editorviewnewservice/{{newserviceobj.ourserviceId}}'>
+                                        <a routerLink='/_editorviewnewservice/{{newserviceobj.ourserviceId}}'>
                                             <i class="fa fa-edit ml-3" title="Upgrade Service Now "> </i>
                                         </a>
                                     </td>

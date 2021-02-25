@@ -216,7 +216,7 @@
                         </div> -->
             </div>
             <div class="col-md-8" style="padding: 10px;">
-                <button class="btn btn-warning pull-right" *ngIf="id > 0" [routerLink]="['/manageservice']">Manage New
+                <button class="btn btn-warning pull-right" *ngIf="id > 0" [routerLink]="['/_manageservice']">Manage New
                     Services</button> &nbsp;&nbsp;
                 <span *ngIf="userService.currentUserValue.userroles.rolecode =='CORE_SERVICE_SUPPORT_TEAM'">
                     <button type="submit" class="btn btn-primary pull-right" *ngIf="id > 0 && !newservicecurrentObj.isupgrade && 

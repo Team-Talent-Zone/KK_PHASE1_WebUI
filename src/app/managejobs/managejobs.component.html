@@ -270,7 +270,7 @@
                     <div class="card-header text-white bg-secondary">
                         <p> <b>{{ 'DASHBOARD_FU_BODY.JOB' | translate }}#{{completedjob.jobId}} </b>
                             <button class="bg-white  pull-right" *ngIf="completedjob.isjobamtpaidtocompany"
-                                [routerLink]="['/payment',completedjob.txnid]"><i
+                                [routerLink]="['/_payment',completedjob.txnid]"><i
                                 title="Go to payment details" class="fa fa-sitemap"
                                 style="color:#FF4949"></i> Payment Info</button>
                             <button *ngIf="!completedjob.isratedforjob" class="bg-info pull-right" data-toggle="modal"

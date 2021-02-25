@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent, CustomToastComponent } from './app.component';
+import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './login/login.component';
@@ -121,7 +121,6 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     HometestimonialsComponent,
     HomeclienttestimonalsComponent,
     ViewfureviewsComponent,
-    CustomToastComponent,
     ReadMoreComponent,
     ReadMorePopupComponent,
     ConfirmationDialogComponent,
@@ -191,7 +190,6 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     ViewnewsevicedetailsComponent,
     UserservicecartComponent,
     PaymentComponent,
-    CustomToastComponent,
     ReadMorePopupComponent,
     ConfirmationDialogComponent,
     ViewjobbyjobidPopupComponent,

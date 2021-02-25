@@ -5,9 +5,10 @@
 export const environment = {
   production: false,
   apiUrl: '/RestAPI',
-  uiUrl: 'http://ec2-34-207-156-230.compute-1.amazonaws.com:3005'
+  uiUrl: 'http://ec2-34-207-156-230.compute-1.amazonaws.com:3005',
+  matomoUrl: "http://ec2-34-207-156-230.compute-1.amazonaws.com:3002"
 };
- 
+
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.

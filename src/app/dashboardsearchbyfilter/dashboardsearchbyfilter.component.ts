@@ -125,7 +125,7 @@ export class DashboardsearchbyfilterComponent implements OnInit {
       jobendedon: [''],
       jobstartedon: [''],
       amount: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
-      jobdescription: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9.]+[a-zA-Z0-9. ]+')]],
+      jobdescription: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9.,/\n]+[a-zA-Z0-9.,/\n ]+')]],
       joblocation: ['', [Validators.required]],
       userId: this.userService.currentUserValue.userId,
       subcategory: this.code,
@@ -204,7 +204,7 @@ export class DashboardsearchbyfilterComponent implements OnInit {
           this.freelanceserviceService.saveFreelancerOnService(this.createjobform.value).subscribe((obj: any) => {
             if (obj.jobId > 0) {
               this.spinnerService.hide();
-              this.router.navigate(['/job']);
+              this.router.navigate(['/_job']);
               this.alertService.success(ConfigMsg.job_assign_msg_1 + obj.jobId + ConfigMsg.search_job_msg_1);
             }
           },
@@ -245,7 +245,7 @@ export class DashboardsearchbyfilterComponent implements OnInit {
           else {
             if (!this.isfreelancerservicesubscribed) {
               var atag = document.createElement('a');
-              atag.href = "/dashboard";
+              atag.href = "/_dashboard";
               atag.innerText = ConfigMsg.search_job_msg_6;
               let errorMsg = ConfigMsg.search_job_msg_5 + this.name + atag;
               var str = (<HTMLAnchorElement>atag);

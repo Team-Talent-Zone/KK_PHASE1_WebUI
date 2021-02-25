@@ -531,7 +531,7 @@
                                 <div class="form-check">
                                     <input type="checkbox" class="form-check-input"
                                         formControlName="accepteditprofileterms" 
-                                        [ngStyle]="{'outline':'issubmit && f.accepteditprofileterms.errors' ? 'red auto 1px' : '' }"
+                                        [ngStyle]="{'outline':(issubmit && f.accepteditprofileterms.errors) ? 'red auto 1px' : '' }"
                                         [ngClass]="{ 'is-invalid': issubmit && f.accepteditprofileterms.errors }">
                                     <small> <label class="form-check-label" for="exampleCheck1">
                                             {{'HOMESIGNUP.SIGNUP_TERM_AGREE_LABEL' |

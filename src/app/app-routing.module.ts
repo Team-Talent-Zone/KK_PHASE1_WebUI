@@ -53,7 +53,7 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'dashboard',
+    path: '_dashboard',
     component: DashboardComponent,
     canActivate: [AuthgaurdService],
     children: [
@@ -64,7 +64,7 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'manageuser',
+    path: '_manageuser',
     component: DashboardComponent,
     canActivate: [AuthgaurdService],
     children: [
@@ -75,7 +75,7 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'newservice',
+    path: '_createnewservice',
     component: DashboardComponent,
     canActivate: [AuthgaurdService],
     children: [
@@ -86,7 +86,7 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'analytics',
+    path: '_analyticsreporting',
     component: DashboardComponent,
     canActivate: [AuthgaurdService],
     children: [
@@ -97,7 +97,7 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'editorviewnewservice/:id',
+    path: '_editorviewnewservice/:id',
     component: DashboardComponent,
     canActivate: [AuthgaurdService],
     children: [
@@ -108,7 +108,7 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'dashboard/:code/:name',
+    path: '_dashboard/:code/:name',
     component: DashboardComponent,
     canActivate: [AuthgaurdService],
     children: [
@@ -119,7 +119,7 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'job',
+    path: '_job',
     component: DashboardComponent,
     canActivate: [AuthgaurdService],
     children: [
@@ -130,7 +130,7 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'dashboard/:txtid',
+    path: '_dashboard/:txtid',
     component: DashboardComponent,
     canActivate: [AuthgaurdService],
     children: [
@@ -141,7 +141,7 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'signupadmin',
+    path: '_signupadmin',
     component: DashboardComponent,
     canActivate: [AuthgaurdService],
     children: [
@@ -152,7 +152,7 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'manageservice',
+    path: '_manageservice',
     component: DashboardComponent,
     canActivate: [AuthgaurdService],
     children: [
@@ -163,7 +163,7 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'myservices',
+    path: '_myservices',
     component: DashboardComponent,
     canActivate: [AuthgaurdService],
     children: [
@@ -174,7 +174,7 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'createoreditwidget/:id',
+    path: '_createoreditwidget/:id',
     component: DashboardComponent,
     canActivate: [AuthgaurdService],
     children: [
@@ -185,7 +185,7 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'viewuserservicedetails/:id',
+    path: '_viewclientservices/:id',
     component: DashboardComponent,
     canActivate: [AuthgaurdService],
     children: [
@@ -196,7 +196,7 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'viewfujobdetails/:id/:role',
+    path: '_viewfujobdetails/:id/:role',
     component: DashboardComponent,
     canActivate: [AuthgaurdService],
     children: [
@@ -207,7 +207,7 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'vieworeditprofile/:id',
+    path: '_profilesettings/:id',
     component: DashboardComponent,
     canActivate: [AuthgaurdService],
     children: [
@@ -218,11 +218,11 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'error/:id',
+    path: '_error/:id',
     component: Error504pageComponent,
   },
   {
-    path: 'paymenthistory',
+    path: '_payments',
     component: DashboardComponent,
     canActivate: [AuthgaurdService],
     children: [
@@ -255,7 +255,7 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'payment/:txnid',
+    path: '_payment/:txnid',
     component: DashboardComponent,
     canActivate: [AuthgaurdService],
     children: [

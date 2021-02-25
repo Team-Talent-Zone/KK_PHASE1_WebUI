@@ -942,7 +942,7 @@
                 <td>{{srv.serviceendon}}</td>
                 <td>{{srv.amount | currency:"INR₹"}}</td>
                 <td>
-                  <a [routerLink]="['/payment',srv.txnid]">{{srv.txnid}}</a></td>
+                  <a [routerLink]="['/_payment',srv.txnid]">{{srv.txnid}}</a></td>
               </tr>
             </tbody>
           </table>

@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <title>Kaam Karega</title>
@@ -46,7 +47,25 @@
       padding: 15px;
       border-radius: 4px;
     }
-    body { padding-right: 0 !important }
+
+    body {
+      padding-right: 0 !important
+    }
+
+    .modal-dialog {
+      min-height: calc(100vh - 60px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      overflow: auto;
+    }
+
+    @media(max-width: 768px) {
+      .modal-dialog {
+        min-height: calc(100vh - 20px);
+      }
+    }
+
     #myBtn:hover {
       background-color: #FF4949;
     }

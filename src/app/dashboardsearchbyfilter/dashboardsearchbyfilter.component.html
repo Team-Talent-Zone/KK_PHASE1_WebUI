@@ -151,7 +151,7 @@
     <h5> No {{name}} found near this address {{this.searchform.get('fulladdress').value}}.</h5>
 </div>
 <div *ngIf="userFUObjList.length == 0 && !timelaps && this.searchform.get('fulladdress').value.length === 0">
-    <h5> All {{name}}'s are currently busy at work.We are working hard to get a {{name | lowercase}} for you.Please try
+    <h5> All {{name}}s are currently busy at work.We are working hard to get a {{name}} for you.Please try
         again after some time.</h5>
 </div>
 
@@ -232,7 +232,8 @@
                             <small *ngIf="enddatevalue != null">
                                 <i>(yyyy-mm-dd hh:mm)</i>
                                 <p>
-                                    Our auto estimated job end date & time : <span class="btn-warning">{{this.commonlogic.getIndianDateFormat(enddatevalue)}}</span>
+                                    Our auto estimated job end date & time : <span
+                                        class="btn-warning">{{this.commonlogic.getIndianDateFormat(enddatevalue)}}</span>
                                 </p>
                                 <p>
                                     We add an additional one hour buffer time to the job end data and time.
@@ -260,8 +261,6 @@
                                 </div>
                             </div>
                             <p *ngIf=" avgHourlyRate != null">
-                                {{avgHourlyRate}}
-                                {{maxHourlyRateCal}}
                                 <small *ngIf="avgHourlyRate != maxHourlyRateCal">As per our auto estimator system, the
                                     amount must in between [{{avgHourlyRate | currency:"INR₹"}} and
                                     {{maxHourlyRateCal | currency:"INR₹"}}]
@@ -301,7 +300,7 @@
                 </div>
                 <div class="form-check">
                     <input type="checkbox" class="form-check-input" formControlName="acceptjobterms"
-                    [ngStyle]="{'outline':'issubmit && f.acceptjobterms.errors' ? 'red auto 1px' : '' }"
+                        [ngStyle]="{'outline':(issubmit && f.acceptjobterms.errors) ? 'red auto 1px' : '' }"
                         [ngClass]="{ 'is-invalid': issubmit && f.acceptjobterms.errors }">
                     <small>
                         <label class="form-check-label" for="exampleCheck1">{{'HOMESIGNUP.SIGNUP_TERM_AGREE_LABEL' |

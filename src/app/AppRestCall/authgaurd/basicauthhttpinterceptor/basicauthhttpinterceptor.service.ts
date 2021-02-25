@@ -14,7 +14,7 @@ export class BasicAuthHtppInterceptorService implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
     if (localStorage.getItem('currentUser') != null) {
-      console.log('============User Basic Authorization============');
+      console.log('============User Authorization============');
       req = req.clone({
         // tslint:disable-next-line: max-line-length
         headers: new HttpHeaders({
@@ -24,7 +24,7 @@ export class BasicAuthHtppInterceptorService implements HttpInterceptor {
       });
     } else
       if (localStorage.getItem('currentUser') == null && req.url.indexOf('findByUsername') === -1) {
-        console.log('============System Basic Authorization============');
+        console.log('============System Authorization============');
         req = req.clone({
           setHeaders: {
             Authorization: 'Basic VzRVQmFzaWNBdXRob3JpemF0aW9uOlc0VSMyMDIxQFJFU1QqIz9kWHB0cT9wOVYzV05MIVAkIw=='

@@ -45,7 +45,7 @@ export class UserservicecartComponent implements OnInit {
     this.modalRefUserSvc.hide();
     this.router.navigateByUrl('dboard/', { skipLocationChange: true }).
       then(() => {
-        this.router.navigate(['dashboard']);
+        this.router.navigate(['_dashboard']);
       });
   }
 
@@ -77,7 +77,7 @@ export class UserservicecartComponent implements OnInit {
         this.modalRefUserSvc.hide();
         this.router.navigateByUrl('dboard/', { skipLocationChange: true }).
           then(() => {
-            this.router.navigate(['dashboard']);
+            this.router.navigate(['_dashboard']);
           });
       }, 1000);
 

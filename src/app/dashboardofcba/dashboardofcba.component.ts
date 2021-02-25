@@ -175,7 +175,7 @@ export class DashboardofcbaComponent implements OnInit {
             this.spinnerService.hide();
             this.router.navigateByUrl('addtocart/', { skipLocationChange: true }).
               then(() => {
-                this.router.navigate(['dashboard']);
+                this.router.navigate(['_dashboard']);
               });
           }, error => {
             this.spinnerService.hide();
@@ -222,7 +222,7 @@ export class DashboardofcbaComponent implements OnInit {
                 this.spinnerService.hide();
                 this.router.navigateByUrl('addtocart/', { skipLocationChange: true }).
                   then(() => {
-                    this.router.navigate(['dashboard']);
+                    this.router.navigate(['_dashboard']);
                   });
               },
               error => {

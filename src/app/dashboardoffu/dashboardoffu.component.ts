@@ -68,7 +68,7 @@ export class DashboardoffuComponent implements OnInit {
   ngOnInit() {
     const sourcerefresh = timer(1000, 90000);
     sourcerefresh.subscribe(() => {
-      if (this.router.url === '/dashboard') {
+      if (this.router.url === '/_dashboard') {
         if (this.userService.currentUserValue.freeLanceDetails.isregfeedone) {
           this.getUserAllJobDetailsByUserId();
         }
@@ -326,7 +326,7 @@ export class DashboardoffuComponent implements OnInit {
                 (trantxt: any) => {
                   this.getUserAllJobDetailsByUserId();
                   this.spinnerService.hide();
-                  this.alertService.info(trantxt);
+                  this.alertService.success(trantxt);
                 },
                 error => {
                   this.spinnerService.hide();
@@ -382,7 +382,7 @@ export class DashboardoffuComponent implements OnInit {
                           (trantxt: any) => {
                             this.getUserAllJobDetailsByUserId();
                             this.spinnerService.hide();
-                            this.alertService.info(trantxt);
+                            this.alertService.success(trantxt);
                           },
                           error => {
                             this.spinnerService.hide();

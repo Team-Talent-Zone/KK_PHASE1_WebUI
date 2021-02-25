@@ -18,17 +18,17 @@ export class ViewfujobdetailsComponent implements OnInit {
   userId: number;
   listofalljobs: any;
   role: string;
-  isemptyjobs : boolean = false;
+  isemptyjobs: boolean = false;
   modalRef: BsModalRef;
-  
+
   constructor(
     private route: ActivatedRoute,
-    private freelanceserviceService : FreelanceserviceService,
+    private freelanceserviceService: FreelanceserviceService,
     private spinnerService: Ng4LoadingSpinnerService,
     private alertService: AlertsService,
     private modalService: BsModalService,
     public commonlogic: CommonUtility
-  ) { 
+  ) {
     route.params.subscribe(params => {
       this.userId = params.id;
       this.role = params.role
@@ -36,42 +36,45 @@ export class ViewfujobdetailsComponent implements OnInit {
   }
 
   ngOnInit() {
-    
     this.getUserAllJobDetailsById();
   }
 
-  getUserAllJobDetailsById(){
+  getUserAllJobDetailsById() {
     this.isemptyjobs = false;
     this.listofalljobs = []
-    if(this.role.toString() == config.shortkey_role_fu){
-    this.freelanceserviceService.getUserAllJobDetailsByFreelancerId(this.userId).subscribe((jobdetailsList: any) =>
-    {
-    if(jobdetailsList != null){
-      this.listofalljobs = jobdetailsList;
+    if (this.role.toString() == config.shortkey_role_fu) {
+      this.freelanceserviceService.getUserAllJobDetailsByFreelancerId(this.userId).subscribe((jobdetailsList: any) => {
+        if (jobdetailsList != null) {
+          this.listofalljobs = jobdetailsList;
+        }
+      },
+        error => {
+          this.spinnerService.hide();
+          this.alertService.error(error);
+        })
+      setTimeout(() => {
+        if (this.listofalljobs.length == 0) {
+          this.isemptyjobs = true;
+        }
+      }, 500);
+
     }
-    else{
-      this.isemptyjobs = true;
+    if (this.role.toString() == config.shortkey_role_cba) {
+      this.freelanceserviceService.getUserAllJobDetailsByUserId(this.userId).subscribe((jobdetailsList: any) => {
+        if (jobdetailsList != null) {
+          this.listofalljobs = jobdetailsList;
+        }
+      },
+        error => {
+          this.spinnerService.hide();
+          this.alertService.error(error);
+        })
+      setTimeout(() => {
+        if (this.listofalljobs.length == 0) {
+          this.isemptyjobs = true;
+        }
+      }, 400);
     }
-    },
-    error => {
-      this.spinnerService.hide();
-      this.alertService.error(error);
-    })
-  }
-  if(this.role.toString() == config.shortkey_role_cba){
-    this.freelanceserviceService.getUserAllJobDetailsByUserId(this.userId).subscribe((jobdetailsList: any) =>
-    {
-    if(jobdetailsList != null){
-      this.listofalljobs = jobdetailsList;
-    } else{
-      this.isemptyjobs = true;
-    }
-    },
-    error => {
-      this.spinnerService.hide();
-      this.alertService.error(error);
-    })
-  }
   }
 
   openViewJobDetailsModal(jobNo: number) {

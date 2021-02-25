@@ -1,4 +1,4 @@
-<nav class="navbar navbar-fixed-top navbar-toggleable-sm navbar-expand-md navbar-dark mb-3 py-2">
+<nav class="navbar navbar-fixed-top navbar-toggleable-sm navbar-expand-md navbar-dark mb-3 py-2" onclick="topFunction()">
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
         data-target="#collapsingNavbar"
         *ngIf="this.userService.currentUserValue.userroles.rolecode !== 'FREELANCER_USER'">
@@ -6,7 +6,7 @@
             <i class="fa fa-search" aria-hidden="true" style="color:#FF4949"></i>
         </span>
     </button>
-    <a class="scroll-link" [routerLink]="['/dashboard']">
+    <a class="scroll-link" [routerLink]="['/_dashboard']">
         <img src="assets/img/logo-transparent.png" width="70" height="60"
             class="rounded-circle d-inline-block align-top" alt="Kaam Karega Dashboard"></a>
     <span class="logo-title mr-3">{{ 'HOMENAV.COMPANYNAMEPART1' | translate }}<span class="logo-u">{{
@@ -44,8 +44,8 @@
             <ul class="nav flex-column pl-1">
                 <li class="nav-item"
                     *ngIf="this.userService.currentUserValue.userroles.rolecode ==='CLIENT_BUSINESS_ADMINISTRATOR'">
-                    <a [routerLink]="['/dashboard']" class="list-group-item list-group-item-action bg-light">
-                        <i class="fa fa-tachometer" style="color:#FF4949"></i>
+                    <a [routerLink]="['/_dashboard']" class="list-group-item list-group-item-action bg-light">
+                        <i class="fa fa-cogs" style="color:#FF4949"></i>
                         <b>
                             Our Services
                         </b>
@@ -54,7 +54,7 @@
                 <li class="nav-item" *ngIf="this.userService.currentUserValue.userroles.rolecode =='CORE_SERVICE_SUPPORT_TEAM' || 
                     this.userService.currentUserValue.userroles.rolecode =='CORE_SERVICE_SUPPORT_MANAGER' ||
                     this.userService.currentUserValue.userroles.rolecode =='DIRECTORS'">
-                    <a [routerLink]="['/dashboard']" class="list-group-item list-group-item-action bg-light">
+                    <a [routerLink]="['/_dashboard']" class="list-group-item list-group-item-action bg-light">
                         <i class="fa fa-tachometer" style="color:#FF4949"></i>
                         <b>
                             Dashboard
@@ -62,7 +62,7 @@
                     </a>
                 </li>
                 <li *ngIf="this.userService.currentUserValue.userroles.rolecode ==='FREELANCER_USER'">
-                    <a [routerLink]="['/dashboard']" class="list-group-item list-group-item-action bg-light">
+                    <a [routerLink]="['/_dashboard']" class="list-group-item list-group-item-action bg-light">
                         <i class="fa fa-tachometer" style="color:#FF4949"></i>
                         <b>
                             {{ 'DASHOARD_FU_MENU.SUMMARY' | translate }}
@@ -71,19 +71,19 @@
                 </li>
                 <li
                     *ngIf="this.userService.currentUserValue.userroles.rolecode =='CORE_SERVICE_SUPPORT_TEAM' || this.userService.currentUserValue.userroles.rolecode =='CORE_SERVICE_SUPPORT_MANAGER'">
-                    <a [routerLink]="['/manageuser']" class="list-group-item list-group-item-action bg-light">
+                    <a [routerLink]="['/_manageuser']" class="list-group-item list-group-item-action bg-light">
                         <i class="fa fa-users" style="color:#FF4949"></i>
                         <b> Manage Users</b>
                     </a>
                 </li>
                 <li
                     *ngIf="this.userService.currentUserValue.userroles.rolecode =='CORE_SERVICE_SUPPORT_TEAM' || this.userService.currentUserValue.userroles.rolecode =='CORE_SERVICE_SUPPORT_MANAGER'">
-                    <a [routerLink]="['/manageservice']" class="list-group-item list-group-item-action bg-light">
+                    <a [routerLink]="['/_manageservice']" class="list-group-item list-group-item-action bg-light">
                         <i class="fa fa-cogs" style="color:#FF4949"></i>
                         <b> Manage Services</b></a>
                 </li>
                 <li *ngIf="this.userService.currentUserValue.userroles.rolecode =='CLIENT_BUSINESS_ADMINISTRATOR'">
-                    <a [routerLink]="['/myservices']" class="list-group-item list-group-item-action bg-light">
+                    <a [routerLink]="['/_myservices']" class="list-group-item list-group-item-action bg-light">
                         <i class="fa fa-cog" style="color:#FF4949"></i>
                         <b>
                             My Services
@@ -91,16 +91,16 @@
                     </a>
                 </li>
                 <li *ngIf="this.userService.currentUserValue.userroles.rolecode =='CLIENT_BUSINESS_ADMINISTRATOR'">
-                    <a [routerLink]="['/paymenthistory']" class="list-group-item list-group-item-action bg-light">
-                        <i class="fa fa-sitemap" style="color:#FF4949"></i>
+                    <a [routerLink]="['/_payments']" class="list-group-item list-group-item-action bg-light">
+                        <i class="fa fa-inr" style="color:#FF4949"></i>
                         <b>
-                            Payment History
+                            Payments
                         </b>
                     </a>
                 </li>
                 <li *ngIf="this.userService.currentUserValue.userroles.rolecode =='CLIENT_BUSINESS_ADMINISTRATOR'">
-                    <a [routerLink]="['/job']" class="list-group-item list-group-item-action bg-light">
-                        <i class="fa fa-group" style="color:#FF4949"></i>
+                    <a [routerLink]="['/_job']" class="list-group-item list-group-item-action bg-light">
+                        <i class="fa fa-briefcase" style="color:#FF4949"></i>
                         <b>
                             Manage Jobs
                         </b>
@@ -108,8 +108,8 @@
                 </li>
                 <li
                     *ngIf="this.userService.currentUserValue.userroles.rolecode =='FREELANCER_USER' && this.userService.currentUserValue.freeLanceDetails.isregfeedone">
-                    <a [routerLink]="['/paymenthistory']" class="list-group-item list-group-item-action bg-light">
-                        <i class="fa fa-sitemap" style="color:#FF4949"></i>
+                    <a [routerLink]="['/_payments']" class="list-group-item list-group-item-action bg-light">
+                        <i class="fa fa-inr" style="color:#FF4949"></i>
                         <b>
                             {{ 'DASHOARD_FU_MENU.PAYMENTHISTORY' | translate }}
                         </b>
@@ -119,21 +119,21 @@
                     *ngIf="this.userService.currentUserValue.userroles.rolecode =='FREELANCER_USER' && userService.currentUserValue.freeLanceDetails.bgcurrentstatus == 'BG_APPROVED'">
                     <a [routerLink]="['/_review',this.userService.currentUserValue.userId,'usr']"
                         class="list-group-item list-group-item-action bg-light">
-                        <i class="fa fa-commenting-o" style="color:#FF4949"></i>
+                        <i class="fa fa-star" style="color:#FF4949"></i>
                         <b>
                             {{ 'DASHOARD_FU_MENU.REVIEWS' | translate }}
                         </b>
                     </a>
                 </li>
                 <li *ngIf="this.userService.currentUserValue.userroles.rolecode =='CORE_SERVICE_SUPPORT_MANAGER'"><a
-                        [routerLink]="['/signupadmin']" class="list-group-item list-group-item-action bg-light">
+                        [routerLink]="['/_signupadmin']" class="list-group-item list-group-item-action bg-light">
                         <i class="fa fa-user" style="color:#FF4949"></i>
                         <b>
                             Create User
                         </b>
                     </a></li>
                 <li *ngIf="this.userService.currentUserValue.userroles.rolecode =='CORE_SERVICE_SUPPORT_TEAM'"><a
-                        [routerLink]="['/newservice']" class="list-group-item list-group-item-action bg-light">
+                        [routerLink]="['/_createnewservice']" class="list-group-item list-group-item-action bg-light">
                         <i class="fa fa-cog" style="color:#FF4949"></i>
                         <b>
                             Create Service
@@ -142,7 +142,7 @@
                 <li>
                 <li *ngIf="this.userService.currentUserValue.userroles.rolecode =='CORE_SERVICE_SUPPORT_TEAM'  || 
                     this.userService.currentUserValue.userroles.rolecode =='CORE_SERVICE_SUPPORT_MANAGER'"><a
-                        [routerLink]="['/analytics']" class="list-group-item list-group-item-action bg-light">
+                        [routerLink]="['/_analyticsreporting']" class="list-group-item list-group-item-action bg-light">
                         <i class="fa fa-signal " style="color:#FF4949"></i>
                         <b>
                             Analytics Report
@@ -165,7 +165,7 @@
                             <span><b>{{ 'DASHOARD_HEADER.WELCOMEBACK' | translate }}
                                     {{this.userService.currentUserValue.fullname}}</b></span>
                         </div>
-                        <div class="col-7 col-lg-3 col-md-5">
+                        <div class="col-5 col-lg-3 col-md-5">
                             <span class="float-right">
                                 <small>
                                     <i class="fa fa-clock-o" aria-hidden="true"></i>
@@ -173,9 +173,9 @@
                             </span>
                         </div>
 
-                        <div class=" col-4 col-lg-1 col-md-2">
+                        <div class=" col-7 col-lg-1 col-md-2">
                             <a class="pull-right"
-                                routerLink='/vieworeditprofile/{{userService.currentUserValue.userId}}'>
+                                routerLink='/_profilesettings/{{userService.currentUserValue.userId}}'>
                                 <img *ngIf="userService.currentUserValue.avtarurl != null && this.userService.currentUserValue.userroles.rolecode !='DIRECTORS'"
                                     class="avatar" src="{{userService.currentUserValue.avtarurl}}">
                                 <img *ngIf="userService.currentUserValue.avtarurl === null && this.userService.currentUserValue.userroles.rolecode !='DIRECTORS'"
@@ -215,18 +215,18 @@
                     <h5 class="display-5"
                         *ngIf="this.userService.currentUserValue.userroles.rolecode ==='FREELANCER_USER'">
                         We have recieved your payment and here is the transcation Id
-                        <a [routerLink]="['/payment',txtid]">
+                        <a [routerLink]="['/_payment',txtid]">
                             {{txtid}}
                         </a>
                     </h5>
                     <h5 class="display-5"
                         *ngIf="this.userService.currentUserValue.userroles.rolecode ==='CLIENT_BUSINESS_ADMINISTRATOR'">
                         We have recieved your payment and here is the transcation Id
-                        <a [routerLink]="['/payment',txtid]">
+                        <a [routerLink]="['/_payment',txtid]">
                             {{txtid}}
                         </a>
                         <p>
-                            <a [routerLink]="['/myservices']">
+                            <a [routerLink]="['/_myservices']">
                                 <b>
                                     <small> Go to My Service</small>
                                 </b>

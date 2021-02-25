@@ -428,7 +428,7 @@ export class NewserviceComponent implements OnInit {
                       this.sendemailService.sendEmail(this.util).subscribe(
                         (util: any) => {
                           if (util.lastreturncode === 250) {
-                            this.router.navigate(['/dashboard']);
+                            this.router.navigate(['/_dashboard']);
                             this.spinnerService.hide();
                             this.alertService.success(ConfigMsg.bg_msg_csst + this.serviceHistory.decisionBy);
                           }
