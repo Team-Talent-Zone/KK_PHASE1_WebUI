@@ -30,8 +30,8 @@
     "SIGNUP_MODALWINDOW_SKILLEDWORKER_BUTTON_LABEL": "SignUp As Skilled Worker",
     "LATESTUPADTE": "Latest Update",
     "LATESTUPDATE_LINE1": "According to our analysis , the economy was expected to lose over ₹32,000 crore (US$4.5 billion) every day during the lockdown, which was declared following the coronavirus outbreak.",
-    "LATESTUPDATE_LINE2": "Kaam Karega has the ability to increase the economy  by onboarding and providing the job opportunities to the skill workers.",
-    "LATESTUPDATE_LINE3": "We welcome, the below list of all skill workers to onboard into the platform to utilize this opportunities.",
+    "LATESTUPDATE_LINE2": "Kaam Karega has the ability to support the economy by onboarding and providing the job opportunities to the skill workers.",
+    "LATESTUPDATE_LINE3": "We welcome, the below list of all skill workers to onboard onto the platform to utilize these opportunities.",
     "LATESTUPDATE_LINE4": "SignUp is FREE."
   },
   "HOMEWHATWEDO": {
@@ -264,7 +264,8 @@
     "PROFILE_HOURLYRATE_EXCEED": "Hourly Rate cant exceed 5 digits",
     "PROFILE_PHOTOID_REQ": "Profile Phote is required",
     "PROFILE_REUPLOAD": "Re-Upload Profile Photo",
-    "PROFILE_UPLOAD": "Upload Government ID",
+    "PROFILE_UPLOAD_GOV": "Upload Government ID",
+    "PROFILE_REUPLOAD_GOV": "Re-Upload Government ID",
     "PROFULE_NATION_ID_REQ": "Government ID is required",
     "PROFILE_SKILLED_INFO": "Your hourly rate should based on the experience. We will verify this information.",
     "PROFILE_SKILLED_INFO_2": "Upload valid government ID like aadhar card or voter card or driving license. We will verify the government ID.",

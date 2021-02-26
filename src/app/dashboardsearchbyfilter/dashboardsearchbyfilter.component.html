@@ -112,8 +112,7 @@
                                 </h4>
                                 <p><img class="card-img-top img-fluid " src="{{fuuser.avtarurl}}" alt="card image">
                                 </p>
-                                <p *ngIf="this.userService.currentUserValue.userroles.rolecode === 'CLIENT_BUSINESS_ADMINISTRATOR'"
-                                    class="card-text"><small>{{fuuser.shortaddress | slice:0:40}}</small></p>
+                               <small>{{fuuser.shortaddress}}</small>
                             </div>
                         </div>
                     </div>

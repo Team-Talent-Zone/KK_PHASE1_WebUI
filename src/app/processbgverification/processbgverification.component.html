@@ -63,9 +63,8 @@
                                 </small></a>
                         </div>
 
-                        <div class="row col-10">
+                        <div class="row col-10"  *ngIf="userService.currentUserValue.userroles.rolecode == 'CORE_SERVICE_SUPPORT_TEAM'">
                             <button type="button"
-                                *ngIf="userService.currentUserValue.userroles.rolecode == 'CORE_SERVICE_SUPPORT_TEAM'"
                                 class="btn btn-info btn-sm" (click)="fileInput.click()">
                                 <i class="fa fa-cloud-upload" aria-hidden="true"></i> Upload Document
                             </button>

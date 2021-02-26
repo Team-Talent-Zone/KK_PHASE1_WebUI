@@ -40,6 +40,10 @@ export class AppComponent implements OnInit, OnDestroy {
     });
   }*/
 
+  /*@HostListener('window:beforeunload', ['$event'])
+  unloadHandler(event){
+    this.userService.logout();
+  }*/
   constructor(
     private router: Router,
     private matomoInjector: MatomoInjector,
@@ -55,6 +59,6 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    this.userService.logout();
   }
 }

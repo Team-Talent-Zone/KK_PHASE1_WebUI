@@ -184,11 +184,21 @@
                                                     |
                                                     translate }}</button>
                                                 <button type="button" class="btn btn-danger btn-sm btn-block" *ngIf="this.userService.currentUserValue.userroles.rolecode==='FREELANCER_USER' && 
-                                                    !this.userService.currentUserValue.freeLanceDetails.isbgstarted"
+                                                    !this.userService.currentUserValue.freeLanceDetails.isbgstarted && 
+                                                    !this.userService.currentUserValue.freeLanceDetails.isprofilecompleted "
                                                     (click)=" fileInput.click()">
                                                     <i class="fa fa-cloud-upload" aria-hidden="true"></i>
                                                     {{
                                                     'DASHBOARD_FU_PROFILE.PROFILE_PIC'
+                                                    |
+                                                    translate }}</button>
+                                                <button type="button" class="btn btn-info btn-sm btn-block" *ngIf="this.userService.currentUserValue.userroles.rolecode==='FREELANCER_USER' && 
+                                                    !this.userService.currentUserValue.freeLanceDetails.isbgstarted &&
+                                                    this.userService.currentUserValue.freeLanceDetails.isprofilecompleted"
+                                                    (click)=" fileInput.click()">
+                                                    <i class="fa fa-cloud-upload" aria-hidden="true"></i>
+                                                    {{
+                                                    'DASHBOARD_FU_PROFILE.PROFILE_REUPLOAD'
                                                     |
                                                     translate }}</button>
                                             </div>
@@ -386,9 +396,10 @@
                                         </div>
                                     </div>
                                     <div class="col-md-4">
+                                        nationalIDURL.length {{nationalIDURL.length}}
                                         <div class="text-center">
                                             <div *ngIf="roleCode =='FREELANCER_USER'">
-                                                <div *ngIf="nationalIDURL == null">
+                                                <div *ngIf="nationalIDURL.length == 0 ">
                                                     <span style="font-size:13px;color:rgb(255, 30, 0)">
                                                         {{ 'DASHBOARD_FU_PROFILE.PROFULE_NATION_ID_REQ' | translate }}
                                                     </span>
@@ -405,20 +416,22 @@
                                                     </div>
                                                 </div>
                                                 <button type="button" class="btn btn-info btn-sm"
-                                                    (click)="fileInput.click()" *ngIf="nationalIDURL == null && 
-                                                !this.userService.currentUserValue.freeLanceDetails.isbgstarted
+                                                    (click)="fileInput.click()" *ngIf="nationalIDURL.length == 0  && 
+                                                !this.userService.currentUserValue.freeLanceDetails.isbgstarted && 
+                                                !this.userService.currentUserValue.freeLanceDetails.isprofilecompleted
                                                  ">
                                                     <span>
                                                         <i class="fa fa-cloud-upload" aria-hidden="true"></i>
-                                                        {{ 'DASHBOARD_FU_PROFILE.PROFILE_UPLOAD' | translate }}</span>
+                                                        {{ 'DASHBOARD_FU_PROFILE.PROFILE_UPLOAD_GOV' | translate }}</span>
                                                 </button>
-                                                <button type="button" class="btn btn-info btn-sm"
+                                                <button type="button" class="btn btn-warning btn-sm"
                                                     (click)="fileInput.click()" *ngIf="nationalIDURL != null && 
-                                                !this.userService.currentUserValue.freeLanceDetails.isbgstarted
+                                                !this.userService.currentUserValue.freeLanceDetails.isbgstarted && 
+                                                this.userService.currentUserValue.freeLanceDetails.isprofilecompleted
                                                  ">
                                                     <span>
                                                         <i class="fa fa-cloud-upload" aria-hidden="true"></i>
-                                                        {{ 'DASHBOARD_FU_PROFILE.PROFILE_REUPLOAD' | translate }}</span>
+                                                        {{ 'DASHBOARD_FU_PROFILE.PROFILE_REUPLOAD_GOV' | translate }}</span>
                                                 </button>
                                             </div>
                                             <small class="text-muted">{{ 'DASHBOARD_FU_PROFILE.PROFILE_PIC_FORMAT' |
@@ -530,7 +543,7 @@
                             <div class="row">
                                 <div class="form-check">
                                     <input type="checkbox" class="form-check-input"
-                                        formControlName="accepteditprofileterms" 
+                                        formControlName="accepteditprofileterms"
                                         [ngStyle]="{'outline':(issubmit && f.accepteditprofileterms.errors) ? 'red auto 1px' : '' }"
                                         [ngClass]="{ 'is-invalid': issubmit && f.accepteditprofileterms.errors }">
                                     <small> <label class="form-check-label" for="exampleCheck1">
@@ -547,7 +560,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+
                             </div>
                         </div>
                         <div class="modal-footer ">

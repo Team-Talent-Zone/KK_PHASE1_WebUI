@@ -183,8 +183,7 @@
                             </a>
                             <div class="pull-right mr-2">
                                 <a style="cursor:pointer" (click)='openNotifcationWindow()' *ngIf="notifcationbellList != null && notifcationbellList.length>0 && 
-                             this.userService.currentUserValue.userroles.rolecode =='FREELANCER_USER' && 
-                             this.userService.currentUserValue.freeLanceDetails.bgcurrentstatus == 'BG_APPROVED'">
+                             this.userService.currentUserValue.userroles.rolecode =='FREELANCER_USER' ">
                                     <i class="fa fa-comments-o" style="color:#FF4949">{{notifcationbellList.length}}</i>
                                 </a>
                                 <a style="cursor:pointer" (click)='openNotifcationWindow()'
@@ -214,7 +213,7 @@
                     *ngIf="txtid != null && ispaysuccess">
                     <h6 class="display-5"
                         *ngIf="this.userService.currentUserValue.userroles.rolecode ==='FREELANCER_USER'">
-                        {{ 'DASHOARD_HEADER.PAYMENT_SUCCESS' | translate }}
+                        {{ 'DASHBOARD_FU_BODY.PAYMENT_SUCCESS' | translate }}
                         <a [routerLink]="['/_payment',txtid]">
                             {{txtid}}
                         </a>
