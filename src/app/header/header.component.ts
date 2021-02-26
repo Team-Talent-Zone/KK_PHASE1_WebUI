@@ -30,6 +30,7 @@ export class HeaderComponent implements OnInit {
   shortkeyvideo2: string;
   list: any = [];
 
+
   Removeclass() {
     var element = document.getElementById("navBtn");
     element.classList.add("collapsed");
@@ -117,6 +118,7 @@ export class HeaderComponent implements OnInit {
           this.alertService.error(error);
         });
     }, 2000);
+
   }
   openSignupModalButton() {
     document.getElementById('clickModal').click();

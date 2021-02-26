@@ -1,4 +1,3 @@
-<!doctype html>
 <html lang="en">
 
 <head>
@@ -57,7 +56,7 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      overflow: auto;
+      /* overflow: auto; */
     }
 
     @media(max-width: 768px) {
@@ -214,16 +213,16 @@
     $(".row-offcanvas").toggleClass("active");
   }
 
-  jQuery(document).ready(function () {
-    $('#carouselExampleCaptions').carousel({
-      interval: 3000
-    }).on('slide.bs.carousel', function () {
-      document.getElementById('video1').pause();
-      document.getElementById('video2').pause();
-      document.getElementById('video3').pause();
-      document.getElementById('video4').pause();
-    });
 
+  $(document).ready(function () {
+    $('#carouselExampleCaptions').carousel({
+      interval: 6000
+    }).on('slide.bs.carousel', function () {
+      $('#video1').trigger('pause');
+      $('#video2').trigger('pause');
+      $('#video3').trigger('pause');
+      $('#video4').trigger('pause');
+    });
     $('.panel-collapse').on('show.bs.collapse', function () {
       $(this).siblings('.panel-heading').addClass('active');
     });
@@ -232,4 +231,5 @@
       $(this).siblings('.panel-heading').removeClass('active');
     });
   });
+
 </script>

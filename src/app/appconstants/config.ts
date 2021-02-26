@@ -102,7 +102,8 @@ export const config = {
   keygmap_6: "country",
   keydeactive: "deactive",
   keyjobid: "jid",
-
+  keypwd: "password",
+  keytext: "text"
 };
 
 

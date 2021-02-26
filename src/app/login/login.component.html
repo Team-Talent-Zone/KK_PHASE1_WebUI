@@ -1,7 +1,7 @@
 <div class="col-md-12 animated bounceIn center">
   <div *ngIf="!isfwd; else elseFwd">
     <div class="modal-header  bg-transparent border-bottom-0">
-      <h3 class="modal-title pull-left" > {{ 'HOMESIGNUP.ACCOUNTLOGIN' | translate }}</h3>
+      <h3 class="modal-title pull-left"> {{ 'HOMESIGNUP.ACCOUNTLOGIN' | translate }}</h3>
       <button data-dismiss="alert" data-target="#closeablecard" (click)="modalRef.hide()" type="button"
         class="btn btn-sm btn-danger pull-right" aria-label="Close">
         <span aria-hidden="true">&times;</span>
@@ -30,11 +30,14 @@
         </div>
 
         <div class="form-group">
-          <div class="input-group form-group">
+          <div class="input-group">
             <div class="input-group-prepend">
-              <span class="input-group-text"><i class="fa fa-lock form-control-icon"></i></span>
+              <span class="input-group-text" (click)="pwdHideOrShow()">
+                <i class="fa fa-eye" aria-hidden="true" *ngIf="!show"></i>
+                <i class="fa fa-eye-slash" aria-hidden="true" *ngIf="show"></i>
+              </span>
             </div>
-            <input type="password" id="inputPassword" class="form-control"
+            <input [type]="password" id="inputPassword" class="form-control"
               placeholder="{{ 'HOMESIGNUP.PASSWORD' | translate }}" formControlName="password"
               [ngClass]="{ 'is-invalid': issubmit && f.password.errors }">
             <div *ngIf="issubmit && f.password.errors" class="invalid-feedback">
@@ -54,17 +57,18 @@
   </div>
   <ng-template #elseFwd>
     <div class="modal-header bg-transparent border-bottom-0">
-        <span class="modal-title pull-left"> <h3>{{ 'HOMESIGNUP.FORGOTYOURPASSWORD' | translate }}</h3>
-            <small>
-            We will send you an email with temporary password that will allow you to login.
-            </small>
-        </span>
-        <button data-dismiss="alert" data-target="#closeablecard" (click)="modalRef.hide()" type="button"
-          class="btn btn-sm btn-danger pull-right" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-       
-      </div>
+      <span class="modal-title pull-left">
+        <h3>{{ 'HOMESIGNUP.FORGOTYOURPASSWORD' | translate }}</h3>
+        <small>
+          We will send you an email with temporary password that will allow you to login.
+        </small>
+      </span>
+      <button data-dismiss="alert" data-target="#closeablecard" (click)="modalRef.hide()" type="button"
+        class="btn btn-sm btn-danger pull-right" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+
+    </div>
     <div class="modal-body">
       <form [formGroup]="fpwdForm" (ngSubmit)="forgotPassword()">
         <span id="reauth-email" class="reauth-email"></span>
@@ -91,3 +95,4 @@
     </div>
   </ng-template>
 </div>
+ 

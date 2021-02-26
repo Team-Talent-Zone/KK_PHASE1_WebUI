@@ -28,7 +28,7 @@ export const ConfigMsg = {
     email_verficationemailaddress_alreadydone: 'Your email verfiication is already completed. \n Please login with your email address.',
     email_forgotpasswordemailaddress_subj: 'Password Change - Kaam Karega',
     login_invalid_password: 'You have entered invalid password',
-    invalid_username_password: 'The email address or password combination isnt in our records.',
+    invalid_username_password: 'Email address or password do not match our records. Please try with correct credentials',
     invalid_username_password_te: 'ఆ ఇమెయిల్ చిరునామా లేదా పాస్‌వర్డ్ కలయిక మా రికార్డుల్లో లేదు.',
     invalid_username_password_hi: 'वह ईमेल पता या पासवर्ड संयोजन हमारे रिकॉर्ड में नहीं है।',
     /**
@@ -88,7 +88,7 @@ export const ConfigMsg = {
     accept_job_msg_5: "Sorry! This job is accepted by another skilled worker.",
     confirmation_job_cancel_msg: "Do you really want to cancel the Job Id#",
     profile_msg_1: "Incorrect Bank Account Number or IFSC Code . Please check again",
-    profile_msg_2: " your account details is updated",
+    profile_msg_2: ", your account details has been updated successfully.",
     profile_msg_3: "Invalid file format. it should be .png,.jpg,.jpeg",
     profile_msg_4: "Image size must be less than 2 Mega Bytes",
     profile_msg_5: "Verify Password is not matching",

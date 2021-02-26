@@ -1,3 +1,10 @@
+body{
+  padding:100px 0;
+  background-color:#efefef
+}
+a, a:hover{
+  color:#333
+}
 /*
  * Specific styles of signin component
  */
@@ -7,18 +14,7 @@
 .form-group .form-control {
   padding-left: 0.375rem;
 }
-.form-group .form-control-icon {
-  position: absolute;
-  z-index: 2;
-  display: block;
-  width: 2.375rem;
-  height: 2.375rem;
-  line-height: 2.375rem;
-  text-align: center;
-  pointer-events: none;
-  /* color: black; */
-  /* background-color: #178264; */
-}
+
 
 .card-container.card {
   max-width: 447px;

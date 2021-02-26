@@ -14,13 +14,14 @@ import { map } from 'rxjs/operators';
 import { UserAdapter } from 'src/app/adapters/useradapter';
 import { UserNotification } from 'src/app/appmodels/UserNotification';
 import { HttpHeaders } from '@angular/common/http';
+import { v4 as uuidv4 } from 'uuid';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  private currentUserSubject: BehaviorSubject<User>;
+  public currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
   usrObj: User;
   freelanceobj: FreelanceHistory;
@@ -62,6 +63,7 @@ export class UserService {
       // store user details and jwt token in local storage to keep user logged in between page refreshes
       localStorage.setItem('currentUser', JSON.stringify(this.usrObj));
       localStorage.setItem('currentPwd', password);
+      localStorage.setItem('uuid',uuidv4());
       this.currentUserSubject.next(this.usrObj);
     }));
   }

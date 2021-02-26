@@ -38,6 +38,8 @@ export class LoginComponent implements OnInit {
   util: Util;
   usernotification: UserNotification;
   today = new Date();
+  password:string;
+  show = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -55,6 +57,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.formValidations();
+    this.password = config.keypwd;
   }
 
   formValidations() {
@@ -246,5 +249,15 @@ export class LoginComponent implements OnInit {
           this.alertService.error(error);
           this.modalRef.hide();
         });
+  }
+
+  pwdHideOrShow() {
+    if(this.password == config.keypwd){
+      this.password = config.keytext
+      this.show = true;
+    } else {
+      this.password = config.keypwd
+      this.show = false;
+    }
   }
 }
