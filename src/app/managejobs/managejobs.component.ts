@@ -69,7 +69,7 @@ export class ManagejobsComponent implements OnInit {
     this.spinnerService.show();
     if (this.router.url.toString() === '/_job'.toString() && this.userService.currentUserValue != null) {
       const source = timer(1000, 60000);
-      const sourcerefresh = timer(1000, 90000);
+      const sourcerefresh = timer(1000, 95000);
       sourcerefresh.subscribe((val: number) => {
         this.getUserAllJobDetailsByUserId();
       });
