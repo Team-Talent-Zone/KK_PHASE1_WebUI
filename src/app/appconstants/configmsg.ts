@@ -53,8 +53,8 @@ export const ConfigMsg = {
      *  Payment Messages
      */
 
-    payment_sucesss_alert_hi: 'भुगतान के लिए धन्यवाद। कृपया हमारे कुशल कार्यकर्ता को रेटिंग देकर अपना अनुभव साझा करें।',
-    payment_sucesss_alert_te: 'చెల్లింపుకు ధన్యవాదాలు. దయచేసి మా నైపుణ్యం కలిగిన కార్మికుడిని రేటింగ్ చేయడం ద్వారా మీ అనుభవాన్ని పంచుకోండి.',
+    payment_sucesss_alert_hi: 'भुगतान के लिए धन्यवाद।',
+    payment_sucesss_alert_te: 'చెల్లింపుకు ధన్యవాదాలు.',
     payment_sucesss_alert_en: 'Thank you for the payment. Payment is successful.',
 
     payment_fail_alert_hi: 'ट्रांसकेशन फेल हो गया। कृपया पुन: प्रयास करें।',
@@ -76,8 +76,8 @@ export const ConfigMsg = {
     biztype_cmp_te: 'సంస్థ',
     biztype_ind_hi: 'व्यक्ति',
     biztype_cmp_hi: 'कंपनी',
-    voliation_msg: 'Sorry for the inconvenience caused. We are analzying with the skilled worker on this issue. We will be contact you soon.',
-    assign_job: 'Please confirm ,Do you want to assign the JobId#',
+    voliation_msg: 'Sorry for the inconvenience caused. We are analyzing with the skilled worker on this issue. We will be contact you soon.',
+    assign_job: 'Please confirm, Do you want to assign the JobId#',
     reg_fee_msg: "Registration Fee",
     update_attendance_msg: "We have noted that your at work location at ",
     on_msg: " on ",
@@ -94,6 +94,7 @@ export const ConfigMsg = {
     profile_msg_5: "Verify Password is not matching",
     profile_msg_6: "Your password is updated",
     profile_msg_7: "Account Number and Verfication Account Number is mismatch",
+
     /***
      * Dashboard Client Business Administrator  - Messages
      * 
@@ -143,7 +144,7 @@ export const ConfigMsg = {
     job_cannot_cancel_msg: "Cancellation only possible before 15 minutes of accepting the job.",
     job_sw_atlocation: "We have noted that our skilled worker is at your work location ",
     job_success_msg: " is activiated succesfully . We will notify once the skilled worker accepts the job. ",
-    job_decision_msg_1: "Are you sure on the decision ?",
+    job_decision_msg_1: "Are you sure you want to cancel this job?",
     job_hold_msg: " is on hold till we resolve it.",
     user_deactive: "User successfully deactivaited.",
     user_active: "User successfully activiated again.",
@@ -180,6 +181,7 @@ export const ConfigMsg = {
     mobile_msg: "Enter Mobile number",
     mobile_msg_1:"Mobile number must be 10 digits",
     mobile_msg_2:"Enter only digits",
+    
     /***
      * Pre Production Change
      */

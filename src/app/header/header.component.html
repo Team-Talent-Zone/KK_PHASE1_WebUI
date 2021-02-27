@@ -337,20 +337,26 @@
 Announcement Section 
 -->
 <div class="announcement">
-  <h2>{{ 'HOMENAV.LATESTUPADTE' | translate }}</h2>
-  <p>{{ 'HOMENAV.LATESTUPDATE_LINE1' | translate }}
-  </p>
-  <p> {{ 'HOMENAV.LATESTUPDATE_LINE2' | translate }}
-    {{ 'HOMENAV.LATESTUPDATE_LINE3' | translate }}
-    <a href="javascript: return false;" (click)="openSignupModal('fu')">
-      <u>{{ 'HOMENAV.LATESTUPDATE_LINE4' | translate }}</u>
-    </a>
-  </p>
-  <p *ngIf="list != null" class="btn-info">
-    <span *ngFor="let item of list; let i = index ">
-      <small>{{item.label}}</small>
-      <span *ngIf="i != list.length - 1">, </span>
-    </span>
-  </p>
-</div>
-<div class="row mb-3"></div>
+  <div class="row ml-1">
+    <h2>{{ 'HOMENAV.LATESTUPADTE' | translate }}</h2>
+    <i class="fa fa-bullhorn fa-2x pull-right" style="color:red">
+    </i>
+    <div>
+      <div class="row ml-1">
+        <p>{{ 'HOMENAV.LATESTUPDATE_LINE1' | translate }}
+        </p>
+        <p> {{ 'HOMENAV.LATESTUPDATE_LINE2' | translate }}
+          {{ 'HOMENAV.LATESTUPDATE_LINE3' | translate }}
+          <a href="javascript: return false;" (click)="openSignupModal('fu')">
+            <u>{{ 'HOMENAV.LATESTUPDATE_LINE4' | translate }}</u>
+          </a>
+        </p>
+        <p *ngIf="list != null" class="btn-info">
+          <span *ngFor="let item of list; let i = index ">
+            <small>{{item.label}}</small>
+            <span *ngIf="i != list.length - 1">, </span>
+          </span>
+        </p>
+      </div>
+    </div>
+    <div class="row mb-3"></div>
