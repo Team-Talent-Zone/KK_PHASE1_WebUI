@@ -1,6 +1,7 @@
 <!-- Top menu -->
 <nav class="navbar navbar-dark fixed-top navbar-expand-md" (scroll)="onWindowScroll($event);" id="navbar">
   <div class="container-fluid">
+    <div class="row">
     <a class="scroll-link" href="javascript: return false;" onclick="topFunction()">
       <img src="assets/img/logo-transparent.png" width="70" height="60" class="rounded-circle d-inline-block align-top"
         alt="Kaam Karega">
@@ -13,6 +14,7 @@
       aria-controls="navbarNav" aria-expanded="true" aria-label="Toggle navigation" id="navBtn">
       <span class="navbar-toggler-icon"></span>
     </button>
+    </div>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item mr-4">
@@ -151,7 +153,7 @@
     </div>
     <div class="carousel-item">
       <img class="d-block w-100" src="assets/img/backgrounds/ban3.jpg" data-holder-rendered="true">
-      <div class="carousel-caption d-block d-sm-none">
+      <div class="carousel-caption d-block d-sm-none" style="top: 9%;">
         <h5 style="font-size: 15px;">{{'HOMENAV.BETTERSERVICECAPTION' | translate}}</h5>
         <p>
           {{'ONBOARD.GRABTHESERVICE1' | translate}}
@@ -212,7 +214,7 @@
 
     <div class="carousel-item">
       <img class="d-block w-100" src="assets/img/backgrounds/ban5.jpg" data-holder-rendered="true">
-      <div class="carousel-caption d-block d-md-none">
+      <div class="carousel-caption d-block d-md-none"  style="top: 9%;">
         <h5 style="font-size:20px;">
           {{ 'HOMENAV.BANNER_5_HEADER_LABEL' |
           translate }}
@@ -247,7 +249,7 @@
 
     <div class="carousel-item">
       <img class="d-block w-100" src="assets/img/backgrounds/ban6.jpg" data-holder-rendered="true">
-      <div class="carousel-caption d-block d-sm-none">
+      <div class="carousel-caption d-block d-sm-none" style="top: 9%;">
         <h5 style="font-size: 15px;">
           {{ 'HOMENAV.BANNER_6_HEADER_LABEL' |
           translate }}

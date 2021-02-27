@@ -94,13 +94,13 @@
         <section id="team">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-3 col-sm-8 mb-3 mb-md-0" *ngFor="let fuuser of userFUObjList">
-                        <div class="card">
+                    <div class="col-md-3 col-sm-12 mb-3 mb-md-0" *ngFor="let fuuser of userFUObjList">
+                        <div class="card h-100">
                             <div class="card-header bg-info">
                                 <span class="fa fa-star" style="color:#0a382b" *ngFor="let i of fuuser.starRate"></span>
                                 <small *ngIf="fuuser.starRate !== null">/ out of 5</small>
                             </div>
-                            <div class="card-body flex-column h-100 text-center">
+                            <div class="card-body flex-column text-center">
                                 <h4 *ngIf="this.userService.currentUserValue.userroles.rolecode === 'CLIENT_BUSINESS_ADMINISTRATOR'"
                                     class="card-title">{{fuuser.fullname}}</h4>
                                 <h4 *ngIf="this.userService.currentUserValue.userroles.rolecode === 'CORE_SERVICE_SUPPORT_TEAM' || this.userService.currentUserValue.userroles.rolecode === 'CORE_SERVICE_SUPPORT_MANAGER'"
