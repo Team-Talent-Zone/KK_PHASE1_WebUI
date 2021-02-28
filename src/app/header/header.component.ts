@@ -180,6 +180,20 @@ export class HeaderComponent implements OnInit {
           }
         })
       });
+    this.list = this.list.sort(this.alphabeticalSort("label"));
   }
+
+  alphabeticalSort = property => {
+    let sortOrder = 1 // Add your logic for asc/desc here
+      , propArr = property.split(".")
+
+    return function (a, b) {
+      if (sortOrder === -1) {
+        return b[propArr[0]][propArr[1]].localeCompare(a[propArr[0]][propArr[1]]);
+      } else {
+        return a[propArr[0]][propArr[1]].localeCompare(b[propArr[0]][propArr[1]]);
+      }
+    };
+  };
 
 }

@@ -19,11 +19,13 @@
     "BANNER_4_LABEL_HEADER_PARA_2": "This service connects your business to a nationwide community of skilled workers who thrive on nothing more than to help your business succeed.",
     "BANNER_4_LABEL_HEADER_PARA_3": "Learn more",
     "BANNER_5_HEADER_LABEL": "Be Own Boss and Earn Anywhere, Anytime",
-    "BANNER_5_LABELS_MOB": "Opportunities are everywhere. We always support skilled workers to make most of the time at the job location on the platform with the largest network of active job opportunities. Get ready to drive with Kaam Karega. Make money when you want, wherever you are.",
+    "BANNER_5_LABELS_MOB": "We always support skilled workers to make most of the time at the job location on the platform with the largest network of active job opportunities. Get ready to drive with Kaam Karega. Make money when you want, wherever you are.",
     "BANNER_5_LABELS_WEB": "Opportunities are everywhere. We always support skilled workers to make most of the time at the job location on the platform with the largest network of active job opportunities. Get ready to drive with Kaam Karega. Make money when you want, wherever you are.",
-    "BANNER_6_HEADER_LABEL": "Announcing Kaam Karega New Maakan Anywhere Service",
+    "BANNER_6_HEADER_LABEL": "Announcing New Maakan Anywhere Service",
     "BANNER_6_LABELS_MOB": "We're coming as India's first online customized cloud base software solution for the real estate and housing business, owners to maintain and create their IT needs, setup payments operate, and manage. The New Maakan (Apartment) Anywhere Service will be available in mid of this summer 2021.",
     "BANNER_6_LABELS_WEB": "We're coming as India's first online customized cloud base software solution for the real estate and housing business, owners to maintain and create their IT needs, setup payments operate, and manage. The New Maakan (Apartment) Anywhere Service will be available in mid of this summer 2021.",
+    "BANNER_7_HEADER_LABEL": "Kaam Karega in your pocket",
+    "BANNER_7_LABELS_WEB": "Whether you're  company or individual, you can render our services through the mobile channels. As a skilled worker, you can manage your jobs too. Kaam Karega App in Andriod and IOS versions will be available in mid of this summer 2021 at your play store or apple store.",
     "SIGNUP_MODALWINDOW_CLIENT_DESC": "We provide you with complete Automated Software Solutions on the Cloud",
     "SIGNUP_MODALWINDOW_SKILLEDWORKER_DESC": "One Stop for all your Skilled Worker Opportunities",
     "SIGNUP_MODALWINDOW_CLIENT_BUTTON_LABEL": "SignUp As Client",
@@ -152,7 +154,8 @@
     "CONTACT": "Contact Us",
     "ADDRESS_LINE1": "IT Services Private Limited",
     "ADDRESS_LINE2": "Hyderabad , Telangana.",
-    "USEFULLINKS": "Useful Links"
+    "USEFULLINKS": "Useful Links",
+    "SITE_VIEW":"This site's best view in google chrome,microsoft edge and firefox."
   },
   "DASHOARD_HEADER": {
     "LOGOUT": "Logout",

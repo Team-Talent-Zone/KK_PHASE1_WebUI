@@ -32,16 +32,19 @@
 						<div class="social">
 							<ul class="list-inline list-unstyled">
 								<li class="list-inline-item">
-									<a href="#"><i class="fa fa-facebook-square fa-2x"></i></a>
+									<a href="https://www.facebook.com/profile.php?id=100064374303012" target="_blank"><i
+											class="fa fa-facebook-square fa-2x"></i></a>
 								</li>
 								<li class="list-inline-item">
-									<a href="#"><i class="fa fa-twitter fa-2x"></i></a>
+									<a href="https://twitter.com/KaamKaregaIT" target="_blank"><i class="fa fa-twitter fa-2x"></i></a>
 								</li>
 								<li class="list-inline-item">
-									<a href="#"><i class="fa fa-youtube-play fa-2x"></i></a>
+									<a href="https://www.youtube.com/channel/UC8foQCnk239JcHumsFk4nrA" target="_blank"><i
+											class="fa fa-youtube-play fa-2x"></i></a>
 								</li>
 								<li class="list-inline-item">
-									<a href="#"><i class="fa fa-instagram fa-2x"></i></a>
+									<a href="https://www.instagram.com/kaamkaregaitservices/" target="_blank"><i
+											class="fa fa-instagram fa-2x"></i></a>
 								</li>
 							</ul>
 						</div>
@@ -67,7 +70,8 @@
 									<li><a [routerLink]="['/_dashboard']" onclick="topFunction()">{{
 											'DASHOARD_FU_MENU.SUMMARY' | translate }}</a>
 									</li>
-									<li><a routerLink='/_profilesettings/{{userService.currentUserValue.userId}}' onclick="topFunction()">
+									<li><a routerLink='/_profilesettings/{{userService.currentUserValue.userId}}'
+											onclick="topFunction()">
 											{{ 'DASHOARD_FU_MENU.EDIT_PROFILE' | translate }}</a></li>
 									<li *ngIf="this.userService.currentUserValue.freeLanceDetails.isregfeedone">
 										<a [routerLink]="['/_payments']" onclick="topFunction()">
@@ -86,7 +90,8 @@
 								<ul style="list-style: circle;">
 									<li><a [routerLink]="['/_dashboard']" onclick="topFunction()">Our Services</a>
 									</li>
-									<li><a routerLink='/_profilesettings/{{userService.currentUserValue.userId}}'  onclick="topFunction()">
+									<li><a routerLink='/_profilesettings/{{userService.currentUserValue.userId}}'
+											onclick="topFunction()">
 											{{ 'DASHOARD_FU_MENU.EDIT_PROFILE' | translate }}</a></li>
 									<li>
 										<a [routerLink]="['/_job']" onclick="topFunction()">
@@ -129,28 +134,35 @@
 					<div class="col-md-2">
 						<img style="padding-top:0px;height: 150px;" src="assets/img/backgrounds/pay14-transparent.png">
 					</div>
+					<div class="col text-center">
+						<div class="col-md-4"></div>
+						<small>
+							<span class="col-md-8" style="color:white">{{ 'FOOTER.SITE_VIEW' | translate }}</span>
+						</small>
+					</div>
 				</div>
 			</div>
 		</section>
 		<section class="contact bg-light-copy" id="contact">
 			<small>
-			<div class="row">
-				<div class="col-md-4 text-center">
-					<span>
-						<a href={{signupComponent.termsofservice}} target="_blank">{{ 'HOMESIGNUP.SIGNUP_TERMOFSERVICE'
+				<div class="row">
+					<div class="col-md-4 text-center">
+						<span>
+							<a href={{signupComponent.termsofservice}} target="_blank">{{ 'HOMESIGNUP.SIGNUP_TERMOFSERVICE'
 							|
 							translate }} <i class="fa fa-share-square-o"> </i> </a></span>
-				</div>
-				<div class="col-md-4 text-center">
-					<span><a href={{signupComponent.privacypolicy}} target="_blank">{{ 'HOMESIGNUP.SIGNUP_PRIVACYPOLICY'
+					</div>
+					<div class="col-md-4 text-center">
+						<span><a href={{signupComponent.privacypolicy}} target="_blank">{{ 'HOMESIGNUP.SIGNUP_PRIVACYPOLICY'
 							|
 							translate }} <i class="fa fa-share-square-o"></i></a> </span>
+					</div>
+					<div class="col-md-4 text-center">
+						<span><i class="fa fa-copyright" aria-hidden="true"></i>2021 Kaam Karega IT Services Private
+							Limited. All rights reserved.</span>
+					</div>
 				</div>
-				<div class="col-md-4 text-center">
-					<span><i class="fa fa-copyright" aria-hidden="true"></i>2021 Kaam Karega IT Services Private Limited. All rights reserved.</span>
-				</div>
-			</div>
-		</small>
+			</small>
 		</section>
 	</div>
 </div>

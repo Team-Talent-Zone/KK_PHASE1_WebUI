@@ -1,18 +1,18 @@
 <!-- Top menu -->
 <nav class="navbar navbar-dark fixed-top navbar-expand-md" (scroll)="onWindowScroll($event);" id="navbar">
   <div class="container-fluid">
-    <a class="scroll-link" href="javascript: return false;" onclick="topFunction()">
-      <img src="assets/img/logo-transparent.png" width="70" height="60" class="rounded-circle d-inline-block align-top"
-        alt="Kaam Karega">
-    </a>
-    <span class="logo-title btn" onclick="topFunction()">
-      {{ 'HOMENAV.COMPANYNAMEPART1' | translate }}<span class="logo-u">{{
+      <a class="scroll-link" href="javascript: return false;" onclick="topFunction()">
+        <img src="assets/img/logo-transparent.png" width="70" height="60"
+          class="rounded-circle d-inline-block align-top" alt="Kaam Karega">
+      </a>
+      <span class="logo-title btn" onclick="topFunction()">
+        {{ 'HOMENAV.COMPANYNAMEPART1' | translate }}<span class="logo-u">{{
         'HOMENAV.COMPANYNAMEPART2' | translate }}</span>
-    </span>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-      aria-controls="navbarNav" aria-expanded="true" aria-label="Toggle navigation" id="navBtn">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+      </span>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="true" aria-label="Toggle navigation" id="navBtn">
+        <span class="navbar-toggler-icon"></span>
+      </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item mr-4">
@@ -116,6 +116,7 @@
     <li data-target="#carouselExampleCaptions" data-slide-to="3" class=""></li>
     <li data-target="#carouselExampleCaptions" data-slide-to="4" class=""></li>
     <li data-target="#carouselExampleCaptions" data-slide-to="5" class=""></li>
+    <li data-target="#carouselExampleCaptions" data-slide-to="6" class=""></li>
   </ol>
   <div class="carousel-inner">
     <div class="carousel-item active">
@@ -212,7 +213,7 @@
 
     <div class="carousel-item">
       <img class="d-block w-100" src="assets/img/backgrounds/ban5.jpg" data-holder-rendered="true">
-      <div class="carousel-caption d-block d-md-none"  style="top: 9%;">
+      <div class="carousel-caption d-block d-md-none" style="top: 9%;">
         <h5 style="font-size:20px;">
           {{ 'HOMENAV.BANNER_5_HEADER_LABEL' |
           translate }}
@@ -264,6 +265,21 @@
         </h5>
         {{ 'HOMENAV.BANNER_6_LABELS_WEB' |
         translate }}
+      </div>
+    </div>
+
+    <div class="carousel-item">
+      <img class="d-block w-100" src="assets/img/backgrounds/ban7.jpg" data-holder-rendered="true">
+      <div class="carousel-caption d-block d-sm-none" style="top: 9%;">
+        <h5 style="font-size: 15px;">{{'HOMENAV.BANNER_7_HEADER_LABEL' | translate}}</h5>
+        <p>
+          {{'ONBOARD.BANNER_7_LABELS_WEB' | translate}}
+        </p>
+      </div>
+      <div class="carousel-caption d-md-block d-lg-none d-sm-none">
+        <h5 style="font-size: 40px;">{{'HOMENAV.BANNER_7_HEADER_LABEL' | translate}}</h5>
+        <p> {{'HOMENAV.BANNER_7_LABELS_WEB' | translate}}
+        </p>
       </div>
     </div>
   </div>
@@ -337,26 +353,25 @@
 Announcement Section 
 -->
 <div class="announcement">
-  <div class="row ml-1">
-    <h2>{{ 'HOMENAV.LATESTUPADTE' | translate }}</h2>
-    <i class="fa fa-bullhorn fa-2x pull-right" style="color:red">
+  <div class="row">
+    <h2 class="col-8 col-lg-2">{{ 'HOMENAV.LATESTUPADTE' | translate }}</h2>
+    <i class="fa fa-bullhorn fa-2x col-2 col-lg-2 pull-right" style="color:red">
     </i>
-    <div>
-      <div class="row ml-1">
-        <p>{{ 'HOMENAV.LATESTUPDATE_LINE1' | translate }}
-        </p>
-        <p> {{ 'HOMENAV.LATESTUPDATE_LINE2' | translate }}
-          {{ 'HOMENAV.LATESTUPDATE_LINE3' | translate }}
-          <a href="javascript: return false;" (click)="openSignupModal('fu')">
-            <u>{{ 'HOMENAV.LATESTUPDATE_LINE4' | translate }}</u>
-          </a>
-        </p>
-        <p *ngIf="list != null" class="btn-info">
-          <span *ngFor="let item of list; let i = index ">
-            <small>{{item.label}}</small>
-            <span *ngIf="i != list.length - 1">, </span>
-          </span>
-        </p>
-      </div>
-    </div>
-    <div class="row mb-3"></div>
+  </div>
+  <p>{{ 'HOMENAV.LATESTUPDATE_LINE1' | translate }}
+  </p>
+  <p> {{ 'HOMENAV.LATESTUPDATE_LINE2' | translate }}
+    {{ 'HOMENAV.LATESTUPDATE_LINE3' | translate }}
+    <a href="javascript: return false;" (click)="openSignupModal('fu')">
+      <u>{{ 'HOMENAV.LATESTUPDATE_LINE4' | translate }}</u>
+    </a>
+  </p>
+  <p *ngIf="list != null" class="btn-info">
+    <span *ngFor="let item of list; let i = index ">
+      <small>{{item.label}}</small>
+      <span *ngIf="i != list.length - 1">, </span>
+    </span>
+  </p>
+</div>
+
+<div class="row mb-3"></div>
