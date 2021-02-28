@@ -142,3 +142,8 @@
 .background {
   background-color: white;
 }
+
+.dropdown1 {
+  max-height: 400px;
+  overflow: auto;  
+}
