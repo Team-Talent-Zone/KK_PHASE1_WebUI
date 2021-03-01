@@ -10,7 +10,7 @@
                 <div class="card-header header-bg">
                     <img src={{svc.imgurl}} class="img-rounded" width="90" height="70" style="padding-bottom: 5px;">
                     <a *ngIf="svc.txnid !== null" [routerLink]="['/_payment',svc.txnid]">
-                        <i class="fa fa-sitemap pull-right" title="Go to payment details" style="color:#FF4949"> </i>
+                        <i class="fa fa-sitemap btn-sm btn btn-warning pull-right" title="Go to payment details" style="color:#FF4949"> </i>
                     </a>
                     <span *ngIf="svc.category !=='FS_S'" class="pull-right">
                         <a [routerLink]="['/_createoreditwidget',svc.ourserviceId]">

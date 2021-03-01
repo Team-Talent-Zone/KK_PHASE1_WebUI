@@ -396,10 +396,9 @@
                                         </div>
                                     </div>
                                     <div class="col-md-4">
-                                        nationalIDURL.length {{nationalIDURL.length}}
                                         <div class="text-center">
                                             <div *ngIf="roleCode =='FREELANCER_USER'">
-                                                <div *ngIf="nationalIDURL.length == 0 ">
+                                                <div *ngIf="nationalIDURL == null ">
                                                     <span style="font-size:13px;color:rgb(255, 30, 0)">
                                                         {{ 'DASHBOARD_FU_PROFILE.PROFULE_NATION_ID_REQ' | translate }}
                                                     </span>
@@ -416,7 +415,7 @@
                                                     </div>
                                                 </div>
                                                 <button type="button" class="btn btn-info btn-sm"
-                                                    (click)="fileInput.click()" *ngIf="nationalIDURL.length == 0  && 
+                                                    (click)="fileInput.click()" *ngIf="nationalIDURL == null  && 
                                                 !this.userService.currentUserValue.freeLanceDetails.isbgstarted && 
                                                 !this.userService.currentUserValue.freeLanceDetails.isprofilecompleted
                                                  ">

@@ -56,7 +56,7 @@
         <span class="section-title" *ngIf="userFUObjList.length > 0 && !issearchbydate;">
             <h5>
                 <p>
-                    Below are the {{name | lowercase }}'s at all over the locations.
+                    Below are the {{name | lowercase }}s at all over the locations.
                 </p>
             </h5>
         </span>
@@ -69,7 +69,7 @@
         <span class="section-title " *ngIf="userFUObjList.length > 1 && issearchbydate && 
                 this.searchform.get('fulladdress').value.length > 0;">
             <h5>
-                <p> Available {{name | lowercase}}'s at : {{this.searchform.get('fulladdress').value}} </p>
+                <p> Available {{name | lowercase}}s at : {{this.searchform.get('fulladdress').value}} </p>
             </h5>
         </span>
 
