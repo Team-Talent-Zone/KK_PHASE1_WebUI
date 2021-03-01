@@ -9,7 +9,7 @@
     <a class="scroll-link" [routerLink]="['/_dashboard']">
         <img src="assets/img/logo-transparent.png" width="70" height="60"
             class="rounded-circle d-inline-block align-top" alt="Kaam Karega Dashboard"></a>
-    <span class="logo-title mr-3">{{ 'HOMENAV.COMPANYNAMEPART1' | translate }}<span class="logo-u">{{
+    <span class="logo-title">{{ 'HOMENAV.COMPANYNAMEPART1' | translate }}<span class="logo-u">{{
                 'HOMENAV.COMPANYNAMEPART2' | translate }}</span></span>
     <button type="button" onclick="offcanvas()" class="hidden-sm-up navbar-toggler" data-toggle="offcanvas">
         <span class="navbar-toggler-icon"></span>
@@ -41,117 +41,132 @@
 <div class="container-fluid background" id="main">
     <div class="row row-offcanvas row-offcanvas-left">
         <div class="col-md-3 col-lg-2 sidebar-offcanvas" id="sidebar" role="navigation">
-            <ul class="nav flex-column pl-1">
+            <ul class="nav flex-column">
                 <li class="nav-item"
                     *ngIf="this.userService.currentUserValue.userroles.rolecode ==='CLIENT_BUSINESS_ADMINISTRATOR'">
                     <a [routerLink]="['/_dashboard']" class="list-group-item list-group-item-action bg-light">
-                        <i class="fa fa-cogs" style="color:#FF4949"></i>
-                        <b>
-                            Our Services
-                        </b>
+                        <i class="fa fa-cogs" style="color:#FF4949">
+                            <b style="color:black">
+                                Our Services
+                            </b>
+                        </i>
                     </a>
                 </li>
                 <li class="nav-item" *ngIf="this.userService.currentUserValue.userroles.rolecode =='CORE_SERVICE_SUPPORT_TEAM' || 
                     this.userService.currentUserValue.userroles.rolecode =='CORE_SERVICE_SUPPORT_MANAGER' ||
                     this.userService.currentUserValue.userroles.rolecode =='DIRECTORS'">
                     <a [routerLink]="['/_dashboard']" class="list-group-item list-group-item-action bg-light">
-                        <i class="fa fa-tachometer" style="color:#FF4949"></i>
-                        <b>
-                            Dashboard
-                        </b>
+                        <i class="fa fa-tachometer" style="color:#FF4949">
+                            <b style="color:black">
+                                Dashboard
+                            </b>
+                        </i>
                     </a>
                 </li>
                 <li *ngIf="this.userService.currentUserValue.userroles.rolecode ==='FREELANCER_USER'">
                     <a [routerLink]="['/_dashboard']" class="list-group-item list-group-item-action bg-light">
-                        <i class="fa fa-tachometer" style="color:#FF4949"></i>
-                        <b>
-                            {{ 'DASHOARD_FU_MENU.SUMMARY' | translate }}
-                        </b>
+                        <i class="fa fa-tachometer" style="color:#FF4949">
+                            <b style="color:black">
+                                {{ 'DASHOARD_FU_MENU.SUMMARY' | translate }}
+                            </b>
+                        </i>
                     </a>
                 </li>
                 <li
                     *ngIf="this.userService.currentUserValue.userroles.rolecode =='CORE_SERVICE_SUPPORT_TEAM' || this.userService.currentUserValue.userroles.rolecode =='CORE_SERVICE_SUPPORT_MANAGER'">
                     <a [routerLink]="['/_manageuser']" class="list-group-item list-group-item-action bg-light">
-                        <i class="fa fa-users" style="color:#FF4949"></i>
-                        <b> Manage Users</b>
+                        <i class="fa fa-users" style="color:#FF4949">
+                            <b style="color:black"> Manage Users</b>
+                        </i>
                     </a>
                 </li>
                 <li
                     *ngIf="this.userService.currentUserValue.userroles.rolecode =='CORE_SERVICE_SUPPORT_TEAM' || this.userService.currentUserValue.userroles.rolecode =='CORE_SERVICE_SUPPORT_MANAGER'">
                     <a [routerLink]="['/_manageservice']" class="list-group-item list-group-item-action bg-light">
-                        <i class="fa fa-cogs" style="color:#FF4949"></i>
-                        <b> Manage Services</b></a>
+                        <i class="fa fa-cogs" style="color:#FF4949">
+                            <b style="color:black"> Manage Services</b>
+                        </i>
+                    </a>
                 </li>
                 <li *ngIf="this.userService.currentUserValue.userroles.rolecode =='CLIENT_BUSINESS_ADMINISTRATOR'">
                     <a [routerLink]="['/_myservices']" class="list-group-item list-group-item-action bg-light">
-                        <i class="fa fa-cog" style="color:#FF4949"></i>
-                        <b>
-                            My Services
-                        </b>
+                        <i class="fa fa-cog" style="color:#FF4949">
+                            <b style="color:black">
+                                My Services
+                            </b>
+                        </i>
                     </a>
                 </li>
                 <li *ngIf="this.userService.currentUserValue.userroles.rolecode =='CLIENT_BUSINESS_ADMINISTRATOR'">
                     <a [routerLink]="['/_payments']" class="list-group-item list-group-item-action bg-light">
-                        <i class="fa fa-inr" style="color:#FF4949"></i>
-                        <b>
-                            Payments
-                        </b>
+                        <i class="fa fa-inr" style="color:#FF4949">
+                            <b style="color:black">
+                                Payments
+                            </b>
+                        </i>
                     </a>
                 </li>
                 <li *ngIf="this.userService.currentUserValue.userroles.rolecode =='CLIENT_BUSINESS_ADMINISTRATOR'">
                     <a [routerLink]="['/_job']" class="list-group-item list-group-item-action bg-light">
-                        <i class="fa fa-briefcase" style="color:#FF4949"></i>
-                        <b>
-                            Jobs
-                        </b>
+                        <i class="fa fa-briefcase" style="color:#FF4949">
+                            <b style="color:black">
+                                Manage Jobs
+                            </b>
+                        </i>
                     </a>
                 </li>
                 <li
                     *ngIf="this.userService.currentUserValue.userroles.rolecode =='FREELANCER_USER' && this.userService.currentUserValue.freeLanceDetails.isregfeedone">
                     <a [routerLink]="['/_payments']" class="list-group-item list-group-item-action bg-light">
-                        <i class="fa fa-inr" style="color:#FF4949"></i>
-                        <b>
-                            {{ 'DASHOARD_FU_MENU.PAYMENTHISTORY' | translate }}
-                        </b>
+                        <i class="fa fa-inr" style="color:#FF4949">
+                            <b style="color:black">
+                                {{ 'DASHOARD_FU_MENU.PAYMENTHISTORY' | translate }}
+                            </b>
+                        </i>
                     </a>
                 </li>
                 <li
                     *ngIf="this.userService.currentUserValue.userroles.rolecode =='FREELANCER_USER' && userService.currentUserValue.freeLanceDetails.bgcurrentstatus == 'BG_APPROVED'">
                     <a [routerLink]="['/_review',this.userService.currentUserValue.userId,'usr']"
                         class="list-group-item list-group-item-action bg-light">
-                        <i class="fa fa-star" style="color:#FF4949"></i>
-                        <b>
-                            {{ 'DASHOARD_FU_MENU.REVIEWS' | translate }}
-                        </b>
+                        <i class="fa fa-star" style="color:#FF4949">
+                            <b style="color:black">
+                                {{ 'DASHOARD_FU_MENU.REVIEWS' | translate }}
+                            </b>
+                        </i>
                     </a>
                 </li>
                 <li *ngIf="this.userService.currentUserValue.userroles.rolecode =='CORE_SERVICE_SUPPORT_MANAGER'"><a
                         [routerLink]="['/_signupadmin']" class="list-group-item list-group-item-action bg-light">
-                        <i class="fa fa-user" style="color:#FF4949"></i>
-                        <b>
-                            Create User
-                        </b>
+                        <i class="fa fa-user" style="color:#FF4949">
+                            <b style="color:black">
+                                Create User
+                            </b>
+                        </i>
                     </a></li>
                 <li *ngIf="this.userService.currentUserValue.userroles.rolecode =='CORE_SERVICE_SUPPORT_TEAM'"><a
                         [routerLink]="['/_createnewservice']" class="list-group-item list-group-item-action bg-light">
-                        <i class="fa fa-cog" style="color:#FF4949"></i>
-                        <b>
-                            Create Service
-                        </b>
+                        <i class="fa fa-cog" style="color:#FF4949">
+                            <b style="color:black">
+                                Create Service
+                            </b>
+                        </i>
                     </a></li>
                 <li>
                 <li *ngIf="this.userService.currentUserValue.userroles.rolecode =='CORE_SERVICE_SUPPORT_TEAM'  || 
                     this.userService.currentUserValue.userroles.rolecode =='CORE_SERVICE_SUPPORT_MANAGER'"><a
                         [routerLink]="['/_analyticsreporting']" class="list-group-item list-group-item-action bg-light">
-                        <i class="fa fa-signal " style="color:#FF4949"></i>
-                        <b>
-                            Analytics Report
-                        </b>
+                        <i class="fa fa-signal " style="color:#FF4949">
+                            <b style="color:black">
+                                Analytics Report
+                            </b>
+                        </i>
                     </a></li>
                 <li>
                     <a class="list-group-item list-group-item-action bg-light btn" (click)="logout()">
-                        <i class="fa fa-sign-out" style="color:#FF4949"></i>
-                        <b>{{ 'DASHOARD_HEADER.LOGOUT' | translate }}</b>
+                        <i class="fa fa-sign-out" style="color:#FF4949">
+                            <b style="color:black">{{ 'DASHOARD_HEADER.LOGOUT' | translate }}</b>
+                        </i>
                     </a>
                 </li>
             </ul>
@@ -166,7 +181,12 @@
                                     {{this.userService.currentUserValue.fullname}}</b></span>
                         </div>
                         <div class="col-5 col-lg-3 col-md-5">
-                            <span class="float-right">
+                            <span class="float-left d-block d-sm-none">
+                                <small>
+                                    <i class="fa fa-clock-o" aria-hidden="true"></i>
+                                    {{commonlogic.indiaDate}}</small>
+                            </span>
+                            <span class="float-right d-none d-md-block d-lg-block d-xl-block">
                                 <small>
                                     <i class="fa fa-clock-o" aria-hidden="true"></i>
                                     {{commonlogic.indiaDate}}</small>
@@ -222,16 +242,16 @@
                         *ngIf="this.userService.currentUserValue.userroles.rolecode ==='CLIENT_BUSINESS_ADMINISTRATOR'">
                         We have recieved your payment. Click to view transaction details
                         <a [routerLink]="['/_payment',txtid]">
-                            {{txtid}} 
+                            {{txtid}}
                         </a>Or
-                            <a [routerLink]="['/_myservices']">
-                                <b>
-                                      [Go to My Service]
-                                </b>
-                            </a>
+                        <a [routerLink]="['/_myservices']">
+                            <b>
+                                [Go to My Service]
+                            </b>
+                        </a>
                     </h6>
                     <!--Close Icon-->
-                    <button type="button" class="btn close"  data-dismiss="alert" aria-label="Close">
+                    <button type="button" class="btn close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true" style="color:red">×</span>
                     </button>
                 </div>

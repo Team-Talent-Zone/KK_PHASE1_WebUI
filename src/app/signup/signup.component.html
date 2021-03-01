@@ -4,8 +4,8 @@
     <h4 *ngIf="key =='cba'; else elseFU"> {{'HOMESIGNUP.SIGNUP' | translate}}</h4>
     <h4 *ngIf="key =='fu'; else elseFU"> {{'HOMESIGNUP.SIGNUPFU' | translate}}</h4>
   </span>
-  <button data-dismiss="alert" data-target="#closeablecard" (click)="modalRef.hide()" type="button" class="btn btn-sm btn-danger pull-right" 
-    aria-label="Close">
+  <button data-dismiss="alert" data-target="#closeablecard" (click)="modalRef.hide()" type="button"
+    class="btn btn-sm btn-danger pull-right" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
@@ -14,29 +14,37 @@
   <div class="modal-body">
     <span id="reauth-email" class="reauth-email"></span>
     <div class="form-group">
-      <span>
-        <i class="fa fa-at form-control-icon"></i>
-      </span>
-      <input class="form-control" formControlName="username" placeholder="{{'HOMESIGNUP.EMAILADDRESS' | translate}}"
-        type="email" ngModel email="true" [ngClass]="{ 'is-invalid': issubmit && f.username.errors }">
-      <div *ngIf="issubmit && f.username.errors" class="invalid-feedback">
-        <div *ngIf="f.username.errors.required || f.username.errors.email">{{'HOMESIGNUP.SIGNUP_VALIDATION_USERNAME' |
-          translate}}
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
+            <i class="fa fa-at" aria-hidden="true" ></i>
+          </span>
         </div>
-        <div *ngIf="f.username.errors.maxlength">{{'HOMESIGNUP.SIGNUP_VALIDATION_40_MAX_USERNAME' | translate}}</div>
+        <input class="form-control" formControlName="username" placeholder="{{'HOMESIGNUP.EMAILADDRESS' | translate}}"
+          type="email" ngModel email="true" [ngClass]="{ 'is-invalid': issubmit && f.username.errors }">
+        <div *ngIf="issubmit && f.username.errors" class="invalid-feedback">
+          <div *ngIf="f.username.errors.required || f.username.errors.email">{{'HOMESIGNUP.SIGNUP_VALIDATION_USERNAME' |
+          translate}}
+          </div>
+          <div *ngIf="f.username.errors.maxlength">{{'HOMESIGNUP.SIGNUP_VALIDATION_40_MAX_USERNAME' | translate}}</div>
+        </div>
       </div>
     </div>
     <div class="form-group">
-      <span>
-        <i class="fa fa-asterisk form-control-icon"></i>
-      </span>
-      <input class="form-control" placeholder="{{'HOMESIGNUP.PASSWORD' | translate}}" type="password"
-        formControlName="password" [ngClass]="{ 'is-invalid': issubmit && f.password.errors }" />
-      <div *ngIf="issubmit && f.password.errors" class="invalid-feedback">
-        <div *ngIf="f.password.errors.required">{{'HOMESIGNUP.SIGNUP_VALIDATION_PASSWORD_REQ' | translate}}
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
+            <i class="fa fa-asterisk" aria-hidden="true" ></i>
+          </span>
         </div>
-        <div *ngIf="f.password.errors.pattern">{{
+        <input class="form-control" placeholder="{{'HOMESIGNUP.PASSWORD' | translate}}" type="password"
+          formControlName="password" [ngClass]="{ 'is-invalid': issubmit && f.password.errors }" />
+        <div *ngIf="issubmit && f.password.errors" class="invalid-feedback">
+          <div *ngIf="f.password.errors.required">{{'HOMESIGNUP.SIGNUP_VALIDATION_PASSWORD_REQ' | translate}}
+          </div>
+          <div *ngIf="f.password.errors.pattern">{{
           'DASHBOARD_FU_PROFILE.PROFILE_PASSWORD_INVALID' | translate }}
+          </div>
         </div>
       </div>
       <small class="text-muted">
@@ -55,97 +63,120 @@
       </small>
     </div>
     <div class="form-group">
-      <span>
-        <i class="fa fa fa-user-o form-control-icon"></i>
-      </span>
-      <input class="form-control" formControlName="firstname" placeholder="{{'HOMESIGNUP.FIRSTNAME' | translate}}"
-        [ngClass]="{ 'is-invalid': issubmit && f.firstname.errors }">
-      <div *ngIf="issubmit && f.firstname.errors" class="invalid-feedback">
-        <div *ngIf="f.firstname.errors.required">
-          {{'HOMESIGNUP.SIGNUP_VALIDATION_FNAME' | translate}}
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
+            <i class="fa fa fa-user-o " aria-hidden="true" ></i>
+          </span>
         </div>
-        <div *ngIf="f.firstname.errors.maxlength">{{'HOMESIGNUP.SIGNUP_VALIDATION_4_MAX_FNAME' | translate}}</div>
+        <input class="form-control" formControlName="firstname" placeholder="{{'HOMESIGNUP.FIRSTNAME' | translate}}"
+          [ngClass]="{ 'is-invalid': issubmit && f.firstname.errors }">
+        <div *ngIf="issubmit && f.firstname.errors" class="invalid-feedback">
+          <div *ngIf="f.firstname.errors.required">
+            {{'HOMESIGNUP.SIGNUP_VALIDATION_FNAME' | translate}}
+          </div>
+          <div *ngIf="f.firstname.errors.maxlength">{{'HOMESIGNUP.SIGNUP_VALIDATION_4_MAX_FNAME' | translate}}</div>
+        </div>
       </div>
     </div>
     <div class="form-group">
-      <span>
-        <i class="fa fa fa-user-o form-control-icon"></i>
-      </span>
-      <input class="form-control" formControlName="lastname" placeholder="{{'HOMESIGNUP.LASTNAME' | translate}}"
-        [ngClass]="{ 'is-invalid': issubmit && f.lastname.errors }">
-      <div *ngIf="issubmit && f.lastname.errors" class="invalid-feedback">
-        <div *ngIf="f.lastname.errors.required">{{'HOMESIGNUP.SIGNUP_VALIDATION_LASTNAME_REQ' | translate}}
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
+            <i class="fa fa fa-user-o " aria-hidden="true" ></i>
+          </span>
         </div>
-        <div *ngIf="f.lastname.errors.maxlength">
-          {{'HOMESIGNUP.SIGNUP_VALIDATION_40_MAX_LASTNAME' | translate}}</div>
+        <input class="form-control" formControlName="lastname" placeholder="{{'HOMESIGNUP.LASTNAME' | translate}}"
+          [ngClass]="{ 'is-invalid': issubmit && f.lastname.errors }">
+        <div *ngIf="issubmit && f.lastname.errors" class="invalid-feedback">
+          <div *ngIf="f.lastname.errors.required">{{'HOMESIGNUP.SIGNUP_VALIDATION_LASTNAME_REQ' | translate}}
+          </div>
+          <div *ngIf="f.lastname.errors.maxlength">
+            {{'HOMESIGNUP.SIGNUP_VALIDATION_40_MAX_LASTNAME' | translate}}</div>
+        </div>
       </div>
     </div>
     <div class="form-group" *ngIf="key==='cba'">
-      <span>
-        <i class="fa fa fa-industry	form-control-icon"></i>
-      </span>
-      <select #sel class="form-control" formControlName="biztype"
-        [ngClass]="{ 'is-invalid': issubmit && f.biztype.errors }">
-        <option value="">{{'HOMESIGNUP.BIZTYPE' | translate}}</option>
-        <option value="Individual">{{
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
+            <i class="fa fa-industry" aria-hidden="true" ></i>
+          </span>
+        </div>
+        <select #sel class="form-control" formControlName="biztype"
+          [ngClass]="{ 'is-invalid': issubmit && f.biztype.errors }">
+          <option value="">{{'HOMESIGNUP.BIZTYPE' | translate}}</option>
+          <option value="Individual">{{
           biztypelist[0] }}</option>
-        <option value="Company">{{
+          <option value="Company">{{
           biztypelist[1] }}</option>
-      </select>
-      <div *ngIf="issubmit && f.biztype.errors" class="invalid-feedback">
-        <div *ngIf="f.biztype.errors.required">
-          {{'HOMESIGNUP.SIGNUP_VALIDATION_BIZTYPE_REQ' | translate}}
+        </select>
+        <div *ngIf="issubmit && f.biztype.errors" class="invalid-feedback">
+          <div *ngIf="f.biztype.errors.required">
+            {{'HOMESIGNUP.SIGNUP_VALIDATION_BIZTYPE_REQ' | translate}}
+          </div>
         </div>
       </div>
     </div>
     <div class="form-group" *ngIf="key==='fu'">
-      <span>
-        <i class="fa fa fa-language	form-control-icon"></i>
-      </span>
-      <select #sel class="form-control" formControlName="preferlang"
-        [ngClass]="{ 'is-invalid': issubmit && f.preferlang.errors }">
-        <option value="">{{'HOMESIGNUP.PREFERLANG' | translate}}</option>
-        <option value="en">English</option>
-        <option value="hi">हिंदी</option>
-        <option value="te">తెలుగు</option>
-      </select>
-      <div *ngIf="issubmit && f.preferlang.errors" class="invalid-feedback">
-        <div *ngIf="f.preferlang.errors.required">
-          {{'HOMESIGNUP.SIGNUP_VALIDATION_PREFERLANG_REQ' | translate}}
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
+            <i class="fa fa fa-language" aria-hidden="true" ></i>
+          </span>
+        </div>
+        <select #sel class="form-control" formControlName="preferlang"
+          [ngClass]="{ 'is-invalid': issubmit && f.preferlang.errors }">
+          <option value="">{{'HOMESIGNUP.PREFERLANG' | translate}}</option>
+          <option value="en">English</option>
+          <option value="hi">हिंदी</option>
+          <option value="te">తెలుగు</option>
+        </select>
+        <div *ngIf="issubmit && f.preferlang.errors" class="invalid-feedback">
+          <div *ngIf="f.preferlang.errors.required">
+            {{'HOMESIGNUP.SIGNUP_VALIDATION_PREFERLANG_REQ' | translate}}
+          </div>
         </div>
       </div>
     </div>
     <div *ngIf="key==='fu'">
       <div class="form-group">
-        <span>
-          <i class="fa fa fa-industry form-control-icon"></i>
-        </span>
-        <select #sel (change)="subCategoryByMapId(sel.value);" formControlName="category" class="form-control"
-          [ngClass]="{ 'is-invalid': issubmit && f.category.errors }">
-          <option value="" selected>{{'HOMESIGNUP.CATEGORY' | translate}}</option>
-          <option *ngFor="let referencelookupmap of referencedetailsmap" value="{{referencelookupmap.mapId}}">
-            {{referencelookupmap.label}}</option>
-        </select>
-        <div *ngIf="issubmit && f.category.errors" class="invalid-feedback">
-          <div *ngIf="f.category.errors.required"> {{'HOMESIGNUP.SIGNUP_VALIDATION_INDUSTRY_REQ' | translate}}
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text">
+              <i class="fa fa fa-industry" aria-hidden="true" ></i>
+            </span>
+          </div>
+          <select #sel (change)="subCategoryByMapId(sel.value);" formControlName="category" class="form-control"
+            [ngClass]="{ 'is-invalid': issubmit && f.category.errors }">
+            <option value="" selected>{{'HOMESIGNUP.CATEGORY' | translate}}</option>
+            <option *ngFor="let referencelookupmap of referencedetailsmap" value="{{referencelookupmap.mapId}}">
+              {{referencelookupmap.label}}</option>
+          </select>
+          <div *ngIf="issubmit && f.category.errors" class="invalid-feedback">
+            <div *ngIf="f.category.errors.required"> {{'HOMESIGNUP.SIGNUP_VALIDATION_INDUSTRY_REQ' | translate}}
+            </div>
           </div>
         </div>
       </div>
       <div *ngIf="referencedetailsmapsubcatselectedmapId.length > 0">
         <div class="form-group">
-          <span>
-            <i class="fa fa fa-certificate	
-           form-control-icon"></i>
-          </span>
-          <select class="form-control" formControlName="subcategory"
-            [ngClass]="{ 'is-invalid': issubmit && f.subcategory.errors }">
-            <option value="" selected>{{'HOMESIGNUP.SKILL' | translate}}</option>
-            <option *ngFor="let referencelookupmapcat of referencedetailsmapsubcatselectedmapId"
-              value="{{referencelookupmapcat.code}}"> {{referencelookupmapcat.label}}</option>
-          </select>
-          <div *ngIf="issubmit && f.subcategory.errors" class="invalid-feedback">
-            <div *ngIf="f.subcategory.errors.required">
-              {{'HOMESIGNUP.SIGNUP_VALIDATION_SKILL_REQ' | translate}}
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <i class="fa fa fa-certificate" aria-hidden="true" ></i>
+              </span>
+            </div>
+            <select class="form-control" formControlName="subcategory"
+              [ngClass]="{ 'is-invalid': issubmit && f.subcategory.errors }">
+              <option value="" selected>{{'HOMESIGNUP.SKILL' | translate}}</option>
+              <option *ngFor="let referencelookupmapcat of referencedetailsmapsubcatselectedmapId"
+                value="{{referencelookupmapcat.code}}"> {{referencelookupmapcat.label}}</option>
+            </select>
+            <div *ngIf="issubmit && f.subcategory.errors" class="invalid-feedback">
+              <div *ngIf="f.subcategory.errors.required">
+                {{'HOMESIGNUP.SIGNUP_VALIDATION_SKILL_REQ' | translate}}
+              </div>
             </div>
           </div>
         </div>

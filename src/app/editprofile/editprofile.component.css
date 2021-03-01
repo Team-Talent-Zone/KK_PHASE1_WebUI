@@ -94,9 +94,7 @@
   background-repeat: no-repeat;
   background-position: center;
 }
-.form-group .form-control {
-  padding-left: 2.375rem;
-}
+
 .form-group .form-control-icon {
   position: absolute;
   z-index: 2;
