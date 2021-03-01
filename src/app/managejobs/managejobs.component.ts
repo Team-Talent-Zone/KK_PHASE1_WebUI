@@ -218,14 +218,14 @@ export class ManagejobsComponent implements OnInit {
         if (confirmed) {
           this.spinnerService.show();
           this.freelanceserviceService.getAllFreelanceOnServiceDetailsByJobId(jobId).subscribe((objfreelanceservice: FreelanceOnSvc) => {
-            if (reason == config.voliation.toString()) {
+            if (reason == config.violation.toString()) {
               objfreelanceservice.isjobvoliation = true;
             } else {
               objfreelanceservice.isjobactive = false;
             }
             this.freelanceserviceService.saveOrUpdateFreelancerOnService(objfreelanceservice).subscribe((bol: boolean) => {
               if (bol) {
-                if (reason != config.voliation.toString()) {
+                if (reason != config.violation.toString()) {
                   this.alertService.success(ConfigMsg.job_assign_msg_1 + jobId + ConfigMsg.job_canclled_msg);
                 } else {
                   this.alertService.success(ConfigMsg.voliation_msg + ConfigMsg.job_assign_msg_1 + jobId + ConfigMsg.job_hold_msg);

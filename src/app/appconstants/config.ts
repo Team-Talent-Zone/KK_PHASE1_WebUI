@@ -82,7 +82,7 @@ export const config = {
   rolecode_notification: 'TOASTER_FREELANCER_USER_ALL',
   rolecode_toast_notification_cba: 'TOASTER_CLIENT_BUSINESS_ADMINISTRATOR',
   payment_success: 'Success',
-  voliation: 'voliation',
+  violation: 'violation',
   notifcationlist: 'notifcationlist',
   escape: 'Escape',
   enter: 'Enter',

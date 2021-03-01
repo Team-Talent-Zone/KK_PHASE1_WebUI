@@ -288,7 +288,7 @@
                           (click)="triggervoliationwork(job.jobId ,i)">
                         </i>
                         <i *ngIf="job.associatedadminId > 0" class="fa fa-lock btn-sm btn-primary"
-                          title='Locked to you to complete the voliation process.'>
+                          title='Locked to you to complete the violation process.'>
                         </i>
                         <i class="fa fa-plus btn btn-sm btn-info"
                           (click)="buildnewjobforvoliation(job.totalhoursofjob,i,job.scategory)"
@@ -570,7 +570,7 @@
                     <td *ngIf="resolvedvoliationreason != null">
                       Support team has created this new job and assigned to <u>{{job.fullname}} </u> on
                       {{job.updatedon}}
-                      as part of voliation job. Next action item <u>{{job.fullname}} </u> to accept the job.
+                      as part of violation job. Next action item <u>{{job.fullname}} </u> to accept the job.
                       <b><u>Voliation Comments</u></b>
                       {{job.resolvedvoliationreason}}
                     </td>
