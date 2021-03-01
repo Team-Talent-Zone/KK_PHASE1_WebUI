@@ -62,6 +62,8 @@ export class EditprofileComponent implements OnInit {
   ispwdsubmit = false;
   isbankenabled = false;
   isdisabled = false;
+  password: string;
+  show = false;
 
   constructor(
     public fb: FormBuilder,
