@@ -17,13 +17,14 @@
     "BANNER_4_LABEL_HEADER_PARA_2": "This service connects your business to a nationwide community of skilled workers who thrive on nothing more than to help your business succeed.",
     "BANNER_4_LABEL_HEADER_PARA_3": "Learn more",
     "BANNER_5_HEADER_LABEL": "Be Own Boss and Earn Anywhere, Anytime",
-    "BANNER_5_LABELS_MOB": "We always support skilled workers to make most of the time at the job location on the platform with the largest network of active job opportunities. Get ready to drive with Kaam Karega. Make money when you want, wherever you are.",
+    "BANNER_5_LABELS_MOB": "We always support skilled workers to make most of the time at the job location on the platform with the largest network of active job opportunities. Make money when you want, wherever you are.",
     "BANNER_5_LABELS_WEB": "Opportunities are everywhere. We always support skilled workers to make most of the time at the job location on the platform with the largest network of active job opportunities. Get ready to drive with Kaam Karega. Make money when you want, wherever you are.",
     "BANNER_6_HEADER_LABEL": "Announcing New Makaan Anywhere Service",
-    "BANNER_6_LABELS_MOB": "We're coming as India's first online customized cloud base software solution for the real estate and housing business, owners to maintain and create their IT needs, setup payments operate, and manage. The New Makaan (Apartment) Anywhere Service will be available in mid of this summer 2021.",
-    "BANNER_6_LABELS_WEB": "We're coming as India's first online customized cloud base software solution for the real estate and housing business, owners to maintain and create their IT needs, setup payments operate, and manage. The New Makaan (Apartment) Anywhere Service will be available in mid of this summer 2021.",
+    "BANNER_6_LABELS_MOB": "This mid summer, we're coming as India's first online customized cloud base software solution for the real estate and housing owners to create, maintain and manage their bussines needs.",
+    "BANNER_6_LABELS_WEB": "We're coming as India's first online customized cloud base software solution for the real estate and housing owners to create, maintain and manage their bussines needs. The New Makaan (Apartment) Anywhere Service will be available in mid of this summer 2021.",
     "BANNER_7_HEADER_LABEL": "Kaam Karega in your pocket",
-    "BANNER_7_LABELS_WEB": "Whether you're  company or individual, you can render our services through the mobile channels. As a skilled worker, you can manage your jobs too. Kaam Karega App will be available in mid of this summer 2021 in Andriod and IOS versions at your play store and apple store.",
+    "BANNER_7_LABELS_MOB": "Clients can use our cloud service through the mobile channels. Skilled workers can manage their jobs too. Kaam Karega App in Andriod and IOS versions is available this mid-summer.",
+    "BANNER_7_LABELS_WEB": "Clients can use our cloud service through the mobile channels. Skilled workers can manage their jobs too. Kaam Karega App will be available in mid of this summer 2021 in Andriod and IOS versions at your play store and app store.",
     "SIGNUP_MODALWINDOW_CLIENT_DESC": "We provide you with complete Automated Software Solutions on the Cloud",
     "SIGNUP_MODALWINDOW_SKILLEDWORKER_DESC": "One Stop for all your Skilled Worker Opportunities",
     "SIGNUP_MODALWINDOW_CLIENT_BUTTON_LABEL": "SignUp As Client",
@@ -153,7 +154,13 @@
     "ADDRESS_LINE1": "IT Services Private Limited",
     "ADDRESS_LINE2": "Hyderabad , Telangana.",
     "USEFULLINKS": "Useful Links",
+<<<<<<< .mine
+    "SITE_VIEW": "This site's best view in google chrome,microsoft edge and firefox."
+||||||| .r209
+    "SITE_VIEW":"This site's best view in google chrome,microsoft edge and firefox."
+=======
     "SITE_VIEW":"This site's best view in Google Chrome, Microsoft Edge & Firefox."
+>>>>>>> .r215
   },
   "DASHOARD_HEADER": {
     "LOGOUT": "Logout",

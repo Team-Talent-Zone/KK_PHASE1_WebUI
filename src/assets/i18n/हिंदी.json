@@ -1,7 +1,7 @@
 {
   "HOMENAV": {
-    "COMPANYNAMEPART1": "काम",
-    "COMPANYNAMEPART2": "करेगा",
+    "COMPANYNAMEPART1": "Kaam",
+    "COMPANYNAMEPART2": "Karega",
     "ABOUTUS": "About Us",
     "ONBOARD": "Onboarding",
     "SERVICE": "Our Services",
@@ -17,13 +17,14 @@
     "BANNER_4_LABEL_HEADER_PARA_2": "This service connects your business to a nationwide community of skilled workers who thrive on nothing more than to help your business succeed.",
     "BANNER_4_LABEL_HEADER_PARA_3": "Learn more",
     "BANNER_5_HEADER_LABEL": "Be Own Boss and Earn Anywhere, Anytime",
-    "BANNER_5_LABELS_MOB": "We always support skilled workers to make most of the time at the job location on the platform with the largest network of active job opportunities. Get ready to drive with Kaam Karega. Make money when you want, wherever you are.",
+    "BANNER_5_LABELS_MOB": "We always support skilled workers to make most of the time at the job location on the platform with the largest network of active job opportunities. Make money when you want, wherever you are.",
     "BANNER_5_LABELS_WEB": "Opportunities are everywhere. We always support skilled workers to make most of the time at the job location on the platform with the largest network of active job opportunities. Get ready to drive with Kaam Karega. Make money when you want, wherever you are.",
     "BANNER_6_HEADER_LABEL": "Announcing New Makaan Anywhere Service",
-    "BANNER_6_LABELS_MOB": "We're coming as India's first online customized cloud base software solution for the real estate and housing business, owners to maintain and create their IT needs, setup payments operate, and manage. The New Makaan (Apartment) Anywhere Service will be available in mid of this summer 2021.",
-    "BANNER_6_LABELS_WEB": "We're coming as India's first online customized cloud base software solution for the real estate and housing business, owners to maintain and create their IT needs, setup payments operate, and manage. The New Makaan (Apartment) Anywhere Service will be available in mid of this summer 2021.",
+    "BANNER_6_LABELS_MOB": "This mid summer, we're coming as India's first online customized cloud base software solution for the real estate and housing owners to create, maintain and manage their bussines needs.",
+    "BANNER_6_LABELS_WEB": "We're coming as India's first online customized cloud base software solution for the real estate and housing owners to create, maintain and manage their bussines needs. The New Makaan (Apartment) Anywhere Service will be available in mid of this summer 2021.",
     "BANNER_7_HEADER_LABEL": "Kaam Karega in your pocket",
-    "BANNER_7_LABELS_WEB": "Whether you're  company or individual, you can render our services through the mobile channels. As a skilled worker, you can manage your jobs too. Kaam Karega App will be available in mid of this summer 2021 in Andriod and IOS versions at your play store and apple store.",
+    "BANNER_7_LABELS_MOB": "Clients can use our cloud service through the mobile channels. Skilled workers can manage their jobs too. Kaam Karega App in Andriod and IOS versions is available this mid-summer.",
+    "BANNER_7_LABELS_WEB": "Clients can use our cloud service through the mobile channels. Skilled workers can manage their jobs too. Kaam Karega App will be available in mid of this summer 2021 in Andriod and IOS versions at your play store and app store.",
     "SIGNUP_MODALWINDOW_CLIENT_DESC": "We provide you with complete Automated Software Solutions on the Cloud",
     "SIGNUP_MODALWINDOW_SKILLEDWORKER_DESC": "One Stop for all your Skilled Worker Opportunities",
     "SIGNUP_MODALWINDOW_CLIENT_BUTTON_LABEL": "SignUp As Client",
@@ -35,7 +36,7 @@
     "LATESTUPDATE_LINE4": "SignUp is FREE"
   },
   "HOMEWHATWEDO": {
-    "ABOUTUS": "ABOUT KK",
+    "ABOUTUS": "ABOUT Us",
     "WHOWEARE": "Who Are We",
     "WHOWEARE_DETAILS": "Kaam Karega is the prime web-based software offering organization in the market today by improving collaboration & interaction. We change the way you require or render service, providing a scalable and robust platform for your all services. We help organizations and users succeed hand in hand. We also help Skilled Workers to obtain satisfying jobs which help create a reputation in the market and also pay well.",
     "WHATWEDO": "What We Do",
@@ -153,7 +154,7 @@
     "ADDRESS_LINE1": "IT Services Private Limited",
     "ADDRESS_LINE2": "Hyderabad , Telangana.",
     "USEFULLINKS": "Useful Links",
-    "SITE_VIEW":"This site's best view in google chrome,microsoft edge and firefox."
+    "SITE_VIEW": "This site's best view in google chrome,microsoft edge and firefox."
   },
   "DASHOARD_HEADER": {
     "LOGOUT": "Logout",
@@ -183,7 +184,7 @@
     "UPCOMINGJOBS": "Current Jobs",
     "NEWJOBS": "New Jobs",
     "COMPLETEDJOBS": "Completed Jobs",
-    "VOLIATIONJOBS": "violation Jobs",
+    "VOLIATIONJOBS": "Violation Jobs",
     "JOB": "Job",
     "UPCOMINGTOOLTIP": "Estimated Payment Card amount is calculate before 3 days of job start date.",
     "STARTON": "Start Date:",
@@ -305,7 +306,7 @@
     "PAYMENTHIST_TRAN_DATE": "Transaction Date",
     "PAYMENTHIST_STATUS": "Status",
     "PAYMENTHIST_AMOUNT": "Amount",
-    "PAYMENTHIST_NOTES": "Note",
+    "PAYMENTHIST_NOTES": "Note", 
     "PAYMENTHIST_SEARCH": "Search by amount.."
   },
   "FU_REVIEW": {

@@ -1,18 +1,18 @@
 <!-- Top menu -->
 <nav class="navbar navbar-dark fixed-top navbar-expand-md" (scroll)="onWindowScroll($event);" id="navbar">
   <div class="container-fluid">
-      <a class="scroll-link" href="javascript: return false;" onclick="topFunction()">
-        <img src="assets/img/logo-transparent.png" width="70" height="60"
-          class="rounded-circle d-inline-block align-top" alt="Kaam Karega">
-      </a>
-      <span class="logo-title btn" onclick="topFunction()">
-        {{ 'HOMENAV.COMPANYNAMEPART1' | translate }}<span class="logo-u">{{
+    <a class="scroll-link" href="javascript: return false;" onclick="topFunction()">
+      <img src="assets/img/logo-transparent.png" width="70" height="60" class="rounded-circle d-inline-block align-top"
+        alt="Kaam Karega">
+    </a>
+    <span class="logo-title btn" onclick="topFunction()">
+      {{ 'HOMENAV.COMPANYNAMEPART1' | translate }}<span class="logo-u">{{
         'HOMENAV.COMPANYNAMEPART2' | translate }}</span>
-      </span>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="true" aria-label="Toggle navigation" id="navBtn">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+    </span>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="true" aria-label="Toggle navigation" id="navBtn">
+      <span class="navbar-toggler-icon"></span>
+    </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item mr-4">
@@ -96,8 +96,8 @@
         <li class="nav-item dropdown">
           <i class="fa fa-globe" style="color:#FF4949;"> </i>
           <select #langSelect (change)="translateToLanguage(langSelect.value);Removeclass();">
-                <option *ngFor="let lang of translate.getLangs()" [value]="lang"
-                [selected]="lang === translate.currentLang">{{ lang }}</option>
+            <option *ngFor="let lang of translate.getLangs()" [value]="lang"
+              [selected]="lang === translate.currentLang">{{ lang }}</option>
           </select>
         </li>
       </ul>
@@ -149,8 +149,8 @@
     </div>
     <div class="carousel-item">
       <img class="d-block w-100" src="assets/img/backgrounds/ban3.jpg" data-holder-rendered="true">
-      <div class="carousel-caption d-block d-sm-none" style="top: 9%;">
-        <h5 style="font-size: 15px;">{{'HOMENAV.BETTERSERVICECAPTION' | translate}}</h5>
+      <div class="carousel-caption d-block d-sm-none" style="top: 5%;">
+        <span style="font-size:10px">{{'HOMENAV.BETTERSERVICECAPTION' | translate}}</span>
         <p>
           {{'ONBOARD.GRABTHESERVICE1' | translate}}
           <a class="btn-info" href="/home#section-4">
@@ -178,7 +178,7 @@
     <div class="carousel-item">
       <img class="d-block w-100" src="assets/img/backgrounds/ban4.jpg" data-holder-rendered="true">
       <div class="carousel-caption-mob-ban4 d-block d-sm-none">
-        <h5 style="font-size: 25px;">{{'HOMENAV.BANNER_4_LABEL_HEADER' | translate}}</h5>
+        <span style="font-size: 15px;">{{'HOMENAV.BANNER_4_LABEL_HEADER' | translate}}</span>
         <p>
           {{'HOMENAV.BANNER_4_LABEL_HEADER_PARA' | translate}}
         </p>
@@ -210,20 +210,19 @@
 
     <div class="carousel-item">
       <img class="d-block w-100" src="assets/img/backgrounds/ban5.jpg" data-holder-rendered="true">
-      <div class="carousel-caption d-block d-md-none" style="top: 9%;">
-        <h5 style="font-size:20px;">
+      <div class="carousel-caption d-block d-md-none" style="top: 6%;">
+        <h5>
           {{ 'HOMENAV.BANNER_5_HEADER_LABEL' |
           translate }}
         </h5>
         <p>
           {{ 'HOMENAV.BANNER_5_LABELS_MOB' |
               translate }}
-        </p>
-        <a class="btn-warning" href="javascript: return false;" (click)="openSignupModal('fu')">
-          <small>{{ 'HOMENAV.SIGNUP_MODALWINDOW_SKILLEDWORKER_BUTTON_LABEL' |
+          <a class="btn-warning" href="javascript: return false;" (click)="openSignupModal('fu')">
+            <small class="pl-1">{{ 'HOMENAV.SIGNUP_MODALWINDOW_SKILLEDWORKER_BUTTON_LABEL' |
               translate }}</small>
-          <i class="fa fa-forward ml-2" aria-hidden="true"></i>
-        </a>
+            <i class="fa fa-forward ml-2" aria-hidden="true"></i>
+          </a> </p>
       </div>
       <div class="carousel-caption d-md-block d-lg-none d-sm-none">
         <h5 style="font-size: 40px;">
@@ -244,8 +243,8 @@
     </div>
     <div class="carousel-item">
       <img class="d-block w-100" src="assets/img/backgrounds/ban6.jpg" data-holder-rendered="true">
-      <div class="carousel-caption d-block d-sm-none" style="top: 9%;">
-        <h5 style="font-size: 15px;">
+      <div class="carousel-caption d-block d-sm-none" style="top: 6%;">
+        <h5>
           {{ 'HOMENAV.BANNER_6_HEADER_LABEL' |
           translate }}
         </h5>
@@ -268,7 +267,7 @@
       <div class="carousel-caption d-block d-sm-none" style="top: 9%;">
         <h5 style="font-size: 15px;">{{'HOMENAV.BANNER_7_HEADER_LABEL' | translate}}</h5>
         <p>
-          {{'HOMENAV.BANNER_7_LABELS_WEB' | translate}}
+          {{'HOMENAV.BANNER_7_LABELS_MOB' | translate}}
         </p>
       </div>
       <div class="carousel-caption d-md-block d-lg-none d-sm-none">
@@ -349,9 +348,10 @@ Announcement Section
 -->
 <div class="announcement">
   <div class="row">
-    <h2 class="col-8 col-lg-2">{{ 'HOMENAV.LATESTUPADTE' | translate }}</h2>
-    <i class="fa fa-bullhorn fa-2x col-2 col-lg-2 pull-right" style="color:red">
-    </i>
+    <h2 class="col-10 col-lg-4 pull-left">{{ 'HOMENAV.LATESTUPADTE' | translate }}
+      <i class="fa fa-bullhorn fa-1x" style="color:red">
+      </i>
+    </h2>
   </div>
   <p>{{ 'HOMENAV.LATESTUPDATE_LINE1' | translate }}
   </p>
