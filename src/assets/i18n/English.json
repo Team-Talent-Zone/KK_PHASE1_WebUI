@@ -3,7 +3,7 @@
     "COMPANYNAMEPART1": "Kaam",
     "COMPANYNAMEPART2": "Karega",
     "ABOUTUS": "About Us",
-    "ONBOARD": "Onboarding",
+    "ONBOARD": "OnBoarding",
     "SERVICE": "Our Services",
     "PRICING": "Pricing",
     "CONTACTUS": "Contact Us",
@@ -142,7 +142,7 @@
     "AREPAYMENTSSECURE1": "Yes, our online payment gateways is highly secured.",
     "SKILLWORKERTAKINGLONGYIME": "To whom we contact if background verification took longer than expected?",
     "SKILLWORKERTAKINGLONGYIME1": "Please contact our support team or drop an email to support@kaamkarega.in",
-    "DOESKKACCEPTSCASH": "Does KaamKarega accept cash payments from the client , once job is  completed ?",
+    "DOESKKACCEPTSCASH": "Does Kaam Karega accept cash payments from the client , once job is  completed ?",
     "DOESKKACCEPTSCASH1": "No , we do not accept cash payments as per terms of services. User must utilize our secure online payments.",
     "WHATIFSKILLWORKERHASNOTCOMPLETEDPROFILE": "What happens if skilled worker has not completed the profile before onboarding?",
     "WHATIFSKILLWORKERHASNOTCOMPLETEDPROFILE1": "Until the full profile is not completed by skilled worker , we cannot initiate background verification process. Skilled worker can't onboard in the platform."
@@ -153,7 +153,7 @@
     "ADDRESS_LINE1": "IT Services Private Limited",
     "ADDRESS_LINE2": "Hyderabad , Telangana.",
     "USEFULLINKS": "Useful Links",
-    "SITE_VIEW":"This site's best view in google chrome,microsoft edge and firefox."
+    "SITE_VIEW":"This site's best view in Google Chrome, Microsoft Edge & Firefox."
   },
   "DASHOARD_HEADER": {
     "LOGOUT": "Logout",
