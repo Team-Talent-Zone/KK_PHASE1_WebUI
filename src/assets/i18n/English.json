@@ -154,13 +154,7 @@
     "ADDRESS_LINE1": "IT Services Private Limited",
     "ADDRESS_LINE2": "Hyderabad , Telangana.",
     "USEFULLINKS": "Useful Links",
-<<<<<<< .mine
     "SITE_VIEW": "This site's best view in google chrome,microsoft edge and firefox."
-||||||| .r209
-    "SITE_VIEW":"This site's best view in google chrome,microsoft edge and firefox."
-=======
-    "SITE_VIEW":"This site's best view in Google Chrome, Microsoft Edge & Firefox."
->>>>>>> .r215
   },
   "DASHOARD_HEADER": {
     "LOGOUT": "Logout",
