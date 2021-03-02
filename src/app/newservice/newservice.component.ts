@@ -132,12 +132,11 @@ export class NewserviceComponent implements OnInit {
         this.alertService.error(error);
       });
   }
-
   newServiceValidationForm() {
     this.newServiceForm = this.formBuilder.group({
       name: ['', [Validators.required, Validators.maxLength(40)]],
-      description: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9.]+[a-zA-Z0-9. ]+')]],
-      fullContent: ['', [Validators.required, Validators.pattern('[a-zA-Z,]+[a-zA-Z, ]+')]],
+      description: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9.,/\n]+[a-zA-Z0-9.,/\n ]+')]],
+      fullContent: ['', [Validators.required, Validators.pattern('[a-zA-Z,:]+[a-zA-Z,:]+')]],
       validPeriod: ['', [Validators.required]],
       category: ['', [Validators.required]],
       domain: ['', [Validators.required]],

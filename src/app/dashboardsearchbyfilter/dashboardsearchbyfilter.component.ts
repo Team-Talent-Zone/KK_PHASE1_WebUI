@@ -228,8 +228,7 @@ export class DashboardsearchbyfilterComponent implements OnInit {
       (listofusersrvDetails: any) => {
         if (listofusersrvDetails != null) {
           listofusersrvDetails.forEach((element: any) => {
-            if (element.category === config.category_code_FS_S && element.isservicepurchased
-              && this.getDateFormat(element.serviceendon) >= this.getDateFormat(new Date())) {
+            if (element.category.toString() === config.category_code_FS_S.toString() && element.isservicepurchased) {
               this.isfreelancerservicesubscribed = true;
               this.createjobform.patchValue({ serviceId: element.serviceId });
             }
@@ -343,8 +342,6 @@ export class DashboardsearchbyfilterComponent implements OnInit {
     var year = date.getFullYear();
     var tempmonth = date.getMonth() + 1; //getMonth is zero based;
     var tempday = date.getDate();
-    var hr = date.getHours();
-    var tempmin = date.getMinutes();
     var month = tempmonth > 10 ? tempmonth : '0' + tempmonth;
     var day = tempday > 10 ? tempday : '0' + tempday;
     var formatted = year + '-' + month + '-' + day;
