@@ -51,6 +51,8 @@ export class DashboardoffuComponent implements OnInit {
   voliationjobsempty: boolean = false;
   date = new Date();
   modalRef: any;
+  indiaTimeFormat = this.datepipe.transform(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }), "yyyy-MM-dd HH:mm:ss");
+
   constructor(
     public userService: UserService,
     private referService: ReferenceService,
@@ -108,10 +110,10 @@ export class DashboardoffuComponent implements OnInit {
   updateFreelancerAttendance(jobId: number) {
     this.spinnerService.show();
     this.freelanceSvc.getAllFreelanceOnServiceDetailsByJobId(jobId).subscribe((objfreelanceservice: FreelanceOnSvc) => {
-      objfreelanceservice.freelancerjobattendantdate = this.commonlogic.indiaTime.toString();
+      objfreelanceservice.freelancerjobattendantdate = this.datepipe.transform(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }), "dd/MM/yyyy hh:mm:ss").toString();
       this.freelanceSvc.saveOrUpdateFreeLanceOnService(objfreelanceservice).subscribe((updatedobjfreelanceservice: FreelanceOnSvc) => {
         if (updatedobjfreelanceservice.jobId > 0) {
-          this.alertService.success(ConfigMsg.update_attendance_msg + updatedobjfreelanceservice.joblocation + ConfigMsg.on_msg + this.commonlogic.indiaTime.toString());
+          this.alertService.success(ConfigMsg.update_attendance_msg + updatedobjfreelanceservice.joblocation + ConfigMsg.on_msg + this.datepipe.transform(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }), "dd/MM/yyyy hh:mm:ss").toString());
           this.spinnerService.hide();
           this.getUserAllJobDetailsByUserId();
         }
@@ -320,7 +322,7 @@ export class DashboardoffuComponent implements OnInit {
           if (!freelancedetailsbyId.isjobaccepted) {
             freelancedetailsbyId.freelanceuserId = this.userService.currentUserValue.userId;
             freelancedetailsbyId.isjobaccepted = true;
-            freelancedetailsbyId.jobaccepteddate = this.commonlogic.indiaTimeFormat.toString();
+            freelancedetailsbyId.jobaccepteddate = this.datepipe.transform(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }), "yyyy-MM-dd HH:mm:ss").toString();
             this.freelanceSvc.saveOrUpdateFreeLanceOnService(freelancedetailsbyId).subscribe(() => {
               this.referService.translatetext(ConfigMsg.accept_job_msg_4, this.userService.currentUserValue.preferlang).subscribe(
                 (trantxt: any) => {

@@ -11,13 +11,13 @@ export class CommonUtility {
 
     langword: string;
     langcode: string;
-    indiaDate = this.datepipe.transform(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }), "dd/MM/yyyy");
-    indiaTime = this.datepipe.transform(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }), "dd/MM/yyyy hh:mm:ss");
-    indiaTimeFormat = this.datepipe.transform(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }), "yyyy-MM-dd HH:mm:ss");
     configlg: ModalOptions = {
         class: 'modal-lg', backdrop: 'static',
         keyboard: false
     };
+
+    //   indiaTime = this.datepipe.transform(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }), "dd/MM/yyyy hh:mm:ss").toString();
+    //   indiaTimeFormat = this.datepipe.transform(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }), "yyyy-MM-dd HH:mm:ss");
     configmd: ModalOptions = {
         class: 'modal-md',
         backdrop: 'static',
@@ -36,6 +36,7 @@ export class CommonUtility {
     constructor(
         public datepipe: DatePipe,
     ) {
+
     }
     setLangCode(langLabel: string) {
         if (langLabel === config.lang_hindi_word.toString()) {

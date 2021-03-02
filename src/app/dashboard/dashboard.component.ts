@@ -17,6 +17,7 @@ import { ReadMorePopupComponent } from '../read-more-popup/read-more-popup.compo
 import { ConfigMsg } from '../appconstants/configmsg';
 import { MatomoTracker } from 'ngx-matomo';
 import { CommonUtility } from '../adapters/commonutility';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-dashboard',
@@ -49,6 +50,7 @@ export class DashboardComponent implements OnInit {
   notifcationbellList: any = [];
   notificationCount: number;
   isbellenable: boolean = false;
+  indiaDate = this.datepipe.transform(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }), "dd/MM/yyyy");
 
 
   constructor(
@@ -65,6 +67,8 @@ export class DashboardComponent implements OnInit {
     private modalService: BsModalService,
     private matomoTracker: MatomoTracker,
     private commonlogic: CommonUtility,
+    public datepipe: DatePipe,
+
   ) {
     route.params.subscribe(params => {
       this.txtid = params.txtid;

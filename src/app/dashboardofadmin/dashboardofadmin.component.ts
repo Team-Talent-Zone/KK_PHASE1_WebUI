@@ -43,7 +43,7 @@ export class DashboardofadminComponent implements OnInit {
   jobscompletedpayoutpendingList: any = [];
   startdateInputDate: Date;
   startdate: string;
-  
+
 
   listofallvoliationscount: any = [];
   listofallvoliationsskilledworkername: any = [];
@@ -180,13 +180,14 @@ export class DashboardofadminComponent implements OnInit {
           if (element.isjobvoliation && element.isfreelancerjobattendant) {
             this.totalvoliationResolvedList.push(element);
           }
-          if (element.isjobactive && element.isjobaccepted && element.jobacceptdecisionflag && this.getDate(element.jobstartedon) == this.commonlogic.indiaTime.toString() && element.jobaccepteddate != null) {
+          if (element.isjobactive && element.isjobaccepted && element.jobacceptdecisionflag && this.getDate(element.jobstartedon) == this.datepipe.transform(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }), "dd/MM/yyyy hh:mm:ss").toString()
+            && element.jobaccepteddate != null) {
             this.todaysjobscheduledList.push(element);
           }
-          if (element.isjobactive && element.isjobaccepted && element.jobacceptdecisionflag && this.getDate(element.jobstartedon) > this.commonlogic.indiaTime.toString() && element.jobaccepteddate != null && !element.deactivefromupcomingjob) {
+          if (element.isjobactive && element.isjobaccepted && element.jobacceptdecisionflag && this.getDate(element.jobstartedon) > this.datepipe.transform(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }), "dd/MM/yyyy hh:mm:ss").toString() && element.jobaccepteddate != null && !element.deactivefromupcomingjob) {
             this.upcomingjobscheduledList.push(element);
           }
-          if (element.isjobactive && element.isjobaccepted && this.getDate(element.jobstartedon) > this.commonlogic.indiaTime.toString() && element.jobaccepteddate != null
+          if (element.isjobactive && element.isjobaccepted && this.getDate(element.jobstartedon) > this.datepipe.transform(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }), "dd/MM/yyyy hh:mm:ss").toString() && element.jobaccepteddate != null
             && !element.deactivefromupcomingjob && !element.jobacceptdecisionflag) {
             this.skilledworkerjustacceptedList.push(element);
           }
@@ -333,10 +334,10 @@ export class DashboardofadminComponent implements OnInit {
               if (!objfreelanceservice.isjobaccepted) {
                 objfreelanceservice.freelanceuserId = this.fuUserId;
                 objfreelanceservice.isjobaccepted = true;
-                objfreelanceservice.jobaccepteddate = this.commonlogic.indiaTimeFormat.toString();
+                objfreelanceservice.jobaccepteddate = this.datepipe.transform(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }), "yyyy-MM-dd HH:mm:ss");
                 this.freelanceSvc.saveOrUpdateFreeLanceOnService(objfreelanceservice).subscribe((updatedobjfreelanceservice: FreelanceOnSvc) => {
                   if (updatedobjfreelanceservice.jobId > 0) {
-                    this.alertService.success(ConfigMsg.job_assign_msg_1 + jobId + ConfigMsg.job_assign_msg_2 + this.fuFullName + ' on ' + this.commonlogic.indiaTime.toString());
+                    this.alertService.success(ConfigMsg.job_assign_msg_1 + jobId + ConfigMsg.job_assign_msg_2 + this.fuFullName + ' on ' + this.datepipe.transform(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }), "dd/MM/yyyy hh:mm:ss").toString());
                     this.spinnerService.hide();
                     this.isshowfualluser = false;
                     this.dashboardSummaryOfSkilledWorkerSearchService();
@@ -431,7 +432,7 @@ export class DashboardofadminComponent implements OnInit {
                       updatedobjfreelanceservice.jobstartedon = this.startdate.toString();
                       updatedobjfreelanceservice.jobendedon = this.enddatevalue.toString();
                       updatedobjfreelanceservice.freelanceuserId = this.fuUserId;
-                      updatedobjfreelanceservice.jobaccepteddate = this.commonlogic.indiaTimeFormat.toString();
+                      updatedobjfreelanceservice.jobaccepteddate = this.datepipe.transform(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }), "yyyy-MM-dd HH:mm:ss").toString();
                       updatedobjfreelanceservice.associatedadminId = null;
                       updatedobjfreelanceservice.isjobactive = true;
                       updatedobjfreelanceservice.isjobaccepted = true;
@@ -515,7 +516,7 @@ export class DashboardofadminComponent implements OnInit {
       });
   }
   buildendateforvoliationcreatenewjob(event: any) {
-    var selectstdate= event.value;
+    var selectstdate = event.value;
     this.iscreatejobflag = true;
     var totalhours = (this.totalhoursofjob + this.bufferhours);
     var jobEndDate = new Date();

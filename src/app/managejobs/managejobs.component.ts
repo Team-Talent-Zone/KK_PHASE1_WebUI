@@ -133,10 +133,10 @@ export class ManagejobsComponent implements OnInit {
           this.spinnerService.show();
           this.freelanceserviceService.getAllFreelanceOnServiceDetailsByJobId(jobId).subscribe((objfreelanceservice: FreelanceOnSvc) => {
             objfreelanceservice.isfreelancerjobattendant = true;
-            objfreelanceservice.cbajobattendantdate = this.commonlogic.indiaTimeFormat.toString();
+            objfreelanceservice.cbajobattendantdate = this.datepipe.transform(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }), "yyyy-MM-dd HH:mm:ss");
             this.freelanceserviceService.saveOrUpdateFreelancerOnService(objfreelanceservice).subscribe((updatedobjfreelanceservice: FreelanceOnSvc) => {
               if (updatedobjfreelanceservice.jobId > 0) {
-                this.alertService.success(ConfigMsg.job_sw_atlocation + updatedobjfreelanceservice.joblocation + ConfigMsg.on_msg + this.commonlogic.indiaTime.toString());
+                this.alertService.success(ConfigMsg.job_sw_atlocation + updatedobjfreelanceservice.joblocation + ConfigMsg.on_msg + this.datepipe.transform(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }), "dd/MM/yyyy hh:mm:ss").toString());
                 this.spinnerService.hide();
                 this.getUserAllJobDetailsByUserId();
               }
