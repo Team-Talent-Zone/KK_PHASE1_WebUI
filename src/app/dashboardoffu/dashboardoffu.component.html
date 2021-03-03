@@ -158,7 +158,8 @@
                             </h3>
                         </span>
                     </span>
-                    <p style="color: black;"><small>{{ 'DASHBOARD_FU_BODY.LASTUPDATED' | translate }} {{indiaTimeFormat}} {{
+                    <p style="color: black;"><small>{{ 'DASHBOARD_FU_BODY.LASTUPDATED' | translate }}
+                            {{indiaTimeFormat}} {{
                             'DASHBOARD_FU_BODY.MINSAGO' | translate }}</small></p>
                 </div>
             </div>
@@ -297,7 +298,8 @@
                                         <small class="text-muted text-center ">
                                             <p class="text-danger">
                                                 {{ 'DASHBOARD_FU_BODY.CANCELNOTE1' | translate }}
-                                                <b class="pl-1"><u> {{ 'DASHBOARD_FU_BODY.CANCELNOTE2' | translate }} </u></b>
+                                                <b class="pl-1"><u> {{ 'DASHBOARD_FU_BODY.CANCELNOTE2' | translate }}
+                                                    </u></b>
                                             </p>
                                         </small>
                                     </div>
@@ -418,11 +420,11 @@
                                     <p>
                                         <small class="pull-left">
                                             <b>{{ 'DASHBOARD_FU_BODY.STARTON' | translate }} </b>
-                                            <span class="ml-3"> {{element.jobstartedon}}</span>
+                                            <span class="col-3"> {{element.jobstartedon}}</span>
                                         </small>
                                         <small class="pull-left">
                                             <b>{{ 'DASHBOARD_FU_BODY.ENDON' | translate }} </b>
-                                            <span class="ml-4">
+                                            <span class="col-3">
                                                 {{element.jobendedon}}
                                             </span>
                                         </small>
@@ -431,7 +433,9 @@
                                         <small class="pull-left">
                                             <b>{{ 'DASHBOARD_FU_BODY.ACCEPTEDON' | translate }}
                                             </b>
-                                            {{element.jobaccepteddate}}
+                                            <span class="col-3">
+                                                {{element.jobaccepteddate}}
+                                            </span>
                                         </small>
                                     </p>
                                 </div>
