@@ -1,4 +1,4 @@
-<div class="container" *ngIf="!iscreatejobdiv">
+<div *ngIf="!iscreatejobdiv">
     <hr>
     <div>
         <i class="fa fa-info-circle">
@@ -92,28 +92,26 @@
         id="cardview">
         <!-- Freelance Search Section -->
         <section id="team">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-3 col-sm-12 mb-3 mb-md-0" *ngFor="let fuuser of userFUObjList">
-                        <div class="card h-100">
-                            <div class="card-header bg-info">
-                                <span class="fa fa-star" style="color:#0a382b" *ngFor="let i of fuuser.starRate"></span>
-                                <small *ngIf="fuuser.starRate !== null">/ out of 5</small>
-                            </div>
-                            <div class="card-body flex-column text-center">
-                                <h4 *ngIf="this.userService.currentUserValue.userroles.rolecode === 'CLIENT_BUSINESS_ADMINISTRATOR'"
-                                    class="card-title">{{fuuser.fullname}}</h4>
-                                <h4 *ngIf="this.userService.currentUserValue.userroles.rolecode === 'CORE_SERVICE_SUPPORT_TEAM' || this.userService.currentUserValue.userroles.rolecode === 'CORE_SERVICE_SUPPORT_MANAGER'"
-                                    class="card-title">
-                                    <a href="javascript: return false;"
-                                        (click)='this.manageuserComponent.openViewAccountDetailsModal(fuuser.userId)'>
-                                        {{fuuser.fullname}}
-                                    </a>
-                                </h4>
-                                <p><img class="card-img-top img-fluid " src="{{fuuser.avtarurl}}" alt="card image">
-                                </p>
-                               <small>{{fuuser.shortaddress}}</small>
-                            </div>
+            <div class="row">
+                <div class="col-md-3 col-sm-12 mb-3 mb-md-0" *ngFor="let fuuser of userFUObjList">
+                    <div class="card h-100">
+                        <div class="card-header bg-info">
+                            <span class="fa fa-star" style="color:#0a382b" *ngFor="let i of fuuser.starRate"></span>
+                            <small *ngIf="fuuser.starRate !== null">/ out of 5</small>
+                        </div>
+                        <div class="card-body flex-column text-center">
+                            <h4 *ngIf="this.userService.currentUserValue.userroles.rolecode === 'CLIENT_BUSINESS_ADMINISTRATOR'"
+                                class="card-title">{{fuuser.fullname}}</h4>
+                            <h4 *ngIf="this.userService.currentUserValue.userroles.rolecode === 'CORE_SERVICE_SUPPORT_TEAM' || this.userService.currentUserValue.userroles.rolecode === 'CORE_SERVICE_SUPPORT_MANAGER'"
+                                class="card-title">
+                                <a href="javascript: return false;"
+                                    (click)='this.manageuserComponent.openViewAccountDetailsModal(fuuser.userId)'>
+                                    {{fuuser.fullname}}
+                                </a>
+                            </h4>
+                            <p><img class="card-img-top img-fluid " src="{{fuuser.avtarurl}}" alt="card image">
+                            </p>
+                            <small>{{fuuser.shortaddress}}</small>
                         </div>
                     </div>
                 </div>
@@ -155,7 +153,7 @@
 </div>
 
 <!-- Create a New Job  Interface-->
-<div class="row container" *ngIf="userFUObjList.length > 0 && iscreatejobdiv">
+<div class="row" *ngIf="userFUObjList.length > 0 && iscreatejobdiv">
     <div class="col-md-12 mx-auto">
         <form [formGroup]="createjobform" (ngSubmit)="preparetosavefreelanceonservice()">
             <div class="card-header bg-white">
@@ -217,7 +215,7 @@
                             <small>
                                 <i>(yyyy-mm-dd hh:mm)</i>
                                 <p>
-                                    Job start time is default to  <span class="btn-warning">10:00 am</span>
+                                    Job start time is default to <span class="btn-warning">10:00 am</span>
                                 </p>
                             </small>
                         </div>

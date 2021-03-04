@@ -165,6 +165,7 @@ export class HeaderComponent implements OnInit {
                     (trantxt: any) => {
                       element.label = trantxt;
                       this.list.push(element);;
+                      this.list.sort((a, b) => (a.orderid > b.orderid ? 1 : -1));
                     },
                     error => {
                       this.spinnerService.hide();
@@ -174,26 +175,14 @@ export class HeaderComponent implements OnInit {
                 }
                 else {
                   this.list.push(element);
+                  this.list.sort((a, b) => (a.orderid > b.orderid ? 1 : -1));
                 }
               });
             })
           }
         })
       });
-    this.list = this.list.sort(this.alphabeticalSort("label"));
+
   }
-
-  alphabeticalSort = property => {
-    let sortOrder = 1 // Add your logic for asc/desc here
-      , propArr = property.split(".")
-
-    return function (a, b) {
-      if (sortOrder === -1) {
-        return b[propArr[0]][propArr[1]].localeCompare(a[propArr[0]][propArr[1]]);
-      } else {
-        return a[propArr[0]][propArr[1]].localeCompare(b[propArr[0]][propArr[1]]);
-      }
-    };
-  };
 
 }

@@ -64,7 +64,7 @@
 					<div *ngIf="this.userService.currentUserValue != null">
 						<div *ngIf="this.userService.currentUserValue.userroles.rolecode =='FREELANCER_USER'">
 							<div class="address">
-								<h2>{{ 'FOOTER.USEFULLINKS' | translate }}</h2>
+								<h2 class="ml-3">{{ 'FOOTER.USEFULLINKS' | translate }}</h2>
 								<!-- <hr> -->
 								<ul style="list-style: circle;">
 									<li><a [routerLink]="['/_dashboard']" onclick="topFunction()">{{
@@ -85,7 +85,7 @@
 					<div *ngIf="userService.currentUserValue != null">
 						<div *ngIf="userService.currentUserValue.userroles.rolecode =='CLIENT_BUSINESS_ADMINISTRATOR'">
 							<div class="address">
-								<h2>{{ 'FOOTER.USEFULLINKS' | translate }}</h2>
+								<h2 class="ml-3">{{ 'FOOTER.USEFULLINKS' | translate }}</h2>
 								<!-- <hr> -->
 								<ul style="list-style: circle;">
 									<li><a [routerLink]="['/_dashboard']" onclick="topFunction()">Our Services</a>

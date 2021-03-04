@@ -202,6 +202,7 @@ export class SignupComponent implements OnInit {
     this.referencedetailsmapsubcat.forEach(element => {
       if (element.mapId == value) {
         this.referencedetailsmapsubcatselectedmapId.push(element);
+        this.referencedetailsmapsubcatselectedmapId.sort((a, b) => (a.orderid > b.orderid ? 1 : -1));
       }
     });
   }

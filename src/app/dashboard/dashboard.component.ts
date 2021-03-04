@@ -314,6 +314,7 @@ export class DashboardComponent implements OnInit {
             elementcategory.referencelookupmapping.forEach(elementlookupmapping => {
               elementlookupmapping.referencelookupmappingsubcategories.forEach(element => {
                 this.list.push(element);
+                this.list.sort((a, b) => (a.orderid > b.orderid ? 1 : -1));
               });
             })
           }
