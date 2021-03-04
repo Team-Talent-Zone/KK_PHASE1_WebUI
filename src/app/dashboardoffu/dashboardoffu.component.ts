@@ -270,16 +270,16 @@ export class DashboardoffuComponent implements OnInit {
     }
   }
 
-  accept(jobId: number) {
+  accept(jobId: number , tofreelanceamount: string , tocompanyamount: string) {
     this.spinnerService.show();
     this.getUserAllJobDetailsByUserId();
     setTimeout(() => {
       this.spinnerService.show();
-      this.preparetoacceptjob(jobId);
+      this.preparetoacceptjob(jobId , tofreelanceamount , tocompanyamount);
     }, 4000);
   }
 
-  private preparetoacceptjob(jobId: number) {
+  private preparetoacceptjob(jobId: number , tofreelanceamount: string , tocompanyamount: string) {
     if (this.listOfVolidationJobs != null && this.listOfVolidationJobs.length > 0) {
       this.referService.translatetext(ConfigMsg.accept_job_msg_1, this.userService.currentUserValue.preferlang).subscribe(
         (trantxt: any) => {
@@ -322,6 +322,8 @@ export class DashboardoffuComponent implements OnInit {
           if (!freelancedetailsbyId.isjobaccepted) {
             freelancedetailsbyId.freelanceuserId = this.userService.currentUserValue.userId;
             freelancedetailsbyId.isjobaccepted = true;
+            freelancedetailsbyId.tocompanyamount = tocompanyamount;
+            freelancedetailsbyId.tofreelanceamount = tofreelanceamount;
             freelancedetailsbyId.jobaccepteddate = this.datepipe.transform(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }), "yyyy-MM-dd HH:mm:ss").toString();
             this.freelanceSvc.saveOrUpdateFreeLanceOnService(freelancedetailsbyId).subscribe(() => {
               this.referService.translatetext(ConfigMsg.accept_job_msg_4, this.userService.currentUserValue.preferlang).subscribe(

@@ -323,7 +323,7 @@
                             <div class="card card-flip h-100 ">
                                 <div class="card-header text-white bg-secondary">
                                     <p> <b>{{ 'DASHBOARD_FU_BODY.JOB' | translate }}#{{element.jobId}} </b>
-                                        <button class="bg-success pull-right" (click)="accept(element.jobId)"
+                                        <button class="bg-success pull-right" (click)="accept(element.jobId , element.tofreelanceamount , element.tocompanyamount )"
                                             style="font-size:14px">{{
                                             'DASHBOARD_FU_BODY.ACCEPTJOBBUTTON' | translate }}
                                             <i class="fa fa-play"></i></button>

@@ -38,9 +38,9 @@ export class AppComponent implements OnInit, OnDestroy {
         }
       }
     });
-  }*/
+  }
 
-  /*@HostListener('window:beforeunload', ['$event'])
+  @HostListener('window:beforeunload', ['$event'])
   unloadHandler(event){
     this.userService.logout();
   }*/

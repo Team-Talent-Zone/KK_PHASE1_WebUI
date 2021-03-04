@@ -21,8 +21,8 @@
             <div class="card-body py-md-4">
                 <small>
                     <form [formGroup]="bgverificationForm" (ngSubmit)="preparebgverfiDetailstoSave()">
-                        <div class="form-group col-md-12"
-                            *ngIf="userService.currentUserValue.userroles.rolecode == 'CORE_SERVICE_SUPPORT_MANAGER'">
+                        <div class="form-group"
+                            *ngIf="this.userService.currentUserValue.userroles.rolecode == 'CORE_SERVICE_SUPPORT_MANAGER'">
                             <select #sel class="form-control" formControlName="bgstatus"
                                 [ngClass]="{ 'is-invalid': issubmit && f.bgstatus.errors }">
                                 <option value="">--Select Decision --</option>

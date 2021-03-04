@@ -160,8 +160,6 @@ export class ManagejobsComponent implements OnInit {
           this.spinnerService.show();
           this.freelanceserviceService.getAllFreelanceOnServiceDetailsByJobId(jobId).subscribe((objfreelanceservice: FreelanceOnSvc) => {
             objfreelanceservice.isjobactive = true;
-            objfreelanceservice.tocompanyamount = element.tocompanyamount;
-            objfreelanceservice.tofreelanceamount = element.tofreelanceamount;
             objfreelanceservice.isfreelancerjobattendant = false;
             objfreelanceservice.isjobvoliation = false;
             this.freelanceserviceService.saveOrUpdateFreelancerOnService(objfreelanceservice).subscribe((updatedobjfreelanceservice: FreelanceOnSvc) => {

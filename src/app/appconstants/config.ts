@@ -49,7 +49,7 @@ export const config = {
   imgtype_jpeg: 'image/jpeg',
   imgtype_jpg: 'image/jpg',
   imgtype_pdf: 'application/pdf',
-  imgtype_zip: 'application/x-zip-compressed',
+  imgtype_zip: 'application/zip',
   GOOGLE_MAPS_API_KEY: 'AIzaSyBDDFawIBF3roB7RB1lI7g1D6qbn2e6oB4',
   newservice_code_senttocssm: 'SENT_TO_CSSM',
   newservice_code_senttocsst: 'SENT_TO_CSST',
