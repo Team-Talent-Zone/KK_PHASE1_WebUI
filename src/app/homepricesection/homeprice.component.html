@@ -43,7 +43,7 @@
   <!-- Pricing -->
   <div class="section-5-container price-bg" *ngIf="listofAllIndividualServices.length > 0">
     <div class="container-fluid">
-      <h1 align="center">{{ 'PRICE.TITLE' | translate }}</h1>
+      <h1 class="text-center">{{ 'PRICE.TITLE' | translate }}</h1>
       <div class="divider-1 wow fadeInUp text-center"><span></span></div>
       <div class="row text-center">
         <div class="col-md-12 col-xl-12 mx-auto text-center">
@@ -62,7 +62,7 @@
           <div class="tab-content" style="padding: 18px;">
             <div class="tab-pane fade show active" id="monthly">
               <div class="card-body Card-Body-1" *ngIf="listofAllIndividualServices != null" role="tabpanel"
-                aria-labelledby="headingOne" data-parent="#accordion" >
+                aria-labelledby="headingOne" data-parent="#accordion">
                 <div class="card-deck">
                   <div class="col-md-3" style="margin-bottom:8px !important"
                     *ngFor="let svc of listofAllIndividualServices;index as i">
@@ -75,7 +75,9 @@
                           </h6>
                         </a>
                       </div>
-                      <img class="card-img-top center" src={{svc.imgurl}} style="width: 14rem; height: 11rem;">
+                      <a style="cursor:pointer" (click)="openReadMorePopup(svc.description , svc.name, null)">
+                        <img class="card-img-top center" src={{svc.imgurl}} style="width: 14rem; height: 11rem;">
+                      </a>
                       <div class="card-body d-flex flex-column">
                         <div class="card-title">
                           <span class="display-4"><i class="fa fa-inr"></i>{{svc.amount}}</span>
@@ -109,7 +111,9 @@
                           </h6>
                         </a>
                       </div>
-                      <img class="card-img-top center" src={{svc.imgurl}} style="width: 14rem; height: 11rem;">
+                      <a style="cursor:pointer"  (click)="openReadMorePopup(svc.description , svc.name, null)">
+                        <img class="card-img-top center" src={{svc.imgurl}} style="width: 14rem; height: 11rem;">
+                      </a>
                       <div class="card-body d-flex flex-column">
                         <div class="card-title">
                           <span class="display-4"><i class="fa fa-inr"></i>{{svc.amount}}</span>
@@ -150,13 +154,15 @@
                     <div class="card text-center h-100" *ngIf="i<=3">
                       <div class="card-header header-bg">
                         <a style="cursor:pointer;border-bottom: 0px dotted red;color: white;" title="{{svc.name}}"
-                        (click)="openReadMorePopup(svc.description , svc.name, null)">
-                        <h6>
-                          {{svc.name}}
-                        </h6>
-                      </a>
+                          (click)="openReadMorePopup(svc.description , svc.name, null)">
+                          <h6>
+                            {{svc.name}}
+                          </h6>
+                        </a>
                       </div>
-                      <img class="card-img-top center" src={{svc.imgurl}} style="width: 14rem; height: 11rem;">
+                      <a style="cursor:pointer"  (click)="openReadMorePopup(svc.description , svc.name, null)">
+                        <img class="card-img-top center" src={{svc.imgurl}} style="width: 14rem; height: 11rem;">
+                      </a>
                       <div class="card-body d-flex flex-column">
                         <div class="card-title">
                           <span class="display-4"><i class="fa fa-inr"></i>{{svc.amount}}</span>
@@ -184,13 +190,15 @@
                     <div class="card text-center h-100" *ngIf="i>2">
                       <div class="card-header header-bg">
                         <a style="cursor:pointer;border-bottom: 0px dotted red;color: white;" title="{{svc.name}}"
-                        (click)="openReadMorePopup(svc.description , svc.name, null)">
-                        <h6>
-                          {{svc.name}}
-                        </h6>
-                      </a>
+                          (click)="openReadMorePopup(svc.description , svc.name, null)">
+                          <h6>
+                            {{svc.name}}
+                          </h6>
+                        </a>
                       </div>
-                      <img class="card-img-top center" src={{svc.imgurl}} style="width: 14rem; height: 11rem;">
+                      <a style="cursor:pointer"   (click)="openReadMorePopup(svc.description , svc.name, null)">
+                        <img class="card-img-top center" src={{svc.imgurl}} style="width: 14rem; height: 11rem;">
+                      </a>
                       <div class="card-body d-flex flex-column">
                         <div class="card-title">
                           <span class="display-4"><i class="fa fa-inr"></i>{{svc.amount}}</span>
