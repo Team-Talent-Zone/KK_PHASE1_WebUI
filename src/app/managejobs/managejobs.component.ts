@@ -366,4 +366,25 @@ export class ManagejobsComponent implements OnInit {
     ));
   }
 
+  openWorkingHours(jobId: number) {
+    this.freelanceserviceService.getAllFreelanceOnServiceDetailsByJobId(jobId).subscribe((objfreelanceservice: FreelanceOnSvc) => {
+      this.commonlogic.buildEndDateOfJob(objfreelanceservice.totalhoursofjob, new Date(objfreelanceservice.jobstartedon));
+      setTimeout(() => {
+        const initialState = {
+          workinghourslist: this.commonlogic.workinghourslist
+        };
+        this.modalRef = this.modalService.show(ReadMorePopupComponent, Object.assign(
+          {},
+          this.commonlogic.configmdwithoutanimation,
+          {
+            initialState
+          }
+        ));
+      }, 400);
+    },
+      error => {
+        this.spinnerService.hide();
+        this.alertService.error(error);
+      });
+  }
 }

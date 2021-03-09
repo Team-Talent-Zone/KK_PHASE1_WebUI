@@ -9,6 +9,7 @@ import { AlertsService } from '../AppRestCall/alerts/alerts.service';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { ConfirmationDialogService } from '../AppRestCall/confirmation/confirmation-dialog.service';
 import { ConfigMsg } from '../appconstants/configmsg';
+import { DashboardofcbaComponent } from '../dashboardofcba/dashboardofcba.component';
 
 @Component({
   selector: 'app-userservicecart',
@@ -32,7 +33,8 @@ export class UserservicecartComponent implements OnInit {
     private referService: ReferenceService,
     private alertService: AlertsService,
     private modalService: BsModalService,
-    public confirmationDialogService: ConfirmationDialogService
+    public confirmationDialogService: ConfirmationDialogService,
+    public dashboarcba : DashboardofcbaComponent
   ) {
   }
 

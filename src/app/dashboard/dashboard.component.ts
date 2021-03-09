@@ -52,7 +52,6 @@ export class DashboardComponent implements OnInit {
   isbellenable: boolean = false;
   indiaDate = this.datepipe.transform(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }), "dd/MM/yyyy");
 
-
   constructor(
     public userService: UserService,
     private router: Router,

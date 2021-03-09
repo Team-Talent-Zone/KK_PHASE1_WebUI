@@ -12,7 +12,8 @@ export class ReadMorePopupComponent implements OnInit {
   @Input() headerlabel: string;
   @Input() contentList: any;
   @Input() notificationEnable: boolean;
-
+  @Input() workinghourslist: any;
+  
   constructor(
     public modalRef: BsModalRef,
   ) { }

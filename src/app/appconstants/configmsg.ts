@@ -3,12 +3,12 @@ export const ConfigMsg = {
     /**
      * Home page
      */
-    covid_alert_header_en:"COVID ALERT",
-    covid_alert_en:"We strictly follow the COVID rules & regulations. We encourage our clients & skilled workers to follow the goverment rules.",
-    covid_alert_header_te:"కోవిడ్ హెచ్చరిక",
-    covid_alert_te:"మేము కోవిడ్ నిబంధనలను అనుసరిస్తాము మరియు మీ క్లయింట్లు మరియు కార్మికులను ప్రభుత్వ నియమాలను పాటించమని ప్రోత్సహిస్తాము.",
-    covid_alert_header_hi:"कोविड चेतावनी",
-    covid_alert_hi:"हम कोविद नियमों का पालन करते हैं और अपने ग्राहकों और श्रमिकों को सरकारी नियमों का पालन करने के लिए प्रोत्साहित करते हैं।",
+    covid_alert_header_en: "COVID ALERT",
+    covid_alert_en: "We strictly follow the COVID rules & regulations. We encourage our clients & skilled workers to follow the goverment rules.",
+    covid_alert_header_te: "కోవిడ్ హెచ్చరిక",
+    covid_alert_te: "మేము కోవిడ్ నిబంధనలను అనుసరిస్తాము మరియు మీ క్లయింట్లు మరియు కార్మికులను ప్రభుత్వ నియమాలను పాటించమని ప్రోత్సహిస్తాము.",
+    covid_alert_header_hi: "कोविड चेतावनी",
+    covid_alert_hi: "हम कोविद नियमों का पालन करते हैं और अपने ग्राहकों और श्रमिकों को सरकारी नियमों का पालन करने के लिए प्रोत्साहित करते हैं।",
 
     /**
      * Signup Section Messages
@@ -120,9 +120,10 @@ export const ConfigMsg = {
     confirmation_msg_jobattendance: "Your confirming that our skilled worker at the job location ?",
     job_canclled_msg: " is cancelled.",
     feedback_msg: "Thank you for the feedback.",
-    remove_cart_msg:"Do you want to remove this item ?",
-    publish_msg_1:"To Publish , Please Complete The Profile . Go To Edit Profile",
-    publish_msg_2:"Published Succesfully. Your site Is Activated",
+    remove_cart_msg: "Do you want to remove this item ?",
+    publish_msg_1: "To Publish , Please Complete The Profile . Go To Edit Profile",
+    publish_msg_2: "Published Succesfully. Your site Is Activated",
+
     /**
      * Dashboard Administrator - Messages
      * 
@@ -154,15 +155,16 @@ export const ConfigMsg = {
     newservice_msg_1: "New Image Uploaded . Please go to platform to check",
     newservice_msg_2: "No New Changes Made",
     newservice_msg_3: "Due to huge old existing context.( We avoid display) .",
-    no_document_msg:"No Documents Uploaded",
-    document_msg_1:"Additional Doc Uploaded and Sent background verification to ",
-    bg_sent_manager_msg_1:" Sent background verification to your manager ",
-    bg_completed:" Background verification is completed successfully.",
-    bg_verificaton_back:"Background verification sent back to ",
-    invalid_format_pdf:"Invalid file format. it should be .pdf,.zip",
-    file_size_msg:"File size must be less than 2 Mega Bytes",
-    new_serivce_review_msg_1:"Changes done succcesfully with status ",
-    new_serivce_review_msg_2:"Changes done succcesfully",
+    no_document_msg: "No Documents Uploaded",
+    document_msg_1: "Additional Doc Uploaded and Sent background verification to ",
+    bg_sent_manager_msg_1: " Sent background verification to your manager ",
+    bg_completed: " Background verification is completed successfully.",
+    bg_verificaton_back: "Background verification sent back to ",
+    invalid_format_pdf: "Invalid file format. it should be .pdf,.zip",
+    file_size_msg: "File size must be less than 2 Mega Bytes",
+    new_serivce_review_msg_1: "Changes done succcesfully with status ",
+    new_serivce_review_msg_2: "Changes done succcesfully",
+    job_startdate_msg: "Appointment time can be scheduled only between 10:00 AM - 4:59 PM",
     /***
      * In genertic - Messages
      */
@@ -179,9 +181,9 @@ export const ConfigMsg = {
      * Payment Messages
      */
     mobile_msg: "Enter Mobile number",
-    mobile_msg_1:"Mobile number must be 10 digits",
-    mobile_msg_2:"Enter only digits",
-    
+    mobile_msg_1: "Mobile number must be 10 digits",
+    mobile_msg_2: "Enter only digits",
+
     /***
      * Pre Production Change
      */

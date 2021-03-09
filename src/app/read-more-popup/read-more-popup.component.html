@@ -40,3 +40,29 @@
     </div>
   </div>
 </div>
+
+<!-- Working Hours-->
+<div *ngIf="workinghourslist != null && !notificationEnable">
+  <div class="modal-header">
+    <h4 class="modal-title">{{ 'DASHOARD_FU_MENU.WORKING_HOURS' | translate }}</h4>
+    <button type="button" class="btn btn-sm btn-danger pull-right" (click)="modalRef.hide()">&times;</button>
+  </div>
+  <div class="modal-body">
+    <small>
+      <table class="table borderless col-8">
+        <thead>
+            <tr>
+                <th>{{ 'DASHOARD_FU_MENU.WORKING_START_TIME' | translate }}</th>
+                <th>{{ 'DASHOARD_FU_MENU.WORKING_END_TIME' | translate }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of this.workinghourslist">
+                <td>{{item.fromDate}} </td>
+                <td>{{item.toDate}} </td>
+            </tr>
+        </tbody>
+    </table>
+    </small>
+  </div>
+</div>

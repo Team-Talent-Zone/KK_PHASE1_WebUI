@@ -14,7 +14,9 @@
     <button type="button" onclick="offcanvas()" class="hidden-sm-up navbar-toggler" data-toggle="offcanvas">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="col-lg-6"></div>
+    <div class="col-lg-6">
+    </div>
+
     <div class="navbar-collapse collapse" id="collapsingNavbar" style="padding:10px;"
         *ngIf="this.userService.currentUserValue.userroles.rolecode !== 'FREELANCER_USER' && this.userService.currentUserValue.userroles.rolecode !== 'DIRECTORS'">
         <div class="row col-12">
@@ -25,7 +27,7 @@
                     [ngClass]="{'error': showError}">
                 <div class="col-11 combobox-options dropdown1" *ngIf="!listHidden">
                     <list-item class="nav-link rounded-pill" *ngFor="let item of filteredList;let i = index"
-                        (click)="selectItem(i)" [ngClass]="{'selected': i===selectedIndex}">
+                        (click)="selectItem(i)"  [ngClass]="{'selected': i===selectedIndex}">
                         <small>{{item.label}}</small>
                     </list-item>
                 </div>

@@ -15,6 +15,7 @@ import { Router } from '@angular/router';
 import { ReadMorePopupComponent } from '../read-more-popup/read-more-popup.component';
 import { DatePipe } from '@angular/common';
 import { CommonUtility } from '../adapters/commonutility';
+import { FreelanceserviceService } from '../AppRestCall/freelanceservice/freelanceservice.service';
 
 @Component({
   selector: 'app-dashboardoffu',
@@ -63,7 +64,9 @@ export class DashboardoffuComponent implements OnInit {
     private router: Router,
     public datepipe: DatePipe,
     public confirmationDialogService: ConfirmationDialogService,
-    public commonlogic: CommonUtility
+    public commonlogic: CommonUtility,
+    private freelanceserviceService: FreelanceserviceService,
+
   ) {
   }
 
@@ -270,16 +273,16 @@ export class DashboardoffuComponent implements OnInit {
     }
   }
 
-  accept(jobId: number , tofreelanceamount: string , tocompanyamount: string) {
+  accept(jobId: number, tofreelanceamount: string, tocompanyamount: string) {
     this.spinnerService.show();
     this.getUserAllJobDetailsByUserId();
     setTimeout(() => {
       this.spinnerService.show();
-      this.preparetoacceptjob(jobId , tofreelanceamount , tocompanyamount);
+      this.preparetoacceptjob(jobId, tofreelanceamount, tocompanyamount);
     }, 4000);
   }
 
-  private preparetoacceptjob(jobId: number , tofreelanceamount: string , tocompanyamount: string) {
+  private preparetoacceptjob(jobId: number, tofreelanceamount: string, tocompanyamount: string) {
     if (this.listOfVolidationJobs != null && this.listOfVolidationJobs.length > 0) {
       this.referService.translatetext(ConfigMsg.accept_job_msg_1, this.userService.currentUserValue.preferlang).subscribe(
         (trantxt: any) => {
@@ -437,6 +440,28 @@ export class DashboardoffuComponent implements OnInit {
         initialState
       }
     ));
+  }
+
+  openWorkingHours(jobId: number) {
+    this.freelanceserviceService.getAllFreelanceOnServiceDetailsByJobId(jobId).subscribe((objfreelanceservice: FreelanceOnSvc) => {
+      this.commonlogic.buildEndDateOfJob(objfreelanceservice.totalhoursofjob, new Date(objfreelanceservice.jobstartedon));
+      setTimeout(() => {
+        const initialState = {
+          workinghourslist: this.commonlogic.workinghourslist
+        };
+        this.modalRef = this.modalService.show(ReadMorePopupComponent, Object.assign(
+          {},
+          this.commonlogic.configmdwithoutanimation,
+          {
+            initialState
+          }
+        ));
+      }, 400);
+    },
+      error => {
+        this.spinnerService.hide();
+        this.alertService.error(error);
+      });
   }
 
 

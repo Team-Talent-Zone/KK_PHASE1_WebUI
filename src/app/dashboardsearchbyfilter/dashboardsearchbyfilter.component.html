@@ -9,7 +9,7 @@
             click on create job button.</small>
         <form [formGroup]="searchform" (ngSubmit)="searchByFilterFreelancer()">
             <div class="form-row">
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-5">
                     <span>
                         <i class="fa fa-calendar form-control-icon"></i>
                     </span>
@@ -21,9 +21,9 @@
                         <div *ngIf="s.startdate.errors.required">Appointment Date is required
                         </div>
                     </div>
-                    <owl-date-time [pickerType]="'calendar'" #dt1></owl-date-time>
+                    <owl-date-time #dt1></owl-date-time>
                     <small class="text-muted">
-                        You can make appointment piror 10 days.
+                        You can make appointment piror 10 days between 10:00 AM - 4:59 PM
                     </small>
                 </div>
                 <div class="form-group col-md-4">
@@ -211,13 +211,9 @@
                             <span>
                                 <i class="fa fa-calendar   form-control-icon"></i>
                             </span>
-                            <input formControlName="jobstartedon" class="form-control" readonly>
-                            <small>
-                                <i>(yyyy-mm-dd hh:mm)</i>
-                                <p>
-                                    Job start time is default to <span class="btn-warning">10:00 am</span>
-                                </p>
-                            </small>
+                            <input formControlName="jobstartedon"
+                                [ngModel]="this.commonlogic.getIndianDateFormat(startdate)" class="form-control"
+                                readonly>
                         </div>
                         <div class="col-md-5">
                             <label><b>Job End Date</b>&nbsp;
@@ -225,17 +221,35 @@
                             <span>
                                 <i class="fa fa-calendar form-control-icon"></i>
                             </span>
-                            <input readonly formControlName="jobendedon" class="form-control">
+                            <input *ngIf="enddatevalue != null" readonly formControlName="jobendedon"
+                                [ngModel]="this.commonlogic.getIndianDateFormat(enddatevalue)" class="form-control">
                             <small *ngIf="enddatevalue != null">
-                                <i>(yyyy-mm-dd hh:mm)</i>
                                 <p>
-                                    Our auto estimated job end date & time : <span
+                                    Estimated job end date & time : <span
                                         class="btn-warning">{{this.commonlogic.getIndianDateFormat(enddatevalue)}}</span>
                                 </p>
-                                <p>
+                                <h6 *ngIf="this.commonlogic.workinghourslist != null && this.commonlogic.workinghourslist.length > 0">Working Hours</h6>
+                                <div class="row" *ngIf="this.commonlogic.workinghourslist != null && this.commonlogic.workinghourslist.length > 0">
+                                    <table class="table borderless col-8">
+                                        <thead>
+                                            <tr>
+                                                <th>Work Start Time</th>
+                                                <th>Work Ended Time</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let item of this.commonlogic.workinghourslist">
+                                                <td>{{item.fromDate}} </td>
+                                                <td>{{item.toDate}} </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                                <!-- <p>
                                     We add an additional one hour buffer time to the job end date and time.
                                     (Incase the skilled worker has a trouble to reach at the job location.)
-                                </p>
+                                </p> -->
                             </small>
                         </div>
                     </div>
@@ -258,19 +272,21 @@
                                 </div>
                             </div>
                             <p *ngIf=" avgHourlyRate != null">
-                                <small *ngIf="avgHourlyRate != maxHourlyRateCal">As per our auto estimator system, the
-                                    amount must in between [{{avgHourlyRate | currency:"INR₹"}} and
-                                    {{maxHourlyRateCal | currency:"INR₹"}}]
+                                <small *ngIf="avgHourlyRate != maxHourlyRateCal"> Estimated
+                                    amount must in between <span
+                                        class="btn-warning">[{{avgHourlyRate | currency:"INR₹"}} and
+                                        {{maxHourlyRateCal | currency:"INR₹"}}]</span>
                                     <p>
-                                        Estimate rates is based on the total hours entered. (i.e for {{totalhoursofjob}}
+                                        Estimate amount is based on the total hours entered. (i.e for
+                                        {{totalhoursofjob}}
                                         hours only).
                                     </p>
                                 </small>
                                 <small *ngIf="avgHourlyRate == maxHourlyRateCal">
-                                    As per our auto estimator system, the amount can be or more than
-                                    [{{avgHourlyRate | currency:"INR₹"}}]
+                                    Estimated amount can be or more than
+                                    <span class="btn-warning">[{{avgHourlyRate | currency:"INR₹"}}]</span>
                                     <p>
-                                        Estimate rates is based on the total hours entered. (i.e for
+                                        Estimate amount is based on the total hours entered. (i.e for
                                         {{totalhoursofjob }}
                                         hours only).
                                     </p>
@@ -283,7 +299,7 @@
                                 <i class="fa fa-at form-control-icon"></i>
                             </span>
                             <textarea class="form-control" formControlName="jobdescription" rows="5" id="input5"
-                                placeholder="Enter Job Description"
+                                placeholder="Enter Job Description To Perform"
                                 [ngClass]="{ 'is-invalid': issubmit && f.jobdescription.errors }"></textarea>
                             <div *ngIf="issubmit && f.jobdescription.errors" class="invalid-feedback">
                                 <div *ngIf="f.jobdescription.errors.required">Job description is

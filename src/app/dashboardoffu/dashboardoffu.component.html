@@ -281,11 +281,14 @@
                                     </p>
                                     <p>
                                         <small class="pull-left">
-                                            <b>{{ 'DASHBOARD_FU_BODY.TOTAL_HOURSOFWORK' | translate }}</b>
-                                            {{element.totalhoursofjob}}
+                                            <a style="cursor:pointer; border-bottom: 1px dotted darkgreen;"
+                                                (click)="openWorkingHours(element.jobId)">
+                                                <b>{{ 'DASHBOARD_FU_BODY.TOTAL_HOURSOFWORK' | translate }}</b>
+                                                {{element.totalhoursofjob}}
+                                            </a>
                                         </small>
                                     </p>
-                                    <div class="tooltips">
+                                    <div class="tooltips pull-right">
                                         <a style="cursor:pointer"
                                             (click)="openReadMorePopup(element.jobdescription)"><i>
                                                 {{ 'DASHBOARD_FU_BODY.JOBDESCPTION' | translate }}</i></a>
@@ -323,7 +326,8 @@
                             <div class="card card-flip h-100 ">
                                 <div class="card-header text-white bg-secondary">
                                     <p> <b>{{ 'DASHBOARD_FU_BODY.JOB' | translate }}#{{element.jobId}} </b>
-                                        <button class="bg-success pull-right" (click)="accept(element.jobId , element.tofreelanceamount , element.tocompanyamount )"
+                                        <button class="bg-success pull-right"
+                                            (click)="accept(element.jobId , element.tofreelanceamount , element.tocompanyamount )"
                                             style="font-size:14px">{{
                                             'DASHBOARD_FU_BODY.ACCEPTJOBBUTTON' | translate }}
                                             <i class="fa fa-play"></i></button>
@@ -371,11 +375,14 @@
                                     </p>
                                     <p>
                                         <small class="pull-left">
-                                            <b>{{ 'DASHBOARD_FU_BODY.TOTAL_HOURSOFWORK' | translate }}</b>
-                                            {{element.totalhoursofjob}}
+                                            <a style="cursor:pointer; border-bottom: 1px dotted darkgreen;"
+                                                (click)="openWorkingHours(element.jobId)">
+                                                <b>{{ 'DASHBOARD_FU_BODY.TOTAL_HOURSOFWORK' | translate }}</b>
+                                                {{element.totalhoursofjob}}
+                                            </a>
                                         </small>
                                     </p>
-                                    <div class="tooltips">
+                                    <div class="tooltips pull-right">
                                         <a style="cursor:pointer"
                                             (click)="openReadMorePopup(element.jobdescription)"><i>
                                                 {{ 'DASHBOARD_FU_BODY.JOBDESCPTION' | translate }}</i></a>
@@ -469,12 +476,15 @@
 
                                     <p>
                                         <small class="pull-left">
-                                            <b>{{ 'DASHBOARD_FU_BODY.TOTAL_HOURSOFWORK' | translate }}</b>
-                                            {{element.totalhoursofjob}}
+                                            <a style="cursor:pointer; border-bottom: 1px dotted darkgreen;"
+                                                (click)="openWorkingHours(element.jobId)">
+                                                <b>{{ 'DASHBOARD_FU_BODY.TOTAL_HOURSOFWORK' | translate }}</b>
+                                                {{element.totalhoursofjob}}
+                                            </a>
                                         </small>
                                     </p>
 
-                                    <div class="tooltips">
+                                    <div class="tooltips pull-right">
                                         <a style="cursor:pointer"
                                             (click)="openReadMorePopup(element.jobdescription)"><i>
                                                 {{ 'DASHBOARD_FU_BODY.JOBDESCPTION' | translate }}</i></a>
@@ -553,11 +563,14 @@
                                     </p>
                                     <p>
                                         <small class="pull-left">
-                                            <b>{{ 'DASHBOARD_FU_BODY.TOTAL_HOURSOFWORK' | translate }}</b>
-                                            {{element.totalhoursofjob}}
+                                            <a style="cursor:pointer; border-bottom: 1px dotted darkgreen;"
+                                                (click)="openWorkingHours(element.jobId)">
+                                                <b>{{ 'DASHBOARD_FU_BODY.TOTAL_HOURSOFWORK' | translate }}</b>
+                                                {{element.totalhoursofjob}}
+                                            </a>
                                         </small>
                                     </p>
-                                    <div class="tooltips">
+                                    <div class="tooltips pull-right">
                                         <a style="cursor:pointer"
                                             (click)="openReadMorePopup(element.jobdescription)"><i>
                                                 {{ 'DASHBOARD_FU_BODY.JOBDESCPTION' | translate }}</i></a>

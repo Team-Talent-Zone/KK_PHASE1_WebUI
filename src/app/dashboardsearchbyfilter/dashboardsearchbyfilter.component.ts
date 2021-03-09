@@ -65,7 +65,7 @@ export class DashboardsearchbyfilterComponent implements OnInit {
 
   maxHourlyRateCal: number;
 
-  bufferhours: number = 1;
+  bufferhours: number = 0;
   increaseminpercentage: number = 0.2;
   increasemaxpercentage: number = 0.2;
 
@@ -106,8 +106,8 @@ export class DashboardsearchbyfilterComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.minstartDate.setTime(this.minstartDate.getTime() + (0 * 60 * 60 * 1000));
-    this.maxstartDate.setTime(this.maxstartDate.getTime() + (240 * 60 * 60 * 1000));
+    this.minstartDate = this.setDefaultTimeForStartDate(new Date(this.minstartDate.getTime() + (12 * 60 * 60 * 1000)));
+    this.maxstartDate = this.setDefaultTimeForEndDate(new Date(this.maxstartDate.getTime() + (240 * 60 * 60 * 1000)));
     this.isfreelancerservicesubscribed = false;
     this.searchResults(null);
     this.createFormValidation();
@@ -278,11 +278,18 @@ export class DashboardsearchbyfilterComponent implements OnInit {
   setDefaultTimeForStartDate(st: Date) {
     st.setDate(st.getDate());
     var dd = st.getDate();
-    var mm = st.getMonth() + 1;
+    var mm = st.getMonth();
     var y = st.getFullYear();
-    var startDtFmt = mm + '/' + dd + '/' + y + ' 10:00';
-    st = new Date(startDtFmt);
-    return st;
+    return new Date(y, mm, dd, 10, 0);
+  }
+
+
+  setDefaultTimeForEndDate(st: Date) {
+    st.setDate(st.getDate());
+    var dd = st.getDate();
+    var mm = st.getMonth();
+    var y = st.getFullYear();
+    return new Date(y, mm, dd, 17, 30);
   }
 
   get f() {
@@ -293,22 +300,11 @@ export class DashboardsearchbyfilterComponent implements OnInit {
     return this.searchform.controls;
   }
 
+  
   addHoursToJobStartDateAndMinMaxAmount(event: any) {
     var hours = event.target.value;
     this.totalhoursofjob = hours;
-    var totalhours = (Number.parseInt(hours) + this.bufferhours);
-    var jobEndDate = new Date();
-    jobEndDate.setTime(this.startdate.getTime() + (totalhours * 60 * 60 * 1000));
-    var dd = jobEndDate.getDate();
-    var mm = jobEndDate.getMonth() + 1;
-    var y = jobEndDate.getFullYear();
-    var hr = jobEndDate.getHours();
-    var min = jobEndDate.getMinutes();
-    var month = mm > 10 ? mm : '0' + mm;
-    var day = dd > 10 ? dd : '0' + dd;
-    var mins = min > 10 ? min : '0' + min;
-    var addedhourstodate = y + '-' + month + '-' + day + ' ' + hr + ':' + mins;
-    this.enddatevalue = addedhourstodate;
+    this.enddatevalue = this.commonlogic.buildEndDateOfJob(hours, this.startdate);
     this.listofhourlyRateDetailsoffus = [];
     if (this.userFUObjList != null) {
       this.userFUObjList.forEach(element => {
@@ -337,16 +333,6 @@ export class DashboardsearchbyfilterComponent implements OnInit {
     }
   }
 
-  getDateFormat(dt: Date) {
-    var date = new Date(dt);
-    var year = date.getFullYear();
-    var tempmonth = date.getMonth() + 1; //getMonth is zero based;
-    var tempday = date.getDate();
-    var month = tempmonth > 10 ? tempmonth : '0' + tempmonth;
-    var day = tempday > 10 ? tempday : '0' + tempday;
-    var formatted = year + '-' + month + '-' + day;
-    return formatted;
-  }
 
 
   getDateTimeFormat(dt: Date) {
@@ -362,11 +348,18 @@ export class DashboardsearchbyfilterComponent implements OnInit {
     var formatted = year + '-' + month + '-' + day + ' ' + hr + ':' + min;
     return formatted;
   }
-
+  getHours(dt: Date) {
+    var date = new Date(dt);
+    return date.getHours();
+  }
   /* Search Functionality is below */
   searchByFilterFreelancer() {
     this.issubmit = true;
     if (this.searchform.invalid) {
+      return;
+    }
+    if (this.getHours(this.searchform.get('startdate').value) >= 17 || this.getHours(this.searchform.get('startdate').value) < 10) {
+      this.alertService.info(ConfigMsg.job_startdate_msg);
       return;
     }
     this.createjobform.patchValue({ joblocation: this.searchElementRef.nativeElement.value });
@@ -375,7 +368,7 @@ export class DashboardsearchbyfilterComponent implements OnInit {
     this.timelaps = false;
     this.enddatevalue = null;
     this.searchResults(this.searchform.get('startdate').value);
-    this.startdate = this.setDefaultTimeForStartDate(this.searchform.get('startdate').value);
+    this.startdate = this.searchform.get('startdate').value;
   }
   searchResults(startdate: Date) {
     this.issearchbydate = false;
@@ -410,7 +403,7 @@ export class DashboardsearchbyfilterComponent implements OnInit {
           });
       } else {
         this.spinnerService.show();
-        let sdate = this.getDateFormat(startdate);
+        let sdate = this.getDateTimeFormat(startdate);
         this.userService.getUserDetailsByJobAvailableByCreateOn(sdate, this.code).subscribe(
           (userObjList: any) => {
             if (userObjList !== null) {

@@ -58,14 +58,16 @@ export class HomeComponent implements OnInit {
       this.id = params.id;
       this.name = params.name;
     });
-    if (this.id > 0 && this.name === config.confirmation_shortpathname.toString()) {
-      this.checkConfirmation();
-    } else {
-      this.popupalertsonhomepage();
-    }
   }
 
   ngOnInit() {
+    if (this.id > 0 && this.name === config.confirmation_shortpathname.toString()) {
+      this.checkConfirmation();
+    } else {
+      if (this.userService.currentUserValue == null) {
+        this.popupalertsonhomepage();
+      }
+    }
     this.userService.logout();
   }
 

@@ -9,7 +9,7 @@
     "CONTACTUS": "Contact Us",
     "SIGNUP": "Sign Up",
     "LOGIN": "Login",
-    "BANNER_3_LABEL_HEADER": "Explore our Services & Capabilities",
+    "BANNER_3_LABEL_HEADER": "Explore Our Services & Capabilities",
     "BANNER_3_LABEL_HEADER_PARA1": "The global services to fulfil your business needs.",
     "BANNER_3_LABEL_HEADER_PARA2": "We are here to grow your business.",
     "BANNER_3_LABEL_HEADER_PARA3_MOB": "We have customized packages, helping you choose only the services you require and saving you from unnecessary spending and junk.",
@@ -32,9 +32,9 @@
     "SIGNUP_MODALWINDOW_CLIENT_BUTTON_LABEL": "SignUp As Client",
     "SIGNUP_MODALWINDOW_SKILLEDWORKER_BUTTON_LABEL": "SignUp As Skilled Worker",
     "LATESTUPADTE": "Announcements",
-    "LATESTUPDATE_LINE1": "According to our analysis, the economy has lost over ₹32,000 crores (US$4.5 billion) every day during the lockdown, which was declared following the coronavirus outbreak",
-    "LATESTUPDATE_LINE2": "Kaam Karega can increase the economy by onboarding and providing job opportunities to skilled workers.",
-    "LATESTUPDATE_LINE3": "We welcome, the below list of all skill workers to onboard into Kaam Karega platform to utilize the opportunities.",
+    "LATESTUPDATE_LINE1": "According to our sources, the economy has lost over ₹32,000 crores (US$4.5 billion) every day during the lockdown, which was declared following the coronavirus outbreak",
+    "LATESTUPDATE_LINE2": "Kaam Karega can increase the economy by onboarding and providing job opportunities to the skilled workers.",
+    "LATESTUPDATE_LINE3": "We welcome, all the below skilled workers to onboard into Kaam Karega platform to utilize the opportunities.",
     "LATESTUPDATE_LINE4": "SignUp is FREE"
   },
   "HOMEWHATWEDO": {
@@ -44,7 +44,7 @@
     "WHATWEDO": "What We Do",
     "WHATWEDO_DETAILS": "Kaam Karega provides an excellent platform for your business to acquire premium exposure to larger markets by increasing operational efficiency and solving complex business problems with ease. Kaam Karega provides a fully hosted cloud-based software solution incorporating the latest market trends and an efficient workforce. By collaborating & interacting upfront with our customers we change the way you require or render service. In simple words, Kaam Karega is a one-stop solution for all your service needs, working as a fully personalized web hosting software solution.",
     "WHOITHELPS": "Who We Serve",
-    "WHOITHELPS_DETAILS": "We serve small, midsize and large-scale businesses to maintain, manage and organize their business feature or capabilities in a proper channel with the personalized cloud-based web software solution. It efficiently saves time, effort and money. We serve skilled workers by providing the opportunity to work with top brands and high-quality projects. Delivering a compelling & personalized experience in every interaction with us. We support skilled worker dashboards in English, Telugu and Hindi languages."
+    "WHOITHELPS_DETAILS": "We serve small, midsize and large-scale businesses to maintain, manage and organize their business feature or capabilities in a proper channel with the personalized cloud-based web software solution. It efficiently saves time, effort and money. We serve skilled workers by providing the opportunity to work with top brands and high-quality projects. Delivering a compelling & personalized experience in every interaction with us. We support skilled worker dashboards in English and Telugu languages."
   },
   "HOMESIGNUP": {
     "SIGNUP": "Create a Client account",
@@ -169,7 +169,10 @@
     "REVIEWS": "Reviews",
     "CURRENTSTAGE": "Current Onboard Stage",
     "EDIT_PROFILE": "Profile Settings",
-    "NOTIFICATIONMEG_HEADER": "Notifications"
+    "NOTIFICATIONMEG_HEADER": "Notifications",
+    "WORKING_HOURS": "Working Hours",
+    "WORKING_START_TIME": "Work Start Time",
+    "WORKING_END_TIME": "Work Ended Time"
   },
   "DASHBOARD_FU_BODY": {
     "PROFILEEUPDATE": "Profile Updated",
@@ -221,7 +224,7 @@
     "NO_UPCOMING_MSG": "Please check if you find new jobs in New Jobs Tab.",
     "NO_VOLIATION_MSG": "Be proud of yourself not having any violation jobs at this point. Keep up the good service with the clients.",
     "NO_COMPLETEDJOBS_MSG": "You have not completed your first job yet .Complete your first job .",
-    "TOTAL_HOURSOFWORK": "Total Hours of work :",
+    "TOTAL_HOURSOFWORK": "Total Working Hours:",
     "LIVE_TRACKING_ON": "Location On",
     "PAYMENT_SUCCESS": "We have recieved your payment.Click to view transaction details"
   },
@@ -340,7 +343,7 @@
     "504": "504 Gateway Time-out",
     "SORRY": "Sorry for the inconvenience.",
     "REDIRECT_PARA1": "You may want to head back to the ",
-    "REDIRECT_HOME":"Home",
+    "REDIRECT_HOME": "Home",
     "REDIRECT_PARA2": " after some time.",
     "404": "404 Error - Page not Found",
     "INTERNAL": "Internal Server Error",

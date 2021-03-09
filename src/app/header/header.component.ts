@@ -49,10 +49,10 @@ export class HeaderComponent implements OnInit {
     private refAdapter: ReferenceAdapter,
     public commonlogic: CommonUtility
   ) {
-    translate.addLangs(['English', 'తెలుగు', 'हिंदी']);
+    translate.addLangs(['English', 'తెలుగు']);
     translate.setDefaultLang('English');
     const browserLang = translate.getBrowserLang();
-    translate.use(browserLang.match(/English|తెలుగు|हिंदी/) ? browserLang : 'English');
+    translate.use(browserLang.match(/English|తెలుగు/) ? browserLang : 'English');
     this.getAllAvailableFUSkills();
   }
 

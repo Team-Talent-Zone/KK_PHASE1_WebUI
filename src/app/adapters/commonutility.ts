@@ -8,7 +8,7 @@ import { timer } from 'rxjs';
 
 @Injectable()
 export class CommonUtility {
-
+    workinghourslist: any;
     langword: string;
     langcode: string;
     configlg: ModalOptions = {
@@ -81,16 +81,65 @@ export class CommonUtility {
         var year = date.getFullYear();
         var tempmonth = date.getMonth() + 1; //getMonth is zero based;
         var tempday = date.getDate();
-        var hr = date.getHours();
-        hr = hr % 12;
-        hr = hr ? hr : 12; // the hour '0' should be '12'
-        var ampm = hr >= 12 ? 'am' : 'pm';
-        var tempmin = date.getMinutes();
-        var month = tempmonth > 10 ? tempmonth : '0' + tempmonth;
-        var day = tempday > 10 ? tempday : '0' + tempday;
-        var min = tempmin > 10 ? tempmin : '0' + tempmin;
-        var formatted = day + '-' + month + '-' + year + ' ' + hr + ':' + min + ' ' + ampm;
+        var hours = date.getHours();
+        var minutes = date.getMinutes();
+        var ampm = hours >= 12 ? 'pm' : 'am';
+        hours = hours % 12;
+        hours = hours ? hours : 12; // the hour '0' should be '12'
+        var minute = minutes < 10 ? '0' + minutes : minutes;
+        var strTime = hours + ':' + minute + ' ' + ampm;
+
+        var month = tempmonth >= 10 ? tempmonth : '0' + tempmonth;
+        var day = tempday >= 10 ? tempday : '0' + tempday;
+        var formatted = day + '-' + month + '-' + year + ' ' + strTime;
         return formatted;
+    }
+
+    buildEndDateOfJob(totalhours: number, startdate: Date) {
+        this.workinghourslist = [];
+        var jobEndDate = new Date();
+        var st = startdate.getTime();
+        var thours = totalhours;
+        this.workinghourslist.push({ "fromDate": this.getIndianDateFormat(startdate) });
+        for (let i = 1; i <= thours; i++) {
+            jobEndDate.setTime(st + (i * 60 * 60 * 1000));
+            var hr = jobEndDate.getHours();
+            if (hr == 18) {
+                this.workinghourslist.push({ "toDate": this.getIndianDateFormat(jobEndDate) });
+            }
+            if (hr == 19) {
+                var mins = jobEndDate.getMinutes();
+                jobEndDate = this.setEndDate(jobEndDate, mins);
+                thours = thours - i + 1;
+                st = jobEndDate.getTime();
+                i = 0;
+            }
+        }
+        var endDateFinal = { "toDate": this.getIndianDateFormat(jobEndDate) };
+        this.workinghourslist.push(endDateFinal);
+        return this.setEndDateFormat(jobEndDate);
+    }
+    setEndDateFormat(jobEndDate: Date) {
+        var dd = jobEndDate.getDate();
+        var mm = jobEndDate.getMonth() + 1;
+        var y = jobEndDate.getFullYear();
+        var hr = jobEndDate.getHours();
+        var min = jobEndDate.getMinutes();
+        var month = mm > 10 ? mm : '0' + mm;
+        var day = dd > 10 ? dd : '0' + dd;
+        var mins = min > 10 ? min : '0' + min;
+        var addedhourstodate = y + '-' + month + '-' + day + ' ' + hr + ':' + mins;
+        return addedhourstodate;
+    }
+    setEndDate(st: Date, mins: number) {
+        st.setDate(st.getDate() + 1);
+        var dd = st.getDate();
+        var mm = st.getMonth();
+        var y = st.getFullYear();
+        var date = new Date(y, mm, dd, 10, mins);
+        var fromDate = { "fromDate": this.getIndianDateFormat(date) };
+        this.workinghourslist.push(fromDate);
+        return date
     }
 
 }

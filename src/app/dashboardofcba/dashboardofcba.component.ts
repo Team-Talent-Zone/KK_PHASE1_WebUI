@@ -70,7 +70,6 @@ export class DashboardofcbaComponent implements OnInit {
     this.userservicedetailsList = [];
     this.userservicedetailsExistingIds = [];
     this.userservicedetailsAddedList = [];
-    this.spinnerService.show();
     this.usersrvDetails.getAllUserServiceDetailsByUserId(userId).subscribe(
       (listofusersrvDetails: any) => {
         if (listofusersrvDetails != null) {
@@ -80,7 +79,6 @@ export class DashboardofcbaComponent implements OnInit {
             if (element.status === config.user_service_status_paymentpending.toString()) {
               this.userservicedetailsAddedList.push(element);
             }
-            this.spinnerService.hide();
           });
         }
       },
@@ -94,7 +92,6 @@ export class DashboardofcbaComponent implements OnInit {
     this.listOfAllApprovedNewServices = [];
     this.domainRealEstateIndustry = [];
     this.domainServiceProviderObj = [];
-    this.spinnerService.show();
     this.newsvcservice.getAllNewServiceDetails().subscribe(
       (allNewServiceObjs: any) => {
         if (allNewServiceObjs != null) {
@@ -104,7 +101,6 @@ export class DashboardofcbaComponent implements OnInit {
             this.listOfAllApprovedNewServices.push(element);
           });
         }
-        this.spinnerService.hide();
       },
       error => {
         this.spinnerService.hide();
