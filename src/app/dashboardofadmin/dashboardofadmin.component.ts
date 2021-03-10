@@ -546,7 +546,6 @@ export class DashboardofadminComponent implements OnInit {
     var totalhours = (this.totalhoursofjob + this.bufferhours);
     this.enddatevalue = this.commonlogic.buildEndDateOfJob(totalhours, new Date(selectstdate));;
     this.startdate = selectstdate;
-    console.log('this.startdate', this.startdate);
   }
 
 
