@@ -109,7 +109,7 @@
     "PAYFOROPPORTUNITY": "Pay For Opportunity",
     "PAYFOROPPORTUNITY1": "You can now proceed with our secured payment process to get connected with the nationwide Job opportunities. We require a minimal registration fee before we start the background check process.",
     "JOBASSIGNMENT": "Job Assignment",
-    "JOBASSIGNMENT1": "Waiting is painful. To avoid, we have designed an automated system which always connects with you by sending job notification based on your skills. Grab IT, Accept IT, Finish IT."
+    "JOBASSIGNMENT1": "Waiting is painful. To avoid, we have designed an automated system which always connects with you by sending job notifications based on your skills. Grab IT, Accept IT, Finish IT."
   },
   "SKILLEDWORKERREVIEW": {
     "SWORKER_REVIEW_HEADERLABEL": "See what our clients say about skilled workers",
@@ -169,7 +169,7 @@
     "REVIEWS": "Reviews",
     "CURRENTSTAGE": "Current Onboard Stage",
     "EDIT_PROFILE": "Profile Settings",
-    "NOTIFICATIONMEG_HEADER": "Notifications",
+    "NOTIFICATIONMEG_HEADER": "Notifications Center",
     "WORKING_HOURS": " Working Hours",
     "WORKING_START_TIME": "Start Time",
     "WORKING_END_TIME": "End Time"
@@ -312,7 +312,7 @@
     "PAYMENTHIST_STATUS": "Status",
     "PAYMENTHIST_AMOUNT": "Amount",
     "PAYMENTHIST_NOTES": "Note",
-    "PAYMENTHIST_SEARCH": "Search by amount.."
+    "PAYMENTHIST_SEARCH": "Search by exact amount.."
   },
   "FU_REVIEW": {
     "REVIEWS": "Reviews",

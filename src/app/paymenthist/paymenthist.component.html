@@ -12,7 +12,7 @@
                     <thead>
                         <tr>
                             <th> {{ 'PAYMENTHIST.PAYMENTHIST_TRAN_NUMBER' | translate }} </th>
-                             <th>{{ 'PAYMENTHIST.PAYMENTHIST_TRAN_DATE' | translate }}</th>
+                            <th>{{ 'PAYMENTHIST.PAYMENTHIST_TRAN_DATE' | translate }}</th>
                             <th *ngIf="userService.currentUserValue.userroles.rolecode === 'CLIENT_BUSINESS_ADMINISTRATOR' ||
                         userService.currentUserValue.userroles.rolecode === 'FREELANCER_USER'">
                                 {{ 'PAYMENTHIST.PAYMENTHIST_STATUS' | translate }}</th>
@@ -51,7 +51,7 @@
                     <thead>
                         <tr>
                             <th> {{ 'PAYMENTHIST.PAYMENTHIST_TRAN_NUMBER' | translate }}</th>
-                             <th>{{ 'PAYMENTHIST.PAYMENTHIST_TRAN_DATE' | translate }}</th>
+                            <th>{{ 'PAYMENTHIST.PAYMENTHIST_TRAN_DATE' | translate }}</th>
                             <th>{{ 'PAYMENTHIST.PAYMENTHIST_STATUS' | translate }}</th>
                             <th>{{ 'PAYMENTHIST.PAYMENTHIST_AMOUNT' | translate }}</th>
                             <th>{{ 'PAYMENTHIST.PAYMENTHIST_NOTES' | translate }}</th>
@@ -60,7 +60,7 @@
                     <tbody *ngFor="let fupayments of fupaymenthistorydetails">
                         <tr>
                             <td>{{fupayments.txnid}}</td>
-                             <td>
+                            <td>
                                 {{fupayments.createdon}}
                             </td>
                             <td>{{fupayments.status}}</td>
@@ -90,7 +90,7 @@
                     <thead>
                         <tr>
                             <th> {{ 'PAYMENTHIST.PAYMENTHIST_TRAN_NUMBER' | translate }}</th>
-                             <th>{{ 'PAYMENTHIST.PAYMENTHIST_TRAN_DATE' | translate }}</th>
+                            <th>{{ 'PAYMENTHIST.PAYMENTHIST_TRAN_DATE' | translate }}</th>
                             <th>{{ 'PAYMENTHIST.PAYMENTHIST_STATUS' | translate }}</th>
                             <th>{{ 'PAYMENTHIST.PAYMENTHIST_AMOUNT' | translate }}</th>
                             <th>{{ 'PAYMENTHIST.PAYMENTHIST_NOTES' | translate }}</th>
@@ -99,7 +99,7 @@
                     <tbody *ngFor="let cbupayments of cbapaymenthistorydetails">
                         <tr>
                             <td>{{cbupayments.txnid}}</td>
-                             <td>
+                            <td>
                                 {{cbupayments.createdon}}
                             </td>
                             <td>{{cbupayments.status}}</td>

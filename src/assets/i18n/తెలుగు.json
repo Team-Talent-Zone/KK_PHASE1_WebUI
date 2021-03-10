@@ -169,7 +169,7 @@
     "REVIEWS": "సమీక్షలు",
     "CURRENTSTAGE": "ప్రస్తుత ఆన్బోర్డ్ స్టేజ్",
     "EDIT_PROFILE": "ప్రొఫైల్ సెట్టింగులు",
-    "NOTIFICATIONMEG_HEADER": "నోటిఫికేషన్‌లు",
+    "NOTIFICATIONMEG_HEADER": "నోటిఫికేషన్ సెంటర్",
     "WORKING_HOURS": " గంటలు పని",
     "WORKING_START_TIME": "ప్రారంభ సమయం",
     "WORKING_END_TIME": "ముగిసిన సమయం"
@@ -312,7 +312,7 @@
     "PAYMENTHIST_STATUS": "స్థితి",
     "PAYMENTHIST_AMOUNT": "మొత్తం",
     "PAYMENTHIST_NOTES": "గమనిక",
-    "PAYMENTHIST_SEARCH": "మొత్తంతో శోధించండి .."
+    "PAYMENTHIST_SEARCH": "ఖచ్చితమైన మొత్తం ద్వారా శోధించండి.."
   },
   "FU_REVIEW": {
     "REVIEWS": "సమీక్షలు",
