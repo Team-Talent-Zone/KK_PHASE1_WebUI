@@ -52,6 +52,13 @@
       border-radius: 4px;
     }
 
+    input:placeholder-shown {
+      font-style: italic;
+    }
+    textarea:placeholder-shown {
+      font-style: italic;
+    }
+
     body {
       padding-right: 0 !important
     }
@@ -110,18 +117,20 @@
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
   }
-
+  function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
   function paymentHistoryTableSearch() {
     var input, filter, table, tr, td, i, txtValue;
     input = document.getElementById("myInput");
-    filter = input.value.toUpperCase();
+    filter = numberWithCommas(input.value);
     table = document.getElementById("myTable");
     tr = table.getElementsByTagName("tr");
     for (i = 0; i < tr.length; i++) {
       td = tr[i].getElementsByTagName("td")[3];
       if (td) {
         txtValue = td.textContent || td.innerText;
-        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        if (txtValue.indexOf(filter) > -1) {
           tr[i].style.display = "";
         } else {
           tr[i].style.display = "none";

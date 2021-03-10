@@ -15,7 +15,7 @@
                     </span>
                     <input readonly [owlDateTime]="dt1" formControlName="startdate" [min]="minstartDate"
                         [max]="maxstartDate" [owlDateTimeTrigger]="dt1" class="form-control"
-                        placeholder="Choose the appointment date"
+                        placeholder="Choose the appointment date and time"
                         [ngClass]="{ 'is-invalid': issubmit && s.startdate.errors }">
                     <div *ngIf="issubmit && s.startdate.errors" class="invalid-feedback">
                         <div *ngIf="s.startdate.errors.required">Appointment Date is required
@@ -45,7 +45,7 @@
                     </div>
                     <div class="col-4" *ngIf="issearchbydate && userFUObjList.length > 0 && 
                             this.userService.currentUserValue.userroles.rolecode === 'CLIENT_BUSINESS_ADMINISTRATOR'">
-                        <a (click)="openCreateJobInterface()" class="btn btn-success"><i class="fa fa-plus"></i>
+                        <a (click)="openCreateJobInterface()" class="btn btn-outline-success"><i class="fa fa-plus"></i>
                             Create Job</a>
                     </div>
                 </div>
@@ -162,7 +162,7 @@
             <div class="card-body">
                 <div class="form-group">
                     <div class="form-row">
-                        <div class="col-md-12">
+                        <div class="col-md-10">
                             <label><b>Job Location</b> </label>
                             <span>
                                 <i class="fa fa-address-book form-control-icon"></i>
@@ -174,14 +174,14 @@
                 </div>
                 <div class="form-group">
                     <div class="form-row">
-                        <div class="col-md-8">
+                        <div class="col-md-5">
                             <label><b>Total Hours Of Work</b>&nbsp;
                             </label>
                             <span>
                                 <i class="fa fa-clock-o form-control-icon"></i>
                             </span>
                             <input type="url" formControlName="totalhoursofjob" class="form-control"
-                                (change)="addHoursToJobStartDateAndMinMaxAmount ($event)" id="input3"
+                                (change)="addHoursToJobStartDateAndMinMaxAmount($event)" id="input3"
                                 placeholder="Enter hours of work "
                                 [ngClass]="{ 'is-invalid': issubmit && f.totalhoursofjob.errors }" />
                             <div *ngIf="issubmit && f.totalhoursofjob.errors" class="invalid-feedback">
@@ -201,40 +201,44 @@
                                 By entering this value, we estimate the job end date.
                             </small>
                         </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="form-row">
-                        <div class="col-md-3">
+                        <div class="col-md-5">
                             <label><b>Job Start Date</b>&nbsp;
                             </label>
                             <span>
                                 <i class="fa fa-calendar   form-control-icon"></i>
                             </span>
-                            <input formControlName="jobstartedon"
-                                [ngModel]="this.commonlogic.getIndianDateFormat(startdate)" class="form-control"
-                                readonly>
+                            <input formControlName="jobstartedon" class="form-control" readonly>
+                            <small>
+                                <i>(yyyy-mm-dd hh:mm)</i>
+                            </small>
                         </div>
-                        <div class="col-md-5">
+                    </div>
+                </div>
+                <div class="form-group" *ngIf="enddatevalue != null">
+                    <div class="form-row">
+                        <div class="col-md-8" >
                             <label><b>Job End Date</b>&nbsp;
                             </label>
                             <span>
                                 <i class="fa fa-calendar form-control-icon"></i>
                             </span>
-                            <input *ngIf="enddatevalue != null" readonly formControlName="jobendedon"
-                                [ngModel]="this.commonlogic.getIndianDateFormat(enddatevalue)" class="form-control">
+                            <input readonly formControlName="jobendedon" class="form-control">
                             <small *ngIf="enddatevalue != null">
+                                <i>(yyyy-mm-dd hh:mm)</i>
                                 <p>
                                     Estimated job end date & time : <span
                                         class="btn-warning">{{this.commonlogic.getIndianDateFormat(enddatevalue)}}</span>
                                 </p>
-                                <h6 *ngIf="this.commonlogic.workinghourslist != null && this.commonlogic.workinghourslist.length > 0">Working Hours</h6>
-                                <div class="row" *ngIf="this.commonlogic.workinghourslist != null && this.commonlogic.workinghourslist.length > 0">
+                                <h6
+                                    *ngIf="this.commonlogic.workinghourslist != null && this.commonlogic.workinghourslist.length > 0">
+                                    Working Hours</h6>
+                                <div
+                                    *ngIf="this.commonlogic.workinghourslist != null && this.commonlogic.workinghourslist.length > 0">
                                     <table class="table borderless col-8">
                                         <thead>
                                             <tr>
-                                                <th>Work Start Time</th>
-                                                <th>Work Ended Time</th>
+                                                <th>Start Time</th>
+                                                <th>End Time</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -256,7 +260,7 @@
                 </div>
                 <div class="form-group">
                     <div class="form-row">
-                        <div class="col-md-8">
+                        <div class="col-md-5">
                             <label> <b> Enter amount </b></label>&nbsp;
                             <span>
                                 <i class="fa fa-inr form-control-icon"></i>
@@ -293,13 +297,13 @@
                                 </small>
                             </p>
                         </div>
-                        <div class="col-md-8">
+                        <div class="col-md-5">
                             <label><b> Job Description </b></label>
                             <span>
                                 <i class="fa fa-at form-control-icon"></i>
                             </span>
                             <textarea class="form-control" formControlName="jobdescription" rows="5" id="input5"
-                                placeholder="Enter Job Description To Perform"
+                                placeholder="Enter Job Description Briefly"
                                 [ngClass]="{ 'is-invalid': issubmit && f.jobdescription.errors }"></textarea>
                             <div *ngIf="issubmit && f.jobdescription.errors" class="invalid-feedback">
                                 <div *ngIf="f.jobdescription.errors.required">Job description is

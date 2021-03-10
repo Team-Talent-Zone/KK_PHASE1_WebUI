@@ -105,7 +105,7 @@
         </div>
         <select #sel class="form-control" formControlName="biztype"
           [ngClass]="{ 'is-invalid': issubmit && f.biztype.errors }">
-          <option value="">{{'HOMESIGNUP.BIZTYPE' | translate}}</option>
+          <option value=""><i>{{'HOMESIGNUP.BIZTYPE' | translate}}</i></option>
           <option value="Individual">{{
           biztypelist[0] }}</option>
           <option value="Company">{{

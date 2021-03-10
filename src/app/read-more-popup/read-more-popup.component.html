@@ -44,7 +44,7 @@
 <!-- Working Hours-->
 <div *ngIf="workinghourslist != null && !notificationEnable">
   <div class="modal-header">
-    <h4 class="modal-title">{{ 'DASHOARD_FU_MENU.WORKING_HOURS' | translate }}</h4>
+    <h4 class="modal-title">{{headerlabel}}{{ 'DASHOARD_FU_MENU.WORKING_HOURS' | translate }}</h4>
     <button type="button" class="btn btn-sm btn-danger pull-right" (click)="modalRef.hide()">&times;</button>
   </div>
   <div class="modal-body">

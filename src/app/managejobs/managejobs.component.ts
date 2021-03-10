@@ -371,7 +371,8 @@ export class ManagejobsComponent implements OnInit {
       this.commonlogic.buildEndDateOfJob(objfreelanceservice.totalhoursofjob, new Date(objfreelanceservice.jobstartedon));
       setTimeout(() => {
         const initialState = {
-          workinghourslist: this.commonlogic.workinghourslist
+          workinghourslist: this.commonlogic.workinghourslist,
+          headerlabel: objfreelanceservice.totalhoursofjob
         };
         this.modalRef = this.modalService.show(ReadMorePopupComponent, Object.assign(
           {},

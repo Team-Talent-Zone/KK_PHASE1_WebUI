@@ -236,10 +236,11 @@
                         <hr>
                         <input [owlDateTime]="dt1" name="startdateInputDate" [min]="minstartDate" [max]="maxstartDate"
                           [owlDateTimeTrigger]="dt1" class="form-control"
-                          (dateTimeInput)="buildendateforvoliationcreatenewjob($event)" placeholder="Choose start date">
-                        <owl-date-time [pickerType]="'calendar'" #dt1></owl-date-time>
-                        <p> <small>Default job start time: <span class="btn-warning">10:00 am</span></small>
-                        </p>
+                          (dateTimeInput)="buildendateforvoliationcreatenewjob($event)" placeholder="Choose the appointment date">
+                        <owl-date-time  #dt1></owl-date-time>
+                        <small class="text-muted">
+                          You can make appointment piror 10 days between 10:00 AM - 4:59 PM
+                      </small>
                       </div>
                       <br>
                       <div
@@ -300,7 +301,7 @@
                       </p>
                     </td>
                     <td>
-                      <textarea *ngIf="i == this.volationindex" class="form-control"
+                      <textarea *ngIf="job.associatedadminId > 0" class="form-control"
                         [(ngModel)]="resolvedvoliationreason" rows="2" id="input5"
                         placeholder="Enter Volidation Detailed Comment"></textarea>
                     </td>

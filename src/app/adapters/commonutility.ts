@@ -125,9 +125,9 @@ export class CommonUtility {
         var y = jobEndDate.getFullYear();
         var hr = jobEndDate.getHours();
         var min = jobEndDate.getMinutes();
-        var month = mm > 10 ? mm : '0' + mm;
-        var day = dd > 10 ? dd : '0' + dd;
-        var mins = min > 10 ? min : '0' + min;
+        var month = mm >= 10 ? mm : '0' + mm;
+        var day = dd >= 10 ? dd : '0' + dd;
+        var mins = min >= 10 ? min : '0' + min;
         var addedhourstodate = y + '-' + month + '-' + day + ' ' + hr + ':' + mins;
         return addedhourstodate;
     }

@@ -127,7 +127,7 @@
                         </div>
                         <p>
                             <small class="pull-left">
-                                <a style="cursor:pointer; border-bottom: 1px dotted darkgreen;"
+                                <a style="cursor:pointer; border-bottom: 2px dotted darkgreen;"
                                     (click)="openWorkingHours(element.jobId)">
                                     <b>{{ 'DASHBOARD_FU_BODY.TOTAL_HOURSOFWORK' | translate }} </b>
                                     {{element.totalhoursofjob}}
@@ -168,8 +168,7 @@
                                 <i class="fa fa-check" title="Click to activate the job"></i>
                             </button>
                             <button class="bg-danger pull-right" *ngIf="newlyjob.isjobactive && newlyjob.deactivefromnewjobs 
-                                && !newlyjob.isjobaccepted"
-                                (click)="deactivateJob(newlyjob.jobId,'noskilledworkeraccepted')">No One Accepted
+                                && !newlyjob.isjobaccepted" (click)="cancelJob(newlyjob.jobId)">No One Accepted
                                 <i class="fa fa-times" title="No skilled worker has accepted this job. Please
                                 proceed to remove this job & create new job again"></i></button>
                             <button class="bg-warning pull-right" *ngIf="!newlyjob.isjobactive 
@@ -211,7 +210,7 @@
                         </div>
                         <div>
                             <small>
-                                <a style="cursor:pointer; border-bottom: 1px dotted darkgreen;"
+                                <a style="cursor:pointer; border-bottom: 2px dotted darkgreen;"
                                     (click)="openWorkingHours(newlyjob.jobId)">
                                     <b>{{ 'DASHBOARD_FU_BODY.TOTAL_HOURSOFWORK' | translate }} </b>
                                     {{newlyjob.totalhoursofjob}}
@@ -240,7 +239,7 @@
                             <p class="text-primary"><i class="fa fa-info-circle"></i>
                                 <small class="text-muted ">
                                     Thank you for activating the job.
-                                    <p>Our pool of skilled workers
+                                    <p class="ml-3">Our pool of skilled workers
                                         will be available to accept this job shortly.
                                         We will notify with popup message.
                                     </p>
@@ -351,15 +350,15 @@
                         </div>
                         <div>
                             <small>
-                                <a style="cursor:pointer; border-bottom: 1px dotted darkgreen;"
+                                <a style="cursor:pointer; border-bottom: 2px dotted darkgreen;"
                                     (click)="openWorkingHours(completedjob.jobId)">
                                     <b>{{ 'DASHBOARD_FU_BODY.TOTAL_HOURSOFWORK' | translate }} </b>
                                     {{completedjob.totalhoursofjob}}
                                 </a>
                             </small>
                         </div>
-                        <div class="tooltips">
-                            <a style="cursor:pointer pull-right" (click)="openReadMorePopup(completedjob.jobdescription)"><i>
+                        <div class="tooltips pull-right">
+                            <a style="cursor:pointer" (click)="openReadMorePopup(completedjob.jobdescription)"><i>
                                     {{ 'DASHBOARD_FU_BODY.JOBDESCPTION' | translate }}</i></a>
                         </div>
                     </div>
@@ -459,6 +458,17 @@
         </p>
     </dd>
     <dt class="col-sm-3">
+        <i class="fa fa-pause pull-left" style="color:#FF4949"> </i>
+    </dt>
+    <dd class="col-sm-9">
+        <p class="btn-warning"><i><b>
+            This ICON indicates this job is on hold due to worker unattended to the job location.
+                    <p>Management will work on the case and get back to you.</p>
+                </b>
+            </i>
+        </p>
+    </dd>
+    <dt class="col-sm-3">
         <button class="bg-info" style="font-size:14px">Job Completed
             <i class="fa fa-check"></i></button>
     </dt>
@@ -511,7 +521,7 @@
         start date has crossed current date.Proceed to remove this job & create new job.
     </dd>
     <dt class="col-sm-3">
-        <button class="bg-white">Payment Info<i class="fa fa-sitemap" style="color:#FF4949"></i></button>
+        <button class="bg-white"><i class="fa fa-sitemap" style="color:#FF4949"></i> Payment Info</button>
     </dt>
     <dd class="col-sm-9">
         Clicking on this BUTTON indicates to view the payment details for the respective job.

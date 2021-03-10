@@ -52,7 +52,7 @@ export class DashboardoffuComponent implements OnInit {
   voliationjobsempty: boolean = false;
   date = new Date();
   modalRef: any;
-  indiaTimeFormat = this.datepipe.transform(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }), "yyyy-MM-dd HH:mm:ss");
+  indiaTimeFormat = this.datepipe.transform(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }), "MM-dd-yyyy HH:mm:ss");
 
   constructor(
     public userService: UserService,
@@ -447,7 +447,8 @@ export class DashboardoffuComponent implements OnInit {
       this.commonlogic.buildEndDateOfJob(objfreelanceservice.totalhoursofjob, new Date(objfreelanceservice.jobstartedon));
       setTimeout(() => {
         const initialState = {
-          workinghourslist: this.commonlogic.workinghourslist
+          workinghourslist: this.commonlogic.workinghourslist,
+          headerlabel: objfreelanceservice.totalhoursofjob,
         };
         this.modalRef = this.modalService.show(ReadMorePopupComponent, Object.assign(
           {},

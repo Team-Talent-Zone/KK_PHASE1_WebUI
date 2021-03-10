@@ -300,36 +300,40 @@ export class DashboardsearchbyfilterComponent implements OnInit {
     return this.searchform.controls;
   }
 
-  
+
   addHoursToJobStartDateAndMinMaxAmount(event: any) {
     var hours = event.target.value;
-    this.totalhoursofjob = hours;
-    this.enddatevalue = this.commonlogic.buildEndDateOfJob(hours, this.startdate);
-    this.listofhourlyRateDetailsoffus = [];
-    if (this.userFUObjList != null) {
-      this.userFUObjList.forEach(element => {
-        this.listofhourlyRateDetailsoffus.push(element.hourlyRate);
-      });
-      var maxAmt = Math.max.apply(null, this.listofhourlyRateDetailsoffus);
-      var minAmt = Math.min.apply(null, this.listofhourlyRateDetailsoffus);
-      var maxHourlyRate = maxAmt * hours;
-      var minHourlyRate = minAmt * hours;
+    if (hours > 0) {
+      this.totalhoursofjob = hours;
+      this.enddatevalue = this.commonlogic.buildEndDateOfJob(hours, this.startdate);
+      this.listofhourlyRateDetailsoffus = [];
+      if (this.userFUObjList != null) {
+        this.userFUObjList.forEach(element => {
+          this.listofhourlyRateDetailsoffus.push(element.hourlyRate);
+        });
+        var maxAmt = Math.max.apply(null, this.listofhourlyRateDetailsoffus);
+        var minAmt = Math.min.apply(null, this.listofhourlyRateDetailsoffus);
+        var maxHourlyRate = maxAmt * hours;
+        var minHourlyRate = minAmt * hours;
 
-      /**
-       * Increasing 20% more to avghourly to built the min rate
-       */
+        /**
+         * Increasing 20% more to avghourly to built the min rate
+         */
 
-      let increasedminrate = (minHourlyRate) * (this.increaseminpercentage);
-      this.avgHourlyRate = (minHourlyRate) + increasedminrate;
-      //this.avgHourlyRate = minHourlyRate;
+        let increasedminrate = (minHourlyRate) * (this.increaseminpercentage);
+        this.avgHourlyRate = (minHourlyRate) + increasedminrate;
+        //this.avgHourlyRate = minHourlyRate;
 
-      /**
-       * Increasing 20% more to avghourly to built the max rate
-       */
-      let increasedmaxrate = (maxHourlyRate) * (this.increasemaxpercentage);
-      this.maxHourlyRateCal = (maxHourlyRate) + increasedmaxrate;
+        /**
+         * Increasing 20% more to avghourly to built the max rate
+         */
+        let increasedmaxrate = (maxHourlyRate) * (this.increasemaxpercentage);
+        this.maxHourlyRateCal = (maxHourlyRate) + increasedmaxrate;
 
-      this.createjobform.patchValue({ jobendedon: this.enddatevalue });
+        this.createjobform.patchValue({ jobendedon: this.enddatevalue });
+      }
+    } else {
+      this.enddatevalue = null;
     }
   }
 

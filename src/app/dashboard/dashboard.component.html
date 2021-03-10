@@ -23,7 +23,8 @@
             <div class="col-10 col-lg-10 col-md-5">
                 <input type="search" [(ngModel)]="inputItem" (ngModelChange)="getFilteredList()"
                     (keyup.enter)="search(inputItem)" class="form-control" (keyup)="onKeyPress($event);"
-                    (blur)="toggleListDisplay(0)" (focus)="toggleListDisplay(1)" placeholder="Search by skill name"
+                    (blur)="toggleListDisplay(0)" (focus)="toggleListDisplay(1)" 
+                    placeholder="Search by skill name"
                     [ngClass]="{'error': showError}">
                 <div class="col-11 combobox-options dropdown1" *ngIf="!listHidden">
                     <list-item class="nav-link rounded-pill" *ngFor="let item of filteredList;let i = index"

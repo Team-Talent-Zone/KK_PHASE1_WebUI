@@ -68,7 +68,7 @@ export class DashboardofadminComponent implements OnInit {
   volationindex: number;
   issubmit = false;
   iscreatejobflag: boolean = false;
-  bufferhours: number = 1;
+  bufferhours: number = 0;
   onworkfreelancelistsbysubcategory: any;
   onnotworkfreelancelistsbysubcategory: any;
   isshowswithjobbycategory: boolean = false;
@@ -397,8 +397,15 @@ export class DashboardofadminComponent implements OnInit {
     this.fuUserId = null;
     this.resolvedvoliationreason = null;
   }
-
+  getHours(dt: Date) {
+    var date = new Date(dt);
+    return date.getHours();
+  }
   savevoliationResolvedReason(jobId: number) {
+    if (this.getHours(new Date(this.startdate)) >= 17 || this.getHours(new Date(this.startdate)) < 10) {
+      this.alertService.info(ConfigMsg.job_startdate_msg);
+      return;
+    }
     if (this.resolvedvoliationreason == null) {
       this.alertService.info(ConfigMsg.voliation_resolve_required_msg_1);
       return;
@@ -429,7 +436,7 @@ export class DashboardofadminComponent implements OnInit {
                       updatedobjfreelanceservice.jobId = null;
                       updatedobjfreelanceservice.isfreelancerjobattendant = false;
                       updatedobjfreelanceservice.isjobvoliation = false;
-                      updatedobjfreelanceservice.jobstartedon = this.startdate.toString();
+                      updatedobjfreelanceservice.jobstartedon = this.commonlogic.setEndDateFormat(new Date(this.startdate));
                       updatedobjfreelanceservice.jobendedon = this.enddatevalue.toString();
                       updatedobjfreelanceservice.freelanceuserId = this.fuUserId;
                       updatedobjfreelanceservice.jobaccepteddate = this.datepipe.transform(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }), "yyyy-MM-dd HH:mm:ss").toString();
@@ -487,6 +494,7 @@ export class DashboardofadminComponent implements OnInit {
             elementcategory.referencelookupmapping.forEach(elementlookupmapping => {
               elementlookupmapping.referencelookupmappingsubcategories.forEach(element => {
                 this.listofAllFUSkills.push(element);
+                this.listofAllFUSkills.sort((a, b) => (a.orderid > b.orderid ? 1 : -1));
               });
             })
           }
@@ -496,8 +504,8 @@ export class DashboardofadminComponent implements OnInit {
   buildnewjobforvoliation(hours: number, index: number, subcat: string) {
     this.allFreelancerUsersList = [];
     this.iscreatejobflag = true;
-    this.minstartDate.setTime(this.minstartDate.getTime() + (24 * 60 * 60 * 1000));
-    this.maxstartDate.setTime(this.maxstartDate.getTime() + (144 * 60 * 60 * 1000));
+    this.minstartDate = this.setDefaultTimeForStartDate(new Date(this.minstartDate.getTime() + (12 * 60 * 60 * 1000)));
+    this.maxstartDate = this.setDefaultTimeForEndDate(new Date(this.maxstartDate.getTime() + (240 * 60 * 60 * 1000)));
     this.totalhoursofjob = hours;
     this.volationindex = index;
     this.userService.getUsersByRole(config.user_rolecode_fu).subscribe((userList: any) => {
@@ -515,47 +523,32 @@ export class DashboardofadminComponent implements OnInit {
         this.alertService.error(error);
       });
   }
-  buildendateforvoliationcreatenewjob(event: any) {
-    var selectstdate = event.value;
-    this.iscreatejobflag = true;
-    var totalhours = (this.totalhoursofjob + this.bufferhours);
-    var jobEndDate = new Date();
-    jobEndDate.setTime(this.setDefaultTimeForStartDate(new Date(selectstdate)).getTime() + (totalhours * 60 * 60 * 1000));
-    var dd = jobEndDate.getDate();
-    var mm = jobEndDate.getMonth() + 1;
-    var y = jobEndDate.getFullYear();
-    var hr = jobEndDate.getHours();
-    var min = jobEndDate.getMinutes();
-    var month = mm > 10 ? mm : '0' + mm;
-    var day = dd > 10 ? dd : '0' + dd;
-    var mins = min > 10 ? min : '0' + min;
-    var addedhourstodate = y + '-' + month + '-' + day + ' ' + hr + ':' + mins;
-    this.enddatevalue = addedhourstodate;
-    this.startdate = this.setDefaultTimeForStartDateFormat(event.value);
-  }
 
   setDefaultTimeForStartDate(st: Date) {
     st.setDate(st.getDate());
     var dd = st.getDate();
-    var mm = st.getMonth() + 1;
+    var mm = st.getMonth();
     var y = st.getFullYear();
-    var month = mm > 10 ? mm : '0' + mm;
-    var day = dd > 10 ? dd : '0' + dd;
-    var startDtFmt = y + '-' + month + '-' + day + ' 10:00';
-    st = new Date(startDtFmt);
-    return st;
+    return new Date(y, mm, dd, 10, 0);
   }
 
-  setDefaultTimeForStartDateFormat(st: Date) {
+  setDefaultTimeForEndDate(st: Date) {
     st.setDate(st.getDate());
     var dd = st.getDate();
-    var mm = st.getMonth() + 1;
+    var mm = st.getMonth();
     var y = st.getFullYear();
-    var month = mm > 10 ? mm : '0' + mm;
-    var day = dd > 10 ? dd : '0' + dd;
-    var startDtFmt = y + '-' + month + '-' + day + ' 10:00';
-    return startDtFmt;
+    return new Date(y, mm, dd, 17, 30);
   }
+
+  buildendateforvoliationcreatenewjob(event: any) {
+    var selectstdate = event.value;
+    this.iscreatejobflag = true;
+    var totalhours = (this.totalhoursofjob + this.bufferhours);
+    this.enddatevalue = this.commonlogic.buildEndDateOfJob(totalhours, new Date(selectstdate));;
+    this.startdate = selectstdate;
+    console.log('this.startdate', this.startdate);
+  }
+
 
   /****
    * Summary  - All Services
